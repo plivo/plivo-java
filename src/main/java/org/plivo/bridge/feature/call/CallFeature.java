@@ -100,9 +100,6 @@ public class CallFeature extends BaseFeature {
 	public HangupAllCallRequest hangUpAll(Map<String, String> parameters)
 			throws PlivoClientException {
 		
-		WebResource res = this.getBaseResource().path("HangupAllCalls/");
-		res = super.populateGETResource(res, parameters);
-		
 		try {
 			HangupAllCallRequest result = this.getBaseResource()
 					.path("HangupAllCalls/")
