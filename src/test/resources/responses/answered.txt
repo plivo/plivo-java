@@ -1,0 +1,9 @@
+aleg_uuid = 3b0bb0f6-8497-11e0-a0b5-ef52434db79c
+call_uuid = 3b0bb0f6-8497-11e0-a0b5-ef52434db79c
+direction = outbound
+called_no = 1002
+sched_hangup_id = 
+aleg_request_uuid = 3b0ae7ac-8497-11e0-8f83-95665f7c0568
+from_no = 1002
+
+

@@ -1,0 +1,13 @@
+request_uuid = 0165cddc-8497-11e0-8f83-95665f7c0568
+reason = USER_NOT_REGISTERED
+
+request_uuid = 0165cddc-8497-11e0-8f83-95665f7c0568
+call_uuid = 01668880-8497-11e0-a0a9-ef52434db79c
+reason = USER_BUSY
+
+
+request_uuid = 3b0ae7ac-8497-11e0-8f83-95665f7c0568
+call_uuid = 3b0bb0f6-8497-11e0-a0b5-ef52434db79c
+reason = NORMAL_CLEARING
+
+
