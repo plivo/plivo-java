@@ -52,7 +52,9 @@ public class Record implements Serializable {
 	
 	@XmlAttribute
 	private String prefix;
-
+	
+	@XmlAttribute
+	private boolean bothLegs;
 	
 	public Record() {
 		
@@ -166,5 +168,15 @@ public class Record implements Serializable {
 
 	public void setPrefix(String prefix) {
 		this.prefix = prefix;
+	}
+
+
+	public boolean isBothLegs() {
+		return bothLegs;
+	}
+
+
+	public void setBothLegs(boolean bothLegs) {
+		this.bothLegs = bothLegs;
 	}
 }

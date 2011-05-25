@@ -43,9 +43,6 @@ public class Response implements Serializable {
 	@XmlElement(name="Hangup")
 	private Hangup hangup;
 	
-	@XmlElement(name="RecordSession")
-	private RecordSession recordSession;
-	
 	@XmlElement(name="PreAnswer")
 	private PreAnswer preAnswer;
 	
@@ -121,14 +118,6 @@ public class Response implements Serializable {
 
 	public void setHangup(Hangup hangup) {
 		this.hangup = hangup;
-	}
-
-	public RecordSession getRecordSession() {
-		return recordSession;
-	}
-
-	public void setRecordSession(RecordSession recordSession) {
-		this.recordSession = recordSession;
 	}
 
 	public PreAnswer getPreAnswer() {

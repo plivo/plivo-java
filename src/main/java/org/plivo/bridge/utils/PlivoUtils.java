@@ -21,11 +21,9 @@ import org.plivo.bridge.to.response.Number;
 import org.plivo.bridge.to.response.Play;
 import org.plivo.bridge.to.response.PreAnswer;
 import org.plivo.bridge.to.response.Record;
-import org.plivo.bridge.to.response.RecordSession;
 import org.plivo.bridge.to.response.Redirect;
 import org.plivo.bridge.to.response.Reject;
 import org.plivo.bridge.to.response.Response;
-import org.plivo.bridge.to.response.ScheduleHangup;
 import org.plivo.bridge.to.response.Speak;
 import org.plivo.bridge.to.response.Wait;
 
@@ -73,10 +71,8 @@ public abstract class PlivoUtils {
 			Play.class,
 			PreAnswer.class,
 			Record.class,
-			RecordSession.class,
 			Redirect.class,
 			Reject.class,
-			ScheduleHangup.class,
 			Speak.class,
 			Wait.class
 		};

@@ -24,7 +24,10 @@ public class Conference implements Serializable {
 	private boolean muted;
 	
 	@XmlAttribute
-	private boolean beep;
+	private String enterSound;
+	
+	@XmlAttribute
+	private String exitSound;
 	
 	@XmlAttribute
 	private boolean startConferenceOnEnter;
@@ -33,11 +36,16 @@ public class Conference implements Serializable {
 	private boolean endConferenceOnExit;
 	
 	@XmlAttribute
-	private String waitUrl;
+	private String waitSound;
 	
 	@XmlAttribute
-	private String waitMethod;
+	private Integer maxMembers;
 	
+	@XmlAttribute
+	private Integer timeLimit;
+	
+	@XmlAttribute
+	private boolean hangupOnStar;
 	
 	public Conference() {
 		
@@ -51,16 +59,6 @@ public class Conference implements Serializable {
 
 	public void setMuted(boolean muted) {
 		this.muted = muted;
-	}
-
-
-	public boolean isBeep() {
-		return beep;
-	}
-
-
-	public void setBeep(boolean beep) {
-		this.beep = beep;
 	}
 
 
@@ -84,22 +82,63 @@ public class Conference implements Serializable {
 	}
 
 
-	public String getWaitUrl() {
-		return waitUrl;
+	public String getEnterSound() {
+		return enterSound;
 	}
 
 
-	public void setWaitUrl(String waitUrl) {
-		this.waitUrl = waitUrl;
+	public void setEnterSound(String enterSound) {
+		this.enterSound = enterSound;
 	}
 
 
-	public String getWaitMethod() {
-		return waitMethod;
+	public String getExitSound() {
+		return exitSound;
 	}
 
 
-	public void setWaitMethod(String waitMethod) {
-		this.waitMethod = waitMethod;
+	public void setExitSound(String exitSound) {
+		this.exitSound = exitSound;
 	}
+
+
+	public String getWaitSound() {
+		return waitSound;
+	}
+
+
+	public void setWaitSound(String waitSound) {
+		this.waitSound = waitSound;
+	}
+
+
+	public Integer getMaxMembers() {
+		return maxMembers;
+	}
+
+
+	public void setMaxMembers(Integer maxMembers) {
+		this.maxMembers = maxMembers;
+	}
+
+
+	public Integer getTimeLimit() {
+		return timeLimit;
+	}
+
+
+	public void setTimeLimit(Integer timeLimit) {
+		this.timeLimit = timeLimit;
+	}
+
+
+	public boolean isHangupOnStar() {
+		return hangupOnStar;
+	}
+
+
+	public void setHangupOnStar(boolean hangupOnStar) {
+		this.hangupOnStar = hangupOnStar;
+	}
+
 }
