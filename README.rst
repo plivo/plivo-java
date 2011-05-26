@@ -31,4 +31,4 @@ Installation
 License
 -------
 
-The Plivo Python Helper Library  is distributed under the MPL 1.1 License
+The Plivo Java Helper Library is distributed under the MPL 1.1 License
