@@ -1,8 +1,0 @@
-// this project was made using maven2
-// so before anything, download it at apache.org
-// after that
-
-mvn eclipse:eclipse // for eclipse
-mvn idea:idea // for idea
-
-// now you can just open the project and be happy

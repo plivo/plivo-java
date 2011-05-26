@@ -1,0 +1,34 @@
+
+Plivo Java Helper Library
+---------------------------
+
+Description
+~~~~~~~~~~~
+
+The Plivo Java helper simplifies the process of making REST calls and generating RESTXML.
+
+See `Plivo Documentation <http://www.plivo.org/docs/>`_ for more information.
+
+
+Installation
+~~~~~~~~~~~~~
+
+**Download Maven2**
+    TAR.GZ - http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-2.2.1-bin.tar.gz
+    ZIP - http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-2.2.1-bin.zip
+
+
+**Use the Library in your Java IDE**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Create Stubs for Eclipse:**
+    mvn eclipse:eclipse
+
+**Create stubs for idea**
+    mvn idea:idea
+
+
+License
+-------
+
+The Plivo Python Helper Library  is distributed under the MPL 1.1 License
