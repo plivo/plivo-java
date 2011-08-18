@@ -24,9 +24,6 @@ public class Wait implements Serializable {
 	@XmlAttribute
 	private int length;
 	
-	@XmlAttribute
-	private boolean transferEnabled;
-	
 	@XmlValue
 	private String value;
 	
@@ -40,14 +37,6 @@ public class Wait implements Serializable {
 
 	public void setLength(int length) {
 		this.length = length;
-	}
-
-	public boolean isTransferEnabled() {
-		return transferEnabled;
-	}
-
-	public void setTransferEnabled(boolean transferEnabled) {
-		this.transferEnabled = transferEnabled;
 	}
 
 	public String getValue() {
