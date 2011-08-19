@@ -36,6 +36,9 @@ public class Conference implements Serializable {
 	private boolean endConferenceOnExit;
 	
 	@XmlAttribute
+	private boolean stayAlone;
+
+	@XmlAttribute
 	private String waitSound;
 	
 	@XmlAttribute
@@ -81,6 +84,15 @@ public class Conference implements Serializable {
 		this.endConferenceOnExit = endConferenceOnExit;
 	}
 
+
+	public boolean isStayAlone() {
+		return stayAlone;
+	}
+
+
+	public void setStayAlone(boolean stayAlone) {
+		this.stayAlone = stayAlone;
+	}
 
 	public String getEnterSound() {
 		return enterSound;
