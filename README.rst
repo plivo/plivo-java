@@ -18,6 +18,12 @@ Installation
     ZIP - http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-2.2.1-bin.zip
 
 
+**Use maven "mvn install"**
+
+(This currently only supports the Oracle (SUN) JDK 1.6+. We should have OpenJDK available shortly)
+
+
+
 **Use the Library in your Java IDE**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
