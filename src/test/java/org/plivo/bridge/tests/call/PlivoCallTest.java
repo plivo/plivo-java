@@ -35,7 +35,7 @@ public class PlivoCallTest {
 	public PlivoCallTest() {
 		client = PlivoClient.create("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 				"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
-				"http://205.185.125.36:8088", false);
+				"http://localhost:8088", false);
 	}
 
 	@BeforeClass
@@ -80,9 +80,9 @@ public class PlivoCallTest {
 		parameters.put("GatewayTimeouts", "60");
 		parameters.put("GatewayRetries", "1");
 		parameters.put("OriginateDialString", "originate_dial_string");
-		parameters.put("AnswerUrl", "http://189.15.113.23:5151/answered");
-		parameters.put("HangUpUrl", "http://189.15.113.23:5151/hangup");
-		parameters.put("RingUrl", "http://189.15.113.23:5151/ringing");
+		parameters.put("AnswerUrl", "http://localhost:5151/answered");
+		parameters.put("HangUpUrl", "http://localhost:5151/hangup");
+		parameters.put("RingUrl", "http://localhost:5151/ringing");
 
 		CallRequest result = client.call().single(parameters);
 
@@ -117,9 +117,9 @@ public class PlivoCallTest {
 		parameters.put("GatewayTimeouts", "60>30");
 		parameters.put("GatewayRetries", "2>1");
 		parameters.put("OriginateDialString", "bridge_early_media=true,hangup_after_bridge=true");
-		parameters.put("AnswerUrl", "http://189.15.113.23:5151/answered/");
-		parameters.put("HangUpUrl", "http://189.15.113.23:5151/hangup/");
-		parameters.put("RingUrl", "http://189.15.113.23:5151/ringing/");
+		parameters.put("AnswerUrl", "http://localhost:5151/answered/");
+		parameters.put("HangUpUrl", "http://localhost:5151/hangup/");
+		parameters.put("RingUrl", "http://localhost:5151/ringing/");
 
 		BulkCallRequest result = client.call().bulk(parameters);
 
@@ -133,7 +133,7 @@ public class PlivoCallTest {
 	    'CallUUID' : 'edaa59e1-79e0-41de-b016-f7a7570f6e9c', # Request UUID to hangup call
 		 */
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("URL", "http://189.15.113.23:5151/transfered/");
+		parameters.put("URL", "http://localhost:5151/transfered/");
 		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
 
 		TransfCallRequest result = client.call().transfer(parameters);
