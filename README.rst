@@ -13,12 +13,24 @@ See `Plivo Documentation <http://www.plivo.org/docs/>`_ for more information.
 Installation
 ~~~~~~~~~~~~~
 
-**Download Maven2**
-    TAR.GZ - http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-2.2.1-bin.tar.gz
-    ZIP - http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-2.2.1-bin.zip
+**Download Maven3**
+    
+    http://maven.apache.org
 
+**Install Maven3**
+    
+    Just put maven bin path on your system path.
 
-**Use maven "mvn install"**
+**Generating a release"**
+
+	To generate the final release (.jar to include on your application [if you're not using maven on your main app]), type:
+	
+	mvn install -Dmaven.test.skip=true
+	
+	Note: The parameter -Dmaven.test.skip=true will skip all test and generate the release.
+	
+	To Run the tests, you must edit PlivoCallTest.java and put your server address, accountId, accountToken etc, otherwise
+	it WILL FAIL.
 
 (This currently only supports the Oracle (SUN) JDK 1.6+. We should have OpenJDK available shortly)
 
@@ -79,14 +91,21 @@ currently available on PLIVO.
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+			
 		AnsweredCallback callback = AnsweredCallback.create(req);
 		
 		ApplicationResponse r = new ApplicationResponse();
+		
 		GetDigits digits = new GetDigits();
+		
 		digits.setNumDigits(1);
+		
 		digits.setValidDigits("123");
+		
 		digits.setPlayBeep(true);
+		
 		digits.setRetries(2);
+		
 		r.setGetDigits(digits);
 		
 		try {
