@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package org.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -51,6 +51,9 @@ public class Response implements Serializable {
 	
 	@XmlElement(name="Conference")
 	private Conference conference;
+	
+	@XmlElement(name="GetSpeech")
+	private GetSpeech getSpeech;
 	
 	public Response() {
 		
@@ -142,5 +145,13 @@ public class Response implements Serializable {
 
 	public void setConference(Conference conference) {
 		this.conference = conference;
+	}
+
+	public GetSpeech getGetSpeech() {
+		return getSpeech;
+	}
+
+	public void setGetSpeech(GetSpeech getSpeech) {
+		this.getSpeech = getSpeech;
 	}
 }

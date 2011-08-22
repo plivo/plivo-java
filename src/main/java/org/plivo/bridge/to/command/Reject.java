@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package org.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -16,17 +16,14 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @XmlElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Hangup implements Serializable {
+public class Reject implements Serializable {
 
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
 	private String reason;
-
-	@XmlAttribute
-	private int schedule;
 	
-	public Hangup() {
+	public Reject() {
 		
 	}
 
@@ -36,13 +33,5 @@ public class Hangup implements Serializable {
 
 	public void setReason(String reason) {
 		this.reason = reason;
-	}
-
-	public int getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(int schedule) {
-		this.schedule = schedule;
 	}
 }

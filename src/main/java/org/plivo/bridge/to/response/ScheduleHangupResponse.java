@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.request;
+package org.plivo.bridge.to.response;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -12,12 +12,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CancelScheduleHangupRequest extends BaseRequest {
+public class ScheduleHangupResponse extends BaseResponse {
 	
 	private static final long serialVersionUID = 6140190626859327286L;
 	private String SchedHangupId;
 	
-	public CancelScheduleHangupRequest() {
+	public ScheduleHangupResponse() {
 		
 	}
 	
@@ -26,5 +26,10 @@ public class CancelScheduleHangupRequest extends BaseRequest {
 	}
 	public void setSchedHangupId(String schedHangupId) {
 		SchedHangupId = schedHangupId;
+	}
+	
+	@Override
+	public String toString() {
+		return "{ScheduledHangupId: "+this.getSchedHangupId()+"}";
 	}
 }

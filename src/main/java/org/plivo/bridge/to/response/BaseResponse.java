@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.request;
+package org.plivo.bridge.to.response;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -14,13 +14,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class BaseRequest implements Serializable {
+public abstract class BaseResponse implements Serializable {
 
 	private static final long serialVersionUID = -7120130174373804625L;
 	private String Message;
 	private boolean Success;
 	
-	public BaseRequest() {
+	public BaseResponse() {
 		
 	}
 	

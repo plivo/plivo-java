@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package org.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.

@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package org.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -36,7 +36,7 @@ public class GetDigits implements Serializable {
 	private int numDigits;
 	
 	@XmlAttribute
-	private int tries;
+	private int retries;
 	
 	@XmlAttribute
 	private boolean playBeep;
@@ -100,12 +100,12 @@ public class GetDigits implements Serializable {
 		this.numDigits = numDigits;
 	}
 
-	public int getTries() {
-		return tries;
+	public int getRetries() {
+		return retries;
 	}
 
-	public void setTries(int tries) {
-		this.tries = tries;
+	public void setRetries(int retries) {
+		this.retries = retries;
 	}
 
 	public boolean isPlayBeep() {

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import org.plivo.bridge.feature.call.CallFeature;
+import org.plivo.bridge.feature.conference.ConferenceFeature;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -25,7 +26,17 @@ public class PlivoClient {
 	private String authToken;
 	private Client restClient;
 
-	private PlivoClient(String version, String accountId, String authToken,
+	/**
+	 * Use this constructor whether you want to override the plivo api version.
+	 * Note that if this helper was built on old version of plivo and you pass
+	 * a newer one, the code may not work.
+	 * @param version
+	 * @param accountId
+	 * @param authToken
+	 * @param url
+	 * @param debug
+	 */
+	public PlivoClient(String version, String accountId, String authToken,
 			String url, boolean debug) {
 		this.setAccountId(accountId);
 		this.setAuthToken(authToken);
@@ -40,6 +51,12 @@ public class PlivoClient {
 	public CallFeature call() {
 		CallFeature f = new CallFeature(this, this.getBaseResource());
 
+		return f;
+	}
+	
+	public ConferenceFeature conference() {
+		ConferenceFeature f = new ConferenceFeature(this, this.getBaseResource());
+		
 		return f;
 	}
 

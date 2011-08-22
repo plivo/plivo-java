@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package org.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -17,33 +17,31 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @XmlElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Wait implements Serializable {
+public class Play implements Serializable {
 
 	private static final long serialVersionUID = 158509162906138363L;
 	
-	@XmlAttribute
-	private int length;
+	@XmlAttribute(required=true)
+	private int loop;
 	
 	@XmlValue
-	private String value;
+	private String body;
 	
-	public Wait() {
+	public Play() {
 		
 	}
-
-	public int getLength() {
-		return length;
+	public int getLoop() {
+		return loop;
+	}
+	public void setLoop(int loop) {
+		this.loop = loop;
 	}
 
-	public void setLength(int length) {
-		this.length = length;
+	public String getBody() {
+		return body;
 	}
 
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	public void setBody(String body) {
+		this.body = body;
 	}
 }
