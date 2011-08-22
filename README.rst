@@ -44,25 +44,39 @@ currently available on PLIVO.
   // there's another constructor if you want to override the PLIVO version
 
 **Requesting a new CALL to PLIVO**
-	Map<String, String> parameters = new HashMap<String, String>();
+	Map<String, String> parameters = 
+		new HashMap<String, String>();
+	
 	parameters.put("From", "1001");
+	
 	parameters.put("To", "1002");
+	
 	parameters.put("Gateways", "user/");
+	
 	parameters.put("GatewayCodecs", "PCMA,PCMU");
+	
 	parameters.put("GatewayTimeouts", "60");
+	
 	parameters.put("GatewayRetries", "1");
+	
 	parameters.put("OriginateDialString", "originate_dial_string");
+	
 	parameters.put("AnswerUrl", "http://localhost:5151/answered");
+	
 	parameters.put("HangUpUrl", "http://localhost:5151/hangup");
+	
 	parameters.put("RingUrl", "http://localhost:5151/ringing");
 
 	CallResponse result = client.call().single(parameters);
 
 	Call response will contain RequestUUID of the call.
 	Note that the AnswerUrl, HangUpUrl and RingUrl has to be a VALID URL. Your application must be
-	listening on these urls and response properly. Example of a simple implementation of the answered URL:
+	listening on these urls and response properly. 
 	
-	@Override
+	This helper already contains a simple web server implemented by Jetty, so you can check our servlet classes.
+	
+	Example of a simple implementation of the answered URL:
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		AnsweredCallback callback = AnsweredCallback.create(req);
