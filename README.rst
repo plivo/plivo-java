@@ -32,7 +32,14 @@ Installation
 	To Run the tests, you must edit PlivoCallTest.java and put your server address, accountId, accountToken etc, otherwise
 	it WILL FAIL.
 
-(This currently only supports the Oracle (SUN) JDK 1.6+. We should have OpenJDK available shortly)
+	To generate the final release (.jar to include on your application [if you're not using maven on your main app]), type:
+	
+	mvn install -Dmaven.test.skip=true
+	
+	Note: The parameter -Dmaven.test.skip=true will skip all test and generate the release.
+	
+	To Run the tests, you must edit PlivoCallTest.java and put your server address, accountId, accountToken etc, otherwise
+	it WILL FAIL.
 
 **Use the Library in your Java IDE**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
