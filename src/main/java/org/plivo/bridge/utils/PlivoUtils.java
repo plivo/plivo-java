@@ -13,17 +13,17 @@ import java.util.Map;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.xml.bind.JAXBException;
 
+import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.to.command.Conference;
 import org.plivo.bridge.to.command.Dial;
 import org.plivo.bridge.to.command.GetDigits;
+import org.plivo.bridge.to.command.GetSpeech;
 import org.plivo.bridge.to.command.Hangup;
 import org.plivo.bridge.to.command.Number;
 import org.plivo.bridge.to.command.Play;
 import org.plivo.bridge.to.command.PreAnswer;
 import org.plivo.bridge.to.command.Record;
 import org.plivo.bridge.to.command.Redirect;
-import org.plivo.bridge.to.command.Reject;
-import org.plivo.bridge.to.command.Response;
 import org.plivo.bridge.to.command.Speak;
 import org.plivo.bridge.to.command.Wait;
 
@@ -64,19 +64,19 @@ public abstract class PlivoUtils {
 
 		@SuppressWarnings("rawtypes")
 		private static final Class[] classes = new Class[]{
-			Response.class,
+			ApplicationResponse.class,
 			Conference.class,
 			Dial.class,
 			GetDigits.class,
+			GetSpeech.class,
 			Hangup.class,
 			Number.class,
 			Play.class,
 			PreAnswer.class,
 			Record.class,
 			Redirect.class,
-			Reject.class,
 			Speak.class,
-			Wait.class
+			Wait.class			
 		};
 
 		public static javax.xml.bind.JAXBContext createContext( ) throws JAXBException {

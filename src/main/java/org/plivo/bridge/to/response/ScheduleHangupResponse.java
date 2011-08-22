@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ScheduleHangupResponse extends BaseResponse {
+public class ScheduleHangupResponse extends BasePlivoResponse {
 	
 	private static final long serialVersionUID = 6140190626859327286L;
 	private String SchedHangupId;

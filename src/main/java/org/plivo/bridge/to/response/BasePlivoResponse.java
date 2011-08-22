@@ -14,13 +14,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class BaseResponse implements Serializable {
+public abstract class BasePlivoResponse implements Serializable {
 
 	private static final long serialVersionUID = -7120130174373804625L;
 	private String Message;
 	private boolean Success;
 	
-	public BaseResponse() {
+	public BasePlivoResponse() {
 		
 	}
 	

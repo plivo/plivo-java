@@ -47,6 +47,18 @@ public class Dial implements Serializable {
 	@XmlAttribute
 	private String callerId;
 	
+	@XmlAttribute
+	private boolean redirect;
+	
+	@XmlAttribute
+	private String callbackUrl;
+	
+	@XmlAttribute
+	private String callbackMethod;
+	
+	@XmlAttribute
+	private String digitsMatch;
+	
 	@javax.xml.bind.annotation.XmlElement(name="Number")
 	private Number number;
 	
@@ -58,6 +70,10 @@ public class Dial implements Serializable {
 		return timeLimit;
 	}
 
+	/**
+	 *  Hang up the call after these many seconds. 0 means no timeLimit
+	 * @param timeLimit
+	 */
 	public void setTimeLimit(int timeLimit) {
 		this.timeLimit = timeLimit;
 	}
@@ -74,6 +90,10 @@ public class Dial implements Serializable {
 		return action;
 	}
 
+	/**
+	 * Submit the result of the dial and redirect to this URL 
+	 * @param action
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
@@ -82,6 +102,10 @@ public class Dial implements Serializable {
 		return method;
 	}
 
+	/**
+	 * Submit to 'action' URL using GET or POST
+	 * @param method
+	 */
 	public void setMethod(String method) {
 		this.method = method;
 	}
@@ -90,6 +114,10 @@ public class Dial implements Serializable {
 		return hangupOnStar;
 	}
 
+	/**
+	 * Hang up the b leg if a leg presses start and this is true
+	 * @param hangupOnStar
+	 */
 	public void setHangupOnStar(boolean hangupOnStar) {
 		this.hangupOnStar = hangupOnStar;
 	}
@@ -98,6 +126,10 @@ public class Dial implements Serializable {
 		return callerId;
 	}
 
+	/**
+	 * Caller id to be send to the dialed number
+	 * @param callerId
+	 */
 	public void setCallerId(String callerId) {
 		this.callerId = callerId;
 	}
@@ -114,6 +146,10 @@ public class Dial implements Serializable {
 		return confirmSound;
 	}
 
+	/**
+	 * Sound to be played to b leg before call is bridged
+	 * @param confirmSound
+	 */
 	public void setConfirmSound(String confirmSound) {
 		this.confirmSound = confirmSound;
 	}
@@ -122,6 +158,10 @@ public class Dial implements Serializable {
 		return confirmKey;
 	}
 
+	/**
+	 * Key to be pressed to bridge the call.
+	 * @param confirmKey
+	 */
 	public void setConfirmKey(String confirmKey) {
 		this.confirmKey = confirmKey;
 	}
@@ -130,7 +170,57 @@ public class Dial implements Serializable {
 		return dialMusic;
 	}
 
+	/**
+	 * Play music to a leg while doing a dial to b leg
+                Can be a list of files separated by comma
+	 * @param dialMusic
+	 */
 	public void setDialMusic(String dialMusic) {
 		this.dialMusic = dialMusic;
+	}
+
+	public boolean isRedirect() {
+		return redirect;
+	}
+
+	/**
+	 *  If 'false', don't redirect to 'action', only request url 
+        and continue to next element. (default 'true')
+	 * @param redirect
+	 */
+	public void setRedirect(boolean redirect) {
+		this.redirect = redirect;
+	}
+
+	public String getCallbackUrl() {
+		return callbackUrl;
+	}
+
+	/**
+	 *  URL to request when bridge starts and bridge ends
+	 * @param callbackUrl
+	 */
+	public void setCallbackUrl(String callbackUrl) {
+		this.callbackUrl = callbackUrl;
+	}
+
+	public String getCallbackMethod() {
+		return callbackMethod;
+	}
+
+	/**
+	 * Submit to 'callbackUrl' URL using GET or POST
+	 * @param callbackMethod
+	 */
+	public void setCallbackMethod(String callbackMethod) {
+		this.callbackMethod = callbackMethod;
+	}
+
+	public String getDigitsMatch() {
+		return digitsMatch;
+	}
+
+	public void setDigitsMatch(String digitsMatch) {
+		this.digitsMatch = digitsMatch;
 	}
 }

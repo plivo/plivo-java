@@ -16,7 +16,7 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @XmlElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GetDigits implements Serializable {
+public class GetSpeech implements Serializable {
 
 	private static final long serialVersionUID = 158509162906138363L;
 	
@@ -30,22 +30,13 @@ public class GetDigits implements Serializable {
 	private String method;
 	
 	@XmlAttribute
-	private String finishOnKey;
+	private String engine;
 	
 	@XmlAttribute
-	private int numDigits;
-	
-	@XmlAttribute
-	private int retries;
+	private String grammar;
 	
 	@XmlAttribute
 	private boolean playBeep;
-	
-	@XmlAttribute
-	private String validDigits;
-	
-	@XmlAttribute
-	private String invalidDigitsSound;
 	
 	@javax.xml.bind.annotation.XmlElement(name="Play")
 	private Play play;
@@ -56,7 +47,7 @@ public class GetDigits implements Serializable {
 	@javax.xml.bind.annotation.XmlElement(name="Wait")
 	private Wait wait;
 	
-	public GetDigits() {
+	public GetSpeech() {
 		
 	}
 
@@ -65,7 +56,7 @@ public class GetDigits implements Serializable {
 	}
 
 	/**
-	 * URL to which the digits entered will be sent
+	 * URL to which the detected speech will be sent
 	 * @param action
 	 */
 	public void setAction(String action) {
@@ -76,10 +67,6 @@ public class GetDigits implements Serializable {
 		return timeout;
 	}
 
-	/**
-	 * Wait for this many seconds before retry or returning
-	 * @param timeout
-	 */
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
 	}
@@ -96,40 +83,28 @@ public class GetDigits implements Serializable {
 		this.method = method;
 	}
 
-	public String isFinishOnKey() {
-		return finishOnKey;
+	public String getEngine() {
+		return engine;
 	}
 
 	/**
-	 * Key that triggers the end of caller input
-	 * @param finishOnKey
+	 * Engine to be used by detect speech
+	 * @param engine
 	 */
-	public void setFinishOnKey(String finishOnKey) {
-		this.finishOnKey = finishOnKey;
+	public void setEngine(String engine) {
+		this.engine = engine;
 	}
 
-	public int getNumDigits() {
-		return numDigits;
+	public String getGrammar() {
+		return grammar;
 	}
 
 	/**
-	 * How many digits to gather before returning
-	 * @param numDigits
+	 * Grammar to load
+	 * @param grammar
 	 */
-	public void setNumDigits(int numDigits) {
-		this.numDigits = numDigits;
-	}
-
-	public int getRetries() {
-		return retries;
-	}
-	
-	/**
-	 * Number of tries to execute all says and plays one by one
-	 * @param retries
-	 */
-	public void setRetries(int retries) {
-		this.retries = retries;
+	public void setGrammar(String grammar) {
+		this.grammar = grammar;
 	}
 
 	public boolean isPlayBeep() {
@@ -142,30 +117,6 @@ public class GetDigits implements Serializable {
 	 */
 	public void setPlayBeep(boolean playBeep) {
 		this.playBeep = playBeep;
-	}
-
-	public String isValidDigits() {
-		return validDigits;
-	}
-
-	/**
-	 * Digits which are allowed to be pressed
-	 * @param validDigits
-	 */
-	public void setValidDigits(String validDigits) {
-		this.validDigits = validDigits;
-	}
-
-	public String isInvalidDigitsSound() {
-		return invalidDigitsSound;
-	}
-
-	/**
-	 * Sound played when invalid digit pressed
-	 * @param invalidDigitsSound
-	 */
-	public void setInvalidDigitsSound(String invalidDigitsSound) {
-		this.invalidDigitsSound = invalidDigitsSound;
 	}
 
 	public Play getPlay() {
@@ -188,6 +139,10 @@ public class GetDigits implements Serializable {
 		return wait;
 	}
 
+	/**
+	 * Wait for this many seconds before returning
+	 * @param wait
+	 */
 	public void setWait(Wait wait) {
 		this.wait = wait;
 	}

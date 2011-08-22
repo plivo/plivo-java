@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class HangupAllCallResponse extends BaseResponse {
+public class HangupAllCallResponse extends BasePlivoResponse {
 
 	private static final long serialVersionUID = -2015380532129538279L;
 	

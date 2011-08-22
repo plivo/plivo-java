@@ -34,6 +34,10 @@ public class Hangup implements Serializable {
 		return reason;
 	}
 
+	/**
+	 * Give the reason of han gup
+	 * @param reason
+	 */
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
@@ -42,6 +46,10 @@ public class Hangup implements Serializable {
 		return schedule;
 	}
 
+	/**
+	 * Set the schedule time, in seconds
+	 * @param schedule
+	 */
 	public void setSchedule(int schedule) {
 		this.schedule = schedule;
 	}

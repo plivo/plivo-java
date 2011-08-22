@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="Response")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Response implements Serializable {
+public class ApplicationResponse implements Serializable {
 
 	private static final long serialVersionUID = 8071673898735283084L;
 	
@@ -55,7 +55,7 @@ public class Response implements Serializable {
 	@XmlElement(name="GetSpeech")
 	private GetSpeech getSpeech;
 	
-	public Response() {
+	public ApplicationResponse() {
 		
 	}
 

@@ -44,7 +44,11 @@ public class Speak implements Serializable {
 	public String getVoice() {
 		return voice;
 	}
-
+	
+	/**
+	 * Voice to be used based on TTS engine
+	 * @param voice
+	 */
 	public void setVoice(String voice) {
 		this.voice = voice;
 	}
@@ -53,6 +57,10 @@ public class Speak implements Serializable {
 		return language;
 	}
 
+	/**
+	 * Language to use
+	 * @param language
+	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
@@ -61,6 +69,10 @@ public class Speak implements Serializable {
 		return loop;
 	}
 
+	/**
+	 * Number of times to say this text
+	 * @param loop
+	 */
 	public void setLoop(int loop) {
 		this.loop = loop;
 	}
@@ -77,6 +89,10 @@ public class Speak implements Serializable {
 		return type;
 	}
 
+	/**
+	 * 
+	 * @param type
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -85,6 +101,10 @@ public class Speak implements Serializable {
 		return method;
 	}
 
+	/**
+	 * 
+	 * @param method
+	 */
 	public void setMethod(String method) {
 		this.method = method;
 	}

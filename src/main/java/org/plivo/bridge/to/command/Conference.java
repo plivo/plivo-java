@@ -11,6 +11,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 
 import com.sun.xml.internal.txw2.annotation.XmlElement;
 
@@ -77,6 +78,8 @@ public class Conference implements Serializable {
 	@XmlAttribute
 	private String callbackMethod;
 
+	@XmlValue
+	private String room;
 	
 	public Conference() {
 		
@@ -86,6 +89,11 @@ public class Conference implements Serializable {
 		return muted;
 	}
 
+	/**
+	 *  Enter conference muted
+          (default false)
+	 * @param muted
+	 */
 	public void setMuted(boolean muted) {
 		this.muted = muted;
 	}
@@ -94,6 +102,11 @@ public class Conference implements Serializable {
 		return startConferenceOnEnter;
 	}
 
+	/**
+	 * The conference start when this member joins
+          (default true)
+	 * @param startConferenceOnEnter
+	 */
 	public void setStartConferenceOnEnter(boolean startConferenceOnEnter) {
 		this.startConferenceOnEnter = startConferenceOnEnter;
 	}
@@ -102,6 +115,11 @@ public class Conference implements Serializable {
 		return endConferenceOnExit;
 	}
 
+	/**
+	 * Close conference after all members
+            with this attribute set to 'true' leave. (default false)
+	 * @param endConferenceOnExit
+	 */
 	public void setEndConferenceOnExit(boolean endConferenceOnExit) {
 		this.endConferenceOnExit = endConferenceOnExit;
 	}
@@ -110,6 +128,11 @@ public class Conference implements Serializable {
 		return stayAlone;
 	}
 
+	/**
+	 * If 'false' and member is alone, conference is closed and member kicked out
+          (default true)
+	 * @param stayAlone
+	 */
 	public void setStayAlone(boolean stayAlone) {
 		this.stayAlone = stayAlone;
 	}
@@ -118,6 +141,14 @@ public class Conference implements Serializable {
 		return enterSound;
 	}
 
+	/**
+	 * Sound to play when a member enters
+          if empty, disabled
+          if 'beep:1', play one beep
+          if 'beep:2', play two beeps
+          (default disabled)
+	 * @param enterSound
+	 */
 	public void setEnterSound(String enterSound) {
 		this.enterSound = enterSound;
 	}
@@ -126,6 +157,14 @@ public class Conference implements Serializable {
 		return exitSound;
 	}
 
+	/**
+	 * Sound to play when a member exits
+          if empty, disabled
+          if 'beep:1', play one beep
+          if 'beep:2', play two beeps
+          (default disabled)
+	 * @param exitSound
+	 */
 	public void setExitSound(String exitSound) {
 		this.exitSound = exitSound;
 	}
@@ -134,6 +173,12 @@ public class Conference implements Serializable {
 		return waitSound;
 	}
 
+	/**
+	 * Sound to play while alone in conference
+          Can be a list of sound files separated by comma.
+          (default no sound)
+	 * @param waitSound
+	 */
 	public void setWaitSound(String waitSound) {
 		this.waitSound = waitSound;
 	}
@@ -142,6 +187,11 @@ public class Conference implements Serializable {
 		return maxMembers;
 	}
 
+	/**
+	 * Max members in conference
+          (0 for max : 200)
+	 * @param maxMembers
+	 */
 	public void setMaxMembers(Integer maxMembers) {
 		this.maxMembers = maxMembers;
 	}
@@ -150,6 +200,11 @@ public class Conference implements Serializable {
 		return timeLimit;
 	}
 
+	/**
+	 * Max time in seconds before closing conference
+          (default 0, no timeLimit)
+	 * @param timeLimit
+	 */
 	public void setTimeLimit(Integer timeLimit) {
 		this.timeLimit = timeLimit;
 	}
@@ -158,6 +213,11 @@ public class Conference implements Serializable {
 		return hangupOnStar;
 	}
 
+	/**
+	 * Exit conference when member press '*'
+          (default false)
+	 * @param hangupOnStar
+	 */
 	public void setHangupOnStar(boolean hangupOnStar) {
 		this.hangupOnStar = hangupOnStar;
 	}
@@ -174,6 +234,11 @@ public class Conference implements Serializable {
 		return recordFilePath;
 	}
 
+	/**
+	 * Path where recording is saved.
+        (default "" so recording wont happen)
+	 * @param recordFilePath
+	 */
 	public void setRecordFilePath(String recordFilePath) {
 		this.recordFilePath = recordFilePath;
 	}
@@ -182,6 +247,11 @@ public class Conference implements Serializable {
 		return recordFileFormat;
 	}
 
+	/**
+	 * File format in which recording tis saved
+        (default mp3)
+	 * @param recordFileFormat
+	 */
 	public void setRecordFileFormat(String recordFileFormat) {
 		this.recordFileFormat = recordFileFormat;
 	}
@@ -190,6 +260,11 @@ public class Conference implements Serializable {
 		return recordFileName;
 	}
 
+	/**
+	 * By default empty, if provided this name will be used for the recording
+        (any unique name)
+	 * @param recordFileName
+	 */
 	public void setRecordFileName(String recordFileName) {
 		this.recordFileName = recordFileName;
 	}
@@ -198,6 +273,10 @@ public class Conference implements Serializable {
 		return action;
 	}
 
+	/**
+	 * Redirect to this URL after leaving conference
+	 * @param action
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
@@ -206,6 +285,9 @@ public class Conference implements Serializable {
 		return method;
 	}
 
+	/**
+	 * Submit to 'action' URL using GET or POST
+	 */
 	public void setMethod(String method) {
 		this.method = method;
 	}
@@ -214,6 +296,11 @@ public class Conference implements Serializable {
 		return digitsMatch;
 	}
 
+	/**
+	 * A list of matching digits to send with callbackUrl
+            Can be a list of digits patterns separated by comma.
+	 * @param digitsMatch
+	 */
 	public void setDigitsMatch(String digitsMatch) {
 		this.digitsMatch = digitsMatch;
 	}
@@ -222,6 +309,11 @@ public class Conference implements Serializable {
 		return callbackUrl;
 	}
 
+	/**
+	 * Url to request when call enters/leaves conference
+            or has pressed digits matching (digitsMatch)
+	 * @param callbackUrl
+	 */
 	public void setCallbackUrl(String callbackUrl) {
 		this.callbackUrl = callbackUrl;
 	}
@@ -230,7 +322,23 @@ public class Conference implements Serializable {
 		return callbackMethod;
 	}
 
+	/**
+	 * Submit to 'callbackUrl' URL using GET or POST
+	 * @param callbackMethod
+	 */
 	public void setCallbackMethod(String callbackMethod) {
 		this.callbackMethod = callbackMethod;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	/**
+	 * Room name
+	 * @param room
+	 */
+	public void setRoom(String room) {
+		this.room = room;
 	}
 }

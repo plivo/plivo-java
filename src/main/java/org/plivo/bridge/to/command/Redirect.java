@@ -25,7 +25,7 @@ public class Redirect implements Serializable {
 	private String method;
 	
 	@XmlValue
-	private String value;
+	private String url;
 	
 	public Redirect() {
 		
@@ -39,11 +39,15 @@ public class Redirect implements Serializable {
 		this.method = method;
 	}
 
-	public String getValue() {
-		return value;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	/**
+	 * The URL to redirect the call
+	 * @param url
+	 */
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

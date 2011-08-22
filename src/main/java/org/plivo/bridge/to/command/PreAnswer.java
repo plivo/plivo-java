@@ -31,6 +31,9 @@ public class PreAnswer implements Serializable {
 	@javax.xml.bind.annotation.XmlElement(name="Wait")
 	private Wait wait;
 	
+	@javax.xml.bind.annotation.XmlElement(name="GetSpeech")
+	private Wait getSpeech;
+	
 	public PreAnswer() {
 		
 	}
@@ -65,5 +68,13 @@ public class PreAnswer implements Serializable {
 
 	public void setWait(Wait wait) {
 		this.wait = wait;
+	}
+
+	public Wait getGetSpeech() {
+		return getSpeech;
+	}
+
+	public void setGetSpeech(Wait getSpeech) {
+		this.getSpeech = getSpeech;
 	}
 }

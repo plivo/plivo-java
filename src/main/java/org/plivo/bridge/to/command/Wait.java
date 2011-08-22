@@ -31,6 +31,10 @@ public class Wait implements Serializable {
 		return length;
 	}
 
+	/**
+	 * Length of wait time in seconds
+	 * @param length
+	 */
 	public void setLength(int length) {
 		this.length = length;
 	}

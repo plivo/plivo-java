@@ -43,7 +43,7 @@ public class Number implements Serializable {
 	private String extraDialString;
 	
 	@XmlValue
-	private String value;
+	private String number;
 	
 	public Number() {
 		
@@ -53,6 +53,10 @@ public class Number implements Serializable {
 		return sendDigits;
 	}
 
+	/**
+	 * Key to press after connecting to the number
+	 * @param sendDigits
+	 */
 	public void setSendDigits(String sendDigits) {
 		this.sendDigits = sendDigits;
 	}
@@ -105,11 +109,15 @@ public class Number implements Serializable {
 		this.extraDialString = extraDialString;
 	}
 
-	public String getValue() {
-		return value;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	/**
+	 * Phone number to dial
+	 * @param number
+	 */
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }

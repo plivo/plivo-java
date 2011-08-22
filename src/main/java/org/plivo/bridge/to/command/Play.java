@@ -25,7 +25,7 @@ public class Play implements Serializable {
 	private int loop;
 	
 	@XmlValue
-	private String body;
+	private String url;
 	
 	public Play() {
 		
@@ -33,15 +33,23 @@ public class Play implements Serializable {
 	public int getLoop() {
 		return loop;
 	}
+	
+	/**
+	 * Number of time to say this text
+	 * @param loop
+	 */
 	public void setLoop(int loop) {
 		this.loop = loop;
 	}
-
-	public String getBody() {
-		return body;
+	public String getUrl() {
+		return url;
 	}
-
-	public void setBody(String body) {
-		this.body = body;
+	
+	/**
+	 * URL of audio file, MIME type on file must be set correctly
+	 * @param url
+	 */
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

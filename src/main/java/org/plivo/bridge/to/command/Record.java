@@ -33,16 +33,10 @@ public class Record implements Serializable {
 	private String method;
 	
 	@XmlAttribute
-	private boolean finishOnKey;
+	private String finishOnKey;
 	
 	@XmlAttribute
-	private boolean transcribe;
-	
-	@XmlAttribute
-	private boolean transcribeCallback;
-	
-	@XmlAttribute
-	private boolean playBepp;
+	private boolean playBeep;
 	
 	@XmlAttribute
 	private String format;
@@ -51,7 +45,7 @@ public class Record implements Serializable {
 	private String filePath;
 	
 	@XmlAttribute
-	private String prefix;
+	private String fileName;
 	
 	@XmlAttribute
 	private boolean bothLegs;
@@ -59,124 +53,123 @@ public class Record implements Serializable {
 	public Record() {
 		
 	}
-
-
 	public int getMaxLength() {
 		return maxLength;
 	}
 
-
+	/**
+	 * Maximum number of seconds to record (default 60)
+	 * @param maxLength
+	 */
 	public void setMaxLength(int maxLength) {
 		this.maxLength = maxLength;
 	}
-
-
 	public String getAction() {
 		return action;
 	}
 
-
+	/**
+	 * Submit the result of the record to this URL
+	 * @param action
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
-
 
 	public int getTimeout() {
 		return timeout;
 	}
 
-
+	/**
+	 * Seconds of silence before considering the recording complete (default 500) 
+	 * @param timeout
+	 */
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
 	}
-
 
 	public String getMethod() {
 		return method;
 	}
 
-
+	/**
+	 * Submit to 'action' URL using GET or POST
+	 * @param method
+	 */
 	public void setMethod(String method) {
 		this.method = method;
 	}
-
-
-	public boolean isFinishOnKey() {
+	
+	public String getFinishOnKey() {
 		return finishOnKey;
 	}
 
-
-	public void setFinishOnKey(boolean finishOnKey) {
+	/**
+	 * Stop recording on this key
+	 * @param finishOnKey
+	 */
+	public void setFinishOnKey(String finishOnKey) {
 		this.finishOnKey = finishOnKey;
 	}
 
-
-	public boolean isTranscribe() {
-		return transcribe;
+	public boolean isPlayBeep() {
+		return playBeep;
 	}
-
-
-	public void setTranscribe(boolean transcribe) {
-		this.transcribe = transcribe;
+	
+	/**
+	 * Play a beep before recording (true/false, default true)
+	 * @param playBeep
+	 */
+	public void setPlayBeep(boolean playBeep) {
+		this.playBeep = playBeep;
 	}
-
-
-	public boolean isTranscribeCallback() {
-		return transcribeCallback;
-	}
-
-
-	public void setTranscribeCallback(boolean transcribeCallback) {
-		this.transcribeCallback = transcribeCallback;
-	}
-
-
-	public boolean isPlayBepp() {
-		return playBepp;
-	}
-
-
-	public void setPlayBepp(boolean playBepp) {
-		this.playBepp = playBepp;
-	}
-
-
+	
 	public String getFormat() {
 		return format;
 	}
 
-
+	/**
+	 * File format (default mp3)
+	 * @param format
+	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
-
 
 	public String getFilePath() {
 		return filePath;
 	}
 
-
+	/**
+	 * Complete file path to save the file to
+	 * @param filePath
+	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-
-
-	public String getPrefix() {
-		return prefix;
-	}
-
-
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
-
-
+	
 	public boolean isBothLegs() {
 		return bothLegs;
 	}
 
-
+	/**
+	 * Record both legs (true/false, default false)
+              no beep will be played
+	 * @param bothLegs
+	 */
 	public void setBothLegs(boolean bothLegs) {
 		this.bothLegs = bothLegs;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	
+	/**
+	 * Filename to be used for recording of file
+	 * @param fileName
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 }

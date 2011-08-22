@@ -30,11 +30,9 @@ public class AnsweredCallback implements Serializable {
 	
 	private String fromNumber;
 	
-	
 	public static enum AnsweredDirection {
 		INBOUND,
 		OUTBOUND;
-		
 		
 		public static AnsweredDirection from(String value) {
 			for(AnsweredDirection r: AnsweredDirection.values())
@@ -42,74 +40,59 @@ public class AnsweredCallback implements Serializable {
 			
 			return null;
 		}
-	
 	}
-
 
 	public String getAlegUUID() {
 		return alegUUID;
 	}
 
-
 	public void setAlegUUID(String alegUUID) {
 		this.alegUUID = alegUUID;
 	}
-
 
 	public String getCallUUID() {
 		return callUUID;
 	}
 
-
 	public void setCallUUID(String callUUID) {
 		this.callUUID = callUUID;
 	}
-
 
 	public AnsweredDirection getDirection() {
 		return direction;
 	}
 
-
 	public void setDirection(AnsweredDirection direction) {
 		this.direction = direction;
 	}
-
 
 	public String getCallNumber() {
 		return callNumber;
 	}
 
-
 	public void setCallNumber(String callNumber) {
 		this.callNumber = callNumber;
 	}
-
 
 	public Integer getScheduleHangupID() {
 		return scheduleHangupID;
 	}
 
-
 	public void setScheduleHangupID(Integer scheduleHangupID) {
 		this.scheduleHangupID = scheduleHangupID;
 	}
-
 
 	public String getAlegRequestUUID() {
 		return alegRequestUUID;
 	}
 
-
 	public void setAlegRequestUUID(String alegRequestUUID) {
 		this.alegRequestUUID = alegRequestUUID;
 	}
 
-
 	public String getFromNumber() {
 		return fromNumber;
 	}
-
 
 	public void setFromNumber(String fromNumber) {
 		this.fromNumber = fromNumber;
@@ -128,5 +111,4 @@ public class AnsweredCallback implements Serializable {
 		
 		return callback;
 	}
-
 }

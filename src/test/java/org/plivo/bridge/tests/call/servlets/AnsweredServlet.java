@@ -17,7 +17,7 @@ import javax.xml.bind.JAXBException;
 
 import org.plivo.bridge.to.callback.AnsweredCallback;
 import org.plivo.bridge.to.command.GetDigits;
-import org.plivo.bridge.to.command.Response;
+import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.utils.PlivoUtils;
 public class AnsweredServlet extends HttpServlet {
 	private static final long serialVersionUID = 6099116728365114314L;
@@ -31,10 +31,10 @@ public class AnsweredServlet extends HttpServlet {
 		
 		System.out.println(callback.getCallUUID());
 		
-		Response r = new Response();
+		ApplicationResponse r = new ApplicationResponse();
 		GetDigits digits = new GetDigits();
 		digits.setNumDigits(1);
-		digits.setValidDigits(true);
+		digits.setValidDigits("123");
 		digits.setPlayBeep(true);
 		digits.setRetries(2);
 		r.setGetDigits(digits);

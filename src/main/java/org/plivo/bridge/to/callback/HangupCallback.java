@@ -20,7 +20,6 @@ public class HangupCallback implements Serializable {
 	
 	private String callID;
 	
-	
 	private HangupReason reason;
 	
 	public static enum HangupReason {
