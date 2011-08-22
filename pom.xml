@@ -7,13 +7,14 @@
 	<name>Plivo Java Bridge Module</name>
 	<packaging>jar</packaging>
 	<description>Plivo :: Java Bridge Module</description>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1</version>
 	<dependencies>
+
 		<dependency>
-	      		<groupId>javax.servlet</groupId>
-	      		<artifactId>servlet-api</artifactId>
-	      		<version>2.4</version>
-	      		<scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -22,24 +23,28 @@
 			<version>${jersey.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
 			<version>${jersey.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-compress</artifactId>
 			<version>1.0</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.9</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -47,12 +52,14 @@
 			<scope>test</scope>
 			<classifier>jdk15</classifier>
 		</dependency>
+
 		<dependency>
 			<groupId>org.mortbay.jetty</groupId>
 			<artifactId>jetty-embedded</artifactId>
 			<version>${jetty.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 	<properties>
 		<jersey.version>1.7-ea07</jersey.version>
@@ -66,16 +73,39 @@
 		</repository>
 	</repositories>
 	<build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>2.0.2</version>
-      <configuration>
-        <source>1.6</source>
-        <target>1.6</target>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
 </project>

@@ -78,7 +78,6 @@ public class PlivoCallTest {
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/making-an-outbound-call/
 		 */
 
-
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("From", "1001");
 		parameters.put("To", "1002");
