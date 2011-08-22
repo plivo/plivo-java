@@ -30,14 +30,7 @@
 			<version>${jersey.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-compress</artifactId>
-			<version>1.0</version>
-			<scope>compile</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -62,7 +55,7 @@
 
 	</dependencies>
 	<properties>
-		<jersey.version>1.7-ea07</jersey.version>
+		<jersey.version>1.9-ea04</jersey.version>
 		<jetty.version>6.1.26</jetty.version>
 	</properties>
 	<repositories>
