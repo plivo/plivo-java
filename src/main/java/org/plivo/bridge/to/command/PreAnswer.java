@@ -10,10 +10,9 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
-
-@XmlElement
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PreAnswer implements Serializable {
 
