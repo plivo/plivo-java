@@ -23,10 +23,13 @@ import org.plivo.bridge.to.response.GroupCallResponse;
 import org.plivo.bridge.to.response.HangupAllCallResponse;
 import org.plivo.bridge.to.response.HangupCallResponse;
 import org.plivo.bridge.to.response.PlayResponse;
+import org.plivo.bridge.to.response.PlayStopResponse;
 import org.plivo.bridge.to.response.RecordStartResponse;
 import org.plivo.bridge.to.response.RecordStopResponse;
 import org.plivo.bridge.to.response.ScheduleHangupResponse;
 import org.plivo.bridge.to.response.SchedulePlayResponse;
+import org.plivo.bridge.to.response.SoundTouchResponse;
+import org.plivo.bridge.to.response.SoundTouchStopResponse;
 import org.plivo.bridge.to.response.TransfCallResponse;
 import org.plivo.bridge.to.response.conference.ConferenceDeafResponse;
 import org.plivo.bridge.to.response.conference.ConferenceHangupResponse;
@@ -52,7 +55,7 @@ public class PlivoCallTest {
 	public PlivoCallTest() {
 		client = PlivoClient.create("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 				"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
-				"http://localhost:8088", false);
+				"http://46.102.242.62:8088", true);
 	}
 
 	@BeforeClass
@@ -83,10 +86,6 @@ public class PlivoCallTest {
 		parameters.put("To", "1002");
 
 		parameters.put("Gateways", "user/");
-		parameters.put("GatewayCodecs", "PCMA,PCMU");
-		parameters.put("GatewayTimeouts", "60");
-		parameters.put("GatewayRetries", "1");
-		parameters.put("OriginateDialString", "originate_dial_string");
 		parameters.put("AnswerUrl", "http://localhost:5151/answered");
 		parameters.put("HangUpUrl", "http://localhost:5151/hangup");
 		parameters.put("RingUrl", "http://localhost:5151/ringing");
@@ -98,7 +97,7 @@ public class PlivoCallTest {
 		Thread.sleep(10000);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void makeBulkCall() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/making-bulk-outbound-calls/
@@ -123,7 +122,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void makeGroupCall() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/making-an-outbound-group-call/
@@ -135,10 +134,6 @@ public class PlivoCallTest {
 
 		parameters.put("Delimiter", ">");
 		parameters.put("Gateways", "user/>user/");
-		parameters.put("GatewayCodecs", "PCMA,PCMU'>'PCMA,PCMU");
-		parameters.put("GatewayTimeouts", "60>30");
-		parameters.put("GatewayRetries", "2>1");
-		parameters.put("OriginateDialString", "bridge_early_media=true,hangup_after_bridge=true");
 		parameters.put("AnswerUrl", "http://localhost:5151/answered/");
 		parameters.put("HangUpUrl", "http://localhost:5151/hangup/");
 		parameters.put("RingUrl", "http://localhost:5151/ringing/");
@@ -148,7 +143,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void transf() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/transfer-a-call/
@@ -162,7 +157,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void hangUp() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/hangup-a-call/
@@ -175,7 +170,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void hangUpAll() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/hangup-all-calls/ 
@@ -186,7 +181,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void scheduleHangUp() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/schedule-hangup-for-a-call/ 
@@ -200,7 +195,7 @@ public class PlivoCallTest {
 		System.out.println(result);
 	}
 
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void cancelScheduleHangUp() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/cancel-a-scheduled-hangup/ 
@@ -219,7 +214,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void recordStart() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/start-recording-a-call/
@@ -241,7 +236,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void recordStop() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/1142-2/
@@ -261,7 +256,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void play() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/play-something-to-a-call/
@@ -282,7 +277,26 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
+	public void playStop() {
+		/*
+		 * Check documentation at http://www.plivo.org/docs/restapis/call/stop-play/
+		 */
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
+		PlayStopResponse result;
+		
+		try {
+			result = client.call().playStop(parameters);
+			System.out.println(result);
+		} catch (PlivoClientException e) {
+			System.out.println(e.getHttpMessage());
+			System.out.println(e.getHttpStatusCode());
+		}
+	}
+	
+	@Test(enabled=false)
 	public void schedulePlay() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/schedule-play-something-on-a-call/
@@ -305,7 +319,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void cancelSchedulePlay() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/cancel-a-scheduled-play/
@@ -325,7 +339,48 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
+	public void soundTouch() {
+		/*
+		 * Check documentation at http://www.plivo.org/docs/restapis/call/soundtouch/
+		 */
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
+		parameters.put("Pitch", "9");
+		
+		SoundTouchResponse result;
+		
+		try {
+			result = client.call().soundTouch(parameters);
+			System.out.println(result);
+		} catch (PlivoClientException e) {
+			System.out.println(e.getHttpMessage());
+			System.out.println(e.getHttpStatusCode());
+		}
+	}
+	
+	@Test(enabled=false)
+	public void soundTouchStop() {
+		/*
+		 * Check documentation at http://www.plivo.org/docs/restapis/call/soundtouchstop/
+		 */
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
+		
+		SoundTouchStopResponse result;
+		
+		try {
+			result = client.call().soundTouchStop(parameters);
+			System.out.println(result);
+		} catch (PlivoClientException e) {
+			System.out.println(e.getHttpMessage());
+			System.out.println(e.getHttpStatusCode());
+		}
+	}
+	
+	@Test(enabled=false)
 	public void conferenceMute() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/mute-a-member-or-all-members/
@@ -346,7 +401,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceUnmute() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/unmute-a-member-or-all-members/
@@ -367,7 +422,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceKick() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/kick-a-member-or-all-members/
@@ -388,7 +443,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceHangup() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/1170-2/
@@ -409,7 +464,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceDeaf() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/make-a-member-or-all-members-deaf/
@@ -430,7 +485,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceUndeaf() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/make-a-member-or-all-members-undeaf/
@@ -451,7 +506,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceRecordStart() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/start-recording-a-conference/
@@ -473,7 +528,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceRecordStop() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/stop-recording-a-conference/
@@ -494,7 +549,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferencePlay() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/play-sound-into-a-conference/
@@ -516,7 +571,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceSpeak() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/say-speech-into-a-conference/
@@ -538,7 +593,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceListMembers() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/list-members-in-a-conference/
@@ -562,7 +617,7 @@ public class PlivoCallTest {
 		}
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void conferenceList() {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/conference/list-all-conferences-and-members/

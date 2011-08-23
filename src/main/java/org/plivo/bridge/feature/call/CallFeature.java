@@ -21,10 +21,13 @@ import org.plivo.bridge.to.response.GroupCallResponse;
 import org.plivo.bridge.to.response.HangupAllCallResponse;
 import org.plivo.bridge.to.response.HangupCallResponse;
 import org.plivo.bridge.to.response.PlayResponse;
+import org.plivo.bridge.to.response.PlayStopResponse;
 import org.plivo.bridge.to.response.RecordStartResponse;
 import org.plivo.bridge.to.response.RecordStopResponse;
 import org.plivo.bridge.to.response.ScheduleHangupResponse;
 import org.plivo.bridge.to.response.SchedulePlayResponse;
+import org.plivo.bridge.to.response.SoundTouchResponse;
+import org.plivo.bridge.to.response.SoundTouchStopResponse;
 import org.plivo.bridge.to.response.TransfCallResponse;
 import org.plivo.bridge.utils.PlivoUtils;
 
@@ -206,6 +209,20 @@ public class CallFeature extends BaseFeature {
 		}
 	}
 
+	public PlayStopResponse playStop(Map<String, String> parameters) throws PlivoClientException {
+		
+		try {
+			PlayStopResponse result = this.getBaseResource()
+					.path("PlayStop/")
+					.accept(MediaType.APPLICATION_JSON_TYPE)
+					.post(PlayStopResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
+			
+			return result;
+		} catch (UniformInterfaceException e) {
+			throw new PlivoClientException(e);
+		}
+	}
+
 	public SchedulePlayResponse schedulePlay(Map<String, String> parameters) throws PlivoClientException {
 		
 		try {
@@ -228,6 +245,35 @@ public class CallFeature extends BaseFeature {
 					.path("CancelSchedulePlay/")
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(CancelSchedulePlayResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
+			
+			return result;
+		} catch (UniformInterfaceException e) {
+			throw new PlivoClientException(e);
+		}
+	}
+
+	public SoundTouchResponse soundTouch(
+			Map<String, String> parameters) throws PlivoClientException {
+		
+		try {
+			SoundTouchResponse result = this.getBaseResource()
+					.path("SoundTouch/")
+					.accept(MediaType.APPLICATION_JSON_TYPE)
+					.post(SoundTouchResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
+			
+			return result;
+		} catch (UniformInterfaceException e) {
+			throw new PlivoClientException(e);
+		}
+	}
+
+	public SoundTouchStopResponse soundTouchStop(Map<String, String> parameters) throws PlivoClientException {
+		
+		try {
+			SoundTouchStopResponse result = this.getBaseResource()
+					.path("SoundTouchStop/")
+					.accept(MediaType.APPLICATION_JSON_TYPE)
+					.post(SoundTouchStopResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
 			return result;
 		} catch (UniformInterfaceException e) {

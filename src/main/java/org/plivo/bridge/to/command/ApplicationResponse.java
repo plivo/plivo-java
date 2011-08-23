@@ -55,6 +55,9 @@ public class ApplicationResponse implements Serializable {
 	@XmlElement(name="GetSpeech")
 	private GetSpeech getSpeech;
 	
+	@XmlElement(name="SIPTransfer")
+	private SIPTransfer sipTransfer;
+	
 	public ApplicationResponse() {
 		
 	}
@@ -153,5 +156,13 @@ public class ApplicationResponse implements Serializable {
 
 	public void setGetSpeech(GetSpeech getSpeech) {
 		this.getSpeech = getSpeech;
+	}
+
+	public SIPTransfer getSipTransfer() {
+		return sipTransfer;
+	}
+
+	public void setSipTransfer(SIPTransfer sipTransfer) {
+		this.sipTransfer = sipTransfer;
 	}
 }

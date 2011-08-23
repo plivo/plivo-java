@@ -10,28 +10,35 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PreAnswer implements Serializable {
 
-	private static final long serialVersionUID = 158509162906138363L;
-	
-	@javax.xml.bind.annotation.XmlElement(name="Speak")
+	private static final long serialVersionUID = 2635662975269038297L;
+
+	@XmlElement(name="Speak")
 	private Speak speak;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Play")
+	@XmlElement(name="Play")
 	private Play play;
 	
-	@javax.xml.bind.annotation.XmlElement(name="GetDigits")
+	@XmlElement(name="GetDigits")
 	private GetDigits getDigits;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Wait")
+	@XmlElement(name="Wait")
 	private Wait wait;
 	
-	@javax.xml.bind.annotation.XmlElement(name="GetSpeech")
+	@XmlElement(name="GetSpeech")
 	private Wait getSpeech;
+	
+	@XmlElement(name="SIPTransfer")
+	private SIPTransfer sipTransfer;
+	
+	@XmlElement(name="Redirect")
+	private Redirect redirect;
 	
 	public PreAnswer() {
 		
@@ -75,5 +82,21 @@ public class PreAnswer implements Serializable {
 
 	public void setGetSpeech(Wait getSpeech) {
 		this.getSpeech = getSpeech;
+	}
+
+	public SIPTransfer getSipTransfer() {
+		return sipTransfer;
+	}
+
+	public void setSipTransfer(SIPTransfer sipTransfer) {
+		this.sipTransfer = sipTransfer;
+	}
+
+	public Redirect getRedirect() {
+		return redirect;
+	}
+
+	public void setRedirect(Redirect redirect) {
+		this.redirect = redirect;
 	}
 }
