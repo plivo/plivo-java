@@ -27,19 +27,10 @@ Installation
 	
 	mvn install -Dmaven.test.skip=true
 	
-	Note: The parameter -Dmaven.test.skip=true will skip all test and generate the release.
+	Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
-	To Run the tests, you must edit PlivoCallTest.java and put your server address, accountId, accountToken etc, otherwise
-	it WILL FAIL.
-
-	To generate the final release (.jar to include on your application [if you're not using maven on your main app]), type:
-	
-	mvn install -Dmaven.test.skip=true
-	
-	Note: The parameter -Dmaven.test.skip=true will skip all test and generate the release.
-	
-	To Run the tests, you must edit PlivoCallTest.java and put your server address, accountId, accountToken etc, otherwise
-	it WILL FAIL.
+	To Run the tests, you *must edit PlivoCallTest.java* and put your server address, accountId, accountToken etc, otherwise
+	it *WILL FAIL*.
 
 **Use the Library in your Java IDE**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,6 +54,7 @@ currently available on PLIVO.
   // there's another constructor if you want to override the PLIVO version
 
 **Requesting a new CALL to PLIVO**
+
 	Map<String, String> parameters = 
 		new HashMap<String, String>();
 	
@@ -90,9 +82,9 @@ currently available on PLIVO.
 
 	Call response will contain RequestUUID of the call.
 	Note that the AnswerUrl, HangUpUrl and RingUrl has to be a VALID URL. Your application must be
-	listening on these urls and response properly. 
+	listening on these URLs and respond properly. 
 	
-	This helper already contains a simple web server implemented by Jetty, so you can check our servlet classes.
+	This helper already contains a simple web server implemented by Jetty (for test purpose only), so you can check our servlet classes.
 	
 	Example of a simple implementation of the answered URL:
 	
