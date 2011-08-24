@@ -7,7 +7,7 @@
 	<name>Plivo Java Bridge Module</name>
 	<packaging>jar</packaging>
 	<description>Plivo :: Java Bridge Module</description>
-	<version>1.1</version>
+	<version>1.2</version>
 	<dependencies>
 
 		<dependency>
@@ -57,6 +57,7 @@
 	<properties>
 		<jersey.version>1.9-ea04</jersey.version>
 		<jetty.version>6.1.26</jetty.version>
+		<plivo.api.version>v0.1</plivo.api.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -66,6 +67,12 @@
 		</repository>
 	</repositories>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 
 			<plugin>

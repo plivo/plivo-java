@@ -40,16 +40,17 @@ public class SimpleServer {
 			@Override
 			public void run() {
 				server = new Server(port);
-				Context root = new Context(server,"/",Context.SESSIONS);
+				Context root = new Context(server, "/", Context.SESSIONS);
 				for(ServletContainer c: containers)
 					try {
 						System.out.println("Adding clazz '"+c.getClazz()+"' on path '/"+c.getPath()+"' ...");
-						root.addServlet(new ServletHolder(c.getClazz().newInstance()), "/"+c.getPath());
+						root.addServlet(new ServletHolder(c.getClazz().newInstance()), 
+								"/"+c.getPath());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				System.out.println("Starting server ... type 'exit' to kill");
 				
+				System.out.println("Starting server ... type 'exit' to kill");
 				try {
 					server.start();
 				} catch(Exception e) {
@@ -75,14 +76,17 @@ public class SimpleServer {
 			server.stop();
 		} catch (Exception e) {
 		}
+		
 		executor.shutdown();
 	}
 
 	public static void main(String[] args) throws Exception {
-		SimpleServer ss = new SimpleServer(5151, new SimpleServer.ServletContainer(AnsweredServlet.class, "answered"),
+		SimpleServer ss = new SimpleServer(5151,
+				new SimpleServer.ServletContainer(AnsweredServlet.class, "answered"),
 				new SimpleServer.ServletContainer(RingingServlet.class, "ringing"),
 				new SimpleServer.ServletContainer(HangupServlet.class, "hangup"),
 				new SimpleServer.ServletContainer(TransferedServlet.class, "transfered"));
+		
 		ss.start();
 		
 		while(!ss.executor.isShutdown()) Thread.sleep(5000);

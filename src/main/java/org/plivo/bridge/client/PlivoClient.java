@@ -47,6 +47,22 @@ public class PlivoClient {
 		if (debug)
 			this.restClient.addFilter(new LoggingFilter(System.out));
 	}
+	
+	/**
+	 * Connection timeout (in milliseconds)
+	 * @param timeout
+	 */
+	public void setConnectionTimeout( int timeout ) {
+		restClient.setConnectTimeout(timeout);
+	}
+	
+	/**
+	 * Read timeout (in milliseconds)
+	 * @param timeout
+	 */
+	public void setReadTimeout(int timeout) {
+		restClient.setReadTimeout(timeout);
+	}
 
 	public CallFeature call() {
 		CallFeature f = new CallFeature(this, this.getBaseResource());

@@ -32,10 +32,10 @@ public class ApplicationResponse implements Serializable {
 	private Record record;
 	
 	@XmlElement(name="Dial")
-	private Record dial;
+	private Dial dial;
 	
 	@XmlElement(name="Redirect")
-	private Record redirect;
+	private Redirect redirect;
 	
 	@XmlElement(name="Wait")
 	private Wait wait;
@@ -45,9 +45,6 @@ public class ApplicationResponse implements Serializable {
 	
 	@XmlElement(name="PreAnswer")
 	private PreAnswer preAnswer;
-	
-	@XmlElement(name="ScheduleHangup")
-	private PreAnswer scheduleHangup;
 	
 	@XmlElement(name="Conference")
 	private Conference conference;
@@ -94,19 +91,19 @@ public class ApplicationResponse implements Serializable {
 		this.record = record;
 	}
 
-	public Record getDial() {
+	public Dial getDial() {
 		return dial;
 	}
 
-	public void setDial(Record dial) {
+	public void setDial(Dial dial) {
 		this.dial = dial;
 	}
 
-	public Record getRedirect() {
+	public Redirect getRedirect() {
 		return redirect;
 	}
 
-	public void setRedirect(Record redirect) {
+	public void setRedirect(Redirect redirect) {
 		this.redirect = redirect;
 	}
 
@@ -132,14 +129,6 @@ public class ApplicationResponse implements Serializable {
 
 	public void setPreAnswer(PreAnswer preAnswer) {
 		this.preAnswer = preAnswer;
-	}
-
-	public PreAnswer getScheduleHangup() {
-		return scheduleHangup;
-	}
-
-	public void setScheduleHangup(PreAnswer scheduleHangup) {
-		this.scheduleHangup = scheduleHangup;
 	}
 
 	public Conference getConference() {

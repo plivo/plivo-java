@@ -21,7 +21,6 @@ public abstract class BaseFeature {
 	public BaseFeature(PlivoClient client, WebResource baseResource) {
 		this.setClient(client);
 		this.setBaseResource(baseResource);
-		this.setBaseResource(this.getBaseResource());
 	}
 
 	protected WebResource populateGETResource(WebResource resource,

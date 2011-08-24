@@ -38,7 +38,6 @@ public class CallFeature extends BaseFeature {
 
 	public CallFeature(PlivoClient client, WebResource baseResource) {
 		super(client, baseResource);
-		this.setBaseResource(this.getBaseResource());
 	}
 
 	public CallResponse single(Map<String, String> parameters)
