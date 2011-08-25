@@ -7,8 +7,8 @@ package org.plivo.bridge.to.callback;
  */
 
 import java.io.Serializable;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -59,11 +59,11 @@ public class HangupCallback implements Serializable {
 		this.reason = reason;
 	}
 	
-	public static HangupCallback create(HttpServletRequest request) {
+	public static HangupCallback create(Map<String, String> parameters) {
 		HangupCallback obj = new HangupCallback();
-		obj.setRequestUUID(request.getParameter("request_uuid"));
-		obj.setCallID(request.getParameter("call_uuid"));
-		obj.setReason(HangupReason.from(request.getParameter("reason")));
+		obj.setRequestUUID(parameters.get("request_uuid"));
+		obj.setCallID(parameters.get("call_uuid"));
+		obj.setReason(HangupReason.from(parameters.get("reason")));
 		
 		return obj;
 	}

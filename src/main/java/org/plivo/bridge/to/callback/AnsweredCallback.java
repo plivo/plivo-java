@@ -7,8 +7,8 @@ package org.plivo.bridge.to.callback;
  */
 
 import java.io.Serializable;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -98,16 +98,16 @@ public class AnsweredCallback implements Serializable {
 		this.fromNumber = fromNumber;
 	}
 	
-	public static AnsweredCallback create(HttpServletRequest request) {
+	public static AnsweredCallback create(Map<String, String[]> map) {
 		AnsweredCallback callback = new AnsweredCallback();
-		callback.setAlegRequestUUID(request.getParameter("aleg_uuid"));
-		callback.setCallUUID(request.getParameter("call_uuid"));
-		callback.setDirection(AnsweredDirection.from(request.getParameter("direction")));
-		callback.setCallNumber(request.getParameter("called_no"));
-		String hangupId = request.getParameter("sched_hangup_id");
+		callback.setAlegRequestUUID(map.get("aleg_uuid")[0]);
+		callback.setCallUUID(map.get("call_uuid")[0]);
+		callback.setDirection(AnsweredDirection.from(map.get("direction")[0]));
+		callback.setCallNumber(map.get("called_no")[0]);
+		String hangupId = map.get("sched_hangup_id")[0];
 		callback.setScheduleHangupID((null == hangupId || "".equals(hangupId.trim()) ? null : Integer.valueOf(hangupId)));
-		callback.setAlegRequestUUID(request.getParameter("aleg_request_uuid"));
-		callback.setFromNumber(request.getParameter("from_no"));
+		callback.setAlegRequestUUID(map.get("aleg_request_uuid")[0]);
+		callback.setFromNumber(map.get("from_no")[0]);
 		
 		return callback;
 	}

@@ -11,10 +11,6 @@ import java.util.Map;
 
 import org.plivo.bridge.client.PlivoClient;
 import org.plivo.bridge.exception.PlivoClientException;
-import org.plivo.bridge.tests.call.servlets.AnsweredServlet;
-import org.plivo.bridge.tests.call.servlets.HangupServlet;
-import org.plivo.bridge.tests.call.servlets.RingingServlet;
-import org.plivo.bridge.tests.call.servlets.TransferedServlet;
 import org.plivo.bridge.to.response.BulkCallResponse;
 import org.plivo.bridge.to.response.CallResponse;
 import org.plivo.bridge.to.response.CancelScheduleHangupResponse;
@@ -43,52 +39,31 @@ import org.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
 import org.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
 import org.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class PlivoCallTest {
 	PlivoClient client;
 
-	private SimpleServer server;
-
 	public PlivoCallTest() {
 		client = PlivoClient.create("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 				"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
-				"http://46.102.242.62:8088", true);
+				"http://188.241.116.145:8088", true);
 	}
 
-	@BeforeClass
-	public void setUp( ) throws Exception {
-		
-		server = new SimpleServer(5151, new SimpleServer.ServletContainer(AnsweredServlet.class, "answered"),
-				new SimpleServer.ServletContainer(RingingServlet.class, "ringing"),
-				new SimpleServer.ServletContainer(HangupServlet.class, "hangup"),
-				new SimpleServer.ServletContainer(TransferedServlet.class, "transfered"));
-		server.start();
-		
-	}
-	
-	@AfterClass
-	public void tearDown( ) throws Exception {
-		System.out.println("Shutting down server ...");
-		server.stop();
-	}
-
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void makeCall() throws Exception {
 		/*
 		 * Check documentation at http://www.plivo.org/docs/restapis/call/making-an-outbound-call/
 		 */
 
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("From", "1001");
+		parameters.put("From", "9999");
 		parameters.put("To", "1002");
 
-		parameters.put("Gateways", "user/");
-		parameters.put("AnswerUrl", "http://localhost:5151/answered");
-		parameters.put("HangUpUrl", "http://localhost:5151/hangup");
-		parameters.put("RingUrl", "http://localhost:5151/ringing");
+		parameters.put("Gateways", "user/,user/");
+		parameters.put("AnswerUrl", "http://186.210.225.112:5151/answered/");
+		parameters.put("HangupUrl", "http://186.210.225.112:5151/hangup/");
+		parameters.put("RingUrl", "http://186.210.225.112:5151/ringing/");
 
 		CallResponse result = client.call().single(parameters);
 

@@ -7,8 +7,8 @@ package org.plivo.bridge.to.callback;
  */
 
 import java.io.Serializable;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -36,10 +36,10 @@ public class RingingCallback implements Serializable {
 		this.requestUUID = requestUUID;
 	}
 	
-	public static RingingCallback create(HttpServletRequest request) {
+	public static RingingCallback create(Map<String, String> parameters) {
 		RingingCallback callback = new RingingCallback();
-		callback.setRequestUUID(request.getParameter("request_uuid"));
-		callback.setTo(request.getParameter("to"));
+		callback.setRequestUUID(parameters.get("request_uuid"));
+		callback.setTo(parameters.get("to"));
 		
 		return callback;
 	}
