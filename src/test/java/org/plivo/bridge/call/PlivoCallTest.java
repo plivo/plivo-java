@@ -1,4 +1,4 @@
-package org.plivo.bridge.tests.call;
+package org.plivo.bridge.call;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.

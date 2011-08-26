@@ -9,30 +9,82 @@ package org.plivo.bridge.to.callback;
 import java.io.Serializable;
 import java.util.Map;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class HangupCallback implements Serializable {
 
 	private static final long serialVersionUID = 7437844399059919787L;
 	
-	private String requestUUID;
+	private String from;
 	
-	private String callID;
+	private String to;
+	
+	private CallDirection direction;
+	
+	private String alegUUID;
 	
 	private HangupReason reason;
 	
-	public static enum HangupReason {
-		USER_NOT_REGISTERED,
-		USER_BUSY,
-		NORMAL_CLEARING;
-		
-		public static HangupReason from(String value) {
-			for(HangupReason reason: HangupReason.values())
-				if(reason.name().equals(value)) return reason;
-			
-			return null;
-		}
+	private String callUUID;
+	
+	private String alegRequestUUID;
+	
+	private String requestUUID;
+	
+	private CallStatus status;
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public CallDirection getDirection() {
+		return direction;
+	}
+
+	public void setDirection(CallDirection direction) {
+		this.direction = direction;
+	}
+
+	public String getAlegUUID() {
+		return alegUUID;
+	}
+
+	public void setAlegUUID(String alegUUID) {
+		this.alegUUID = alegUUID;
+	}
+
+	public HangupReason getReason() {
+		return reason;
+	}
+
+	public void setReason(HangupReason reason) {
+		this.reason = reason;
+	}
+
+	public String getCallUUID() {
+		return callUUID;
+	}
+
+	public void setCallUUID(String callUUID) {
+		this.callUUID = callUUID;
+	}
+
+	public String getAlegRequestUUID() {
+		return alegRequestUUID;
+	}
+
+	public void setAlegRequestUUID(String alegRequestUUID) {
+		this.alegRequestUUID = alegRequestUUID;
 	}
 
 	public String getRequestUUID() {
@@ -43,28 +95,28 @@ public class HangupCallback implements Serializable {
 		this.requestUUID = requestUUID;
 	}
 
-	public String getCallID() {
-		return callID;
+	public CallStatus getStatus() {
+		return status;
 	}
 
-	public void setCallID(String callID) {
-		this.callID = callID;
-	}
-
-	public HangupReason getReason() {
-		return reason;
-	}
-
-	public void setReason(HangupReason reason) {
-		this.reason = reason;
+	public void setStatus(CallStatus status) {
+		this.status = status;
 	}
 	
 	public static HangupCallback create(Map<String, String> parameters) {
-		HangupCallback obj = new HangupCallback();
-		obj.setRequestUUID(parameters.get("request_uuid"));
-		obj.setCallID(parameters.get("call_uuid"));
-		obj.setReason(HangupReason.from(parameters.get("reason")));
+		HangupCallback callback = new HangupCallback();
 		
-		return obj;
+		callback.setFrom(parameters.get("From"));
+		callback.setTo(parameters.get("To"));
+		callback.setDirection(CallDirection.fromValue(parameters.get("Direction")));
+		callback.setReason(HangupReason.fromValue(parameters.get("HangupCause")));
+		callback.setAlegUUID(parameters.get("ALegUUID"));
+		callback.setCallUUID(parameters.get("CallUUID"));
+		callback.setStatus(CallStatus.fromValue(parameters.get("CallStatus")));
+		callback.setAlegRequestUUID(parameters.get("ALegRequestUUID"));
+		callback.setRequestUUID(parameters.get("RequestUUID"));
+		
+		return callback;
 	}
+	
 }
