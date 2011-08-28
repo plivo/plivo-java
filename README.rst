@@ -53,7 +53,8 @@ currently available on PLIVO.
 				"url", debug);
   // there's another constructor if you want to override the PLIVO API version
   
-  **Edit the file src/test/resources/test.properties before executing the tests
+  **Edit the file src/test/resources/test.properties before executing the tests**
+  
   Fill up the follow keys:
   
   accountId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
