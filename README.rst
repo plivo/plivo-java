@@ -101,7 +101,7 @@ currently available on PLIVO.
 	
 	This helper already contains a simple web server implemented by Grizzly (for test purpose only). Its important to say that the Grizzly API will not be bundle on the final JAR, it's just for test.
 	
-	** Example of a simple implementation of the hang up callback method:
+	**Example of a simple implementation of the hang up callback method:**
 	
 		ServiceHandler hangupHandler = new ServiceHandler("/hangup/*", 
 		
