@@ -1,10 +1,20 @@
 package org.plivo.bridge.util;
+/**
+ * Copyright (c) 2011 Plivo Team. See LICENSE for details.
+ *  2011-08-28
+ * @author Paulo reis
+ */
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 
 public abstract class PlivoTestUtils {
+	
+	private static final Properties testProp = new Properties();
+	private static volatile boolean initialized = false;
 	
 	public static Map<String, String> mapToSingleValue(Map<String, String[]> seed) {
 		Map<String, String> result = new HashMap<String, String>();
@@ -28,5 +38,40 @@ public abstract class PlivoTestUtils {
 		
 		return result;
 	}
+	
+	private static String get(String name) {
+		initProperties();
+		
+		return testProp.getProperty(name);
+	}
 
+	public static String getAccountId( ) {
+		return get("accountId");
+	}
+	
+	public static String getAuthToken( ) {
+		return get("authToken");
+	}
+	
+	public static String getPlivoUrl( ) {
+		return get("plivoUrl");
+	}
+	
+	public static String getCallbackUrl( ) {
+		return get("callbackUrl");
+	}
+
+	private static void initProperties( ) {
+		if(initialized) return;
+		synchronized(PlivoTestUtils.class) {
+			if(initialized) return;
+			
+			try {
+				testProp.load(PlivoTestUtils.class.getResourceAsStream("/test.properties"));
+				initialized = true;
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
 }

@@ -51,7 +51,21 @@ currently available on PLIVO.
    PlivoClient client = PlivoClient.create("accountId",
 				"accountToken",
 				"url", debug);
-  // there's another constructor if you want to override the PLIVO version
+  // there's another constructor if you want to override the PLIVO API version
+  
+  **Edit the file src/test/resources/test.properties before executing the tests
+  Fill up the follow keys:
+  
+  accountId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  
+  authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+  
+  plivoUrl=http://YOUR_PLIVO_SERVER_IP:8088
+  
+  callbackUrl=http://YOUR_CALLBACK_SERVER_IP:5151/
+  
+  After that, you can run the tests.
+ 
 
 **Requesting a new CALL to PLIVO**
 
@@ -84,38 +98,32 @@ currently available on PLIVO.
 	Note that the AnswerUrl, HangUpUrl and RingUrl has to be a VALID URL. Your application must be
 	listening on these URLs and respond properly. 
 	
-	This helper already contains a simple web server implemented by Jetty (for test purpose only), so you can check our servlet classes.
+	This helper already contains a simple web server implemented by Grizzly (for test purpose only). Its important to say that the Grizzly API will not be bundle on the final JAR, it's just for test.
 	
-	Example of a simple implementation of the answered URL:
+	** Example of a simple implementation of the hang up callback method:
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-			
-		AnsweredCallback callback = AnsweredCallback.create(req);
+		ServiceHandler hangupHandler = new ServiceHandler("/hangup/*", 
 		
-		ApplicationResponse r = new ApplicationResponse();
-		
-		GetDigits digits = new GetDigits();
-		
-		digits.setNumDigits(1);
-		
-		digits.setValidDigits("123");
-		
-		digits.setPlayBeep(true);
-		
-		digits.setRetries(2);
-		
-		r.setGetDigits(digits);
-		
-		try {
-			PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(r, resp.getOutputStream());
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-	}
+				new HttpHandler() {
+				
+					@Override
+					public void service(Request req, Response resp) throws Exception {
+					
+						System.out.println("got hangup!");
+						
+						HangupCallback callback = HangupCallback.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
+						
+						System.out.println(callback);
+						
+						resp.getWriter().write("hangup");
+						
+						resp.getWriter().flush();
+						
+						resp.getWriter().close();
+					}
+				});
 	
-	This piece of code will receive the PLIVO CALL and return a request to user to enter
-	one digit on the phone. The user must enter "1, 2 or 3" and he has 2 tries to accomplish that.
+	This piece of code will be executed when HANGUP event event is received from PLIVO.
 		
 **Other features on PLIVO**	
 

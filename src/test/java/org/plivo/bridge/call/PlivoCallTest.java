@@ -38,6 +38,7 @@ import org.plivo.bridge.to.response.conference.ConferenceRecordStopResponse;
 import org.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
 import org.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
 import org.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
+import org.plivo.bridge.util.PlivoTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -45,9 +46,9 @@ public class PlivoCallTest {
 	PlivoClient client;
 
 	public PlivoCallTest() {
-		client = PlivoClient.create("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-				"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
-				"http://188.241.116.145:8088", true);
+		client = PlivoClient.create(PlivoTestUtils.getAccountId(),
+				PlivoTestUtils.getAuthToken(),
+				PlivoTestUtils.getPlivoUrl(), true);
 	}
 
 	@Test(enabled=false)

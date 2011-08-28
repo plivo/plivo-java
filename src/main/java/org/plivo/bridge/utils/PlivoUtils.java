@@ -24,6 +24,7 @@ import org.plivo.bridge.to.command.Play;
 import org.plivo.bridge.to.command.PreAnswer;
 import org.plivo.bridge.to.command.Record;
 import org.plivo.bridge.to.command.Redirect;
+import org.plivo.bridge.to.command.SIPTransfer;
 import org.plivo.bridge.to.command.Speak;
 import org.plivo.bridge.to.command.Wait;
 
@@ -75,6 +76,7 @@ public abstract class PlivoUtils {
 			PreAnswer.class,
 			Record.class,
 			Redirect.class,
+			SIPTransfer.class,
 			Speak.class,
 			Wait.class			
 		};

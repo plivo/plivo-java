@@ -117,6 +117,102 @@ public class CallbackStatus implements Serializable {
 		this.status = status;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CallbackStatus [from=").append(from).append(", to=")
+				.append(to).append(", dialBLegUUID=").append(dialBLegUUID)
+				.append(", direction=").append(direction)
+				.append(", hangupReason=").append(hangupReason)
+				.append(", alegUUID=").append(alegUUID)
+				.append(", dialRingStatus=").append(dialRingStatus)
+				.append(", dialALegUUID=").append(dialALegUUID)
+				.append(", aLegRequestUUID=").append(aLegRequestUUID)
+				.append(", callUUID=").append(callUUID).append(", status=")
+				.append(status).append("]");
+		return builder.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((aLegRequestUUID == null) ? 0 : aLegRequestUUID.hashCode());
+		result = prime * result
+				+ ((alegUUID == null) ? 0 : alegUUID.hashCode());
+		result = prime * result
+				+ ((callUUID == null) ? 0 : callUUID.hashCode());
+		result = prime * result
+				+ ((dialALegUUID == null) ? 0 : dialALegUUID.hashCode());
+		result = prime * result
+				+ ((dialBLegUUID == null) ? 0 : dialBLegUUID.hashCode());
+		result = prime * result + (dialRingStatus ? 1231 : 1237);
+		result = prime * result
+				+ ((direction == null) ? 0 : direction.hashCode());
+		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result
+				+ ((hangupReason == null) ? 0 : hangupReason.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((to == null) ? 0 : to.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CallbackStatus other = (CallbackStatus) obj;
+		if (aLegRequestUUID == null) {
+			if (other.aLegRequestUUID != null)
+				return false;
+		} else if (!aLegRequestUUID.equals(other.aLegRequestUUID))
+			return false;
+		if (alegUUID == null) {
+			if (other.alegUUID != null)
+				return false;
+		} else if (!alegUUID.equals(other.alegUUID))
+			return false;
+		if (callUUID == null) {
+			if (other.callUUID != null)
+				return false;
+		} else if (!callUUID.equals(other.callUUID))
+			return false;
+		if (dialALegUUID == null) {
+			if (other.dialALegUUID != null)
+				return false;
+		} else if (!dialALegUUID.equals(other.dialALegUUID))
+			return false;
+		if (dialBLegUUID == null) {
+			if (other.dialBLegUUID != null)
+				return false;
+		} else if (!dialBLegUUID.equals(other.dialBLegUUID))
+			return false;
+		if (dialRingStatus != other.dialRingStatus)
+			return false;
+		if (direction != other.direction)
+			return false;
+		if (from == null) {
+			if (other.from != null)
+				return false;
+		} else if (!from.equals(other.from))
+			return false;
+		if (hangupReason != other.hangupReason)
+			return false;
+		if (status != other.status)
+			return false;
+		if (to == null) {
+			if (other.to != null)
+				return false;
+		} else if (!to.equals(other.to))
+			return false;
+		return true;
+	}
+
 	public static CallbackStatus create(Map<String, String> parameters) {
 		CallbackStatus callback = new CallbackStatus();
 		
