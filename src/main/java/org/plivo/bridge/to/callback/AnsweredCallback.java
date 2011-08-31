@@ -9,6 +9,8 @@ package org.plivo.bridge.to.callback;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.plivo.bridge.utils.PlivoUtils;
+
 public class AnsweredCallback implements Serializable {
 
 	private static final long serialVersionUID = 2391305204443745296L;
@@ -171,16 +173,16 @@ public class AnsweredCallback implements Serializable {
 	}
 
 
-	public static AnsweredCallback create(Map<String, String> parameters) {
+	public static AnsweredCallback create(Map<?,?> parameters) {
 		AnsweredCallback callback = new AnsweredCallback();
 		
-		callback.setFrom(parameters.get("From"));
-		callback.setTo(parameters.get("To"));
-		callback.setDirection(CallDirection.fromValue(parameters.get("Direction")));
-		callback.setAlegUUID(parameters.get("ALegUUID"));
-		callback.setAlegRequestUUID(parameters.get("ALegRequestUUID"));
-		callback.setCallUUID(parameters.get("CallUUID"));
-		callback.setStatus(CallStatus.fromValue(parameters.get("CallStatus")));
+		callback.setFrom(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "From"));
+		callback.setTo(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "To"));
+		callback.setDirection(CallDirection.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "Direction")));
+		callback.setAlegUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegUUID"));
+		callback.setAlegRequestUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegRequestUUID"));
+		callback.setCallUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallUUID"));
+		callback.setStatus(CallStatus.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallStatus")));
 		
 		return callback;
 	}

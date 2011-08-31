@@ -11,16 +11,14 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Play implements Serializable {
 
 	private static final long serialVersionUID = 158509162906138363L;
 	
-	@XmlAttribute(required=true)
+	@XmlAttribute
 	private int loop;
 	
 	@XmlValue

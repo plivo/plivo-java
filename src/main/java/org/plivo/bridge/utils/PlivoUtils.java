@@ -7,6 +7,7 @@ package org.plivo.bridge.utils;
  */
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -33,6 +34,17 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 public abstract class PlivoUtils {
 
 	public static class ParameterUtils {
+		
+		public static String getSingleParameter(Map<?, ?> parameters, String key) {
+			Object object = parameters.get(key);
+			if(null == object) return null;
+			
+			if(object instanceof Object[])
+				return (String) Array.get(object, 0);
+			
+			return object.toString();
+		}
+		
 		public static String mapToString(Map<String, String> parameters) {
 			String encoded = "";
 			for (String key : parameters.keySet()) {

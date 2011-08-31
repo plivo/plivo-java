@@ -11,6 +11,8 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.plivo.bridge.utils.PlivoUtils;
+
 @XmlRootElement
 public class RingingCallback implements Serializable {
 
@@ -134,14 +136,14 @@ public class RingingCallback implements Serializable {
 		return true;
 	}
 
-	public static RingingCallback create(Map<String, String> parameters) {
+	public static RingingCallback create(Map<?, ?> parameters) {
 		RingingCallback callback = new RingingCallback();
-		callback.setDirection(CallDirection.fromValue(parameters.get("Direction")));
-		callback.setFrom(parameters.get("From"));
-		callback.setTo(parameters.get("To"));
-		callback.setRequestUUID(parameters.get("RequestUUID"));
-		callback.setCallUUID(parameters.get("CallUUID"));
-		callback.setStatus(CallStatus.fromValue(parameters.get("CallStatus")));
+		callback.setDirection(CallDirection.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "Direction")));
+		callback.setFrom(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "From"));
+		callback.setTo(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "To"));
+		callback.setRequestUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "RequestUUID"));
+		callback.setCallUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallUUID"));
+		callback.setStatus(CallStatus.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallStatus")));
 		
 		return callback;
 	}

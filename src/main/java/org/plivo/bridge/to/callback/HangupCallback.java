@@ -9,6 +9,8 @@ package org.plivo.bridge.to.callback;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.plivo.bridge.utils.PlivoUtils;
+
 public class HangupCallback implements Serializable {
 
 	private static final long serialVersionUID = 7437844399059919787L;
@@ -185,18 +187,18 @@ public class HangupCallback implements Serializable {
 		return true;
 	}
 
-	public static HangupCallback create(Map<String, String> parameters) {
+	public static HangupCallback create(Map<?, ?> parameters) {
 		HangupCallback callback = new HangupCallback();
 		
-		callback.setFrom(parameters.get("From"));
-		callback.setTo(parameters.get("To"));
-		callback.setDirection(CallDirection.fromValue(parameters.get("Direction")));
-		callback.setReason(HangupReason.fromValue(parameters.get("HangupCause")));
-		callback.setAlegUUID(parameters.get("ALegUUID"));
-		callback.setCallUUID(parameters.get("CallUUID"));
-		callback.setStatus(CallStatus.fromValue(parameters.get("CallStatus")));
-		callback.setAlegRequestUUID(parameters.get("ALegRequestUUID"));
-		callback.setRequestUUID(parameters.get("RequestUUID"));
+		callback.setFrom(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "From"));
+		callback.setTo(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "To"));
+		callback.setDirection(CallDirection.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "Direction")));
+		callback.setReason(HangupReason.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "HangupCause")));
+		callback.setAlegUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegUUID"));
+		callback.setCallUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallUUID"));
+		callback.setStatus(CallStatus.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallStatus")));
+		callback.setAlegRequestUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegRequestUUID"));
+		callback.setRequestUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "RequestUUID"));
 		
 		return callback;
 	}

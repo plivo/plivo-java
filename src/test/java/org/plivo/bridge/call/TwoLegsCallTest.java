@@ -19,6 +19,7 @@ import org.plivo.bridge.to.callback.HangupCallback;
 import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.to.command.Dial;
 import org.plivo.bridge.to.command.Number;
+import org.plivo.bridge.to.command.Play;
 import org.plivo.bridge.to.response.CallResponse;
 import org.plivo.bridge.util.PlivoTestUtils;
 import org.plivo.bridge.utils.PlivoUtils;
@@ -40,15 +41,16 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						ApplicationResponse ar = new ApplicationResponse();
 						Dial d = new Dial();
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
-						d.setMethod("POST");
 						org.plivo.bridge.to.command.Number n = new Number();
 						n.setGateways("user/");
 						n.setNumber("1001");
 						ar.setDial(d);
 						d.setNumber(n);
-						
+						Play play = new Play();
+						play.setUrl(PlivoTestUtils.getCallbackUrl()+"/mp3/download.mp3");
+						play.setLoop(1);
+						ar.setPlay(play);
 						PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, resp.getOutputStream());
-						
 					}
 				});
 		
@@ -75,7 +77,8 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						System.out.println(callback);
 					}
 				});
-				
+		
+		
 		startServer(answerHandler, hangupHandler, callabckHandler);
 		
 		Map<String, String> parameters = 

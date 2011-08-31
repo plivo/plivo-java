@@ -3,6 +3,8 @@ package org.plivo.bridge.to.callback;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.plivo.bridge.utils.PlivoUtils;
+
 public class CallbackStatus implements Serializable {
 
 	private static final long serialVersionUID = 8045921256311010877L;
@@ -213,20 +215,20 @@ public class CallbackStatus implements Serializable {
 		return true;
 	}
 
-	public static CallbackStatus create(Map<String, String> parameters) {
+	public static CallbackStatus create(Map<?, ?> parameters) {
 		CallbackStatus callback = new CallbackStatus();
 		
-		callback.setFrom(parameters.get("From"));
-		callback.setTo(parameters.get("To"));
-		callback.setDialBLegUUID(parameters.get("DialBLegUUID"));
-		callback.setDirection(CallDirection.fromValue(parameters.get("Direction")));
-		callback.setHangupReason(HangupReason.fromValue(parameters.get("DialHangupCause")));
-		callback.setAlegUUID(parameters.get("ALegUUID"));
-		callback.setDialRingStatus(Boolean.valueOf(parameters.get("DialRingStatus")));
-		callback.setDialALegUUID(parameters.get("DialALegUUID"));
-		callback.setaLegRequestUUID(parameters.get("ALegRequestUUID"));
-		callback.setCallUUID(parameters.get("CallUUID"));
-		callback.setStatus(CallStatus.fromValue(parameters.get("CallStatus")));
+		callback.setFrom(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "From"));
+		callback.setTo(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "To"));
+		callback.setDialBLegUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "DialBLegUUID"));
+		callback.setDirection(CallDirection.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "Direction")));
+		callback.setHangupReason(HangupReason.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "DialHangupCause")));
+		callback.setAlegUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegUUID"));
+		callback.setDialRingStatus(Boolean.valueOf(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "DialRingStatus")));
+		callback.setDialALegUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "DialALegUUID"));
+		callback.setaLegRequestUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "ALegRequestUUID"));
+		callback.setCallUUID(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallUUID"));
+		callback.setStatus(CallStatus.fromValue(PlivoUtils.ParameterUtils.getSingleParameter(parameters, "CallStatus")));
 		
 		return callback;
 	}

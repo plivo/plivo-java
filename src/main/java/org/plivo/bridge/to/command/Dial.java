@@ -11,9 +11,8 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Dial implements Serializable {
 
@@ -58,7 +57,7 @@ public class Dial implements Serializable {
 	@XmlAttribute
 	private String digitsMatch;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Number")
+	@XmlElement(name="Number", required=true)
 	private Number number;
 	
 	public Dial() {

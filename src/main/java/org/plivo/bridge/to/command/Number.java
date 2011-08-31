@@ -11,10 +11,8 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Number implements Serializable {
 
@@ -22,9 +20,6 @@ public class Number implements Serializable {
 	
 	@XmlAttribute
 	private String sendDigits;
-	
-	@XmlAttribute
-	private String url;
 	
 	@XmlAttribute
 	private String gateways;	
@@ -58,14 +53,6 @@ public class Number implements Serializable {
 	 */
 	public void setSendDigits(String sendDigits) {
 		this.sendDigits = sendDigits;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public String getGateways() {
