@@ -28,13 +28,16 @@ public class Number implements Serializable {
 	private String gatewayCodecs;
 	
 	@XmlAttribute
-	private int gatewayTimeouts;
+	private String gatewayTimeouts;
 	
 	@XmlAttribute
-	private int gatewayRetries;
+	private String gatewayRetries;
 	
 	@XmlAttribute
 	private String extraDialString;
+	
+	@XmlAttribute
+	private boolean sendOnPreanswer;
 	
 	@XmlValue
 	private String number;
@@ -71,19 +74,19 @@ public class Number implements Serializable {
 		this.gatewayCodecs = gatewayCodecs;
 	}
 
-	public int getGatewayTimeouts() {
+	public String getGatewayTimeouts() {
 		return gatewayTimeouts;
 	}
 
-	public void setGatewayTimeouts(int gatewayTimeouts) {
+	public void setGatewayTimeouts(String gatewayTimeouts) {
 		this.gatewayTimeouts = gatewayTimeouts;
 	}
 
-	public int getGatewayRetries() {
+	public String getGatewayRetries() {
 		return gatewayRetries;
 	}
 
-	public void setGatewayRetries(int gatewayRetries) {
+	public void setGatewayRetries(String gatewayRetries) {
 		this.gatewayRetries = gatewayRetries;
 	}
 
@@ -105,5 +108,13 @@ public class Number implements Serializable {
 	 */
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public boolean isSendOnPreanswer() {
+		return sendOnPreanswer;
+	}
+
+	public void setSendOnPreanswer(boolean sendOnPreanswer) {
+		this.sendOnPreanswer = sendOnPreanswer;
 	}
 }

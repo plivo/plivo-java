@@ -74,6 +74,9 @@ public class Conference implements Serializable {
 	
 	@XmlAttribute
 	private String callbackMethod;
+	
+	@XmlAttribute
+	private boolean floorEvent;
 
 	@XmlValue
 	private String room;
@@ -337,5 +340,18 @@ public class Conference implements Serializable {
 	 */
 	public void setRoom(String room) {
 		this.room = room;
+	}
+	
+	public boolean isFloorEvent() {
+		return floorEvent;
+	}
+	
+	/** Floor Event
+	 * 'true' or 'false'. When this member speaks, 
+            send notification to callbackUrl. (default 'false')
+	 * @param floorEvent
+	 */
+	public void setFloorEvent(boolean floorEvent) {
+		this.floorEvent = floorEvent;
 	}
 }
