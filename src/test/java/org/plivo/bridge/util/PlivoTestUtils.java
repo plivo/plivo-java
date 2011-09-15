@@ -16,6 +16,12 @@ public abstract class PlivoTestUtils {
 	private static final Properties testProp = new Properties();
 	private static volatile boolean initialized = false;
 	
+	public static final String GATEWAYS = "user/,user/";
+	public static final String GATEWAY_RETRIES = "1,1";
+	public static final String EXTRA_DIAL_STRING = "bridge_early_media=true,hangup_after_bridge=true";
+	public static final String GATEWAY_TIMEOUTS = "60,60";
+	public static final String GATEWAY_CODECS = "'PCMA,PCMU'";
+	
 	public static Map<String, String> mapToSingleValue(Map<String, String[]> seed) {
 		Map<String, String> result = new HashMap<String, String>();
 		Iterator<String> iterator = seed.keySet().iterator();

@@ -18,13 +18,13 @@ public class Wait implements Serializable {
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
-	private int length;
+	private Integer length;
 		
 	public Wait() {
 		
 	}
 
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
@@ -32,7 +32,7 @@ public class Wait implements Serializable {
 	 * Length of wait time in seconds
 	 * @param length
 	 */
-	public void setLength(int length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
 }

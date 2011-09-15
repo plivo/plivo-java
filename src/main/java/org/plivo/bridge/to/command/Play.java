@@ -19,7 +19,7 @@ public class Play implements Serializable {
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
-	private int loop;
+	private Integer loop;
 	
 	@XmlValue
 	private String url;
@@ -27,7 +27,7 @@ public class Play implements Serializable {
 	public Play() {
 		
 	}
-	public int getLoop() {
+	public Integer getLoop() {
 		return loop;
 	}
 	
@@ -35,7 +35,7 @@ public class Play implements Serializable {
 	 * Number of time to say this text
 	 * @param loop
 	 */
-	public void setLoop(int loop) {
+	public void setLoop(Integer loop) {
 		this.loop = loop;
 	}
 	public String getUrl() {

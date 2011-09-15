@@ -22,8 +22,8 @@ public class Speak implements Serializable {
 	private String voice; 
 	@XmlAttribute
 	private String language;
-	@XmlAttribute
-	private int loop;
+	@XmlAttribute(required=false)
+	private Integer loop;
 	@XmlAttribute
 	private String engine;
 	@XmlAttribute
@@ -62,7 +62,7 @@ public class Speak implements Serializable {
 		this.language = language;
 	}
 
-	public int getLoop() {
+	public Integer getLoop() {
 		return loop;
 	}
 
@@ -70,7 +70,7 @@ public class Speak implements Serializable {
 	 * Number of times to say this text
 	 * @param loop
 	 */
-	public void setLoop(int loop) {
+	public void setLoop(Integer loop) {
 		this.loop = loop;
 	}
 

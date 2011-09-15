@@ -21,7 +21,7 @@ public class GetSpeech implements Serializable {
 	private String action;
 	
 	@XmlAttribute
-	private int timeout;
+	private Integer timeout;
 	
 	@XmlAttribute
 	private String method;
@@ -33,7 +33,7 @@ public class GetSpeech implements Serializable {
 	private String grammar;
 	
 	@XmlAttribute
-	private boolean playBeep;
+	private Boolean playBeep;
 	
 	@javax.xml.bind.annotation.XmlElement(name="Play")
 	private Play play;
@@ -60,11 +60,11 @@ public class GetSpeech implements Serializable {
 		this.action = action;
 	}
 
-	public int getTimeout() {
+	public Integer getTimeout() {
 		return timeout;
 	}
 
-	public void setTimeout(int timeout) {
+	public void setTimeout(Integer timeout) {
 		this.timeout = timeout;
 	}
 
@@ -104,7 +104,7 @@ public class GetSpeech implements Serializable {
 		this.grammar = grammar;
 	}
 
-	public boolean isPlayBeep() {
+	public Boolean isPlayBeep() {
 		return playBeep;
 	}
 
@@ -112,7 +112,7 @@ public class GetSpeech implements Serializable {
 	 * Play a beep after all plays and says finish
 	 * @param playBeep
 	 */
-	public void setPlayBeep(boolean playBeep) {
+	public void setPlayBeep(Boolean playBeep) {
 		this.playBeep = playBeep;
 	}
 

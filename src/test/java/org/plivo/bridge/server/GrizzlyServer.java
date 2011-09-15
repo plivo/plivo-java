@@ -17,9 +17,15 @@ public class GrizzlyServer {
 	HttpServer server;
 	int port;
 	ExecutorService executor;
+	ServerShutdownCallback callback;
 
 	public GrizzlyServer(int port) {
 		this.port = port;
+	}
+
+	public GrizzlyServer(int port, ServerShutdownCallback callback) {
+		this.port = port;
+		this.callback = callback;
 	}
 
 	public void start( ServiceHandler... handlers ) throws IOException {
@@ -38,6 +44,7 @@ public class GrizzlyServer {
 							System.in.read();
 							server.stop();
 							executor.shutdown();
+							if(null != callback) callback.terminated();
 						} catch(Exception e) {
 							e.printStackTrace();
 						}
@@ -47,6 +54,10 @@ public class GrizzlyServer {
 
 	public boolean isShutdown( ) {
 		return executor.isShutdown();
+	}
+	
+	public static interface ServerShutdownCallback {
+		void terminated( );
 	}
 
 	public static final class ServiceHandler {

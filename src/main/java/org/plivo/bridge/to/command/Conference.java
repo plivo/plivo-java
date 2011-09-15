@@ -19,10 +19,10 @@ public class Conference implements Serializable {
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
-	private boolean muted;
+	private Boolean muted;
 	
 	@XmlAttribute
-	private boolean beep;
+	private Boolean beep;
 	
 	@XmlAttribute
 	private String enterSound;
@@ -31,13 +31,13 @@ public class Conference implements Serializable {
 	private String exitSound;
 	
 	@XmlAttribute
-	private boolean startConferenceOnEnter;
+	private Boolean startConferenceOnEnter;
 	
 	@XmlAttribute
-	private boolean endConferenceOnExit;
+	private Boolean endConferenceOnExit;
 	
 	@XmlAttribute
-	private boolean stayAlone;
+	private Boolean stayAlone;
 
 	@XmlAttribute
 	private String waitSound;
@@ -49,7 +49,7 @@ public class Conference implements Serializable {
 	private Integer timeLimit;
 	
 	@XmlAttribute
-	private boolean hangupOnStar;
+	private Boolean hangupOnStar;
 	
 	@XmlAttribute
 	private String recordFilePath;
@@ -76,7 +76,7 @@ public class Conference implements Serializable {
 	private String callbackMethod;
 	
 	@XmlAttribute
-	private boolean floorEvent;
+	private Boolean floorEvent;
 
 	@XmlValue
 	private String room;
@@ -85,7 +85,7 @@ public class Conference implements Serializable {
 		
 	}
 
-	public boolean isMuted() {
+	public Boolean isMuted() {
 		return muted;
 	}
 
@@ -94,11 +94,11 @@ public class Conference implements Serializable {
           (default false)
 	 * @param muted
 	 */
-	public void setMuted(boolean muted) {
+	public void setMuted(Boolean muted) {
 		this.muted = muted;
 	}
 
-	public boolean isStartConferenceOnEnter() {
+	public Boolean isStartConferenceOnEnter() {
 		return startConferenceOnEnter;
 	}
 
@@ -107,11 +107,11 @@ public class Conference implements Serializable {
           (default true)
 	 * @param startConferenceOnEnter
 	 */
-	public void setStartConferenceOnEnter(boolean startConferenceOnEnter) {
+	public void setStartConferenceOnEnter(Boolean startConferenceOnEnter) {
 		this.startConferenceOnEnter = startConferenceOnEnter;
 	}
 
-	public boolean isEndConferenceOnExit() {
+	public Boolean isEndConferenceOnExit() {
 		return endConferenceOnExit;
 	}
 
@@ -120,11 +120,11 @@ public class Conference implements Serializable {
             with this attribute set to 'true' leave. (default false)
 	 * @param endConferenceOnExit
 	 */
-	public void setEndConferenceOnExit(boolean endConferenceOnExit) {
+	public void setEndConferenceOnExit(Boolean endConferenceOnExit) {
 		this.endConferenceOnExit = endConferenceOnExit;
 	}
 
-	public boolean isStayAlone() {
+	public Boolean isStayAlone() {
 		return stayAlone;
 	}
 
@@ -133,7 +133,7 @@ public class Conference implements Serializable {
           (default true)
 	 * @param stayAlone
 	 */
-	public void setStayAlone(boolean stayAlone) {
+	public void setStayAlone(Boolean stayAlone) {
 		this.stayAlone = stayAlone;
 	}
 
@@ -209,7 +209,7 @@ public class Conference implements Serializable {
 		this.timeLimit = timeLimit;
 	}
 
-	public boolean isHangupOnStar() {
+	public Boolean isHangupOnStar() {
 		return hangupOnStar;
 	}
 
@@ -218,15 +218,15 @@ public class Conference implements Serializable {
           (default false)
 	 * @param hangupOnStar
 	 */
-	public void setHangupOnStar(boolean hangupOnStar) {
+	public void setHangupOnStar(Boolean hangupOnStar) {
 		this.hangupOnStar = hangupOnStar;
 	}
 
-	public boolean isBeep() {
+	public Boolean isBeep() {
 		return beep;
 	}
 
-	public void setBeep(boolean beep) {
+	public void setBeep(Boolean beep) {
 		this.beep = beep;
 	}
 
@@ -342,7 +342,7 @@ public class Conference implements Serializable {
 		this.room = room;
 	}
 	
-	public boolean isFloorEvent() {
+	public Boolean isFloorEvent() {
 		return floorEvent;
 	}
 	
@@ -351,7 +351,7 @@ public class Conference implements Serializable {
             send notification to callbackUrl. (default 'false')
 	 * @param floorEvent
 	 */
-	public void setFloorEvent(boolean floorEvent) {
+	public void setFloorEvent(Boolean floorEvent) {
 		this.floorEvent = floorEvent;
 	}
 }

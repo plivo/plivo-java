@@ -37,7 +37,7 @@ public class Number implements Serializable {
 	private String extraDialString;
 	
 	@XmlAttribute
-	private boolean sendOnPreanswer;
+	private Boolean sendOnPreanswer;
 	
 	@XmlValue
 	private String number;
@@ -110,11 +110,11 @@ public class Number implements Serializable {
 		this.number = number;
 	}
 
-	public boolean isSendOnPreanswer() {
+	public Boolean isSendOnPreanswer() {
 		return sendOnPreanswer;
 	}
 
-	public void setSendOnPreanswer(boolean sendOnPreanswer) {
+	public void setSendOnPreanswer(Boolean sendOnPreanswer) {
 		this.sendOnPreanswer = sendOnPreanswer;
 	}
 }

@@ -21,7 +21,7 @@ public class Hangup implements Serializable {
 	private String reason;
 
 	@XmlAttribute
-	private int schedule;
+	private Integer schedule;
 	
 	public Hangup() {
 		
@@ -39,7 +39,7 @@ public class Hangup implements Serializable {
 		this.reason = reason;
 	}
 
-	public int getSchedule() {
+	public Integer getSchedule() {
 		return schedule;
 	}
 
@@ -47,7 +47,7 @@ public class Hangup implements Serializable {
 	 * Set the schedule time, in seconds
 	 * @param schedule
 	 */
-	public void setSchedule(int schedule) {
+	public void setSchedule(Integer schedule) {
 		this.schedule = schedule;
 	}
 }

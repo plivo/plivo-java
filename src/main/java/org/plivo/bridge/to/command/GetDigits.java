@@ -20,8 +20,8 @@ public class GetDigits implements Serializable {
 	@XmlAttribute
 	private String action;
 	
-	@XmlAttribute
-	private int timeout;
+	@XmlAttribute(required=true)
+	private Integer timeout;
 	
 	@XmlAttribute
 	private String method;
@@ -30,13 +30,13 @@ public class GetDigits implements Serializable {
 	private String finishOnKey;
 	
 	@XmlAttribute
-	private int numDigits;
+	private Integer numDigits;
 	
 	@XmlAttribute
-	private int retries;
+	private Integer retries;
 	
 	@XmlAttribute
-	private boolean playBeep;
+	private Boolean playBeep;
 	
 	@XmlAttribute
 	private String validDigits;
@@ -69,7 +69,7 @@ public class GetDigits implements Serializable {
 		this.action = action;
 	}
 
-	public int getTimeout() {
+	public Integer getTimeout() {
 		return timeout;
 	}
 
@@ -77,7 +77,7 @@ public class GetDigits implements Serializable {
 	 * Wait for this many seconds before retry or returning
 	 * @param timeout
 	 */
-	public void setTimeout(int timeout) {
+	public void setTimeout(Integer timeout) {
 		this.timeout = timeout;
 	}
 
@@ -105,7 +105,7 @@ public class GetDigits implements Serializable {
 		this.finishOnKey = finishOnKey;
 	}
 
-	public int getNumDigits() {
+	public Integer getNumDigits() {
 		return numDigits;
 	}
 
@@ -113,11 +113,11 @@ public class GetDigits implements Serializable {
 	 * How many digits to gather before returning
 	 * @param numDigits
 	 */
-	public void setNumDigits(int numDigits) {
+	public void setNumDigits(Integer numDigits) {
 		this.numDigits = numDigits;
 	}
 
-	public int getRetries() {
+	public Integer getRetries() {
 		return retries;
 	}
 	
@@ -125,11 +125,11 @@ public class GetDigits implements Serializable {
 	 * Number of tries to execute all says and plays one by one
 	 * @param retries
 	 */
-	public void setRetries(int retries) {
+	public void setRetries(Integer retries) {
 		this.retries = retries;
 	}
 
-	public boolean isPlayBeep() {
+	public Boolean isPlayBeep() {
 		return playBeep;
 	}
 
@@ -137,7 +137,7 @@ public class GetDigits implements Serializable {
 	 * Play a beep after all plays and says finish
 	 * @param playBeep
 	 */
-	public void setPlayBeep(boolean playBeep) {
+	public void setPlayBeep(Boolean playBeep) {
 		this.playBeep = playBeep;
 	}
 

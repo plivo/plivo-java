@@ -47,7 +47,7 @@ public class CallFeature extends BaseFeature {
 			CallResponse response = this.getBaseResource()
 					.path("Call/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
+					.accept(MediaType.APPLICATION_XML_TYPE)
 					.post(CallResponse.class,
 							PlivoUtils.ParameterUtils.mapToForm(parameters));
 			

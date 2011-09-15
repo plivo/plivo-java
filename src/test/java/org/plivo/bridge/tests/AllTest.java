@@ -1,4 +1,4 @@
-package org.plivo.bridge.call;
+package org.plivo.bridge.tests;
 
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
@@ -42,10 +42,11 @@ import org.plivo.bridge.util.PlivoTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PlivoCallTest {
+@Test(enabled=false)
+public class AllTest {
 	PlivoClient client;
 
-	public PlivoCallTest() {
+	public AllTest() {
 		client = PlivoClient.create(PlivoTestUtils.getAccountId(),
 				PlivoTestUtils.getAuthToken(),
 				PlivoTestUtils.getPlivoUrl(), true);
@@ -59,12 +60,15 @@ public class PlivoCallTest {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("From", "9999");
-		parameters.put("To", "1002");
+		parameters.put("To", "1003");
 
-		parameters.put("Gateways", "user/,user/");
-		parameters.put("AnswerUrl", "http://186.210.225.112:5151/answered/");
-		parameters.put("HangupUrl", "http://186.210.225.112:5151/hangup/");
-		parameters.put("RingUrl", "http://186.210.225.112:5151/ringing/");
+		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
+		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
+		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
+		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
+		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
+		parameters.put("AnswerUrl", "http://localhost/answer.html");
+
 
 		CallResponse result = client.call().single(parameters);
 

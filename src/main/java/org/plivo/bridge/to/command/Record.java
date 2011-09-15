@@ -18,13 +18,13 @@ public class Record implements Serializable {
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
-	private int maxLength;
+	private Integer maxLength;
 	
 	@XmlAttribute
 	private String action;
 	
 	@XmlAttribute
-	private int timeout;
+	private Integer timeout;
 	
 	@XmlAttribute
 	private String method;
@@ -33,7 +33,7 @@ public class Record implements Serializable {
 	private String finishOnKey;
 	
 	@XmlAttribute
-	private boolean playBeep;
+	private Boolean playBeep;
 	
 	@XmlAttribute
 	private String format;
@@ -45,12 +45,12 @@ public class Record implements Serializable {
 	private String fileName;
 	
 	@XmlAttribute
-	private boolean bothLegs;
+	private Boolean bothLegs;
 	
 	public Record() {
 		
 	}
-	public int getMaxLength() {
+	public Integer getMaxLength() {
 		return maxLength;
 	}
 
@@ -58,7 +58,7 @@ public class Record implements Serializable {
 	 * Maximum number of seconds to record (default 60)
 	 * @param maxLength
 	 */
-	public void setMaxLength(int maxLength) {
+	public void setMaxLength(Integer maxLength) {
 		this.maxLength = maxLength;
 	}
 	public String getAction() {
@@ -73,7 +73,7 @@ public class Record implements Serializable {
 		this.action = action;
 	}
 
-	public int getTimeout() {
+	public Integer getTimeout() {
 		return timeout;
 	}
 
@@ -81,7 +81,7 @@ public class Record implements Serializable {
 	 * Seconds of silence before considering the recording complete (default 500) 
 	 * @param timeout
 	 */
-	public void setTimeout(int timeout) {
+	public void setTimeout(Integer timeout) {
 		this.timeout = timeout;
 	}
 
@@ -109,7 +109,7 @@ public class Record implements Serializable {
 		this.finishOnKey = finishOnKey;
 	}
 
-	public boolean isPlayBeep() {
+	public Boolean isPlayBeep() {
 		return playBeep;
 	}
 	
@@ -117,7 +117,7 @@ public class Record implements Serializable {
 	 * Play a beep before recording (true/false, default true)
 	 * @param playBeep
 	 */
-	public void setPlayBeep(boolean playBeep) {
+	public void setPlayBeep(Boolean playBeep) {
 		this.playBeep = playBeep;
 	}
 	
@@ -145,7 +145,7 @@ public class Record implements Serializable {
 		this.filePath = filePath;
 	}
 	
-	public boolean isBothLegs() {
+	public Boolean isBothLegs() {
 		return bothLegs;
 	}
 
@@ -154,7 +154,7 @@ public class Record implements Serializable {
               no beep will be played
 	 * @param bothLegs
 	 */
-	public void setBothLegs(boolean bothLegs) {
+	public void setBothLegs(Boolean bothLegs) {
 		this.bothLegs = bothLegs;
 	}
 	

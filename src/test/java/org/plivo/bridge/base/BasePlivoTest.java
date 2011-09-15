@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.plivo.bridge.client.PlivoClient;
 import org.plivo.bridge.server.GrizzlyServer;
+import org.plivo.bridge.server.GrizzlyServer.ServerShutdownCallback;
 import org.plivo.bridge.server.GrizzlyServer.ServiceHandler;
 import org.plivo.bridge.util.PlivoTestUtils;
 import org.testng.annotations.AfterTest;
@@ -37,12 +38,18 @@ public abstract class BasePlivoTest {
 	@BeforeTest
 	public void startExecutor( ) {
 		executor = Executors.newSingleThreadExecutor();
-		server = new GrizzlyServer(5151);
+		server = new GrizzlyServer(5151, new ServerShutdownCallback() {
+			@Override
+			public void terminated() {
+				executor.shutdownNow();
+			}
+		});
 	}
 	
 	@AfterTest
 	public void stopExecutor( ) throws InterruptedException {
-		executor.awaitTermination(10, TimeUnit.MINUTES);
+		executor.awaitTermination(1, TimeUnit.MINUTES);
+		System.out.println("Killing server and executor!");
 		server.stop();
 		server = null;
 	}

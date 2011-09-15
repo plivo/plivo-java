@@ -1,4 +1,4 @@
-package org.plivo.bridge.call;
+package org.plivo.bridge.tests;
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
  *  2011-08-28
@@ -19,18 +19,18 @@ import org.plivo.bridge.to.callback.HangupCallback;
 import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.to.command.Dial;
 import org.plivo.bridge.to.command.Number;
-import org.plivo.bridge.to.command.Play;
 import org.plivo.bridge.to.response.CallResponse;
 import org.plivo.bridge.util.PlivoTestUtils;
 import org.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test(enabled=false)
+@Test(enabled=true)
 public class TwoLegsCallTest extends BasePlivoTest {
 	
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void initCall( ) throws Exception {
+		
 		ServiceHandler answerHandler = new ServiceHandler("/answered/*", 
 				new HttpHandler() {
 					@Override
@@ -39,18 +39,22 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						AnsweredCallback callback = AnsweredCallback.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
 						
+						Assert.assertNotNull(callback.getCallUUID());
+						
 						ApplicationResponse ar = new ApplicationResponse();
 						Dial d = new Dial();
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
 						org.plivo.bridge.to.command.Number n = new Number();
-						n.setGateways("user/");
+						
+						n.setGateways(PlivoTestUtils.GATEWAYS);
+						n.setGatewayCodecs(PlivoTestUtils.GATEWAY_CODECS);
+						n.setGatewayRetries(PlivoTestUtils.GATEWAY_RETRIES);
+						n.setGatewayTimeouts(PlivoTestUtils.GATEWAY_TIMEOUTS);
+						n.setExtraDialString(PlivoTestUtils.EXTRA_DIAL_STRING);
 						n.setNumber("1001");
 						ar.setDial(d);
 						d.setNumber(n);
-						Play play = new Play();
-						play.setUrl(PlivoTestUtils.getCallbackUrl()+"/mp3/download.mp3");
-						play.setLoop(1);
-						ar.setPlay(play);
+						
 						PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, resp.getOutputStream());
 					}
 				});
@@ -62,7 +66,10 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						System.out.println("got hangup!");
 						HangupCallback callback = HangupCallback.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
-						resp.getWriter().write("hangup");
+						
+						Assert.assertNotNull(callback);
+						
+						resp.getWriter().write("Ok");
 						resp.getWriter().flush();
 						resp.getWriter().close();
 						stop();
@@ -76,6 +83,9 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						System.out.println("got calback status!");
 						CallbackStatus callback = CallbackStatus.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
+						
+						Assert.assertNotNull(callback);
+						Assert.assertNotNull(callback.getHangupReason());
 					}
 				});
 		
@@ -88,10 +98,15 @@ public class TwoLegsCallTest extends BasePlivoTest {
 		parameters.put("From", "9999");
 		parameters.put("To", "1002");
 
-		parameters.put("Gateways", "user/,user/");
-		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");
+		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
+		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
+		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
+		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
+		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
+		
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
-
+		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");
+		
 		CallResponse result = client.call().single(parameters);
 		
 		Assert.assertNotNull(result);

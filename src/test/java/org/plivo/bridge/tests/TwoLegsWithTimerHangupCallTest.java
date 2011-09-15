@@ -1,4 +1,4 @@
-package org.plivo.bridge.call;
+package org.plivo.bridge.tests;
 /**
  * Copyright (c) 2011 Plivo Team. See LICENSE for details.
  *  2011-08-28
@@ -39,12 +39,17 @@ public class TwoLegsWithTimerHangupCallTest extends BasePlivoTest {
 						final AnsweredCallback callback = AnsweredCallback.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
 						
+						Assert.assertNotNull(callback);
+						
 						ApplicationResponse ar = new ApplicationResponse();
 						Dial d = new Dial();
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
-						d.setMethod("POST");
 						org.plivo.bridge.to.command.Number n = new Number();
-						n.setGateways("user/");
+						n.setGateways(PlivoTestUtils.GATEWAYS);
+						n.setGatewayCodecs(PlivoTestUtils.GATEWAY_CODECS);
+						n.setGatewayRetries(PlivoTestUtils.GATEWAY_RETRIES);
+						n.setGatewayTimeouts(PlivoTestUtils.GATEWAY_TIMEOUTS);
+						n.setExtraDialString(PlivoTestUtils.EXTRA_DIAL_STRING);
 						n.setNumber("1001");
 						ar.setDial(d);
 						d.setNumber(n);
@@ -52,6 +57,9 @@ public class TwoLegsWithTimerHangupCallTest extends BasePlivoTest {
 						PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, resp.getWriter());
 						resp.getWriter().flush();
 						resp.getWriter().close();
+						
+						// or you can establish a call passing the parameter TimeLimit
+						// this approach will work like schedule hang up
 						
 						Map<String, String> parameters = 
 								new HashMap<String, String>();
@@ -71,6 +79,9 @@ public class TwoLegsWithTimerHangupCallTest extends BasePlivoTest {
 						System.out.println("got hangup!");
 						HangupCallback callback = HangupCallback.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
+						
+						Assert.assertNotNull(callback);
+						
 						resp.getWriter().write("hangup");
 						resp.getWriter().flush();
 						resp.getWriter().close();
@@ -85,6 +96,8 @@ public class TwoLegsWithTimerHangupCallTest extends BasePlivoTest {
 						System.out.println("got calback status!");
 						CallbackStatus callback = CallbackStatus.create(PlivoTestUtils.mapToSingleValue(req.getParameterMap()));
 						System.out.println(callback);
+						
+						Assert.assertNotNull(callback);
 					}
 				});
 				
@@ -96,7 +109,11 @@ public class TwoLegsWithTimerHangupCallTest extends BasePlivoTest {
 		parameters.put("From", "9999");
 		parameters.put("To", "1002");
 
-		parameters.put("Gateways", "user/,user/");
+		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
+		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
+		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
+		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
+		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
 		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 

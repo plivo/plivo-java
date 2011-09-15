@@ -19,10 +19,10 @@ public class Dial implements Serializable {
 	private static final long serialVersionUID = 158509162906138363L;
 	
 	@XmlAttribute
-	private int timeLimit;
+	private Integer timeLimit;
 	
 	@XmlAttribute
-	private int timeout;
+	private Integer timeout;
 	
 	@XmlAttribute
 	private String action;
@@ -31,7 +31,7 @@ public class Dial implements Serializable {
 	private String method;
 	
 	@XmlAttribute
-	private boolean hangupOnStar;
+	private Boolean hangupOnStar;
 	
 	@XmlAttribute
 	private String confirmSound;
@@ -46,7 +46,7 @@ public class Dial implements Serializable {
 	private String callerId;
 	
 	@XmlAttribute
-	private boolean redirect;
+	private Boolean redirect;
 	
 	@XmlAttribute
 	private String callbackUrl;
@@ -64,7 +64,7 @@ public class Dial implements Serializable {
 		
 	}
 
-	public int getTimeLimit() {
+	public Integer getTimeLimit() {
 		return timeLimit;
 	}
 
@@ -72,15 +72,15 @@ public class Dial implements Serializable {
 	 *  Hang up the call after these many seconds. 0 means no timeLimit
 	 * @param timeLimit
 	 */
-	public void setTimeLimit(int timeLimit) {
+	public void setTimeLimit(Integer timeLimit) {
 		this.timeLimit = timeLimit;
 	}
 
-	public int getTimeout() {
+	public Integer getTimeout() {
 		return timeout;
 	}
 
-	public void setTimeout(int timeout) {
+	public void setTimeout(Integer timeout) {
 		this.timeout = timeout;
 	}
 
@@ -108,7 +108,7 @@ public class Dial implements Serializable {
 		this.method = method;
 	}
 
-	public boolean isHangupOnStar() {
+	public Boolean isHangupOnStar() {
 		return hangupOnStar;
 	}
 
@@ -116,7 +116,7 @@ public class Dial implements Serializable {
 	 * Hang up the b leg if a leg presses start and this is true
 	 * @param hangupOnStar
 	 */
-	public void setHangupOnStar(boolean hangupOnStar) {
+	public void setHangupOnStar(Boolean hangupOnStar) {
 		this.hangupOnStar = hangupOnStar;
 	}
 
@@ -177,7 +177,7 @@ public class Dial implements Serializable {
 		this.dialMusic = dialMusic;
 	}
 
-	public boolean isRedirect() {
+	public Boolean isRedirect() {
 		return redirect;
 	}
 
@@ -186,7 +186,7 @@ public class Dial implements Serializable {
         and continue to next element. (default 'true')
 	 * @param redirect
 	 */
-	public void setRedirect(boolean redirect) {
+	public void setRedirect(Boolean redirect) {
 		this.redirect = redirect;
 	}
 
