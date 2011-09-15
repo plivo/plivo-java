@@ -31,6 +31,9 @@ public class Dial implements Serializable {
 	private String method;
 	
 	@XmlAttribute
+	private String callerName;
+	
+	@XmlAttribute
 	private Boolean hangupOnStar;
 	
 	@XmlAttribute
@@ -108,10 +111,10 @@ public class Dial implements Serializable {
 		this.method = method;
 	}
 
-	public Boolean isHangupOnStar() {
+	public Boolean getHangupOnStar() {
 		return hangupOnStar;
 	}
-
+	
 	/**
 	 * Hang up the b leg if a leg presses start and this is true
 	 * @param hangupOnStar
@@ -177,10 +180,6 @@ public class Dial implements Serializable {
 		this.dialMusic = dialMusic;
 	}
 
-	public Boolean isRedirect() {
-		return redirect;
-	}
-
 	/**
 	 *  If 'false', don't redirect to 'action', only request url 
         and continue to next element. (default 'true')
@@ -188,6 +187,10 @@ public class Dial implements Serializable {
 	 */
 	public void setRedirect(Boolean redirect) {
 		this.redirect = redirect;
+	}
+
+	public Boolean getRedirect() {
+		return redirect;
 	}
 
 	public String getCallbackUrl() {
@@ -220,5 +223,13 @@ public class Dial implements Serializable {
 
 	public void setDigitsMatch(String digitsMatch) {
 		this.digitsMatch = digitsMatch;
+	}
+
+	public String getCallerName() {
+		return callerName;
+	}
+
+	public void setCallerName(String callerName) {
+		this.callerName = callerName;
 	}
 }
