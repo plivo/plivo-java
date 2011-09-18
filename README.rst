@@ -47,6 +47,9 @@ How to use
 You can read the code inside src/test/java folder. We've implemented there all methods that are
 currently available on PLIVO.
 
+The tests are by default DISABLED, that's because maven run all tests before generating a release. If any of the tests
+fails, the release fails too, so if you want to run the test make sure you set @Test(enabled=true).
+
 **Creating the plivo client bridge for java**
    PlivoClient client = PlivoClient.create("accountId",
 				"accountToken",
@@ -67,6 +70,8 @@ currently available on PLIVO.
   
   After that, you can run the tests.
  
+** EMBEDDED SERVER**
+	Every test run its own server with listeners to receive callback from plivo.  
 
 **Requesting a new CALL to PLIVO**
 
