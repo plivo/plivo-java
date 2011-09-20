@@ -30,7 +30,7 @@ public class PreAnswer implements Serializable {
 	private Wait wait;
 	
 	@XmlElement(name="GetSpeech")
-	private Wait getSpeech;
+	private GetSpeech getSpeech;
 	
 	@XmlElement(name="SIPTransfer")
 	private SIPTransfer sipTransfer;
@@ -74,11 +74,11 @@ public class PreAnswer implements Serializable {
 		this.wait = wait;
 	}
 
-	public Wait getGetSpeech() {
+	public GetSpeech getGetSpeech() {
 		return getSpeech;
 	}
 
-	public void setGetSpeech(Wait getSpeech) {
+	public void setGetSpeech(GetSpeech getSpeech) {
 		this.getSpeech = getSpeech;
 	}
 
