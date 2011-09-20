@@ -18,7 +18,6 @@ import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.to.command.Conference;
 import org.plivo.bridge.to.command.Dial;
 import org.plivo.bridge.to.command.GetDigits;
-import org.plivo.bridge.to.command.GetSpeech;
 import org.plivo.bridge.to.command.Hangup;
 import org.plivo.bridge.to.command.Number;
 import org.plivo.bridge.to.command.Play;
@@ -81,7 +80,6 @@ public abstract class PlivoUtils {
 			Conference.class,
 			Dial.class,
 			GetDigits.class,
-			GetSpeech.class,
 			Hangup.class,
 			Number.class,
 			Play.class,

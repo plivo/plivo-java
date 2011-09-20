@@ -29,9 +29,6 @@ public class PreAnswer implements Serializable {
 	@XmlElement(name="Wait")
 	private Wait wait;
 	
-	@XmlElement(name="GetSpeech")
-	private Wait getSpeech;
-	
 	@XmlElement(name="SIPTransfer")
 	private SIPTransfer sipTransfer;
 	
@@ -72,14 +69,6 @@ public class PreAnswer implements Serializable {
 
 	public void setWait(Wait wait) {
 		this.wait = wait;
-	}
-
-	public Wait getGetSpeech() {
-		return getSpeech;
-	}
-
-	public void setGetSpeech(Wait getSpeech) {
-		this.getSpeech = getSpeech;
 	}
 
 	public SIPTransfer getSipTransfer() {
