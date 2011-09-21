@@ -52,13 +52,7 @@ public class Conference implements Serializable {
 	private Boolean hangupOnStar;
 	
 	@XmlAttribute
-	private String recordFilePath;
-	
-	@XmlAttribute
-	private String recordFileFormat;
-	
-	@XmlAttribute
-	private String recordFileName;
+	private Boolean record;
 	
 	@XmlAttribute
 	private String action;
@@ -230,45 +224,18 @@ public class Conference implements Serializable {
 		this.beep = beep;
 	}
 
-	public String getRecordFilePath() {
-		return recordFilePath;
+
+	public Boolean isRecord() {
+		return record;
 	}
 
 	/**
-	 * Path where recording is saved.
-        (default "" so recording wont happen)
-	 * @param recordFilePath
+	 * Record conference or not
+	 * @param record
 	 */
-	public void setRecordFilePath(String recordFilePath) {
-		this.recordFilePath = recordFilePath;
+	public void setRecord(Boolean record) {
+		this.record = record;
 	}
-
-	public String getRecordFileFormat() {
-		return recordFileFormat;
-	}
-
-	/**
-	 * File format in which recording tis saved
-        (default mp3)
-	 * @param recordFileFormat
-	 */
-	public void setRecordFileFormat(String recordFileFormat) {
-		this.recordFileFormat = recordFileFormat;
-	}
-
-	public String getRecordFileName() {
-		return recordFileName;
-	}
-
-	/**
-	 * By default empty, if provided this name will be used for the recording
-        (any unique name)
-	 * @param recordFileName
-	 */
-	public void setRecordFileName(String recordFileName) {
-		this.recordFileName = recordFileName;
-	}
-
 	public String getAction() {
 		return action;
 	}

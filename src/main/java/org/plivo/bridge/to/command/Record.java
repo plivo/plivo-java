@@ -36,15 +36,6 @@ public class Record implements Serializable {
 	private Boolean playBeep;
 	
 	@XmlAttribute
-	private String format;
-
-	@XmlAttribute
-	private String filePath;
-	
-	@XmlAttribute
-	private String fileName;
-	
-	@XmlAttribute
 	private Boolean bothLegs;
 	
 	public Record() {
@@ -121,30 +112,6 @@ public class Record implements Serializable {
 		this.playBeep = playBeep;
 	}
 	
-	public String getFormat() {
-		return format;
-	}
-
-	/**
-	 * File format (default mp3)
-	 * @param format
-	 */
-	public void setFormat(String format) {
-		this.format = format;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	/**
-	 * Complete file path to save the file to
-	 * @param filePath
-	 */
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-	
 	public Boolean isBothLegs() {
 		return bothLegs;
 	}
@@ -158,15 +125,4 @@ public class Record implements Serializable {
 		this.bothLegs = bothLegs;
 	}
 	
-	public String getFileName() {
-		return fileName;
-	}
-	
-	/**
-	 * Filename to be used for recording of file
-	 * @param fileName
-	 */
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
 }

@@ -22,21 +22,6 @@ public class Number implements Serializable {
 	private String sendDigits;
 	
 	@XmlAttribute
-	private String gateways;	
-	
-	@XmlAttribute
-	private String gatewayCodecs;
-	
-	@XmlAttribute
-	private String gatewayTimeouts;
-	
-	@XmlAttribute
-	private String gatewayRetries;
-	
-	@XmlAttribute
-	private String extraDialString;
-	
-	@XmlAttribute
 	private Boolean sendOnPreanswer;
 	
 	@XmlValue
@@ -56,46 +41,6 @@ public class Number implements Serializable {
 	 */
 	public void setSendDigits(String sendDigits) {
 		this.sendDigits = sendDigits;
-	}
-
-	public String getGateways() {
-		return gateways;
-	}
-
-	public void setGateways(String gateways) {
-		this.gateways = gateways;
-	}
-
-	public String getGatewayCodecs() {
-		return gatewayCodecs;
-	}
-
-	public void setGatewayCodecs(String gatewayCodecs) {
-		this.gatewayCodecs = gatewayCodecs;
-	}
-
-	public String getGatewayTimeouts() {
-		return gatewayTimeouts;
-	}
-
-	public void setGatewayTimeouts(String gatewayTimeouts) {
-		this.gatewayTimeouts = gatewayTimeouts;
-	}
-
-	public String getGatewayRetries() {
-		return gatewayRetries;
-	}
-
-	public void setGatewayRetries(String gatewayRetries) {
-		this.gatewayRetries = gatewayRetries;
-	}
-
-	public String getExtraDialString() {
-		return extraDialString;
-	}
-
-	public void setExtraDialString(String extraDialString) {
-		this.extraDialString = extraDialString;
 	}
 
 	public String getNumber() {

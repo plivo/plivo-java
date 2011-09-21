@@ -24,13 +24,6 @@ public class Speak implements Serializable {
 	private String language;
 	@XmlAttribute(required=false)
 	private Integer loop;
-	@XmlAttribute
-	private String engine;
-	@XmlAttribute
-	private String type;
-	@XmlAttribute
-	private String method;
-	
 	@XmlValue
 	private String value;
 	
@@ -72,38 +65,6 @@ public class Speak implements Serializable {
 	 */
 	public void setLoop(Integer loop) {
 		this.loop = loop;
-	}
-
-	public String getEngine() {
-		return engine;
-	}
-
-	public void setEngine(String engine) {
-		this.engine = engine;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * 
-	 * @param type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getMethod() {
-		return method;
-	}
-
-	/**
-	 * 
-	 * @param method
-	 */
-	public void setMethod(String method) {
-		this.method = method;
 	}
 
 	public String getValue() {
