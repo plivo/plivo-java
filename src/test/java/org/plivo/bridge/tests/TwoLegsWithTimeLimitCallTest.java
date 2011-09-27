@@ -25,10 +25,10 @@ import org.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test(enabled=true)
+@Test(enabled=false)
 public class TwoLegsWithTimeLimitCallTest extends BasePlivoTest {
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void initCall( ) throws Exception {
 		ServiceHandler answerHandler = new ServiceHandler("/answered/*", 
 				new HttpHandler() {
