@@ -71,6 +71,17 @@ public class PreAnswer implements Serializable {
 		this.wait = wait;
 	}
 
+<<<<<<< HEAD
+=======
+	public GetSpeech getGetSpeech() {
+		return getSpeech;
+	}
+
+	public void setGetSpeech(GetSpeech getSpeech) {
+		this.getSpeech = getSpeech;
+	}
+
+>>>>>>> e9a79fb78e9d444324bceb8be466d3d764a2c234
 	public SIPTransfer getSipTransfer() {
 		return sipTransfer;
 	}
