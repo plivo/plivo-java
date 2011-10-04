@@ -46,6 +46,9 @@ public class Record implements Serializable {
 	
 	@XmlAttribute
 	private Boolean bothLegs;
+
+	@XmlAttribute
+	private Boolean redirect;
 	
 	public Record() {
 		
@@ -169,4 +172,17 @@ public class Record implements Serializable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public Boolean isRedirect() {
+		return bothLegs;
+	}
+
+	/**
+	 * Redirect to action url or not (true/false, default false)
+	 * @param redirect
+	 */
+	public void setRedirect(Boolean redirect) {
+		this.redirect = redirect;
+	}
+	
 }
