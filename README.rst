@@ -29,9 +29,6 @@ Installation
 	
 	Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
-	To Run the tests, you *must edit PlivoCallTest.java* and put your server address, accountId, accountToken etc, otherwise
-	it *WILL FAIL*.
-
 **Use the Library in your Java IDE**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -40,7 +37,6 @@ Installation
 
 **Create stubs for idea**
     mvn idea:idea
-
 
 How to use
 ~~~~~~~~~~~~~
@@ -129,7 +125,7 @@ fails, the release fails too, so if you want to run the test make sure you set @
 					}
 				});
 	
-	This piece of code will be executed when HANGUP event event is received from PLIVO.
+	This piece of code will be executed when HANGUP event is received from PLIVO.
 		
 **Other features on PLIVO**	
 
