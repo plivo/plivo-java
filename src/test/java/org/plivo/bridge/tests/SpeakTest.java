@@ -54,7 +54,7 @@ public class SpeakTest extends BasePlivoTest {
 						
 						ApplicationResponse ar = new ApplicationResponse();
 						Speak s = new Speak();
-						s.setValue("Hello World");
+						s.setText("Hello World");
 						ar.setSpeak(s);
 						
 						PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, resp.getWriter());

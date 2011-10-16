@@ -29,9 +29,6 @@ public class PreAnswer implements Serializable {
 	@XmlElement(name="Wait")
 	private Wait wait;
 	
-	@XmlElement(name="SIPTransfer")
-	private SIPTransfer sipTransfer;
-	
 	@XmlElement(name="Redirect")
 	private Redirect redirect;
 	
@@ -69,25 +66,6 @@ public class PreAnswer implements Serializable {
 
 	public void setWait(Wait wait) {
 		this.wait = wait;
-	}
-
-<<<<<<< HEAD
-=======
-	public GetSpeech getGetSpeech() {
-		return getSpeech;
-	}
-
-	public void setGetSpeech(GetSpeech getSpeech) {
-		this.getSpeech = getSpeech;
-	}
-
->>>>>>> e9a79fb78e9d444324bceb8be466d3d764a2c234
-	public SIPTransfer getSipTransfer() {
-		return sipTransfer;
-	}
-
-	public void setSipTransfer(SIPTransfer sipTransfer) {
-		this.sipTransfer = sipTransfer;
 	}
 
 	public Redirect getRedirect() {

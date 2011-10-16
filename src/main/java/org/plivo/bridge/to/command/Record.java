@@ -44,6 +44,7 @@ public class Record implements Serializable {
 	public Record() {
 		
 	}
+	
 	public Integer getMaxLength() {
 		return maxLength;
 	}
@@ -138,6 +139,18 @@ public class Record implements Serializable {
 	 */
 	public void setRedirect(Boolean redirect) {
 		this.redirect = redirect;
+	}
+
+	public Boolean getPlayBeep() {
+		return playBeep;
+	}
+
+	public Boolean getBothLegs() {
+		return bothLegs;
+	}
+
+	public Boolean getRedirect() {
+		return redirect;
 	}
 	
 }

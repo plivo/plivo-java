@@ -11,6 +11,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GetDigits implements Serializable {
@@ -44,13 +45,13 @@ public class GetDigits implements Serializable {
 	@XmlAttribute
 	private String invalidDigitsSound;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Play")
+	@XmlElement(name="Play")
 	private Play play;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Speak")
+	@XmlElement(name="Speak")
 	private Speak speak;
 	
-	@javax.xml.bind.annotation.XmlElement(name="Wait")
+	@XmlElement(name="Wait")
 	private Wait wait;
 	
 	public GetDigits() {

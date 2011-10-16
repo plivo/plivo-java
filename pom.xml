@@ -50,7 +50,7 @@
 	<properties>
 		<jersey.version>1.9-ea04</jersey.version>
 		<grizzly.version>2.1.1</grizzly.version>
-		<plivo.api.version>v0.1</plivo.api.version>
+		<plivo.api.version>v1</plivo.api.version>
 	</properties>
 	<repositories>
 		<repository>

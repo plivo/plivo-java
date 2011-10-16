@@ -46,11 +46,6 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
 						org.plivo.bridge.to.command.Number n = new Number();
 						
-						n.setGateways(PlivoTestUtils.GATEWAYS);
-						n.setGatewayCodecs(PlivoTestUtils.GATEWAY_CODECS);
-						n.setGatewayRetries(PlivoTestUtils.GATEWAY_RETRIES);
-						n.setGatewayTimeouts(PlivoTestUtils.GATEWAY_TIMEOUTS);
-						n.setExtraDialString(PlivoTestUtils.EXTRA_DIAL_STRING);
 						n.setNumber("1001");
 						ar.setDial(d);
 						d.setNumber(n);

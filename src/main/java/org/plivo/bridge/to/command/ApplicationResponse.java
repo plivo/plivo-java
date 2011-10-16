@@ -49,9 +49,6 @@ public class ApplicationResponse implements Serializable {
 	@XmlElement(name="Conference")
 	private Conference conference;
 	
-	@XmlElement(name="SIPTransfer")
-	private SIPTransfer sipTransfer;
-	
 	public ApplicationResponse() {
 		
 	}
@@ -134,13 +131,5 @@ public class ApplicationResponse implements Serializable {
 
 	public void setConference(Conference conference) {
 		this.conference = conference;
-	}
-
-	public SIPTransfer getSipTransfer() {
-		return sipTransfer;
-	}
-
-	public void setSipTransfer(SIPTransfer sipTransfer) {
-		this.sipTransfer = sipTransfer;
 	}
 }
