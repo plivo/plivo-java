@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.plivo</groupId>
-	<artifactId>plivohelper-java</artifactId>
-	<name>Plivo Java Bridge Module</name>
+	<artifactId>plivocldhelper-java</artifactId>
+	<name>Plivo CLD Java Bridge Module</name>
 	<packaging>jar</packaging>
-	<description>Plivo :: Java Bridge Module</description>
+	<description>Plivo :: CLD Java Bridge Module</description>
 	<version>1.2</version>
 	<dependencies>
 
