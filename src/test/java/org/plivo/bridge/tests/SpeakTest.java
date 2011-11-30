@@ -23,10 +23,10 @@ import org.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test(enabled=false)
+@Test(enabled=true)
 public class SpeakTest extends BasePlivoTest {
 	
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void testSpeak( ) throws Exception {
 		
 		ServiceHandler ringHandler = new ServiceHandler("/ringing/*", 
