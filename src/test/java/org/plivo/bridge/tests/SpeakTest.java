@@ -23,10 +23,10 @@ import org.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test(enabled=false)
+@Test(enabled=true)
 public class SpeakTest extends BasePlivoTest {
 	
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void testSpeak( ) throws Exception {
 		
 		ServiceHandler ringHandler = new ServiceHandler("/ringing/*", 
@@ -86,15 +86,9 @@ public class SpeakTest extends BasePlivoTest {
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
 		
-		parameters.put("From", "9999");
-		parameters.put("To", "1001");
+		parameters.put("From", "553499322261");
+		parameters.put("To", "553499322261");
 
-		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
-		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
-		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
-		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
-		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
-		
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
 		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");

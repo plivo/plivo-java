@@ -24,8 +24,6 @@ import org.plivo.bridge.to.response.RecordStartResponse;
 import org.plivo.bridge.to.response.RecordStopResponse;
 import org.plivo.bridge.to.response.ScheduleHangupResponse;
 import org.plivo.bridge.to.response.SchedulePlayResponse;
-import org.plivo.bridge.to.response.SoundTouchResponse;
-import org.plivo.bridge.to.response.SoundTouchStopResponse;
 import org.plivo.bridge.to.response.TransfCallResponse;
 import org.plivo.bridge.to.response.conference.ConferenceDeafResponse;
 import org.plivo.bridge.to.response.conference.ConferenceHangupResponse;
@@ -48,8 +46,7 @@ public class AllTest {
 
 	public AllTest() {
 		client = PlivoClient.create(PlivoTestUtils.getAccountId(),
-				PlivoTestUtils.getAuthToken(),
-				PlivoTestUtils.getPlivoUrl(), true);
+				PlivoTestUtils.getAuthToken(), true);
 	}
 
 	@Test(enabled=false)
@@ -312,47 +309,6 @@ public class AllTest {
 		
 		try {
 			result = client.call().cancelSchedulePlay(parameters);
-			System.out.println(result);
-		} catch (PlivoClientException e) {
-			System.out.println(e.getHttpMessage());
-			System.out.println(e.getHttpStatusCode());
-		}
-	}
-	
-	@Test(enabled=false)
-	public void soundTouch() {
-		/*
-		 * Check documentation at http://www.plivo.org/docs/restapis/call/soundtouch/
-		 */
-		
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
-		parameters.put("Pitch", "9");
-		
-		SoundTouchResponse result;
-		
-		try {
-			result = client.call().soundTouch(parameters);
-			System.out.println(result);
-		} catch (PlivoClientException e) {
-			System.out.println(e.getHttpMessage());
-			System.out.println(e.getHttpStatusCode());
-		}
-	}
-	
-	@Test(enabled=false)
-	public void soundTouchStop() {
-		/*
-		 * Check documentation at http://www.plivo.org/docs/restapis/call/soundtouchstop/
-		 */
-		
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("CallUUID", "edaa59e1-79e0-41de-b016-f7a7570f6e9c");
-		
-		SoundTouchStopResponse result;
-		
-		try {
-			result = client.call().soundTouchStop(parameters);
 			System.out.println(result);
 		} catch (PlivoClientException e) {
 			System.out.println(e.getHttpMessage());

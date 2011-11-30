@@ -40,7 +40,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceMuteResponse response = this.getBaseResource()
-					.path("ConferenceMute/")
+					.path("Conference/")
+					.path("Mute/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceMuteResponse.class,
@@ -57,7 +58,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceUnmuteResponse response = this.getBaseResource()
-					.path("ConferenceUnmute/")
+					.path("Conferente/")
+					.path("Unmute/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceUnmuteResponse.class,
@@ -74,7 +76,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceKickResponse response = this.getBaseResource()
-					.path("ConferenceKick/")
+					.path("Conference/")
+					.path("Kick/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceKickResponse.class,
@@ -91,7 +94,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceHangupResponse response = this.getBaseResource()
-					.path("ConferenceHangup/")
+					.path("Conference/")
+					.path("Hangup")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceHangupResponse.class,
@@ -107,7 +111,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceDeafResponse response = this.getBaseResource()
-					.path("ConferenceDeaf/")
+					.path("Conference/")
+					.path("Deaf/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceDeafResponse.class,
@@ -123,7 +128,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceUndeafResponse response = this.getBaseResource()
-					.path("ConferenceUndeaf/")
+					.path("Conference/")
+					.path("Undeaf/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceUndeafResponse.class,
@@ -140,7 +146,9 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceRecordStartResponse response = this.getBaseResource()
-					.path("ConferenceRecordStart/")
+					.path("Conference/")
+					.path("Record/")
+					.path("Start/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceRecordStartResponse.class,
@@ -156,7 +164,9 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceRecordStopResponse response = this.getBaseResource()
-					.path("ConferenceRecordStop/")
+					.path("Conference/")
+					.path("Record/")
+					.path("Stop/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceRecordStopResponse.class,
@@ -172,7 +182,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferencePlayResponse response = this.getBaseResource()
-					.path("ConferencePlay/")
+					.path("Conference/")
+					.path("Play/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferencePlayResponse.class,
@@ -188,7 +199,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceSpeakResponse response = this.getBaseResource()
-					.path("ConferenceSpeak/")
+					.path("Conference/")
+					.path("Speak/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceSpeakResponse.class,
@@ -205,7 +217,9 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceListResponse response = this.getBaseResource()
-					.path("ConferenceListMembers/")
+					.path("Conference/")
+					.path("Member/")
+					.path("List/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceListResponse.class,
@@ -221,7 +235,8 @@ public class ConferenceFeature extends BaseFeature {
 		
 		try {
 			ConferenceListResponse response = this.getBaseResource()
-					.path("ConferenceList/")
+					.path("Conference/")
+					.path("List/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceListResponse.class,

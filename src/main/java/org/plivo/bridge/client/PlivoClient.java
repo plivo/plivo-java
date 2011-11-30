@@ -6,12 +6,9 @@ package org.plivo.bridge.client;
  * @author Paulo reis
  */
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.plivo.bridge.feature.call.CallFeature;
 import org.plivo.bridge.feature.conference.ConferenceFeature;
+import org.plivo.bridge.feature.phone.PhoneFeature;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -25,6 +22,8 @@ public class PlivoClient {
 	private String accountId;
 	private String authToken;
 	private Client restClient;
+	private final String CLOUD_URL 			= "http://api.plivo.com";
+	private final String CLOUD_VERSION		= "v1";
 
 	/**
 	 * Use this constructor whether you want to override the plivo api version.
@@ -36,16 +35,20 @@ public class PlivoClient {
 	 * @param url
 	 * @param debug
 	 */
-	public PlivoClient(String version, String accountId, String authToken,
-			String url, boolean debug) {
+	public PlivoClient(String accountId, String authToken,
+			boolean debug) {
 		this.setAccountId(accountId);
 		this.setAuthToken(authToken);
 		this.restClient = Client.create();
 		this.restClient.addFilter(new HTTPBasicAuthFilter(this.getAccountId(),
 				this.getAuthToken()));
-		this.setBaseResource(this.restClient.resource(url).path(version));
+		this.setBaseResource(this.restClient.resource(CLOUD_URL).path(CLOUD_VERSION));
 		if (debug)
 			this.restClient.addFilter(new LoggingFilter(System.out));
+	}
+	
+	public static PlivoClient create(String accountId, String authToken, boolean debug) {
+		return new PlivoClient(accountId, authToken, debug);
 	}
 	
 	/**
@@ -75,26 +78,11 @@ public class PlivoClient {
 		
 		return f;
 	}
-
-	public static PlivoClient create(String accountId, String authToken,
-			String url, boolean debug) {
-		// read properties to get the api version
-		InputStream input = PlivoClient.class
-				.getResourceAsStream("/bridge.properties");
-		Properties p = new Properties();
-
-		try {
-			p.load(input);
-		} catch (IOException e) {
-
-		}
-
-		String version = p.getProperty("plivo.api.version");
-		if (null == version || "".equals(version.trim()))
-			throw new RuntimeException(
-					"Problem with this version. Couldn't find resource named 'bridge.properties'. Download another JAR.");
-
-		return new PlivoClient(version, accountId, authToken, url, debug);
+	
+	public PhoneFeature phone() {
+		PhoneFeature f = new PhoneFeature(this, this.getBaseResource());
+		
+		return f;
 	}
 
 	public WebResource getBaseResource() {

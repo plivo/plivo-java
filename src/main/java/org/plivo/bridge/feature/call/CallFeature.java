@@ -26,8 +26,6 @@ import org.plivo.bridge.to.response.RecordStartResponse;
 import org.plivo.bridge.to.response.RecordStopResponse;
 import org.plivo.bridge.to.response.ScheduleHangupResponse;
 import org.plivo.bridge.to.response.SchedulePlayResponse;
-import org.plivo.bridge.to.response.SoundTouchResponse;
-import org.plivo.bridge.to.response.SoundTouchStopResponse;
 import org.plivo.bridge.to.response.TransfCallResponse;
 import org.plivo.bridge.utils.PlivoUtils;
 
@@ -62,7 +60,8 @@ public class CallFeature extends BaseFeature {
 
 		try {
 			BulkCallResponse result = this.getBaseResource()
-					.path("BulkCall/")
+					.path("Call/")
+					.path("Bulk/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(BulkCallResponse.class, 
@@ -72,12 +71,14 @@ public class CallFeature extends BaseFeature {
 			throw new PlivoClientException(e);
 		}
 	}
-	
-	public GroupCallResponse group(Map<String, String> parameters) throws PlivoClientException {
+
+	public GroupCallResponse group(Map<String, String> parameters)
+			throws PlivoClientException {
 
 		try {
 			GroupCallResponse result = this.getBaseResource()
-					.path("GroupCall/")
+					.path("Call/")
+					.path("Group/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(GroupCallResponse.class, 
@@ -87,13 +88,14 @@ public class CallFeature extends BaseFeature {
 			throw new PlivoClientException(e);
 		}
 	}
-
+	
 	public TransfCallResponse transfer(Map<String, String> parameters)
 			throws PlivoClientException {
 
 		try {
 			TransfCallResponse result = this.getBaseResource()
-				.path("TransferCall/")
+				.path("Call/")
+				.path("Transfer/")
 				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 				.accept(MediaType.APPLICATION_JSON_TYPE)
 				.post(TransfCallResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
@@ -110,7 +112,8 @@ public class CallFeature extends BaseFeature {
 
 		try {
 			HangupCallResponse result = this.getBaseResource()
-					.path("HangupCall/")
+					.path("Call/")
+					.path("Hangup/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(HangupCallResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
@@ -125,7 +128,9 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			HangupAllCallResponse result = this.getBaseResource()
-					.path("HangupAllCalls/")
+					.path("Call/")
+					.path("Hangup/")
+					.path("All/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(HangupAllCallResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
@@ -140,7 +145,9 @@ public class CallFeature extends BaseFeature {
 			throws PlivoClientException {
 		try {
 			ScheduleHangupResponse result = this.getBaseResource()
-					.path("ScheduleHangup/")
+					.path("Call/")
+					.path("Hangup/")
+					.path("Schedule/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ScheduleHangupResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
@@ -156,7 +163,11 @@ public class CallFeature extends BaseFeature {
 
 		try {
 			CancelScheduleHangupResponse result = this.getBaseResource()
-					.path("CancelScheduledHangup/")
+					.path("Call/")
+					.path("Hangup/")
+					.path("Schedule/")
+					.path("Cancel/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(CancelScheduleHangupResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
@@ -170,8 +181,11 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			RecordStartResponse result = this.getBaseResource()
-					.path("RecordStart/")
+					.path("Call/")
+					.path("Record/")
+					.path("Start/")
 					.accept(MediaType.APPLICATION_JSON_TYPE)
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.post(RecordStartResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
 			return result;
@@ -184,7 +198,10 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			RecordStopResponse result = this.getBaseResource()
-					.path("RecordStop/")
+					.path("Call/")
+					.path("Record/")
+					.path("Stop/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(RecordStopResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
@@ -198,7 +215,9 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			PlayResponse result = this.getBaseResource()
+					.path("Call/")
 					.path("Play/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(PlayResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
@@ -212,7 +231,10 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			PlayStopResponse result = this.getBaseResource()
-					.path("PlayStop/")
+					.path("Call/")
+					.path("Play/")
+					.path("Stop/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(PlayStopResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
@@ -226,7 +248,10 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			SchedulePlayResponse result = this.getBaseResource()
-					.path("SchedulePlay/")
+					.path("Call/")
+					.path("Play/")
+					.path("Schedule/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(SchedulePlayResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
@@ -241,38 +266,13 @@ public class CallFeature extends BaseFeature {
 		
 		try {
 			CancelSchedulePlayResponse result = this.getBaseResource()
-					.path("CancelSchedulePlay/")
+					.path("Call/")
+					.path("Play/")
+					.path("Schedule/")
+					.path("Cancel/")
+					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(CancelSchedulePlayResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return result;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
-
-	public SoundTouchResponse soundTouch(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			SoundTouchResponse result = this.getBaseResource()
-					.path("SoundTouch/")
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(SoundTouchResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return result;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
-
-	public SoundTouchStopResponse soundTouchStop(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			SoundTouchStopResponse result = this.getBaseResource()
-					.path("SoundTouchStop/")
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(SoundTouchStopResponse.class, PlivoUtils.ParameterUtils.mapToForm(parameters));
 			
 			return result;
 		} catch (UniformInterfaceException e) {
