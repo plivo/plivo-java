@@ -90,12 +90,6 @@ public class PlayTest extends BasePlivoTest {
 		parameters.put("From", "9999");
 		parameters.put("To", "1001");
 
-		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
-		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
-		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
-		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
-		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
-		
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
 		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");

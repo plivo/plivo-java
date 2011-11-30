@@ -59,11 +59,6 @@ public class AllTest {
 		parameters.put("From", "9999");
 		parameters.put("To", "1003");
 
-		parameters.put("Gateways", PlivoTestUtils.GATEWAYS);
-		parameters.put("GatewayCodecs", PlivoTestUtils.GATEWAY_CODECS);
-		parameters.put("GatewayTimeouts", PlivoTestUtils.GATEWAY_TIMEOUTS);
-		parameters.put("GatewayRetries", PlivoTestUtils.GATEWAY_RETRIES);
-		parameters.put("ExtraDialString", PlivoTestUtils.EXTRA_DIAL_STRING);
 		parameters.put("AnswerUrl", "http://localhost/answer.html");
 
 
