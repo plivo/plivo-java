@@ -54,19 +54,15 @@ public abstract class PlivoTestUtils {
 	public static String getAccountId( ) {
 		return get("accountId");
 	}
+
+	public static String getCallbackUrl( ) {
+		return get("callbackUrl");
+	}
 	
 	public static String getAuthToken( ) {
 		return get("authToken");
 	}
 	
-	public static String getPlivoUrl( ) {
-		return get("plivoUrl");
-	}
-	
-	public static String getCallbackUrl( ) {
-		return get("callbackUrl");
-	}
-
 	private static void initProperties( ) {
 		if(initialized) return;
 		synchronized(PlivoTestUtils.class) {

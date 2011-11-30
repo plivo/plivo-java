@@ -31,7 +31,6 @@ public abstract class BasePlivoTest {
 				PlivoClient.create(
 						PlivoTestUtils.getAccountId(), 
 						PlivoTestUtils.getAuthToken(), 
-						PlivoTestUtils.getPlivoUrl(), 
 						true);
 	}
 	
