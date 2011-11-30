@@ -54,7 +54,7 @@ public class PlayTest extends BasePlivoTest {
 						
 						ApplicationResponse ar = new ApplicationResponse();
 						Play p = new Play();
-						p.setUrl("http://translate.google.com/translate_tts?q=Please+wait%3C/Play%3E");
+						p.setUrl("http://translate.google.com/translate_tts?q=Please+wait");
 						p.setLoop(1);
 						ar.setPlay(p);
 						
@@ -87,8 +87,8 @@ public class PlayTest extends BasePlivoTest {
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
 		
-		parameters.put("From", "9999");
-		parameters.put("To", "1001");
+		parameters.put("From", "01010101010101010");
+		parameters.put("To", "11111111111111");
 
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
