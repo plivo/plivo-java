@@ -19,6 +19,7 @@ import org.plivo.bridge.to.callback.HangupCallback;
 import org.plivo.bridge.to.command.ApplicationResponse;
 import org.plivo.bridge.to.command.Dial;
 import org.plivo.bridge.to.command.Number;
+import org.plivo.bridge.to.command.Speak;
 import org.plivo.bridge.to.response.CallResponse;
 import org.plivo.bridge.util.PlivoTestUtils;
 import org.plivo.bridge.utils.PlivoUtils;
@@ -30,7 +31,17 @@ public class TwoLegsCallTest extends BasePlivoTest {
 	
 	@Test(enabled=false)
 	public void initCall( ) throws Exception {
-		
+		ServiceHandler ringHandler = new ServiceHandler("/ringing/*", 
+				new HttpHandler() {
+					@Override
+					public void service(Request req, Response resp) throws Exception {
+						System.out.println("got ringing!");
+						resp.getWriter().write("Ok");
+						resp.getWriter().flush();
+						resp.getWriter().close();
+					}
+				});
+	
 		ServiceHandler answerHandler = new ServiceHandler("/answered/*", 
 				new HttpHandler() {
 					@Override
@@ -42,11 +53,14 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						Assert.assertNotNull(callback.getCallUUID());
 						
 						ApplicationResponse ar = new ApplicationResponse();
+						Speak s = new Speak();
+						s.setText("Please, wait while we call to PC!");
+						ar.setSpeak(s);
 						Dial d = new Dial();
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
 						org.plivo.bridge.to.command.Number n = new Number();
 						
-						n.setNumber("1001");
+						n.setNumber("553499322261");
 						ar.setDial(d);
 						d.setNumber(n);
 						
@@ -85,14 +99,15 @@ public class TwoLegsCallTest extends BasePlivoTest {
 				});
 		
 		
-		startServer(answerHandler, hangupHandler, callabckHandler);
+		startServer(answerHandler, ringHandler, hangupHandler, callabckHandler);
 		
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
 		
-		parameters.put("From", "9999");
-		parameters.put("To", "1002");
+		parameters.put("From", "1111");
+		parameters.put("To", "2222");
 
+		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");
 		

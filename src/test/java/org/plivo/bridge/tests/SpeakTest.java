@@ -86,8 +86,8 @@ public class SpeakTest extends BasePlivoTest {
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
 		
-		parameters.put("From", "553499322261");
-		parameters.put("To", "553499322261");
+		parameters.put("From", "111");
+		parameters.put("To", "222");
 
 		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
 		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
