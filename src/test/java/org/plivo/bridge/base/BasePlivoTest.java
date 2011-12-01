@@ -18,7 +18,9 @@ import org.plivo.bridge.util.PlivoTestUtils;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
+@Test
 public abstract class BasePlivoTest {
 	
 	protected PlivoClient client;
@@ -54,6 +56,7 @@ public abstract class BasePlivoTest {
 	}
 		
 	protected void startServer(final ServiceHandler... handlers) {
+		if(null == executor) startExecutor();
 		executor.submit(new Runnable() {
 			@Override
 			public void run() {
