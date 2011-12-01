@@ -29,7 +29,7 @@ public class PlayTest extends BasePlivoTest {
 	@Test(enabled=false)
 	public void testSpeak( ) throws Exception {
 		
-		ServiceHandler ringHandler = new ServiceHandler("/ringing/*", 
+		ServiceHandler ringHandler = new ServiceHandler("/ring.html", 
 				new HttpHandler() {
 					@Override
 					public void service(Request req, Response resp) throws Exception {
@@ -40,7 +40,7 @@ public class PlayTest extends BasePlivoTest {
 					}
 				});
 		
-		ServiceHandler answerHandler = new ServiceHandler("/answered/*", 
+		ServiceHandler answerHandler = new ServiceHandler("/answer.html", 
 				new HttpHandler() {
 					@Override
 					public void service(Request req, Response resp) throws Exception {
@@ -62,7 +62,7 @@ public class PlayTest extends BasePlivoTest {
 					}
 				});
 		
-		ServiceHandler hangupHandler = new ServiceHandler("/hangup/*", 
+		ServiceHandler hangupHandler = new ServiceHandler("/hangup.html", 
 				new HttpHandler() {
 					@Override
 					public void service(Request req, Response resp) throws Exception {
@@ -84,15 +84,24 @@ public class PlayTest extends BasePlivoTest {
 		
 		startServer(ringHandler, answerHandler, hangupHandler);
 		
+		ApplicationResponse ar = new ApplicationResponse();
+		Play p = new Play();
+		p.setUrl("http://translate.google.com/translate_tts?q=Please+wait");
+		p.setLoop(1);
+		ar.setPlay(p);
+		
+		PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, System.out);
+
+		
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
 		
 		parameters.put("From", "01010101010101010");
-		parameters.put("To", "11111111111111");
+		parameters.put("To", "010101010110");
 
-		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup/");
-		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ringing/");
-		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answered/");
+		parameters.put("HangupUrl", PlivoTestUtils.getCallbackUrl()+"/hangup.html");
+		parameters.put("RingUrl", PlivoTestUtils.getCallbackUrl()+"/ring.html");
+		parameters.put("AnswerUrl", PlivoTestUtils.getCallbackUrl()+"/answer.html");
 		
 		CallResponse result = client.call().single(parameters);
 		
