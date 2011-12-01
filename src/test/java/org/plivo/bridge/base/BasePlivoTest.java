@@ -15,9 +15,9 @@ import org.plivo.bridge.server.GrizzlyServer;
 import org.plivo.bridge.server.GrizzlyServer.ServerShutdownCallback;
 import org.plivo.bridge.server.GrizzlyServer.ServiceHandler;
 import org.plivo.bridge.util.PlivoTestUtils;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test
@@ -36,7 +36,7 @@ public abstract class BasePlivoTest {
 						true);
 	}
 	
-	@BeforeTest
+	@BeforeMethod
 	public void startExecutor( ) {
 		executor = Executors.newSingleThreadExecutor();
 		server = new GrizzlyServer(5151, new ServerShutdownCallback() {
@@ -47,16 +47,15 @@ public abstract class BasePlivoTest {
 		});
 	}
 	
-	@AfterTest
+	@AfterMethod
 	public void stopExecutor( ) throws InterruptedException {
-		executor.awaitTermination(1, TimeUnit.MINUTES);
+		executor.awaitTermination(1, TimeUnit.SECONDS);
 		System.out.println("Killing server and executor!");
 		server.stop();
 		server = null;
 	}
 		
 	protected void startServer(final ServiceHandler... handlers) {
-		if(null == executor) startExecutor();
 		executor.submit(new Runnable() {
 			@Override
 			public void run() {

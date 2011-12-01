@@ -23,11 +23,11 @@ import org.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Test(enabled=false)
+@Test(enabled=true)
 public class PlayTest extends BasePlivoTest {
 	
-	@Test(enabled=false)
-	public void testSpeak( ) throws Exception {
+	@Test(enabled=true)
+	public void play( ) throws Exception {
 		
 		ServiceHandler ringHandler = new ServiceHandler("/ring.html", 
 				new HttpHandler() {
@@ -83,15 +83,6 @@ public class PlayTest extends BasePlivoTest {
 				});
 		
 		startServer(ringHandler, answerHandler, hangupHandler);
-		
-		ApplicationResponse ar = new ApplicationResponse();
-		Play p = new Play();
-		p.setUrl("http://translate.google.com/translate_tts?q=Please+wait");
-		p.setLoop(1);
-		ar.setPlay(p);
-		
-		PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, System.out);
-
 		
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
