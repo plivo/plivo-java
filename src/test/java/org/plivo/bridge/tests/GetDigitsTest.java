@@ -16,6 +16,7 @@ import org.plivo.bridge.server.GrizzlyServer.ServiceHandler;
 import org.plivo.bridge.to.callback.AnsweredCallback;
 import org.plivo.bridge.to.callback.HangupCallback;
 import org.plivo.bridge.to.command.ApplicationResponse;
+import org.plivo.bridge.to.command.GetDigits;
 import org.plivo.bridge.to.command.Play;
 import org.plivo.bridge.to.response.CallResponse;
 import org.plivo.bridge.util.PlivoTestUtils;
@@ -24,10 +25,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(enabled=true)
-public class PlayTest extends BasePlivoTest {
+public class GetDigitsTest extends BasePlivoTest {
 	
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void play( ) throws Exception {
+		
+		ServiceHandler digitsHandler = new ServiceHandler("/digits.html", 
+				new HttpHandler() {
+					@Override
+					public void service(Request req, Response resp) throws Exception {
+						System.out.println("got ringing!");
+						resp.getWriter().write("Ok");
+						resp.getWriter().flush();
+						resp.getWriter().close();
+					}
+				});
+		
 		
 		ServiceHandler ringHandler = new ServiceHandler("/ring.html", 
 				new HttpHandler() {
@@ -53,10 +66,17 @@ public class PlayTest extends BasePlivoTest {
 						Assert.assertNotNull(callback.getCallUUID());
 						
 						ApplicationResponse ar = new ApplicationResponse();
+						GetDigits digits = new GetDigits();
+						digits.setAction(PlivoTestUtils.getCallbackUrl()+"/digits.html");
+						digits.setNumDigits(1);
 						Play p = new Play();
-						p.setUrl("http://translate.google.com/translate_tts?q=Please+wait");
+						digits.setPlay(p);
+						p.setUrl("http://translate.google.com/translate_tts?q=Input+your+choice");
 						p.setLoop(1);
-						ar.setPlay(p);
+						digits.setPlayBeep(true);
+						digits.setRetries(1);
+						digits.setValidDigits("123456789");
+						ar.setGetDigits(digits);
 						
 						PlivoUtils.JAXBContext.createContext().createMarshaller().marshal(ar, resp.getWriter());
 					}
@@ -82,7 +102,7 @@ public class PlayTest extends BasePlivoTest {
 					}
 				});
 		
-		startServer(ringHandler, answerHandler, hangupHandler);
+		startServer(ringHandler, answerHandler, hangupHandler, digitsHandler);
 		
 		Map<String, String> parameters = 
 				new HashMap<String, String>();
