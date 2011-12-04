@@ -27,14 +27,14 @@ import org.testng.annotations.Test;
 @Test(enabled=true)
 public class GetDigitsTest extends BasePlivoTest {
 	
-	@Test(enabled=true)
-	public void play( ) throws Exception {
+	@Test(enabled=false)
+	public void getDigits( ) throws Exception {
 		
 		ServiceHandler digitsHandler = new ServiceHandler("/digits.html", 
 				new HttpHandler() {
 					@Override
 					public void service(Request req, Response resp) throws Exception {
-						System.out.println("got ringing!");
+						System.out.println("got digits!");
 						resp.getWriter().write("Ok");
 						resp.getWriter().flush();
 						resp.getWriter().close();
