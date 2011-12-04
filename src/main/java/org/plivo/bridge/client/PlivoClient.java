@@ -26,14 +26,10 @@ public class PlivoClient {
 	private final String CLOUD_VERSION		= "v1";
 
 	/**
-	 * Use this constructor whether you want to override the plivo api version.
-	 * Note that if this helper was built on old version of plivo and you pass
-	 * a newer one, the code may not work.
-	 * @param version
-	 * @param accountId
-	 * @param authToken
-	 * @param url
-	 * @param debug
+	 * Create a new instance of PlivoClient
+	 * @param accountId Account Id of your Cloud Application
+	 * @param authToken Auth Token of your Cloud Application
+	 * @param debug True to get the HTTP logs
 	 */
 	public PlivoClient(String accountId, String authToken,
 			boolean debug) {

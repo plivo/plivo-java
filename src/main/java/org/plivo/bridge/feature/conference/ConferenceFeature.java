@@ -95,7 +95,7 @@ public class ConferenceFeature extends BaseFeature {
 		try {
 			ConferenceHangupResponse response = this.getBaseResource()
 					.path("Conference/")
-					.path("Hangup")
+					.path("Hangup/")
 					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(ConferenceHangupResponse.class,
