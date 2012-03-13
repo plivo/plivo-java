@@ -39,6 +39,10 @@ public abstract class BaseFeature {
 		return client;
 	}
 
+	protected String getAccountId() {
+		return client.getAccountId();
+	}
+
 	protected void setClient(PlivoClient client) {
 		this.client = client;
 	}

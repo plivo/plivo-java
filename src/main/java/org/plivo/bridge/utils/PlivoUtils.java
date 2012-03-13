@@ -29,6 +29,8 @@ import org.plivo.bridge.to.command.Wait;
 
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
+import org.json.JSONObject;
+
 public abstract class PlivoUtils {
 
 	public static class ParameterUtils {
@@ -41,6 +43,12 @@ public abstract class PlivoUtils {
 				return (String) Array.get(object, 0);
 			
 			return object.toString();
+		}
+
+		public static String mapToJSON(Map<String, String> parameters)	{
+			JSONObject jsonObject = new JSONObject(parameters);
+
+			return jsonObject.toString();
 		}
 		
 		public static String mapToString(Map<String, String> parameters) {

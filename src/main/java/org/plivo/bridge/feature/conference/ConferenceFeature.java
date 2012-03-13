@@ -36,215 +36,231 @@ public class ConferenceFeature extends BaseFeature {
 		this.setBaseResource(this.getBaseResource());
 	}
 
-	public ConferenceMuteResponse mute(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceMuteResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Mute/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceMuteResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+	// /v1/Account/{auth_id}/Conference/
+	public ConferenceMuteResponse getAll() 
+			throws PlivoClientException {
 
-	public ConferenceUnmuteResponse unmute(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceUnmuteResponse response = this.getBaseResource()
-					.path("Conferente/")
-					.path("Unmute/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceUnmuteResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+							.path("/Account/"+this.getAccountId()+"/Conference/")
+							.type(MediaType.APPLICATION_JSON_TYPE)
+							.accept(MediaType.APPLICATION_JSON_TYPE)
+							.get(ConferenceMuteResponse.class);
 
-	public ConferenceKickResponse kick(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceKickResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Kick/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceKickResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
 
-	public ConferenceHangupResponse hangup(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceHangupResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Hangup/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceHangupResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+	// /v1/Account/{auth_id}/Conference/{conference_id}/
+	public ConferenceMuteResponse getOne(String ConferenceId) 
+			throws PlivoClientException {
 
-	public ConferenceDeafResponse deaf(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceDeafResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Deaf/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceDeafResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
+							.type(MediaType.APPLICATION_JSON_TYPE)
+							.accept(MediaType.APPLICATION_JSON_TYPE)
+							.get(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
 
-	public ConferenceUndeafResponse undeaf(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceUndeafResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Undeaf/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceUndeafResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
 
-	public ConferenceRecordStartResponse recordStart(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceRecordStartResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Record/")
-					.path("Start/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceRecordStartResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+	//  /v1/Account/{auth_id}/Conference/
+	public ConferenceMuteResponse hangupAll() 
+			throws PlivoClientException {
 
-	public ConferenceRecordStopResponse recordStop(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceRecordStopResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Record/")
-					.path("Stop/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceRecordStopResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+							.path("/Account/"+this.getAccountId()+"/Conference/")
+							.type(MediaType.APPLICATION_JSON_TYPE)
+							.accept(MediaType.APPLICATION_JSON_TYPE)
+							.delete(ConferenceMuteResponse.class);
 
-	public ConferencePlayResponse play(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferencePlayResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Play/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferencePlayResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
 
-	public ConferenceSpeakResponse speak(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceSpeakResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Speak/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceSpeakResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
 
-	public ConferenceListResponse listMembers(
-			Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceListResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("Member/")
-					.path("List/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceListResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+	// /v1/Account/{auth_id}/Conference/{conference_id}/
+	public ConferenceMuteResponse hangupOne(String ConferenceId) 
+			throws PlivoClientException {
 
-	public ConferenceListResponse list(Map<String, String> parameters) throws PlivoClientException {
-		
-		try {
-			ConferenceListResponse response = this.getBaseResource()
-					.path("Conference/")
-					.path("List/")
-					.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(ConferenceListResponse.class,
-							PlivoUtils.ParameterUtils.mapToForm(parameters));
-			
-			return response;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
+							.type(MediaType.APPLICATION_JSON_TYPE)
+							.accept(MediaType.APPLICATION_JSON_TYPE)
+							.delete(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/
+	public ConferenceMuteResponse hangupOneMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.delete(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}		
+
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
+	public ConferenceMuteResponse playToMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.post(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
+	public ConferenceMuteResponse stopPlayToMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.delete(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Speak/
+	public ConferenceMuteResponse speakToMember(String ConferenceId, String MemberId, Map<String, String> parameters) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Speak/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.post(ConferenceMuteResponse.class, PlivoUtils.ParameterUtils.mapToJSON(parameters));
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
+	public ConferenceMuteResponse deafMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.post(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
+	public ConferenceMuteResponse unDeafMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.delete(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
+	public ConferenceMuteResponse muteMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.post(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
+	public ConferenceMuteResponse unMuteMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.delete(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
+	
+	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Kick/
+
+	public ConferenceMuteResponse kickMember(String ConferenceId, String MemberId) 
+			throws PlivoClientException {
+
+				try {
+					ConferenceMuteResponse response = this.getBaseResource()
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Kick/")
+						.type(MediaType.APPLICATION_JSON_TYPE)
+						.accept(MediaType.APPLICATION_JSON_TYPE)
+						.post(ConferenceMuteResponse.class);
+							
+					return response;
+				} catch (UniformInterfaceException e) {
+					throw new PlivoClientException(e);
+				}
+			}
 }
