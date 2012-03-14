@@ -31,8 +31,7 @@ public class PlivoClient {
 	 * @param authToken Auth Token of your Cloud Application
 	 * @param debug True to get the HTTP logs
 	 */
-	public PlivoClient(String accountId, String authToken,
-			boolean debug) {
+	public PlivoClient(String accountId, String authToken, boolean debug) {
 		this.setAccountId(accountId);
 		this.setAuthToken(authToken);
 		this.restClient = Client.create();

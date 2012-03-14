@@ -14,12 +14,13 @@ import org.plivo.bridge.client.PlivoClient;
 import org.plivo.bridge.exception.PlivoClientException;
 import org.plivo.bridge.feature.base.BaseFeature;
 
+import org.plivo.bridge.to.response.PlivoResponse;
+
 import org.plivo.bridge.utils.PlivoUtils;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 
-import org.json.JSONObject;
 
 public class CallFeature extends BaseFeature {
 
@@ -32,14 +33,13 @@ public class CallFeature extends BaseFeature {
 			throws PlivoClientException {
 		
 		try {
-			String response = this.getBaseResource()
+			String result = this.getBaseResource()
 					.path("Account/"+this.getAccountId()+"/Call/")
 					.type(MediaType.APPLICATION_JSON_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.post(String.class,
 							PlivoUtils.ParameterUtils.mapToJSON(parameters));
-			
-			return response;
+			return result;
 		} catch (UniformInterfaceException e) {
 			throw new PlivoClientException(e);
 		}

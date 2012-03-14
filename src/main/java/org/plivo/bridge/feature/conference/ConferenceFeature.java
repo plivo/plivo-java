@@ -37,15 +37,15 @@ public class ConferenceFeature extends BaseFeature {
 	}
 
 	// /v1/Account/{auth_id}/Conference/
-	public ConferenceMuteResponse getAll() 
+	public String getAll() 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 							.path("/Account/"+this.getAccountId()+"/Conference/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
-							.get(ConferenceMuteResponse.class);
+							.get(String.class);
 
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -54,15 +54,15 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/
-	public ConferenceMuteResponse getOne(String ConferenceId) 
+	public String getOne(String ConferenceId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
-							.get(ConferenceMuteResponse.class);
+							.get(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -72,15 +72,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	//  /v1/Account/{auth_id}/Conference/
-	public ConferenceMuteResponse hangupAll() 
+	public String hangupAll() 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 							.path("/Account/"+this.getAccountId()+"/Conference/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
-							.delete(ConferenceMuteResponse.class);
+							.delete(String.class);
 
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -90,15 +90,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/
-	public ConferenceMuteResponse hangupOne(String ConferenceId) 
+	public String hangupOne(String ConferenceId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
-							.delete(ConferenceMuteResponse.class);
+							.delete(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -107,15 +107,15 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/
-	public ConferenceMuteResponse hangupOneMember(String ConferenceId, String MemberId) 
+	public String hangupOneMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.delete(ConferenceMuteResponse.class);
+						.delete(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -125,15 +125,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
-	public ConferenceMuteResponse playToMember(String ConferenceId, String MemberId) 
+	public String playToMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.post(ConferenceMuteResponse.class);
+						.post(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -143,15 +143,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
-	public ConferenceMuteResponse stopPlayToMember(String ConferenceId, String MemberId) 
+	public String stopPlayToMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.delete(ConferenceMuteResponse.class);
+						.delete(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -161,15 +161,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Speak/
-	public ConferenceMuteResponse speakToMember(String ConferenceId, String MemberId, Map<String, String> parameters) 
+	public String speakToMember(String ConferenceId, String MemberId, Map<String, String> parameters) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Speak/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.post(ConferenceMuteResponse.class, PlivoUtils.ParameterUtils.mapToJSON(parameters));
+						.post(String.class, PlivoUtils.ParameterUtils.mapToJSON(parameters));
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -179,15 +179,15 @@ public class ConferenceFeature extends BaseFeature {
 
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
-	public ConferenceMuteResponse deafMember(String ConferenceId, String MemberId) 
+	public String deafMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.post(ConferenceMuteResponse.class);
+						.post(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -196,15 +196,15 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
-	public ConferenceMuteResponse unDeafMember(String ConferenceId, String MemberId) 
+	public String unDeafMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.delete(ConferenceMuteResponse.class);
+						.delete(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -213,15 +213,15 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
-	public ConferenceMuteResponse muteMember(String ConferenceId, String MemberId) 
+	public String muteMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.post(ConferenceMuteResponse.class);
+						.post(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -230,15 +230,15 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
-	public ConferenceMuteResponse unMuteMember(String ConferenceId, String MemberId) 
+	public String unMuteMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.delete(ConferenceMuteResponse.class);
+						.delete(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
@@ -248,15 +248,15 @@ public class ConferenceFeature extends BaseFeature {
 	
 	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Kick/
 
-	public ConferenceMuteResponse kickMember(String ConferenceId, String MemberId) 
+	public String kickMember(String ConferenceId, String MemberId) 
 			throws PlivoClientException {
 
 				try {
-					ConferenceMuteResponse response = this.getBaseResource()
+					String response = this.getBaseResource()
 						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Kick/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
-						.post(ConferenceMuteResponse.class);
+						.post(String.class);
 							
 					return response;
 				} catch (UniformInterfaceException e) {
