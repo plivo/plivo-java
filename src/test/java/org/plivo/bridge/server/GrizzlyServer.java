@@ -1,8 +1,8 @@
 package org.plivo.bridge.server;
 /**
- * Copyright (c) 2011 Plivo Team. See LICENSE for details.
+ * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
  *  2011-08-28
- * @author Paulo reis
+ * .
  */
 
 import java.io.IOException;

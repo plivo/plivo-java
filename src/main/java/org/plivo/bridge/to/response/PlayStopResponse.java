@@ -1,9 +1,9 @@
 package org.plivo.bridge.to.response;
 
 /**
- * Copyright (c) 2011 Plivo Team. See LICENSE for details.
- *  2011-08-22
- * @author Paulo reis
+ * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
+ *  2012-03-14
+ * .
  */
 
 import javax.xml.bind.annotation.XmlAccessType;

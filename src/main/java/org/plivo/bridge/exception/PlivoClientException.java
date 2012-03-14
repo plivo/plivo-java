@@ -1,9 +1,9 @@
 package org.plivo.bridge.exception;
 
 /**
- * Copyright (c) 2011 Plivo Team. See LICENSE for details.
- *  2011-05-23
- * @author Paulo reis
+ * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
+ *  2012-03-14
+ * .
  */
 
 import com.sun.jersey.api.client.UniformInterfaceException;
