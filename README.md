@@ -53,28 +53,20 @@ How to use
 ----------
 
 ### Creating the plivo client bridge
-  * PlivoClient client = PlivoClient.create("authId",
-  *				"authToken", debug);
-
+  * authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  * authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+  * PlivoClient client = PlivoClient.create("authId", "authToken", debug);
   
-  authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  
-  authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
-  
-  
-  After that, you can run the tests.
  
 ### Requesting a new CALL to PLIVO
 
-*  Map<String, String> parameters = new HashMap<String, String>();
-*
-*	parameters.put("from", "15679XXXXX");
-*	parameters.put("to", "1567XXXXXXXX");
-*	parameters.put("answer_url", "http://example.com/answer_url");
-*	parameters.put("hangup_url", "http://example.com/hangup_url");
-*	parameters.put("ring_url", "http://example.com/ring_url");
-*
-*   String result = client.call().makeCall(parameters);
+* Map<String, String> parameters = new HashMap<String, String>();
+* parameters.put("from", "15679XXXXX");
+* parameters.put("to", "1567XXXXXXXX");
+* parameters.put("answer_url", "http://example.com/answer_url");
+* parameters.put("hangup_url", "http://example.com/hangup_url");
+* parameters.put("ring_url", "http://example.com/ring_url");
+* String result = client.call().makeCall(parameters);
 
 
 License
