@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.callback;
+package com.plivo.bridge.to.callback;
 
 public enum CallStatus {
 	RINGING("ringing"),

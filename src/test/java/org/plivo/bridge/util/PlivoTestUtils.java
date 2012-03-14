@@ -1,4 +1,4 @@
-package org.plivo.bridge.util;
+package com.plivo.bridge.util;
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
  *  2011-08-28

@@ -1,4 +1,4 @@
-package org.plivo.bridge.tests;
+package com.plivo.bridge.tests;
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
  *  2011-08-28
@@ -11,18 +11,18 @@ import java.util.Map;
 import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.Request;
 import org.glassfish.grizzly.http.server.Response;
-import org.plivo.bridge.base.BasePlivoTest;
-import org.plivo.bridge.server.GrizzlyServer.ServiceHandler;
-import org.plivo.bridge.to.callback.AnsweredCallback;
-import org.plivo.bridge.to.callback.CallbackStatus;
-import org.plivo.bridge.to.callback.HangupCallback;
-import org.plivo.bridge.to.command.ApplicationResponse;
-import org.plivo.bridge.to.command.Dial;
-import org.plivo.bridge.to.command.Number;
-import org.plivo.bridge.to.command.Speak;
-import org.plivo.bridge.to.response.CallResponse;
-import org.plivo.bridge.util.PlivoTestUtils;
-import org.plivo.bridge.utils.PlivoUtils;
+import com.plivo.bridge.base.BasePlivoTest;
+import com.plivo.bridge.server.GrizzlyServer.ServiceHandler;
+import com.plivo.bridge.to.callback.AnsweredCallback;
+import com.plivo.bridge.to.callback.CallbackStatus;
+import com.plivo.bridge.to.callback.HangupCallback;
+import com.plivo.bridge.to.command.ApplicationResponse;
+import com.plivo.bridge.to.command.Dial;
+import com.plivo.bridge.to.command.Number;
+import com.plivo.bridge.to.command.Speak;
+import com.plivo.bridge.to.response.CallResponse;
+import com.plivo.bridge.util.PlivoTestUtils;
+import com.plivo.bridge.utils.PlivoUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -58,7 +58,7 @@ public class TwoLegsCallTest extends BasePlivoTest {
 						ar.setSpeak(s);
 						Dial d = new Dial();
 						d.setAction(PlivoTestUtils.getCallbackUrl()+"/callbackStatus/");
-						org.plivo.bridge.to.command.Number n = new Number();
+						com.plivo.bridge.to.command.Number n = new Number();
 						
 						n.setNumber("553499322261");
 						ar.setDial(d);

@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.callback;
+package com.plivo.bridge.to.callback;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -9,7 +9,7 @@ package org.plivo.bridge.to.callback;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.plivo.bridge.utils.PlivoUtils;
+import com.plivo.bridge.utils.PlivoUtils;
 
 public class HangupCallback implements Serializable {
 

@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response.conference;
+package com.plivo.bridge.to.response.conference;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.plivo.bridge.to.response.BasePlivoResponse;
+import com.plivo.bridge.to.response.BasePlivoResponse;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

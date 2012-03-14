@@ -1,4 +1,4 @@
-package org.plivo.bridge.feature.base;
+package com.plivo.bridge.feature.base;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -9,7 +9,7 @@ package org.plivo.bridge.feature.base;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.client.PlivoClient;
 
 import com.sun.jersey.api.client.WebResource;
 

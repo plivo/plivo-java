@@ -1,4 +1,4 @@
-package org.plivo.bridge.utils;
+package com.plivo.bridge.utils;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -14,18 +14,18 @@ import java.util.Map;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.xml.bind.JAXBException;
 
-import org.plivo.bridge.to.command.ApplicationResponse;
-import org.plivo.bridge.to.command.Conference;
-import org.plivo.bridge.to.command.Dial;
-import org.plivo.bridge.to.command.GetDigits;
-import org.plivo.bridge.to.command.Hangup;
-import org.plivo.bridge.to.command.Number;
-import org.plivo.bridge.to.command.Play;
-import org.plivo.bridge.to.command.PreAnswer;
-import org.plivo.bridge.to.command.Record;
-import org.plivo.bridge.to.command.Redirect;
-import org.plivo.bridge.to.command.Speak;
-import org.plivo.bridge.to.command.Wait;
+import com.plivo.bridge.to.command.ApplicationResponse;
+import com.plivo.bridge.to.command.Conference;
+import com.plivo.bridge.to.command.Dial;
+import com.plivo.bridge.to.command.GetDigits;
+import com.plivo.bridge.to.command.Hangup;
+import com.plivo.bridge.to.command.Number;
+import com.plivo.bridge.to.command.Play;
+import com.plivo.bridge.to.command.PreAnswer;
+import com.plivo.bridge.to.command.Record;
+import com.plivo.bridge.to.command.Redirect;
+import com.plivo.bridge.to.command.Speak;
+import com.plivo.bridge.to.command.Wait;
 
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 

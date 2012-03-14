@@ -1,4 +1,4 @@
-package org.plivo.bridge.base;
+package com.plivo.bridge.base;
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
  *  2011-08-28
@@ -10,11 +10,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.plivo.bridge.client.PlivoClient;
-import org.plivo.bridge.server.GrizzlyServer;
-import org.plivo.bridge.server.GrizzlyServer.ServerShutdownCallback;
-import org.plivo.bridge.server.GrizzlyServer.ServiceHandler;
-import org.plivo.bridge.util.PlivoTestUtils;
+import com.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.server.GrizzlyServer;
+import com.plivo.bridge.server.GrizzlyServer.ServerShutdownCallback;
+import com.plivo.bridge.server.GrizzlyServer.ServiceHandler;
+import com.plivo.bridge.util.PlivoTestUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;

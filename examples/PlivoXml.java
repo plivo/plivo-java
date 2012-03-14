@@ -1,5 +1,5 @@
-import org.plivo.bridge.to.command.ApplicationResponse;
-import org.plivo.bridge.to.command.Speak;
+import com.plivo.bridge.to.command.ApplicationResponse;
+import com.plivo.bridge.to.command.Speak;
 import javax.xml.bind.Marshaller;
 
 

@@ -1,4 +1,4 @@
-package org.plivo.bridge.client;
+package com.plivo.bridge.client;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -6,9 +6,9 @@ package org.plivo.bridge.client;
  * .
  */
 
-import org.plivo.bridge.feature.call.CallFeature;
-import org.plivo.bridge.feature.conference.ConferenceFeature;
-import org.plivo.bridge.feature.phone.PhoneFeature;
+import com.plivo.bridge.feature.call.CallFeature;
+import com.plivo.bridge.feature.conference.ConferenceFeature;
+import com.plivo.bridge.feature.phone.PhoneFeature;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;

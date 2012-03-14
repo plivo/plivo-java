@@ -1,4 +1,4 @@
-package org.plivo.bridge.feature.conference;
+package com.plivo.bridge.feature.conference;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -10,21 +10,21 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
-import org.plivo.bridge.client.PlivoClient;
-import org.plivo.bridge.exception.PlivoClientException;
-import org.plivo.bridge.feature.base.BaseFeature;
-import org.plivo.bridge.to.response.conference.ConferenceDeafResponse;
-import org.plivo.bridge.to.response.conference.ConferenceHangupResponse;
-import org.plivo.bridge.to.response.conference.ConferenceKickResponse;
-import org.plivo.bridge.to.response.conference.ConferenceListResponse;
-import org.plivo.bridge.to.response.conference.ConferenceMuteResponse;
-import org.plivo.bridge.to.response.conference.ConferencePlayResponse;
-import org.plivo.bridge.to.response.conference.ConferenceRecordStartResponse;
-import org.plivo.bridge.to.response.conference.ConferenceRecordStopResponse;
-import org.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
-import org.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
-import org.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
-import org.plivo.bridge.utils.PlivoUtils;
+import com.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.exception.PlivoClientException;
+import com.plivo.bridge.feature.base.BaseFeature;
+import com.plivo.bridge.to.response.conference.ConferenceDeafResponse;
+import com.plivo.bridge.to.response.conference.ConferenceHangupResponse;
+import com.plivo.bridge.to.response.conference.ConferenceKickResponse;
+import com.plivo.bridge.to.response.conference.ConferenceListResponse;
+import com.plivo.bridge.to.response.conference.ConferenceMuteResponse;
+import com.plivo.bridge.to.response.conference.ConferencePlayResponse;
+import com.plivo.bridge.to.response.conference.ConferenceRecordStartResponse;
+import com.plivo.bridge.to.response.conference.ConferenceRecordStopResponse;
+import com.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
+import com.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
+import com.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
+import com.plivo.bridge.utils.PlivoUtils;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;

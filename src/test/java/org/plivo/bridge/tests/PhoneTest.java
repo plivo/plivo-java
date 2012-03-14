@@ -1,4 +1,4 @@
-package org.plivo.bridge.tests;
+package com.plivo.bridge.tests;
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
  *  2011-08-28
@@ -8,9 +8,9 @@ package org.plivo.bridge.tests;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.plivo.bridge.base.BasePlivoTest;
-import org.plivo.bridge.to.response.CallResponse;
-import org.plivo.bridge.util.PlivoTestUtils;
+import com.plivo.bridge.base.BasePlivoTest;
+import com.plivo.bridge.to.response.CallResponse;
+import com.plivo.bridge.util.PlivoTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

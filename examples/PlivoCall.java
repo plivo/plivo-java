@@ -1,11 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 
-import org.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.client.PlivoClient;
 
-import org.plivo.bridge.exception.PlivoClientException;
-import org.plivo.bridge.to.response.conference.ConferenceMuteResponse;
-import org.plivo.bridge.to.response.PlivoResponse;
+import com.plivo.bridge.exception.PlivoClientException;
 
 import org.json.JSONObject;
 
@@ -48,10 +46,10 @@ public class PlivoCall {
      
       
         Map<String, String> parameters2 = new HashMap<String, String>();
-        parameters2.put("url", TransferUrl);
+        parameters2.put("url", transferUrl);
 
         try {
-            TransfCallResponse result = client.call().transfer(CallUUID, parameters2);
+            String result = client.call().transfer(CallUUID, parameters2);
             System.out.println(result);
         }catch(PlivoClientException e) {
             System.out.println(e);
@@ -59,7 +57,7 @@ public class PlivoCall {
      
         
         try {
-            HangupAllCallResponse result = client.call().hangUpAll();
+            String result = client.call().hangUpAll();
         }catch(PlivoClientException e){
             System.out.println(e);
         }
@@ -69,7 +67,7 @@ public class PlivoCall {
         
 
         try {
-            ConferenceMuteResponse result = client.conference().getAll();
+            String result = client.conference().getAll();
         }catch(Exception e) {
             System.out.println(e);
         }

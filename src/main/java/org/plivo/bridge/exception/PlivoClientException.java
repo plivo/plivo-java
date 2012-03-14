@@ -1,4 +1,4 @@
-package org.plivo.bridge.exception;
+package com.plivo.bridge.exception;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.

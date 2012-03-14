@@ -1,4 +1,4 @@
-package org.plivo.bridge.tests;
+package com.plivo.bridge.tests;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -9,34 +9,34 @@ package org.plivo.bridge.tests;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.plivo.bridge.client.PlivoClient;
-import org.plivo.bridge.exception.PlivoClientException;
-import org.plivo.bridge.to.response.BulkCallResponse;
-import org.plivo.bridge.to.response.CallResponse;
-import org.plivo.bridge.to.response.CancelScheduleHangupResponse;
-import org.plivo.bridge.to.response.CancelSchedulePlayResponse;
-import org.plivo.bridge.to.response.GroupCallResponse;
-import org.plivo.bridge.to.response.HangupAllCallResponse;
-import org.plivo.bridge.to.response.HangupCallResponse;
-import org.plivo.bridge.to.response.PlayResponse;
-import org.plivo.bridge.to.response.PlayStopResponse;
-import org.plivo.bridge.to.response.RecordStartResponse;
-import org.plivo.bridge.to.response.RecordStopResponse;
-import org.plivo.bridge.to.response.ScheduleHangupResponse;
-import org.plivo.bridge.to.response.SchedulePlayResponse;
-import org.plivo.bridge.to.response.TransfCallResponse;
-import org.plivo.bridge.to.response.conference.ConferenceDeafResponse;
-import org.plivo.bridge.to.response.conference.ConferenceHangupResponse;
-import org.plivo.bridge.to.response.conference.ConferenceKickResponse;
-import org.plivo.bridge.to.response.conference.ConferenceListResponse;
-import org.plivo.bridge.to.response.conference.ConferenceMuteResponse;
-import org.plivo.bridge.to.response.conference.ConferencePlayResponse;
-import org.plivo.bridge.to.response.conference.ConferenceRecordStartResponse;
-import org.plivo.bridge.to.response.conference.ConferenceRecordStopResponse;
-import org.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
-import org.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
-import org.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
-import org.plivo.bridge.util.PlivoTestUtils;
+import com.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.exception.PlivoClientException;
+import com.plivo.bridge.to.response.BulkCallResponse;
+import com.plivo.bridge.to.response.CallResponse;
+import com.plivo.bridge.to.response.CancelScheduleHangupResponse;
+import com.plivo.bridge.to.response.CancelSchedulePlayResponse;
+import com.plivo.bridge.to.response.GroupCallResponse;
+import com.plivo.bridge.to.response.HangupAllCallResponse;
+import com.plivo.bridge.to.response.HangupCallResponse;
+import com.plivo.bridge.to.response.PlayResponse;
+import com.plivo.bridge.to.response.PlayStopResponse;
+import com.plivo.bridge.to.response.RecordStartResponse;
+import com.plivo.bridge.to.response.RecordStopResponse;
+import com.plivo.bridge.to.response.ScheduleHangupResponse;
+import com.plivo.bridge.to.response.SchedulePlayResponse;
+import com.plivo.bridge.to.response.TransfCallResponse;
+import com.plivo.bridge.to.response.conference.ConferenceDeafResponse;
+import com.plivo.bridge.to.response.conference.ConferenceHangupResponse;
+import com.plivo.bridge.to.response.conference.ConferenceKickResponse;
+import com.plivo.bridge.to.response.conference.ConferenceListResponse;
+import com.plivo.bridge.to.response.conference.ConferenceMuteResponse;
+import com.plivo.bridge.to.response.conference.ConferencePlayResponse;
+import com.plivo.bridge.to.response.conference.ConferenceRecordStartResponse;
+import com.plivo.bridge.to.response.conference.ConferenceRecordStopResponse;
+import com.plivo.bridge.to.response.conference.ConferenceSpeakResponse;
+import com.plivo.bridge.to.response.conference.ConferenceUndeafResponse;
+import com.plivo.bridge.to.response.conference.ConferenceUnmuteResponse;
+import com.plivo.bridge.util.PlivoTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

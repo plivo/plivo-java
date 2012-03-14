@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.response;
+package com.plivo.bridge.to.response;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.

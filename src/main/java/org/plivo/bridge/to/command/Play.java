@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.command;
+package com.plivo.bridge.to.command;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.

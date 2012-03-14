@@ -1,4 +1,4 @@
-package org.plivo.bridge.to.callback;
+package com.plivo.bridge.to.callback;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.plivo.bridge.utils.PlivoUtils;
+import com.plivo.bridge.utils.PlivoUtils;
 
 @XmlRootElement
 public class RingingCallback implements Serializable {

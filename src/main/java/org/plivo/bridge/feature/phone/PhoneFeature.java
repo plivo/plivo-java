@@ -1,4 +1,4 @@
-package org.plivo.bridge.feature.phone;
+package com.plivo.bridge.feature.phone;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
@@ -10,11 +10,11 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
-import org.plivo.bridge.client.PlivoClient;
-import org.plivo.bridge.exception.PlivoClientException;
-import org.plivo.bridge.feature.base.BaseFeature;
-import org.plivo.bridge.to.response.CallResponse;
-import org.plivo.bridge.utils.PlivoUtils;
+import com.plivo.bridge.client.PlivoClient;
+import com.plivo.bridge.exception.PlivoClientException;
+import com.plivo.bridge.feature.base.BaseFeature;
+import com.plivo.bridge.to.response.CallResponse;
+import com.plivo.bridge.utils.PlivoUtils;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
