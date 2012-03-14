@@ -13,16 +13,21 @@ See [Plivo Documentation] (http://www.plivo.com/docs/) for more information.
 Installation
 ------------
 
-### Download and Install Maven3
-    
+### Download and Install Maven3 
+
+
 [http://maven.apache.org] (http://maven.apache.org)
 [Maven in 5 minutes guide] (http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+
 
 ### Generating a release
 
 To generate the final release,
 	
-* mvn install -Dmaven.test.skip=true
+
+mvn install -Dmaven.test.skip=true
+
+
 	
 	Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
