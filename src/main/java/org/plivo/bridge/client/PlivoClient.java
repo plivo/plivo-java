@@ -19,7 +19,7 @@ public class PlivoClient {
 	private WebResource baseResource;
 	private String apiVersion;
 
-	private String accountId;
+	private String authId;
 	private String authToken;
 	private Client restClient;
 	private final String CLOUD_URL 			= "http://api.plivo.com";
@@ -27,23 +27,23 @@ public class PlivoClient {
 
 	/**
 	 * Create a new instance of PlivoClient
-	 * @param accountId Account Id of your Cloud Application
+	 * @param authId Account Id of your Cloud Application
 	 * @param authToken Auth Token of your Cloud Application
 	 * @param debug True to get the HTTP logs
 	 */
-	public PlivoClient(String accountId, String authToken, boolean debug) {
-		this.setAccountId(accountId);
+	public PlivoClient(String authId, String authToken, boolean debug) {
+		this.setAuthId(authId);
 		this.setAuthToken(authToken);
 		this.restClient = Client.create();
-		this.restClient.addFilter(new HTTPBasicAuthFilter(this.getAccountId(),
+		this.restClient.addFilter(new HTTPBasicAuthFilter(this.getAuthId(),
 				this.getAuthToken()));
 		this.setBaseResource(this.restClient.resource(CLOUD_URL).path(CLOUD_VERSION));
 		if (debug)
 			this.restClient.addFilter(new LoggingFilter(System.out));
 	}
 	
-	public static PlivoClient create(String accountId, String authToken, boolean debug) {
-		return new PlivoClient(accountId, authToken, debug);
+	public static PlivoClient create(String authId, String authToken, boolean debug) {
+		return new PlivoClient(authId, authToken, debug);
 	}
 	
 	/**
@@ -96,12 +96,12 @@ public class PlivoClient {
 		this.apiVersion = apiVersion;
 	}
 
-	public String getAccountId() {
-		return accountId;
+	public String getAuthId() {
+		return authId;
 	}
 
-	void setAccountId(String accountId) {
-		this.accountId = accountId;
+	void setAuthId(String authId) {
+		this.authId = authId;
 	}
 
 	public String getAuthToken() {

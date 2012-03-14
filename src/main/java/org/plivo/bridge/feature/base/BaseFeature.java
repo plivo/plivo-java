@@ -40,7 +40,7 @@ public abstract class BaseFeature {
 	}
 
 	protected String getAccountId() {
-		return client.getAccountId();
+		return client.getAuthId();
 	}
 
 	protected void setClient(PlivoClient client) {
