@@ -1,16 +1,25 @@
-
 Plivo Java Helper Library
 =========================
 
 Description
 -----------
 
-The Plivo Java helper simplifies the process of making REST calls and generating RESTXML.
+The Plivo Java helper simplifies the process of making PLIVO API Calls and generating PLIVO XML.
 
 See [Plivo Documentation] (http://www.plivo.com/docs/) for more information.
 
 
-Installation
+
+Pre-built jars
+--------------
+
+[plivo-0.1-with-dependencies.jar] (https://github.com/downloads/plivo/plivo-java/plivo-0.1-jar-with-dependencies.jar)
+
+[plivo-0.-1.jar] (https://github.com/downloads/plivo/plivo-java/plivo-0.1.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
+
+
+
+Manual Install
 ------------
 
 ### Download and Install Maven3 
@@ -44,11 +53,11 @@ How to use
 ----------
 
 ### Creating the plivo client bridge
-  * PlivoClient client = PlivoClient.create("accountId",
-  *				"accountToken", debug);
+  * PlivoClient client = PlivoClient.create("authId",
+  *				"authToken", debug);
 
   
-  accountId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   
   authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
   
@@ -59,8 +68,8 @@ How to use
 
 *  Map<String, String> parameters = new HashMap<String, String>();
 *
-*	parameters.put("from", "1001");
-*	parameters.put("to", "1002");
+*	parameters.put("from", "15679XXXXX");
+*	parameters.put("to", "1567XXXXXXXX");
 *	parameters.put("answer_url", "http://example.com/answer_url");
 *	parameters.put("hangup_url", "http://example.com/hangup_url");
 *	parameters.put("ring_url", "http://example.com/ring_url");
