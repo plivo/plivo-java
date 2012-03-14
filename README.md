@@ -15,14 +15,14 @@ Installation
 
 ### Download and Install Maven3
     
-    [http://maven.apache.org] (http://maven.apache.org)
-    [Maven in 5 minutes guide] (http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+[http://maven.apache.org] (http://maven.apache.org)
+[Maven in 5 minutes guide] (http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 ### Generating a release
 
-	To generate the final release (.jar to include on your application [if you're not using maven on your main app]), type:
+To generate the final release,
 	
- * mvn install -Dmaven.test.skip=true
+* mvn install -Dmaven.test.skip=true
 	
 	Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
