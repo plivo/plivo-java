@@ -65,7 +65,7 @@ How to use
 *	parameters.put("hangup_url", "http://example.com/hangup_url");
 *	parameters.put("ring_url", "http://example.com/ring_url");
 *
-*   CallResponse result = client.call().makeCall(parameters);
+*   String result = client.call().makeCall(parameters);
 
 
 License
