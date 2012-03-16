@@ -8,7 +8,9 @@ package com.plivo.bridge.client;
 
 import com.plivo.bridge.feature.call.CallFeature;
 import com.plivo.bridge.feature.conference.ConferenceFeature;
-import com.plivo.bridge.feature.phone.PhoneFeature;
+import com.plivo.bridge.feature.account.AccountFeature;
+import com.plivo.bridge.feature.application.ApplicationFeature;
+import com.plivo.bridge.feature.number.NumberFeature;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -74,8 +76,20 @@ public class PlivoClient {
 		return f;
 	}
 	
-	public PhoneFeature phone() {
-		PhoneFeature f = new PhoneFeature(this, this.getBaseResource());
+	public NumberFeature number() {
+		NumberFeature f = new NumberFeature(this, this.getBaseResource());
+		
+		return f;
+	}
+
+	public AccountFeature account() {
+		AccountFeature f = new AccountFeature(this, this.getBaseResource());
+		
+		return f;
+	}
+
+	public ApplicationFeature application() {
+		ApplicationFeature f = new ApplicationFeature(this, this.getBaseResource());
 		
 		return f;
 	}

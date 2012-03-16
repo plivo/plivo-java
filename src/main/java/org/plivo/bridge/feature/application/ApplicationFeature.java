@@ -1,4 +1,4 @@
-package com.plivo.bridge.feature.account;
+package com.plivo.bridge.feature.application;
 
 /**
  * Copyright (c) 2011 Plivo Inc. See LICENSE for details.
