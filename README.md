@@ -6,16 +6,16 @@ Description
 
 The Plivo Java helper simplifies the process of making PLIVO API Calls and generating PLIVO XML.
 
-See [Plivo Documentation] (http://www.plivo.com/docs/) for more information.
+See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 
 
 
 Pre-built jars
 --------------
 
-[plivo-0.1-with-dependencies.jar] (https://github.com/downloads/plivo/plivo-java/plivo-0.1-jar-with-dependencies.jar)
+[plivo-0.2-jar-with-dependencies.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2-jar-with-dependencies.jar)
 
-[plivo-0.-1.jar] (https://github.com/downloads/plivo/plivo-java/plivo-0.1.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
+[plivo-0.2.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
 
 
 
@@ -25,20 +25,17 @@ Manual Install
 ### Download and Install Maven3 
 
 
-[http://maven.apache.org] (http://maven.apache.org)
-[Maven in 5 minutes guide] (http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+[http://maven.apache.org](http://maven.apache.org)
+[Maven in 5 minutes guide](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 
 ### Generating a release
 
 To generate the final release,
 	
+	mvn install -Dmaven.test.skip=true
 
-mvn install -Dmaven.test.skip=true
-
-
-	
-	Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
+Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
 ### Use the Library in your Java IDE
 
@@ -53,9 +50,10 @@ How to use
 ----------
 
 ### Creating the plivo client bridge
-  * authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  * authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
-  * PlivoClient client = PlivoClient.create("authId", "authToken", debug);
+* String authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
+* String authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY;
+* boolean debug = false;
+* PlivoClient client = PlivoClient("authId", "authToken", debug);
   
  
 ### Requesting a new CALL to PLIVO
