@@ -40,10 +40,10 @@ Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the
 ### Use the Library in your Java IDE
 
 Create Stubs for Eclipse
-    * mvn eclipse:eclipse
+	mvn eclipse:eclipse
 
 Create stubs for idea
-    * mvn idea:idea
+	mvn idea:idea
 
 
 How to use
