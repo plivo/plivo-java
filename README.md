@@ -53,7 +53,7 @@ How to use
 	String authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
 	String authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY;
 	boolean debug = false;
-	PlivoClient client = PlivoClient("authId", "authToken", debug);
+	PlivoClient client = PlivoClient(authId, authToken, debug);
   
  
 ### Making a Call.
