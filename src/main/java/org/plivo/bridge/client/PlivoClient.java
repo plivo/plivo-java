@@ -24,7 +24,7 @@ public class PlivoClient {
 	private String authId;
 	private String authToken;
 	private Client restClient;
-	private final String CLOUD_URL 			= "http://api.plivo.com";
+	private final String CLOUD_URL 			= "https://api.plivo.com";
 	private final String CLOUD_VERSION		= "v1";
 
 	/**
