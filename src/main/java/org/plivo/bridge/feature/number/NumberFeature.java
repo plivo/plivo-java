@@ -70,7 +70,7 @@ public class NumberFeature extends BaseFeature {
 
 		try {
 			String result = this.getBaseResource()
-					.path("Account/"+this.getAccountId()+"/AvailableNumber/"+PlivoUtils.ParameterUtils.mapToString(parameters))
+					.path("Account/"+this.getAccountId()+"/AvailableNumber/?"+PlivoUtils.ParameterUtils.mapToString(parameters))
 					.type(MediaType.APPLICATION_JSON_TYPE)
 					.accept(MediaType.APPLICATION_JSON_TYPE)
 					.get(String.class);
@@ -117,62 +117,4 @@ public class NumberFeature extends BaseFeature {
 			throw new PlivoClientException(e);
 		}
 	}
-	
-
-	// Link or Unlink an Application to one Number
-	// /v1/Account/{auth_id}/Number/{number}/
-	public String deleteSubaccount(String Number, Map<String, String> parameters) 
-		throws PlivoClientException {
-		
-		try {
-			String result = this.getBaseResource()
-					.path("Account/"+this.getAccountId()+"/Number/"+Number+"/")
-					.type(MediaType.APPLICATION_JSON_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.post(String.class);
-			
-			return result;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}	
-
-	// Get All Subaccount Numbers rented
-	// /v1/Account/{auth_id}/Subaccount/{subauth_id}/Number/
-	public String subAccountRented(String SubAuthId) 
-		throws PlivoClientException {
-		
-		try {
-			String result = this.getBaseResource()
-					.path("Account/"+this.getAccountId()+"/SubAccount/"+SubAuthId+"/Number/")
-					.type(MediaType.APPLICATION_JSON_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.get(String.class);
-			
-			return result;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}	
-
-	// Get one Subaccount Number rented
-	// /v1/Account/{auth_id}/Subaccount/{subauth_id}/Number/{number}/
-	public String oneSubAccountRented(String SubAuthId, String Number) 
-		throws PlivoClientException {
-		
-		try {
-			String result = this.getBaseResource()
-					.path("Account/"+this.getAccountId()+"/Subaccount/"+SubAuthId+"/Number/"+Number+"/")
-					.type(MediaType.APPLICATION_JSON_TYPE)
-					.accept(MediaType.APPLICATION_JSON_TYPE)
-					.get(String.class);
-			
-			return result;
-		} catch (UniformInterfaceException e) {
-			throw new PlivoClientException(e);
-		}
-	}	
-
-
-
 }
