@@ -48,6 +48,9 @@ public class ApplicationResponse implements Serializable {
 	
 	@XmlElement(name="Conference")
 	private Conference conference;
+
+	@XmlElement(name="Message")
+	private Message message;
 	
 	public ApplicationResponse() {
 		
@@ -131,5 +134,13 @@ public class ApplicationResponse implements Serializable {
 
 	public void setConference(Conference conference) {
 		this.conference = conference;
+	}
+
+	public Message getMessage() {
+		return message;
+	}
+
+	public void setMessage(Message message) {
+		this.message = message;
 	}
 }

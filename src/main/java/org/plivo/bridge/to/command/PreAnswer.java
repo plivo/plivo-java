@@ -31,6 +31,9 @@ public class PreAnswer implements Serializable {
 	
 	@XmlElement(name="Redirect")
 	private Redirect redirect;
+
+	@XmlElement(name="Message")
+	private Message message;
 	
 	public PreAnswer() {
 		
