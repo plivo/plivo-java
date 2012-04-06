@@ -11,6 +11,7 @@ import com.plivo.bridge.feature.conference.ConferenceFeature;
 import com.plivo.bridge.feature.account.AccountFeature;
 import com.plivo.bridge.feature.application.ApplicationFeature;
 import com.plivo.bridge.feature.number.NumberFeature;
+import com.plivo.bridge.feature.message.MessageFeature;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -93,6 +94,12 @@ public class PlivoClient {
 		
 		return f;
 	}
+
+    public MessageFeature message() {
+        MessageFeature f = new MessageFeature(this, this.getBaseResource());
+
+        return f;
+    }
 
 	public WebResource getBaseResource() {
 		return baseResource;
