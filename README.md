@@ -69,7 +69,7 @@ How to use
 	parameters.put("ring_url", "http://example.com/ring_url");
 	String result = client.call().makeCall(parameters);
 
-### Check the [examples](https://github.com/plivo/plivo-java/tree/master/examples)
+### Check the [examples](https://github.com/plivo/plivo-examples-java
 
 
 License
