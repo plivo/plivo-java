@@ -53,13 +53,13 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/
-	public String getOne(String ConferenceId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/
+	public String getOne(String ConferenceName) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
+							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
 							.get(String.class);
@@ -89,13 +89,13 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/
-	public String hangupOne(String ConferenceId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/
+	public String hangupOne(String ConferenceName) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/")
+							.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/")
 							.type(MediaType.APPLICATION_JSON_TYPE)
 							.accept(MediaType.APPLICATION_JSON_TYPE)
 							.delete(String.class);
@@ -106,13 +106,13 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/
-	public String hangupOneMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/
+	public String hangupOneMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.delete(String.class);
@@ -124,13 +124,13 @@ public class ConferenceFeature extends BaseFeature {
 			}		
 
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
-	public String playToMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/
+	public String playToMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Play/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.post(String.class);
@@ -142,13 +142,13 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Play/
-	public String stopPlayToMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/
+	public String stopPlayToMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Play/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Play/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.delete(String.class);
@@ -160,13 +160,13 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Speak/
-	public String speakToMember(String ConferenceId, String MemberId, Map<String, String> parameters) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Speak/
+	public String speakToMember(String ConferenceName, String MemberId, Map<String, String> parameters) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Speak/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Speak/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.post(String.class, PlivoUtils.ParameterUtils.mapToJSON(parameters));
@@ -178,13 +178,13 @@ public class ConferenceFeature extends BaseFeature {
 			}
 
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
-	public String deafMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/
+	public String deafMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Deaf/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.post(String.class);
@@ -195,13 +195,13 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Deaf/
-	public String unDeafMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/
+	public String unDeafMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Deaf/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Deaf/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.delete(String.class);
@@ -212,13 +212,13 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
-	public String muteMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/
+	public String muteMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Mute/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.post(String.class);
@@ -229,13 +229,13 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Mute/
-	public String unMuteMember(String ConferenceId, String MemberId) 
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/
+	public String unMuteMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Mute/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Mute/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.delete(String.class);
@@ -246,14 +246,14 @@ public class ConferenceFeature extends BaseFeature {
 				}
 			}
 	
-	// /v1/Account/{auth_id}/Conference/{conference_id}/Member/{member_id}/Kick/
+	// /v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Kick/
 
-	public String kickMember(String ConferenceId, String MemberId) 
+	public String kickMember(String ConferenceName, String MemberId) 
 			throws PlivoClientException {
 
 				try {
 					String response = this.getBaseResource()
-						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceId+"/Member"+MemberId+"/Kick/")
+						.path("/Account/"+this.getAccountId()+"/Conference/"+ConferenceName+"/Member"+MemberId+"/Kick/")
 						.type(MediaType.APPLICATION_JSON_TYPE)
 						.accept(MediaType.APPLICATION_JSON_TYPE)
 						.post(String.class);

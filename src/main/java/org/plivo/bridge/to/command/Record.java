@@ -41,6 +41,12 @@ public class Record implements Serializable {
 	@XmlAttribute
 	private Boolean redirect;
 	
+	@XmlAttribute
+	private Boolean startOnDialAnswer;
+
+	@XmlAttribute
+	private Boolean recordSession;
+
 	public Record() {
 		
 	}
@@ -116,23 +122,6 @@ public class Record implements Serializable {
 		this.playBeep = playBeep;
 	}
 	
-	public Boolean isBothLegs() {
-		return bothLegs;
-	}
-
-	/**
-	 * Record both legs (true/false, default false)
-              no beep will be played
-	 * @param bothLegs
-	 */
-	public void setBothLegs(Boolean bothLegs) {
-		this.bothLegs = bothLegs;
-	}
-	
-	public Boolean isRedirect() {
-		return bothLegs;
-	}
-
 	/**
 	 * Redirect to action url or not (true/false, default false)
 	 * @param redirect
@@ -152,5 +141,21 @@ public class Record implements Serializable {
 	public Boolean getRedirect() {
 		return redirect;
 	}
+
+    public void setStartOnDialAnswer(Boolean startOnDialAnswer) {
+        this.startOnDialAnswer = startOnDialAnswer;
+    }
+
+    public Boolean getStartOnDialAnswer() {
+        return startOnDialAnswer;
+    }
+
+    public void setRecordSession(Boolean recordSession) {
+        this.recordSession = recordSession;
+    }
+
+    public Boolean getRecordSession() {
+        return recordSession;
+    }
 	
 }
