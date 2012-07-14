@@ -13,9 +13,9 @@ See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 Pre-built jars
 --------------
 
-[plivo-0.2.3-jar-with-dependencies.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2.3-jar-with-dependencies.jar)
+[plivo-0.2.4-jar-with-dependencies.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2.4-jar-with-dependencies.jar)
 
-[plivo-0.2.3.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2.3.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
+[plivo-0.2.4.jar](https://github.com/downloads/plivo/plivo-java/plivo-0.2.4.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
 
 
 
