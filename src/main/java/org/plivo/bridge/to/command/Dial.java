@@ -59,6 +59,9 @@ public class Dial implements Serializable {
 	
 	@XmlAttribute
 	private String digitsMatch;
+
+    @XmlAttribute
+    private String sipHeaders;
 	
 	@XmlElement(name="Number", required=true)
 	private Number number;
@@ -232,4 +235,12 @@ public class Dial implements Serializable {
 	public void setCallerName(String callerName) {
 		this.callerName = callerName;
 	}
+
+    public String getSipHeader() {
+        return sipHeader;
+    }
+
+    public void setSipHeader(String sipHeader) {
+        this.sipHeader = sipHeader;
+    }
 }
