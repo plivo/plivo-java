@@ -236,11 +236,11 @@ public class Dial implements Serializable {
 		this.callerName = callerName;
 	}
 
-    public String getSipHeader() {
-        return sipHeader;
+    public String getSipHeaders() {
+        return sipHeaders;
     }
 
-    public void setSipHeader(String sipHeader) {
-        this.sipHeader = sipHeader;
+    public void setSipHeaders(String sipHeaders) {
+        this.sipHeaders = sipHeaders;
     }
 }
