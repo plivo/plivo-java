@@ -1,7 +1,11 @@
 package com.plivo.sdk.client;
 
 //Exceptions
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.apache.http.client.ClientProtocolException;
 import com.plivo.sdk.exception.PlivoException;
 
@@ -78,46 +82,63 @@ public class RestAPI {
 	public String request(String resource, LinkedHashMap<String, String> parameters, String method) 
 	        throws PlivoException
 	{
-	    HttpResponse responseBody = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
+	    HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
 	            HttpStatus.SC_OK, "OK");
+	    String json = "";
 	    try {
-        	    if ( method == "GET" ) {
-        	        // Prepare a String with GET parameters
-        	        String getparams = "?";
-        	        for ( Entry<String, String> pair : parameters.entrySet() )
-        	            getparams += pair.getKey() + "=" + pair.getValue() + "&";
-        	        // remove the trailing '&'
-        	        getparams = getparams.substring(0, getparams.length() - 1);
-        	        
-        	        HttpGet httpget = new HttpGet(this.BaseURI + getparams);
-        	        responseBody = this.Client.execute(httpget);
-        	    }
-        	    else if ( method == "POST" ) {
-        	        HttpPost httpost = new HttpPost(this.BaseURI);
-        	        Gson gson = new GsonBuilder().serializeNulls().create();
-                    // Create a String entity with the POST parameters
-        	        StringEntity se = new StringEntity(gson.toJson(parameters));
-                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                    // Now, attach the pay load to the request 
-                    httpost.setEntity(se);
-                    responseBody = this.Client.execute(httpost);
-        	    }
-        	    else if ( method == "DELETE" ) {
-        	        HttpDelete httpdelete = new HttpDelete(this.BaseURI);
-        	        responseBody = this.Client.execute(httpdelete);
-        	    }
+    	    if ( method == "GET" ) {
+    	        // Prepare a String with GET parameters
+    	        String getparams = "?";
+    	        for ( Entry<String, String> pair : parameters.entrySet() )
+    	            getparams += pair.getKey() + "=" + pair.getValue() + "&";
+    	        // remove the trailing '&'
+    	        getparams = getparams.substring(0, getparams.length() - 1);
+    	        
+    	        HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
+    	        response = this.Client.execute(httpget);
+    	    }
+    	    else if ( method == "POST" ) {
+    	        HttpPost httpost = new HttpPost(this.BaseURI + resource);
+    	        Gson gson = new GsonBuilder().serializeNulls().create();
+                // Create a String entity with the POST parameters
+    	        StringEntity se = new StringEntity(gson.toJson(parameters));
+                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                // Now, attach the pay load to the request 
+                httpost.setEntity(se);
+                response = this.Client.execute(httpost);
+    	    }
+    	    else if ( method == "DELETE" ) {
+    	        HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
+    	        response = this.Client.execute(httpdelete);
+    	    }
+    	    json = this.convertStreamToString(response.getEntity().getContent());
 	    }
 	    catch (ClientProtocolException e) {
 	        throw new PlivoException(e.getLocalizedMessage());
 	    } catch (IOException e) {
 	        throw new PlivoException(e.getLocalizedMessage());
-	    } finally {
+	    } catch (IllegalStateException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } finally {
             this.Client.getConnectionManager().shutdown();
         }
 	    
-	    if ( responseBody.getStatusLine().getStatusCode() != 200 )
-	        throw new PlivoException(responseBody.getStatusLine().getReasonPhrase());
-	    return responseBody.toString();
+	    if ( response.getStatusLine().getStatusCode() != 200 )
+	        throw new PlivoException(response.getStatusLine().getReasonPhrase());
+	    
+	    return json;
+	}
+	
+	private String convertStreamToString(InputStream istream) 
+	        throws IOException {
+        BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
+        StringBuilder responseStr = new StringBuilder();
+        String line = "";
+        while ((line = breader.readLine()) != null) {
+            responseStr.append(line);
+        }
+        breader.close();
+        return responseStr.toString();
 	}
 	
 	private String get_key_value(LinkedHashMap<String, String> params, String key) throws PlivoException {
