@@ -123,7 +123,7 @@ public class RestAPI {
             this.Client.getConnectionManager().shutdown();
         }
 	    
-	    if ( response.getStatusLine().getStatusCode() != 200 )
+	    if ( response.getStatusLine().getStatusCode() >= 400 )
 	        throw new PlivoException(response.getStatusLine().getReasonPhrase());
 	    
 	    return json;
