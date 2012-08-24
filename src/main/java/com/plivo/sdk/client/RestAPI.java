@@ -12,18 +12,19 @@ import com.plivo.sdk.exception.PlivoException;
 // Plivo resources
 import com.plivo.sdk.response.account.Account;
 import com.plivo.sdk.response.account.SubAccount;
-import com.plivo.sdk.response.account.SubAccountList;
+import com.plivo.sdk.response.account.SubAccountFactory;
 import com.plivo.sdk.response.application.Application;
-import com.plivo.sdk.response.application.ApplicationList;
+import com.plivo.sdk.response.application.ApplicationFactory;
 import com.plivo.sdk.response.call.CDR;
-import com.plivo.sdk.response.call.CDRList;
+import com.plivo.sdk.response.call.CDRFactory;
 import com.plivo.sdk.response.call.Call;
 import com.plivo.sdk.response.call.LiveCall;
-import com.plivo.sdk.response.call.LiveCallList;
+import com.plivo.sdk.response.call.LiveCallFactory;
 import com.plivo.sdk.response.conference.Conference;
 import com.plivo.sdk.response.conference.LiveConferenceList;
 import com.plivo.sdk.response.endpoint.Endpoint;
-import com.plivo.sdk.response.endpoint.EndpointList;
+import com.plivo.sdk.response.endpoint.EndpointFactory;
+import com.plivo.sdk.response.message.Message;
 import com.plivo.sdk.response.response.GenericResponse;
 import com.plivo.sdk.response.response.Record;
 
@@ -161,8 +162,8 @@ public class RestAPI {
         return this.gson.fromJson(request("/", parameters, "GET"), GenericResponse.class);	    
 	}
 	
-	public SubAccountList get_subaccounts() throws PlivoException {
-	    return this.gson.fromJson(request("/Subaccount/", new LinkedHashMap<String, String>(), "GET"), SubAccountList.class);
+	public SubAccountFactory get_subaccounts() throws PlivoException {
+	    return this.gson.fromJson(request("/Subaccount/", new LinkedHashMap<String, String>(), "GET"), SubAccountFactory.class);
     }
 	
 	public SubAccount get_subaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -184,8 +185,8 @@ public class RestAPI {
     }
 	
 	// Application
-	public ApplicationList get_applications(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    return this.gson.fromJson(request("/Application/", new LinkedHashMap<String, String>(), "GET"), ApplicationList.class);
+	public ApplicationFactory get_applications(LinkedHashMap<String, String> parameters) throws PlivoException {
+	    return this.gson.fromJson(request("/Application/", new LinkedHashMap<String, String>(), "GET"), ApplicationFactory.class);
     }
 	
 	public Application get_application(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -209,8 +210,8 @@ public class RestAPI {
 	}
 	
 	// Call
-    public CDRList get_cdrs(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("/Call/", parameters, "GET"), CDRList.class);
+    public CDRFactory get_cdrs(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("/Call/", parameters, "GET"), CDRFactory.class);
     }
 
     public CDR get_cdr(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -219,10 +220,10 @@ public class RestAPI {
                 new LinkedHashMap<String, String>(), "GET"), CDR.class);
     }
 
-    public LiveCallList get_live_calls() throws PlivoException {
+    public LiveCallFactory get_live_calls() throws PlivoException {
         LinkedHashMap<String, String> parameters= new LinkedHashMap<String, String>();
         parameters.put("status", "live");
-        return this.gson.fromJson(request("/Call/", parameters, "GET"), LiveCallList.class);
+        return this.gson.fromJson(request("/Call/", parameters, "GET"), LiveCallFactory.class);
     }
 
     public LiveCall get_live_call(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -378,8 +379,8 @@ public class RestAPI {
     }
     
     // Endpoint
-    public EndpointList get_endpoints(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("/Endpoint/", parameters, "GET"), EndpointList.class);
+    public EndpointFactory get_endpoints(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("/Endpoint/", parameters, "GET"), EndpointFactory.class);
     }
 
     public GenericResponse create_endpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -403,8 +404,8 @@ public class RestAPI {
                 new LinkedHashMap<String, String>(), "DELETE"), GenericResponse.class);
     }
     
-//    // Message
-//    public Message send_message(LinkedHashMap<String, String> parameters) throws PlivoException {
-//        return this.gson.fromJson(request("/Message/", parameters, "POST"), Message.class);
-//    }
+    // Message
+    public Message send_message(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("/Message/", parameters, "POST"), Message.class);
+    }
 }

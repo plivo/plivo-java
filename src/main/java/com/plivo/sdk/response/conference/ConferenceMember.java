@@ -1,18 +1,31 @@
 package com.plivo.sdk.response.conference;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ConferenceMember {
     public Boolean muted ;
-    public String member_id ;
+    
+    @SerializedName("member_id")
+    public String memberId ;
+    
     public Boolean deaf ;
+    
     public String from ;
+    
     public String to ;
-    public String caller_name ;
+    
+    @SerializedName("caller_name")
+    public String callerName ;
+    
     public String direction ;
-    public String call_uuid ;
-    public String join_time ;
+    
+    @SerializedName("call_uuid")
+    public String callUUID ;
+    
+    @SerializedName("join_time")
+    public String joinTime ;
     
     public ConferenceMember() {
         // empty
     }
-
 }

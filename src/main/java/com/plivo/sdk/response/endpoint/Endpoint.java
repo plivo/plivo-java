@@ -1,17 +1,29 @@
 package com.plivo.sdk.response.endpoint;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Endpoint {
     public String username ;
-    public String sip_uri ;
+
+    @SerializedName("sip_uri")
+    public String sipUri ;
+    
     public String alias ;
-    public String endpoint_id ;
+    
+    @SerializedName("endpoint_id")
+    public String endpointId ;
+    
     public String password ;
-    public String resource_uri ;
-    public String api_id ;
+    
+    @SerializedName("resource_uri")
+    public String resourceUri ;
+    
+    @SerializedName("api_id")
+    public String apiID ;
+    
     public String error ;
     
     public Endpoint() {
         // empty
     }
-
 }

@@ -1,27 +1,68 @@
 package com.plivo.sdk.response.number;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Number {
-    public String country ;
     public String region ;
-    public Boolean voice_enabled ;
-    public String description ;
-    public Boolean plivo_number ;
-    public Boolean sms_enabled ;
-    public Boolean fax_enabled ;
+
+    @SerializedName("voice_enabled")
+    public Boolean voiceEnabled ;
+    
+    @SerializedName("sms_enabled")
+    public Boolean smsEnabled ;
+    
+    @SerializedName("fax_enabled")
+    public Boolean faxEnabled ;
+    
     public String number ;
-    public String api_id ;
-    public Integer lata ;
-    public String voice_rate ;
+
+    @SerializedName("api_id")
+    public String apiID ;
+    
+    @SerializedName("voice_rate")
+    public String voiceRate ;
+    
     public String application ;
-    public String monthly_rental_rate ;
-    public String sms_rate ;
-    public String number_type ;
-    public String sub_account ;
-    public String added_on ;
-    public String resource_uri ;
+
+    @SerializedName("sms_rate")
+    public String smsRate ;
+    
+    @SerializedName("number_type")
+    public String numberType ;
+    
+    @SerializedName("sub_account")
+    public String subAccount ;
+    
+    @SerializedName("added_on")
+    public String addedOn ;
+    
+    @SerializedName("resource_uri")
+    public String resourceUri ;
+    
+    @SerializedName("group_id")
+    public String groupID ;
+    
+    public String prefix ;
+
+    @SerializedName("rental_rate")
+    public String rentalRate ;
+    
+    @SerializedName("setup_rate")
+    public String setupRate ;
+    
+    public Integer stock ;
+    
+    @Deprecated
+    public String country ;
+    
+    @Deprecated
+    public Integer lata ;
+    
+    @Deprecated
+    @SerializedName("monthly_rental_rate")
+    public String monthlyRentalRrate ;
     
     public Number() {
         // empty
     }
-
 }

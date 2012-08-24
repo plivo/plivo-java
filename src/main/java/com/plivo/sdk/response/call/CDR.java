@@ -1,16 +1,44 @@
 package com.plivo.sdk.response.call;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CDR {
-    public Integer bill_duration ;
-    public String total_amount ;
-    public String parent_call_uuid ;
-    public String call_direction ;
-    public String to_number ;
-    public String total_rate ;
-    public String from_number ;
-    public String end_time ;
-    public String call_uuid ;
-    public String resource_uri ;
+    @SerializedName("bill_duration")
+    public Integer billDuration ;
+    
+    @SerializedName("total_amount")
+    public String totalAmount ;
+    
+    @SerializedName("parent_call_uuid")
+    public String parentCallUUID ;
+    
+    @SerializedName("call_direction")
+    public String callDirection ;
+    
+    @SerializedName("to_number")
+    public String toNumber ;
+    
+    @SerializedName("total_rate")
+    public String totalRate ;
+    
+    @SerializedName("from_number")
+    public String fromNumber ;
+    
+    @SerializedName("end_time")
+    public String endTime ;
+    
+    @SerializedName("call_uuid")
+    public String callUUID ;
+    
+    @SerializedName("resource_uri")
+    public String resourceUri ;
+    
     public String error ;
-    public String api_id ;
+    
+    @SerializedName("api_id")
+    public String apiID ;
+    
+    public CDR() {
+        // empty
+    }
 }

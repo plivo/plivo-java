@@ -1,8 +1,8 @@
-package com.plivo.sdk.response.account;
+package com.plivo.sdk.response.message;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SubAccountMeta {
+public class MessageMeta {
     public String previous ;
 
     @SerializedName("total_count")
@@ -14,7 +14,8 @@ public class SubAccountMeta {
     
     public String next ;
     
-    public SubAccountMeta() {
+    public MessageMeta() {
         // empty
     }
+
 }

@@ -1,21 +1,48 @@
 package com.plivo.sdk.response.application;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Application {
-    public String fallback_method;
-    public Boolean default_app;
-    public String app_name;
-    public Boolean production_app;
-    public String app_id;
-    public String hangup_url;
-    public String answer_url;
-    public String message_url;
-    public String resource_uri;
-    public String hangup_method;
-    public String message_method;
-    public String fallback_answer_url;
-    public String answer_method;
+    @SerializedName("fallback_method")
+    public String fallbackMethod ;
     
+    @SerializedName("default_app")
+    public Boolean isDefaultApplication ;
+    
+    @SerializedName("app_name")
+    public String applicationName ;
+    
+    @SerializedName("production_app")
+    public Boolean isProductionApplication ;
+    
+    @SerializedName("app_id")
+    public String applicationID ;
+    
+    @SerializedName("hangup_url")
+    public String hangupUrl ;
+    
+    @SerializedName("answer_url")
+    public String answerUrl ;
+    
+    @SerializedName("message_url")
+    public String messageUrl ;
+    
+    @SerializedName("resource_uri")
+    public String resourceUri ;
+    
+    @SerializedName("answer_method")
+    public String answerMethod ;
+    
+    @SerializedName("hangup_method")
+    public String hangupMethod ;
+    
+    @SerializedName("message_method")
+    public String messageMethod ;
+    
+    @SerializedName("fallback_answer_url")
+    public String fallbackAnswerUrl ;
+
     public Application() {
-        //empty
+        // empty
     }
 }
