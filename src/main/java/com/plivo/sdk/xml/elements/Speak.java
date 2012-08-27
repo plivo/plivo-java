@@ -13,10 +13,12 @@ public class Speak implements Serializable {
     private static final long serialVersionUID = 158509162906138363L;
 
     @XmlAttribute
-    private String voice; 
+    private String voice;
+    
     @XmlAttribute
     private String language;
-    @XmlAttribute(required=false)
+    
+    @XmlAttribute
     private Integer loop;
 
     @XmlValue

@@ -1,18 +1,18 @@
 package com.plivo.sdk.response.number;
 
+import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class NumberSearchFactory {
-    public String previous ;
-
-    @SerializedName("total_count")
-    public Integer totalCount ;
+    public NumberMeta meta ;
     
-    public Integer offset ;
+    @SerializedName("api_id")
+    public String apiID ;
     
-    public Integer limit ;
+    public String error ;
     
-    public String next ;
+    @SerializedName("objects")
+    public List<Number> numberList ;
     
     public NumberSearchFactory() {
         // empty

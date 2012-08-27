@@ -325,8 +325,4 @@ public class Conference implements Serializable {
     public Boolean getFloorEvent() {
         return floorEvent;
     }
-    
-//    public String serializeToXML() {
-//        return 
-//    }
 }

@@ -42,6 +42,8 @@ public class Application {
     @SerializedName("fallback_answer_url")
     public String fallbackAnswerUrl ;
 
+    public String error ;
+    
     public Application() {
         // empty
     }

@@ -62,6 +62,8 @@ public class Number {
     @SerializedName("monthly_rental_rate")
     public String monthlyRentalRrate ;
     
+    public String error;
+    
     public Number() {
         // empty
     }

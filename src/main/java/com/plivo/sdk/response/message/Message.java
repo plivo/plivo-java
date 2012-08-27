@@ -36,6 +36,11 @@ public class Message {
     @SerializedName("message_type")
     public String messageType ;
     
+    public String error ;
+
+    @SerializedName("api_id")
+    public String apiID ;
+    
     public Message() {
         // empty
     }

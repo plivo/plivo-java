@@ -18,6 +18,8 @@ public class Conference {
     @SerializedName("api_id")
     public String apiID ;
     
+    public String error ;
+    
     public Conference() {
         // empty
     }

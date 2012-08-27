@@ -12,6 +12,8 @@ public class MessageList {
     @SerializedName("objects")
     public List<Message> messageList ;
     
+    public String error;
+    
     public MessageList() {
         // empty
     }
