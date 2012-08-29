@@ -117,7 +117,7 @@ public class RestAPI {
         }
 	    
 	    if ( response.getStatusLine().getStatusCode() >= 400 )
-	        throw new PlivoException(response.getStatusLine().getReasonPhrase());
+	            throw new PlivoException(json);
 	    
 	    return json;
 	}
@@ -418,31 +418,31 @@ public class RestAPI {
     
     public GenericResponse rentNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
-        return this.gson.fromJson(request("POST", String.format("/AvailableNumber/{0}/", number), 
+        return this.gson.fromJson(request("POST", String.format("/AvailableNumber/%s/", number), 
                 new LinkedHashMap<String, String>()), GenericResponse.class);
     }
     
     public NumberResponse rentNumbers(LinkedHashMap<String, String> parameters) throws PlivoException {
         String groupId = getKeyValue(parameters, "group_id");
-        return this.gson.fromJson(request("POST", String.format("/AvailableNumberGroup/{0}/", groupId), 
+        return this.gson.fromJson(request("POST", String.format("/AvailableNumberGroup/%s/", groupId), 
                 new LinkedHashMap<String, String>()), NumberResponse.class);
     }
 
     public GenericResponse unRentNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
-        return this.gson.fromJson(request("DELETE", String.format("/Number/{0}/", number), 
+        return this.gson.fromJson(request("DELETE", String.format("/Number/%s/", number), 
                 new LinkedHashMap<String, String>()), GenericResponse.class);
     }
 
     public GenericResponse linkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
-        return this.gson.fromJson(request("POST", String.format("/Number/{0}/", number), parameters), GenericResponse.class);
+        return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
 
     public GenericResponse unlinkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         parameters.put("app_id", "");
-        return this.gson.fromJson(request("POST", String.format("/Number/{0}/", number), parameters), GenericResponse.class);
+        return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
     
     
@@ -453,7 +453,7 @@ public class RestAPI {
     
     public Message getMessage(LinkedHashMap<String, String> parameters) throws PlivoException {
         String record_id = getKeyValue(parameters, "record_id");
-        return this.gson.fromJson(request("GET", String.format("/Message/{0}/", record_id), 
+        return this.gson.fromJson(request("GET", String.format("/Message/%s/", record_id), 
                 new LinkedHashMap<String, String>()), Message.class);
     }
 
