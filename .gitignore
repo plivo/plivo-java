@@ -1,8 +1,6 @@
-/target
-/.settings
-/.classpath
-/.project
-/test-output
-*.swp
 *.class
 
+# Package Files #
+*.jar
+*.war
+*.ear

@@ -1,166 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.plivo</groupId>
-	<artifactId>plivo</artifactId>
-	<name>Plivo Java Bridge Module</name>
-	<packaging>jar</packaging>
-	<description>Plivo.com Java Bridge Module</description>
-	<version>0.2.4</version>
-	<dependencies>
-
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>${jersey.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>${jersey.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-		</dependency>
-            
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.9</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.1.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.grizzly</groupId>
-			<artifactId>grizzly-http-servlet</artifactId>
-			<version>${grizzly.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
-	<properties>
-		<jersey.version>1.9-ea04</jersey.version>
-		<grizzly.version>2.1.1</grizzly.version>
-		<plivo.api.version>v1</plivo.api.version>
-	</properties>
-	<repositories>
-		<repository>
-			<id>java.net2</id>
-			<name>Java.net Repository</name>
-			<url>http://download.java.net/maven/2</url>
-		</repository>
-		<repository>
-			<id>glassfish-maven2-repository.dev.java.net</id>
-			<name>Java.net Maven 2 Repository for GlassFish</name>
-			<url>http://download.java.net/maven/glassfish/</url>
-		</repository>
-	</repositories>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.10</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<plugins>
-
-			 <plugin>
-		        <artifactId>maven-assembly-plugin</artifactId>
-		        <version>2.2.2</version>
-		        <configuration>
-		          <descriptorRefs>
-		            <descriptorRef>jar-with-dependencies</descriptorRef>
-		          </descriptorRefs>
-		        </configuration>
-		        <executions>
-		          <execution>
-		            <id>make-assembly</id> 
-		            <phase>package</phase>
-		            <goals>
-		              <goal>single</goal>
-		            </goals>
-		          </execution>
-		        </executions>
-		      </plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-		</plugins>
-	</build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.plivo.sdk</groupId>
+  <artifactId>plivo-java-sdk</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>plivo-java-sdk</name>
+  <description>Java helper library for Plivo</description>
+  <organization>
+  	<name>Plivo</name>
+  	<url>https://www.plivo.com</url>
+  </organization>
+  <scm>
+  	<url>git@github.com:kaydarla/plivo-java</url>
+  	<connection>scm:git:git@github.com:kaydarla/plivo-java</connection>
+  </scm>
+  <issueManagement>
+  	<url>https://github.com/kaydarla/plivo-java/issues</url>
+  </issueManagement>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>common-codec</groupId>
+  			<artifactId>common-codec</artifactId>
+  			<version>1.3</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.apache.httpcomponents</groupId>
+  		<artifactId>httpclient</artifactId>
+  		<version>4.2.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.code.gson</groupId>
+  		<artifactId>gson</artifactId>
+  		<version>2.2.2</version>
+  	</dependency>
+  </dependencies>
 </project>
