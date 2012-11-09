@@ -12,11 +12,14 @@ public class GetDigits implements Serializable {
 
     private static final long serialVersionUID = 158509162906138363L;
 
-    @XmlAttribute
+    @XmlAttribute(required=true)
     private String action;
 
-    @XmlAttribute(required=true)
+    @XmlAttribute()
     private Integer timeout;
+    
+    @XmlAttribute
+    private Integer digitTimeout;
 
     @XmlAttribute
     private String method;
@@ -64,18 +67,33 @@ public class GetDigits implements Serializable {
         this.action = action;
     }
 
+    /**
+     * Time in seconds to wait for receiving the first digit. 
+     * If the user inputs the timeout value, the next element 
+     * in the response is processed.
+     * @param timeout
+     */
     public Integer getTimeout() {
         return timeout;
     }
 
-    /**
-     * Wait for this many seconds before retry or returning
-     * @param timeout
-     */
     public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
-
+    
+    /**
+     * Time in seconds to wait in between two digits entered
+     * by the user.
+     * @param digitTimeout
+     */
+    public Integer getDigitTimeout() {
+        return digitTimeout;
+    }
+    
+    public void setDigitTimeout(Integer digitTimeout) {
+        this.digitTimeout = digitTimeout;
+    }
+    
     public String getMethod() {
         return method;
     }
