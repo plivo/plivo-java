@@ -2,6 +2,7 @@ package com.plivo.sdk.xml.elements;
 
 import java.io.Serializable;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,128 +19,94 @@ public class Response implements Serializable {
     private static final long serialVersionUID = 8071673898735283084L;
 
     @XmlElement(name="Speak")
-    private Speak speak;
+    private ArrayList<Speak> speakFactory;
 
     @XmlElement(name="Play")
-    private Play play;
+    private ArrayList<Play> playFactory;
 
     @XmlElement(name="GetDigits")
-    private GetDigits getDigits;
+    private ArrayList<GetDigits> getDigitsFactory;
 
     @XmlElement(name="Record")
-    private Record record;
+    private ArrayList<Record> recordFactory;
 
     @XmlElement(name="Dial")
-    private Dial dial;
+    private ArrayList<Dial> dialFactory;
 
     @XmlElement(name="Redirect")
-    private Redirect redirect;
+    private ArrayList<Redirect> redirectFactory;
 
     @XmlElement(name="Wait")
-    private Wait wait;
+    private ArrayList<Wait> waitFactory;
 
     @XmlElement(name="Hangup")
-    private Hangup hangup;
+    private ArrayList<Hangup> hangupFactory;
 
     @XmlElement(name="PreAnswer")
-    private PreAnswer preAnswer;
+    private ArrayList<PreAnswer> preAnswerFactory;
 
     @XmlElement(name="Conference")
-    private Conference conference;
+    private ArrayList<Conference> conferenceFactory;
 
     @XmlElement(name="Message")
-    private Message message;
+    private ArrayList<Message> messageFactory;
 
     public Response() {
-
+		speakFactory = new ArrayList<Speak>();
+		playFactory = new ArrayList<Play>();
+		getDigitsFactory = new ArrayList<GetDigits>();
+		recordFactory = new ArrayList<Record>();
+		dialFactory = new ArrayList<Dial>();
+		redirectFactory = new ArrayList<Redirect>();
+		waitFactory = new ArrayList<Wait>();
+		hangupFactory = new ArrayList<Hangup>();
+		preAnswerFactory = new ArrayList<PreAnswer>();
+		conferenceFactory = new ArrayList<Conference>();
+		messageFactory = new ArrayList<Message>();
     }
 
-    public Speak getSpeak() {
-        return speak;
+    public void addSpeak(Speak speak) {
+        this.speakFactory.add(speak);
     }
 
-    public void setSpeak(Speak speak) {
-        this.speak = speak;
+    public void addPlay(Play play) {
+        this.playFactory.add(play);
     }
 
-    public Play getPlay() {
-        return play;
+    public void addGetDigits(GetDigits getDigits) {
+        this.getDigitsFactory.add(getDigits);
     }
 
-    public void setPlay(Play play) {
-        this.play = play;
+    public void addRecord(Record record) {
+        this.recordFactory.add(record);
     }
 
-    public GetDigits getGetDigits() {
-        return getDigits;
+    public void addDial(Dial dial) {
+        this.dialFactory.add(dial);
     }
 
-    public void setGetDigits(GetDigits getDigits) {
-        this.getDigits = getDigits;
+    public void addRedirect(Redirect redirect) {
+        this.redirectFactory.add(redirect);
     }
 
-    public Record getRecord() {
-        return record;
+    public void addWait(Wait wait) {
+        this.waitFactory.add(wait);
     }
 
-    public void setRecord(Record record) {
-        this.record = record;
+    public void addHangup(Hangup hangup) {
+        this.hangupFactory.add(hangup);
     }
 
-    public Dial getDial() {
-        return dial;
+    public void addPreAnswer(PreAnswer preAnswer) {
+        this.preAnswerFactory.add(preAnswer);
     }
 
-    public void setDial(Dial dial) {
-        this.dial = dial;
+    public void addConference(Conference conference) {
+        this.conferenceFactory.add(conference);
     }
 
-    public Redirect getRedirect() {
-        return redirect;
-    }
-
-    public void setRedirect(Redirect redirect) {
-        this.redirect = redirect;
-    }
-
-    public Wait getWait() {
-        return wait;
-    }
-
-    public void setWait(Wait wait) {
-        this.wait = wait;
-    }
-
-    public Hangup getHangup() {
-        return hangup;
-    }
-
-    public void setHangup(Hangup hangup) {
-        this.hangup = hangup;
-    }
-
-    public PreAnswer getPreAnswer() {
-        return preAnswer;
-    }
-
-    public void setPreAnswer(PreAnswer preAnswer) {
-        this.preAnswer = preAnswer;
-    }
-
-    public Conference getConference() {
-        return conference;
-    }
-
-    public void setConference(Conference conference) {
-        this.conference = conference;
-    }
-
-    public Message getMessage() {
-        return message;
-    }
-
-    public void setMessage(Message message) {
-        this.message = message;
+    public void addMessage(Message message) {
+        this.messageFactory.add(message);
     }
     
     public String serializeToXML() {

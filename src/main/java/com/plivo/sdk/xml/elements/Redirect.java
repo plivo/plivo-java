@@ -22,16 +22,17 @@ public class Redirect implements Serializable {
 
     }
 
-    public String getMethod() {
-        return method;
-    }
-
+	/**
+	 * Used to specify the HTTP request mode to obtain 
+	 * the Redirect URL.
+	 * @param method
+	 */
     public void setMethod(String method) {
         this.method = method;
     }
 
-    public String getUrl() {
-        return url;
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -40,5 +41,9 @@ public class Redirect implements Serializable {
      */
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

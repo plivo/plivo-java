@@ -8,26 +8,25 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Number implements Serializable {
-
+public class User implements Serializable {
     private static final long serialVersionUID = 158509162906138363L;
 
     @XmlAttribute
     private String sendDigits;
-
+    
     @XmlAttribute
     private String sendDigitsMode;
-    
+
     @XmlAttribute
     private Boolean sendOnPreanswer;
 
     @XmlValue
-    private String number;
+    private String sipUser;
 
-    public Number() {
+    public User() {
 
     }
-
+    
     /**
      * specify if you need inband (default = rfc2833)
      * @param sendDigitsMode
@@ -41,27 +40,27 @@ public class Number implements Serializable {
     }
 
     /**
-     * Key to press after connecting to the number
+     * Key to press after connecting to the user
      * @param sendDigits
      */
     public void setSendDigits(String sendDigits) {
         this.sendDigits = sendDigits;
     }
 
-    public String getSendDigits() {
+	public String getSendDigits() {
         return sendDigits;
     }
 
     /**
-     * Phone number to dial
-     * @param number
+     * SIP URI to dial
+     * @param sipUser
      */
-    public void setNumber(String number) {
-        this.number = number;
+    public void setUser(String sipUser) {
+        this.sipUser = sipUser;
     }
 
-    public String getNumber() {
-        return number;
+    public String getUser() {
+        return sipUser;
     }
 
     /**
@@ -69,11 +68,11 @@ public class Number implements Serializable {
 	 * early media.
      * @param sendOnPreanswer
      */
-    public Boolean isSendOnPreanswer() {
-        return sendOnPreanswer;
-    }
-
     public void setSendOnPreanswer(Boolean sendOnPreanswer) {
         this.sendOnPreanswer = sendOnPreanswer;
     }
- }
+
+    public Boolean isSendOnPreanswer() {
+        return sendOnPreanswer;
+    }
+}

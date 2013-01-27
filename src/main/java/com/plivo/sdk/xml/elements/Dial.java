@@ -1,6 +1,7 @@
 package com.plivo.sdk.xml.elements;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -57,15 +58,15 @@ public class Dial implements Serializable {
     @XmlAttribute
     private String sipHeaders;
 
-    @XmlElement(name="Number", required=true)
-    private Number number;
+    @XmlElement(name="Number")
+    private ArrayList<Number> numberFactory;
+
+    @XmlElement(name="User")
+    private ArrayList<User> sipUserFactory;
 
     public Dial() {
-
-    }
-
-    public Integer getTimeLimit() {
-        return timeLimit;
+		numberFactory = new ArrayList<Number>();
+		sipUserFactory = new ArrayList<User>();
     }
 
     /**
@@ -76,16 +77,20 @@ public class Dial implements Serializable {
         this.timeLimit = timeLimit;
     }
 
-    public Integer getTimeout() {
-        return timeout;
+    public Integer getTimeLimit() {
+        return timeLimit;
     }
 
+    /**
+     *  Hang up the call after these many seconds. 0 means no timeLimit
+     * @param timeLimit
+     */
     public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 
-    public String getAction() {
-        return action;
+    public Integer getTimeout() {
+        return timeout;
     }
 
     /**
@@ -96,8 +101,8 @@ public class Dial implements Serializable {
         this.action = action;
     }
 
-    public String getMethod() {
-        return method;
+    public String getAction() {
+        return action;
     }
 
     /**
@@ -108,8 +113,8 @@ public class Dial implements Serializable {
         this.method = method;
     }
 
-    public Boolean getHangupOnStar() {
-        return hangupOnStar;
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -120,8 +125,8 @@ public class Dial implements Serializable {
         this.hangupOnStar = hangupOnStar;
     }
 
-    public String getCallerId() {
-        return callerId;
+    public Boolean getHangupOnStar() {
+        return hangupOnStar;
     }
 
     /**
@@ -132,16 +137,24 @@ public class Dial implements Serializable {
         this.callerId = callerId;
     }
 
-    public Number getNumber() {
-        return number;
+    public String getCallerId() {
+        return callerId;
     }
 
-    public void setNumber(Number number) {
-        this.number = number;
+    /**
+     * The number to be dialed
+     * @param number
+     */
+    public void addNumber(Number number) {
+        this.numberFactory.add(number);
     }
 
-    public String getConfirmSound() {
-        return confirmSound;
+    /**
+     * The sip uri to be dialed
+     * @param sipUser
+     */
+    public void addUser(User sipUser) {
+        this.sipUserFactory.add(sipUser);
     }
 
     /**
@@ -152,8 +165,8 @@ public class Dial implements Serializable {
         this.confirmSound = confirmSound;
     }
 
-    public String getConfirmKey() {
-        return confirmKey;
+    public String getConfirmSound() {
+        return confirmSound;
     }
 
     /**
@@ -164,8 +177,8 @@ public class Dial implements Serializable {
         this.confirmKey = confirmKey;
     }
 
-    public String getDialMusic() {
-        return dialMusic;
+    public String getConfirmKey() {
+        return confirmKey;
     }
 
     /**
@@ -175,6 +188,10 @@ public class Dial implements Serializable {
      */
     public void setDialMusic(String dialMusic) {
         this.dialMusic = dialMusic;
+    }
+
+    public String getDialMusic() {
+        return dialMusic;
     }
 
     /**
@@ -190,10 +207,6 @@ public class Dial implements Serializable {
         return redirect;
     }
 
-    public String getCallbackUrl() {
-        return callbackUrl;
-    }
-
     /**
      *  URL to request when bridge starts and bridge ends
      * @param callbackUrl
@@ -202,8 +215,8 @@ public class Dial implements Serializable {
         this.callbackUrl = callbackUrl;
     }
 
-    public String getCallbackMethod() {
-        return callbackMethod;
+    public String getCallbackUrl() {
+        return callbackUrl;
     }
 
     /**
@@ -214,6 +227,14 @@ public class Dial implements Serializable {
         this.callbackMethod = callbackMethod;
     }
 
+    public String getCallbackMethod() {
+        return callbackMethod;
+    }
+
+    /**
+     * Set matching key combination for the caller (A leg).
+     * @param digitsMatch
+     */
     public String getDigitsMatch() {
         return digitsMatch;
     }
@@ -222,19 +243,32 @@ public class Dial implements Serializable {
         this.digitsMatch = digitsMatch;
     }
 
-    public String getCallerName() {
-        return callerName;
-    }
-
+    /**
+     * If set to a string, caller name will be set to this 
+	 * string value. Default is current caller name.
+     * @param callerName
+     */
     public void setCallerName(String callerName) {
         this.callerName = callerName;
     }
 
-    public String getSipHeaders() {
-        return sipHeaders;
+    public String getCallerName() {
+        return callerName;
     }
 
+    /**
+     * The SIP headers are always prefixed with X-PH-. For every HTTP Request 
+	 * called by the dialed leg, the SIP headers will be present. 
+	 * Only [A-Z], [a-z] and [0-9] characters are allowed for SIP headers key. 
+	 * Only [A-Z], [a-z], [0-9] and '%' characters are allowed for SIP headers 
+	 * value (so you can URL encode this value).
+     * @param sipHeaders
+     */
     public void setSipHeaders(String sipHeaders) {
         this.sipHeaders = sipHeaders;
+    }
+
+    public String getSipHeaders() {
+        return sipHeaders;
     }
 }

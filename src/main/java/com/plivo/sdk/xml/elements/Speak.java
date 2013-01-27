@@ -28,10 +28,6 @@ public class Speak implements Serializable {
 
     }
 
-    public String getVoice() {
-        return voice;
-    }
-
     /**
      * Voice to be used based on TTS engine
      * @param voice
@@ -40,8 +36,8 @@ public class Speak implements Serializable {
         this.voice = voice;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getVoice() {
+        return voice;
     }
 
     /**
@@ -52,8 +48,8 @@ public class Speak implements Serializable {
         this.language = language;
     }
 
-    public Integer getLoop() {
-        return loop;
+    public String getLanguage() {
+        return language;
     }
 
     /**
@@ -64,6 +60,14 @@ public class Speak implements Serializable {
         this.loop = loop;
     }
 
+    public Integer getLoop() {
+        return loop;
+    }
+
+    /**
+     * Text to be spoken by the TTS engine
+     * @param text
+     */
     public String getText() {
         return text;
     }

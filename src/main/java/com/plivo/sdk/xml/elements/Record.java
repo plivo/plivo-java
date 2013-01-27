@@ -45,10 +45,6 @@ public class Record implements Serializable {
 
     }
 
-    public Integer getMaxLength() {
-        return maxLength;
-    }
-
     /**
      * Maximum number of seconds to record (default 60)
      * @param maxLength
@@ -56,8 +52,9 @@ public class Record implements Serializable {
     public void setMaxLength(Integer maxLength) {
         this.maxLength = maxLength;
     }
-    public String getAction() {
-        return action;
+
+    public Integer getMaxLength() {
+        return maxLength;
     }
 
     /**
@@ -68,8 +65,8 @@ public class Record implements Serializable {
         this.action = action;
     }
 
-    public Integer getTimeout() {
-        return timeout;
+    public String getAction() {
+        return action;
     }
 
     /**
@@ -80,8 +77,8 @@ public class Record implements Serializable {
         this.timeout = timeout;
     }
 
-    public String getMethod() {
-        return method;
+    public Integer getTimeout() {
+        return timeout;
     }
 
     /**
@@ -92,8 +89,8 @@ public class Record implements Serializable {
         this.method = method;
     }
 
-    public String getFinishOnKey() {
-        return finishOnKey;
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -104,8 +101,8 @@ public class Record implements Serializable {
         this.finishOnKey = finishOnKey;
     }
 
-    public Boolean isPlayBeep() {
-        return playBeep;
+    public String getFinishOnKey() {
+        return finishOnKey;
     }
 
     /**
@@ -116,6 +113,10 @@ public class Record implements Serializable {
         this.playBeep = playBeep;
     }
 
+    public Boolean isPlayBeep() {
+        return playBeep;
+    }
+
     /**
      * Redirect to action url or not (true/false, default false)
      * @param redirect
@@ -124,18 +125,15 @@ public class Record implements Serializable {
         this.redirect = redirect;
     }
 
-    public Boolean getPlayBeep() {
-        return playBeep;
-    }
-
-    public Boolean getBothLegs() {
-        return bothLegs;
-    }
-
     public Boolean getRedirect() {
         return redirect;
     }
 
+    /**
+     * Record call when called party answers in a Dial 
+	 * (true/false, default false). No beep will be played.
+     * @param startOnDialAnswer
+     */
     public void setStartOnDialAnswer(Boolean startOnDialAnswer) {
         this.startOnDialAnswer = startOnDialAnswer;
     }
@@ -144,6 +142,11 @@ public class Record implements Serializable {
         return startOnDialAnswer;
     }
 
+	/**
+	 * Record current call session in background 
+	 * (true/false, default false). No beep will be played.
+	 * @param recordSession
+	 */
     public void setRecordSession(Boolean recordSession) {
         this.recordSession = recordSession;
     }

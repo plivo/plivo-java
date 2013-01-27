@@ -1,6 +1,7 @@
 package com.plivo.sdk.xml.elements;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -43,28 +44,30 @@ public class GetDigits implements Serializable {
     private String invalidDigitsSound;
 
     @XmlElement(name="Play")
-    private Play play;
+    private ArrayList<Play> playList;
 
     @XmlElement(name="Speak")
-    private Speak speak;
+    private ArrayList<Speak> speakList;
 
     @XmlElement(name="Wait")
-    private Wait wait;
+    private ArrayList<Wait> waitList;
 
     public GetDigits() {
-
+		playList = new ArrayList<Play>();
+		speakList = new ArrayList<Speak>();
+		waitList = new ArrayList<Wait>();
     }
 
-    public String getAction() {
-        return action;
-    }
-
-    /**
+     /**
      * URL to which the digits entered will be sent
      * @param action
      */
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getAction() {
+        return action;
     }
 
     /**
@@ -94,10 +97,6 @@ public class GetDigits implements Serializable {
         this.digitTimeout = digitTimeout;
     }
     
-    public String getMethod() {
-        return method;
-    }
-
     /**
      * Submit to 'action' URL using GET or POST
      * @param method
@@ -105,9 +104,9 @@ public class GetDigits implements Serializable {
     public void setMethod(String method) {
         this.method = method;
     }
-
-    public String isFinishOnKey() {
-        return finishOnKey;
+    
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -118,10 +117,10 @@ public class GetDigits implements Serializable {
         this.finishOnKey = finishOnKey;
     }
 
-    public Integer getNumDigits() {
-        return numDigits;
+    public String isFinishOnKey() {
+        return finishOnKey;
     }
-
+    
     /**
      * How many digits to gather before returning
      * @param numDigits
@@ -130,8 +129,8 @@ public class GetDigits implements Serializable {
         this.numDigits = numDigits;
     }
 
-    public Integer getRetries() {
-        return retries;
+    public Integer getNumDigits() {
+        return numDigits;
     }
 
     /**
@@ -142,8 +141,8 @@ public class GetDigits implements Serializable {
         this.retries = retries;
     }
 
-    public Boolean isPlayBeep() {
-        return playBeep;
+    public Integer getRetries() {
+        return retries;
     }
 
     /**
@@ -154,8 +153,8 @@ public class GetDigits implements Serializable {
         this.playBeep = playBeep;
     }
 
-    public String isValidDigits() {
-        return validDigits;
+    public Boolean isPlayBeep() {
+        return playBeep;
     }
 
     /**
@@ -166,8 +165,8 @@ public class GetDigits implements Serializable {
         this.validDigits = validDigits;
     }
 
-    public String isInvalidDigitsSound() {
-        return invalidDigitsSound;
+    public String isValidDigits() {
+        return validDigits;
     }
 
     /**
@@ -178,27 +177,19 @@ public class GetDigits implements Serializable {
         this.invalidDigitsSound = invalidDigitsSound;
     }
 
-    public Play getPlay() {
-        return play;
+    public String isInvalidDigitsSound() {
+        return invalidDigitsSound;
     }
 
-    public void setPlay(Play play) {
-        this.play = play;
+    public void addPlay(Play play) {
+        this.playList.add(play);
     }
 
-    public Speak getSpeak() {
-        return speak;
+    public void addSpeak(Speak speak) {
+        this.speakList.add(speak);
     }
 
-    public void setSpeak(Speak speak) {
-        this.speak = speak;
-    }
-
-    public Wait getWait() {
-        return wait;
-    }
-
-    public void setWait(Wait wait) {
-        this.wait = wait;
+    public void addWait(Wait wait) {
+        this.waitList.add(wait);
     }
 }

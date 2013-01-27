@@ -38,25 +38,24 @@ public class Message implements Serializable {
      * Destination number
      * @param dst
      */
-    public String getdst() {
-        return dst;
+    public void setDestination(String dst) {
+        this.dst = dst;
     }
 
-    public void setdst(String dst) {
-        this.dst = dst;
+    public String getDestination() {
+        return dst;
     }
 
     /**
      * Source number
      * @param src
      */
-
-    public String getsrc() {
-        return src;
+    public void setSource(String src) {
+        this.src = src;
     }
 
-    public void setsrc(String src) {
-        this.src = src;
+    public String getSource() {
+        return src;
     }
 
     /**
@@ -64,43 +63,42 @@ public class Message implements Serializable {
      * @param type
      */
 
-    public String gettype() {
+    public String getType() {
         return type;
     }
 
-    public void settype(String type) {
+    public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * callbackUrl 
+     * URL that is notified by Plivo when a response is available 
+	 * and to which the response is sent. 
      * @param callbackUrl
      */
-
-    public String getcallbackUrl() {
-        return callbackUrl;
-    }
-
-    public void setcallbackUrl(String callbackUrl) {
+    public void setCallbackUrl(String callbackUrl) {
         this.callbackUrl = callbackUrl;
     }
 
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
 
     /**
-     * callbackMethod 
+     * The method used to notify the callbackUrl.
      * @param callbackMethod
      */
 
-    public String getcallbackMethod() {
+    public String getCallbackMethod() {
         return callbackMethod;
     }
 
-    public void setcallbackMethod(String callbackMethod) {
+    public void setCallbackMethod(String callbackMethod) {
         this.callbackMethod = callbackMethod;
     }
 
     /**
-     * Text to be sent 
+     * Message text to be sent 
      * @param text
      */
 

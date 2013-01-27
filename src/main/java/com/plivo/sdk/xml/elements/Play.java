@@ -21,9 +21,6 @@ public class Play implements Serializable {
     public Play() {
 
     }
-    public Integer getLoop() {
-        return loop;
-    }
 
     /**
      * Number of time to say this text
@@ -42,5 +39,9 @@ public class Play implements Serializable {
      */
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Integer getLoop() {
+        return loop;
     }
 }

@@ -14,12 +14,11 @@ public class Wait implements Serializable {
     @XmlAttribute
     private Integer length;
 
+    @XmlAttribute
+    private Boolean silence;
+
     public Wait() {
 
-    }
-
-    public Integer getLength() {
-        return length;
     }
 
     /**
@@ -28,5 +27,23 @@ public class Wait implements Serializable {
      */
     public void setLength(Integer length) {
         this.length = length;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+	/**
+	 * If silence is also set to "true", the XML will process 
+	 * the next element when there is no voice or sound at the other end,
+	 * overriding the value of the length attribute. 
+	 * @param silence
+	 */
+    public void setSilence(Boolean silence) {
+        this.silence = silence;
+    }
+
+    public Boolean isSilence() {
+        return silence;
     }
 }

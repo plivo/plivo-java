@@ -28,9 +28,6 @@ public class Conference implements Serializable {
     private Boolean startConferenceOnEnter;
 
     @XmlAttribute
-    private Boolean redirect;
-
-    @XmlAttribute
     private Boolean endConferenceOnExit;
 
     @XmlAttribute
@@ -45,6 +42,9 @@ public class Conference implements Serializable {
     @XmlAttribute
     private Integer timeLimit;
 
+    @XmlAttribute
+    private String recordFileFormat;
+    
     @XmlAttribute
     private Boolean hangupOnStar;
 
@@ -69,6 +69,18 @@ public class Conference implements Serializable {
     @XmlAttribute
     private Boolean floorEvent;
 
+    @XmlAttribute
+    private Boolean redirect;
+
+    @XmlAttribute
+    private String transcriptionType;
+    
+    @XmlAttribute
+    private String transcriptionUrl;
+    
+    @XmlAttribute
+    private String transcriptionMethod;
+    
     @XmlValue
     private String room;
 
@@ -85,6 +97,10 @@ public class Conference implements Serializable {
         this.muted = muted;
     }
 
+    public Boolean getMuted() {
+        return muted;
+    }
+
     /**
      * The conference start when this member joins
           (default true)
@@ -92,6 +108,10 @@ public class Conference implements Serializable {
      */
     public void setStartConferenceOnEnter(Boolean startConferenceOnEnter) {
         this.startConferenceOnEnter = startConferenceOnEnter;
+    }
+
+    public Boolean getStartConferenceOnEnter() {
+        return startConferenceOnEnter;
     }
 
     /**
@@ -103,6 +123,10 @@ public class Conference implements Serializable {
         this.endConferenceOnExit = endConferenceOnExit;
     }
 
+    public Boolean getEndConferenceOnExit() {
+        return endConferenceOnExit;
+    }
+
     /**
      * If 'false' and member is alone, conference is closed and member kicked out
           (default true)
@@ -112,8 +136,8 @@ public class Conference implements Serializable {
         this.stayAlone = stayAlone;
     }
 
-    public String getEnterSound() {
-        return enterSound;
+    public Boolean getStayAlone() {
+        return stayAlone;
     }
 
     /**
@@ -130,6 +154,10 @@ public class Conference implements Serializable {
 
     public String getExitSound() {
         return exitSound;
+    }
+
+    public String getEnterSound() {
+        return enterSound;
     }
 
     /**
@@ -193,8 +221,21 @@ public class Conference implements Serializable {
         this.hangupOnStar = hangupOnStar;
     }
 
+    public Boolean getHangupOnStar() {
+        return hangupOnStar;
+    }
+
+    /**
+     * Beep in conference  '*'
+          (default false)
+     * @param beep
+     */
     public void setBeep(Boolean beep) {
         this.beep = beep;
+    }
+
+    public Boolean getBeep() {
+        return beep;
     }
 
     /**
@@ -204,8 +245,9 @@ public class Conference implements Serializable {
     public void setRecord(Boolean record) {
         this.record = record;
     }
-    public String getAction() {
-        return action;
+
+    public Boolean getRecord() {
+        return record;
     }
 
     /**
@@ -216,19 +258,20 @@ public class Conference implements Serializable {
         this.action = action;
     }
 
-    public String getMethod() {
-        return method;
+    public String getAction() {
+        return action;
     }
 
     /**
      * Submit to 'action' URL using GET or POST
+	 *        (default POST)
      */
     public void setMethod(String method) {
         this.method = method;
     }
 
-    public String getDigitsMatch() {
-        return digitsMatch;
+    public String getMethod() {
+        return method;
     }
 
     /**
@@ -240,8 +283,8 @@ public class Conference implements Serializable {
         this.digitsMatch = digitsMatch;
     }
 
-    public String getCallbackUrl() {
-        return callbackUrl;
+    public String getDigitsMatch() {
+        return digitsMatch;
     }
 
     /**
@@ -253,20 +296,21 @@ public class Conference implements Serializable {
         this.callbackUrl = callbackUrl;
     }
 
-    public String getCallbackMethod() {
-        return callbackMethod;
+    public String getCallbackUrl() {
+        return callbackUrl;
     }
 
     /**
      * Submit to 'callbackUrl' URL using GET or POST
+	 *        (default POST)
      * @param callbackMethod
      */
     public void setCallbackMethod(String callbackMethod) {
         this.callbackMethod = callbackMethod;
     }
 
-    public String getRoom() {
-        return room;
+    public String getCallbackMethod() {
+        return callbackMethod;
     }
 
     /**
@@ -277,52 +321,33 @@ public class Conference implements Serializable {
         this.room = room;
     }
 
+    public String getRoom() {
+        return room;
+    }
+
     /** Floor Event
      * 'true' or 'false'. When this member speaks, 
-            send notification to callbackUrl. (default 'false')
+	          send notification to callbackUrl. (default 'false')
      * @param floorEvent
      */
     public void setFloorEvent(Boolean floorEvent) {
         this.floorEvent = floorEvent;
     }
 
-    public Boolean getRedirect() {
-        return redirect;
+    public Boolean getFloorEvent() {
+        return floorEvent;
     }
 
+    /** Redirect Event
+     * 'true' or 'false'. default redirect to action URL.
+	          else, only request the URL and continue to next element.
+     * @param redirect
+     */
     public void setRedirect(Boolean redirect) {
         this.redirect = redirect;
     }
 
-    public Boolean getMuted() {
-        return muted;
-    }
-
-    public Boolean getBeep() {
-        return beep;
-    }
-
-    public Boolean getStartConferenceOnEnter() {
-        return startConferenceOnEnter;
-    }
-
-    public Boolean getEndConferenceOnExit() {
-        return endConferenceOnExit;
-    }
-
-    public Boolean getStayAlone() {
-        return stayAlone;
-    }
-
-    public Boolean getHangupOnStar() {
-        return hangupOnStar;
-    }
-
-    public Boolean getRecord() {
-        return record;
-    }
-
-    public Boolean getFloorEvent() {
-        return floorEvent;
+    public Boolean getRedirect() {
+        return redirect;
     }
 }

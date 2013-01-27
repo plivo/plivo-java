@@ -1,6 +1,7 @@
 package com.plivo.sdk.xml.elements;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,64 +13,49 @@ public class PreAnswer implements Serializable {
     private static final long serialVersionUID = 2635662975269038297L;
 
     @XmlElement(name="Speak")
-    private Speak speak;
+    private ArrayList<Speak> speakFactory;
 
     @XmlElement(name="Play")
-    private Play play;
+    private ArrayList<Play> playFactory;
 
     @XmlElement(name="GetDigits")
-    private GetDigits getDigits;
+    private ArrayList<GetDigits> getDigitsFactory;
 
     @XmlElement(name="Wait")
-    private Wait wait;
+    private ArrayList<Wait> waitFactory;
 
     @XmlElement(name="Redirect")
-    private Redirect redirect;
+    private ArrayList<Redirect> redirectFactory;
 
     @XmlElement(name="Message")
-    private Message message;
+    private ArrayList<Message> messageFactory;
 
     public PreAnswer() {
-
+		speakFactory = new ArrayList<Speak>();
+		playFactory = new ArrayList<Play>();
+		getDigitsFactory = new ArrayList<GetDigits>();
+		waitFactory = new ArrayList<Wait>();
+		redirectFactory = new ArrayList<Redirect>();
+		messageFactory = new ArrayList<Message>();
     }
 
-    public Speak getSpeak() {
-        return speak;
+    public void addSpeak(Speak speak) {
+        this.speakFactory.add(speak);
     }
 
-    public void setSpeak(Speak speak) {
-        this.speak = speak;
+    public void addPlay(Play play) {
+        this.playFactory.add(play);
     }
 
-    public Play getPlay() {
-        return play;
+    public void addGetDigits(GetDigits getDigits) {
+        this.getDigitsFactory.add(getDigits);
     }
 
-    public void setPlay(Play play) {
-        this.play = play;
+    public void addWait(Wait wait) {
+        this.waitFactory.add(wait);
     }
 
-    public GetDigits getGetDigits() {
-        return getDigits;
-    }
-
-    public void setGetDigits(GetDigits getDigits) {
-        this.getDigits = getDigits;
-    }
-
-    public Wait getWait() {
-        return wait;
-    }
-
-    public void setWait(Wait wait) {
-        this.wait = wait;
-    }
-
-    public Redirect getRedirect() {
-        return redirect;
-    }
-
-    public void setRedirect(Redirect redirect) {
-        this.redirect = redirect;
+    public void addRedirect(Redirect redirect) {
+        this.redirectFactory.add(redirect);
     }
 }
