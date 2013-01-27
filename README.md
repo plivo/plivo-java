@@ -1,4 +1,3 @@
-
 Plivo Java Helper Library
 =========================
 
@@ -17,7 +16,6 @@ Pre-built jars
 [plivo-2.0.0-jar-with-dependencies.jar](https://github.com/downloads/plivo/plivo-java/plivo-2.0.0-jar-with-dependencies.jar)
 
 [plivo-2.0.0.jar](https://github.com/downloads/plivo/plivo-java/plivo-2.0.0.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
-
 
 
 Manual Install
