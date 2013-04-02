@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.plivo.sdk</groupId>
   <artifactId>plivo</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
   <name>plivo</name>
   <description>Java helper library for Plivo</description>
   <organization>
