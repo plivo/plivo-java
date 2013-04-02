@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.plivo.sdk</groupId>
-  <artifactId>plivo</artifactId>
+  <groupId>com.plivo.helper</groupId>
+  <artifactId>plivo-java-helper</artifactId>
   <version>2.1.0</version>
-  <name>plivo</name>
-  <description>Java helper library for Plivo</description>
+  <name>plivo-java-helper</name>
+  <description>Java helper library for Plivo services</description>
   <organization>
-  	<name>Plivo</name>
+  	<name>Plivo Inc</name>
   	<url>https://www.plivo.com</url>
   </organization>
   <scm>
-  	<url>git@github.com:plivo/plivo-java</url>
-  	<connection>scm:git:git@github.com:plivo/plivo-java</connection>
+  	<url>git@github.com:plivo/plivo-java.git</url>
+  	<connection>scm:git:git@github.com:plivo/plivo-java.git</connection>
   	<developerConnection>Plivo Inc</developerConnection>
   </scm>
   <issueManagement>
@@ -128,4 +128,5 @@
   		<version>2.2.2</version>
   	</dependency>
   </dependencies>
+  <url>https://github.com/plivo/plivo-java</url>
 </project>
