@@ -17,6 +17,9 @@ public class Wait implements Serializable {
     @XmlAttribute
     private Boolean silence;
 
+    @XmlAttribute
+    private Boolean minSilence;
+
     public Wait() {
 
     }
