@@ -18,7 +18,7 @@ public class Wait implements Serializable {
     private Boolean silence;
 
     @XmlAttribute
-    private Boolean minSilence;
+    private Integer minSilence;
 
     public Wait() {
 
@@ -48,5 +48,13 @@ public class Wait implements Serializable {
 
     public Boolean isSilence() {
         return silence;
+    }
+    
+    public void setMinSilence(Integer minSilence) {
+        this.minSilence = minSilence;
+    }
+
+    public Integer getMinSilence() {
+        return minSilence;
     }
 }
