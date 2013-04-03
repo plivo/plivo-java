@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.plivo.helper</groupId>
   <artifactId>plivo-java-helper</artifactId>
-  <version>2.1.0</version>
+  <version>2.2.0</version>
   <name>plivo-java-helper</name>
   <description>Java helper library for Plivo services</description>
   <organization>
