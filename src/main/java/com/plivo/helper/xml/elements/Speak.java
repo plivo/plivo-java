@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
+import com.plivo.helper.util.HtmlEntity;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Speak implements Serializable {
 
@@ -73,6 +75,6 @@ public class Speak implements Serializable {
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text = HtmlEntity.convert(text);
     }
 }

@@ -21,7 +21,6 @@ import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
 
 // Plivo resources
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ProtocolVersion;
@@ -48,85 +47,88 @@ import org.apache.http.protocol.HTTP;
 //Add pay load to POST request 
 import org.apache.http.entity.StringEntity;
 
-// handling json
+// Handle JSON response
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+// Handle unicode characters
+import com.plivo.helper.util.HtmlEntity;
+
 public class RestAPI {
-	public String AUTH_ID;
-	private String AUTH_TOKEN;
-	private final String PLIVO_URL = "https://api.plivo.com";
-	public String PLIVO_VERSION = "v1";
-	private String BaseURI;
-	private DefaultHttpClient Client;
-	private Gson gson;
-	
-	public RestAPI(String auth_id, String auth_token, String version)
-	{
-		AUTH_ID = auth_id;
-		AUTH_TOKEN = auth_token;
-		PLIVO_VERSION = version;
-		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
-		Client = new DefaultHttpClient();
-		Client.getCredentialsProvider().setCredentials(
+    public String AUTH_ID;
+    private String AUTH_TOKEN;
+    private final String PLIVO_URL = "https://api.plivo.com";
+    public String PLIVO_VERSION = "v1";
+    private String BaseURI;
+    private DefaultHttpClient Client;
+    private Gson gson;
+    
+    public RestAPI(String auth_id, String auth_token, String version)
+    {
+        AUTH_ID = auth_id;
+        AUTH_TOKEN = auth_token;
+        PLIVO_VERSION = version;
+        BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
+        Client = new DefaultHttpClient();
+        Client.getCredentialsProvider().setCredentials(
                 new AuthScope("api.plivo.com", 443),
                 new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
                 );
-		gson = new Gson();
-	}
+        gson = new Gson();
+    }
 
-	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
-	        throws PlivoException
-	{
-	    HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
-	            HttpStatus.SC_OK, "OK");
-	    String json = "";
-	    try {
-    	    if ( method == "GET" ) {
-    	        // Prepare a String with GET parameters
-    	        String getparams = "?";
-    	        for ( Entry<String, String> pair : parameters.entrySet() )
-    	            getparams += pair.getKey() + "=" + pair.getValue() + "&";
-    	        // remove the trailing '&'
-    	        getparams = getparams.substring(0, getparams.length() - 1);
-    	        
-    	        HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
-    	        response = this.Client.execute(httpget);
-    	    }
-    	    else if ( method == "POST" ) {
-    	        HttpPost httpost = new HttpPost(this.BaseURI + resource);
-    	        Gson gson = new GsonBuilder().serializeNulls().create();
+    public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
+            throws PlivoException
+    {
+        HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
+                HttpStatus.SC_OK, "OK");
+        String json = "";
+        try {
+            if ( method == "GET" ) {
+                // Prepare a String with GET parameters
+                String getparams = "?";
+                for ( Entry<String, String> pair : parameters.entrySet() )
+                    getparams += pair.getKey() + "=" + pair.getValue() + "&";
+                // remove the trailing '&'
+                getparams = getparams.substring(0, getparams.length() - 1);
+                
+                HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
+                response = this.Client.execute(httpget);
+            }
+            else if ( method == "POST" ) {
+                HttpPost httpost = new HttpPost(this.BaseURI + resource);
+                Gson gson = new GsonBuilder().serializeNulls().create();
                 // Create a String entity with the POST parameters
-    	        StringEntity se = new StringEntity(gson.toJson(parameters));
+                StringEntity se = new StringEntity(gson.toJson(parameters));
                 se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
                 // Now, attach the pay load to the request 
                 httpost.setEntity(se);
                 response = this.Client.execute(httpost);
-    	    }
-    	    else if ( method == "DELETE" ) {
-    	        HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
-    	        response = this.Client.execute(httpdelete);
-    	    }
-    	    json = this.convertStreamToString(response.getEntity().getContent());
-	    }
-	    catch (ClientProtocolException e) {
-	        throw new PlivoException(e.getLocalizedMessage());
-	    } catch (IOException e) {
-	        throw new PlivoException(e.getLocalizedMessage());
-	    } catch (IllegalStateException e) {
+            }
+            else if ( method == "DELETE" ) {
+                HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
+                response = this.Client.execute(httpdelete);
+            }
+            json = this.convertStreamToString(response.getEntity().getContent());
+        }
+        catch (ClientProtocolException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } catch (IOException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } catch (IllegalStateException e) {
             throw new PlivoException(e.getLocalizedMessage());
         } finally {
             this.Client.getConnectionManager().shutdown();
         }
-	    
-	    if ( response.getStatusLine().getStatusCode() >= 400 )
-	            throw new PlivoException(json);
-	    
-	    return json;
-	}
-	
-	private String convertStreamToString(InputStream istream) 
-	        throws IOException {
+        
+        if ( response.getStatusLine().getStatusCode() >= 400 )
+                throw new PlivoException(json);
+        
+        return json;
+    }
+    
+    private String convertStreamToString(InputStream istream) 
+            throws IOException {
         BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
         StringBuilder responseStr = new StringBuilder();
         String line = "";
@@ -135,9 +137,9 @@ public class RestAPI {
         }
         breader.close();
         return responseStr.toString();
-	}
-	
-	private String getKeyValue(LinkedHashMap<String, String> params, String key) throws PlivoException {
+    }
+    
+    private String getKeyValue(LinkedHashMap<String, String> params, String key) throws PlivoException {
         String value = "";
         if (params.containsKey(key)) {
             value = params.get(key);
@@ -147,66 +149,64 @@ public class RestAPI {
         }
         return value;
     }
-	
-	// Account
-	public Account getAccount() throws PlivoException {
-	    return this.gson.fromJson(request("GET", "/", new LinkedHashMap<String, String>()), Account.class);
-	}
-	
-	public GenericResponse editAccount(String... strings) throws PlivoException {
-		LinkedHashMap<String, String> parameters = new LinkedHashMap<String, String>();
-		
-        return this.gson.fromJson(request("GET", "/", parameters), GenericResponse.class);	    
-	}
-	
-	public SubAccountFactory getSubaccounts() throws PlivoException {
-	    return this.gson.fromJson(request("GET", "/Subaccount/", new LinkedHashMap<String, String>()), SubAccountFactory.class);
+    
+    // Account
+    public Account getAccount() throws PlivoException {
+        return this.gson.fromJson(request("GET", "/", new LinkedHashMap<String, String>()), Account.class);
     }
-	
-	public SubAccount getSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+    
+    public GenericResponse editAccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/", parameters), GenericResponse.class);      
+    }
+    
+    public SubAccountFactory getSubaccounts() throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Subaccount/", new LinkedHashMap<String, String>()), SubAccountFactory.class);
+    }
+    
+    public SubAccount getSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
       String subauth_id = this.getKeyValue(parameters, "subauth_id");
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
-	}
-	
-	public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
     }
-	
-	public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+    
+    public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
     }
-	
-	public GenericResponse deleteSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    String subauth_id = this.getKeyValue(parameters, "subauth_id");
+    
+    public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
+    }
+    
+    public GenericResponse deleteSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String subauth_id = this.getKeyValue(parameters, "subauth_id");
         return this.gson.fromJson(request("DELETE", String.format("/Subaccount/%s/", subauth_id), parameters), GenericResponse.class);
     }
-	
-	// Application
-	public ApplicationFactory getApplications(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    return this.gson.fromJson(request("GET", "/Application/", new LinkedHashMap<String, String>()), ApplicationFactory.class);
+    
+    // Application
+    public ApplicationFactory getApplications() throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Application/", new LinkedHashMap<String, String>()), ApplicationFactory.class);
     }
-	
-	public Application getApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    String app_id = this.getKeyValue(parameters, "app_id");
-	    return this.gson.fromJson(request("GET", String.format("/Application/%s/", app_id), 
-	            new LinkedHashMap<String, String>()), Application.class);
+    
+    public Application getApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String app_id = this.getKeyValue(parameters, "app_id");
+        return this.gson.fromJson(request("GET", String.format("/Application/%s/", app_id), 
+                new LinkedHashMap<String, String>()), Application.class);
     }
-	
-	public GenericResponse createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    return this.gson.fromJson(request("POST", "/Application/", parameters), GenericResponse.class);
+    
+    public GenericResponse createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Application/", parameters), GenericResponse.class);
     }
-	
-	public GenericResponse editApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    String app_id = this.getKeyValue(parameters, "app_id");
+    
+    public GenericResponse editApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String app_id = this.getKeyValue(parameters, "app_id");
         return this.gson.fromJson(request("POST", String.format("/Application/%s/", app_id), parameters), GenericResponse.class);
     }
-	
-	public GenericResponse deleteApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    String app_id = this.getKeyValue(parameters, "app_id");
-	    return this.gson.fromJson(request("DELETE", String.format("/Application/%s/", app_id), parameters), GenericResponse.class);
-	}
-	
-	// Call
+    
+    public GenericResponse deleteApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String app_id = this.getKeyValue(parameters, "app_id");
+        return this.gson.fromJson(request("DELETE", String.format("/Application/%s/", app_id), parameters), GenericResponse.class);
+    }
+    
+    // Call
     public CDRFactory getCDRs(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("GET", "/Call/", parameters), CDRFactory.class);
     }
@@ -271,6 +271,8 @@ public class RestAPI {
     }
 
     public GenericResponse speak(LinkedHashMap<String, String> parameters) throws PlivoException {
+	    String text = HtmlEntity.convert(getKeyValue(parameters, "text"));
+		parameters.put("text", text);
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("POST", String.format("/Call/%s/Speak/", call_uuid), parameters), GenericResponse.class);
     }
@@ -281,8 +283,8 @@ public class RestAPI {
     }
     
     // Conference
-    public LiveConferenceList getLiveConferences() throws PlivoException {
-        return this.gson.fromJson(request("GET", "/Conference/", new LinkedHashMap<String, String>()), LiveConferenceList.class);
+    public LiveConferenceFactory getLiveConferences() throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Conference/", new LinkedHashMap<String, String>()), LiveConferenceFactory.class);
     }
 
     public GenericResponse hangupAllConferences() throws PlivoException {
@@ -323,6 +325,8 @@ public class RestAPI {
     }
 
     public GenericResponse speakMember(LinkedHashMap<String, String> parameters) throws PlivoException {
+		String text = HtmlEntity.convert(getKeyValue(parameters, "text"));
+		parameters.put("text", text);
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%s/Member/{1}/Speak/", conference_name, member_id), 
@@ -417,8 +421,8 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/AvailableNumber/", parameters), NumberSearchFactory.class);
     }
     
-    public NumberSearchFactory searchNumberGroups(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("GET", "/AvailableNumberGroup/", parameters), NumberSearchFactory.class);
+    public NumberGroupFactory searchNumberGroups(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("GET", "/AvailableNumberGroup/", parameters), NumberGroupFactory.class);
     }
     
     public GenericResponse rentNumber(LinkedHashMap<String, String> parameters) throws PlivoException {

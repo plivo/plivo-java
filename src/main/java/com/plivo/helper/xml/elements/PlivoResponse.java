@@ -2,10 +2,12 @@ package com.plivo.helper.xml.elements;
 
 import java.io.Serializable;
 import java.io.StringWriter;
+
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -52,17 +54,17 @@ public class PlivoResponse implements Serializable {
     private ArrayList<Message> messageFactory;
 
     public PlivoResponse() {
-		speakFactory = new ArrayList<Speak>();
-		playFactory = new ArrayList<Play>();
-		getDigitsFactory = new ArrayList<GetDigits>();
-		recordFactory = new ArrayList<Record>();
-		dialFactory = new ArrayList<Dial>();
-		redirectFactory = new ArrayList<Redirect>();
-		waitFactory = new ArrayList<Wait>();
-		hangupFactory = new ArrayList<Hangup>();
-		preAnswerFactory = new ArrayList<PreAnswer>();
-		conferenceFactory = new ArrayList<Conference>();
-		messageFactory = new ArrayList<Message>();
+        speakFactory = new ArrayList<Speak>();
+        playFactory = new ArrayList<Play>();
+        getDigitsFactory = new ArrayList<GetDigits>();
+        recordFactory = new ArrayList<Record>();
+        dialFactory = new ArrayList<Dial>();
+        redirectFactory = new ArrayList<Redirect>();
+        waitFactory = new ArrayList<Wait>();
+        hangupFactory = new ArrayList<Hangup>();
+        preAnswerFactory = new ArrayList<PreAnswer>();
+        conferenceFactory = new ArrayList<Conference>();
+        messageFactory = new ArrayList<Message>();
     }
 
     public void addSpeak(Speak speak) {
@@ -112,11 +114,15 @@ public class PlivoResponse implements Serializable {
     public String serializeToXML() {
         StringWriter writer = new StringWriter();
         try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(this.getClass());
-            jaxbContext.createMarshaller().marshal(this, writer);
+                final JAXBContext jaxbContext = JAXBContext.newInstance(this.getClass());
+                Marshaller marshaller = jaxbContext.createMarshaller();
+                marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+                marshaller.marshal(this, writer);
         } catch (JAXBException e) {
             return "<Response/>";
         }
-        return writer.toString();
+        
+        String response = writer.toString();
+        return response.replace("&amp;", "&");
     }
 }
