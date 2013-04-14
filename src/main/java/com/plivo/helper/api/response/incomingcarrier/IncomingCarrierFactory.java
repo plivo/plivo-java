@@ -10,7 +10,7 @@ public class IncomingCarrierFactory {
 	public IncomingCarrierMeta meta ;
 
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("objects")
     public List<IncomingCarrier> incomingCarrierList ;

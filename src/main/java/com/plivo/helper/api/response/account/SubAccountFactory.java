@@ -9,10 +9,10 @@ public class SubAccountFactory {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("objects")
-    public List<SubAccount> SubAccountList;
+    public List<SubAccount> subAccountList;
     
     public SubAccountFactory() {
         // empty

@@ -6,25 +6,25 @@ public class Number {
     public String region ;
 
     @SerializedName("voice_enabled")
-    public Boolean voiceEnabled ;
+    public Boolean isVoiceEnabled ;
     
     @SerializedName("sms_enabled")
-    public Boolean smsEnabled ;
+    public Boolean isSmsEnabled ;
     
     @SerializedName("fax_enabled")
-    public Boolean faxEnabled ;
+    public Boolean isFaxEnabled ;
     
     public String number ;
 
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("voice_rate")
     public String voiceRate ;
     
     public String application ;
-
     @SerializedName("sms_rate")
+    
     public String smsRate ;
     
     @SerializedName("number_type")
@@ -39,18 +39,14 @@ public class Number {
     @SerializedName("resource_uri")
     public String resourceUri ;
     
-    @SerializedName("group_id")
-    public String groupID ;
-    
-    public String prefix ;
+    @SerializedName("prefix")
+    public String numberPrefix ;
 
     @SerializedName("rental_rate")
     public String rentalRate ;
     
     @SerializedName("setup_rate")
     public String setupRate ;
-    
-    public Integer stock ;
     
     @Deprecated
     public String country ;
@@ -63,6 +59,9 @@ public class Number {
     public String monthlyRentalRrate ;
     
     public String error;
+
+    @SerializedName("carrier")
+    public String inboundCarrier ;
     
     public Number() {
         // empty

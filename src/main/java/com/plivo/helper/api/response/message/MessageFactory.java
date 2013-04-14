@@ -7,7 +7,7 @@ public class MessageFactory {
     public MessageMeta meta ;
 
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("objects")
     public List<Message> messageList ;

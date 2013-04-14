@@ -8,7 +8,7 @@ public class GenericResponse {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public GenericResponse() {
         // empty

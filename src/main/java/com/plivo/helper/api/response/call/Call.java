@@ -9,7 +9,7 @@ public class Call {
     public String requestUUID ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public String error;
     

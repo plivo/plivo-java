@@ -16,7 +16,7 @@ public class Conference {
     public List<ConferenceMember> members ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public String error ;
     

@@ -5,13 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class ApplicationFactory {
     @SerializedName("objects")
-    public List<Application> ApplicationList;
+    public List<Application> applicationList ;
     
     @SerializedName("meta")
-    public ApplicationMeta metaData;
+    public ApplicationMeta meta ;
     
     @SerializedName("api_id")
-    public String apiID;
+    public String apiId ;
+    
+    public String error ;
     
     public ApplicationFactory() {
             //empty

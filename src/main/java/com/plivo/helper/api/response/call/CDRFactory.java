@@ -9,8 +9,12 @@ public class CDRFactory {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("objects")
     public List<CDR> cdrList ;
+    
+    public CDRFactory() {
+    	// empty
+    }
 }

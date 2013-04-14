@@ -19,7 +19,7 @@ public class Endpoint {
     public String resourceUri ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public String error ;
     

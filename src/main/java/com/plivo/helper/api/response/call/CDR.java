@@ -36,7 +36,7 @@ public class CDR {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public CDR() {
         // empty

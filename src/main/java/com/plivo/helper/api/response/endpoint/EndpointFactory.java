@@ -9,7 +9,7 @@ public class EndpointFactory {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("objects")
     public List<Endpoint> endpointList ;

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class LiveCallFactory {
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     @SerializedName("calls")
     public List<String> liveCallList ;

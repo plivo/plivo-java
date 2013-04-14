@@ -19,7 +19,7 @@ public class Account {
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public String postpaid ;
     

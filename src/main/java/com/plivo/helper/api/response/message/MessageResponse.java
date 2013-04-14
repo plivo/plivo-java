@@ -7,12 +7,12 @@ public class MessageResponse {
     public String message ;
     
     @SerializedName("message_uuid")
-    public List<String> messageUUID ;
+    public List<String> messageUuids ;
     
     public String error ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public MessageResponse() {
         // TODO Auto-generated constructor stub

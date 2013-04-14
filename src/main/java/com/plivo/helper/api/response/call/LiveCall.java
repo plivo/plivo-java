@@ -11,7 +11,7 @@ public class LiveCall {
     public String callStatus ;
     
     @SerializedName("api_id")
-    public String apiID ;
+    public String apiId ;
     
     public String to ;
 
@@ -19,7 +19,7 @@ public class LiveCall {
     public String callerName ;
     
     @SerializedName("call_uuid")
-    public String callUUID ;
+    public String callUuuid ;
     
     @SerializedName("session_start")
     public String sessionStart ;
