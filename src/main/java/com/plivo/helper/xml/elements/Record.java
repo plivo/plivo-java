@@ -41,6 +41,12 @@ public class Record implements Serializable {
     @XmlAttribute
     private Boolean recordSession;
 
+    @XmlAttribute
+    private String callbackUrl;
+
+    @XmlAttribute
+    private String callbackMethod;
+
     public Record() {
 
     }
@@ -153,5 +159,21 @@ public class Record implements Serializable {
 
     public Boolean getRecordSession() {
         return recordSession;
+    }
+
+    public void setCallbackUrl(String callbackUrl){
+        this.callbackUrl = callbackUrl;
+    }
+
+    public String getCallbackUrl(){
+        return callbackUrl;
+    }
+
+    public void setCallbackMethod(String callbackMethod){
+        this.callbackMethod = callbackMethod;
+    }
+
+    public String getCallbackMethod(){
+        return callbackMethod;
     }
 }
