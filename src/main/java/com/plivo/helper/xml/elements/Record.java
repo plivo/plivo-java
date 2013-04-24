@@ -42,6 +42,15 @@ public class Record implements Serializable {
     private Boolean recordSession;
 
     @XmlAttribute
+    private String transcriptionType;
+
+    @XmlAttribute
+    private String transcriptionUrl;
+
+    @XmlAttribute
+    private String transcriptionMethod;
+
+    @XmlAttribute
     private String callbackUrl;
 
     @XmlAttribute
@@ -137,7 +146,7 @@ public class Record implements Serializable {
 
     /**
      * Record call when called party answers in a Dial 
-	 * (true/false, default false). No beep will be played.
+     * (true/false, default false). No beep will be played.
      * @param startOnDialAnswer
      */
     public void setStartOnDialAnswer(Boolean startOnDialAnswer) {
@@ -148,17 +157,41 @@ public class Record implements Serializable {
         return startOnDialAnswer;
     }
 
-	/**
-	 * Record current call session in background 
-	 * (true/false, default false). No beep will be played.
-	 * @param recordSession
-	 */
+    /**
+     * Record current call session in background
+     * (true/false, default false). No beep will be played.
+     * @param recordSession
+     */
     public void setRecordSession(Boolean recordSession) {
         this.recordSession = recordSession;
     }
 
     public Boolean getRecordSession() {
         return recordSession;
+    }
+
+    public String getTranscriptionType(){
+        return transcriptionType;
+    }
+
+    public void setTranscriptionType(String transcriptionType){
+        this.transcriptionType = transcriptionType;
+    }
+
+    public String getTranscriptionUrl(){
+        return transcriptionUrl;
+    }
+
+    public void setTranscriptionUrl(String transcriptionUrl){
+        this.transcriptionUrl = transcriptionUrl;
+    }
+
+    public String getTranscriptionMethod(){
+        return transcriptionMethod;
+    }
+
+    public void setTranscriptionMethod(String transcriptionMethod){
+        this.transcriptionMethod = transcriptionMethod;
     }
 
     public void setCallbackUrl(String callbackUrl){
