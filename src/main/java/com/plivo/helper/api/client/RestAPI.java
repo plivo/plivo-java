@@ -55,75 +55,79 @@ import com.google.gson.GsonBuilder;
 import com.plivo.helper.util.HtmlEntity;
 
 public class RestAPI {
-    public String AUTH_ID;
-    private String AUTH_TOKEN;
-    private final String PLIVO_URL = "https://api.plivo.com";
-    public String PLIVO_VERSION = "v1";
-    private String BaseURI;
-    private DefaultHttpClient Client;
-    private Gson gson;
-    
-    public RestAPI(String auth_id, String auth_token, String version)
-    {
-        AUTH_ID = auth_id;
-        AUTH_TOKEN = auth_token;
-        PLIVO_VERSION = version;
-        BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
-        Client = new DefaultHttpClient();
-        Client.getCredentialsProvider().setCredentials(
-                new AuthScope("api.plivo.com", 443),
-                new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
-                );
-        gson = new Gson();
-    }
+	public String AUTH_ID;
+	private String AUTH_TOKEN;
+	private final String PLIVO_URL = "https://api.plivo.com";
+	public String PLIVO_VERSION = "v1";
+	private String BaseURI;
+	private DefaultHttpClient Client;
+	private Gson gson;
+	
+	public RestAPI(String auth_id, String auth_token, String version)
+	{
+		AUTH_ID = auth_id;
+		AUTH_TOKEN = auth_token;
+		PLIVO_VERSION = version;
+		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
+		Client = new DefaultHttpClient();
+		Client.getCredentialsProvider().setCredentials(
+				new AuthScope("api.plivo.com", 443),
+				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
+				);
+		gson = new Gson();
+	}
 
-    public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
-            throws PlivoException
-    {
-        HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
-                HttpStatus.SC_OK, "OK");
-        String json = "";
-        try {
-            if ( method == "GET" ) {
-                // Prepare a String with GET parameters
-                String getparams = "?";
-                for ( Entry<String, String> pair : parameters.entrySet() )
-                    getparams += pair.getKey() + "=" + pair.getValue() + "&";
-                // remove the trailing '&'
-                getparams = getparams.substring(0, getparams.length() - 1);
-                
-                HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
-                response = this.Client.execute(httpget);
-            }
-            else if ( method == "POST" ) {
-                HttpPost httpost = new HttpPost(this.BaseURI + resource);
-                Gson gson = new GsonBuilder().serializeNulls().create();
-                // Create a String entity with the POST parameters
-                StringEntity se = new StringEntity(gson.toJson(parameters));
-                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                // Now, attach the pay load to the request 
-                httpost.setEntity(se);
-                response = this.Client.execute(httpost);
-            }
-            else if ( method == "DELETE" ) {
-                HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
-                response = this.Client.execute(httpdelete);
-            }
-            json = this.convertStreamToString(response.getEntity().getContent());
-        }
-        catch (ClientProtocolException e) {
-            throw new PlivoException(e.getLocalizedMessage());
-        } catch (IOException e) {
-            throw new PlivoException(e.getLocalizedMessage());
-        } catch (IllegalStateException e) {
-            throw new PlivoException(e.getLocalizedMessage());
-        } finally {
-            this.Client.getConnectionManager().shutdown();
-        }
-        
-        if ( response.getStatusLine().getStatusCode() >= 400 )
-                throw new PlivoException(json);
-        
+	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
+			throws PlivoException
+	{
+		HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
+				HttpStatus.SC_OK, "OK");
+		String json = "";
+		try {
+			if ( method == "GET" ) {
+				// Prepare a String with GET parameters
+				String getparams = "?";
+				for ( Entry<String, String> pair : parameters.entrySet() )
+					getparams += pair.getKey() + "=" + pair.getValue() + "&";
+				// remove the trailing '&'
+				getparams = getparams.substring(0, getparams.length() - 1);
+				
+				HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
+				response = this.Client.execute(httpget);
+			}
+			else if ( method == "POST" ) {
+				HttpPost httpost = new HttpPost(this.BaseURI + resource);
+				Gson gson = new GsonBuilder().serializeNulls().create();
+				// Create a String entity with the POST parameters
+				StringEntity se = new StringEntity(gson.toJson(parameters));
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				// Now, attach the pay load to the request 
+				httpost.setEntity(se);
+				response = this.Client.execute(httpost);
+			}
+			else if ( method == "DELETE" ) {
+				HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
+				response = this.Client.execute(httpdelete);
+			}
+			if ( response.getEntity() != null ) {
+				json = this.convertStreamToString(response.getEntity().getContent());
+			} else {
+				// dummy response
+				json = "{\"message\":\"no response\",\"api_id\":\"unknown\"}";
+			}
+		} catch (ClientProtocolException e) {
+			throw new PlivoException(e.getLocalizedMessage());
+		} catch (IOException e) {
+			throw new PlivoException(e.getLocalizedMessage());
+		} catch (IllegalStateException e) {
+			throw new PlivoException(e.getLocalizedMessage());
+		} finally {
+			this.Client.getConnectionManager().shutdown();
+		}
+		
+		if ( response.getStatusLine().getStatusCode() >= 400 )
+			throw new PlivoException(json);
+
         return json;
     }
     
