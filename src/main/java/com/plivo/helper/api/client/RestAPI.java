@@ -109,12 +109,7 @@ public class RestAPI {
 				HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
 				response = this.Client.execute(httpdelete);
 			}
-			if ( response.getEntity() != null ) {
-				json = this.convertStreamToString(response.getEntity().getContent());
-			} else {
-				// dummy response
-				json = "{\"message\":\"no response\",\"api_id\":\"unknown\"}";
-			}
+
 		} catch (ClientProtocolException e) {
 			throw new PlivoException(e.getLocalizedMessage());
 		} catch (IOException e) {
@@ -125,9 +120,19 @@ public class RestAPI {
 			this.Client.getConnectionManager().shutdown();
 		}
 		
-		if ( response.getStatusLine().getStatusCode() >= 400 )
-			throw new PlivoException(json);
-
+		Integer serverCode = response.getStatusLine().getStatusCode();
+		
+		try {
+	        if ( response.getEntity() != null ) {
+	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("}", String.format(", \"server_code\": %s}", serverCode.toString()));
+	        } else {
+	                // dummy response
+	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
+	        }
+		} catch (IOException e) {
+			throw new PlivoException(e.getLocalizedMessage());
+		} 
+		
         return json;
     }
     
