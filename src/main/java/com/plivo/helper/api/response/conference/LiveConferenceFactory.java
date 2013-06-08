@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class LiveConferenceFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String error ;
 
     @SerializedName("api_id")

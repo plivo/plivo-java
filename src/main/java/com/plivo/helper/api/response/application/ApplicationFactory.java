@@ -4,7 +4,10 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class ApplicationFactory {
-    @SerializedName("objects")
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
+   @SerializedName("objects")
     public List<Application> applicationList ;
     
     @SerializedName("meta")

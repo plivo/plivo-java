@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.account;
 import com.google.gson.annotations.SerializedName;
 
 public class Account {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String city ;
     
     public String name ;

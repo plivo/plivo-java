@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.call;
 import com.google.gson.annotations.SerializedName;
 
 public class LiveCall {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String direction ;
     
     public String from ;
