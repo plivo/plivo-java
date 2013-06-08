@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.call;
 import com.google.gson.annotations.SerializedName;
 
 public class Call {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String message;
     
     @SerializedName("request_uuid")

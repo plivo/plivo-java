@@ -3,8 +3,10 @@ package com.plivo.helper.api.response.number;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-@Deprecated
 public class NumberSearchFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public NumberMeta meta ;
     
     @SerializedName("api_id")

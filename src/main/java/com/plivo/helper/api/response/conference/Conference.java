@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class Conference {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     @SerializedName("conference_name")
     public String conferenceName ;
     

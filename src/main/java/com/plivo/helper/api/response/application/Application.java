@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.application;
 import com.google.gson.annotations.SerializedName;
 
 public class Application {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     @SerializedName("fallback_method")
     public String fallbackMethod ;
     

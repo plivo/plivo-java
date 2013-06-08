@@ -5,6 +5,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class NumberGroupFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
 	public NumberMeta meta ;
 	
 	@SerializedName("objects")

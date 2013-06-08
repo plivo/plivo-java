@@ -6,6 +6,9 @@ import com.plivo.helper.api.response.pricing.VoiceRates;
 import com.plivo.helper.api.response.pricing.SmsRates;
 
 public class PlivoPricing {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
 	@SerializedName("country_code")
 	public String countryCode ;
 	

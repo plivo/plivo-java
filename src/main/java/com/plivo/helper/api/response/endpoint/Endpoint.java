@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.endpoint;
 import com.google.gson.annotations.SerializedName;
 
 public class Endpoint {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String username ;
 
     @SerializedName("sip_uri")

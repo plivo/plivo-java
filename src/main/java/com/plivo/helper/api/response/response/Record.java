@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.response;
 import com.google.gson.annotations.SerializedName;
 
 public class Record {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String url;
     
     public String message;

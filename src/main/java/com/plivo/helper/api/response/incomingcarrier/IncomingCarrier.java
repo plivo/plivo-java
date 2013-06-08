@@ -3,6 +3,12 @@ package com.plivo.helper.api.response.incomingcarrier;
 import com.google.gson.annotations.SerializedName;
 
 public class IncomingCarrier {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
+    @SerializedName("api_id")
+    public String apiId ;
+    
     @SerializedName("carrier_id")
     public String carrierId ;
     
