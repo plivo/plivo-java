@@ -22,7 +22,7 @@ public class NumberGroup {
 	public Boolean isSmsEnabled ;
 	
 	@SerializedName("sms_rate")
-	public Integer smsRate ;
+	public String smsRate ;
 	
 	@SerializedName("voice_enabled")
 	public Boolean isVoiceEnabled ;
