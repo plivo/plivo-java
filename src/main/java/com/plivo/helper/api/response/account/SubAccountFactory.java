@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class SubAccountFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public SubAccountMeta meta ;
 
     public String error ;

@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class EndpointFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public EndpointMeta meta ;
     
     public String error ;

@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.number;
 import com.google.gson.annotations.SerializedName;
 
 public class Number {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public String region ;
 
     @SerializedName("voice_enabled")

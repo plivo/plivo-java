@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class MessageFactory {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     public MessageMeta meta ;
 
     @SerializedName("api_id")

@@ -3,6 +3,9 @@ package com.plivo.helper.api.response.call;
 import com.google.gson.annotations.SerializedName;
 
 public class CDR {
+	@SerializedName("server_code")
+	public Integer serverCode ;
+
     @SerializedName("bill_duration")
     public Integer billDuration ;
     
