@@ -9,6 +9,12 @@ public class CDR {
     @SerializedName("bill_duration")
     public Integer billDuration ;
     
+    @SerializedName("billed_duration")
+    public Integer billedDuration ;
+   
+    @SerializedName("call_duration")
+    public Integer callDuration ;
+    
     @SerializedName("total_amount")
     public String totalAmount ;
     
