@@ -13,9 +13,9 @@ See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 Pre-built jars
 --------------
 
-[plivo-java-2.3.4-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.4-jar-with-dependencies.jar)
+[plivo-java-2.3.5-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.5-jar-with-dependencies.jar)
 
-[plivo-java-2.3.4.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.4.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
+[plivo-java-2.3.5.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.5.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
 
 
 Manual Install
