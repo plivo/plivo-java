@@ -15,7 +15,7 @@ import com.plivo.helper.api.response.conference.*;
 import com.plivo.helper.api.response.endpoint.*;
 import com.plivo.helper.api.response.message.*;
 import com.plivo.helper.api.response.number.*;
-import com.plivo.helper.api.response.incomingcarrier.*;
+import com.plivo.helper.api.response.carrier.*;
 import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;

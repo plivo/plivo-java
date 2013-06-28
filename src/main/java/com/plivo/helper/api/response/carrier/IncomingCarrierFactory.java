@@ -1,10 +1,10 @@
-package com.plivo.helper.api.response.incomingcarrier;
+package com.plivo.helper.api.response.carrier;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.api.response.incomingcarrier.IncomingCarrier;
-import com.plivo.helper.api.response.incomingcarrier.IncomingCarrierMeta;
+import com.plivo.helper.api.response.carrier.IncomingCarrier;
+import com.plivo.helper.api.response.carrier.IncomingCarrierMeta;
 
 public class IncomingCarrierFactory {
 	public IncomingCarrierMeta meta ;

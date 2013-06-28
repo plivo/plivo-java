@@ -1,4 +1,4 @@
-package com.plivo.helper.api.response.incomingcarrier;
+package com.plivo.helper.api.response.carrier;
 
 import com.google.gson.annotations.SerializedName;
 
