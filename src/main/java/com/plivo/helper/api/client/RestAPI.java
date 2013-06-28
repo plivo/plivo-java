@@ -502,6 +502,54 @@ public class RestAPI {
     	return this.gson.fromJson(request("DELETE", String.format("/IncomingCarrier/%s/", carrier), parameters), GenericResponse.class);
     }
     
+    // Outgoing Carrier
+    public OutgoingCarrierFactory getOutgoingCarriers(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	return this.gson.fromJson(request("GET", "/OutgoingCarrier/", parameters), OutgoingCarrierFactory.class);
+    }
+    
+    public OutgoingCarrier getOutgoingCarrier(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String carrier = getKeyValue(parameters, "carrier_id");
+    	return this.gson.fromJson(request("GET", String.format("/OutgoingCarrier/%s/", carrier), parameters), OutgoingCarrier.class);
+    }
+    
+    public OutgoingCarrierCreatedResponse addOutgoingCarrier(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	return this.gson.fromJson(request("POST", "/OutgoingCarrier/", parameters), OutgoingCarrierCreatedResponse.class);
+    }
+    
+    public GenericResponse editOutgoingCarrier(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String carrier = getKeyValue(parameters, "carrier_id");
+    	return this.gson.fromJson(request("POST", String.format("/OutgoingCarrier/%s/", carrier), parameters), GenericResponse.class);
+    }
+    
+    public GenericResponse dropOutgoingCarrier(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String carrier = getKeyValue(parameters, "carrier_id");
+    	return this.gson.fromJson(request("DELETE", String.format("/OutgoingCarrier/%s/", carrier), parameters), GenericResponse.class);
+    }
+    
+    // Outgoing Carrier Routing
+    public OutgoingCarrierRoutingFactory getOutgoingCarrierRoutings(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	return this.gson.fromJson(request("GET", "/OutgoingCarrierRouting/", parameters), OutgoingCarrierRoutingFactory.class);
+    }
+    
+    public OutgoingCarrierRouting getOutgoingCarrierRouting(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String carrier = getKeyValue(parameters, "routing_id");
+    	return this.gson.fromJson(request("GET", String.format("/OutgoingCarrierRouting/%s/", carrier), parameters), OutgoingCarrierRouting.class);
+    }
+    
+    public OutgoingCarrierRoutingCreatedResponse addOutgoingCarrierRouting(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	return this.gson.fromJson(request("POST", "/OutgoingCarrierRouting/", parameters), OutgoingCarrierRoutingCreatedResponse.class);
+    }
+    
+    public GenericResponse editOutgoingCarrierRouting(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String routing_id = getKeyValue(parameters, "routing_id");
+    	return this.gson.fromJson(request("POST", String.format("/OutgoingCarrierRouting/%s/", routing_id), parameters), GenericResponse.class);
+    }
+    
+    public GenericResponse dropOutgoingCarrierRouting(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String routing_id = getKeyValue(parameters, "routing_id");
+    	return this.gson.fromJson(request("DELETE", String.format("/OutgoingCarrierRouting/%s/", routing_id), parameters), GenericResponse.class);
+    }
+    
     // Pricing
     public PlivoPricing getPricing(LinkedHashMap<String, String> parameters) throws PlivoException {
     	return this.gson.fromJson(request("GET", "/Pricing/", parameters), PlivoPricing.class);
