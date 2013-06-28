@@ -113,7 +113,7 @@ public class RestAPI {
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
 	        if ( response.getEntity() != null ) {
-	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("}", String.format(", \"server_code\": %s}", serverCode.toString()));
+	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
 	        } else {
 	                // dummy response
 	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
