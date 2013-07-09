@@ -83,6 +83,9 @@ public class Conference implements Serializable {
     
     @XmlValue
     private String room;
+    
+    @XmlAttribute
+    private Boolean recordWhenAlone;
 
     public Conference() {
 
@@ -349,5 +352,18 @@ public class Conference implements Serializable {
 
     public Boolean getRedirect() {
         return redirect;
+    }
+    
+    /**
+     * The conference start when this member joins
+          (default false)
+     * @param recordWhenAlone
+     */
+    public void setrecordWhenAlone(Boolean recordWhenAlone) {
+        this.recordWhenAlone = recordWhenAlone;
+    }
+    
+    public Boolean getrecordWhenAlone() {
+        return recordWhenAlone;
     }
 }
