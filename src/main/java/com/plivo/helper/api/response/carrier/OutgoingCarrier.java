@@ -12,16 +12,12 @@ public class OutgoingCarrier {
     @SerializedName("carrier_id")
     public String carrierId ;
     
-    @SerializedName("ips")
     public String ips ;
     
-    @SerializedName("name")
     public String name ;
 
-    @SerializedName("address")
 	public String address ;
     
-    @SerializedName("prefix")
 	public String prefix ;
 
     @SerializedName("failover_address")
@@ -30,13 +26,10 @@ public class OutgoingCarrier {
     @SerializedName("failover_prefix")
 	public String failoverPrefix ;
     
-    @SerializedName("suffix")
 	public String suffix ;
     
-    @SerializedName("enabled")
     public Boolean enabled ;
     
-    @SerializedName("retries")
 	public Integer retries ;
     
     @SerializedName("retry_seconds")

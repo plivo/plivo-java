@@ -4,14 +4,12 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class OutgoingCarrierRoutingErrorMessage {
-    @SerializedName("prefixes")
     public List<String> prefixes ;
     
-    @SerializedName("priority")
     public List<String> priority ;
     
     @SerializedName("outgoing_carrier")
-    public List<String> outgoing_carrier ;
+    public List<String> outgoingCarrier ;
     
     public String error;
     

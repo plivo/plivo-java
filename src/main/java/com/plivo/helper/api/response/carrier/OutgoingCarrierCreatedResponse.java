@@ -1,7 +1,7 @@
 package com.plivo.helper.api.response.carrier;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.api.response.response.GenericResponse;
+
 import com.plivo.helper.api.response.carrier.OutgoingCarrierErrorMessage;
 
 public class OutgoingCarrierCreatedResponse {
