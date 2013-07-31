@@ -9,14 +9,15 @@ The Plivo Java helper simplifies the process of making PLIVO API Calls and gener
 See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 
 
-
 Pre-built jars
 --------------
 
-[plivo-java-2.3.6-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.6-jar-with-dependencies.jar)
+[plivo-java-3.0.0-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.0-jar-with-dependencies.jar)
+[plivo-java-3.0.0-jar-with-dependencies.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.0-jar-with-dependencies.jar.asc)
 
-[plivo-java-2.3.6.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-2.3.6.jar) - use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
-
+Use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
+[plivo-java-3.0.0.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.0.jar)
+[plivo-java-3.0.0.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.0.jar.asc)
 
 Manual Install
 ------------
@@ -57,11 +58,10 @@ How to use
   	LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 		params.put("from", "xxxxxxxxxx");
 		params.put("to", "xxxxxxxxxx");
-		params.put("answer_url", "http://www.myxmlserver.com/Hangup.xml");
+		params.put("answer_url", "http://server/url/answer.xml");
 
 		Call response;
 		try {
-
 			response = restAPI.makeCall(params);
 			System.out.println(response.apiId);
 		} 
@@ -70,3 +70,6 @@ How to use
 		}
  
 ### Check the [examples](https://github.com/plivo/plivo-examples-java)
+
+### Note
+admin@plivo.com: [GPG public key](http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x9CA54418)
