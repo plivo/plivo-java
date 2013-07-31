@@ -1,40 +1,18 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Hangup implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private String reason;
-
-    @XmlAttribute
-    private Integer schedule;
+public class Hangup extends PlivoElement {
 
     public Hangup() {
-
-    }
-
-    public String getReason() {
-        return reason;
+       super(E_HANGUP, null);
+       this.nestableElements = null;
     }
 
     /**
-     * Give the reason of han gup
+     * Give the reason of hangup
      * @param reason
      */
     public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public Integer getSchedule() {
-        return schedule;
+        this.set("reason", reason);
     }
 
     /**
@@ -42,6 +20,7 @@ public class Hangup implements Serializable {
      * @param schedule
      */
     public void setSchedule(Integer schedule) {
-        this.schedule = schedule;
+        this.set("schedule", schedule.toString());
     }
+    
 }

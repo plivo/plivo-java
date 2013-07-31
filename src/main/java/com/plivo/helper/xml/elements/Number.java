@@ -1,31 +1,20 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
+public class Number extends PlivoElement {
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
+    public Number(String number) {
+       super(E_NUMBER, number);
+       this.nestableElements = null;
+    }
 
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Number implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private String sendDigits;
-
-    @XmlAttribute
-    private String sendDigitsMode;
-    
-    @XmlAttribute
-    private Boolean sendOnPreanswer;
-
-    @XmlValue
-    private String number;
-
-    public Number() {
-
+    /**
+     * Sets the boolean.
+     *
+     * @param attr the attr
+     * @param bool the bool
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase()); 
     }
 
     /**
@@ -33,11 +22,7 @@ public class Number implements Serializable {
      * @param sendDigitsMode
      */
     public void setSendDigitsMode(String sendDigitsMode) {
-        this.sendDigitsMode = sendDigitsMode;
-    }
-
-    public String getSendDigitsMode() {
-        return sendDigitsMode;
+        this.set("sendDigitsMode", sendDigitsMode);
     }
 
     /**
@@ -45,35 +30,16 @@ public class Number implements Serializable {
      * @param sendDigits
      */
     public void setSendDigits(String sendDigits) {
-        this.sendDigits = sendDigits;
-    }
-
-    public String getSendDigits() {
-        return sendDigits;
-    }
-
-    /**
-     * Phone number to dial
-     * @param number
-     */
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getNumber() {
-        return number;
+        this.set("sendDigits", sendDigits);
     }
 
     /**
      * If the digits need to be sent during
-	 * early media.
+    * early media.
      * @param sendOnPreanswer
      */
-    public Boolean isSendOnPreanswer() {
-        return sendOnPreanswer;
-    }
-
     public void setSendOnPreanswer(Boolean sendOnPreanswer) {
-        this.sendOnPreanswer = sendOnPreanswer;
+        this.setBoolean("sendOnPreanswer", sendOnPreanswer);
     }
+    
  }

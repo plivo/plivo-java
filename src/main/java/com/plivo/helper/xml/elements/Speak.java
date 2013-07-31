@@ -1,33 +1,19 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
+public class Speak extends PlivoElement {
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
+    public Speak(String text) {
+       super(E_SPEAK, text);
+    }
 
-import com.plivo.helper.util.HtmlEntity;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Speak implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private String voice;
-    
-    @XmlAttribute
-    private String language;
-    
-    @XmlAttribute
-    private Integer loop;
-
-    @XmlValue
-    private String text;
-
-    public Speak() {
-
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param intr the intr
+     */
+    private void setInteger(String attr, Integer intr) {
+       this.set(attr, intr.toString()); 
     }
 
     /**
@@ -35,11 +21,7 @@ public class Speak implements Serializable {
      * @param voice
      */
     public void setVoice(String voice) {
-        this.voice = voice;
-    }
-
-    public String getVoice() {
-        return voice;
+        this.set("voice", voice);
     }
 
     /**
@@ -47,11 +29,7 @@ public class Speak implements Serializable {
      * @param language
      */
     public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getLanguage() {
-        return language;
+        this.set("language", language);
     }
 
     /**
@@ -59,22 +37,7 @@ public class Speak implements Serializable {
      * @param loop
      */
     public void setLoop(Integer loop) {
-        this.loop = loop;
+        this.setInteger("loop", loop);
     }
 
-    public Integer getLoop() {
-        return loop;
-    }
-
-    /**
-     * Text to be spoken by the TTS engine
-     * @param text
-     */
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = HtmlEntity.convert(text);
-    }
 }

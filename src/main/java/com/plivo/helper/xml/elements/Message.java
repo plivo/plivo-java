@@ -1,37 +1,10 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
+public class Message extends PlivoElement {
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Message implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private String src;
-
-    @XmlAttribute
-    private String dst;
-
-    @XmlAttribute
-    private String type;
-
-    @XmlAttribute
-    private String callbackUrl;
-
-    @XmlAttribute
-    private String callbackMethod;
-
-    @XmlValue
-    private String text;
-
-    public Message() {
-
+    public Message(String text) {
+       super(E_MESSAGE, text);
+       this.nestableElements = null;
     }
 
     /**
@@ -39,11 +12,7 @@ public class Message implements Serializable {
      * @param dst
      */
     public void setDestination(String dst) {
-        this.dst = dst;
-    }
-
-    public String getDestination() {
-        return dst;
+        this.set("dst", dst);
     }
 
     /**
@@ -51,37 +20,24 @@ public class Message implements Serializable {
      * @param src
      */
     public void setSource(String src) {
-        this.src = src;
-    }
-
-    public String getSource() {
-        return src;
+        this.set("src", src);
     }
 
     /**
      * Message type
      * @param type
      */
-
-    public String getType() {
-        return type;
-    }
-
     public void setType(String type) {
-        this.type = type;
+        this.set("type", type);
     }
 
     /**
      * URL that is notified by Plivo when a response is available 
-	 * and to which the response is sent. 
+    * and to which the response is sent. 
      * @param callbackUrl
      */
     public void setCallbackUrl(String callbackUrl) {
-        this.callbackUrl = callbackUrl;
-    }
-
-    public String getCallbackUrl() {
-        return callbackUrl;
+        this.set("callbackUrl", callbackUrl);
     }
 
     /**
@@ -89,24 +45,8 @@ public class Message implements Serializable {
      * @param callbackMethod
      */
 
-    public String getCallbackMethod() {
-        return callbackMethod;
-    }
-
     public void setCallbackMethod(String callbackMethod) {
-        this.callbackMethod = callbackMethod;
+        this.set("callbackMethod", callbackMethod);
     }
 
-    /**
-     * Message text to be sent 
-     * @param text
-     */
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 }

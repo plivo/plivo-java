@@ -1,61 +1,35 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class GetDigits implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute(required=true)
-    private String action;
-
-    @XmlAttribute()
-    private Integer timeout;
-    
-    @XmlAttribute
-    private Integer digitTimeout;
-
-    @XmlAttribute
-    private String method;
-
-    @XmlAttribute
-    private String finishOnKey;
-
-    @XmlAttribute
-    private Integer numDigits;
-
-    @XmlAttribute
-    private Integer retries;
-
-    @XmlAttribute
-    private Boolean playBeep;
-
-    @XmlAttribute
-    private String validDigits;
-
-    @XmlAttribute
-    private String invalidDigitsSound;
-
-    @XmlElement(name="Play")
-    private ArrayList<Play> playList;
-
-    @XmlElement(name="Speak")
-    private ArrayList<Speak> speakList;
-
-    @XmlElement(name="Wait")
-    private ArrayList<Wait> waitList;
+public class GetDigits extends PlivoElement {
 
     public GetDigits() {
-		playList = new ArrayList<Play>();
-		speakList = new ArrayList<Speak>();
-		waitList = new ArrayList<Wait>();
+      super(E_GETDIGITS, null);
+      this.nestableElements = new ArrayList<String>();
+      this.nestableElements.add(E_PLAY);
+      this.nestableElements.add(E_SPEAK);
+      this.nestableElements.add(E_WAIT);
+    }
+
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param intr the intr
+     */
+    private void setInteger(String attr, Integer intr) {
+       this.set(attr, intr.toString()); 
+    }
+
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param int the int
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase()); 
     }
 
      /**
@@ -63,11 +37,7 @@ public class GetDigits implements Serializable {
      * @param action
      */
     public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getAction() {
-        return action;
+        this.set("action", action);
     }
 
     /**
@@ -76,12 +46,8 @@ public class GetDigits implements Serializable {
      * in the response is processed.
      * @param timeout
      */
-    public Integer getTimeout() {
-        return timeout;
-    }
-
     public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
+        this.setInteger("timeout", timeout);
     }
     
     /**
@@ -89,12 +55,8 @@ public class GetDigits implements Serializable {
      * by the user.
      * @param digitTimeout
      */
-    public Integer getDigitTimeout() {
-        return digitTimeout;
-    }
-    
     public void setDigitTimeout(Integer digitTimeout) {
-        this.digitTimeout = digitTimeout;
+        this.setInteger("digitTimeout", digitTimeout);
     }
     
     /**
@@ -102,35 +64,23 @@ public class GetDigits implements Serializable {
      * @param method
      */
     public void setMethod(String method) {
-        this.method = method;
+        this.set("method", method);
     }
     
-    public String getMethod() {
-        return method;
-    }
-
     /**
      * Key that triggers the end of caller input
      * @param finishOnKey
      */
     public void setFinishOnKey(String finishOnKey) {
-        this.finishOnKey = finishOnKey;
+        this.set("finishOnKey", finishOnKey);
     }
 
-    public String isFinishOnKey() {
-        return finishOnKey;
-    }
-    
     /**
      * How many digits to gather before returning
      * @param numDigits
      */
     public void setNumDigits(Integer numDigits) {
-        this.numDigits = numDigits;
-    }
-
-    public Integer getNumDigits() {
-        return numDigits;
+        this.setInteger("numDigits", numDigits);
     }
 
     /**
@@ -138,11 +88,7 @@ public class GetDigits implements Serializable {
      * @param retries
      */
     public void setRetries(Integer retries) {
-        this.retries = retries;
-    }
-
-    public Integer getRetries() {
-        return retries;
+        this.setInteger("retries", retries);
     }
 
     /**
@@ -150,11 +96,7 @@ public class GetDigits implements Serializable {
      * @param playBeep
      */
     public void setPlayBeep(Boolean playBeep) {
-        this.playBeep = playBeep;
-    }
-
-    public Boolean isPlayBeep() {
-        return playBeep;
+        this.setBoolean("playBeep", playBeep);
     }
 
     /**
@@ -162,11 +104,7 @@ public class GetDigits implements Serializable {
      * @param validDigits
      */
     public void setValidDigits(String validDigits) {
-        this.validDigits = validDigits;
-    }
-
-    public String isValidDigits() {
-        return validDigits;
+        this.set("validDigits", validDigits);
     }
 
     /**
@@ -174,22 +112,7 @@ public class GetDigits implements Serializable {
      * @param invalidDigitsSound
      */
     public void setInvalidDigitsSound(String invalidDigitsSound) {
-        this.invalidDigitsSound = invalidDigitsSound;
+        this.set("invalidDigitsSound", invalidDigitsSound);
     }
 
-    public String isInvalidDigitsSound() {
-        return invalidDigitsSound;
-    }
-
-    public void addPlay(Play play) {
-        this.playList.add(play);
-    }
-
-    public void addSpeak(Speak speak) {
-        this.speakList.add(speak);
-    }
-
-    public void addWait(Wait wait) {
-        this.waitList.add(wait);
-    }
 }

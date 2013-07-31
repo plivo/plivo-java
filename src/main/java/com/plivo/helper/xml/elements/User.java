@@ -1,78 +1,45 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
+public class User extends PlivoElement {
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class User implements Serializable {
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private String sendDigits;
-    
-    @XmlAttribute
-    private String sendDigitsMode;
-
-    @XmlAttribute
-    private Boolean sendOnPreanswer;
-
-    @XmlValue
-    private String sipUser;
-
-    public User() {
-
+   public User(String sipUri) {
+      super(E_USER, sipUri);
+      this.nestableElements = null;
     }
     
+    /**
+     * Sets the boolean.
+     *
+     * @param attr the attr
+     * @param bool the bool
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase()); 
+    }
+
     /**
      * specify if you need inband (default = rfc2833)
      * @param sendDigitsMode
      */
     public void setSendDigitsMode(String sendDigitsMode) {
-        this.sendDigitsMode = sendDigitsMode;
-    }
-
-    public String getSendDigitsMode() {
-        return sendDigitsMode;
+        this.set("sendDigitsMode", sendDigitsMode);
     }
 
     /**
-     * Key to press after connecting to the user
+     * Key to press after connecting to the number
      * @param sendDigits
      */
     public void setSendDigits(String sendDigits) {
-        this.sendDigits = sendDigits;
-    }
-
-	public String getSendDigits() {
-        return sendDigits;
-    }
-
-    /**
-     * SIP URI to dial
-     * @param sipUser
-     */
-    public void setUser(String sipUser) {
-        this.sipUser = sipUser;
-    }
-
-    public String getUser() {
-        return sipUser;
+        this.set("sendDigits", sendDigits);
     }
 
     /**
      * If the digits need to be sent during
-	 * early media.
+    * early media.
      * @param sendOnPreanswer
      */
     public void setSendOnPreanswer(Boolean sendOnPreanswer) {
-        this.sendOnPreanswer = sendOnPreanswer;
+        this.setBoolean("sendOnPreanswer", sendOnPreanswer);
     }
 
-    public Boolean isSendOnPreanswer() {
-        return sendOnPreanswer;
-    }
 }

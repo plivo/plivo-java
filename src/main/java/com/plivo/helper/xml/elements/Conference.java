@@ -1,94 +1,35 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
+public class Conference extends PlivoElement {
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
+   public Conference(String name) {
+       /**
+        * Instantiates a new conference.
+        *
+        * @param name the name
+        */
+        super(E_CONFERENCE, name);
+        this.nestableElements = null;
+    }
 
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Conference implements Serializable {
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param intr the intr
+     */
+    private void setInteger(String attr, Integer intr) {
+       this.set(attr, intr.toString()); 
+    }
 
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private Boolean muted;
-
-    @XmlAttribute
-    private Boolean beep;
-
-    @XmlAttribute
-    private String enterSound;
-
-    @XmlAttribute
-    private String exitSound;
-
-    @XmlAttribute
-    private Boolean startConferenceOnEnter;
-
-    @XmlAttribute
-    private Boolean endConferenceOnExit;
-
-    @XmlAttribute
-    private Boolean stayAlone;
-
-    @XmlAttribute
-    private String waitSound;
-
-    @XmlAttribute
-    private Integer maxMembers;
-
-    @XmlAttribute
-    private Integer timeLimit;
-
-    @XmlAttribute
-    private String recordFileFormat;
-    
-    @XmlAttribute
-    private Boolean hangupOnStar;
-
-    @XmlAttribute
-    private Boolean record;
-
-    @XmlAttribute
-    private String action;
-
-    @XmlAttribute
-    private String method;
-
-    @XmlAttribute
-    private String digitsMatch;
-
-    @XmlAttribute
-    private String callbackUrl;
-
-    @XmlAttribute
-    private String callbackMethod;
-
-    @XmlAttribute
-    private Boolean floorEvent;
-
-    @XmlAttribute
-    private Boolean redirect;
-
-    @XmlAttribute
-    private String transcriptionType;
-    
-    @XmlAttribute
-    private String transcriptionUrl;
-    
-    @XmlAttribute
-    private String transcriptionMethod;
-    
-    @XmlValue
-    private String room;
-    
-    @XmlAttribute
-    private Boolean recordWhenAlone;
-
-    public Conference() {
-
+    /**
+     * Sets the boolean.
+     *
+     * @param attr the attr
+     * @param bool the bool
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase()); 
     }
 
     /**
@@ -97,11 +38,7 @@ public class Conference implements Serializable {
      * @param muted
      */
     public void setMuted(Boolean muted) {
-        this.muted = muted;
-    }
-
-    public Boolean getMuted() {
-        return muted;
+        this.setBoolean("muted", muted);
     }
 
     /**
@@ -110,11 +47,7 @@ public class Conference implements Serializable {
      * @param startConferenceOnEnter
      */
     public void setStartConferenceOnEnter(Boolean startConferenceOnEnter) {
-        this.startConferenceOnEnter = startConferenceOnEnter;
-    }
-
-    public Boolean getStartConferenceOnEnter() {
-        return startConferenceOnEnter;
+        this.setBoolean("startConferenceOnEnter", startConferenceOnEnter);
     }
 
     /**
@@ -123,11 +56,7 @@ public class Conference implements Serializable {
      * @param endConferenceOnExit
      */
     public void setEndConferenceOnExit(Boolean endConferenceOnExit) {
-        this.endConferenceOnExit = endConferenceOnExit;
-    }
-
-    public Boolean getEndConferenceOnExit() {
-        return endConferenceOnExit;
+        this.setBoolean("endConferenceOnExit", endConferenceOnExit);
     }
 
     /**
@@ -136,11 +65,7 @@ public class Conference implements Serializable {
      * @param stayAlone
      */
     public void setStayAlone(Boolean stayAlone) {
-        this.stayAlone = stayAlone;
-    }
-
-    public Boolean getStayAlone() {
-        return stayAlone;
+        this.setBoolean("stayAlone", stayAlone);
     }
 
     /**
@@ -152,15 +77,7 @@ public class Conference implements Serializable {
      * @param enterSound
      */
     public void setEnterSound(String enterSound) {
-        this.enterSound = enterSound;
-    }
-
-    public String getExitSound() {
-        return exitSound;
-    }
-
-    public String getEnterSound() {
-        return enterSound;
+        this.set("enterSound", enterSound);
     }
 
     /**
@@ -172,11 +89,7 @@ public class Conference implements Serializable {
      * @param exitSound
      */
     public void setExitSound(String exitSound) {
-        this.exitSound = exitSound;
-    }
-
-    public String getWaitSound() {
-        return waitSound;
+        this.set("exitSound", exitSound);
     }
 
     /**
@@ -186,11 +99,7 @@ public class Conference implements Serializable {
      * @param waitSound
      */
     public void setWaitSound(String waitSound) {
-        this.waitSound = waitSound;
-    }
-
-    public Integer getMaxMembers() {
-        return maxMembers;
+        this.set("waitSound", waitSound);
     }
 
     /**
@@ -199,11 +108,7 @@ public class Conference implements Serializable {
      * @param maxMembers
      */
     public void setMaxMembers(Integer maxMembers) {
-        this.maxMembers = maxMembers;
-    }
-
-    public Integer getTimeLimit() {
-        return timeLimit;
+        this.setInteger("maxMembers", maxMembers);
     }
 
     /**
@@ -212,7 +117,7 @@ public class Conference implements Serializable {
      * @param timeLimit
      */
     public void setTimeLimit(Integer timeLimit) {
-        this.timeLimit = timeLimit;
+        this.setInteger("timeLimit", timeLimit);
     }
 
     /**
@@ -221,11 +126,7 @@ public class Conference implements Serializable {
      * @param hangupOnStar
      */
     public void setHangupOnStar(Boolean hangupOnStar) {
-        this.hangupOnStar = hangupOnStar;
-    }
-
-    public Boolean getHangupOnStar() {
-        return hangupOnStar;
+        this.setBoolean("hangupOnStar", hangupOnStar);
     }
 
     /**
@@ -234,11 +135,7 @@ public class Conference implements Serializable {
      * @param beep
      */
     public void setBeep(Boolean beep) {
-        this.beep = beep;
-    }
-
-    public Boolean getBeep() {
-        return beep;
+        this.setBoolean("beep", beep);
     }
 
     /**
@@ -246,11 +143,7 @@ public class Conference implements Serializable {
      * @param record
      */
     public void setRecord(Boolean record) {
-        this.record = record;
-    }
-
-    public Boolean getRecord() {
-        return record;
+        this.setBoolean("record", record);
     }
 
     /**
@@ -258,23 +151,15 @@ public class Conference implements Serializable {
      * @param action
      */
     public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getAction() {
-        return action;
+        this.set("action", action);
     }
 
     /**
      * Submit to 'action' URL using GET or POST
-	 *        (default POST)
+    *        (default POST)
      */
     public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public String getMethod() {
-        return method;
+        this.set("method", method);
     }
 
     /**
@@ -283,11 +168,7 @@ public class Conference implements Serializable {
      * @param digitsMatch
      */
     public void setDigitsMatch(String digitsMatch) {
-        this.digitsMatch = digitsMatch;
-    }
-
-    public String getDigitsMatch() {
-        return digitsMatch;
+        this.set("digitsMatch", digitsMatch);
     }
 
     /**
@@ -296,62 +177,34 @@ public class Conference implements Serializable {
      * @param callbackUrl
      */
     public void setCallbackUrl(String callbackUrl) {
-        this.callbackUrl = callbackUrl;
-    }
-
-    public String getCallbackUrl() {
-        return callbackUrl;
+        this.set("callbackUrl", callbackUrl);
     }
 
     /**
      * Submit to 'callbackUrl' URL using GET or POST
-	 *        (default POST)
+    *        (default POST)
      * @param callbackMethod
      */
     public void setCallbackMethod(String callbackMethod) {
-        this.callbackMethod = callbackMethod;
-    }
-
-    public String getCallbackMethod() {
-        return callbackMethod;
-    }
-
-    /**
-     * Room name
-     * @param room
-     */
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    public String getRoom() {
-        return room;
+        this.set("callbackMethod", callbackMethod);
     }
 
     /** Floor Event
      * 'true' or 'false'. When this member speaks, 
-	          send notification to callbackUrl. (default 'false')
+             send notification to callbackUrl. (default 'false')
      * @param floorEvent
      */
     public void setFloorEvent(Boolean floorEvent) {
-        this.floorEvent = floorEvent;
-    }
-
-    public Boolean getFloorEvent() {
-        return floorEvent;
+        this.setBoolean("floorEvent", floorEvent);
     }
 
     /** Redirect Event
      * 'true' or 'false'. default redirect to action URL.
-	          else, only request the URL and continue to next element.
+             else, only request the URL and continue to next element.
      * @param redirect
      */
     public void setRedirect(Boolean redirect) {
-        this.redirect = redirect;
-    }
-
-    public Boolean getRedirect() {
-        return redirect;
+        this.setBoolean("redirect", redirect);
     }
     
     /**
@@ -359,11 +212,40 @@ public class Conference implements Serializable {
           (default false)
      * @param recordWhenAlone
      */
-    public void setrecordWhenAlone(Boolean recordWhenAlone) {
-        this.recordWhenAlone = recordWhenAlone;
+    public void setRecordWhenAlone(Boolean recordWhenAlone) {
+        this.setBoolean("recordWhenAlone", recordWhenAlone);
+    }
+
+    /**
+    * Set the format of file to be recorded
+    * @param format
+    */
+    public void setRecordFileFormat(String format) {
+    	this.set("recordFileFormat", format);
     }
     
-    public Boolean getrecordWhenAlone() {
-        return recordWhenAlone;
+    /**
+     * Set the type of transcription
+     * @param transcriptionType
+     */
+    public void setTranscriptionType(String transcriptionType) {
+    	this.set("transcriptionType", transcriptionType);
     }
+    
+    /**
+     * Set the http method for sending params to transcriptionUrl
+     * @param transcriptionMethod
+     */
+    public void setTranscriptionMethod(String transcriptionMethod) {
+    	this.set("transcriptionMethod", transcriptionMethod);
+    }
+
+    /**
+     * Set the url for receiving transcription
+     * @param transcriptionUrl
+     */
+    public void setTranscriptionUrl(String transcriptionUrl) {
+    	this.set("transcriptionUrl", transcriptionUrl);
+    }
+    
 }

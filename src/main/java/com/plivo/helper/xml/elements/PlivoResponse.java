@@ -1,128 +1,29 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
-import java.io.StringWriter;
 
 import java.util.ArrayList;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="Response")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class PlivoResponse implements Serializable {
-
-    private static final long serialVersionUID = 8071673898735283084L;
-
-    @XmlElement(name="Speak")
-    private ArrayList<Speak> speakFactory;
-
-    @XmlElement(name="Play")
-    private ArrayList<Play> playFactory;
-
-    @XmlElement(name="GetDigits")
-    private ArrayList<GetDigits> getDigitsFactory;
-
-    @XmlElement(name="Record")
-    private ArrayList<Record> recordFactory;
-
-    @XmlElement(name="Dial")
-    private ArrayList<Dial> dialFactory;
-
-    @XmlElement(name="Redirect")
-    private ArrayList<Redirect> redirectFactory;
-
-    @XmlElement(name="Wait")
-    private ArrayList<Wait> waitFactory;
-
-    @XmlElement(name="Hangup")
-    private ArrayList<Hangup> hangupFactory;
-
-    @XmlElement(name="PreAnswer")
-    private ArrayList<PreAnswer> preAnswerFactory;
-
-    @XmlElement(name="Conference")
-    private ArrayList<Conference> conferenceFactory;
-
-    @XmlElement(name="Message")
-    private ArrayList<Message> messageFactory;
-
-    public PlivoResponse() {
-        speakFactory = new ArrayList<Speak>();
-        playFactory = new ArrayList<Play>();
-        getDigitsFactory = new ArrayList<GetDigits>();
-        recordFactory = new ArrayList<Record>();
-        dialFactory = new ArrayList<Dial>();
-        redirectFactory = new ArrayList<Redirect>();
-        waitFactory = new ArrayList<Wait>();
-        hangupFactory = new ArrayList<Hangup>();
-        preAnswerFactory = new ArrayList<PreAnswer>();
-        conferenceFactory = new ArrayList<Conference>();
-        messageFactory = new ArrayList<Message>();
-    }
-
-    public void addSpeak(Speak speak) {
-        this.speakFactory.add(speak);
-    }
-
-    public void addPlay(Play play) {
-        this.playFactory.add(play);
-    }
-
-    public void addGetDigits(GetDigits getDigits) {
-        this.getDigitsFactory.add(getDigits);
-    }
-
-    public void addRecord(Record record) {
-        this.recordFactory.add(record);
-    }
-
-    public void addDial(Dial dial) {
-        this.dialFactory.add(dial);
-    }
-
-    public void addRedirect(Redirect redirect) {
-        this.redirectFactory.add(redirect);
-    }
-
-    public void addWait(Wait wait) {
-        this.waitFactory.add(wait);
-    }
-
-    public void addHangup(Hangup hangup) {
-        this.hangupFactory.add(hangup);
-    }
-
-    public void addPreAnswer(PreAnswer preAnswer) {
-        this.preAnswerFactory.add(preAnswer);
-    }
-
-    public void addConference(Conference conference) {
-        this.conferenceFactory.add(conference);
-    }
-
-    public void addMessage(Message message) {
-        this.messageFactory.add(message);
-    }
+public class PlivoResponse extends PlivoElement {
     
-    public String serializeToXML() {
-        StringWriter writer = new StringWriter();
-        try {
-                final JAXBContext jaxbContext = JAXBContext.newInstance(this.getClass());
-                Marshaller marshaller = jaxbContext.createMarshaller();
-                marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-                marshaller.marshal(this, writer);
-        } catch (JAXBException e) {
-            return "<Response/>";
-        }
-        
-        String response = writer.toString();
-        return response.replace("&amp;", "&");
+    /**
+     * Instantiates a new plivo element response.
+     */
+    public PlivoResponse() {
+      // TODO Auto-generated constructor stub
+        super(PlivoElement.E_RESPONSE, null);
+        this.nestableElements = new ArrayList<String>();
+        this.nestableElements.add(PlivoElement.E_DIAL);
+        this.nestableElements.add(PlivoElement.E_CONFERENCE);
+        this.nestableElements.add(PlivoElement.E_GETDIGITS);
+        this.nestableElements.add(PlivoElement.E_HANGUP);
+        this.nestableElements.add(PlivoElement.E_MESSAGE);
+        this.nestableElements.add(PlivoElement.E_PLAY);
+        this.nestableElements.add(PlivoElement.E_PREANSWER);
+        this.nestableElements.add(PlivoElement.E_RECORD);
+        this.nestableElements.add(PlivoElement.E_REDIRECT);
+        this.nestableElements.add(PlivoElement.E_SPEAK);
+        this.nestableElements.add(PlivoElement.E_WAIT);
+        this.nestableElements.add(PlivoElement.E_DTMF);
     }
+
 }

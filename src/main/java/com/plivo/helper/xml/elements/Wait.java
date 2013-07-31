@@ -1,27 +1,30 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Wait implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private Integer length;
-
-    @XmlAttribute
-    private Boolean silence;
-
-    @XmlAttribute
-    private Integer minSilence;
+public class Wait extends PlivoElement {
 
     public Wait() {
+       super(E_WAIT, null);
+       this.nestableElements = null;
+    }
+    
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param intr the intr
+     */
+    private void setInteger(String attr, Integer intr) {
+       this.set(attr, intr.toString()); 
+    }
 
+    /**
+     * Sets the boolean.
+     *
+     * @param attr the attr
+     * @param bool the bool
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase());
     }
 
     /**
@@ -29,32 +32,21 @@ public class Wait implements Serializable {
      * @param length
      */
     public void setLength(Integer length) {
-        this.length = length;
+        this.setInteger("length", length);
     }
 
-    public Integer getLength() {
-        return length;
-    }
-
-	/**
-	 * If silence is also set to "true", the XML will process 
-	 * the next element when there is no voice or sound at the other end,
-	 * overriding the value of the length attribute. 
-	 * @param silence
-	 */
+   /**
+    * If silence is also set to "true", the XML will process 
+    * the next element when there is no voice or sound at the other end,
+    * overriding the value of the length attribute. 
+    * @param silence
+    */
     public void setSilence(Boolean silence) {
-        this.silence = silence;
+        this.setBoolean("silence", silence);
     }
 
-    public Boolean isSilence() {
-        return silence;
-    }
-    
     public void setMinSilence(Integer minSilence) {
-        this.minSilence = minSilence;
+        this.setInteger("minSilence", minSilence);
     }
 
-    public Integer getMinSilence() {
-        return minSilence;
-    }
 }

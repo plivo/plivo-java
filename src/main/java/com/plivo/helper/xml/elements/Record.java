@@ -1,63 +1,30 @@
 package com.plivo.helper.xml.elements;
 
-import java.io.Serializable;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Record implements Serializable {
-
-    private static final long serialVersionUID = 158509162906138363L;
-
-    @XmlAttribute
-    private Integer maxLength;
-
-    @XmlAttribute
-    private String action;
-
-    @XmlAttribute
-    private Integer timeout;
-
-    @XmlAttribute
-    private String method;
-
-    @XmlAttribute
-    private String finishOnKey;
-
-    @XmlAttribute
-    private Boolean playBeep;
-
-    @XmlAttribute
-    private Boolean bothLegs;
-
-    @XmlAttribute
-    private Boolean redirect;
-
-    @XmlAttribute
-    private Boolean startOnDialAnswer;
-
-    @XmlAttribute
-    private Boolean recordSession;
-
-    @XmlAttribute
-    private String transcriptionType;
-
-    @XmlAttribute
-    private String transcriptionUrl;
-
-    @XmlAttribute
-    private String transcriptionMethod;
-
-    @XmlAttribute
-    private String callbackUrl;
-
-    @XmlAttribute
-    private String callbackMethod;
+public class Record extends PlivoElement {
 
     public Record() {
+       super(E_RECORD, null);
+       this.nestableElements = null;
+    }
 
+    /**
+     * Sets the integer.
+     *
+     * @param attr the attr
+     * @param intr the intr
+     */
+    private void setInteger(String attr, Integer intr) {
+       this.set(attr, intr.toString()); 
+    }
+
+    /**
+     * Sets the boolean.
+     *
+     * @param attr the attr
+     * @param bool the bool
+     */
+    private void setBoolean(String attr, Boolean bool) {
+       this.set(attr, bool.toString().toLowerCase()); 
     }
 
     /**
@@ -65,11 +32,7 @@ public class Record implements Serializable {
      * @param maxLength
      */
     public void setMaxLength(Integer maxLength) {
-        this.maxLength = maxLength;
-    }
-
-    public Integer getMaxLength() {
-        return maxLength;
+        this.setInteger("maxLength", maxLength);
     }
 
     /**
@@ -77,23 +40,15 @@ public class Record implements Serializable {
      * @param action
      */
     public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getAction() {
-        return action;
+        this.set("action", action);
     }
 
     /**
-     * Seconds of silence before considering the recording complete (default 500) 
+     * Seconds of silence before considering the recording complete (default 1440) 
      * @param timeout
      */
     public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
-    }
-
-    public Integer getTimeout() {
-        return timeout;
+        this.setInteger("timeout", timeout);
     }
 
     /**
@@ -101,11 +56,7 @@ public class Record implements Serializable {
      * @param method
      */
     public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public String getMethod() {
-        return method;
+        this.set("method", method);
     }
 
     /**
@@ -113,11 +64,7 @@ public class Record implements Serializable {
      * @param finishOnKey
      */
     public void setFinishOnKey(String finishOnKey) {
-        this.finishOnKey = finishOnKey;
-    }
-
-    public String getFinishOnKey() {
-        return finishOnKey;
+        this.set("finishOnKey", finishOnKey);
     }
 
     /**
@@ -125,11 +72,7 @@ public class Record implements Serializable {
      * @param playBeep
      */
     public void setPlayBeep(Boolean playBeep) {
-        this.playBeep = playBeep;
-    }
-
-    public Boolean isPlayBeep() {
-        return playBeep;
+        this.setBoolean("playBeep", playBeep);
     }
 
     /**
@@ -137,11 +80,7 @@ public class Record implements Serializable {
      * @param redirect
      */
     public void setRedirect(Boolean redirect) {
-        this.redirect = redirect;
-    }
-
-    public Boolean getRedirect() {
-        return redirect;
+        this.setBoolean("redirect", redirect);
     }
 
     /**
@@ -150,11 +89,7 @@ public class Record implements Serializable {
      * @param startOnDialAnswer
      */
     public void setStartOnDialAnswer(Boolean startOnDialAnswer) {
-        this.startOnDialAnswer = startOnDialAnswer;
-    }
-
-    public Boolean getStartOnDialAnswer() {
-        return startOnDialAnswer;
+        this.setBoolean("startOnDialAnswer", startOnDialAnswer);
     }
 
     /**
@@ -163,50 +98,27 @@ public class Record implements Serializable {
      * @param recordSession
      */
     public void setRecordSession(Boolean recordSession) {
-        this.recordSession = recordSession;
-    }
-
-    public Boolean getRecordSession() {
-        return recordSession;
-    }
-
-    public String getTranscriptionType(){
-        return transcriptionType;
+        this.setBoolean("recordSession", recordSession);
     }
 
     public void setTranscriptionType(String transcriptionType){
-        this.transcriptionType = transcriptionType;
-    }
-
-    public String getTranscriptionUrl(){
-        return transcriptionUrl;
+        this.set("transcriptionType", transcriptionType);
     }
 
     public void setTranscriptionUrl(String transcriptionUrl){
-        this.transcriptionUrl = transcriptionUrl;
-    }
-
-    public String getTranscriptionMethod(){
-        return transcriptionMethod;
+        this.set("transcriptionUrl", transcriptionUrl);
     }
 
     public void setTranscriptionMethod(String transcriptionMethod){
-        this.transcriptionMethod = transcriptionMethod;
+        this.set("transcriptionMethod", transcriptionMethod);
     }
 
     public void setCallbackUrl(String callbackUrl){
-        this.callbackUrl = callbackUrl;
-    }
-
-    public String getCallbackUrl(){
-        return callbackUrl;
+        this.set("callbackUrl", callbackUrl);
     }
 
     public void setCallbackMethod(String callbackMethod){
-        this.callbackMethod = callbackMethod;
+        this.set("callbackMethod", callbackMethod);
     }
 
-    public String getCallbackMethod(){
-        return callbackMethod;
-    }
 }
