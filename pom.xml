@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>2.3.6</version>
+  <version>3.0.0</version>
   <name>plivo-java</name>
   <description>Java helper library for Plivo services</description>
   <url>https://github.com/plivo/plivo-java</url>
@@ -82,7 +82,7 @@
 		<executions>
 		  <execution>
 			<id>attach-sources</id>
-			<phase>verify</phase>
+			<!-- <phase>verify</phase> -->
 			<goals>
 			  <goal>jar-no-fork</goal>
 			</goals>
