@@ -99,7 +99,7 @@ public class RestAPI {
 				HttpPost httpost = new HttpPost(this.BaseURI + resource);
 				Gson gson = new GsonBuilder().serializeNulls().create();
 				// Create a String entity with the POST parameters
-				StringEntity se = new StringEntity(gson.toJson(parameters));
+				StringEntity se = new StringEntity(gson.toJson(parameters),"utf-8");
 				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 				// Now, attach the pay load to the request 
 				httpost.setEntity(se);
