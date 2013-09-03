@@ -150,7 +150,7 @@ public class RestAPI {
             value = params.get(key);
             params.remove(key);
         } else {
-            throw new PlivoException("Missing mandatory parameter " + key);
+            throw new PlivoException(String.format("Missing mandatory parameter %s.", key));
         }
         return value;
     }

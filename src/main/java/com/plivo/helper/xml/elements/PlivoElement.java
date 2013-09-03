@@ -78,7 +78,7 @@ public class PlivoElement {
            this.childTags.add(element);
            return element;
        } else {
-           throw new PlivoException(String.format("%1s is not nestable in %2s.", element.getTag(), this.getTag()));
+           throw new PlivoException(String.format("<%1s> is not nestable in <%2s>.", element.getTag(), this.getTag()));
        }
     }
 
