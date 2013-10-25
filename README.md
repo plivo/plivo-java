@@ -12,12 +12,12 @@ See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 Pre-built jars
 --------------
 
-> [plivo-java-3.0.1-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.1-jar-with-dependencies.jar) <br/>
-> [plivo-java-3.0.1-jar-with-dependencies.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.1-jar-with-dependencies.jar.asc)
+> [plivo-java-3.0.2-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.2-jar-with-dependencies.jar) <br/>
+> [plivo-java-3.0.2-jar-with-dependencies.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.2-jar-with-dependencies.jar.asc)
 
 Use this if you have issues with conflicting jars in your project. See the pom.xml for the list of dependencies you will need to include.
-> [plivo-java-3.0.1.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.1.jar) <br />
-> [plivo-java-3.0.1.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.1.jar.asc)
+> [plivo-java-3.0.2.jar](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.2.jar) <br />
+> [plivo-java-3.0.2.jar.asc](https://s3-us-west-1.amazonaws.com/helpers.plivo.com/java/plivo-java-3.0.2.jar.asc)
 
 Manual Install
 ------------

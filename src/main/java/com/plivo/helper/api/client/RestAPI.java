@@ -282,6 +282,12 @@ public class RestAPI {
         return this.gson.fromJson(request("POST", String.format("/Call/%s/Speak/", call_uuid), parameters), GenericResponse.class);
     }
 
+    public GenericResponse stopSpeak(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String call_uuid = getKeyValue(parameters, "call_uuid");
+        return this.gson.fromJson(request("DELETE", String.format("/Call/%s/Speak/", call_uuid), 
+                new LinkedHashMap<String, String>()), GenericResponse.class);
+    }
+
     public GenericResponse sendDigits(LinkedHashMap<String, String> parameters) throws PlivoException {
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("POST", String.format("/Call/%s/DTMF/", call_uuid), parameters), GenericResponse.class);
