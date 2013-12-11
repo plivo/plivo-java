@@ -85,7 +85,8 @@ public class RestAPITest {
 		try {
 			Account account = restClient.getAccount();
 
-			assertEquals(account.name, "Iwan Budi Kusnanto");
+			assertEquals("Iwan Budi Kusnanto", account.name);
+			assertTrue(200 == account.serverCode);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -95,7 +96,9 @@ public class RestAPITest {
 	public void testGetSubAccounts() {
 		try {
 			SubAccountFactory saf = restClient.getSubaccounts();
-			assertEquals(saf.subAccountList.size(), 1);
+
+			assertTrue(200 == saf.serverCode);
+			assertEquals(1, saf.subAccountList.size());
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -109,8 +112,8 @@ public class RestAPITest {
 
 			SubAccount sa = restClient.getSubaccount(params);
 
-			assertEquals(sa.authId, "SAODDKMDVLMJCWNDG5OT");
-			assertEquals(sa.isEnabled, true);
+			assertEquals("SAODDKMDVLMJCWNDG5OT", sa.authId);
+			assertEquals(true, sa.isEnabled);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -121,7 +124,8 @@ public class RestAPITest {
 		try {
 			ApplicationFactory af = restClient.getApplications();
 
-			assertEquals(af.applicationList.size(), 5);
+			assertTrue(200 == af.serverCode);
+			assertEquals(5, af.applicationList.size());
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -135,12 +139,13 @@ public class RestAPITest {
 
 			Application app = restClient.getApplication(params);
 
-			assertEquals(app.applicationName, "Demo Speak");
-			assertEquals(app.applicationID, "13066057776063802");
-			assertEquals(app.answerUrl, "https://s3.amazonaws.com/plivosamplexml/speak_url.xml");
-			assertEquals(app.answerMethod, "GET");
-			assertEquals(app.fallbackMethod, "GET");
-			assertEquals(app.fallbackAnswerUrl, "https://s3.amazonaws.com/plivosamplexml/fallback_url.xml");
+			assertTrue(200 == app.serverCode);
+			assertEquals("Demo Speak", app.applicationName);
+			assertEquals("13066057776063802", app.applicationID);
+			assertEquals("https://s3.amazonaws.com/plivosamplexml/speak_url.xml", app.answerUrl);
+			assertEquals("GET", app.answerMethod);
+			assertEquals("GET", app.fallbackMethod);
+			assertEquals("https://s3.amazonaws.com/plivosamplexml/fallback_url.xml", app.fallbackAnswerUrl);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -169,6 +174,7 @@ public class RestAPITest {
 
 			Endpoint endpoint = restClient.getEndpoint(params);
 
+			assertTrue(200 == endpoint.serverCode);
 			assertEquals("sip:iw4nbk131211052239@phone.plivo.com", endpoint.sipUri);
 			assertEquals("85785376675499", endpoint.endpointId);
 			assertEquals("appsub", endpoint.alias);
