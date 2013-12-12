@@ -1,0 +1,1 @@
+<Response><Dial hangupOnStar="true" timeLimit="30" callbackUrl="http://google.com" callerId="12345678901" callbackMethod="GET" action="http://http://myserverurl/setredirect/" callerName="Zeus" method="GET" timeout="30"><Number>12345678901</Number></Dial></Response>
