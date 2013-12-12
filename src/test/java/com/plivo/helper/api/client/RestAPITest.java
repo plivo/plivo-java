@@ -14,6 +14,9 @@ import com.plivo.helper.api.response.account.SubAccount;
 import com.plivo.helper.api.response.account.SubAccountFactory;
 import com.plivo.helper.api.response.application.Application;
 import com.plivo.helper.api.response.application.ApplicationFactory;
+import com.plivo.helper.api.response.call.CDR;
+import com.plivo.helper.api.response.call.CDRFactory;
+import com.plivo.helper.api.response.call.LiveCallFactory;
 import com.plivo.helper.api.response.endpoint.Endpoint;
 import com.plivo.helper.api.response.endpoint.EndpointFactory;
 import com.plivo.helper.api.response.number.NumberSearchFactory;
@@ -98,7 +101,7 @@ public class RestAPITest {
 			SubAccountFactory saf = restClient.getSubaccounts();
 
 			assertTrue(200 == saf.serverCode);
-			assertEquals(1, saf.subAccountList.size());
+			assertTrue(saf.subAccountList.size() >= 0);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -119,13 +122,14 @@ public class RestAPITest {
 		}
 	}
 
+
 	@Test
 	public void testGetApplications() {
 		try {
 			ApplicationFactory af = restClient.getApplications();
 
 			assertTrue(200 == af.serverCode);
-			assertEquals(5, af.applicationList.size());
+			assertTrue(af.applicationList.size() >= 5);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -151,6 +155,78 @@ public class RestAPITest {
 		}
 	}
 
+	@Test
+	public void testGetCDRs() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			CDRFactory cf = restClient.getCDRs(params);
+
+			assertEquals(200, (int)cf.serverCode);
+			assertEquals(null, cf.error);
+			assertTrue(cf.cdrList.size() > 0);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+	@Test
+	public void testGetCDR() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+
+			params.put("record_id", "f69b5b1e-62d4-11e3-9da8-a3b81877b3b1");
+			CDR cdr = restClient.getCDR(params);
+
+			assertEquals(200, (int)cdr.serverCode);
+			assertEquals("6281320903871", cdr.toNumber);
+			assertEquals(0, (int)cdr.billDuration);
+			assertEquals(0, (int)cdr.billedDuration);
+			assertEquals(0, (int)cdr.callDuration);
+			assertEquals("0.00000", cdr.totalAmount);
+			assertEquals(null, cdr.parentCallUUID);
+			assertEquals("inbound", cdr.callDirection);
+			assertEquals("0.00300", cdr.totalRate);
+			assertEquals("sip:iw4nbk131211053518@phone.plivo.com", cdr.fromNumber);
+			assertEquals("2013-12-12 02:27:37+00:00", cdr.endTime);
+			assertEquals("f69b5b1e-62d4-11e3-9da8-a3b81877b3b1", cdr.callUUID);
+			assertEquals("/v1/Account/MAMJFLMZJKMZE0OTZHNT/Call/f69b5b1e-62d4-11e3-9da8-a3b81877b3b1/", cdr.resourceUri);
+			assertEquals(null, cdr.error);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+	/**
+	 * Testing getCDR with invalid record id.
+	 */
+	@Test
+	public void testGetCDRInvalidRecordId() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+
+			params.put("record_id", "abcdefgh-62d4-11e3-9da8-a3b81877b3b1");
+			CDR cdr = restClient.getCDR(params);
+
+			assertEquals(404, (int)cdr.serverCode);
+			assertEquals("not found", cdr.error);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+
+	@Test
+	public void testGetLiveCalls() {
+		try {
+			LiveCallFactory lfc = restClient.getLiveCalls();
+
+			assertEquals(200, (int)lfc.serverCode);
+			assertEquals(null, lfc.error);
+			assertTrue(lfc.liveCallList.size() == 0);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
 	@Test
 	public void testGetEndpoints() {
 		try {
@@ -235,7 +311,7 @@ public class RestAPITest {
 
 			PlivoPricing pricing = restClient.getPricing(params);
 
-			assertTrue(pricing.serverCode == 400);
+			assertEquals(400, (int)pricing.serverCode);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -249,7 +325,7 @@ public class RestAPITest {
 
 			PlivoPricing pricing = restClient.getPricing(params);
 
-			assertTrue(pricing.serverCode == 400);
+			assertEquals(400, (int)pricing.serverCode);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
