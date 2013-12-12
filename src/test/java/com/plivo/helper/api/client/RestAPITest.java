@@ -19,6 +19,8 @@ import com.plivo.helper.api.response.call.CDRFactory;
 import com.plivo.helper.api.response.call.LiveCallFactory;
 import com.plivo.helper.api.response.endpoint.Endpoint;
 import com.plivo.helper.api.response.endpoint.EndpointFactory;
+import com.plivo.helper.api.response.message.Message;
+import com.plivo.helper.api.response.message.MessageFactory;
 import com.plivo.helper.api.response.number.NumberSearchFactory;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
@@ -171,6 +173,59 @@ public class RestAPITest {
 		}
 	}
 
+	@Test
+	public void testGetMessages() {
+		try {
+			MessageFactory mf = restClient.getMessages();
+
+			assertEquals(200, (int)mf.serverCode);
+			assertEquals(null, mf.error);
+			assertTrue(mf.messageList.size() > 0);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+	@Test
+	public void testGetMessage() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			params.put("record_id", "d56812f4-62e6-11e3-a9e2-1231400050ef");
+
+			Message m = restClient.getMessage(params);
+
+			assertEquals(null, m.error);
+			assertEquals(null, m.cloudRate);
+			assertEquals(null, m.carrierRate);
+			assertEquals("outbound", m.messageDirection);
+			assertEquals("6281320903871", m.toNumber);
+			assertEquals("delivered", m.messageState);
+			assertEquals("0.00880", m.totalAmount);
+			assertEquals("6281320903872", m.fromNumber);
+			assertEquals("d56812f4-62e6-11e3-a9e2-1231400050ef", m.messageUUID);
+			assertEquals("2013-12-12 04:35:31+00:00", m.messageTime);
+			assertEquals("/v1/Account/MAMJFLMZJKMZE0OTZHNT/Message/d56812f4-62e6-11e3-a9e2-1231400050ef/", m.resourceUri);
+			assertEquals("sms", m.messageType);
+			assertEquals(null, m.error);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+
+	}
+	@Test
+	public void testGetMessageInvalidId() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			params.put("record_id", "XXXX12f4-62e6-11e3-a9e2-1231400050ef");
+
+			Message m = restClient.getMessage(params);
+
+			assertEquals("not found", m.error);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+
+	}
 	@Test
 	public void testGetCDRs() {
 		try {
