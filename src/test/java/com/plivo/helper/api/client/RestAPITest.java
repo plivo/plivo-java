@@ -143,13 +143,29 @@ public class RestAPITest {
 
 			Application app = restClient.getApplication(params);
 
-			assertTrue(200 == app.serverCode);
+			assertEquals(200, (int)app.serverCode);
 			assertEquals("Demo Speak", app.applicationName);
 			assertEquals("13066057776063802", app.applicationID);
 			assertEquals("https://s3.amazonaws.com/plivosamplexml/speak_url.xml", app.answerUrl);
 			assertEquals("GET", app.answerMethod);
 			assertEquals("GET", app.fallbackMethod);
 			assertEquals("https://s3.amazonaws.com/plivosamplexml/fallback_url.xml", app.fallbackAnswerUrl);
+			assertEquals(null, app.error);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+	@Test
+	public void testGetApplicationInvalidId() throws PlivoException {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			params.put("app_id", "XXXX6057776063802");
+
+			Application app = restClient.getApplication(params);
+
+			assertEquals(404, (int)app.serverCode);
+			assertEquals("not found", app.error);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -227,6 +243,8 @@ public class RestAPITest {
 			fail(pe.getMessage());
 		}
 	}
+
+
 	@Test
 	public void testGetEndpoints() {
 		try {
@@ -269,7 +287,7 @@ public class RestAPITest {
 			Endpoint endpoint = restClient.getEndpoint(params);
 
 			assertEquals("not found", endpoint.error);
-			assertTrue(endpoint.serverCode == 404);
+			assertEquals(404, (int)endpoint.serverCode);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -280,11 +298,14 @@ public class RestAPITest {
 		try {
 			NumberSearchFactory nsf = restClient.getNumbers();
 
+			assertEquals(200, (int)nsf.serverCode);
 			assertEquals(0, nsf.numberList.size());
+			assertEquals(null, nsf.error);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
 	}
+
 	@Test
 	public void testPricing() {
 		try {
