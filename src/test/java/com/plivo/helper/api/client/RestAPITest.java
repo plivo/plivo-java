@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -241,6 +242,79 @@ public class RestAPITest {
 		}
 	}
 
+	@Test
+	public void testCreateEditDeleteApplication() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			String appName = UUID.randomUUID().toString();
+			String appId;
+			GenericResponse gr;
+
+			//create
+			params.put("answer_url", "http://original.com");
+			params.put("app_name", appName);
+			params.put("answer_method", "GET");
+			params.put("hangup_url", "http://original.com");
+			params.put("hangup_method", "GET");
+			params.put("fallback_answer_url", "http://original.com");
+			params.put("fallback_method",  "GET");
+			params.put("message_url",  "http://original.com");
+			params.put("message_method", "GET");
+
+			Application app = restClient.makeApplication(params);
+
+			assertEquals(201, (int)app.serverCode);
+			assertEquals(null, app.error);
+			appId = app.applicationID;
+
+
+			//edit
+			params = new LinkedHashMap<String, String>();
+			params.put("app_id", appId);
+			params.put("answer_method", "POST");
+			params.put("hangup_url", "http://updated.com");
+			params.put("hangup_method", "POST");
+			params.put("fallback_answer_url", "http://updated.com");
+			params.put("fallback_method",  "POST");
+			params.put("message_url",  "http://updated.com");
+			params.put("message_method", "POST");
+
+			gr = restClient.editApplication(params);
+
+			assertEquals(202, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+
+			//verify our changes
+			params = new LinkedHashMap<String, String>();
+			params.put("app_id", appId);
+
+			Application ap = restClient.getApplication(params);
+
+			assertEquals(200, (int)ap.serverCode);
+			assertEquals(null, ap.error);
+			assertEquals(appName, ap.applicationName);
+			assertEquals(appId, ap.applicationID);
+			assertEquals("POST", ap.answerMethod);
+			assertEquals("http://updated.com", ap.hangupUrl);
+			assertEquals("POST", ap.hangupMethod);
+			assertEquals("http://updated.com", ap.fallbackAnswerUrl);
+			assertEquals("POST", ap.fallbackMethod);
+			assertEquals("http://updated.com", ap.messageUrl);
+			assertEquals("POST", ap.messageMethod);
+
+			//delete
+			params = new LinkedHashMap<String, String>();
+			params.put("app_id", appId);
+
+			gr = restClient.deleteApplication(params);
+
+			assertEquals(204, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+
+	}
 	@Test
 	public void testGetMessages() {
 		try {

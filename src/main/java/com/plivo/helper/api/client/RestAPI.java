@@ -225,10 +225,15 @@ public class RestAPI {
                 new LinkedHashMap<String, String>()), Application.class);
     }
     
+    @Deprecated
     public GenericResponse createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/Application/", parameters), GenericResponse.class);
     }
     
+    public Application makeApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Application/", parameters), Application.class);
+    }
+
     public GenericResponse editApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
         String app_id = this.getKeyValue(parameters, "app_id");
         return this.gson.fromJson(request("POST", String.format("/Application/%s/", app_id), parameters), GenericResponse.class);
