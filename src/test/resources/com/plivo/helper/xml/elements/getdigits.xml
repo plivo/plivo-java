@@ -1,0 +1,1 @@
+<Response><GetDigits numDigits="4" digitTimeout="5" action="http://myserverurl/input/" method="GET" playBeep="true" timeout="10"><Speak voice="WOMAN" language="en-US">Press one for English. Press two for Spanish</Speak></GetDigits></Response>

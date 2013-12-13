@@ -65,6 +65,28 @@ public class RestAPI {
 	
 	public RestAPI(String auth_id, String auth_token, String version)
 	{
+		if (!version.equals("v1")) {
+			throw new IllegalArgumentException(
+					"Version '"
+							+ version
+							+ "' is not valid. Only API version v1 is supported now");
+		}
+
+		if (auth_id == null || auth_id.length() != 20 ||
+				!(auth_id.startsWith("MA") || auth_id.startsWith("SA"))) {
+			throw new IllegalArgumentException(
+					"Auth ID '"
+							+ auth_id
+							+ "' is not valid. It should be contain 20 characters starting with 'MA' or 'SA'");
+		}
+
+		if (auth_token == null || auth_token.length() != 40) {
+			throw new IllegalArgumentException(
+					"Auth Token '"
+							+ auth_token
+							+ "' is not valid. It should be containt 40 characters");
+		}
+
 		AUTH_ID = auth_id;
 		AUTH_TOKEN = auth_token;
 		PLIVO_VERSION = version;
