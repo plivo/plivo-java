@@ -31,23 +31,16 @@ public class RestAPITest {
 	public void initTest() {
 		restClient = new RestAPI("MAMJFLMZJKMZE0OTZHNT", "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3", "v1");
 	}
-	@Test
+
+	@Test(expected=IllegalArgumentException.class)
 	public void testRestAPIVersion() {
-		try {
-			RestAPI restAPI = new RestAPI("MAXXXXXXXXXXXXXXXXXX",
+		RestAPI restAPI = new RestAPI("MAXXXXXXXXXXXXXXXXXX",
 					"OTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "v10");
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
 	}
 
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testRestAPIInvalidAuthFormat() {
-		try {
-			RestAPI restAPI = new RestAPI("MAXXXXXXXXXXXXXXXXXX", "random_auth_token", "v1");
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
+		RestAPI restAPI = new RestAPI("MAXXXXXXXXXXXXXXXXXX", "random_auth_token", "v1");
 	}
 
 	@Test
@@ -57,7 +50,7 @@ public class RestAPITest {
 					"OTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "v1");
 			assertTrue(true);
 		} catch (IllegalArgumentException e) {
-			fail();
+			fail(e.getMessage());
 		}
 	}
 
