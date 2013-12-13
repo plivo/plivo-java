@@ -85,6 +85,23 @@ public class RestAPITest {
 		}
 	}
 
+	/**
+	 * Test this helper to do multiple API calls
+	 */
+	@Test
+	public void testMultipeCall() {
+		try {
+			restClient.getAccount();
+			restClient.getAccount();
+			restClient.getAccount();
+			restClient.getAccount();
+			restClient.getAccount();
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	};
+
+
 	@Test
 	public void testGetAccount() {
 		try {

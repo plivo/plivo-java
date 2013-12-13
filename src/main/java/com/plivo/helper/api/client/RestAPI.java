@@ -91,11 +91,6 @@ public class RestAPI {
 		AUTH_TOKEN = auth_token;
 		PLIVO_VERSION = version;
 		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
-		Client = new DefaultHttpClient();
-		Client.getCredentialsProvider().setCredentials(
-				new AuthScope("api.plivo.com", 443),
-				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
-				);
 		gson = new Gson();
 	}
 
@@ -104,6 +99,11 @@ public class RestAPI {
 	{
 		HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
 				HttpStatus.SC_OK, "OK");
+		Client = new DefaultHttpClient();
+		Client.getCredentialsProvider().setCredentials(
+				new AuthScope("api.plivo.com", 443),
+				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
+				);
 		String json = "";
 		try {
 			if ( method == "GET" ) {
