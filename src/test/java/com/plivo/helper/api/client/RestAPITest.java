@@ -195,6 +195,7 @@ public class RestAPITest {
 
 			Message m = restClient.getMessage(params);
 
+			assertEquals(200, (int)m.serverCode);
 			assertEquals(null, m.error);
 			assertEquals(null, m.cloudRate);
 			assertEquals(null, m.carrierRate);
@@ -221,6 +222,7 @@ public class RestAPITest {
 
 			Message m = restClient.getMessage(params);
 
+			assertEquals(404, (int)m.serverCode);
 			assertEquals("not found", m.error);
 		}catch (PlivoException pe) {
 			fail(pe.getMessage());
