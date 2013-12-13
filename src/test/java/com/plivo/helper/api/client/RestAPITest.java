@@ -117,6 +117,7 @@ public class RestAPITest {
 
 			SubAccount sa = restClient.getSubaccount(params);
 
+			assertEquals(200, (int)sa.serverCode);
 			assertEquals("SAODDKMDVLMJCWNDG5OT", sa.authId);
 			assertEquals(true, sa.isEnabled);
 		} catch (PlivoException pe) {
