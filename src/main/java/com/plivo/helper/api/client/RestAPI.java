@@ -194,13 +194,19 @@ public class RestAPI {
       String subauth_id = this.getKeyValue(parameters, "subauth_id");
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
     }
-    
+
+    @Deprecated
     public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
     }
+
+    public SubAccount makeSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), SubAccount.class);
+    }
     
     public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
+    	String subauth_id = this.getKeyValue(parameters, "subauth_id");
+        return this.gson.fromJson(request("POST", String.format("/Subaccount/%s/", subauth_id), parameters), GenericResponse.class);
     }
     
     public GenericResponse deleteSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {

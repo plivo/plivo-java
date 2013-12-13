@@ -139,7 +139,60 @@ public class RestAPITest {
 		}
 	}
 
+	@Test
+	public void testCreateEditDeleteSubAccount() {
+		try {
+			String subAuthId;
+			GenericResponse gr;
+			//create
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			params.put("name", "unittest");
+			params.put("enabled", "false");
 
+			SubAccount sa = restClient.makeSubaccount(params);
+
+			assertEquals(201, (int)sa.serverCode);
+			assertEquals(null, sa.error);
+
+			subAuthId = sa.authId;
+
+			//edit
+			params = new LinkedHashMap<String, String>();
+
+			params.put("subauth_id", subAuthId);
+			params.put("name", "unittest_edited");
+			params.put("enabled", "true");
+
+			gr = restClient.editSubaccount(params);
+
+			assertEquals(202, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+
+			//verify our changes
+			params = new LinkedHashMap<String, String>();
+
+			params.put("subauth_id", subAuthId);
+
+			sa = restClient.getSubaccount(params);
+
+			assertEquals(200, (int)sa.serverCode);
+			assertEquals(null, sa.error);
+			assertEquals(true, sa.isEnabled);
+			assertEquals("unittest_edited", sa.name);
+
+			//delete
+			params = new LinkedHashMap<String, String>();
+
+			params.put("subauth_id", subAuthId);
+
+			gr = restClient.deleteSubaccount(params);
+
+			assertEquals(204, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
 	@Test
 	public void testGetApplications() {
 		try {
