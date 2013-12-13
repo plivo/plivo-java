@@ -418,8 +418,13 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Endpoint/", parameters), EndpointFactory.class);
     }
 
+    @Deprecated
     public GenericResponse createEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/Endpoint/", parameters),GenericResponse.class);
+    }
+
+    public Endpoint makeEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Endpoint/", parameters),Endpoint.class);
     }
 
     public Endpoint getEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException { 

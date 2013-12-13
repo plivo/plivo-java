@@ -23,13 +23,17 @@ import com.plivo.helper.api.response.message.Message;
 import com.plivo.helper.api.response.message.MessageFactory;
 import com.plivo.helper.api.response.number.NumberSearchFactory;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
+import com.plivo.helper.api.response.response.GenericResponse;
 import com.plivo.helper.exception.PlivoException;
 
 public class RestAPITest {
 	RestAPI restClient;
+	private String authId = "MAMJFLMZJKMZE0OTZHNT";
+	private String authToken = "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3";
+
 	@Before
 	public void initTest() {
-		restClient = new RestAPI("MAMJFLMZJKMZE0OTZHNT", "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3", "v1");
+		restClient = new RestAPI(this.authId, this.authToken, "v1");
 	}
 
 	@Test(expected=IllegalArgumentException.class)
@@ -312,6 +316,66 @@ public class RestAPITest {
 		}
 	}
 
+	@Test
+	public void testCreateEditDeleteEndpoint() {
+		try {
+			String endpointId;
+			String username;
+
+			//create test
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+
+			params.put("username", "unittest");
+			params.put("password", "weak_password");
+			params.put("alias", "unittest");
+
+			Endpoint newEndpoint = restClient.makeEndpoint(params);
+
+			assertEquals(201, (int)newEndpoint.serverCode);
+			assertEquals(null, newEndpoint.error);
+
+			endpointId = newEndpoint.endpointId;
+			username = newEndpoint.username;
+
+			//edit test
+			params = new LinkedHashMap<String, String>();
+
+			params.put("endpoint_id", endpointId);
+			params.put("alias", "new_alias");
+			params.put("password", "new_password");
+			params.put("app_id", "13067240731758303");
+
+			GenericResponse gr = restClient.editEndpoint(params);
+
+			assertEquals(202, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+
+			//get endpoint to verify our changes
+			params = new LinkedHashMap<String, String>();
+
+			params.put("endpoint_id", endpointId);
+
+			Endpoint e = restClient.getEndpoint(params);
+
+			assertEquals(200, (int)e.serverCode);
+			assertEquals(null, e.error);
+			assertEquals("new_alias", e.alias);
+			assertEquals(endpointId, e.endpointId);
+			assertEquals(username, e.username);
+
+			//delete
+			params = new LinkedHashMap<String, String>();
+
+			params.put("endpoint_id", endpointId);
+
+			gr = restClient.deleteEndpoint(params);
+
+			assertEquals(204, (int)gr.serverCode);
+			assertEquals(null, gr.error);
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
 
 	@Test
 	public void testGetEndpoints() {
