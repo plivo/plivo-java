@@ -178,18 +178,45 @@ public class RestAPI {
     }
     
     // Account
+    /**
+     * Get account object
+     * 
+     * @return Account object for this credential
+     * @throws PlivoException
+     */
     public Account getAccount() throws PlivoException {
         return this.gson.fromJson(request("GET", "/", new LinkedHashMap<String, String>()), Account.class);
     }
     
+    /**
+     * Edit account details.
+     * 
+     * @param parameters
+     * @return REST call response from server.
+     * @throws PlivoException
+     */
     public GenericResponse editAccount(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/", parameters), GenericResponse.class);      
     }
     
+    /**
+     * Get Details Of All Subaccounts.
+     * 
+     * @return Sub accounts
+     * @throws PlivoException
+     */
     public SubAccountFactory getSubaccounts() throws PlivoException {
         return this.gson.fromJson(request("GET", "/Subaccount/", new LinkedHashMap<String, String>()), SubAccountFactory.class);
     }
     
+    /**
+     * Get Details Of a Specific Subaccount.
+     * 
+     * @param parameters
+     * 		subauth_id:Id of the subaccount for which the details are required.
+     * @return Details of requested subaccount
+     * @throws PlivoException
+     */
     public SubAccount getSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
       String subauth_id = this.getKeyValue(parameters, "subauth_id");
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
@@ -200,15 +227,40 @@ public class RestAPI {
         return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
     }
 
+    /**
+     * Create a sub account.
+     * 
+     * @param parameters
+     * 			name : Name of the subaccount
+     * 			enabled: Specify if the subaccount should be enabled or not. Takes a value of True or False.
+     * @return Sub Account details.
+     * @throws PlivoException
+     */
     public SubAccount makeSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("POST", "/Subaccount/", parameters), SubAccount.class);
     }
     
+    /**
+     * Modify a Subaccount.
+     * 
+     * @param parameters
+     * 			name : Name of the subaccount
+     * 			enabled: Specify if the subaccount should be enabled or not. Takes a value of True or False.
+     * @return Response from the server.
+     * @throws PlivoException
+     */
     public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
     	String subauth_id = this.getKeyValue(parameters, "subauth_id");
         return this.gson.fromJson(request("POST", String.format("/Subaccount/%s/", subauth_id), parameters), GenericResponse.class);
     }
     
+    /**
+     * Delete a sub account.
+     * @param parameters
+     * 			subauth_id	: auth id of the sub account.
+     * @return Response from Plivo server.
+     * @throws PlivoException
+     */
     public GenericResponse deleteSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
         String subauth_id = this.getKeyValue(parameters, "subauth_id");
         return this.gson.fromJson(request("DELETE", String.format("/Subaccount/%s/", subauth_id), parameters), GenericResponse.class);
