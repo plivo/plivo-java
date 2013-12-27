@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.PlivoRestClient;
-import com.plivo.helper.api.response.response.GenericResponse;
+import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.response.ApplicationCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
 
@@ -50,15 +50,29 @@ public class Application extends Resource{
     @SerializedName("fallback_answer_url")
     private String fallbackAnswerUrl ;
 
-    public Application(PlivoRestClient client) {
-    	super(client);
-    }
+    public static String create(LinkedHashMap<String, String> parameters, PlivoRestConf conf)  throws PlivoException{
+		Gson gson = new Gson();
+		ApplicationCreateResponse acr =  gson.fromJson(request("POST", "/Application/", parameters, conf), 
+				ApplicationCreateResponse.class);
+		if (acr.isSuccessful()) {
+			return acr.getApplicationId();
+		}else {
+			return null;
+		}
+	}
     
-    public Application(PlivoRestClient client, String appId) {
-    	super(client);
-    	this.applicationID = appId;
+    public static Application get(String appId, PlivoRestConf conf) throws PlivoException{
+    	Gson gson = new Gson();
+		Application app =  gson.fromJson(request("GET", String.format("/Application/%s/", appId), 
+	                new LinkedHashMap<String, String>(), conf), Application.class);
+		if (app.isGetOK()) {
+			app.setOK(true);
+			app.conf = conf;
+			return app;
+		} else {
+			return null;
+		}
     }
-    
     /**
      * Delete this application.
      * @return true if successful.
@@ -67,23 +81,37 @@ public class Application extends Resource{
     public boolean delete() throws PlivoException {
     	DeleteResponse dr;
     	Gson gson = new Gson();
-    	dr = gson.fromJson(this.client.request("DELETE", String.format("/Application/%s/", this.applicationID), 
-    			new LinkedHashMap<String, String>()), 
+    	dr = gson.fromJson(request("DELETE", String.format("/Application/%s/", this.applicationID), 
+    			new LinkedHashMap<String, String>(), this.conf), 
+    			DeleteResponse.class);
+    	return dr.isSuccessful();
+    }
+    
+    public static boolean delete(String appId, PlivoRestConf conf) throws PlivoException {
+    	DeleteResponse dr;
+    	Gson gson = new Gson();
+    	dr = gson.fromJson(request("DELETE", String.format("/Application/%s/", appId), 
+    			new LinkedHashMap<String, String>(), conf), 
     			DeleteResponse.class);
     	return dr.isSuccessful();
     }
     
     public boolean modify(LinkedHashMap<String, String> parameters)  throws PlivoException{
     	Gson gson = new Gson();
-    	ModifyResponse mr = gson.fromJson(this.client.request("POST", String.format("/Application/%s/", this.applicationID), parameters), 
+    	ModifyResponse mr = gson.fromJson(request("POST", String.format("/Application/%s/", this.applicationID),
+    			parameters, this.conf), 
     			ModifyResponse.class);
     	return mr.isSuccessful();
     }
     
-    public Integer getServerCode() {
-		return serverCode;
-	}
-
+    public static boolean modify(String appId, LinkedHashMap<String, String> parameters, PlivoRestConf conf)  throws PlivoException{
+    	Gson gson = new Gson();
+    	ModifyResponse mr = gson.fromJson(request("POST", String.format("/Application/%s/", appId),
+    			parameters, conf), 
+    			ModifyResponse.class);
+    	return mr.isSuccessful();
+    }
+    
 	public String getFallbackMethod() {
 		return fallbackMethod;
 	}
