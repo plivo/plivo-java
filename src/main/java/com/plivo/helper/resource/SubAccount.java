@@ -50,6 +50,16 @@ public class SubAccount extends Resource {
     	return null;
     }
     
+    public static SubAccountList getList(LinkedHashMap<String, String> parameters, PlivoRestConf conf) throws PlivoException {
+    	Gson gson = new Gson();
+    	SubAccountList sal = gson.fromJson(request("GET", baseLocation, parameters, conf), 
+    			SubAccountList.class);
+    	if (sal.isGetOK()) {
+    		return sal;
+    	}
+    	return null;
+    }
+    
     public static String create(LinkedHashMap<String, String> parameters, PlivoRestConf conf) throws PlivoException {
     	Gson gson = new Gson();
 		SubAccountCreateResponse scr =  gson.fromJson(request("POST", baseLocation, parameters, conf), 
