@@ -1,7 +1,14 @@
 package com.plivo.helper.resource;
 
+import java.util.LinkedHashMap;
+
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestClient;
+import com.plivo.helper.api.response.response.GenericResponse;
+import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.response.DeleteResponse;
+import com.plivo.helper.response.ModifyResponse;
 
 public class Application extends Resource{
     @SerializedName("fallback_method")
@@ -45,6 +52,32 @@ public class Application extends Resource{
 
     public Application(PlivoRestClient client) {
     	super(client);
+    }
+    
+    public Application(PlivoRestClient client, String appId) {
+    	super(client);
+    	this.applicationID = appId;
+    }
+    
+    /**
+     * Delete this application.
+     * @return true if successful.
+     * @throws PlivoException
+     */
+    public boolean delete() throws PlivoException {
+    	DeleteResponse dr;
+    	Gson gson = new Gson();
+    	dr = gson.fromJson(this.client.request("DELETE", String.format("/Application/%s/", this.applicationID), 
+    			new LinkedHashMap<String, String>()), 
+    			DeleteResponse.class);
+    	return dr.isSuccessful();
+    }
+    
+    public boolean modify(LinkedHashMap<String, String> parameters)  throws PlivoException{
+    	Gson gson = new Gson();
+    	ModifyResponse mr = gson.fromJson(this.client.request("POST", String.format("/Application/%s/", this.applicationID), parameters), 
+    			ModifyResponse.class);
+    	return mr.isSuccessful();
     }
     
     public Integer getServerCode() {
