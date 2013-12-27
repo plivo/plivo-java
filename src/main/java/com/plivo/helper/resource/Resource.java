@@ -30,21 +30,10 @@ import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.PlivoException;
 
 public abstract class Resource {
-	protected PlivoRestClient client;
 	@SerializedName("server_code")
 	protected Integer serverCode ;
 	protected String error;
-	private boolean isOK;
 	PlivoRestConf conf;
-
-	public Resource(PlivoRestClient client) {
-		this.client = client;
-		this.isOK = true;
-	}
-	
-	public Resource() {
-		this.isOK = true;
-	}
 	
 	protected static synchronized String request(String method, String resource, LinkedHashMap<String, String> parameters, PlivoRestConf conf) 
 			throws PlivoException
@@ -124,17 +113,5 @@ public abstract class Resource {
 	 */
 	public boolean isGetOK() {
 		return serverCode == 200 && error == null;
-	}
-	
-	public boolean isOK() {
-		return isOK;
-	}
-
-	public void setOK(boolean isOK) {
-		this.isOK = isOK;
-	}
-	
-	public boolean isValid() {
-		return isOK;
 	}
 }
