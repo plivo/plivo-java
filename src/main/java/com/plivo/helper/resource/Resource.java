@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestClient;
 
 public abstract class Resource {
-	private PlivoRestClient client;
+	protected PlivoRestClient client;
 	@SerializedName("server_code")
 	protected Integer serverCode ;
 	protected String error;

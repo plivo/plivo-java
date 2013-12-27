@@ -17,7 +17,7 @@ public class ApplicationFactory {
 		Gson gson = new Gson();
 		ApplicationCreateResponse acr =  gson.fromJson(this.client.request("POST", "/Application/", parameters), 
 				ApplicationCreateResponse.class);
-		if (acr.isCreated()) {
+		if (acr.isSuccessful()) {
 			return acr.getApplicationId();
 		}else {
 			return null;

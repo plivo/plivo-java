@@ -2,21 +2,15 @@ package com.plivo.helper.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public abstract class CreateResponse {
-	@SerializedName("server_code")
-	private Integer serverCode ;
-    
-    @SerializedName("api_id")
+public abstract class CreateResponse extends Response{
+	@SerializedName("api_id")
     private String apiID ;
     
     @SerializedName("message")
     private String message;
     
-    @SerializedName("error")
-    private String error;
-
-
-    public boolean isCreated() {
+    
+    public boolean isSuccessful() {
     	return serverCode == 201 && error == null;
     }
     
