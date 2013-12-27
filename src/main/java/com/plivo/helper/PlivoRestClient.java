@@ -153,10 +153,6 @@ public class PlivoRestClient {
 		if (mainAccount == null) {
 			String resp = this.get("/",new LinkedHashMap<String, String>());
 			mainAccount = this.gson.fromJson(resp, Account.class);
-			mainAccount.setClient(this);
-			if (mainAccount.isGetOK()) {
-				mainAccount.setOK(true);
-			}
 		}
 		return this.mainAccount;
 	}
