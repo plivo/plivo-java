@@ -87,6 +87,22 @@ public class Call extends Resource {
 	}
 
 	/**
+	 * Hangup all calls
+	 * 
+	 * @param conf
+	 *            Plivo Rest Config
+	 * @return true if successful
+	 * @throws PlivoException
+	 */
+	public static boolean hangupAll(PlivoRestConf conf) throws PlivoException {
+		Gson gson = new Gson();
+		DeleteResponse dr = gson.fromJson(
+				request("DELETE", baseLoc, new LinkedHashMap<String, String>(),
+						conf), DeleteResponse.class);
+		return dr.isSuccessful();
+	}
+
+	/**
 	 * Transfer a call.
 	 * 
 	 * @see http://plivo.com/docs/api/call/#transfer
