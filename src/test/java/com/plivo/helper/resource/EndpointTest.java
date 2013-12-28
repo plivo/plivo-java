@@ -2,6 +2,7 @@ package com.plivo.helper.resource;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -29,8 +30,20 @@ public class EndpointTest {
 			assertNotNull(endpoint);
 			assertEquals("sip:iw4nbk131211052239@phone.plivo.com",
 					endpoint.getSipUri());
-			assertEquals("85785376675499", endpoint.getEndpointId());
+			assertEquals(endpointId, endpoint.getEndpointId());
 			assertEquals("appsub", endpoint.getAlias());
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+
+	@Test
+	public void testGetList() {
+		try {
+			EndpointList el = Endpoint.getList(restConf);
+
+			assertNotNull(el);
+			assertTrue(el.getList().size() > 2);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
