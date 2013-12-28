@@ -66,12 +66,21 @@ public class Application extends Resource{
 		Application app =  gson.fromJson(request("GET", String.format("/Application/%s/", appId), 
 	                new LinkedHashMap<String, String>(), conf), Application.class);
 		if (app.isGetOK()) {
-			app.setOK(true);
 			app.conf = conf;
 			return app;
 		} else {
 			return null;
 		}
+    }
+    
+    public static ApplicationList getList(LinkedHashMap<String, String> params, PlivoRestConf conf) throws PlivoException{
+    	Gson gson = new Gson();
+    	ApplicationList al = gson.fromJson(request("GET", "/Application/", params, conf), ApplicationList.class);
+    	if (al.isGetOK()) {
+    		al.conf = conf;
+    		return al;
+    	}
+    	return null;
     }
     /**
      * Delete this application.

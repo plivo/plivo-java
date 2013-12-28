@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.plivo.helper.PlivoRestClient;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.factory.ApplicationFactory;
 
 public class ApplicationTest {
 	PlivoRestClient restClient;
@@ -26,7 +25,24 @@ public class ApplicationTest {
 	}
 
 	@Test
-	public void testCreateModifyDeleteNew() {
+	public void testGet() {
+		try {
+			String appId = "13066057776063802";
+			Application app = Application.get(appId, restConf);
+			
+			assertNotNull(app);
+			assertEquals("Demo Speak", app.getApplicationName());
+			assertEquals("13066057776063802", app.getApplicationID());
+			assertEquals("https://s3.amazonaws.com/plivosamplexml/speak_url.xml", app.getAnswerUrl());
+			assertEquals("GET", app.getAnswerMethod());
+			assertEquals("GET", app.getFallbackMethod());
+			assertEquals("https://s3.amazonaws.com/plivosamplexml/fallback_url.xml", app.getFallbackAnswerUrl());
+		}catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+	@Test
+	public void testCreateModifyDelete() {
 		try {
 			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 			String appName = UUID.randomUUID().toString();
@@ -67,7 +83,7 @@ public class ApplicationTest {
 
 			Application ap = Application.get(appId, restConf);
 
-			assertTrue(ap.isOK());
+			assertNotNull(ap);
 			assertEquals(appName, ap.getApplicationName());
 			assertEquals(appId, ap.getApplicationID());
 			assertEquals("POST", ap.getAnswerMethod());
@@ -85,7 +101,34 @@ public class ApplicationTest {
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
-
 	}
-
+	
+	@Test
+	public void testGetList() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			ApplicationList al = Application.getList(params, restConf);
+			
+			assertNotNull(al);
+			assertTrue(al.getList().size() > 5);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
+	
+	@Test
+	public void testGetListWithLimit() {
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			params.put("limit", "3");
+	
+			ApplicationList al = Application.getList(params, restConf);
+			
+			assertNotNull(al);
+			assertTrue(al.getMeta().getLimit() == 3);
+			assertTrue(al.getList().size() <= 3);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		}
+	}
 }

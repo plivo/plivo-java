@@ -3,25 +3,28 @@ package com.plivo.helper.resource;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.api.response.application.Application;
-import com.plivo.helper.api.response.application.ApplicationMeta;
+import com.plivo.helper.resource.meta.ApplicationMeta;
 
-public class ApplicationList {
-	@SerializedName("server_code")
-	public Integer serverCode ;
-
+public class ApplicationList extends Resource {
    @SerializedName("objects")
-    public List<Application> applicationList ;
+    private List<Application> list;
     
     @SerializedName("meta")
-    public ApplicationMeta meta ;
+    private ApplicationMeta meta;
     
     @SerializedName("api_id")
-    public String apiId ;
+    private String apiId;
+
+	public List<Application> getList() {
+		return list;
+	}
+
+	public ApplicationMeta getMeta() {
+		return meta;
+	}
+
+	public String getApiId() {
+		return apiId;
+	}
     
-    public String error ;
-    
-    public ApplicationList() {
-    	
-    }
 }
