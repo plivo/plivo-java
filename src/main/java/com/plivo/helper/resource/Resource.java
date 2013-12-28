@@ -115,6 +115,19 @@ public abstract class Resource {
 		return responseString.toString();
 	}
 
+	protected static String getKeyValue(LinkedHashMap<String, String> params,
+			String key) throws PlivoException {
+		String value = "";
+		if (params.containsKey(key)) {
+			value = params.get(key);
+			params.remove(key);
+		} else {
+			throw new PlivoException(String.format(
+					"Missing mandatory parameter %s.", key));
+		}
+		return value;
+	}
+
 	/**
 	 * Check if GET operation is OK.
 	 * 

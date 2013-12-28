@@ -9,6 +9,9 @@ import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.response.CallCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
+import com.plivo.helper.response.RecordResponse;
+import com.plivo.helper.response.Response;
+import com.plivo.helper.util.HtmlEntity;
 
 public class Call extends Resource {
 	private String message;
@@ -170,6 +173,189 @@ public class Call extends Resource {
 			return callList;
 		}
 		return null;
+	}
+
+	/**
+	 * Record a call.
+	 * 
+	 * @see http://plivo.com/docs/api/call/record/#record
+	 * @param callUUID
+	 *            uuid of the call
+	 * @param params
+	 *            optionals params
+	 * @param conf
+	 *            Plivo REST config
+	 * @return tru
+	 * @throws PlivoException
+	 */
+	public static boolean record(String callUUID,
+			LinkedHashMap<String, String> params, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		RecordResponse r = gson.fromJson(
+				request("POST",
+						String.format(baseLoc + "%s/Record/", callUUID),
+						params, conf), RecordResponse.class);
+		return r.isSuccessful();
+	}
+
+	/**
+	 * Stop recording a call.
+	 * 
+	 * @see http://plivo.com/docs/api/call/record/#stoprecord
+	 * @param callUUID
+	 *            uuid of the call.
+	 * @param params
+	 *            optional params.
+	 * @param conf
+	 *            Plivo REST config
+	 * @return true if successful
+	 * @throws PlivoException
+	 */
+	public static boolean stopRecord(String callUUID,
+			LinkedHashMap<String, String> params, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("DELETE",
+						String.format(baseLoc + "%s/Record/", callUUID),
+						params, conf), Response.class);
+		return r.getServerCode() == 204;
+	}
+
+	/**
+	 * Play a sounds during a call.
+	 * 
+	 * @see http://plivo.com/docs/api/call/play/#play
+	 * @param callUUID
+	 *            uuid of the call
+	 * @param parameters
+	 *            optional parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @return true if successful
+	 * @throws PlivoException
+	 */
+	public static boolean play(String callUUID,
+			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("POST", String.format(baseLoc + "%s/Play/", callUUID),
+						parameters, conf), Response.class);
+		return r.getServerCode() == 202;
+	}
+
+	/**
+	 * Stop playing sound during a call.
+	 * 
+	 * @see http://plivo.com/docs/api/call/play/#stopplay
+	 * @param callUUID
+	 *            uuid of the call.
+	 * @param conf
+	 *            Plivo REST config
+	 * @return true if successful
+	 * @throws PlivoException
+	 */
+	public static boolean stopPlay(String callUUID, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("POST", String.format(baseLoc + "%s/Play/", callUUID),
+						new LinkedHashMap<String, String>(), conf),
+				Response.class);
+		return r.getServerCode() == 202;
+	}
+
+	/**
+	 * Play Text During a Call (Text to Speech).
+	 * 
+	 * @see http://plivo.com/docs/api/call/speak/#play
+	 * @param callUUID
+	 *            uuid of the call
+	 * @param parameters
+	 *            parameters
+	 * @param conf
+	 *            plivo rest config
+	 * @return true if successful.
+	 * @throws PlivoException
+	 */
+	public static boolean speak(String callUUID,
+			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		String text = HtmlEntity.convert(getKeyValue(parameters, "text"));
+		parameters.put("text", text);
+		Response r = gson.fromJson(
+				request("POST", String.format(baseLoc + "%s/Speak/", callUUID),
+						parameters, conf), Response.class);
+		return r.getServerCode() == 202;
+	}
+
+	/**
+	 * Stop Playing Text During a Call.
+	 * 
+	 * @see http://plivo.com/docs/api/call/speak/#stopplay
+	 * @param callUUID
+	 *            uuid of the call.
+	 * @param conf
+	 *            plivo rest config
+	 * @return true if successful.
+	 * @throws PlivoException
+	 */
+	public static boolean stopSpeak(String callUUID, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("DELETE",
+						String.format(baseLoc + "%s/Speak/", callUUID),
+						new LinkedHashMap<String, String>(), conf),
+				Response.class);
+		return r.getServerCode() == 202;
+	}
+
+	/**
+	 * Send digits on a call
+	 * 
+	 * @see http://plivo.com/docs/api/call/dtmf/
+	 * @param callUUID
+	 *            uuid of the call
+	 * @param params
+	 *            parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @return true if successful.
+	 * @throws PlivoException
+	 */
+	public static boolean sendDigits(String callUUID,
+			LinkedHashMap<String, String> params, PlivoRestConf conf)
+			throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("POST", String.format(baseLoc + "%s/DTMF/", callUUID),
+						params, conf), Response.class);
+		return r.getServerCode() == 202;
+	}
+
+	/**
+	 * Hangup a call request.
+	 * 
+	 * @see http://plivo.com/docs/api/call/request/
+	 * @param requestUUID
+	 *            uuid of call request.
+	 * @param conf
+	 *            Plivo REST config
+	 * @return true if successful
+	 * @throws PlivoException
+	 */
+	public static boolean hangupCallRequest(String requestUUID,
+			PlivoRestConf conf) throws PlivoException {
+		Gson gson = new Gson();
+		Response r = gson.fromJson(
+				request("DELETE", String.format("/Request/%s/", requestUUID),
+						new LinkedHashMap<String, String>(), conf),
+				Response.class);
+		return r.getServerCode() == 204;
 	}
 
 	public String getMessage() {
