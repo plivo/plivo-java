@@ -11,19 +11,16 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.plivo.helper.PlivoRestClient;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.PlivoException;
 
 public class ApplicationTest {
-	PlivoRestClient restClient;
 	PlivoRestConf restConf;
 	private final String authId = "MAMJFLMZJKMZE0OTZHNT";
 	private final String authToken = "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3";
 
 	@Before
 	public void initTest() {
-		restClient = new PlivoRestClient(this.authId, this.authToken, "v1");
 		restConf = new PlivoRestConf(this.authId, this.authToken, "v1");
 	}
 
