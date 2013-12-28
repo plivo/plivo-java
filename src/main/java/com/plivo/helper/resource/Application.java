@@ -49,10 +49,12 @@ public class Application extends Resource{
     
     @SerializedName("fallback_answer_url")
     private String fallbackAnswerUrl ;
+    
+    private static String baseLocation = "/Application/";
 
     public static String create(LinkedHashMap<String, String> parameters, PlivoRestConf conf)  throws PlivoException{
 		Gson gson = new Gson();
-		ApplicationCreateResponse acr =  gson.fromJson(request("POST", "/Application/", parameters, conf), 
+		ApplicationCreateResponse acr =  gson.fromJson(request("POST", baseLocation, parameters, conf), 
 				ApplicationCreateResponse.class);
 		if (acr.isSuccessful()) {
 			return acr.getApplicationId();
@@ -63,7 +65,7 @@ public class Application extends Resource{
     
     public static Application get(String appId, PlivoRestConf conf) throws PlivoException{
     	Gson gson = new Gson();
-		Application app =  gson.fromJson(request("GET", String.format("/Application/%s/", appId), 
+		Application app =  gson.fromJson(request("GET", String.format(baseLocation + "%s/", appId), 
 	                new LinkedHashMap<String, String>(), conf), Application.class);
 		if (app.isGetOK()) {
 			app.conf = conf;
@@ -75,7 +77,7 @@ public class Application extends Resource{
     
     public static ApplicationList getList(LinkedHashMap<String, String> params, PlivoRestConf conf) throws PlivoException{
     	Gson gson = new Gson();
-    	ApplicationList al = gson.fromJson(request("GET", "/Application/", params, conf), ApplicationList.class);
+    	ApplicationList al = gson.fromJson(request("GET", baseLocation, params, conf), ApplicationList.class);
     	if (al.isGetOK()) {
     		al.conf = conf;
     		return al;
@@ -90,7 +92,7 @@ public class Application extends Resource{
     public boolean delete() throws PlivoException {
     	DeleteResponse dr;
     	Gson gson = new Gson();
-    	dr = gson.fromJson(request("DELETE", String.format("/Application/%s/", this.applicationID), 
+    	dr = gson.fromJson(request("DELETE", String.format(baseLocation + "%s/", this.applicationID), 
     			new LinkedHashMap<String, String>(), this.conf), 
     			DeleteResponse.class);
     	return dr.isSuccessful();
@@ -99,7 +101,7 @@ public class Application extends Resource{
     public static boolean delete(String appId, PlivoRestConf conf) throws PlivoException {
     	DeleteResponse dr;
     	Gson gson = new Gson();
-    	dr = gson.fromJson(request("DELETE", String.format("/Application/%s/", appId), 
+    	dr = gson.fromJson(request("DELETE", String.format(baseLocation + "%s/", appId), 
     			new LinkedHashMap<String, String>(), conf), 
     			DeleteResponse.class);
     	return dr.isSuccessful();
@@ -107,7 +109,7 @@ public class Application extends Resource{
     
     public boolean modify(LinkedHashMap<String, String> parameters)  throws PlivoException{
     	Gson gson = new Gson();
-    	ModifyResponse mr = gson.fromJson(request("POST", String.format("/Application/%s/", this.applicationID),
+    	ModifyResponse mr = gson.fromJson(request("POST", String.format(baseLocation + "%s/", this.applicationID),
     			parameters, this.conf), 
     			ModifyResponse.class);
     	return mr.isSuccessful();
@@ -115,7 +117,7 @@ public class Application extends Resource{
     
     public static boolean modify(String appId, LinkedHashMap<String, String> parameters, PlivoRestConf conf)  throws PlivoException{
     	Gson gson = new Gson();
-    	ModifyResponse mr = gson.fromJson(request("POST", String.format("/Application/%s/", appId),
+    	ModifyResponse mr = gson.fromJson(request("POST", String.format(baseLocation + "%s/", appId),
     			parameters, conf), 
     			ModifyResponse.class);
     	return mr.isSuccessful();
