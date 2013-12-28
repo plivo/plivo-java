@@ -148,12 +148,4 @@ public class PlivoRestClient {
 		String json = request("GET", location, params);
 		return this.gson.fromJson(json, classOfT);
 	}
-	
-	public Account getAccount() throws PlivoException{
-		if (mainAccount == null) {
-			String resp = this.get("/",new LinkedHashMap<String, String>());
-			mainAccount = this.gson.fromJson(resp, Account.class);
-		}
-		return this.mainAccount;
-	}
 }

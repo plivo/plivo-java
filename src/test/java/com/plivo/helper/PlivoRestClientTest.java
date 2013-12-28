@@ -69,34 +69,4 @@ public class PlivoRestClientTest {
 			fail("PlivoException : " + pe.getMessage());
 		}
 	}
-	
-	@Test
-	public void testGetAccount() {
-		try {
-			Account account = restClient.getAccount();
-			
-			assertTrue(account.isOK() == true);
-			assertEquals("Iwan Budi Kusnanto", account.getName());
-		} catch (PlivoException pe) {
-			fail(pe.getMessage());
-		}
-	};
-
-	@Test
-	public void testGetApplication() throws PlivoException {
-		try {
-			Application app = restClient.getAccount().getApplication("13066057776063802");
-
-			assertTrue(app.isOK());
-			assertEquals("Demo Speak", app.getApplicationName());
-			assertEquals("13066057776063802", app.getApplicationID());
-			assertEquals("https://s3.amazonaws.com/plivosamplexml/speak_url.xml", app.getAnswerUrl());
-			assertEquals("GET", app.getAnswerMethod());
-			assertEquals("GET", app.getFallbackMethod());
-			assertEquals("https://s3.amazonaws.com/plivosamplexml/fallback_url.xml", app.getFallbackAnswerUrl());
-		} catch (PlivoException pe) {
-			fail(pe.getMessage());
-		}
-	}
-
 }
