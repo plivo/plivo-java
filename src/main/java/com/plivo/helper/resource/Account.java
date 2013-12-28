@@ -4,14 +4,11 @@ import java.util.LinkedHashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.PlivoRestClient;
+import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.factory.ApplicationFactory;
 
 public class Account extends Resource {
-	private PlivoRestClient restClient;
-	
-    private String city ;
+	private String city ;
     
     private String name ;
     
@@ -40,34 +37,19 @@ public class Account extends Resource {
     
     @SerializedName("resource_uri")
     private String resourceURI ;
-
-	public Account (PlivoRestClient client) {
-		super(client);
-	}
 	
-	public Application getApplication(String appId) throws PlivoException {
+	public static Account get(PlivoRestConf conf) throws PlivoException{
 		Gson gson = new Gson();
-		Application app =  gson.fromJson(this.restClient.request("GET", String.format("/Application/%s/", appId), 
-	                new LinkedHashMap<String, String>()), Application.class);
-		if (app.isGetOK()) {
-			app.setOK(true);
+		String resp = request("GET", "/", new LinkedHashMap<String, String>(), conf);
+		Account a = gson.fromJson(resp, Account.class);
+		if (a.isGetOK()) {
+			a.conf = conf;
+			return a;
+		} else {
+			return null;
 		}
-		return app;
 	}
 	
-	public ApplicationFactory getApplicationFactory() {
-		return new ApplicationFactory(this.restClient);
-	}
-	
-	public ApplicationList getApplications(LinkedHashMap<String, String> params)  throws PlivoException {
-		Gson gson = new Gson();
-		return gson.fromJson(this.restClient.request("GET", "/Application/", params), ApplicationList.class);
-	}
-	
-	public void setClient(PlivoRestClient client) {
-		this.restClient = client;
-	}
-
 	public String getCity() {
 		return city;
 	}
