@@ -6,5 +6,4 @@ public class ModifyResponse extends Response {
 	public boolean isSuccessful() {
 		return this.serverCode == 202 && this.error == null;
 	}
-
 }

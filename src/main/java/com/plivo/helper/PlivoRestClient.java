@@ -25,30 +25,24 @@ import org.apache.http.protocol.HTTP;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.resource.Account;
 
 public class PlivoRestClient {
-	private String AUTH_ID;
-	private String AUTH_TOKEN;
+	private final String AUTH_ID;
+	private final String AUTH_TOKEN;
 	private final String PLIVO_URL = "https://api.plivo.com";
 	private String PLIVO_VERSION = "v1";
-	private String BaseURI;
+	private final String BaseURI;
 	private DefaultHttpClient Client;
 	public Gson gson;
-	
-	private Account mainAccount = null;
-	
-	public PlivoRestClient(String auth_id, String auth_token, String version)
-	{
+
+	public PlivoRestClient(String auth_id, String auth_token, String version) {
 		if (!version.equals("v1")) {
-			throw new IllegalArgumentException(
-					"Version '"
-							+ version
-							+ "' is not valid. Only API version v1 is supported now");
+			throw new IllegalArgumentException("Version '" + version
+					+ "' is not valid. Only API version v1 is supported now");
 		}
 
-		if (auth_id == null || auth_id.length() != 20 ||
-				!(auth_id.startsWith("MA") || auth_id.startsWith("SA"))) {
+		if (auth_id == null || auth_id.length() != 20
+				|| !(auth_id.startsWith("MA") || auth_id.startsWith("SA"))) {
 			throw new IllegalArgumentException(
 					"Auth ID '"
 							+ auth_id
@@ -56,65 +50,69 @@ public class PlivoRestClient {
 		}
 
 		if (auth_token == null || auth_token.length() != 40) {
-			throw new IllegalArgumentException(
-					"Auth Token '"
-							+ auth_token
-							+ "' is not valid. It should be containt 40 characters");
+			throw new IllegalArgumentException("Auth Token '" + auth_token
+					+ "' is not valid. It should be containt 40 characters");
 		}
 
 		AUTH_ID = auth_id;
 		AUTH_TOKEN = auth_token;
 		PLIVO_VERSION = version;
-		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
+		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION,
+				AUTH_ID);
 		gson = new Gson();
 	}
 
-	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
-			throws PlivoException
-	{
-		HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
-				HttpStatus.SC_OK, "OK");
+	public String request(String method, String resource,
+			LinkedHashMap<String, String> parameters) throws PlivoException {
+		HttpResponse response = new BasicHttpResponse(new ProtocolVersion(
+				"HTTP", 1, 1), HttpStatus.SC_OK, "OK");
 		Client = new DefaultHttpClient();
 		Client.getCredentialsProvider().setCredentials(
 				new AuthScope("api.plivo.com", 443),
-				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
-				);
+				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN));
 		String json = "";
 		try {
-			if ( method == "GET" ) {
+			if (method == "GET") {
 				// Prepare a String with GET parameters
 				String getparams = "?";
-				for ( Entry<String, String> pair : parameters.entrySet() )
+				for (Entry<String, String> pair : parameters.entrySet())
 					getparams += pair.getKey() + "=" + pair.getValue() + "&";
 				// remove the trailing '&'
 				getparams = getparams.substring(0, getparams.length() - 1);
-				
-				HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
+
+				HttpGet httpget = new HttpGet(this.BaseURI + resource
+						+ getparams);
 				response = this.Client.execute(httpget);
-			}
-			else if ( method == "POST" ) {
+			} else if (method == "POST") {
 				HttpPost httpost = new HttpPost(this.BaseURI + resource);
 				Gson gson = new GsonBuilder().serializeNulls().create();
 				// Create a String entity with the POST parameters
-				StringEntity se = new StringEntity(gson.toJson(parameters),"utf-8");
-				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-				// Now, attach the pay load to the request 
+				StringEntity se = new StringEntity(gson.toJson(parameters),
+						"utf-8");
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				// Now, attach the pay load to the request
 				httpost.setEntity(se);
 				response = this.Client.execute(httpost);
-			}
-			else if ( method == "DELETE" ) {
+			} else if (method == "DELETE") {
 				HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
 				response = this.Client.execute(httpdelete);
 			}
 
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
-	        if ( response.getEntity() != null ) {
-	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
-	        } else {
-	                // dummy response
-	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
-	        }
+			if (response.getEntity() != null) {
+				json = this.convertStreamToString(
+						response.getEntity().getContent()).replaceFirst(
+						"\\{",
+						String.format("{ \"server_code\": %s, ",
+								serverCode.toString()));
+			} else {
+				// dummy response
+				json = String
+						.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}",
+								serverCode.toString());
+			}
 
 		} catch (ClientProtocolException e) {
 			throw new PlivoException(e.getLocalizedMessage());
@@ -125,26 +123,31 @@ public class PlivoRestClient {
 		} finally {
 			this.Client.getConnectionManager().shutdown();
 		}
-		
+
 		return json;
-    }
-	private String convertStreamToString(InputStream istream) 
-            throws IOException {
-        BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
-        StringBuilder responseString = new StringBuilder();
-        String line = "";
-        while ((line = breader.readLine()) != null) {
-            responseString.append(line);
-        }
-        breader.close();
-        return responseString.toString();
-    }
-	
-	public String get(String location, LinkedHashMap<String, String> params) throws PlivoException {
+	}
+
+	private String convertStreamToString(InputStream istream)
+			throws IOException {
+		BufferedReader breader = new BufferedReader(new InputStreamReader(
+				istream));
+		StringBuilder responseString = new StringBuilder();
+		String line = "";
+		while ((line = breader.readLine()) != null) {
+			responseString.append(line);
+		}
+		breader.close();
+		return responseString.toString();
+	}
+
+	public String get(String location, LinkedHashMap<String, String> params)
+			throws PlivoException {
 		return request("GET", location, params);
 	}
-	
-	public Object getFromJson(String location, LinkedHashMap<String, String> params, Class<Object> classOfT) throws PlivoException {
+
+	public Object getFromJson(String location,
+			LinkedHashMap<String, String> params, Class<Object> classOfT)
+			throws PlivoException {
 		String json = request("GET", location, params);
 		return this.gson.fromJson(json, classOfT);
 	}

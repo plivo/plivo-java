@@ -12,14 +12,14 @@ import com.plivo.helper.exception.PlivoException;
 
 public class AccountTest {
 	PlivoRestConf restConf;
-	private String authId = "MAMJFLMZJKMZE0OTZHNT";
-	private String authToken = "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3";
+	private final String authId = "MAMJFLMZJKMZE0OTZHNT";
+	private final String authToken = "YmE1N2NiMDhiNTZlMWE1YjU3NzAwYmYyYTVmYjg3";
 
 	@Before
 	public void initTest() {
 		restConf = new PlivoRestConf(this.authId, this.authToken, "v1");
 	}
-	
+
 	@Test
 	public void testGet() {
 		try {

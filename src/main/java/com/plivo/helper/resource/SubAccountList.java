@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.resource.meta.SubAccountMeta;
 
 public class SubAccountList extends Resource {
-	private SubAccountMeta meta ;
+	private SubAccountMeta meta;
 
-    @SerializedName("api_id")
-    private String apiId ;
-    
-    @SerializedName("objects")
-    private List<SubAccount> list;
+	@SerializedName("api_id")
+	private String apiId;
+
+	@SerializedName("objects")
+	private List<SubAccount> list;
 
 	public SubAccountMeta getMeta() {
 		return meta;

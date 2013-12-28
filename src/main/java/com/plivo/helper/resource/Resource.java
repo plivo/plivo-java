@@ -30,57 +30,64 @@ import com.plivo.helper.exception.PlivoException;
 
 public abstract class Resource {
 	@SerializedName("server_code")
-	protected Integer serverCode ;
+	protected Integer serverCode;
 	protected String error;
 	PlivoRestConf conf;
-	
-	protected static synchronized String request(String method, String resource, LinkedHashMap<String, String> parameters, PlivoRestConf conf) 
-			throws PlivoException
-	{
-		HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
-				HttpStatus.SC_OK, "OK");
-		String baseURI = String.format("%s/%s/Account/%s", conf.getApiURL(), conf.getVersion(), conf.getAuthId());
+
+	protected static synchronized String request(String method,
+			String resource, LinkedHashMap<String, String> parameters,
+			PlivoRestConf conf) throws PlivoException {
+		HttpResponse response = new BasicHttpResponse(new ProtocolVersion(
+				"HTTP", 1, 1), HttpStatus.SC_OK, "OK");
+		String baseURI = String.format("%s/%s/Account/%s", conf.getApiURL(),
+				conf.getVersion(), conf.getAuthId());
 		DefaultHttpClient client = new DefaultHttpClient();
 		client.getCredentialsProvider().setCredentials(
 				new AuthScope("api.plivo.com", 443),
-				new UsernamePasswordCredentials(conf.getAuthId(), conf.getAuthToken())
-				);
+				new UsernamePasswordCredentials(conf.getAuthId(), conf
+						.getAuthToken()));
 		String json = "";
 		try {
-			if ( method == "GET" ) {
+			if (method == "GET") {
 				// Prepare a String with GET parameters
 				String getparams = "?";
-				for ( Entry<String, String> pair : parameters.entrySet() )
+				for (Entry<String, String> pair : parameters.entrySet())
 					getparams += pair.getKey() + "=" + pair.getValue() + "&";
 				// remove the trailing '&'
 				getparams = getparams.substring(0, getparams.length() - 1);
-				
+
 				HttpGet httpget = new HttpGet(baseURI + resource + getparams);
 				response = client.execute(httpget);
-			}
-			else if ( method == "POST" ) {
+			} else if (method == "POST") {
 				HttpPost httpost = new HttpPost(baseURI + resource);
 				Gson gson = new GsonBuilder().serializeNulls().create();
 				// Create a String entity with the POST parameters
-				StringEntity se = new StringEntity(gson.toJson(parameters),"utf-8");
-				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-				// Now, attach the pay load to the request 
+				StringEntity se = new StringEntity(gson.toJson(parameters),
+						"utf-8");
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				// Now, attach the pay load to the request
 				httpost.setEntity(se);
 				response = client.execute(httpost);
-			}
-			else if ( method == "DELETE" ) {
+			} else if (method == "DELETE") {
 				HttpDelete httpdelete = new HttpDelete(baseURI + resource);
 				response = client.execute(httpdelete);
 			}
 
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
-	        if ( response.getEntity() != null ) {
-	        	json = convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
-	        } else {
-	                // dummy response
-	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
-	        }
+			if (response.getEntity() != null) {
+				json = convertStreamToString(response.getEntity().getContent())
+						.replaceFirst(
+								"\\{",
+								String.format("{ \"server_code\": %s, ",
+										serverCode.toString()));
+			} else {
+				// dummy response
+				json = String
+						.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}",
+								serverCode.toString());
+			}
 
 		} catch (ClientProtocolException e) {
 			throw new PlivoException(e.getLocalizedMessage());
@@ -91,23 +98,26 @@ public abstract class Resource {
 		} finally {
 			client.getConnectionManager().shutdown();
 		}
-		
+
 		return json;
-    }
-	protected static String convertStreamToString(InputStream istream) 
-            throws IOException {
-        BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
-        StringBuilder responseString = new StringBuilder();
-        String line = "";
-        while ((line = breader.readLine()) != null) {
-            responseString.append(line);
-        }
-        breader.close();
-        return responseString.toString();
-    }
-	
+	}
+
+	protected static String convertStreamToString(InputStream istream)
+			throws IOException {
+		BufferedReader breader = new BufferedReader(new InputStreamReader(
+				istream));
+		StringBuilder responseString = new StringBuilder();
+		String line = "";
+		while ((line = breader.readLine()) != null) {
+			responseString.append(line);
+		}
+		breader.close();
+		return responseString.toString();
+	}
+
 	/**
 	 * Check if GET operation is OK.
+	 * 
 	 * @return
 	 */
 	public boolean isGetOK() {

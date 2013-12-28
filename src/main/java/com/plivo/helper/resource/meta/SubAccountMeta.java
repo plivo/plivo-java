@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 public class SubAccountMeta {
 	private String previous;
 
-    @SerializedName("total_count")
-    private int totalCount;
-    
-    private int offset;
-    
-    private int limit;
-    
-    private String next;
+	@SerializedName("total_count")
+	private int totalCount;
+
+	private int offset;
+
+	private int limit;
+
+	private String next;
 
 	public String getPrevious() {
 		return previous;
@@ -33,5 +33,5 @@ public class SubAccountMeta {
 	public String getNext() {
 		return next;
 	}
-    
+
 }

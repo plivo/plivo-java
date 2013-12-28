@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.resource.meta.ApplicationMeta;
 
 public class ApplicationList extends Resource {
-   @SerializedName("objects")
-    private List<Application> list;
-    
-    @SerializedName("meta")
-    private ApplicationMeta meta;
-    
-    @SerializedName("api_id")
-    private String apiId;
+	@SerializedName("objects")
+	private List<Application> list;
+
+	@SerializedName("meta")
+	private ApplicationMeta meta;
+
+	@SerializedName("api_id")
+	private String apiId;
 
 	public List<Application> getList() {
 		return list;
@@ -26,5 +26,5 @@ public class ApplicationList extends Resource {
 	public String getApiId() {
 		return apiId;
 	}
-    
+
 }
