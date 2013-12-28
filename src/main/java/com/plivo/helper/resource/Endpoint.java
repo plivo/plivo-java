@@ -23,7 +23,7 @@ public class Endpoint extends Resource {
 	@SerializedName("resource_uri")
 	private String resourceUri;
 
-	private static String baseLoc = "/Endpoint";
+	private static String baseLoc = "/Endpoint/";
 
 	public static Endpoint get(String endpointId, PlivoRestConf conf)
 			throws PlivoException {
