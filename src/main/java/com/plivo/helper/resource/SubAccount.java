@@ -2,9 +2,9 @@ package com.plivo.helper.resource;
 
 import java.util.LinkedHashMap;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
@@ -36,79 +36,50 @@ public class SubAccount extends Resource {
 
 	private String name;
 
-	private static String baseLocation = "/Subaccount/";
+	private static String baseLoc = "/Subaccount/";
+
+	private static String getIdLoc(String id) {
+		return baseLoc + id + "/";
+	}
 
 	public static SubAccount get(String subauthId, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		SubAccount sa = gson.fromJson(
-				request("GET", String.format(baseLocation + "%s/", subauthId),
-						new LinkedHashMap<String, String>(), conf),
-				SubAccount.class);
-		if (sa.isGetOK()) {
-			sa.conf = conf;
-			return sa;
-		}
-		return null;
+			throws PlivoException, APIException {
+		SubAccount sa = getRequest(getIdLoc(subauthId),
+				new LinkedHashMap<String, String>(), SubAccount.class, conf);
+
+		sa.conf = conf;
+		return sa;
 	}
 
 	public static SubAccountList getList(
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		SubAccountList sal = gson.fromJson(
-				request("GET", baseLocation, parameters, conf),
-				SubAccountList.class);
-		if (sal.isGetOK()) {
-			return sal;
-		}
-		return null;
+			throws PlivoException, APIException {
+		SubAccountList sal = getRequest(baseLoc, parameters,
+				SubAccountList.class, conf);
+		sal.conf = conf;
+		return sal;
 	}
 
 	public static String create(LinkedHashMap<String, String> parameters,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		SubAccountCreateResponse scr = gson.fromJson(
-				request("POST", baseLocation, parameters, conf),
-				SubAccountCreateResponse.class);
-		if (scr.isSuccessful()) {
-			return scr.getAuthId();
-		} else {
-			return null;
-		}
+			PlivoRestConf conf) throws PlivoException, APIException {
+		SubAccountCreateResponse scr = postRequest(baseLoc, parameters,
+				SubAccountCreateResponse.class, conf);
+
+		return scr.getAuthId();
 	}
 
-	public static boolean modify(String subAuthId,
+	public static void modify(String subAuthId,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		ModifyResponse mr = gson.fromJson(
-				request("POST", String.format(baseLocation + "%s/", subAuthId),
-						parameters, conf), ModifyResponse.class);
-		return mr.isSuccessful();
+			throws PlivoException, APIException {
+
+		postRequestExpect(getIdLoc(subAuthId), parameters,
+				ModifyResponse.class, conf, 202);
 	}
 
-	public static boolean delete(String subAuthId, PlivoRestConf conf)
-			throws PlivoException {
-		DeleteResponse dr;
-		Gson gson = new Gson();
-		dr = gson.fromJson(
-				request("DELETE",
-						String.format(baseLocation + "%s/", subAuthId),
-						new LinkedHashMap<String, String>(), conf),
-				DeleteResponse.class);
-		return dr.isSuccessful();
-	}
-
-	public boolean delete() throws PlivoException {
-		DeleteResponse dr;
-		Gson gson = new Gson();
-		dr = gson.fromJson(
-				request("DELETE",
-						String.format(baseLocation + "%s/", this.authId),
-						new LinkedHashMap<String, String>(), this.conf),
-				DeleteResponse.class);
-		return dr.isSuccessful();
+	public static void delete(String subAuthId, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		deleteRequest(getIdLoc(subAuthId), new LinkedHashMap<String, String>(),
+				DeleteResponse.class, conf);
 	}
 
 	public String getAccount() {

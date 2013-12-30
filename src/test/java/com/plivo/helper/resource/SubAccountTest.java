@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 
 public class SubAccountTest {
@@ -33,6 +34,8 @@ public class SubAccountTest {
 			assertEquals(true, sa.getIsEnabled());
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -48,17 +51,13 @@ public class SubAccountTest {
 			subAuthId = SubAccount.create(params, restConf);
 
 			assertNotNull(subAuthId);
-
 			// edit
 			params = new LinkedHashMap<String, String>();
 
 			params.put("name", "unittest_edited");
 			params.put("enabled", "true");
 
-			boolean modifResult = SubAccount
-					.modify(subAuthId, params, restConf);
-
-			assertTrue(modifResult);
+			SubAccount.modify(subAuthId, params, restConf);
 
 			// verify our changes
 			SubAccount sa = SubAccount.get(subAuthId, restConf);
@@ -67,12 +66,13 @@ public class SubAccountTest {
 			assertEquals(true, sa.getIsEnabled());
 			assertEquals("unittest_edited", sa.getName());
 
-			// delete
-			boolean delResult = SubAccount.delete(subAuthId, restConf);
+			// delete it
+			SubAccount.delete(subAuthId, restConf);
 
-			assertTrue(delResult);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -97,6 +97,8 @@ public class SubAccountTest {
 			}
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -114,6 +116,8 @@ public class SubAccountTest {
 			assertTrue(sal.getMeta().getLimit() == 2);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 }
