@@ -194,6 +194,12 @@ public abstract class Resource {
 				classOfT);
 	}
 
+	protected static <T> T getRequest(String location,
+			LinkedHashMap<String, String> params, Class<T> classOfT,
+			PlivoRestConf restConf) throws PlivoException, APIException {
+		return getRequest(location, params, classOfT, restConf, 200);
+	}
+
 	protected static <T> T postRequestExpect(String location,
 			LinkedHashMap<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,

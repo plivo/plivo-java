@@ -2,9 +2,9 @@ package com.plivo.helper.resource;
 
 import java.util.LinkedHashMap;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 
 public class Account extends Resource {
@@ -38,17 +38,12 @@ public class Account extends Resource {
 	@SerializedName("resource_uri")
 	private String resourceURI;
 
-	public static Account get(PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		String resp = request("GET", "/", new LinkedHashMap<String, String>(),
-				conf);
-		Account a = gson.fromJson(resp, Account.class);
-		if (a.isGetOK()) {
-			a.conf = conf;
-			return a;
-		} else {
-			return null;
-		}
+	public static Account get(PlivoRestConf conf) throws PlivoException,
+			APIException {
+		Account a = getRequest("/", new LinkedHashMap<String, String>(),
+				Account.class, conf);
+		a.conf = conf;
+		return a;
 	}
 
 	public String getCity() {

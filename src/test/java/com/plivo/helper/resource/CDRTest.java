@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 
 public class CDRTest {
@@ -48,6 +49,8 @@ public class CDRTest {
 					cdr.getResourceUri());
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -61,6 +64,8 @@ public class CDRTest {
 			assertTrue(cdrList.getList().size() > 0);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 }

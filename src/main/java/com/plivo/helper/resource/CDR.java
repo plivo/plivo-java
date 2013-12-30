@@ -2,9 +2,9 @@ package com.plivo.helper.resource;
 
 import java.util.LinkedHashMap;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 
 public class CDR extends Resource {
@@ -49,29 +49,25 @@ public class CDR extends Resource {
 
 	private static String baseLoc = "/Call/";
 
+	protected static String getIdLoc(String id) {
+		return baseLoc + id + "/";
+	}
+
 	public static CDR get(String recordId, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		CDR cdr = gson.fromJson(
-				request("GET", String.format(baseLoc + "%s/", recordId),
-						new LinkedHashMap<String, String>(), conf), CDR.class);
-		if (cdr.isGetOK()) {
-			cdr.conf = conf;
-			return cdr;
-		}
-		return null;
+			throws PlivoException, APIException {
+		CDR cdr = getRequest(getIdLoc(recordId),
+				new LinkedHashMap<String, String>(), CDR.class, conf);
+		cdr.conf = conf;
+		return cdr;
+
 	}
 
 	public static CDRList getList(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		CDRList cdrList = gson.fromJson(request("GET", baseLoc, params, conf),
-				CDRList.class);
-		if (cdrList.isGetOK()) {
-			cdrList.conf = conf;
-			return cdrList;
-		}
-		return null;
+			PlivoRestConf conf) throws PlivoException, APIException {
+		CDRList cdrList = getRequest(baseLoc, params, CDRList.class, conf);
+		cdrList.conf = conf;
+		return cdrList;
+
 	}
 
 	public Integer getBillDuration() {
