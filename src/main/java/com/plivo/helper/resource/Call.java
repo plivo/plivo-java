@@ -2,15 +2,14 @@ package com.plivo.helper.resource;
 
 import java.util.LinkedHashMap;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.response.CallCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
 import com.plivo.helper.response.RecordResponse;
-import com.plivo.helper.response.Response;
 import com.plivo.helper.util.HtmlEntity;
 
 public class Call extends Resource {
@@ -24,6 +23,10 @@ public class Call extends Resource {
 
 	private static String baseLoc = "/Call/";
 
+	private static String getIdLoc(String id) {
+		return baseLoc + id + "/";
+	}
+
 	/**
 	 * Get details of a call record (CDR)
 	 * 
@@ -34,7 +37,7 @@ public class Call extends Resource {
 	 * @throws PlivoException
 	 */
 	public static CDR getCDR(String recordId, PlivoRestConf conf)
-			throws PlivoException {
+			throws PlivoException, APIException {
 		return CDR.get(recordId, conf);
 	}
 
@@ -48,84 +51,81 @@ public class Call extends Resource {
 	 * @throws PlivoException
 	 */
 	public static CDRList getCDRList(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException {
+			PlivoRestConf conf) throws PlivoException, APIException {
 		return CDR.getList(params, conf);
 	}
 
 	/**
-	 * Create a call.
+	 * Make an outbound call.
 	 * 
+	 * @see http://plivo.com/docs/api/call/#outbound
 	 * @param params
+	 *            call parameter
 	 * @param conf
-	 * @return true if call can be fired.
+	 *            Plivo REST Config
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server.
 	 */
-	public static boolean create(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		CallCreateResponse ccr = gson.fromJson(
-				request("POST", baseLoc, params, conf),
-				CallCreateResponse.class);
-		return ccr.isSuccessful();
+	public static void create(LinkedHashMap<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
+		postRequestExpect(baseLoc, params, CallCreateResponse.class, conf, 200);
 	}
 
 	/**
-	 * Hangup a call.
+	 * Hangup a call
 	 * 
+	 * @see http://plivo.com/docs/api/call/#hangupone
 	 * @param callUUID
-	 *            call uuid of the call
+	 *            call UUID
 	 * @param conf
-	 *            Plivo Rest Configuration
-	 * @return true if successful
+	 *            Plivo REST Config
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean hangup(String callUUID, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		DeleteResponse dr = gson.fromJson(
-				request("DELETE", String.format(baseLoc + "%s/", callUUID),
-						new LinkedHashMap<String, String>(), conf),
-				DeleteResponse.class);
-		return dr.isSuccessful();
+	public static void hangup(String callUUID, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		deleteRequest(getIdLoc(callUUID), new LinkedHashMap<String, String>(),
+				DeleteResponse.class, conf);
+
 	}
 
 	/**
-	 * Hangup all calls
+	 * Hangup all call
 	 * 
 	 * @param conf
-	 *            Plivo Rest Config
-	 * @return true if successful
+	 *            Plivo REST config
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error detail from server
 	 */
-	public static boolean hangupAll(PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		DeleteResponse dr = gson.fromJson(
-				request("DELETE", baseLoc, new LinkedHashMap<String, String>(),
-						conf), DeleteResponse.class);
-		return dr.isSuccessful();
+	public static void hangupAll(PlivoRestConf conf) throws PlivoException,
+			APIException {
+		deleteRequest(baseLoc, new LinkedHashMap<String, String>(),
+				DeleteResponse.class, conf);
 	}
 
 	/**
-	 * Transfer a call.
+	 * Transfer a call
 	 * 
 	 * @see http://plivo.com/docs/api/call/#transfer
 	 * @param callUUID
-	 *            call uuid of the call that will be transfered.
+	 *            call UUID
 	 * @param params
-	 *            optional parameters.
+	 *            parameters
 	 * @param conf
-	 *            Plivo Rest Config.
-	 * @return
+	 *            Plivo REST Config
+	 * 
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean transfer(String callUUID,
+	public static void transfer(String callUUID,
 			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		ModifyResponse r = gson.fromJson(
-				request("POST", String.format(baseLoc + "%s/", callUUID),
-						params, conf), ModifyResponse.class);
-		return r.isSuccessful();
+			throws PlivoException, APIException {
+		postRequestExpect(String.format(baseLoc + "%s/", callUUID), params,
+				ModifyResponse.class, conf, 202);
 	}
 
 	/**
@@ -137,20 +137,18 @@ public class Call extends Resource {
 	 *            Plivo REST config
 	 * @return call object if successful, null if failed.
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
 	public static Call getLive(String callUUID, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
+			throws PlivoException, APIException {
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 		params.put("status", "live");
-		Call call = gson.fromJson(
-				request("GET", String.format(baseLoc + "%s/", callUUID),
-						params, conf), Call.class);
-		if (call.isGetOK()) {
-			call.conf = conf;
-			return call;
-		}
-		return null;
+
+		Call call = getRequest(getIdLoc(callUUID), params, Call.class, conf);
+
+		call.conf = conf;
+		return call;
 	}
 
 	/**
@@ -161,18 +159,17 @@ public class Call extends Resource {
 	 *            Plivo REST config.
 	 * @return
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static CallList getLiveAll(PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
+	public static CallList getLiveAll(PlivoRestConf conf)
+			throws PlivoException, APIException {
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 		params.put("status", "live");
-		CallList callList = gson.fromJson(
-				request("GET", baseLoc, params, conf), CallList.class);
-		if (callList.isGetOK()) {
-			callList.conf = conf;
-			return callList;
-		}
-		return null;
+		CallList callList = getRequest(baseLoc, params, CallList.class, conf);
+
+		callList.conf = conf;
+		return callList;
 	}
 
 	/**
@@ -185,18 +182,15 @@ public class Call extends Resource {
 	 *            optionals params
 	 * @param conf
 	 *            Plivo REST config
-	 * @return tru
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean record(String callUUID,
+	public static void record(String callUUID,
 			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		RecordResponse r = gson.fromJson(
-				request("POST",
-						String.format(baseLoc + "%s/Record/", callUUID),
-						params, conf), RecordResponse.class);
-		return r.isSuccessful();
+			throws PlivoException, APIException {
+		postRequestExpect(String.format(baseLoc + "%s/Record/", callUUID),
+				params, RecordResponse.class, conf, 202);
 	}
 
 	/**
@@ -209,18 +203,15 @@ public class Call extends Resource {
 	 *            optional params.
 	 * @param conf
 	 *            Plivo REST config
-	 * @return true if successful
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean stopRecord(String callUUID,
+	public static void stopRecord(String callUUID,
 			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("DELETE",
-						String.format(baseLoc + "%s/Record/", callUUID),
-						params, conf), Response.class);
-		return r.getServerCode() == 204;
+			throws PlivoException, APIException {
+		deleteRequestExpect(String.format(baseLoc + "%s/Record/", callUUID),
+				params, GenericResponse.class, conf, 204);
 	}
 
 	/**
@@ -233,17 +224,15 @@ public class Call extends Resource {
 	 *            optional parameters
 	 * @param conf
 	 *            Plivo REST config
-	 * @return true if successful
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean play(String callUUID,
+	public static void play(String callUUID,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("POST", String.format(baseLoc + "%s/Play/", callUUID),
-						parameters, conf), Response.class);
-		return r.getServerCode() == 202;
+			throws PlivoException, APIException {
+		postRequestExpect(String.format(baseLoc + "%s/Play/", callUUID),
+				parameters, GenericResponse.class, conf, 202);
 	}
 
 	/**
@@ -254,17 +243,15 @@ public class Call extends Resource {
 	 *            uuid of the call.
 	 * @param conf
 	 *            Plivo REST config
-	 * @return true if successful
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean stopPlay(String callUUID, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("POST", String.format(baseLoc + "%s/Play/", callUUID),
-						new LinkedHashMap<String, String>(), conf),
-				Response.class);
-		return r.getServerCode() == 202;
+	public static void stopPlay(String callUUID, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		postRequestExpect(String.format(baseLoc + "%s/Play/", callUUID),
+				new LinkedHashMap<String, String>(), GenericResponse.class,
+				conf, 202);
 	}
 
 	/**
@@ -277,19 +264,17 @@ public class Call extends Resource {
 	 *            parameters
 	 * @param conf
 	 *            plivo rest config
-	 * @return true if successful.
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean speak(String callUUID,
+	public static void speak(String callUUID,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
+			throws PlivoException, APIException {
 		String text = HtmlEntity.convert(getKeyValue(parameters, "text"));
 		parameters.put("text", text);
-		Response r = gson.fromJson(
-				request("POST", String.format(baseLoc + "%s/Speak/", callUUID),
-						parameters, conf), Response.class);
-		return r.getServerCode() == 202;
+		postRequestExpect(String.format(baseLoc + "%s/Speak/", callUUID),
+				parameters, GenericResponse.class, conf, 202);
 	}
 
 	/**
@@ -300,18 +285,15 @@ public class Call extends Resource {
 	 *            uuid of the call.
 	 * @param conf
 	 *            plivo rest config
-	 * @return true if successful.
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean stopSpeak(String callUUID, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("DELETE",
-						String.format(baseLoc + "%s/Speak/", callUUID),
-						new LinkedHashMap<String, String>(), conf),
-				Response.class);
-		return r.getServerCode() == 202;
+	public static void stopSpeak(String callUUID, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		deleteRequestExpect(String.format(baseLoc + "%s/Speak/", callUUID),
+				new LinkedHashMap<String, String>(), GenericResponse.class,
+				conf, 202);
 	}
 
 	/**
@@ -324,17 +306,15 @@ public class Call extends Resource {
 	 *            parameters
 	 * @param conf
 	 *            Plivo REST config
-	 * @return true if successful.
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean sendDigits(String callUUID,
+	public static void sendDigits(String callUUID,
 			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("POST", String.format(baseLoc + "%s/DTMF/", callUUID),
-						params, conf), Response.class);
-		return r.getServerCode() == 202;
+			throws PlivoException, APIException {
+		postRequestExpect(String.format(baseLoc + "%s/DTMF/", callUUID),
+				params, GenericResponse.class, conf, 202);
 	}
 
 	/**
@@ -345,17 +325,15 @@ public class Call extends Resource {
 	 *            uuid of call request.
 	 * @param conf
 	 *            Plivo REST config
-	 * @return true if successful
 	 * @throws PlivoException
+	 * @throws APIException
+	 *             error details from server
 	 */
-	public static boolean hangupCallRequest(String requestUUID,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		Response r = gson.fromJson(
-				request("DELETE", String.format("/Request/%s/", requestUUID),
-						new LinkedHashMap<String, String>(), conf),
-				Response.class);
-		return r.getServerCode() == 204;
+	public static void hangupCallRequest(String requestUUID, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		deleteRequestExpect(String.format("/Request/%s/", requestUUID),
+				new LinkedHashMap<String, String>(), GenericResponse.class,
+				conf, 204);
 	}
 
 	public String getMessage() {

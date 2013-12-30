@@ -2,9 +2,9 @@ package com.plivo.helper.resource;
 
 import java.util.LinkedHashMap;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.response.ApplicationCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
@@ -50,96 +50,49 @@ public class Application extends Resource {
 	@SerializedName("fallback_answer_url")
 	private String fallbackAnswerUrl;
 
-	private static String baseLocation = "/Application/";
+	private static String baseLoc = "/Application/";
+
+	private static String getIdLoc(String id) {
+		return baseLoc + id + "/";
+	}
 
 	public static String create(LinkedHashMap<String, String> parameters,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		ApplicationCreateResponse acr = gson.fromJson(
-				request("POST", baseLocation, parameters, conf),
-				ApplicationCreateResponse.class);
-		if (acr.isSuccessful()) {
-			return acr.getApplicationId();
-		} else {
-			return null;
-		}
+			PlivoRestConf conf) throws PlivoException, APIException {
+		ApplicationCreateResponse acr = postRequest(baseLoc, parameters,
+				ApplicationCreateResponse.class, conf);
+		return acr.getApplicationId();
 	}
 
 	public static Application get(String appId, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		Application app = gson.fromJson(
-				request("GET", String.format(baseLocation + "%s/", appId),
-						new LinkedHashMap<String, String>(), conf),
-				Application.class);
-		if (app.isGetOK()) {
-			app.conf = conf;
-			return app;
-		} else {
-			return null;
-		}
+			throws PlivoException, APIException {
+		Application app = getRequest(String.format(baseLoc + "%s/", appId),
+				new LinkedHashMap<String, String>(), Application.class, conf);
+		app.conf = conf;
+		return app;
+
 	}
 
 	public static ApplicationList getList(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException {
-		Gson gson = new Gson();
-		ApplicationList al = gson.fromJson(
-				request("GET", baseLocation, params, conf),
-				ApplicationList.class);
-		if (al.isGetOK()) {
-			al.conf = conf;
-			return al;
-		}
-		return null;
-	}
-
-	/**
-	 * Delete this application.
-	 * 
-	 * @return true if successful.
-	 * @throws PlivoException
-	 */
-	public boolean delete() throws PlivoException {
-		DeleteResponse dr;
-		Gson gson = new Gson();
-		dr = gson
-				.fromJson(
-						request("DELETE", String.format(baseLocation + "%s/",
-								this.applicationID),
-								new LinkedHashMap<String, String>(), this.conf),
-						DeleteResponse.class);
-		return dr.isSuccessful();
+			PlivoRestConf conf) throws PlivoException, APIException {
+		ApplicationList al = getRequest(baseLoc, params, ApplicationList.class,
+				conf);
+		al.conf = conf;
+		return al;
 	}
 
 	public static boolean delete(String appId, PlivoRestConf conf)
-			throws PlivoException {
+			throws PlivoException, APIException {
 		DeleteResponse dr;
-		Gson gson = new Gson();
-		dr = gson.fromJson(
-				request("DELETE", String.format(baseLocation + "%s/", appId),
-						new LinkedHashMap<String, String>(), conf),
-				DeleteResponse.class);
+		dr = deleteRequest(getIdLoc(appId),
+				new LinkedHashMap<String, String>(), DeleteResponse.class, conf);
 		return dr.isSuccessful();
-	}
-
-	public boolean modify(LinkedHashMap<String, String> parameters)
-			throws PlivoException {
-		Gson gson = new Gson();
-		ModifyResponse mr = gson
-				.fromJson(
-						request("POST", String.format(baseLocation + "%s/",
-								this.applicationID), parameters, this.conf),
-						ModifyResponse.class);
-		return mr.isSuccessful();
 	}
 
 	public static boolean modify(String appId,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException {
-		Gson gson = new Gson();
-		ModifyResponse mr = gson.fromJson(
-				request("POST", String.format(baseLocation + "%s/", appId),
-						parameters, conf), ModifyResponse.class);
+			throws PlivoException, APIException {
+		ModifyResponse mr = postRequestExpect(getIdLoc(appId), parameters,
+				ModifyResponse.class, conf, 202);
 		return mr.isSuccessful();
 	}
 

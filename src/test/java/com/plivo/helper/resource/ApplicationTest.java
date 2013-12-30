@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.plivo.helper.PlivoRestConf;
+import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 
 public class ApplicationTest {
@@ -43,6 +44,8 @@ public class ApplicationTest {
 					app.getFallbackAnswerUrl());
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -100,11 +103,14 @@ public class ApplicationTest {
 			assertEquals("POST", ap.getMessageMethod());
 
 			// delete
-			boolean deleteResult = ap.delete();
+			boolean deleteResult = Application.delete(ap.getApplicationID(),
+					restConf);
 
 			assertTrue(deleteResult);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -118,6 +124,8 @@ public class ApplicationTest {
 			assertTrue(al.getList().size() > 5);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 
@@ -134,6 +142,8 @@ public class ApplicationTest {
 			assertTrue(al.getList().size() <= 3);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
 		}
 	}
 }
