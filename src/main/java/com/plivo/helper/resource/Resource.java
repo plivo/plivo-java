@@ -24,15 +24,12 @@ import org.apache.http.protocol.HTTP;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.response.Response;
 
-public abstract class Resource {
-	@SerializedName("server_code")
-	protected int serverCode;
-	protected Object error;
+public class Resource extends Response {
 	PlivoRestConf conf;
 
 	@Deprecated
@@ -281,6 +278,6 @@ public abstract class Resource {
 	 * @return
 	 */
 	public boolean isGetOK() {
-		return serverCode == 200 && error == null;
+		return this.getServerCode() == 200 && this.getError() == null;
 	}
 }
