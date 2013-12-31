@@ -6,11 +6,11 @@ public class AvailableNumberGroupMeta {
 	private String previous;
 
 	@SerializedName("total_count")
-	private Integer totalCount;
+	private int totalCount;
 
-	private Integer offset;
+	private int offset;
 
-	private Integer limit;
+	private int limit;
 
 	private String next;
 
