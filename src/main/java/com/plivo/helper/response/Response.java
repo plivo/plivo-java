@@ -2,26 +2,23 @@ package com.plivo.helper.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public abstract class Response {
+public class Response {
 	@SerializedName("server_code")
-	protected Integer serverCode;
+	private Integer serverCode;
 
-	@SerializedName("error")
-	protected String error;
+	private Object error;
 
-	protected String message;
+	private String message;
 
 	@SerializedName("api_id")
-	protected String apiId;
-
-	protected abstract boolean isSuccessful();
+	private String apiId;
 
 	public Integer getServerCode() {
 		return serverCode;
 	}
 
 	public String getError() {
-		return error;
+		return error.toString();
 	}
 
 	public String getMessage() {

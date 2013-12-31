@@ -8,9 +8,8 @@ public class RecordResponse extends Response {
 	@SerializedName("recording_id")
 	private String recordingId;
 
-	@Override
 	public boolean isSuccessful() {
-		return serverCode == 202 && error == null;
+		return this.getServerCode() == 202 && this.getError() == null;
 	}
 
 	public String getUrl() {

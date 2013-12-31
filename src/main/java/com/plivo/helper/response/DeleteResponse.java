@@ -5,8 +5,7 @@ public class DeleteResponse extends Response {
 		super();
 	}
 
-	@Override
 	public boolean isSuccessful() {
-		return this.serverCode == 204 && error == null;
+		return this.getServerCode() == 204 && this.getError() == null;
 	}
 }

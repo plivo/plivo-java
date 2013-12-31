@@ -32,7 +32,7 @@ import com.plivo.helper.exception.PlivoException;
 public abstract class Resource {
 	@SerializedName("server_code")
 	protected int serverCode;
-	protected String error;
+	protected Object error;
 	PlivoRestConf conf;
 
 	@Deprecated

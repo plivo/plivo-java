@@ -17,11 +17,4 @@ public class RentNumberGroupResponse extends Response {
 	public String getStatus() {
 		return status;
 	}
-
-	@Override
-	protected boolean isSuccessful() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

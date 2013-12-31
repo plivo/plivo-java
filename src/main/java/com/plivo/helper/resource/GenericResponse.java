@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class GenericResponse {
 	@SerializedName("server_code")
 	private int serverCode;
-	private String error;
+	private Object error;
 	private String message;
 	@SerializedName("api_id")
 	private String apiId;
@@ -15,7 +15,7 @@ public class GenericResponse {
 	}
 
 	public String getError() {
-		return error;
+		return error.toString();
 	}
 
 	public String getMessage() {

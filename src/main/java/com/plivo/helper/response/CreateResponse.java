@@ -1,8 +1,7 @@
 package com.plivo.helper.response;
 
 public abstract class CreateResponse extends Response {
-	@Override
 	public boolean isSuccessful() {
-		return serverCode == 201 && error == null;
+		return this.getServerCode() == 201 && this.getError() == null;
 	}
 }
