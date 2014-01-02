@@ -25,9 +25,6 @@ public class Recording extends Resource {
 	@SerializedName("recording_url")
 	private String recordingURL;
 
-	@SerializedName("resource_uri")
-	private String resourceURI;
-
 	@SerializedName("add_time")
 	private String addTime;
 
@@ -89,10 +86,6 @@ public class Recording extends Resource {
 
 	public String getRecordingURL() {
 		return recordingURL;
-	}
-
-	public String getResourceURI() {
-		return resourceURI;
 	}
 
 	public String getAddTime() {

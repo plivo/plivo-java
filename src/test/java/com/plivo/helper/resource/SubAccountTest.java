@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +46,7 @@ public class SubAccountTest {
 			String subAuthId;
 			// create
 			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-			params.put("name", "unittest");
+			params.put("name", UUID.randomUUID().toString());
 			params.put("enabled", "false");
 
 			subAuthId = SubAccount.create(params, restConf);

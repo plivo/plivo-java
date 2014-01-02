@@ -19,9 +19,6 @@ public class SubAccount extends Resource {
 	@SerializedName("auth_token")
 	private String authToken;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("created")
 	private String createdOn;
 
@@ -149,10 +146,6 @@ public class SubAccount extends Resource {
 
 	public String getAuthToken() {
 		return authToken;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public String getCreatedOn() {

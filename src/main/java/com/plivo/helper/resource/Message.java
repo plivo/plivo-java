@@ -35,9 +35,6 @@ public class Message extends Resource {
 	@SerializedName("message_time")
 	private String messageTime;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("message_type")
 	private String messageType;
 
@@ -140,10 +137,6 @@ public class Message extends Resource {
 
 	public String getMessageTime() {
 		return messageTime;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public String getMessageType() {

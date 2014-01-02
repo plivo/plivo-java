@@ -19,9 +19,6 @@ public class IncomingCarrier extends Resource {
 	@SerializedName("name")
 	private String name;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("sms")
 	private Boolean sms;
 
@@ -142,10 +139,6 @@ public class IncomingCarrier extends Resource {
 
 	public String getName() {
 		return name;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public Boolean getSms() {

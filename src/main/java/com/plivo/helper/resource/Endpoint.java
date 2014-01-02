@@ -23,9 +23,6 @@ public class Endpoint extends Resource {
 
 	private String password;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	private static String baseLoc = "/Endpoint/";
 
 	private static String getIdLoc(String id) {
@@ -149,9 +146,5 @@ public class Endpoint extends Resource {
 
 	public String getPassword() {
 		return password;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 }

@@ -34,9 +34,6 @@ public class Application extends Resource {
 	@SerializedName("message_url")
 	private String messageUrl;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("answer_method")
 	private String answerMethod;
 
@@ -181,10 +178,6 @@ public class Application extends Resource {
 
 	public String getMessageUrl() {
 		return messageUrl;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public String getAnswerMethod() {

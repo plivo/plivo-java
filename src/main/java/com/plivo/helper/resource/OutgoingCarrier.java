@@ -36,9 +36,6 @@ public class OutgoingCarrier extends Resource {
 	@SerializedName("retry_seconds")
 	private int retrySeconds;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	private static String baseLoc = "/OutgoingCarrier/";
 
 	private static String getIdLoc(String id) {
@@ -185,9 +182,4 @@ public class OutgoingCarrier extends Resource {
 	public int getRetrySeconds() {
 		return retrySeconds;
 	}
-
-	public String getResourceUri() {
-		return resourceUri;
-	}
-
 }

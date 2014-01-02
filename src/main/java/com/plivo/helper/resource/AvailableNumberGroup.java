@@ -21,9 +21,6 @@ public class AvailableNumberGroup extends Resource {
 	@SerializedName("setup_rate")
 	private String setupRate;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("sms_enabled")
 	private Boolean isSmsEnabled;
 
@@ -108,10 +105,6 @@ public class AvailableNumberGroup extends Resource {
 
 	public String getSetupRate() {
 		return setupRate;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public Boolean getIsSmsEnabled() {

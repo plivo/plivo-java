@@ -38,9 +38,6 @@ public class Number extends Resource {
 	@SerializedName("added_on")
 	private String addedOn;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
 	@SerializedName("prefix")
 	private String numberPrefix;
 
@@ -206,10 +203,6 @@ public class Number extends Resource {
 
 	public String getAddedOn() {
 		return addedOn;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
 	}
 
 	public String getNumberPrefix() {
