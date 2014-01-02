@@ -39,6 +39,18 @@ public class SubAccount extends Resource {
 		return baseLoc + id + "/";
 	}
 
+	/**
+	 * Get Details Of a Specific Subaccount
+	 * 
+	 * @see http://plivo.com/docs/api/account/#details_subaccount
+	 * @param subauthId
+	 *            sub account id
+	 * @param conf
+	 *            Plivo REST config
+	 * @return Sub Account details
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static SubAccount get(String subauthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		SubAccount sa = getRequest(getIdLoc(subauthId),
@@ -48,6 +60,18 @@ public class SubAccount extends Resource {
 		return sa;
 	}
 
+	/**
+	 * Get details of all sub account
+	 * 
+	 * @see http://plivo.com/docs/api/account/#subaccount
+	 * @param parameters
+	 *            optional params
+	 * @param conf
+	 *            Plivo REST config
+	 * @return Sub Account list
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static SubAccountList getList(
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
 			throws PlivoException, APIException {
@@ -57,6 +81,18 @@ public class SubAccount extends Resource {
 		return sal;
 	}
 
+	/**
+	 * Create a sub account
+	 * 
+	 * @see http://plivo.com/docs/api/account/#create_subaccount
+	 * @param parameters
+	 *            Sub account parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @return sub account id
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static String create(LinkedHashMap<String, String> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		SubAccountCreateResponse scr = postRequest(baseLoc, parameters,
@@ -65,6 +101,19 @@ public class SubAccount extends Resource {
 		return scr.getAuthId();
 	}
 
+	/**
+	 * Modify a sub account
+	 * 
+	 * @see http://plivo.com/docs/api/account/#modify_subaccount
+	 * @param subAuthId
+	 *            sub account id
+	 * @param parameters
+	 *            modified parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static void modify(String subAuthId,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
 			throws PlivoException, APIException {
@@ -73,6 +122,17 @@ public class SubAccount extends Resource {
 				ModifyResponse.class, conf, 202);
 	}
 
+	/**
+	 * Delete a sub account
+	 * 
+	 * @see http://plivo.com/docs/api/account/#delete_subaccount
+	 * @param subAuthId
+	 *            sub account id
+	 * @param conf
+	 *            Plivo REST config
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static void delete(String subAuthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		deleteRequest(getIdLoc(subAuthId), new LinkedHashMap<String, String>(),
