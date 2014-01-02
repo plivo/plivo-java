@@ -3,15 +3,15 @@ package com.plivo.helper.resource;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.resource.meta.NumberMeta;
+import com.plivo.helper.resource.meta.ListMeta;
 
 public class NumberList extends Resource {
-	private NumberMeta meta;
+	private ListMeta meta;
 
 	@SerializedName("objects")
 	private List<Number> list;
 
-	public NumberMeta getMeta() {
+	public ListMeta getMeta() {
 		return meta;
 	}
 

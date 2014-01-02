@@ -3,17 +3,16 @@ package com.plivo.helper.resource;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.api.response.message.Message;
-import com.plivo.helper.api.response.message.MessageMeta;
+import com.plivo.helper.resource.meta.ListMeta;
 
 public class MessageList extends Resource {
 
-	private MessageMeta meta;
+	private ListMeta meta;
 
 	@SerializedName("objects")
 	private List<Message> list;
 
-	public MessageMeta getMeta() {
+	public ListMeta getMeta() {
 		return meta;
 	}
 

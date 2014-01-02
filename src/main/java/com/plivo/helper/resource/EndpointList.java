@@ -3,16 +3,15 @@ package com.plivo.helper.resource;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.api.response.endpoint.Endpoint;
-import com.plivo.helper.api.response.endpoint.EndpointMeta;
+import com.plivo.helper.resource.meta.ListMeta;
 
 public class EndpointList extends Resource {
-	private EndpointMeta meta;
+	private ListMeta meta;
 
 	@SerializedName("objects")
 	private List<Endpoint> list;
 
-	public EndpointMeta getMeta() {
+	public ListMeta getMeta() {
 		return meta;
 	}
 
