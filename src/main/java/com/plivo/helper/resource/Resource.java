@@ -24,6 +24,7 @@ import org.apache.http.protocol.HTTP;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
@@ -31,6 +32,13 @@ import com.plivo.helper.response.Response;
 
 public class Resource extends Response {
 	PlivoRestConf conf;
+
+	@SerializedName("resource_uri")
+	private String resourceUri;
+
+	public String getResourceUri() {
+		return this.resourceUri;
+	}
 
 	@Deprecated
 	protected static synchronized String request(String method,

@@ -41,18 +41,24 @@ public class CDR extends Resource {
 	@SerializedName("call_uuid")
 	private String callUUID;
 
-	@SerializedName("resource_uri")
-	private String resourceUri;
-
-	@SerializedName("api_id")
-	private String apiId;
-
 	private static String baseLoc = "/Call/";
 
 	protected static String getIdLoc(String id) {
 		return baseLoc + id + "/";
 	}
 
+	/**
+	 * Get Call Detail Record (CDR) Of a Call
+	 * 
+	 * @see http://plivo.com/docs/api/call/#call_detail
+	 * @param recordId
+	 *            record id
+	 * @param conf
+	 *            Plivo REST config
+	 * @return call details
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static CDR get(String recordId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		CDR cdr = getRequest(getIdLoc(recordId),
@@ -62,6 +68,18 @@ public class CDR extends Resource {
 
 	}
 
+	/**
+	 * Get list of call details
+	 * 
+	 * @see http://plivo.com/docs/api/call/#detail
+	 * @param params
+	 *            list parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @return list of call details
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static CDRList getList(LinkedHashMap<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		CDRList cdrList = getRequest(baseLoc, params, CDRList.class, conf);
@@ -112,13 +130,5 @@ public class CDR extends Resource {
 
 	public String getCallUUID() {
 		return callUUID;
-	}
-
-	public String getResourceUri() {
-		return resourceUri;
-	}
-
-	public String getApiId() {
-		return apiId;
 	}
 }

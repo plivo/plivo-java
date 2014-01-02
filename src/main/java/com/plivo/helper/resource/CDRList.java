@@ -3,15 +3,15 @@ package com.plivo.helper.resource;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
-import com.plivo.helper.resource.meta.CDRMeta;
+import com.plivo.helper.resource.meta.ListMeta;
 
 public class CDRList extends Resource {
-	public CDRMeta meta;
+	public ListMeta meta;
 
 	@SerializedName("objects")
 	public List<CDR> list;
 
-	public CDRMeta getMeta() {
+	public ListMeta getMeta() {
 		return meta;
 	}
 
