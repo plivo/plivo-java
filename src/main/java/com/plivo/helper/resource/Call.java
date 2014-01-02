@@ -18,9 +18,6 @@ public class Call extends Resource {
 	@SerializedName("request_uuid")
 	private String requestUUID;
 
-	@SerializedName("api_id")
-	private String apiId;
-
 	private static String baseLoc = "/Call/";
 
 	private static String getIdLoc(String id) {
@@ -336,15 +333,12 @@ public class Call extends Resource {
 				conf, 204);
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}
 
 	public String getRequestUUID() {
 		return requestUUID;
-	}
-
-	public String getApiId() {
-		return apiId;
 	}
 }
