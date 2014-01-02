@@ -111,8 +111,6 @@ public class SubAccountTest {
 			SubAccountList sal = SubAccount.getList(params, restConf);
 
 			assertNotNull(sal);
-			System.out
-					.println("total count = " + sal.getMeta().getTotalCount());
 			assertTrue(sal.getMeta().getLimit() == 2);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());

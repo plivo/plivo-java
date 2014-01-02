@@ -54,7 +54,7 @@ public class OutgoingCarrierTest {
 					new LinkedHashMap<String, String>(), restConf);
 
 			assertNotNull(ocl);
-			assertTrue(ocl.getMeta().getTotal_count() >= 1);
+			assertTrue(ocl.getMeta().getTotalCount() >= 1);
 			assertTrue(ocl.getList().size() >= 1);
 		} catch (PlivoException pe) {
 			fail("Plivo Exception : " + pe.getMessage());

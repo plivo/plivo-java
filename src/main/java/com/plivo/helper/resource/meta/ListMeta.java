@@ -11,7 +11,7 @@ public class ListMeta {
 		return previous;
 	}
 
-	public int getTotal_count() {
+	public int getTotalCount() {
 		return total_count;
 	}
 

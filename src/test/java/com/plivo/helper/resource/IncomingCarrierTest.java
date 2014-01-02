@@ -51,7 +51,7 @@ public class IncomingCarrierTest {
 
 			assertNotNull(icl);
 			assertTrue(icl.getList().size() >= 2);
-			assertTrue(icl.getMeta().getTotal_count() >= 2);
+			assertTrue(icl.getMeta().getTotalCount() >= 2);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		} catch (APIException ae) {
