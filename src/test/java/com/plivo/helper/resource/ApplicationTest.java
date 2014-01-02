@@ -51,10 +51,11 @@ public class ApplicationTest {
 
 	@Test
 	public void testCreateModifyDelete() {
+		String appId = null;
+		String appName = null;
 		try {
 			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-			String appName = UUID.randomUUID().toString();
-			String appId;
+			appName = UUID.randomUUID().toString();
 
 			// create
 			params.put("answer_url", "http://original.com");
@@ -71,9 +72,16 @@ public class ApplicationTest {
 
 			assertNotNull(appId);
 
-			// edit
-			params = new LinkedHashMap<String, String>();
-			params.put("app_id", appId);
+		} catch (PlivoException pe) {
+			fail(pe.getMessage());
+		} catch (APIException ae) {
+			fail(ae.toString());
+		}
+
+		// edit it
+		try {
+			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+
 			params.put("answer_method", "POST");
 			params.put("hangup_url", "http://updated.com");
 			params.put("hangup_method", "POST");
@@ -82,13 +90,9 @@ public class ApplicationTest {
 			params.put("message_url", "http://updated.com");
 			params.put("message_method", "POST");
 
-			boolean modifyResult = Application.modify(appId, params, restConf);
-			assertTrue(modifyResult);
+			Application.modify(appId, params, restConf);
 
 			// verify our changes
-			params = new LinkedHashMap<String, String>();
-			params.put("app_id", appId);
-
 			Application ap = Application.get(appId, restConf);
 
 			assertNotNull(ap);
@@ -101,16 +105,19 @@ public class ApplicationTest {
 			assertEquals("POST", ap.getFallbackMethod());
 			assertEquals("http://updated.com", ap.getMessageUrl());
 			assertEquals("POST", ap.getMessageMethod());
-
-			// delete
-			boolean deleteResult = Application.delete(ap.getApplicationID(),
-					restConf);
-
-			assertTrue(deleteResult);
 		} catch (PlivoException pe) {
-			fail(pe.getMessage());
+			fail("Modify failed : " + pe.getMessage());
 		} catch (APIException ae) {
-			fail(ae.toString());
+			fail("Modify failed : " + ae.toString());
+		}
+
+		// delete it
+		try {
+			Application.delete(appId, restConf);
+		} catch (PlivoException pe) {
+			fail("Delete failed : " + pe.getMessage());
+		} catch (APIException ae) {
+			fail("Delete failed : " + ae.toString());
 		}
 	}
 
@@ -121,7 +128,7 @@ public class ApplicationTest {
 			ApplicationList al = Application.getList(params, restConf);
 
 			assertNotNull(al);
-			assertTrue(al.getList().size() > 5);
+			assertTrue(al.getList().size() >= 5);
 		} catch (PlivoException pe) {
 			fail(pe.getMessage());
 		} catch (APIException ae) {

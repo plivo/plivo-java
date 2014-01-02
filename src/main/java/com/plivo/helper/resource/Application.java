@@ -7,8 +7,7 @@ import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.response.ApplicationCreateResponse;
-import com.plivo.helper.response.DeleteResponse;
-import com.plivo.helper.response.ModifyResponse;
+import com.plivo.helper.response.Response;
 
 public class Application extends Resource {
 	@SerializedName("fallback_method")
@@ -56,6 +55,18 @@ public class Application extends Resource {
 		return baseLoc + id + "/";
 	}
 
+	/**
+	 * Create an Application
+	 * 
+	 * @see http://plivo.com/docs/api/application/#create
+	 * @param parameters
+	 *            Application parameters
+	 * @param conf
+	 *            Plivo REST config
+	 * @return application id
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static String create(LinkedHashMap<String, String> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		ApplicationCreateResponse acr = postRequest(baseLoc, parameters,
@@ -63,6 +74,18 @@ public class Application extends Resource {
 		return acr.getApplicationId();
 	}
 
+	/**
+	 * Get Details of a Single Application
+	 * 
+	 * @see http://plivo.com/docs/api/application/#application
+	 * @param appId
+	 *            application id
+	 * @param conf
+	 *            Plivo REST config
+	 * @return application details
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static Application get(String appId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		Application app = getRequest(String.format(baseLoc + "%s/", appId),
@@ -72,6 +95,17 @@ public class Application extends Resource {
 
 	}
 
+	/**
+	 * Get Details of All Applications
+	 * 
+	 * @param params
+	 *            list params
+	 * @param conf
+	 *            Plivo REST config
+	 * @return application list that match passed params
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
 	public static ApplicationList getList(LinkedHashMap<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		ApplicationList al = getRequest(baseLoc, params, ApplicationList.class,
@@ -80,20 +114,41 @@ public class Application extends Resource {
 		return al;
 	}
 
-	public static boolean delete(String appId, PlivoRestConf conf)
+	/**
+	 * Delete an application
+	 * 
+	 * @see http://plivo.com/docs/api/application/#delete
+	 * @param appId
+	 *            application id
+	 * @param conf
+	 *            Plivo REST config
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
+	public static void delete(String appId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		DeleteResponse dr;
-		dr = deleteRequest(getIdLoc(appId),
-				new LinkedHashMap<String, String>(), DeleteResponse.class, conf);
-		return dr.isSuccessful();
+		deleteRequestExpect(getIdLoc(appId),
+				new LinkedHashMap<String, String>(), Response.class, conf, 204);
 	}
 
-	public static boolean modify(String appId,
+	/**
+	 * Modify an application
+	 * 
+	 * @see http://plivo.com/docs/api/application/#modify
+	 * @param appId
+	 *            application ID
+	 * @param parameters
+	 *            parameters to modify
+	 * @param conf
+	 *            Plivo REST config
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
+	public static void modify(String appId,
 			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		ModifyResponse mr = postRequestExpect(getIdLoc(appId), parameters,
-				ModifyResponse.class, conf, 202);
-		return mr.isSuccessful();
+		postRequestExpect(getIdLoc(appId), parameters, Response.class, conf,
+				202);
 	}
 
 	public String getFallbackMethod() {
