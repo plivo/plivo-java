@@ -13,9 +13,6 @@ import com.plivo.helper.response.SubAccountCreateResponse;
 public class SubAccount extends Resource {
 	private String account;
 
-	@SerializedName("api_id")
-	private String apiId;
-
 	@SerializedName("auth_id")
 	private String authId;
 
@@ -84,10 +81,6 @@ public class SubAccount extends Resource {
 
 	public String getAccount() {
 		return account;
-	}
-
-	public String getApiId() {
-		return apiId;
 	}
 
 	public String getAuthId() {
