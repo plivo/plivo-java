@@ -8,6 +8,7 @@ import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.resource.base.Resource;
+import com.plivo.helper.response.GenericResponse;
 import com.plivo.helper.util.HtmlEntity;
 
 public class Conference extends Resource {

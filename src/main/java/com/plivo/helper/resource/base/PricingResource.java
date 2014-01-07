@@ -28,7 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.resource.GenericResponse;
+import com.plivo.helper.response.GenericResponse;
 
 public class PricingResource {
 	@SerializedName("server_code")

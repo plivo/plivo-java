@@ -28,7 +28,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.resource.GenericResponse;
+import com.plivo.helper.response.GenericResponse;
 import com.plivo.helper.response.Response;
 
 public class Resource extends Response {

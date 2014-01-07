@@ -9,6 +9,7 @@ import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.CallCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
+import com.plivo.helper.response.GenericResponse;
 import com.plivo.helper.response.ModifyResponse;
 import com.plivo.helper.response.RecordResponse;
 import com.plivo.helper.util.HtmlEntity;
