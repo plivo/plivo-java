@@ -4,11 +4,11 @@ import java.util.LinkedHashMap;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
-import com.plivo.helper.api.response.pricing.PhoneNumbers;
-import com.plivo.helper.api.response.pricing.SmsRates;
-import com.plivo.helper.api.response.pricing.VoiceRates;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.pricing.PhoneNumbers;
+import com.plivo.helper.resource.pricing.SMSRates;
+import com.plivo.helper.resource.pricing.VoiceRates;
 
 public class Pricing extends Resource {
 	@SerializedName("country_code")
@@ -26,7 +26,7 @@ public class Pricing extends Resource {
 	private VoiceRates voiceRates;
 
 	@SerializedName("message")
-	private SmsRates smsRates;
+	private SMSRates smsRates;
 
 	private static final String baseLoc = "/Pricing/";
 
@@ -59,7 +59,7 @@ public class Pricing extends Resource {
 		return voiceRates;
 	}
 
-	public SmsRates getSmsRates() {
+	public SMSRates getSmsRates() {
 		return smsRates;
 	}
 
