@@ -94,11 +94,6 @@ public class Account extends Resource {
 		return modified;
 	}
 
-	@Override
-	public String getApiId() {
-		return apiId;
-	}
-
 	public String getPostpaid() {
 		return postpaid;
 	}
