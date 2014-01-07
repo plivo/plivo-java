@@ -38,6 +38,14 @@ To generate the final release,
 
 Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
 	
+### Run Unit Test
+
+mvn test
+
+### Generate javadocs
+
+mvn javadoc:javadoc
+
 ### Use the Library in your Java IDE
 
 Create Stubs for Eclipse
@@ -52,22 +60,19 @@ Create stubs for idea
 How to use
 ----------
 
-### Making a Call.
-	RestAPI restAPI = new RestAPI("<AUTH_ID>", "<AUTH_TOKEN>", "v1");
+### Get Endpoint details.
+	PlivoRestConf restConf = new PlivoRestConf("<AUTH_ID>", "<AUTH_TOKEN>", "v1");
 
-  	LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-		params.put("from", "xxxxxxxxxx");
-		params.put("to", "xxxxxxxxxx");
-		params.put("answer_url", "http://server/url/answer.xml");
-
-		Call response;
 		try {
-			response = restAPI.makeCall(params);
-			System.out.println(response.apiId);
+            Endpoint endpoint = Endpoint.get("<endpoint_id>">, restConf);
+            System.out.println("endpoint id = " + endpoint.getEndpointId())
+            System.out.println("alias = " + endpoint.getAlias())
 		} 
 		catch (PlivoException e) {
 			System.out.println(e.getMessage());
-		}
+		}catch (APIException ae) {
+            fail(ae.getServerCode() + ":" + ae.getMessage());
+        }
  
 ### Check the [examples](https://github.com/plivo/plivo-examples-java)
 
