@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
-import com.plivo.helper.api.response.conference.ConferenceMember;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.util.HtmlEntity;
