@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.resource.base.Resource;
+import com.plivo.helper.resource.base.PricingResource;
 import com.plivo.helper.resource.pricing.PhoneNumbers;
 import com.plivo.helper.resource.pricing.SMSRates;
 import com.plivo.helper.resource.pricing.VoiceRates;
 
-public class Pricing extends Resource {
+public class Pricing extends PricingResource {
 	@SerializedName("country_code")
 	private String countryCode;
 
