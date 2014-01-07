@@ -40,11 +40,11 @@ Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the
 	
 ### Run Unit Test
 
-mvn test
+    mvn test
 
 ### Generate javadocs
 
-mvn javadoc:javadoc
+    mvn javadoc:javadoc
 
 ### Use the Library in your Java IDE
 
