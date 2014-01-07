@@ -22,9 +22,6 @@ public class Account extends Resource {
 
 	private String modified;
 
-	@SerializedName("api_id")
-	private String apiId;
-
 	private String postpaid;
 
 	private String state;
