@@ -16,4 +16,21 @@ public class OutboundVoicePricing {
 
 	@SerializedName("rates")
 	private ArrayList<RatesPrefixes> prefixesRates;
+
+	public Rate getLocal() {
+		return local;
+	}
+
+	public Rate getTollfree() {
+		return tollfree;
+	}
+
+	public Rate getIp() {
+		return ip;
+	}
+
+	public ArrayList<RatesPrefixes> getPrefixesRates() {
+		return prefixesRates;
+	}
+
 }

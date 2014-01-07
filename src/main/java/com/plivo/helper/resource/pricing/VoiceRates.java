@@ -8,4 +8,13 @@ public class VoiceRates {
 
 	@SerializedName("outbound")
 	private OutboundVoicePricing outbound;
+
+	public InboundVoicePricing getInbound() {
+		return inbound;
+	}
+
+	public OutboundVoicePricing getOutbound() {
+		return outbound;
+	}
+
 }
