@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 
 public class CDR extends Resource {
 	@SerializedName("bill_duration")
@@ -63,7 +64,7 @@ public class CDR extends Resource {
 			throws PlivoException, APIException {
 		CDR cdr = getRequest(getIdLoc(recordId),
 				new LinkedHashMap<String, String>(), CDR.class, conf);
-		cdr.conf = conf;
+		cdr.setConf(conf);
 		return cdr;
 
 	}
@@ -83,7 +84,7 @@ public class CDR extends Resource {
 	public static CDRList getList(LinkedHashMap<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		CDRList cdrList = getRequest(baseLoc, params, CDRList.class, conf);
-		cdrList.conf = conf;
+		cdrList.setConf(conf);
 		return cdrList;
 
 	}

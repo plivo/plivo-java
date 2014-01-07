@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.CallCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
@@ -144,7 +145,7 @@ public class Call extends Resource {
 
 		Call call = getRequest(getIdLoc(callUUID), params, Call.class, conf);
 
-		call.conf = conf;
+		call.setConf(conf);
 		return call;
 	}
 
@@ -165,7 +166,7 @@ public class Call extends Resource {
 		params.put("status", "live");
 		CallList callList = getRequest(baseLoc, params, CallList.class, conf);
 
-		callList.conf = conf;
+		callList.setConf(conf);
 		return callList;
 	}
 

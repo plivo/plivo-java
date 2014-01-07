@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.resource.pricing.PhoneNumbers;
 import com.plivo.helper.resource.pricing.SMSRates;
 import com.plivo.helper.resource.pricing.VoiceRates;
@@ -35,7 +36,7 @@ public class Pricing extends Resource {
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 		params.put("country_iso", countryIso);
 		Pricing p = getRequest(baseLoc, params, Pricing.class, restConf, 200);
-		p.conf = restConf;
+		p.setConf(restConf);
 		return p;
 	}
 

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.ModifyResponse;
 import com.plivo.helper.response.SubAccountCreateResponse;
@@ -53,7 +54,7 @@ public class SubAccount extends Resource {
 		SubAccount sa = getRequest(getIdLoc(subauthId),
 				new LinkedHashMap<String, String>(), SubAccount.class, conf);
 
-		sa.conf = conf;
+		sa.setConf(conf);
 		return sa;
 	}
 
@@ -74,7 +75,7 @@ public class SubAccount extends Resource {
 			throws PlivoException, APIException {
 		SubAccountList sal = getRequest(baseLoc, parameters,
 				SubAccountList.class, conf);
-		sal.conf = conf;
+		sal.setConf(conf);
 		return sal;
 	}
 

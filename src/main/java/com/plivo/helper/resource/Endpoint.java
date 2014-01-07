@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.EndpointCreateResponse;
 import com.plivo.helper.response.ModifyResponse;
@@ -46,7 +47,7 @@ public class Endpoint extends Resource {
 			throws PlivoException, APIException {
 		Endpoint e = getRequest(getIdLoc(endpointId),
 				new LinkedHashMap<String, String>(), Endpoint.class, conf, 200);
-		e.conf = conf;
+		e.setConf(conf);
 		return e;
 	}
 
@@ -67,7 +68,7 @@ public class Endpoint extends Resource {
 		EndpointList el = getRequest(baseLoc,
 				new LinkedHashMap<String, String>(), EndpointList.class, conf,
 				200);
-		el.conf = conf;
+		el.setConf(conf);
 		return el;
 	}
 

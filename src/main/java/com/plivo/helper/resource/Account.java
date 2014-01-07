@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.Response;
 
 public class Account extends Resource {
@@ -47,7 +48,7 @@ public class Account extends Resource {
 			APIException {
 		Account a = getRequest("/", new LinkedHashMap<String, String>(),
 				Account.class, conf);
-		a.conf = conf;
+		a.setConf(conf);
 		return a;
 	}
 

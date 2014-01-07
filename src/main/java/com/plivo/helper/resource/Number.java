@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 
 public class Number extends Resource {
 	private String region;
@@ -83,7 +84,7 @@ public class Number extends Resource {
 			throws PlivoException, APIException {
 		Number n = getRequest(getIdLoc(number),
 				new LinkedHashMap<String, String>(), Number.class, conf);
-		n.conf = conf;
+		n.setConf(conf);
 		return n;
 	}
 
@@ -103,7 +104,7 @@ public class Number extends Resource {
 	public static NumberList getList(LinkedHashMap<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		NumberList nl = getRequest(baseLoc, params, NumberList.class, conf);
-		nl.conf = conf;
+		nl.setConf(conf);
 		return nl;
 	}
 

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.ApplicationCreateResponse;
 import com.plivo.helper.response.Response;
 
@@ -87,7 +88,7 @@ public class Application extends Resource {
 			throws PlivoException, APIException {
 		Application app = getRequest(String.format(baseLoc + "%s/", appId),
 				new LinkedHashMap<String, String>(), Application.class, conf);
-		app.conf = conf;
+		app.setConf(conf);
 		return app;
 
 	}
@@ -107,7 +108,7 @@ public class Application extends Resource {
 			PlivoRestConf conf) throws PlivoException, APIException {
 		ApplicationList al = getRequest(baseLoc, params, ApplicationList.class,
 				conf);
-		al.conf = conf;
+		al.setConf(conf);
 		return al;
 	}
 

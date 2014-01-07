@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.RentNumberGroupResponse;
 
 public class AvailableNumberGroup extends Resource {
@@ -65,7 +66,7 @@ public class AvailableNumberGroup extends Resource {
 			throws PlivoException, APIException {
 		AvailableNumberGroupList a = getRequest(baseLoc, params,
 				AvailableNumberGroupList.class, conf);
-		a.conf = conf;
+		a.setConf(conf);
 		return a;
 	}
 

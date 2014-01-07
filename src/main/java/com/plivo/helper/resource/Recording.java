@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 
 public class Recording extends Resource {
 	@SerializedName("recording_id")
@@ -60,7 +61,7 @@ public class Recording extends Resource {
 			throws PlivoException, APIException {
 		Recording r = getRequest(getIdLoc(id),
 				new LinkedHashMap<String, String>(), Recording.class, conf);
-		r.conf = conf;
+		r.setConf(conf);
 		return r;
 	}
 

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.response.OutgoingCarrierCreateResponse;
 import com.plivo.helper.response.Response;
 
@@ -59,7 +60,7 @@ public class OutgoingCarrier extends Resource {
 		OutgoingCarrier oc = getRequest(getIdLoc(id),
 				new LinkedHashMap<String, String>(), OutgoingCarrier.class,
 				conf);
-		oc.conf = conf;
+		oc.setConf(conf);
 		return oc;
 	}
 
@@ -79,7 +80,7 @@ public class OutgoingCarrier extends Resource {
 			throws PlivoException, APIException {
 		OutgoingCarrierList ocl = getRequest(baseLoc, params,
 				OutgoingCarrierList.class, conf);
-		ocl.conf = conf;
+		ocl.setConf(conf);
 		return ocl;
 	}
 

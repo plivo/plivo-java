@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 
 public class Message extends Resource {
 	@SerializedName("cloud_rate")
@@ -61,7 +62,7 @@ public class Message extends Resource {
 			throws PlivoException, APIException {
 		Message m = getRequest(getIdLoc(id),
 				new LinkedHashMap<String, String>(), Message.class, conf, 200);
-		m.conf = conf;
+		m.setConf(conf);
 		return m;
 	}
 
@@ -82,7 +83,7 @@ public class Message extends Resource {
 			PlivoRestConf conf) throws PlivoException, APIException {
 		MessageList ml = getRequest(baseLoc, params, MessageList.class, conf,
 				200);
-		ml.conf = conf;
+		ml.setConf(conf);
 		return ml;
 	}
 

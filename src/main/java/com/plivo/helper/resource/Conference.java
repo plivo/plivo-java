@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
+import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.util.HtmlEntity;
 
 public class Conference extends Resource {
@@ -47,7 +48,7 @@ public class Conference extends Resource {
 			throws PlivoException, APIException {
 		Conference c = getRequest(getNameLoc(name),
 				new LinkedHashMap<String, String>(), Conference.class, conf);
-		c.conf = conf;
+		c.setConf(conf);
 		return c;
 	}
 
@@ -65,7 +66,7 @@ public class Conference extends Resource {
 			throws PlivoException, APIException {
 		ConferenceList cl = getRequest(baseLoc,
 				new LinkedHashMap<String, String>(), ConferenceList.class, conf);
-		cl.conf = conf;
+		cl.setConf(conf);
 		return cl;
 	}
 
@@ -204,7 +205,7 @@ public class Conference extends Resource {
 			APIException {
 		deleteRequest(getLoc() + memberId + "/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf);
+				this.getConf());
 	}
 
 	/**
@@ -218,7 +219,7 @@ public class Conference extends Resource {
 	public void kickMember(String memberId) throws PlivoException, APIException {
 		postRequestExpect(getLoc() + memberId + "/Kick/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 202);
+				this.getConf(), 202);
 	}
 
 	/**
@@ -234,7 +235,7 @@ public class Conference extends Resource {
 	public void muteMember(String memberId) throws PlivoException, APIException {
 		postRequestExpect(getLoc() + memberId + "/Mute/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 202);
+				this.getConf(), 202);
 	}
 
 	/**
@@ -251,7 +252,7 @@ public class Conference extends Resource {
 			APIException {
 		deleteRequestExpect(getLoc() + memberId + "/Mute/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 204);
+				this.getConf(), 204);
 	}
 
 	/**
@@ -269,7 +270,7 @@ public class Conference extends Resource {
 	public void playMember(String memberId, LinkedHashMap<String, String> params)
 			throws PlivoException, APIException {
 		postRequestExpect(getLoc() + memberId + "/Play/", params,
-				GenericResponse.class, this.conf, 202);
+				GenericResponse.class, this.getConf(), 202);
 	}
 
 	/**
@@ -287,7 +288,7 @@ public class Conference extends Resource {
 			APIException {
 		deleteRequestExpect(getLoc() + memberId + "/Play/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 204);
+				this.getConf(), 204);
 	}
 
 	/**
@@ -308,7 +309,7 @@ public class Conference extends Resource {
 		String text = HtmlEntity.convert(getKeyValue(params, "text"));
 		params.put("text", text);
 		postRequestExpect(getLoc() + memberId + "/Speak/", params,
-				GenericResponse.class, this.conf, 202);
+				GenericResponse.class, this.getConf(), 202);
 	}
 
 	/**
@@ -325,7 +326,7 @@ public class Conference extends Resource {
 	public void deafMember(String memberId) throws PlivoException, APIException {
 		postRequestExpect(getLoc() + memberId + "/Deaf/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 202);
+				this.getConf(), 202);
 	}
 
 	/**
@@ -341,7 +342,7 @@ public class Conference extends Resource {
 			APIException {
 		deleteRequestExpect(getLoc() + memberId + "/Deaf/",
 				new LinkedHashMap<String, String>(), GenericResponse.class,
-				this.conf, 204);
+				this.getConf(), 204);
 	}
 
 	public String getConferenceName() {
