@@ -1,6 +1,6 @@
 package com.plivo.helper.util;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -11,7 +11,7 @@ import org.apache.commons.codec.binary.Base64;
 import com.plivo.helper.exception.PlivoException;
 
 public class XPlivoSignature {
-	public static Boolean verify(String uri, LinkedHashMap<String, String> parameters, String xsignature, String authToken)
+	public static Boolean verify(String uri, Map<String, String> parameters, String xsignature, String authToken)
 		throws PlivoException {
 		Boolean isMatch = false;
 		Map<String, String> sortedParams = new TreeMap<String, String>(parameters);

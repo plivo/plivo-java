@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -52,7 +53,7 @@ public class SubAccount extends Resource {
 	public static SubAccount get(String subauthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		SubAccount sa = getRequest(getIdLoc(subauthId),
-				new LinkedHashMap<String, String>(), SubAccount.class, conf);
+				new HashMap<String, String>(), SubAccount.class, conf);
 
 		sa.setConf(conf);
 		return sa;
@@ -70,9 +71,8 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static SubAccountList getList(
-			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static SubAccountList getList(Map<String, String> parameters,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		SubAccountList sal = getRequest(baseLoc, parameters,
 				SubAccountList.class, conf);
 		sal.setConf(conf);
@@ -91,7 +91,7 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static String create(LinkedHashMap<String, String> parameters,
+	public static String create(Map<String, String> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		SubAccountCreateResponse scr = postRequest(baseLoc, parameters,
 				SubAccountCreateResponse.class, conf);
@@ -112,9 +112,8 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String subAuthId,
-			LinkedHashMap<String, String> parameters, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static void modify(String subAuthId, Map<String, String> parameters,
+			PlivoRestConf conf) throws PlivoException, APIException {
 
 		postRequestExpect(getIdLoc(subAuthId), parameters,
 				ModifyResponse.class, conf, 202);
@@ -133,7 +132,7 @@ public class SubAccount extends Resource {
 	 */
 	public static void delete(String subAuthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(subAuthId), new LinkedHashMap<String, String>(),
+		deleteRequest(getIdLoc(subAuthId), new HashMap<String, String>(),
 				DeleteResponse.class, conf);
 	}
 

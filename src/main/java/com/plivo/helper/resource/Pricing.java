@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -33,7 +34,7 @@ public class Pricing extends PricingResource {
 
 	public static Pricing get(String countryIso, PlivoRestConf restConf)
 			throws PlivoException, APIException {
-		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+		Map<String, String> params = new HashMap<String, String>();
 		params.put("country_iso", countryIso);
 		Pricing p = getRequest(baseLoc, params, Pricing.class, restConf, 200);
 		p.setConf(restConf);

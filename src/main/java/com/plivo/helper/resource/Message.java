@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -60,8 +61,8 @@ public class Message extends Resource {
 	 */
 	public static Message get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Message m = getRequest(getIdLoc(id),
-				new LinkedHashMap<String, String>(), Message.class, conf, 200);
+		Message m = getRequest(getIdLoc(id), new HashMap<String, String>(),
+				Message.class, conf, 200);
 		m.setConf(conf);
 		return m;
 	}
@@ -79,7 +80,7 @@ public class Message extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static MessageList getList(LinkedHashMap<String, String> params,
+	public static MessageList getList(Map<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		MessageList ml = getRequest(baseLoc, params, MessageList.class, conf,
 				200);
@@ -99,8 +100,8 @@ public class Message extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void send(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException, APIException {
+	public static void send(Map<String, String> params, PlivoRestConf conf)
+			throws PlivoException, APIException {
 		postRequest(baseLoc, params, MessageList.class, conf);
 	}
 

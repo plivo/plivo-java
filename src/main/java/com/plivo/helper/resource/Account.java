@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -46,7 +47,7 @@ public class Account extends Resource {
 	 */
 	public static Account get(PlivoRestConf conf) throws PlivoException,
 			APIException {
-		Account a = getRequest("/", new LinkedHashMap<String, String>(),
+		Account a = getRequest("/", new HashMap<String, String>(),
 				Account.class, conf);
 		a.setConf(conf);
 		return a;
@@ -65,9 +66,8 @@ public class Account extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String authId,
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static void modify(String authId, Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect("/" + authId + "/", params, Response.class, conf, 202);
 	}
 

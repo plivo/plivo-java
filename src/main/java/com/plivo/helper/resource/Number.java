@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -82,8 +83,8 @@ public class Number extends Resource {
 	 */
 	public static Number get(String number, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Number n = getRequest(getIdLoc(number),
-				new LinkedHashMap<String, String>(), Number.class, conf);
+		Number n = getRequest(getIdLoc(number), new HashMap<String, String>(),
+				Number.class, conf);
 		n.setConf(conf);
 		return n;
 	}
@@ -101,7 +102,7 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static NumberList getList(LinkedHashMap<String, String> params,
+	public static NumberList getList(Map<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		NumberList nl = getRequest(baseLoc, params, NumberList.class, conf);
 		nl.setConf(conf);
@@ -120,7 +121,7 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details
 	 */
-	public static void addFromCarrier(LinkedHashMap<String, String> params,
+	public static void addFromCarrier(Map<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(baseLoc, params, NumberList.class, conf, 202);
 	}
@@ -139,9 +140,8 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void edit(String number,
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static void edit(String number, Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(number), params, Number.class, conf, 202);
 	}
 
@@ -158,8 +158,8 @@ public class Number extends Resource {
 	 */
 	public static void unrent(String number, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequestExpect(getIdLoc(number),
-				new LinkedHashMap<String, String>(), Number.class, conf, 204);
+		deleteRequestExpect(getIdLoc(number), new HashMap<String, String>(),
+				Number.class, conf, 204);
 	}
 
 	public String getRegion() {

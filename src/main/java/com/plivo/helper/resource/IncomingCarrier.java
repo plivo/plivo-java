@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -47,8 +48,7 @@ public class IncomingCarrier extends Resource {
 	public static IncomingCarrier get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		IncomingCarrier ic = getRequest(getIdLoc(id),
-				new LinkedHashMap<String, String>(), IncomingCarrier.class,
-				conf);
+				new HashMap<String, String>(), IncomingCarrier.class, conf);
 		ic.setConf(conf);
 		return ic;
 	}
@@ -65,9 +65,8 @@ public class IncomingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static IncomingCarrierList getList(
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static IncomingCarrierList getList(Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		IncomingCarrierList icl = getRequest(baseLoc, params,
 				IncomingCarrierList.class, conf);
 		icl.setConf(conf);
@@ -86,8 +85,8 @@ public class IncomingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static String create(LinkedHashMap<String, String> params,
-			PlivoRestConf conf) throws PlivoException, APIException {
+	public static String create(Map<String, String> params, PlivoRestConf conf)
+			throws PlivoException, APIException {
 		IncomingCarrierCreateResponse icr = postRequest(baseLoc, params,
 				IncomingCarrierCreateResponse.class, conf);
 		return icr.getCarrierId();
@@ -106,9 +105,8 @@ public class IncomingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String carrierId,
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static void modify(String carrierId, Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(carrierId), params,
 				IncomingCarrierCreateResponse.class, conf, 202);
 	}
@@ -126,8 +124,8 @@ public class IncomingCarrier extends Resource {
 	 */
 	public static void delete(String carrierId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequestExpect(getIdLoc(carrierId),
-				new LinkedHashMap<String, String>(), Response.class, conf, 204);
+		deleteRequestExpect(getIdLoc(carrierId), new HashMap<String, String>(),
+				Response.class, conf, 204);
 	}
 
 	public String getCarrierId() {

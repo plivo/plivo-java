@@ -1,6 +1,6 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -62,7 +62,7 @@ public class AvailableNumberGroup extends Resource {
 	 * @throws APIException
 	 */
 	public static AvailableNumberGroupList search(
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
+			Map<String, String> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		AvailableNumberGroupList a = getRequest(baseLoc, params,
 				AvailableNumberGroupList.class, conf);
@@ -85,7 +85,7 @@ public class AvailableNumberGroup extends Resource {
 	 * @throws APIException
 	 */
 	public static RentNumberGroupResponse rent(String groupId,
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
+			Map<String, String> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		RentNumberGroupResponse r = postRequestExpect(getGroupLoc(groupId),
 				params, RentNumberGroupResponse.class, conf, 201);

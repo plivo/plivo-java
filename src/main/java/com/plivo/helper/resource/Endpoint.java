@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -46,7 +47,7 @@ public class Endpoint extends Resource {
 	public static Endpoint get(String endpointId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		Endpoint e = getRequest(getIdLoc(endpointId),
-				new LinkedHashMap<String, String>(), Endpoint.class, conf, 200);
+				new HashMap<String, String>(), Endpoint.class, conf, 200);
 		e.setConf(conf);
 		return e;
 	}
@@ -65,9 +66,8 @@ public class Endpoint extends Resource {
 	public static EndpointList getList(PlivoRestConf conf)
 			throws PlivoException, APIException {
 
-		EndpointList el = getRequest(baseLoc,
-				new LinkedHashMap<String, String>(), EndpointList.class, conf,
-				200);
+		EndpointList el = getRequest(baseLoc, new HashMap<String, String>(),
+				EndpointList.class, conf, 200);
 		el.setConf(conf);
 		return el;
 	}
@@ -85,9 +85,8 @@ public class Endpoint extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static EndpointCreateResponse create(
-			LinkedHashMap<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static EndpointCreateResponse create(Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		EndpointCreateResponse er = postRequest(baseLoc, params,
 				EndpointCreateResponse.class, conf);
 		return er;
@@ -107,7 +106,7 @@ public class Endpoint extends Resource {
 	 */
 	public static void delete(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(id), new LinkedHashMap<String, String>(),
+		deleteRequest(getIdLoc(id), new HashMap<String, String>(),
 				DeleteResponse.class, conf);
 	}
 
@@ -124,7 +123,7 @@ public class Endpoint extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void modify(String id, LinkedHashMap<String, String> params,
+	public static void modify(String id, Map<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(id), params, ModifyResponse.class, conf, 202);
 	}

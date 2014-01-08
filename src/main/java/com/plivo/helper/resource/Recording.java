@@ -1,6 +1,6 @@
 package com.plivo.helper.resource;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -59,8 +59,8 @@ public class Recording extends Resource {
 	 */
 	public static Recording get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Recording r = getRequest(getIdLoc(id),
-				new LinkedHashMap<String, String>(), Recording.class, conf);
+		Recording r = getRequest(getIdLoc(id), new HashMap<String, String>(),
+				Recording.class, conf);
 		r.setConf(conf);
 		return r;
 	}

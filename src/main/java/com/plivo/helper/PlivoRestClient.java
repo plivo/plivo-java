@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.http.HttpResponse;
@@ -63,7 +63,7 @@ public class PlivoRestClient {
 	}
 
 	public String request(String method, String resource,
-			LinkedHashMap<String, String> parameters) throws PlivoException {
+			Map<String, String> parameters) throws PlivoException {
 		HttpResponse response = new BasicHttpResponse(new ProtocolVersion(
 				"HTTP", 1, 1), HttpStatus.SC_OK, "OK");
 		Client = new DefaultHttpClient();
@@ -140,13 +140,13 @@ public class PlivoRestClient {
 		return responseString.toString();
 	}
 
-	public String get(String location, LinkedHashMap<String, String> params)
+	public String get(String location, Map<String, String> params)
 			throws PlivoException {
 		return request("GET", location, params);
 	}
 
 	public Object getFromJson(String location,
-			LinkedHashMap<String, String> params, Class<Object> classOfT)
+			Map<String, String> params, Class<Object> classOfT)
 			throws PlivoException {
 		String json = request("GET", location, params);
 		return this.gson.fromJson(json, classOfT);

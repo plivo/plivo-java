@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.http.HttpResponse;
@@ -49,7 +49,7 @@ public class PricingResource {
 	}
 
 	protected static synchronized String requestExpect(String method,
-			String resource, LinkedHashMap<String, String> parameters,
+			String resource, Map<String, String> parameters,
 			PlivoRestConf conf, int expectedCode) throws PlivoException,
 			APIException {
 		HttpResponse response = new BasicHttpResponse(new ProtocolVersion(
@@ -129,7 +129,7 @@ public class PricingResource {
 	}
 
 	protected static <T> T getRequest(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -139,13 +139,13 @@ public class PricingResource {
 	}
 
 	protected static <T> T getRequest(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return getRequest(location, params, classOfT, restConf, 200);
 	}
 
 	protected static <T> T postRequestExpect(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -156,13 +156,13 @@ public class PricingResource {
 	}
 
 	protected static <T> T postRequest(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return postRequestExpect(location, params, classOfT, restConf, 201);
 	}
 
 	protected static <T> T deleteRequestExpect(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -172,13 +172,13 @@ public class PricingResource {
 	}
 
 	protected static <T> T deleteRequest(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return deleteRequestExpect(location, params, classOfT, restConf, 204);
 	}
 
 	protected static <T> T putRequestExpect(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -188,7 +188,7 @@ public class PricingResource {
 	}
 
 	protected static <T> T putRequest(String location,
-			LinkedHashMap<String, String> params, Class<T> classOfT,
+			Map<String, String> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return putRequestExpect(location, params, classOfT, restConf, 202);
 	}
@@ -206,7 +206,7 @@ public class PricingResource {
 		return responseString.toString();
 	}
 
-	protected static String getKeyValue(LinkedHashMap<String, String> params,
+	protected static String getKeyValue(Map<String, String> params,
 			String key) throws PlivoException {
 		String value = "";
 		if (params.containsKey(key)) {
