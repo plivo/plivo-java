@@ -2,6 +2,17 @@ package com.plivo.helper.xml.elements;
 
 public class Message extends PlivoElement {
 
+	/**
+	 * Create Plivo Message XML element
+	 * 
+	 * @see http://plivo.com/docs/xml/message/
+	 * @param text
+	 *            Message text
+	 * @param src
+	 *            Message source
+	 * @param dst
+	 *            Message destination
+	 */
 	public Message(String text, String src, String dst) {
 		super(E_MESSAGE, text);
 		this.setSource(src);
