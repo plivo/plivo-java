@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +55,7 @@ public class PlivoRestClientTest {
 		// auth required
 		try {
 			String response = restClient.request("GET", "/",
-					new LinkedHashMap<String, String>());
+					new HashMap<String, String>());
 			assertEquals(
 					"Could not verify your access level for that URL.You have to login with proper credentials",
 					response);
@@ -71,7 +71,7 @@ public class PlivoRestClientTest {
 				"OTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "v1");
 		try {
 			String response = restClient.request("GET", "/odongodong",
-					new LinkedHashMap<String, String>());
+					new HashMap<String, String>());
 			assertEquals("{ \"server_code\": 404,   \"error\": \"not found\"}",
 					response);
 		} catch (PlivoException pe) {

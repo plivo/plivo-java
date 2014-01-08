@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +57,7 @@ public class CDRTest {
 	@Test
 	public void testGetList() {
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			CDRList cdrList = CDR.getList(params, restConf);
 
 			assertNotNull(cdrList);

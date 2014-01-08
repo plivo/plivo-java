@@ -5,7 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -71,7 +72,7 @@ public class EndpointTest {
 			String endpointId;
 			String username;
 			// Create
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			Map<String, String> params = new HashMap<String, String>();
 
 			params.put("username", "unittest");
 			params.put("password", "weak_password");
@@ -85,7 +86,7 @@ public class EndpointTest {
 			endpointId = er.getEndpointId();
 			username = er.getUsername();
 			// Edit it
-			params = new LinkedHashMap<String, String>();
+			params = new HashMap<String, String>();
 
 			params.put("endpoint_id", endpointId);
 			params.put("alias", "new_alias");

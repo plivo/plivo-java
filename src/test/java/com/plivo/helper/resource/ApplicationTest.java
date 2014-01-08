@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.junit.Before;
@@ -54,7 +54,7 @@ public class ApplicationTest {
 		String appId = null;
 		String appName = null;
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			appName = UUID.randomUUID().toString();
 
 			// create
@@ -80,7 +80,7 @@ public class ApplicationTest {
 
 		// edit it
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 
 			params.put("answer_method", "POST");
 			params.put("hangup_url", "http://updated.com");
@@ -124,7 +124,7 @@ public class ApplicationTest {
 	@Test
 	public void testGetList() {
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			ApplicationList al = Application.getList(params, restConf);
 
 			assertNotNull(al);
@@ -139,7 +139,7 @@ public class ApplicationTest {
 	@Test
 	public void testGetListWithLimit() {
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			params.put("limit", "3");
 
 			ApplicationList al = Application.getList(params, restConf);

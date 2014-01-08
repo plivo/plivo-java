@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.junit.Before;
@@ -45,7 +45,7 @@ public class SubAccountTest {
 		try {
 			String subAuthId;
 			// create
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			params.put("name", UUID.randomUUID().toString());
 			params.put("enabled", "false");
 
@@ -53,7 +53,7 @@ public class SubAccountTest {
 
 			assertNotNull(subAuthId);
 			// edit
-			params = new LinkedHashMap<String, String>();
+			params = new HashMap<String, String>();
 
 			params.put("name", "unittest_edited");
 			params.put("enabled", "true");
@@ -80,7 +80,7 @@ public class SubAccountTest {
 	@Test
 	public void testGetList() {
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			SubAccountList sal = SubAccount.getList(params, restConf);
 			String subAuthIdToFind = "SAODDKMDVLMJCWNDG5OT";
 			boolean found = false;
@@ -106,7 +106,7 @@ public class SubAccountTest {
 	@Test
 	public void testGetListWithLimit() {
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			params.put("limit", "2");
 
 			SubAccountList sal = SubAccount.getList(params, restConf);

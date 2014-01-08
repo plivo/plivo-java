@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +51,7 @@ public class OutgoingCarrierTest {
 	public void testGetList() {
 		try {
 			OutgoingCarrierList ocl = OutgoingCarrier.getList(
-					new LinkedHashMap<String, String>(), restConf);
+					new HashMap<String, String>(), restConf);
 
 			assertNotNull(ocl);
 			assertTrue(ocl.getMeta().getTotalCount() >= 1);
@@ -69,7 +69,7 @@ public class OutgoingCarrierTest {
 
 		// create
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			params.put("name", "unittest_java");
 			params.put("address", "google.com");
 			carrierId = OutgoingCarrier.create(params, restConf);
@@ -83,7 +83,7 @@ public class OutgoingCarrierTest {
 
 		// modify
 		try {
-			LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+			HashMap<String, String> params = new HashMap<String, String>();
 			params.put("name", "unittest_java_edited");
 			params.put("address", "google.com");
 			OutgoingCarrier.modify(carrierId, params, restConf);
