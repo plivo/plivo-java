@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
@@ -8,6 +9,7 @@ import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
 import com.plivo.helper.resource.base.Resource;
+import com.plivo.helper.response.MessageSendResponse;
 
 public class Message extends Resource {
 	@SerializedName("cloud_rate")
@@ -75,7 +77,7 @@ public class Message extends Resource {
 	 *            optional params
 	 * @param conf
 	 *            Plivo REST config
-	 * @return
+	 * @return list of message uuid
 	 * @throws PlivoException
 	 * @throws APIException
 	 *             error details from server
@@ -100,9 +102,37 @@ public class Message extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void send(Map<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
-		postRequest(baseLoc, params, MessageList.class, conf);
+	public static List<String> send(Map<String, String> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
+		MessageSendResponse r = postRequestExpect(baseLoc, params,
+				MessageSendResponse.class, conf, 202);
+		return r.getUuidList();
+	}
+
+	/**
+	 * Send text message
+	 * 
+	 * @see http://plivo.com/docs/api/message/#message
+	 * @param src
+	 *            source number
+	 * @param dst
+	 *            destination number
+	 * @param text
+	 *            message text
+	 * @param conf
+	 * @return list of message uuid
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
+	public static List<String> send(String src, String dst, String text,
+			PlivoRestConf conf) throws PlivoException, APIException {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("src", src);
+		params.put("dst", dst);
+		params.put("text", text);
+		MessageSendResponse r = postRequestExpect(baseLoc, params,
+				MessageSendResponse.class, conf, 202);
+		return r.getUuidList();
 	}
 
 	public String getCloudRate() {
