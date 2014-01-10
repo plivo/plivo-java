@@ -3,12 +3,12 @@ package com.plivo.helper.xml.elements;
 
 import java.util.ArrayList;
 
-public class PlivoResponse extends PlivoElement {
+public class PlivoXML extends PlivoElement {
     
     /**
      * Instantiates a new plivo element response.
      */
-    public PlivoResponse() {
+    public PlivoXML() {
       // TODO Auto-generated constructor stub
         super(PlivoElement.E_RESPONSE, null);
         this.nestableElements = new ArrayList<String>();

@@ -10,7 +10,7 @@ import com.plivo.helper.exception.PlivoException;
 public class GetDigitsTest {
 	@Test
 	public void testGetDigits() {
-		PlivoResponse response = new PlivoResponse();
+		PlivoXML plivoXML = new PlivoXML();
 		Speak speak = new Speak("Press one for English. Press two for Spanish");
 		GetDigits getdigits = new GetDigits();
 
@@ -28,11 +28,11 @@ public class GetDigitsTest {
 
 		try {
 			getdigits.append(speak);
-			response.append(getdigits);
+			plivoXML.append(getdigits);
 
 			String expected = TestUtils.inStreamToString(SpeakTest.class.getResourceAsStream("getdigits.xml"));
 
-			assertEquals(expected, response.toXML());
+			assertEquals(expected, plivoXML.toXML());
 		} catch (PlivoException e) {
 			fail(e.getLocalizedMessage());
 		}

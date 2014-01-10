@@ -10,7 +10,7 @@ import com.plivo.helper.exception.PlivoException;
 public class DialTest {
 	@Test
 	public void testDial() {
-		PlivoResponse response = new PlivoResponse();
+		PlivoXML plivoXML = new PlivoXML();
         Dial dial = new Dial();
         Number number = new Number("12345678901");
 
@@ -26,10 +26,10 @@ public class DialTest {
 
         try {
             dial.append(number);
-            response.append(dial);
+            plivoXML.append(dial);
 
             String expected = TestUtils.inStreamToString(SpeakTest.class.getResourceAsStream("dial.xml"));
-            assertEquals(expected, response.toXML());
+            assertEquals(expected, plivoXML.toXML());
         } catch (PlivoException e) {
             fail(e.getMessage());
         }

@@ -10,15 +10,15 @@ import com.plivo.helper.exception.PlivoException;
 public class ConferenceTest {
 	@Test
 	public void testSimpleConf() {
-		PlivoResponse response = new PlivoResponse();
+		PlivoXML plivoXML = new PlivoXML();
 		Conference conf = new Conference("Simple Conference");
 
 		try {
-			response.append(conf);
+			plivoXML.append(conf);
 
 			String expected = TestUtils.inStreamToString(SpeakTest.class.getResourceAsStream("conference_simple.xml"));
 
-			assertEquals(expected, response.toXML());
+			assertEquals(expected, plivoXML.toXML());
 		}catch (PlivoException pe) {
 			fail(pe.getMessage());
 		}
@@ -26,7 +26,7 @@ public class ConferenceTest {
 
 	@Test
 	public void testModeratedConf() {
-		PlivoResponse response = new PlivoResponse();
+		PlivoXML response = new PlivoXML();
 		Conference conf = new Conference("Moderated Conference");
 
 		conf.setStartConferenceOnEnter(false);
