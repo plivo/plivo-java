@@ -1,0 +1,1 @@
+Response><GetDigits numDigits="1" action="http://safe-stream-4972.herokuapp.com/incall/chooselang/getdigits" method="GET" timeout="20"><Speak>Welcome to Plivo Demo app. Press 1 to hear welcome in english, press 2 to hear it in french</Speak></GetDigits><Speak>Sorry, I didn't catch that. Please hangup the call and try again later.</Speak></Response>
