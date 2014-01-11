@@ -2,7 +2,7 @@ package com.plivo.helper.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RecordResponse extends Response {
+public class CallRecordResponse extends Response {
 	private String url;
 
 	@SerializedName("recording_id")

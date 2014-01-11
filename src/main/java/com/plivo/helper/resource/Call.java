@@ -12,7 +12,7 @@ import com.plivo.helper.response.CallCreateResponse;
 import com.plivo.helper.response.DeleteResponse;
 import com.plivo.helper.response.GenericResponse;
 import com.plivo.helper.response.ModifyResponse;
-import com.plivo.helper.response.RecordResponse;
+import com.plivo.helper.response.CallRecordResponse;
 import com.plivo.helper.util.HtmlEntity;
 
 public class Call extends Resource {
@@ -224,7 +224,7 @@ public class Call extends Resource {
 	public static void record(String callUUID, Map<String, String> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(String.format(baseLoc + "%s/Record/", callUUID),
-				params, RecordResponse.class, conf, 202);
+				params, CallRecordResponse.class, conf, 202);
 	}
 
 	/**
