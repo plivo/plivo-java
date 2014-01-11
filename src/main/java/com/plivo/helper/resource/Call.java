@@ -60,16 +60,52 @@ public class Call extends Resource {
 	 * 
 	 * @see http://plivo.com/docs/api/call/#outbound
 	 * @param params
-	 *            call parameter
+	 *            call parameters
 	 * @param conf
 	 *            Plivo REST Config
+	 * @return request UUID
 	 * @throws PlivoException
 	 * @throws APIException
 	 *             error details from server.
 	 */
-	public static void create(Map<String, String> params, PlivoRestConf conf)
+	public static String create(Map<String, String> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		postRequestExpect(baseLoc, params, CallCreateResponse.class, conf, 200);
+		CallCreateResponse r = postRequestExpect(baseLoc, params,
+				CallCreateResponse.class, conf, 201);
+		return r.getRequestUUID();
+	}
+
+	/**
+	 * Make an outbound call
+	 * 
+	 * @see http://plivo.com/docs/api/call/#outbound
+	 * @param from
+	 *            The phone number to be used as the caller id
+	 * @param to
+	 *            The regular number(s) or sip endpoint(s) to call
+	 * @param answerUrl
+	 *            The URL invoked by Plivo when the outbound call is answered
+	 * @param params
+	 *            optional params
+	 * @param conf
+	 *            Plivo REST conf
+	 * @return request uuid
+	 * @throws PlivoException
+	 * @throws APIException
+	 */
+	public static String create(String from, String to, String answerUrl,
+			Map<String, String> params, PlivoRestConf conf)
+			throws PlivoException, APIException {
+		params.put("from", from);
+		params.put("to", to);
+		params.put("answer_url", answerUrl);
+		return Call.create(params, conf);
+	}
+
+	public static String create(String from, String to, String answerUrl,
+			PlivoRestConf conf) throws PlivoException, APIException {
+		HashMap<String, String> params = new HashMap<String, String>();
+		return Call.create(from, to, answerUrl, params, conf);
 	}
 
 	/**
