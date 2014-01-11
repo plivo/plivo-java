@@ -18,8 +18,24 @@ import com.plivo.helper.util.HtmlEntity;
 public class Call extends Resource {
 	private String message;
 
-	@SerializedName("request_uuid")
-	private String requestUUID;
+	@SerializedName("direction")
+	private String direction;
+
+	private String from;
+
+	@SerializedName("call_status")
+	private String callStatus;
+
+	private String to;
+
+	@SerializedName("caller_name")
+	private String callerName;
+
+	@SerializedName("call_uuid")
+	private String callUUID;
+
+	@SerializedName("session_start")
+	private String sessionStart;
 
 	private static String baseLoc = "/Call/";
 
@@ -370,7 +386,32 @@ public class Call extends Resource {
 		return message;
 	}
 
-	public String getRequestUUID() {
-		return requestUUID;
+	public String getDirection() {
+		return direction;
 	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public String getCallStatus() {
+		return callStatus;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public String getCallerName() {
+		return callerName;
+	}
+
+	public String getCallUUID() {
+		return callUUID;
+	}
+
+	public String getSessionStart() {
+		return sessionStart;
+	}
+
 }

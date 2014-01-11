@@ -1,3 +1,6 @@
+/**
+ * Plivo API Exception
+ */
 package com.plivo.helper.exception;
 
 public class APIException extends Exception {
