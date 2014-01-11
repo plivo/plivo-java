@@ -16,8 +16,6 @@ import com.plivo.helper.response.ModifyResponse;
 import com.plivo.helper.util.HtmlEntity;
 
 public class Call extends Resource {
-	private String message;
-
 	@SerializedName("direction")
 	private String direction;
 
@@ -379,11 +377,6 @@ public class Call extends Resource {
 			throws PlivoException, APIException {
 		deleteRequestExpect(String.format("/Request/%s/", requestUUID),
 				new HashMap<String, String>(), GenericResponse.class, conf, 204);
-	}
-
-	@Override
-	public String getMessage() {
-		return message;
 	}
 
 	public String getDirection() {
