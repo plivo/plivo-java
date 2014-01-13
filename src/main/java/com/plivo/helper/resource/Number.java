@@ -12,6 +12,10 @@ import com.plivo.helper.resource.base.Resource;
 public class Number extends Resource {
 	private String region;
 
+	private String description;
+
+	private String alias;
+
 	@SerializedName("voice_enabled")
 	private Boolean isVoiceEnabled;
 
@@ -50,17 +54,11 @@ public class Number extends Resource {
 	private String setupRate;
 
 	@Deprecated
-	private String country;
-
-	@Deprecated
-	private Integer lata;
-
-	@Deprecated
 	@SerializedName("monthly_rental_rate")
 	private String monthlyRentalRrate;
 
 	@SerializedName("carrier")
-	private String inboundCarrier;
+	private String carrier;
 
 	private static String baseLoc = "/Number/";
 
@@ -218,20 +216,20 @@ public class Number extends Resource {
 		return setupRate;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public Integer getLata() {
-		return lata;
-	}
-
 	public String getMonthlyRentalRrate() {
 		return monthlyRentalRrate;
 	}
 
-	public String getInboundCarrier() {
-		return inboundCarrier;
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getAlias() {
+		return alias;
 	}
 
 }

@@ -35,7 +35,7 @@ public class AvailableNumberGroup extends Resource {
 	private String voiceRate;
 
 	@SerializedName("stock")
-	private Integer inStock;
+	private Integer stock;
 
 	@SerializedName("prefix")
 	private String numberPrefix;
@@ -123,8 +123,8 @@ public class AvailableNumberGroup extends Resource {
 		return voiceRate;
 	}
 
-	public Integer getInStock() {
-		return inStock;
+	public Integer getStock() {
+		return stock;
 	}
 
 	public String getNumberPrefix() {
