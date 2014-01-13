@@ -1,6 +1,7 @@
 package com.plivo.helper.resource;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
@@ -63,6 +64,14 @@ public class Recording extends Resource {
 				Recording.class, conf);
 		r.setConf(conf);
 		return r;
+	}
+
+	public static RecordingList getList(Map<String, Object> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
+		RecordingList rl = getRequest(baseLoc, params, RecordingList.class,
+				conf);
+		rl.setConf(conf);
+		return rl;
 	}
 
 	public String getId() {
