@@ -88,7 +88,6 @@ public class EndpointTest {
 			// Edit it
 			params = new HashMap<String, String>();
 
-			params.put("endpoint_id", endpointId);
 			params.put("alias", "new_alias");
 			params.put("password", "new_password");
 			params.put("app_id", "13067240731758303");
