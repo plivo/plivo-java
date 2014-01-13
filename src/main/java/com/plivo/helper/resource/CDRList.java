@@ -7,10 +7,10 @@ import com.plivo.helper.resource.base.Resource;
 import com.plivo.helper.resource.meta.ListMeta;
 
 public class CDRList extends Resource {
-	public ListMeta meta;
+	private ListMeta meta;
 
 	@SerializedName("objects")
-	public List<CDR> list;
+	private List<CDR> list;
 
 	public ListMeta getMeta() {
 		return meta;
