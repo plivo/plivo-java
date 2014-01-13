@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Response {
 	@SerializedName("server_code")
-	private Integer serverCode;
+	private int serverCode;
 
 	private Object error;
 
@@ -13,7 +13,7 @@ public class Response {
 	@SerializedName("api_id")
 	private String apiId;
 
-	public Integer getServerCode() {
+	public int getServerCode() {
 		return serverCode;
 	}
 
