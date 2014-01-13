@@ -63,7 +63,7 @@ public class Message extends Resource {
 	 */
 	public static Message get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Message m = getRequest(getIdLoc(id), new HashMap<String, String>(),
+		Message m = getRequest(getIdLoc(id), new HashMap<String, Object>(),
 				Message.class, conf, 200);
 		m.setConf(conf);
 		return m;
@@ -82,7 +82,7 @@ public class Message extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static MessageList getList(Map<String, String> params,
+	public static MessageList getList(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		MessageList ml = getRequest(baseLoc, params, MessageList.class, conf,
 				200);
@@ -102,7 +102,7 @@ public class Message extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static List<String> send(Map<String, String> params,
+	public static List<String> send(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		MessageSendResponse r = postRequestExpect(baseLoc, params,
 				MessageSendResponse.class, conf, 202);
@@ -126,7 +126,7 @@ public class Message extends Resource {
 	 */
 	public static List<String> send(String src, String dst, String text,
 			PlivoRestConf conf) throws PlivoException, APIException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("src", src);
 		params.put("dst", dst);
 		params.put("text", text);

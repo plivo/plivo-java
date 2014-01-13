@@ -47,7 +47,7 @@ public class Endpoint extends Resource {
 	public static Endpoint get(String endpointId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		Endpoint e = getRequest(getIdLoc(endpointId),
-				new HashMap<String, String>(), Endpoint.class, conf, 200);
+				new HashMap<String, Object>(), Endpoint.class, conf, 200);
 		e.setConf(conf);
 		return e;
 	}
@@ -66,7 +66,7 @@ public class Endpoint extends Resource {
 	public static EndpointList getList(PlivoRestConf conf)
 			throws PlivoException, APIException {
 
-		EndpointList el = getRequest(baseLoc, new HashMap<String, String>(),
+		EndpointList el = getRequest(baseLoc, new HashMap<String, Object>(),
 				EndpointList.class, conf, 200);
 		el.setConf(conf);
 		return el;
@@ -85,7 +85,7 @@ public class Endpoint extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static EndpointCreateResponse create(Map<String, String> params,
+	public static EndpointCreateResponse create(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		EndpointCreateResponse er = postRequest(baseLoc, params,
 				EndpointCreateResponse.class, conf);
@@ -106,7 +106,7 @@ public class Endpoint extends Resource {
 	 */
 	public static void delete(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(id), new HashMap<String, String>(),
+		deleteRequest(getIdLoc(id), new HashMap<String, Object>(),
 				DeleteResponse.class, conf);
 	}
 
@@ -123,7 +123,7 @@ public class Endpoint extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void modify(String id, Map<String, String> params,
+	public static void modify(String id, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(id), params, ModifyResponse.class, conf, 202);
 	}

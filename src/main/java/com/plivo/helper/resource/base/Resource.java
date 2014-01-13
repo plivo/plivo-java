@@ -42,7 +42,7 @@ public class Resource extends Response {
 	}
 
 	protected static synchronized String requestExpect(String method,
-			String resource, Map<String, String> parameters,
+			String resource, Map<String, Object> parameters,
 			PlivoRestConf conf, int expectedCode) throws PlivoException,
 			APIException {
 		HttpResponse response = new BasicHttpResponse(new ProtocolVersion(
@@ -59,7 +59,7 @@ public class Resource extends Response {
 			if (method == "GET") {
 				// Prepare a String with GET parameters
 				String getparams = "?";
-				for (Entry<String, String> pair : parameters.entrySet())
+				for (Entry<String, Object> pair : parameters.entrySet())
 					getparams += pair.getKey() + "=" + pair.getValue() + "&";
 				// remove the trailing '&'
 				getparams = getparams.substring(0, getparams.length() - 1);
@@ -122,7 +122,7 @@ public class Resource extends Response {
 	}
 
 	protected static <T> T getRequest(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -132,13 +132,13 @@ public class Resource extends Response {
 	}
 
 	protected static <T> T getRequest(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return getRequest(location, params, classOfT, restConf, 200);
 	}
 
 	protected static <T> T postRequestExpect(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -149,13 +149,13 @@ public class Resource extends Response {
 	}
 
 	protected static <T> T postRequest(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return postRequestExpect(location, params, classOfT, restConf, 201);
 	}
 
 	protected static <T> T deleteRequestExpect(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -165,13 +165,13 @@ public class Resource extends Response {
 	}
 
 	protected static <T> T deleteRequest(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return deleteRequestExpect(location, params, classOfT, restConf, 204);
 	}
 
 	protected static <T> T putRequestExpect(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf, int expectedCode) throws PlivoException,
 			APIException {
 		Gson gson = new Gson();
@@ -181,7 +181,7 @@ public class Resource extends Response {
 	}
 
 	protected static <T> T putRequest(String location,
-			Map<String, String> params, Class<T> classOfT,
+			Map<String, Object> params, Class<T> classOfT,
 			PlivoRestConf restConf) throws PlivoException, APIException {
 		return putRequestExpect(location, params, classOfT, restConf, 202);
 	}
@@ -199,9 +199,9 @@ public class Resource extends Response {
 		return responseString.toString();
 	}
 
-	protected static String getKeyValue(Map<String, String> params, String key)
+	protected static Object getKeyValue(Map<String, Object> params, String key)
 			throws PlivoException {
-		String value = "";
+		Object value = null;
 		if (params.containsKey(key)) {
 			value = params.get(key);
 			params.remove(key);

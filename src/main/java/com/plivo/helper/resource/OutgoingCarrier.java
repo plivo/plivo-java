@@ -59,7 +59,7 @@ public class OutgoingCarrier extends Resource {
 	public static OutgoingCarrier get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		OutgoingCarrier oc = getRequest(getIdLoc(id),
-				new HashMap<String, String>(), OutgoingCarrier.class, conf);
+				new HashMap<String, Object>(), OutgoingCarrier.class, conf);
 		oc.setConf(conf);
 		return oc;
 	}
@@ -75,7 +75,7 @@ public class OutgoingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static OutgoingCarrierList getList(Map<String, String> params,
+	public static OutgoingCarrierList getList(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		OutgoingCarrierList ocl = getRequest(baseLoc, params,
 				OutgoingCarrierList.class, conf);
@@ -95,7 +95,7 @@ public class OutgoingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static String create(Map<String, String> params, PlivoRestConf conf)
+	public static String create(Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		OutgoingCarrierCreateResponse r = postRequest(baseLoc, params,
 				OutgoingCarrierCreateResponse.class, conf);
@@ -115,7 +115,7 @@ public class OutgoingCarrier extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String carrierId, Map<String, String> params,
+	public static void modify(String carrierId, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(carrierId), params, Response.class, conf,
 				202);
@@ -134,7 +134,7 @@ public class OutgoingCarrier extends Resource {
 	 */
 	public static void delete(String carrierId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(carrierId), new HashMap<String, String>(),
+		deleteRequest(getIdLoc(carrierId), new HashMap<String, Object>(),
 				Response.class, conf);
 	}
 

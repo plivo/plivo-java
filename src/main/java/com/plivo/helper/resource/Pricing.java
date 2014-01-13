@@ -34,7 +34,7 @@ public class Pricing extends PricingResource {
 
 	public static Pricing get(String countryIso, PlivoRestConf restConf)
 			throws PlivoException, APIException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("country_iso", countryIso);
 		Pricing p = getRequest(baseLoc, params, Pricing.class, restConf, 200);
 		p.setConf(restConf);

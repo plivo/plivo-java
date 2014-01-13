@@ -57,7 +57,7 @@ public class CDRTest {
 	@Test
 	public void testGetList() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			CDRList cdrList = CDR.getList(params, restConf);
 
 			assertNotNull(cdrList);

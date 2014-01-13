@@ -47,7 +47,7 @@ public class Account extends Resource {
 	 */
 	public static Account get(PlivoRestConf conf) throws PlivoException,
 			APIException {
-		Account a = getRequest("/", new HashMap<String, String>(),
+		Account a = getRequest("/", new HashMap<String, Object>(),
 				Account.class, conf);
 		a.setConf(conf);
 		return a;
@@ -66,7 +66,7 @@ public class Account extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String authId, Map<String, String> params,
+	public static void modify(String authId, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect("/" + authId + "/", params, Response.class, conf, 202);
 	}

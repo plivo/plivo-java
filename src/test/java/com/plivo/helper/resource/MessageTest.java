@@ -56,7 +56,7 @@ public class MessageTest {
 	@Test
 	public void testGetList() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 
 			MessageList ml = Message.getList(params, restConf);
 

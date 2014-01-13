@@ -51,7 +51,7 @@ public class OutgoingCarrierTest {
 	public void testGetList() {
 		try {
 			OutgoingCarrierList ocl = OutgoingCarrier.getList(
-					new HashMap<String, String>(), restConf);
+					new HashMap<String, Object>(), restConf);
 
 			assertNotNull(ocl);
 			assertTrue(ocl.getMeta().getTotalCount() >= 1);
@@ -69,7 +69,7 @@ public class OutgoingCarrierTest {
 
 		// create
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("name", "unittest_java");
 			params.put("address", "google.com");
 			carrierId = OutgoingCarrier.create(params, restConf);
@@ -83,7 +83,7 @@ public class OutgoingCarrierTest {
 
 		// modify
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("name", "unittest_java_edited");
 			params.put("address", "google.com");
 			OutgoingCarrier.modify(carrierId, params, restConf);

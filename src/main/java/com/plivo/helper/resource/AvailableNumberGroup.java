@@ -61,9 +61,8 @@ public class AvailableNumberGroup extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static AvailableNumberGroupList search(
-			Map<String, String> params, PlivoRestConf conf)
-			throws PlivoException, APIException {
+	public static AvailableNumberGroupList search(Map<String, Object> params,
+			PlivoRestConf conf) throws PlivoException, APIException {
 		AvailableNumberGroupList a = getRequest(baseLoc, params,
 				AvailableNumberGroupList.class, conf);
 		a.setConf(conf);
@@ -85,7 +84,7 @@ public class AvailableNumberGroup extends Resource {
 	 * @throws APIException
 	 */
 	public static RentNumberGroupResponse rent(String groupId,
-			Map<String, String> params, PlivoRestConf conf)
+			Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		RentNumberGroupResponse r = postRequestExpect(getGroupLoc(groupId),
 				params, RentNumberGroupResponse.class, conf, 201);

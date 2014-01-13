@@ -64,7 +64,7 @@ public class Call extends Resource {
 	 * @return CDRList object if successful, null if failed.
 	 * @throws PlivoException
 	 */
-	public static CDRList getCDRList(Map<String, String> params,
+	public static CDRList getCDRList(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		return CDR.getList(params, conf);
 	}
@@ -82,7 +82,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server.
 	 */
-	public static String create(Map<String, String> params, PlivoRestConf conf)
+	public static String create(Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		CallCreateResponse r = postRequestExpect(baseLoc, params,
 				CallCreateResponse.class, conf, 201);
@@ -108,7 +108,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 */
 	public static String create(String from, String to, String answerUrl,
-			Map<String, String> params, PlivoRestConf conf)
+			Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		params.put("from", from);
 		params.put("to", to);
@@ -118,7 +118,7 @@ public class Call extends Resource {
 
 	public static String create(String from, String to, String answerUrl,
 			PlivoRestConf conf) throws PlivoException, APIException {
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, Object> params = new HashMap<String, Object>();
 		return Call.create(from, to, answerUrl, params, conf);
 	}
 
@@ -136,7 +136,7 @@ public class Call extends Resource {
 	 */
 	public static void hangup(String callUUID, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(callUUID), new HashMap<String, String>(),
+		deleteRequest(getIdLoc(callUUID), new HashMap<String, Object>(),
 				DeleteResponse.class, conf);
 
 	}
@@ -152,7 +152,7 @@ public class Call extends Resource {
 	 */
 	public static void hangupAll(PlivoRestConf conf) throws PlivoException,
 			APIException {
-		deleteRequest(baseLoc, new HashMap<String, String>(),
+		deleteRequest(baseLoc, new HashMap<String, Object>(),
 				DeleteResponse.class, conf);
 	}
 
@@ -171,7 +171,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void transfer(String callUUID, Map<String, String> params,
+	public static void transfer(String callUUID, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(String.format(baseLoc + "%s/", callUUID), params,
 				ModifyResponse.class, conf, 202);
@@ -191,7 +191,7 @@ public class Call extends Resource {
 	 */
 	public static Call getLive(String callUUID, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("status", "live");
 
 		Call call = getRequest(getIdLoc(callUUID), params, Call.class, conf);
@@ -213,7 +213,7 @@ public class Call extends Resource {
 	 */
 	public static CallList getLiveAll(PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("status", "live");
 		CallList callList = getRequest(baseLoc, params, CallList.class, conf);
 
@@ -236,7 +236,7 @@ public class Call extends Resource {
 	 *             error details from server
 	 */
 	public static CallRecordResponse record(String callUUID,
-			Map<String, String> params, PlivoRestConf conf)
+			Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		return postRequestExpect(
 				String.format(baseLoc + "%s/Record/", callUUID), params,
@@ -257,7 +257,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void stopRecord(String callUUID, Map<String, String> params,
+	public static void stopRecord(String callUUID, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		deleteRequestExpect(String.format(baseLoc + "%s/Record/", callUUID),
 				params, GenericResponse.class, conf, 204);
@@ -277,7 +277,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void play(String callUUID, Map<String, String> parameters,
+	public static void play(String callUUID, Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(String.format(baseLoc + "%s/Play/", callUUID),
 				parameters, GenericResponse.class, conf, 202);
@@ -298,7 +298,7 @@ public class Call extends Resource {
 	public static void stopPlay(String callUUID, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		postRequestExpect(String.format(baseLoc + "%s/Play/", callUUID),
-				new HashMap<String, String>(), GenericResponse.class, conf, 202);
+				new HashMap<String, Object>(), GenericResponse.class, conf, 202);
 	}
 
 	/**
@@ -315,9 +315,10 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void speak(String callUUID, Map<String, String> parameters,
+	public static void speak(String callUUID, Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
-		String text = HtmlEntity.convert(getKeyValue(parameters, "text"));
+		String text = HtmlEntity.convert(getKeyValue(parameters, "text")
+				.toString());
 		parameters.put("text", text);
 		postRequestExpect(String.format(baseLoc + "%s/Speak/", callUUID),
 				parameters, GenericResponse.class, conf, 202);
@@ -338,7 +339,7 @@ public class Call extends Resource {
 	public static void stopSpeak(String callUUID, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		deleteRequestExpect(String.format(baseLoc + "%s/Speak/", callUUID),
-				new HashMap<String, String>(), GenericResponse.class, conf, 202);
+				new HashMap<String, Object>(), GenericResponse.class, conf, 202);
 	}
 
 	/**
@@ -355,7 +356,7 @@ public class Call extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void sendDigits(String callUUID, Map<String, String> params,
+	public static void sendDigits(String callUUID, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(String.format(baseLoc + "%s/DTMF/", callUUID),
 				params, GenericResponse.class, conf, 202);
@@ -376,7 +377,7 @@ public class Call extends Resource {
 	public static void hangupCallRequest(String requestUUID, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		deleteRequestExpect(String.format("/Request/%s/", requestUUID),
-				new HashMap<String, String>(), GenericResponse.class, conf, 204);
+				new HashMap<String, Object>(), GenericResponse.class, conf, 204);
 	}
 
 	public String getDirection() {

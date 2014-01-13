@@ -66,7 +66,7 @@ public class Application extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static String create(Map<String, String> parameters,
+	public static String create(Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		ApplicationCreateResponse acr = postRequest(baseLoc, parameters,
 				ApplicationCreateResponse.class, conf);
@@ -88,7 +88,7 @@ public class Application extends Resource {
 	public static Application get(String appId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		Application app = getRequest(String.format(baseLoc + "%s/", appId),
-				new HashMap<String, String>(), Application.class, conf);
+				new HashMap<String, Object>(), Application.class, conf);
 		app.setConf(conf);
 		return app;
 
@@ -105,7 +105,7 @@ public class Application extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static ApplicationList getList(Map<String, String> params,
+	public static ApplicationList getList(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		ApplicationList al = getRequest(baseLoc, params, ApplicationList.class,
 				conf);
@@ -126,7 +126,7 @@ public class Application extends Resource {
 	 */
 	public static void delete(String appId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequestExpect(getIdLoc(appId), new HashMap<String, String>(),
+		deleteRequestExpect(getIdLoc(appId), new HashMap<String, Object>(),
 				Response.class, conf, 204);
 	}
 
@@ -143,7 +143,7 @@ public class Application extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String appId, Map<String, String> parameters,
+	public static void modify(String appId, Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(appId), parameters, Response.class, conf,
 				202);

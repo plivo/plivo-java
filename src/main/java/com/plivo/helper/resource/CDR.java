@@ -63,7 +63,7 @@ public class CDR extends Resource {
 	 */
 	public static CDR get(String recordId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		CDR cdr = getRequest(getIdLoc(recordId), new HashMap<String, String>(),
+		CDR cdr = getRequest(getIdLoc(recordId), new HashMap<String, Object>(),
 				CDR.class, conf);
 		cdr.setConf(conf);
 		return cdr;
@@ -82,7 +82,7 @@ public class CDR extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static CDRList getList(Map<String, String> params, PlivoRestConf conf)
+	public static CDRList getList(Map<String, Object> params, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		CDRList cdrList = getRequest(baseLoc, params, CDRList.class, conf);
 		cdrList.setConf(conf);

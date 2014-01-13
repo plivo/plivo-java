@@ -59,7 +59,7 @@ public class Recording extends Resource {
 	 */
 	public static Recording get(String id, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Recording r = getRequest(getIdLoc(id), new HashMap<String, String>(),
+		Recording r = getRequest(getIdLoc(id), new HashMap<String, Object>(),
 				Recording.class, conf);
 		r.setConf(conf);
 		return r;

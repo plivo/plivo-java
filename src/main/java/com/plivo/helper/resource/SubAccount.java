@@ -53,7 +53,7 @@ public class SubAccount extends Resource {
 	public static SubAccount get(String subauthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
 		SubAccount sa = getRequest(getIdLoc(subauthId),
-				new HashMap<String, String>(), SubAccount.class, conf);
+				new HashMap<String, Object>(), SubAccount.class, conf);
 
 		sa.setConf(conf);
 		return sa;
@@ -71,7 +71,7 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static SubAccountList getList(Map<String, String> parameters,
+	public static SubAccountList getList(Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		SubAccountList sal = getRequest(baseLoc, parameters,
 				SubAccountList.class, conf);
@@ -91,7 +91,7 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static String create(Map<String, String> parameters,
+	public static String create(Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		SubAccountCreateResponse scr = postRequest(baseLoc, parameters,
 				SubAccountCreateResponse.class, conf);
@@ -112,7 +112,7 @@ public class SubAccount extends Resource {
 	 * @throws PlivoException
 	 * @throws APIException
 	 */
-	public static void modify(String subAuthId, Map<String, String> parameters,
+	public static void modify(String subAuthId, Map<String, Object> parameters,
 			PlivoRestConf conf) throws PlivoException, APIException {
 
 		postRequestExpect(getIdLoc(subAuthId), parameters,
@@ -132,7 +132,7 @@ public class SubAccount extends Resource {
 	 */
 	public static void delete(String subAuthId, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequest(getIdLoc(subAuthId), new HashMap<String, String>(),
+		deleteRequest(getIdLoc(subAuthId), new HashMap<String, Object>(),
 				DeleteResponse.class, conf);
 	}
 

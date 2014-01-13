@@ -83,7 +83,7 @@ public class Number extends Resource {
 	 */
 	public static Number get(String number, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		Number n = getRequest(getIdLoc(number), new HashMap<String, String>(),
+		Number n = getRequest(getIdLoc(number), new HashMap<String, Object>(),
 				Number.class, conf);
 		n.setConf(conf);
 		return n;
@@ -102,7 +102,7 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static NumberList getList(Map<String, String> params,
+	public static NumberList getList(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		NumberList nl = getRequest(baseLoc, params, NumberList.class, conf);
 		nl.setConf(conf);
@@ -121,7 +121,7 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details
 	 */
-	public static void addFromCarrier(Map<String, String> params,
+	public static void addFromCarrier(Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(baseLoc, params, NumberList.class, conf, 202);
 	}
@@ -140,7 +140,7 @@ public class Number extends Resource {
 	 * @throws APIException
 	 *             error details from server
 	 */
-	public static void edit(String number, Map<String, String> params,
+	public static void edit(String number, Map<String, Object> params,
 			PlivoRestConf conf) throws PlivoException, APIException {
 		postRequestExpect(getIdLoc(number), params, Number.class, conf, 202);
 	}
@@ -158,7 +158,7 @@ public class Number extends Resource {
 	 */
 	public static void unrent(String number, PlivoRestConf conf)
 			throws PlivoException, APIException {
-		deleteRequestExpect(getIdLoc(number), new HashMap<String, String>(),
+		deleteRequestExpect(getIdLoc(number), new HashMap<String, Object>(),
 				Number.class, conf, 204);
 	}
 

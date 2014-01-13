@@ -45,7 +45,7 @@ public class SubAccountTest {
 		try {
 			String subAuthId;
 			// create
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("name", UUID.randomUUID().toString());
 			params.put("enabled", "false");
 
@@ -53,12 +53,12 @@ public class SubAccountTest {
 
 			assertNotNull(subAuthId);
 			// edit
-			params = new HashMap<String, String>();
+			HashMap<String, Object> editParams = new HashMap<String, Object>();
 
-			params.put("name", "unittest_edited");
-			params.put("enabled", "true");
+			editParams.put("name", "unittest_edited");
+			editParams.put("enabled", true);
 
-			SubAccount.modify(subAuthId, params, restConf);
+			SubAccount.modify(subAuthId, editParams, restConf);
 
 			// verify our changes
 			SubAccount sa = SubAccount.get(subAuthId, restConf);
@@ -80,7 +80,7 @@ public class SubAccountTest {
 	@Test
 	public void testGetList() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			SubAccountList sal = SubAccount.getList(params, restConf);
 			String subAuthIdToFind = "SAODDKMDVLMJCWNDG5OT";
 			boolean found = false;
@@ -106,7 +106,7 @@ public class SubAccountTest {
 	@Test
 	public void testGetListWithLimit() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("limit", "2");
 
 			SubAccountList sal = SubAccount.getList(params, restConf);

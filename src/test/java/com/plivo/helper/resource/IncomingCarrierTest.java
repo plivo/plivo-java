@@ -46,7 +46,7 @@ public class IncomingCarrierTest {
 	@Test
 	public void testGetList() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			IncomingCarrierList icl = IncomingCarrier.getList(params, restConf);
 
 			assertNotNull(icl);
@@ -64,7 +64,7 @@ public class IncomingCarrierTest {
 		String carrierId = null;
 		// create it
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("name", "unittest");
 			params.put("ip_set", "192.168.0.1");
 
@@ -77,7 +77,7 @@ public class IncomingCarrierTest {
 
 		// modify
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("name", "unittest_modified");
 
 			IncomingCarrier.modify(carrierId, params, restConf);

@@ -54,7 +54,7 @@ public class ApplicationTest {
 		String appId = null;
 		String appName = null;
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			appName = UUID.randomUUID().toString();
 
 			// create
@@ -80,7 +80,7 @@ public class ApplicationTest {
 
 		// edit it
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 
 			params.put("answer_method", "POST");
 			params.put("hangup_url", "http://updated.com");
@@ -124,7 +124,7 @@ public class ApplicationTest {
 	@Test
 	public void testGetList() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			ApplicationList al = Application.getList(params, restConf);
 
 			assertNotNull(al);
@@ -139,7 +139,7 @@ public class ApplicationTest {
 	@Test
 	public void testGetListWithLimit() {
 		try {
-			HashMap<String, String> params = new HashMap<String, String>();
+			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("limit", "3");
 
 			ApplicationList al = Application.getList(params, restConf);

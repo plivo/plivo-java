@@ -72,7 +72,7 @@ public class EndpointTest {
 			String endpointId;
 			String username;
 			// Create
-			Map<String, String> params = new HashMap<String, String>();
+			Map<String, Object> params = new HashMap<String, Object>();
 
 			params.put("username", "unittest");
 			params.put("password", "weak_password");
@@ -86,7 +86,7 @@ public class EndpointTest {
 			endpointId = er.getEndpointId();
 			username = er.getUsername();
 			// Edit it
-			params = new HashMap<String, String>();
+			params = new HashMap<String, Object>();
 
 			params.put("alias", "new_alias");
 			params.put("password", "new_password");
