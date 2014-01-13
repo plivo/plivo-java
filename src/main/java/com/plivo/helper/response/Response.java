@@ -18,11 +18,11 @@ public class Response {
 	}
 
 	public String getError() {
-		return error.toString();
+		return error == null ? "" : error.toString();
 	}
 
 	public String getMessage() {
-		return message;
+		return message == null ? "" : message;
 	}
 
 	public String getApiId() {
