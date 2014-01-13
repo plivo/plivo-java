@@ -28,7 +28,6 @@ import com.google.gson.annotations.SerializedName;
 import com.plivo.helper.PlivoRestConf;
 import com.plivo.helper.exception.APIException;
 import com.plivo.helper.exception.PlivoException;
-import com.plivo.helper.response.GenericResponse;
 import com.plivo.helper.response.Response;
 
 public class Resource extends Response {
@@ -116,9 +115,8 @@ public class Resource extends Response {
 
 	private static void handleAPIError(String resp) throws APIException {
 		Gson gson = new Gson();
-		GenericResponse gr = gson.fromJson(resp, GenericResponse.class);
-		throw new APIException(gr.getServerCode(), gr.getMessage(),
-				gr.getError());
+		Response r = gson.fromJson(resp, Response.class);
+		throw new APIException(r.getServerCode(), r.getMessage(), r.getError());
 	}
 
 	protected static <T> T getRequest(String location,
