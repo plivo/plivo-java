@@ -42,6 +42,10 @@ Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the
 
     mvn test
 
+### Run Unit Test for Some Class
+
+    mvn test -D test=EndpointTest
+
 ### Generate javadocs
 
     mvn javadoc:javadoc
