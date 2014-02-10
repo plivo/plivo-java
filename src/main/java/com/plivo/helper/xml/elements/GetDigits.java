@@ -19,7 +19,7 @@ public class GetDigits extends PlivoElement {
      * @param intr the intr
      */
     private void setInteger(String attr, Integer intr) {
-       this.set(attr, intr.toString()); 
+       this.set(attr, intr.toString());
     }
 
     /**
@@ -29,7 +29,7 @@ public class GetDigits extends PlivoElement {
      * @param int the int
      */
     private void setBoolean(String attr, Boolean bool) {
-       this.set(attr, bool.toString().toLowerCase()); 
+       this.set(attr, bool.toString().toLowerCase());
     }
 
      /**
@@ -41,15 +41,15 @@ public class GetDigits extends PlivoElement {
     }
 
     /**
-     * Time in seconds to wait for receiving the first digit. 
-     * If the user inputs the timeout value, the next element 
+     * Time in seconds to wait for receiving the first digit.
+     * If the user inputs the timeout value, the next element
      * in the response is processed.
      * @param timeout
      */
     public void setTimeout(Integer timeout) {
         this.setInteger("timeout", timeout);
     }
-    
+
     /**
      * Time in seconds to wait in between two digits entered
      * by the user.
@@ -58,7 +58,7 @@ public class GetDigits extends PlivoElement {
     public void setDigitTimeout(Integer digitTimeout) {
         this.setInteger("digitTimeout", digitTimeout);
     }
-    
+
     /**
      * Submit to 'action' URL using GET or POST
      * @param method
@@ -66,7 +66,7 @@ public class GetDigits extends PlivoElement {
     public void setMethod(String method) {
         this.set("method", method);
     }
-    
+
     /**
      * Key that triggers the end of caller input
      * @param finishOnKey
@@ -113,6 +113,14 @@ public class GetDigits extends PlivoElement {
      */
     public void setInvalidDigitsSound(String invalidDigitsSound) {
         this.set("invalidDigitsSound", invalidDigitsSound);
+    }
+
+    /**
+     * Set this as false to hide sensitive DTMF info being logged in plivo
+     * @param log
+     */
+    public void setLog(Boolean log) {
+        this.setBoolean("log", log);
     }
 
 }
