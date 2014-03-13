@@ -15,8 +15,8 @@ public class SubAccount {
     @SerializedName("auth_token")
     public String authToken ;
 
-    @SerializedName("old_auth_token")
-    public String oldAuthToken ;
+    @SerializedName("new_auth_token")
+    public String newAuthToken ;
 
     @SerializedName("resource_uri")
     public String resourceUri ;
