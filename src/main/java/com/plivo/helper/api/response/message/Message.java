@@ -35,6 +35,11 @@ public class Message {
     
     @SerializedName("message_type")
     public String messageType ;
+
+    @SerializedName("total_rate")
+    public String totalRate ;
+
+    public Integer units ;
     
     public String error ;
 
