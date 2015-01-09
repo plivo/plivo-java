@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
 
 import com.plivo.helper.api.response.account.*;
@@ -37,6 +38,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import org.apache.http.message.BasicHeader;
@@ -62,7 +64,8 @@ public class RestAPI {
 	private String BaseURI;
 	private DefaultHttpClient Client;
 	private Gson gson;
-	
+	private HttpHost proxy;
+
 	public RestAPI(String auth_id, String auth_token, String version)
 	{
 		if (!version.equals("v1")) {
@@ -94,6 +97,10 @@ public class RestAPI {
 		gson = new Gson();
 	}
 
+    public void setProxy(HttpHost proxy) {
+        this.proxy = proxy;
+    }
+
 	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
 			throws PlivoException
 	{
@@ -104,6 +111,10 @@ public class RestAPI {
 				new AuthScope("api.plivo.com", 443),
 				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
 				);
+
+        if (proxy != null)
+            Client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+
 		String json = "";
 		try {
 			if ( method == "GET" ) {
