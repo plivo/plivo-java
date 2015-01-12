@@ -464,6 +464,14 @@ public class RestAPI {
         return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
     
+    public PhoneNumberSearchFactory searchPhoneNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("GET", "/PhoneNumber/", parameters), PhoneNumberSearchFactory.class);
+    }
+    
+    public NumberResponse buyPhoneNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", String.format("/PhoneNumber/%s/", getKeyValue(parameters, "number")), 
+        		parameters), NumberResponse.class);
+    }
     
     // Message
     public MessageResponse sendMessage(LinkedHashMap<String, String> parameters) throws PlivoException {
