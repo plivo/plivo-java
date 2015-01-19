@@ -97,9 +97,9 @@ public class RestAPI {
 		gson = new Gson();
 	}
 
-    public void setProxy(HttpHost proxy) {
-        this.proxy = proxy;
-    }
+        public void setProxy(HttpHost proxy) {
+            this.proxy = proxy;
+        }
 
 	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
 			throws PlivoException
@@ -112,8 +112,8 @@ public class RestAPI {
 				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
 				);
 
-        if (proxy != null)
-            Client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+                if (proxy != null)
+                        Client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 
 		String json = "";
 		try {
