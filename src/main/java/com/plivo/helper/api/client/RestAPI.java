@@ -173,8 +173,8 @@ public class RestAPI {
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
     }
     
-    public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
+    public SubAccount createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), SubAccount.class);
     }
     
     public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
