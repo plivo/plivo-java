@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -22,13 +23,23 @@ import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
 
 
+
+
+
+
 // Plivo resources
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ProtocolVersion;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
+
+
+
+
 
 
 // Authentication for HTTP resources
@@ -48,10 +59,14 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.entity.StringEntity;
 
 
+
+
+
+
 // Handle JSON response
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import com.google.gson.reflect.TypeToken;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
 
@@ -239,8 +254,9 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", String.format("/Call/%s/", call_uuid), parameters), LiveCall.class);
     }
 
-    public Call makeCall(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Call/", parameters), Call.class);
+    public Map<String, Object> makeCall(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	Type type = new TypeToken<HashMap<String, Object>>() {}.getType();
+        return this.gson.fromJson(request("POST", "/Call/", parameters), type);
     }
 
     public GenericResponse hangupAllCalls() throws PlivoException {
