@@ -17,4 +17,12 @@ public class SubAccountMeta {
     public SubAccountMeta() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "SubAccountMeta [previous=" + previous + ", totalCount="
+				+ totalCount + ", offset=" + offset + ", limit=" + limit
+				+ ", next=" + next + "]";
+	}
+    
 }

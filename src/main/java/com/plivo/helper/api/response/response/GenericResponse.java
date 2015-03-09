@@ -16,4 +16,10 @@ public class GenericResponse {
     public GenericResponse() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "GenericResponse [serverCode=" + serverCode + ", message="
+				+ message + ", error=" + error + ", apiId=" + apiId + "]";
+	}
 }

@@ -6,4 +6,9 @@ public class OutboundSmsPricing {
 	public OutboundSmsPricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "OutboundSmsPricing [rate=" + rate + "]";
+	}
 }

@@ -21,4 +21,11 @@ public class NumberGroupFactory {
 	public NumberGroupFactory() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "NumberGroupFactory [serverCode=" + serverCode + ", meta="
+				+ meta + ", groupList=" + groupList + ", apiId=" + apiId
+				+ ", error=" + error + "]";
+	}
 }

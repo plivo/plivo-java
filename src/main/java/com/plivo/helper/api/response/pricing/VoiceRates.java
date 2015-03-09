@@ -14,4 +14,10 @@ public class VoiceRates {
 	public VoiceRates() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "VoiceRates [voiceInbound=" + voiceInbound + ", voiceOutbound="
+				+ voiceOutbound + "]";
+	}
 }

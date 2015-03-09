@@ -1,30 +1,28 @@
 package com.plivo.helper.api.response.call;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Call {
+public class BulkCall {
 	@SerializedName("server_code")
 	public Integer serverCode ;
 
     public String message;
     
     @SerializedName("request_uuid")
-    public String requestUUID ;
+    public List<String> requestUUID ;
     
     @SerializedName("api_id")
     public String apiId ;
     
     public String error;
-    
-    public Call() {
-        // empty
-    }
 
 	@Override
 	public String toString() {
-		return "Call [serverCode=" + serverCode + ", message=" + message
-				+ ", requestUUID=" + requestUUID + ", apiId=" + apiId
-				+ ", error=" + error + "]";
+		return getClass().getName() + " {\n\tserverCode: " + serverCode
+				+ "\n\tmessage: " + message + "\n\trequestUUID: " + requestUUID
+				+ "\n\tapiId: " + apiId + "\n\terror: " + error + "\n}";
 	}
-    
+
 }

@@ -6,4 +6,9 @@ public class LocalOutboundPricing {
 	public LocalOutboundPricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "LocalOutboundPricing [rate=" + rate + "]";
+	}
 }

@@ -41,4 +41,15 @@ public class OutgoingCarrier {
     public OutgoingCarrier() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "OutgoingCarrier [serverCode=" + serverCode + ", apiId=" + apiId
+				+ ", carrierId=" + carrierId + ", ips=" + ips + ", name="
+				+ name + ", address=" + address + ", prefix=" + prefix
+				+ ", failoverAddress=" + failoverAddress + ", failoverPrefix="
+				+ failoverPrefix + ", suffix=" + suffix + ", enabled="
+				+ enabled + ", retries=" + retries + ", retrySeconds="
+				+ retrySeconds + ", resourceUri=" + resourceUri + "]";
+	}
 }

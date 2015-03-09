@@ -39,4 +39,14 @@ public class Account {
     public Account() {
         // empty
     }
+    
+    @Override
+	public String toString() {
+		return "Account [city=" + city + ", name=" + name + ", cashCredits="
+				+ cashCredits + ", created=" + created + ", enabled=" + enabled
+				+ ", modified=" + modified + ", error=" + error + ", apiId="
+				+ apiId + ", postpaid=" + postpaid + ", state=" + state
+				+ ", address=" + address + ", timezone=" + timezone
+				+ ", authID=" + authID + ", resourceURI=" + resourceURI + "]";
+	}
 }

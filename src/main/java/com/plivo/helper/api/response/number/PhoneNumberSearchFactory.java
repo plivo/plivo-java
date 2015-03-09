@@ -19,4 +19,10 @@ public class PhoneNumberSearchFactory {
     public PhoneNumberSearchFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "PhoneNumberSearchFactory [meta=" + meta + ", apiId=" + apiId
+				+ ", error=" + error + ", numberList=" + numberList + "]";
+	}
 }

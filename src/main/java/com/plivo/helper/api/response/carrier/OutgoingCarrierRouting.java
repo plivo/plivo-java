@@ -27,4 +27,12 @@ public class OutgoingCarrierRouting {
     public OutgoingCarrierRouting() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "OutgoingCarrierRouting [serverCode=" + serverCode + ", apiId="
+				+ apiId + ", routingId=" + routingId + ", digits=" + digits
+				+ ", priority=" + priority + ", outgoingCarrier="
+				+ outgoingCarrier + ", resourceUri=" + resourceUri + "]";
+	}
 }

@@ -28,4 +28,12 @@ public class ConferenceMember {
     public ConferenceMember() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "ConferenceMember [muted=" + muted + ", memberId=" + memberId
+				+ ", deaf=" + deaf + ", from=" + from + ", to=" + to
+				+ ", callerName=" + callerName + ", direction=" + direction
+				+ ", callUUID=" + callUUID + ", joinTime=" + joinTime + "]";
+	}
 }

@@ -17,4 +17,11 @@ public class NumberMeta {
     public NumberMeta() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "NumberMeta [previous=" + previous + ", totalCount="
+				+ totalCount + ", offset=" + offset + ", limit=" + limit
+				+ ", next=" + next + "]";
+	}
 }

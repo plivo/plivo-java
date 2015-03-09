@@ -22,4 +22,12 @@ public class ApplicationFactory {
             //empty
     }
 
+	@Override
+	public String toString() {
+		return "ApplicationFactory [serverCode=" + serverCode
+				+ ", applicationList=" + applicationList + ", meta=" + meta
+				+ ", apiId=" + apiId + ", error=" + error + "]";
+	}
+
+    
 }

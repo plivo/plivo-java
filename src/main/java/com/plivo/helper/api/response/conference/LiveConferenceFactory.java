@@ -17,4 +17,11 @@ public class LiveConferenceFactory {
     public LiveConferenceFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "LiveConferenceFactory [serverCode=" + serverCode + ", error="
+				+ error + ", apiId=" + apiId + ", conferences=" + conferences
+				+ "]";
+	}
 }

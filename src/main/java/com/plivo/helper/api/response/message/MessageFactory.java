@@ -20,4 +20,11 @@ public class MessageFactory {
     public MessageFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "MessageFactory [serverCode=" + serverCode + ", meta=" + meta
+				+ ", apiId=" + apiId + ", messageList=" + messageList
+				+ ", error=" + error + "]";
+	}
 }

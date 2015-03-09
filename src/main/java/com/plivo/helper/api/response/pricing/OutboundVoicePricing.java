@@ -23,4 +23,11 @@ public class OutboundVoicePricing {
 	public OutboundVoicePricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "OutboundVoicePricing [localOutbound=" + localOutbound
+				+ ", tollfreeOutbound=" + tollfreeOutbound + ", ipOutbound="
+				+ ipOutbound + ", prefixesRates=" + prefixesRates + "]";
+	}
 }

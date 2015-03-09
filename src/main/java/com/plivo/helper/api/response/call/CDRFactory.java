@@ -20,4 +20,12 @@ public class CDRFactory {
     public CDRFactory() {
     	// empty
     }
+
+	@Override
+	public String toString() {
+		return "CDRFactory [serverCode=" + serverCode + ", meta=" + meta
+				+ ", error=" + error + ", apiId=" + apiId + ", cdrList="
+				+ cdrList + "]";
+	}
+    
 }

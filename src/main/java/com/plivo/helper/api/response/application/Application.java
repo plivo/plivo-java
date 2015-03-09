@@ -47,7 +47,28 @@ public class Application {
 
     public String error ;
     
+    @SerializedName("api_id")
+    public String apiId ;
+    
+    public String message;
+    
     public Application() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Application [serverCode=" + serverCode + ", fallbackMethod="
+				+ fallbackMethod + ", isDefaultApplication="
+				+ isDefaultApplication + ", applicationName=" + applicationName
+				+ ", isProductionApplication=" + isProductionApplication
+				+ ", applicationID=" + applicationID + ", hangupUrl="
+				+ hangupUrl + ", answerUrl=" + answerUrl + ", messageUrl="
+				+ messageUrl + ", resourceUri=" + resourceUri
+				+ ", answerMethod=" + answerMethod + ", hangupMethod="
+				+ hangupMethod + ", messageMethod=" + messageMethod
+				+ ", fallbackAnswerUrl=" + fallbackAnswerUrl + ", error="
+				+ error + ", apiId=" + apiId + ", message=" + message + "]";
+	}
+   
 }

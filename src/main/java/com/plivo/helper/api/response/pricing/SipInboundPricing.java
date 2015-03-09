@@ -6,4 +6,9 @@ public class SipInboundPricing {
 	public SipInboundPricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "SipInboundPricing [rate=" + rate + "]";
+	}
 }

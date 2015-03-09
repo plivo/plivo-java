@@ -14,4 +14,10 @@ public class SmsRates {
 	public SmsRates() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "SmsRates [inboundSms=" + inboundSms + ", outboundSms="
+				+ outboundSms + "]";
+	}
 }

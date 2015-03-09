@@ -20,4 +20,11 @@ public class EndpointFactory {
     public EndpointFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "EndpointFactory [serverCode=" + serverCode + ", meta=" + meta
+				+ ", error=" + error + ", apiId=" + apiId + ", endpointList="
+				+ endpointList + "]";
+	}
 }

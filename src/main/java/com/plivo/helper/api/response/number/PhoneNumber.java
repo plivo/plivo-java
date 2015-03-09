@@ -48,4 +48,17 @@ public class PhoneNumber {
     public PhoneNumber() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "PhoneNumber [country=" + country + ", lata=" + lata
+				+ ", monthlyRentalRrate=" + monthlyRentalRrate + ", number="
+				+ number + ", type=" + type + ", numberPrefix=" + numberPrefix
+				+ ", rateCenter=" + rateCenter + ", region=" + region
+				+ ", resourceURI=" + resourceURI + ", restriction="
+				+ restriction + ", restriction_text=" + restriction_text
+				+ ", setupRate=" + setupRate + ", isVoiceEnabled="
+				+ isVoiceEnabled + ", isSmsEnabled=" + isSmsEnabled
+				+ ", voiceRate=" + voiceRate + ", smsRate=" + smsRate + "]";
+	}
 }

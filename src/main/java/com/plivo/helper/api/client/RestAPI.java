@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -15,6 +16,7 @@ import com.plivo.helper.api.response.conference.*;
 import com.plivo.helper.api.response.endpoint.*;
 import com.plivo.helper.api.response.message.*;
 import com.plivo.helper.api.response.number.*;
+import com.plivo.helper.api.response.number.Number;
 import com.plivo.helper.api.response.carrier.*;
 import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
@@ -25,7 +27,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ProtocolVersion;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 // Authentication for HTTP resources
@@ -36,12 +40,9 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
-
 import org.apache.http.protocol.HTTP;
 
 //Add pay load to POST request 
@@ -50,7 +51,7 @@ import org.apache.http.entity.StringEntity;
 // Handle JSON response
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import com.google.gson.reflect.TypeToken;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
 
@@ -173,8 +174,8 @@ public class RestAPI {
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
     }
     
-    public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
+    public SubAccount createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), SubAccount.class);
     }
     
     public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -191,14 +192,18 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Application/", new LinkedHashMap<String, String>()), ApplicationFactory.class);
     }
     
+    public ApplicationFactory getApplications(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Application/", parameters), ApplicationFactory.class);
+    }
+    
     public Application getApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
         String app_id = this.getKeyValue(parameters, "app_id");
         return this.gson.fromJson(request("GET", String.format("/Application/%s/", app_id), 
                 new LinkedHashMap<String, String>()), Application.class);
     }
     
-    public GenericResponse createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Application/", parameters), GenericResponse.class);
+    public Application createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Application/", parameters), Application.class);
     }
     
     public GenericResponse editApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -235,7 +240,17 @@ public class RestAPI {
     }
 
     public Call makeCall(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String to = parameters.get("to");
+    	if (to!=null && to.indexOf("<")!=-1)
+    		throw new PlivoException("Use the makeBulkCall() method to make calls to multiple numbers.");
         return this.gson.fromJson(request("POST", "/Call/", parameters), Call.class);
+    }
+    
+    public BulkCall makeBulkCall(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String to = parameters.get("to");
+    	if (to!=null && to.indexOf("<")==-1)
+    		throw new PlivoException("Use the makeCall() method to make calls to a single number.");
+        return this.gson.fromJson(request("POST", "/Call/", parameters), BulkCall.class);
     }
 
     public GenericResponse hangupAllCalls() throws PlivoException {
@@ -396,8 +411,8 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Endpoint/", parameters), EndpointFactory.class);
     }
 
-    public GenericResponse createEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Endpoint/", parameters),GenericResponse.class);
+    public Endpoint createEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Endpoint/", parameters), Endpoint.class);
     }
 
     public Endpoint getEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException { 
@@ -427,6 +442,17 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Number/", parameters), NumberSearchFactory.class);
     }
     
+    public Number getNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String number = getKeyValue(parameters, "number");
+        return this.gson.fromJson(request("GET", String.format("/Number/%s/", number), 
+        		new LinkedHashMap<String, String>()), Number.class);
+    }
+    
+    public GenericResponse editNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String number = getKeyValue(parameters, "number");
+        return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
+    }
+    
     @Deprecated
     public NumberSearchFactory searchNumbers(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("GET", "/AvailableNumber/", parameters), NumberSearchFactory.class);
@@ -452,7 +478,7 @@ public class RestAPI {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("DELETE", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
-
+    
     public GenericResponse linkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);

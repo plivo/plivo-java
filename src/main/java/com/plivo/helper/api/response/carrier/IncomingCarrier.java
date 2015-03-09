@@ -30,4 +30,12 @@ public class IncomingCarrier {
     public IncomingCarrier() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "IncomingCarrier [serverCode=" + serverCode + ", apiId=" + apiId
+				+ ", carrierId=" + carrierId + ", ipSet=" + ipSet + ", name="
+				+ name + ", resourceUri=" + resourceUri + ", sms=" + sms
+				+ ", voice=" + voice + "]";
+	}
 }

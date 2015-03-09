@@ -17,4 +17,12 @@ public class CDRMeta {
     public CDRMeta() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "CDRMeta [previous=" + previous + ", totalCount=" + totalCount
+				+ ", offset=" + offset + ", limit=" + limit + ", next=" + next
+				+ "]";
+	}
+    
 }

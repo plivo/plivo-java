@@ -6,4 +6,9 @@ public class TollFreeNumberRental {
 	public TollFreeNumberRental() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "TollFreeNumberRental [rate=" + rate + "]";
+	}
 }
