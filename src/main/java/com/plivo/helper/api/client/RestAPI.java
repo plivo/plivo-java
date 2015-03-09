@@ -15,10 +15,12 @@ import com.plivo.helper.api.response.conference.*;
 import com.plivo.helper.api.response.endpoint.*;
 import com.plivo.helper.api.response.message.*;
 import com.plivo.helper.api.response.number.*;
+import com.plivo.helper.api.response.number.Number;
 import com.plivo.helper.api.response.carrier.*;
 import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
+
 
 // Plivo resources
 import org.apache.http.HttpResponse;
@@ -28,6 +30,7 @@ import org.apache.http.ProtocolVersion;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
+
 // Authentication for HTTP resources
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -36,16 +39,14 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
-
 import org.apache.http.protocol.HTTP;
 
 //Add pay load to POST request 
 import org.apache.http.entity.StringEntity;
+
 
 // Handle JSON response
 import com.google.gson.Gson;
@@ -425,6 +426,12 @@ public class RestAPI {
     
     public NumberSearchFactory getNumbers(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("GET", "/Number/", parameters), NumberSearchFactory.class);
+    }
+    
+    public Number getNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String number = getKeyValue(parameters, "number");
+        return this.gson.fromJson(request("GET", String.format("/Number/%s/", number), 
+        		new LinkedHashMap<String, String>()), Number.class);
     }
     
     @Deprecated
