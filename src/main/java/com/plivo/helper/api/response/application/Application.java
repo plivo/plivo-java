@@ -47,6 +47,11 @@ public class Application {
 
     public String error ;
     
+    @SerializedName("api_id")
+    public String apiId ;
+    
+    public String message;
+    
     public Application() {
         // empty
     }
@@ -63,7 +68,7 @@ public class Application {
 				+ ", answerMethod=" + answerMethod + ", hangupMethod="
 				+ hangupMethod + ", messageMethod=" + messageMethod
 				+ ", fallbackAnswerUrl=" + fallbackAnswerUrl + ", error="
-				+ error + "]";
+				+ error + ", apiId=" + apiId + ", message=" + message + "]";
 	}
-    
+   
 }
