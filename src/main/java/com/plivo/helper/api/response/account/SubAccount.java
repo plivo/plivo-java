@@ -35,4 +35,16 @@ public class SubAccount {
     public SubAccount() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "SubAccount [account=" + account + ", error=" + error
+				+ ", apiId=" + apiId + ", authId=" + authId + ", authToken="
+				+ authToken + ", newAuthToken=" + newAuthToken
+				+ ", resourceUri=" + resourceUri + ", createdOn=" + createdOn
+				+ ", isEnabled=" + isEnabled + ", lastModifiedOn="
+				+ lastModifiedOn + ", name=" + name + "]";
+	}
+    
+    
 }

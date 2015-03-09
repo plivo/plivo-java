@@ -20,4 +20,11 @@ public class NumberSearchFactory {
     public NumberSearchFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "NumberSearchFactory [serverCode=" + serverCode + ", meta="
+				+ meta + ", apiId=" + apiId + ", error=" + error
+				+ ", numberList=" + numberList + "]";
+	}
 }

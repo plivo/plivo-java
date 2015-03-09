@@ -50,4 +50,18 @@ public class CDR {
     public CDR() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "CDR [serverCode=" + serverCode + ", billDuration="
+				+ billDuration + ", billedDuration=" + billedDuration
+				+ ", callDuration=" + callDuration + ", totalAmount="
+				+ totalAmount + ", parentCallUUID=" + parentCallUUID
+				+ ", callDirection=" + callDirection + ", toNumber=" + toNumber
+				+ ", totalRate=" + totalRate + ", fromNumber=" + fromNumber
+				+ ", endTime=" + endTime + ", callUUID=" + callUUID
+				+ ", resourceUri=" + resourceUri + ", error=" + error
+				+ ", apiId=" + apiId + "]";
+	}
+    
 }

@@ -13,4 +13,10 @@ public class RatesPrefixes {
 		// empty
 	}
 
+	@Override
+	public String toString() {
+		return "RatesPrefixes [rate=" + rate + ", numberPrefixes="
+				+ numberPrefixes + "]";
+	}
+
 }

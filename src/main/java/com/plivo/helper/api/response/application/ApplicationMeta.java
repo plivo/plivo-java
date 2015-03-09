@@ -10,4 +10,12 @@ public class ApplicationMeta {
     public ApplicationMeta() {
             // empty
     }
+
+	@Override
+	public String toString() {
+		return "ApplicationMeta [previous=" + previous + ", total_count="
+				+ total_count + ", offset=" + offset + ", limit=" + limit
+				+ ", next=" + next + "]";
+	}
+    
 }

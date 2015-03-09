@@ -6,4 +6,9 @@ public class TollfreeOutboundPricing {
 	public TollfreeOutboundPricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "TollfreeOutboundPricing [rate=" + rate + "]";
+	}
 }

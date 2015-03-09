@@ -6,4 +6,9 @@ public class LocalNumberRental {
 	public LocalNumberRental() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "LocalNumberRental [rate=" + rate + "]";
+	}
 }

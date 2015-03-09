@@ -29,4 +29,12 @@ public class Endpoint {
     public Endpoint() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Endpoint [serverCode=" + serverCode + ", username=" + username
+				+ ", sipUri=" + sipUri + ", alias=" + alias + ", endpointId="
+				+ endpointId + ", password=" + password + ", resourceUri="
+				+ resourceUri + ", apiId=" + apiId + ", error=" + error + "]";
+	}
 }

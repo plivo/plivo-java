@@ -43,4 +43,15 @@ public class NumberGroup {
 	public NumberGroup() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "NumberGroup [groupId=" + groupId + ", numberType=" + numberType
+				+ ", rentalRate=" + rentalRate + ", setupRate=" + setupRate
+				+ ", resourceUri=" + resourceUri + ", isSmsEnabled="
+				+ isSmsEnabled + ", smsRate=" + smsRate + ", isVoiceEnabled="
+				+ isVoiceEnabled + ", voiceRate=" + voiceRate + ", inStock="
+				+ inStock + ", numberPrefix=" + numberPrefix + ", region="
+				+ region + ", error=" + error + "]";
+	}
 }

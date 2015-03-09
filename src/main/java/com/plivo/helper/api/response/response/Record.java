@@ -18,4 +18,11 @@ public class Record {
     public Record() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Record [serverCode=" + serverCode + ", url=" + url
+				+ ", message=" + message + ", error=" + error + ", api_id="
+				+ api_id + "]";
+	}
 }

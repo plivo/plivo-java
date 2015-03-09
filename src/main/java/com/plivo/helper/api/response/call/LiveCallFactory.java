@@ -18,4 +18,11 @@ public class LiveCallFactory {
     public LiveCallFactory() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "LiveCallFactory [serverCode=" + serverCode + ", apiId=" + apiId
+				+ ", liveCallList=" + liveCallList + ", error=" + error + "]";
+	}
+    
 }

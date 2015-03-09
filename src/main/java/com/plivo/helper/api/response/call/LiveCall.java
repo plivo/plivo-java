@@ -32,4 +32,14 @@ public class LiveCall {
     public LiveCall() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "LiveCall [serverCode=" + serverCode + ", direction="
+				+ direction + ", from=" + from + ", callStatus=" + callStatus
+				+ ", apiId=" + apiId + ", to=" + to + ", callerName="
+				+ callerName + ", callUuuid=" + callUuuid + ", sessionStart="
+				+ sessionStart + ", error=" + error + "]";
+	}
+    
 }

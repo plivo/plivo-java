@@ -20,4 +20,11 @@ public class MessageResponse {
     public MessageResponse() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public String toString() {
+		return "MessageResponse [serverCode=" + serverCode + ", message="
+				+ message + ", messageUuids=" + messageUuids + ", error="
+				+ error + ", apiId=" + apiId + "]";
+	}
 }

@@ -9,4 +9,9 @@ public class NumberStatus {
 		// empty
 	}
 
+	@Override
+	public String toString() {
+		return "NumberStatus [number=" + number + ", status=" + status + "]";
+	}
+
 }

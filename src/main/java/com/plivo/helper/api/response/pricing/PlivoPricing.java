@@ -32,4 +32,13 @@ public class PlivoPricing {
 	public PlivoPricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "PlivoPricing [serverCode=" + serverCode + ", countryCode="
+				+ countryCode + ", countryIso=" + countryIso + ", country="
+				+ country + ", apiId=" + apiId + ", phoneNumbers="
+				+ phoneNumbers + ", voiceRates=" + voiceRates + ", smsRates="
+				+ smsRates + "]";
+	}
 }

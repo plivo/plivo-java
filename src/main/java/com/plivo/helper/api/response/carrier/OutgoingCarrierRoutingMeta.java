@@ -18,4 +18,11 @@ public class OutgoingCarrierRoutingMeta {
         // empty
     }
 
+	@Override
+	public String toString() {
+		return "OutgoingCarrierRoutingMeta [previous=" + previous
+				+ ", totalCount=" + totalCount + ", offset=" + offset
+				+ ", limit=" + limit + ", next=" + next + "]";
+	}
+
 }

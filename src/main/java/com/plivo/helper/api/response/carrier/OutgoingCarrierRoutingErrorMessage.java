@@ -17,4 +17,11 @@ public class OutgoingCarrierRoutingErrorMessage {
         // empty
     }
 
+	@Override
+	public String toString() {
+		return "OutgoingCarrierRoutingErrorMessage [prefixes=" + prefixes
+				+ ", priority=" + priority + ", outgoingCarrier="
+				+ outgoingCarrier + ", error=" + error + "]";
+	}
+
 }

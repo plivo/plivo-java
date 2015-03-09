@@ -23,4 +23,12 @@ public class OutgoingCarrierRoutingFactory {
     public OutgoingCarrierRoutingFactory() {
     	// empty
     }
+
+	@Override
+	public String toString() {
+		return "OutgoingCarrierRoutingFactory [serverCode=" + serverCode
+				+ ", meta=" + meta + ", apiId=" + apiId
+				+ ", outgoingCarrierRoutingList=" + outgoingCarrierRoutingList
+				+ ", error=" + error + "]";
+	}
 }

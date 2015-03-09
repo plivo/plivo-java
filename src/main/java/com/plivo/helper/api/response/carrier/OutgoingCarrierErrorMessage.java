@@ -16,4 +16,10 @@ public class OutgoingCarrierErrorMessage {
         // empty
     }
 
+	@Override
+	public String toString() {
+		return "OutgoingCarrierErrorMessage [name=" + name + ", address="
+				+ address + ", error=" + error + "]";
+	}
+
 }

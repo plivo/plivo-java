@@ -17,4 +17,11 @@ public class EndpointMeta {
     public EndpointMeta() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "EndpointMeta [previous=" + previous + ", totalCount="
+				+ totalCount + ", offset=" + offset + ", limit=" + limit
+				+ ", next=" + next + "]";
+	}
 }

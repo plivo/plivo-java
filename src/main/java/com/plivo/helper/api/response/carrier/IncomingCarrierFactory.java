@@ -20,4 +20,11 @@ public class IncomingCarrierFactory {
     public IncomingCarrierFactory() {
     	// empty
     }
+
+	@Override
+	public String toString() {
+		return "IncomingCarrierFactory [meta=" + meta + ", apiId=" + apiId
+				+ ", incomingCarrierList=" + incomingCarrierList + ", error="
+				+ error + "]";
+	}
 }

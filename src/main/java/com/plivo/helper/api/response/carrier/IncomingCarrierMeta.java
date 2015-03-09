@@ -18,4 +18,11 @@ public class IncomingCarrierMeta {
         // empty
     }
 
+	@Override
+	public String toString() {
+		return "IncomingCarrierMeta [previous=" + previous + ", totalCount="
+				+ totalCount + ", offset=" + offset + ", limit=" + limit
+				+ ", next=" + next + "]";
+	}
+
 }

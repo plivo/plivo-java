@@ -69,4 +69,20 @@ public class Number {
     public Number() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Number [serverCode=" + serverCode + ", region=" + region
+				+ ", isVoiceEnabled=" + isVoiceEnabled + ", isSmsEnabled="
+				+ isSmsEnabled + ", isFaxEnabled=" + isFaxEnabled + ", number="
+				+ number + ", apiId=" + apiId + ", voiceRate=" + voiceRate
+				+ ", application=" + application + ", smsRate=" + smsRate
+				+ ", numberType=" + numberType + ", subAccount=" + subAccount
+				+ ", addedOn=" + addedOn + ", resourceUri=" + resourceUri
+				+ ", numberPrefix=" + numberPrefix + ", rentalRate="
+				+ rentalRate + ", setupRate=" + setupRate + ", country="
+				+ country + ", lata=" + lata + ", monthlyRentalRrate="
+				+ monthlyRentalRrate + ", error=" + error + ", inboundCarrier="
+				+ inboundCarrier + "]";
+	}
 }

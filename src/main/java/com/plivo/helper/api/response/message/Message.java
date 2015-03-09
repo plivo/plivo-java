@@ -49,4 +49,17 @@ public class Message {
     public Message() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Message [cloudRate=" + cloudRate + ", carrierRate="
+				+ carrierRate + ", messageDirection=" + messageDirection
+				+ ", toNumber=" + toNumber + ", messageState=" + messageState
+				+ ", totalAmount=" + totalAmount + ", fromNumber=" + fromNumber
+				+ ", messageUUID=" + messageUUID + ", messageTime="
+				+ messageTime + ", resourceUri=" + resourceUri
+				+ ", messageType=" + messageType + ", totalRate=" + totalRate
+				+ ", units=" + units + ", error=" + error + ", apiId=" + apiId
+				+ "]";
+	}
 }

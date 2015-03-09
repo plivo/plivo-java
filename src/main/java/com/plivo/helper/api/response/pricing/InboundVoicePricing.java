@@ -17,4 +17,11 @@ public class InboundVoicePricing {
 	public InboundVoicePricing() {
 		// empty
 	}
+
+	@Override
+	public String toString() {
+		return "InboundVoicePricing [localInbound=" + localInbound
+				+ ", tollfreeInbound=" + tollfreeInbound + ", ipInboundRate="
+				+ ipInboundRate + "]";
+	}
 }

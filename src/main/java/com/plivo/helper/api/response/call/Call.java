@@ -19,4 +19,12 @@ public class Call {
     public Call() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Call [serverCode=" + serverCode + ", message=" + message
+				+ ", requestUUID=" + requestUUID + ", apiId=" + apiId
+				+ ", error=" + error + "]";
+	}
+    
 }

@@ -26,4 +26,13 @@ public class Conference {
     public Conference() {
         // empty
     }
+
+	@Override
+	public String toString() {
+		return "Conference [serverCode=" + serverCode + ", conferenceName="
+				+ conferenceName + ", conferenceRunTime=" + conferenceRunTime
+				+ ", conferenceMemberCount=" + conferenceMemberCount
+				+ ", members=" + members + ", apiId=" + apiId + ", error="
+				+ error + "]";
+	}
 }
