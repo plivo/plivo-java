@@ -192,6 +192,10 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Application/", new LinkedHashMap<String, String>()), ApplicationFactory.class);
     }
     
+    public ApplicationFactory getApplications(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Application/", parameters), ApplicationFactory.class);
+    }
+    
     public Application getApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
         String app_id = this.getKeyValue(parameters, "app_id");
         return this.gson.fromJson(request("GET", String.format("/Application/%s/", app_id), 
