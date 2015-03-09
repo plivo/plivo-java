@@ -22,11 +22,6 @@ import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
 
-
-
-
-
-
 // Plivo resources
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -36,11 +31,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-
-
-
-
 
 // Authentication for HTTP resources
 import org.apache.http.auth.AuthScope;
@@ -57,11 +47,6 @@ import org.apache.http.protocol.HTTP;
 
 //Add pay load to POST request 
 import org.apache.http.entity.StringEntity;
-
-
-
-
-
 
 // Handle JSON response
 import com.google.gson.Gson;
