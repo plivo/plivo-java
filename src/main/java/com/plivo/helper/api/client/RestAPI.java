@@ -434,6 +434,11 @@ public class RestAPI {
         		new LinkedHashMap<String, String>()), Number.class);
     }
     
+    public GenericResponse editNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
+        String number = getKeyValue(parameters, "number");
+        return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
+    }
+    
     @Deprecated
     public NumberSearchFactory searchNumbers(LinkedHashMap<String, String> parameters) throws PlivoException {
         return this.gson.fromJson(request("GET", "/AvailableNumber/", parameters), NumberSearchFactory.class);
@@ -459,12 +464,14 @@ public class RestAPI {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("DELETE", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
-
+    
+    @Deprecated
     public GenericResponse linkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
 
+    @Deprecated
     public GenericResponse unlinkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         parameters.put("app_id", "");
