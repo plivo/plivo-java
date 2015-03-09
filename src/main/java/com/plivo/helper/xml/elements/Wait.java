@@ -48,5 +48,9 @@ public class Wait extends PlivoElement {
     public void setMinSilence(Integer minSilence) {
         this.setInteger("minSilence", minSilence);
     }
+    
+    public void setBeep(Boolean beep) {
+        this.setBoolean("beep", beep);
+    }
 
 }

@@ -90,6 +90,14 @@ public class GetDigits extends PlivoElement {
     public void setRetries(Integer retries) {
         this.setInteger("retries", retries);
     }
+    
+    /**
+     * Redirect to action URL if true
+     * @param redirect
+     */
+    public void setRedirect(Boolean redirect) {
+        this.setBoolean("redirect", redirect);
+    }
 
     /**
      * Play a beep after all plays and says finish
