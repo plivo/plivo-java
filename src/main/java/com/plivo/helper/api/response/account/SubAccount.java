@@ -32,6 +32,8 @@ public class SubAccount {
     
     public String name ;
     
+    public String message;
+    
     public SubAccount() {
         // empty
     }
@@ -43,8 +45,8 @@ public class SubAccount {
 				+ authToken + ", newAuthToken=" + newAuthToken
 				+ ", resourceUri=" + resourceUri + ", createdOn=" + createdOn
 				+ ", isEnabled=" + isEnabled + ", lastModifiedOn="
-				+ lastModifiedOn + ", name=" + name + "]";
+				+ lastModifiedOn + ", name=" + name + ", message=" + message
+				+ "]";
 	}
-    
     
 }

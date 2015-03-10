@@ -174,8 +174,8 @@ public class RestAPI {
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
     }
     
-    public GenericResponse createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
-        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), GenericResponse.class);
+    public SubAccount createSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
+        return this.gson.fromJson(request("POST", "/Subaccount/", parameters), SubAccount.class);
     }
     
     public GenericResponse editSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -470,13 +470,11 @@ public class RestAPI {
         return this.gson.fromJson(request("DELETE", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
     
-    @Deprecated
     public GenericResponse linkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("POST", String.format("/Number/%s/", number), parameters), GenericResponse.class);
     }
 
-    @Deprecated
     public GenericResponse unlinkApplicationNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         parameters.put("app_id", "");
