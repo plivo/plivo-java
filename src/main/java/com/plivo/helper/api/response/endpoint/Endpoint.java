@@ -26,6 +26,8 @@ public class Endpoint {
     
     public String error ;
     
+    public String message;
+    
     public Endpoint() {
         // empty
     }
@@ -35,6 +37,8 @@ public class Endpoint {
 		return "Endpoint [serverCode=" + serverCode + ", username=" + username
 				+ ", sipUri=" + sipUri + ", alias=" + alias + ", endpointId="
 				+ endpointId + ", password=" + password + ", resourceUri="
-				+ resourceUri + ", apiId=" + apiId + ", error=" + error + "]";
+				+ resourceUri + ", apiId=" + apiId + ", error=" + error
+				+ ", message=" + message + "]";
 	}
+    
 }
