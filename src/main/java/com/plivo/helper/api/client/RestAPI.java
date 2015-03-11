@@ -239,9 +239,18 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", String.format("/Call/%s/", call_uuid), parameters), LiveCall.class);
     }
 
-    public Map<String, Object> makeCall(LinkedHashMap<String, String> parameters) throws PlivoException {
-    	Type type = new TypeToken<HashMap<String, Object>>() {}.getType();
-        return this.gson.fromJson(request("POST", "/Call/", parameters), type);
+    public Call makeCall(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String to = parameters.get("to");
+    	if (to!=null && to.indexOf("<")!=-1)
+    		throw new PlivoException("Use the makeBulkCall() method to make calls to multiple numbers.");
+        return this.gson.fromJson(request("POST", "/Call/", parameters), Call.class);
+    }
+    
+    public BulkCall makeBulkCall(LinkedHashMap<String, String> parameters) throws PlivoException {
+    	String to = parameters.get("to");
+    	if (to!=null && to.indexOf("<")==-1)
+    		throw new PlivoException("Use the makeCall() method to make calls to a single number.");
+        return this.gson.fromJson(request("POST", "/Call/", parameters), BulkCall.class);
     }
 
     public GenericResponse hangupAllCalls() throws PlivoException {
