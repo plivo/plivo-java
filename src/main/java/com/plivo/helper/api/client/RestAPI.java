@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
+import java.net.URLEncoder;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -22,15 +22,16 @@ import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
 
+import org.apache.http.HttpHost;
 // Plivo resources
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ProtocolVersion;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Map.Entry;
+
+
 
 // Authentication for HTTP resources
 import org.apache.http.auth.AuthScope;
@@ -40,6 +41,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
@@ -48,10 +50,11 @@ import org.apache.http.protocol.HTTP;
 //Add pay load to POST request 
 import org.apache.http.entity.StringEntity;
 
+
+
 // Handle JSON response
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
 
@@ -77,6 +80,11 @@ public class RestAPI {
 				);
 		gson = new Gson();
 	}
+	
+	public RestAPI setProxy(HttpHost proxy) {
+		Client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+		return this;
+	}
 
 	public String request(String method, String resource, LinkedHashMap<String, String> parameters) 
 			throws PlivoException
@@ -89,7 +97,7 @@ public class RestAPI {
 				// Prepare a String with GET parameters
 				String getparams = "?";
 				for ( Entry<String, String> pair : parameters.entrySet() )
-					getparams += pair.getKey() + "=" + pair.getValue() + "&";
+					getparams += pair.getKey() + "=" + URLEncoder.encode(pair.getValue(), "UTF-8") + "&";
 				// remove the trailing '&'
 				getparams = getparams.substring(0, getparams.length() - 1);
 				
