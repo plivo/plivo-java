@@ -169,6 +169,10 @@ public class RestAPI {
         return this.gson.fromJson(request("GET", "/Subaccount/", new LinkedHashMap<String, String>()), SubAccountFactory.class);
     }
     
+    public SubAccountFactory getSubaccounts(LinkedHashMap<String, String>() parameters) throws PlivoException {
+        return this.gson.fromJson(request("GET", "/Subaccount/", parameters), SubAccountFactory.class);
+    }
+    
     public SubAccount getSubaccount(LinkedHashMap<String, String> parameters) throws PlivoException {
       String subauth_id = this.getKeyValue(parameters, "subauth_id");
       return this.gson.fromJson(request("GET", String.format("/Subaccount/%s/", subauth_id), parameters), SubAccount.class);
