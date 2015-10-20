@@ -1,5 +1,7 @@
 package com.plivo.helper.api.response.endpoint;
 
+import java.util.Map;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Endpoint {
@@ -24,7 +26,7 @@ public class Endpoint {
     @SerializedName("api_id")
     public String apiId ;
     
-    public String error ;
+    public Map<String, Object> error ;
     
     public String message;
     

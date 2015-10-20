@@ -1,11 +1,13 @@
 package com.plivo.helper.api.response.account;
 
+import java.util.Map;
+
 import com.google.gson.annotations.SerializedName;
 
 public class SubAccount {
     public String account ;
 
-    public String error ;
+    public Map<String, Object> error ;
     @SerializedName("api_id")
     public String apiId ;
     

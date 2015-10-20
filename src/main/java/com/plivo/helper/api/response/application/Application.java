@@ -1,5 +1,7 @@
 package com.plivo.helper.api.response.application;
 
+import java.util.Map;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Application {
@@ -45,7 +47,7 @@ public class Application {
     @SerializedName("fallback_answer_url")
     public String fallbackAnswerUrl ;
 
-    public String error ;
+    public Map<String, Object> error ;
     
     @SerializedName("api_id")
     public String apiId ;
