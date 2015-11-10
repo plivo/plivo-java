@@ -163,4 +163,11 @@
     <artifactId>oss-parent</artifactId>
     <version>7</version>
   </parent>
+  <distributionManagement>
+    <repository>
+      <id>plivojava</id>
+      <name>Nexus Staging Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 </project>
