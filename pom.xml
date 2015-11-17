@@ -14,7 +14,7 @@
     <license>
       <name>MIT License</name>
       <url>https://github.com/plivo/plivo-java/blob/master/LICENSE</url>
-      <distribution>repo</distribution>
+      <distribution>resourcespo</distribution>
     </license>
   </licenses>
   <scm>
@@ -131,6 +131,17 @@
           </execution>
         </executions>
 	  </plugin>
+    <plugin>
+      <groupId>org.sonatype.plugins</groupId>
+      <artifactId>nexus-staging-maven-plugin</artifactId>
+      <version>1.6.3</version>
+      <extensions>true</extensions>
+      <configuration>
+        <serverId>plivojava</serverId>
+        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+      </configuration>
+    </plugin>
     </plugins>
   </build>
   <properties>
