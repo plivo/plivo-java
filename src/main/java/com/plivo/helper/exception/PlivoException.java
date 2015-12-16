@@ -1,16 +1,16 @@
 package com.plivo.helper.exception;
 
-public class PlivoException extends Exception
-{
-	private static final long serialVersionUID = 1L;
-	private String Message;
+public class PlivoException extends Exception {
+    public PlivoException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public PlivoException(String message)
-	{
-		Message = message;
-	}
+    public PlivoException(String message) {
+        super(message);
+    }
 
-	public String getMessage(){
-		return Message;
-	}
+    public PlivoException(Throwable cause) {
+        super(cause);
+    }
+
 }
