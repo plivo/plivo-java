@@ -1,10 +1,7 @@
 package com.plivo.helper.api.client;
 
 //Exceptions
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URLEncoder;
 
 import org.apache.http.client.AuthCache;
@@ -54,7 +51,7 @@ import com.google.gson.GsonBuilder;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
 
-public class RestAPI {
+public class RestAPI implements Closeable {
     public final static String DEFAULT_API_VERSION = "v1";
 	public final static String DEFAULT_API_HOST = "api.plivo.com";
 	public final static int DEFAULT_API_PORT = 443;
@@ -165,7 +162,7 @@ public class RestAPI {
 		return json;
     }
 
-    private <T> T requestAndUnmarshell(String method, String resource, Map<String, String> parameters, Class<T> clazz) throws PlivoException {
+    private <T> T requestAndUnmarshall(String method, String resource, Map<String, String> parameters, Class<T> clazz) throws PlivoException {
         String request = request(method, resource, parameters);
         return this.gson.fromJson(request, clazz);
     }
@@ -173,8 +170,8 @@ public class RestAPI {
     /**
      * Release resources
      */
-    public void shutdown() {
-        this.client.getConnectionManager().shutdown();
+    public void close() throws IOException {
+        this.client.close();
     }
 
     private static String convertStreamToString(InputStream istream)
@@ -191,126 +188,126 @@ public class RestAPI {
     
     // Account
     public Account getAccount() throws PlivoException {
-        return requestAndUnmarshell("GET", "/", null, Account.class);
+        return requestAndUnmarshall("GET", "/", null, Account.class);
     }
 
     public GenericResponse editAccount(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("POST", "/", parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", "/", parameters, GenericResponse.class);
     }
 
     public SubAccountFactory getSubaccounts() throws PlivoException {
-        return requestAndUnmarshell("GET", "/Subaccount/", null, SubAccountFactory.class);
+        return requestAndUnmarshall("GET", "/Subaccount/", null, SubAccountFactory.class);
     }
 
     public SubAccountFactory getSubaccounts(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Subaccount/", parameters, SubAccountFactory.class);
+        return requestAndUnmarshall("GET", "/Subaccount/", parameters, SubAccountFactory.class);
     }
 
     public SubAccount getSubaccount(Map<String, String> parameters, String subAuthId) throws PlivoException {
-      return requestAndUnmarshell("GET", String.format("/Subaccount/%s/", subAuthId), parameters, SubAccount.class);
+      return requestAndUnmarshall("GET", String.format("/Subaccount/%s/", subAuthId), parameters, SubAccount.class);
     }
 
     public SubAccount createSubaccount(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("POST", "/Subaccount/", parameters, SubAccount.class);
+        return requestAndUnmarshall("POST", "/Subaccount/", parameters, SubAccount.class);
     }
 
     public SubAccount editSubaccount(Map<String, String> parameters, String subAuthId) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Subaccount/%s/", subAuthId), parameters, SubAccount.class);
+        return requestAndUnmarshall("POST", String.format("/Subaccount/%s/", subAuthId), parameters, SubAccount.class);
     }
 
     public GenericResponse deleteSubaccount(String subAuthId) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Subaccount/%s/", subAuthId), null, GenericResponse.class);
+        return requestAndUnmarshall("DELETE", String.format("/Subaccount/%s/", subAuthId), null, GenericResponse.class);
     }
 
     // Application
     public ApplicationFactory getApplications() throws PlivoException {
-        return requestAndUnmarshell("GET", "/Application/", null, ApplicationFactory.class);
+        return requestAndUnmarshall("GET", "/Application/", null, ApplicationFactory.class);
     }
 
     public ApplicationFactory getApplications(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Application/", parameters, ApplicationFactory.class);
+        return requestAndUnmarshall("GET", "/Application/", parameters, ApplicationFactory.class);
     }
 
     public Application getApplication(String appId) throws PlivoException {
-        return requestAndUnmarshell("GET", String.format("/Application/%s/", appId),
+        return requestAndUnmarshall("GET", String.format("/Application/%s/", appId),
                 null, Application.class);
     }
 
     public Application createApplication(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("POST", "/Application/", parameters, Application.class);
+        return requestAndUnmarshall("POST", "/Application/", parameters, Application.class);
     }
 
     public Application editApplication(Map<String, String> parameters, String appId) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Application/%s/", appId), parameters, Application.class);
+        return requestAndUnmarshall("POST", String.format("/Application/%s/", appId), parameters, Application.class);
     }
 
     public GenericResponse deleteApplication(String app_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Application/%s/", app_id), null, GenericResponse.class);
+        return requestAndUnmarshall("DELETE", String.format("/Application/%s/", app_id), null, GenericResponse.class);
     }
 
     // Call
     public CDRFactory getCDRs(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Call/", parameters, CDRFactory.class);
+        return requestAndUnmarshall("GET", "/Call/", parameters, CDRFactory.class);
     }
 
     public CDR getCDR(String record_id) throws PlivoException {
-        return requestAndUnmarshell("GET", String.format("/Call/%s/", record_id),
+        return requestAndUnmarshall("GET", String.format("/Call/%s/", record_id),
                 null, CDR.class);
     }
 
     public LiveCallFactory getLiveCalls() throws PlivoException {
         Map<String, String> parameters = new LinkedHashMap<String, String>();
         parameters.put("status", "live");
-        return requestAndUnmarshell("GET", "/Call/", parameters, LiveCallFactory.class);
+        return requestAndUnmarshall("GET", "/Call/", parameters, LiveCallFactory.class);
     }
 
     public LiveCall getLiveCall(Map<String, String> parameters, String call_uuid) throws PlivoException {
         parameters.put("status", "live");
-        return requestAndUnmarshell("GET", String.format("/Call/%s/", call_uuid), parameters, LiveCall.class);
+        return requestAndUnmarshall("GET", String.format("/Call/%s/", call_uuid), parameters, LiveCall.class);
     }
 
     public Call makeCall(Map<String, String> parameters) throws PlivoException {
     	String to = parameters.get("to");
     	if (to != null && to.contains("<"))
     		throw new PlivoException("Use the makeBulkCall() method to make calls to multiple numbers.");
-        return requestAndUnmarshell("POST", "/Call/", parameters, Call.class);
+        return requestAndUnmarshall("POST", "/Call/", parameters, Call.class);
     }
 
     public BulkCall makeBulkCall(Map<String, String> parameters) throws PlivoException {
     	String to = parameters.get("to");
     	if (to != null && !to.contains("<"))
     		throw new PlivoException("Use the makeCall() method to make calls to a single number.");
-        return requestAndUnmarshell("POST", "/Call/", parameters, BulkCall.class);
+        return requestAndUnmarshall("POST", "/Call/", parameters, BulkCall.class);
     }
 
     public GenericResponse hangupAllCalls() throws PlivoException {
-        return requestAndUnmarshell("DELETE", "/Call/", null, GenericResponse.class);
+        return requestAndUnmarshall("DELETE", "/Call/", null, GenericResponse.class);
     }
 
     public GenericResponse hangupCall(String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Call/%s/", call_uuid),
+        return requestAndUnmarshall("DELETE", String.format("/Call/%s/", call_uuid),
                 null, GenericResponse.class);
     }
 
     public GenericResponse transferCall(Map<String, String> parameters, String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Call/%s/", call_uuid), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Call/%s/", call_uuid), parameters, GenericResponse.class);
     }
 
     public Record record(Map<String, String> parameters, String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Call/%s/Record/", call_uuid), parameters, Record.class);
+        return requestAndUnmarshall("POST", String.format("/Call/%s/Record/", call_uuid), parameters, Record.class);
     }
 
     public GenericResponse stopRecord(String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Call/%s/Record/", call_uuid),
+        return requestAndUnmarshall("DELETE", String.format("/Call/%s/Record/", call_uuid),
                 null, GenericResponse.class);
     }
 
     public GenericResponse play(Map<String, String> parameters, String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Call/%s/Play/", call_uuid), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Call/%s/Play/", call_uuid), parameters, GenericResponse.class);
     }
 
     public GenericResponse stopPlay(String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Call/%s/Play/", call_uuid),
+        return requestAndUnmarshall("DELETE", String.format("/Call/%s/Play/", call_uuid),
                 null, GenericResponse.class);
     }
 
@@ -319,270 +316,270 @@ public class RestAPI {
             parameters = new LinkedHashMap<String, String>();
         }
         parameters.put("text", HtmlEntity.convert(text));
-        return requestAndUnmarshell("POST", String.format("/Call/%s/Speak/", call_uuid), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Call/%s/Speak/", call_uuid), parameters, GenericResponse.class);
     }
 
     public GenericResponse stopSpeak(String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Call/%s/Speak/", call_uuid),
+        return requestAndUnmarshall("DELETE", String.format("/Call/%s/Speak/", call_uuid),
                 null, GenericResponse.class);
     }
 
     public GenericResponse sendDigits(Map<String, String> parameters, String call_uuid) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Call/%s/DTMF/", call_uuid), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Call/%s/DTMF/", call_uuid), parameters, GenericResponse.class);
     }
 
     public GenericResponse hangupRequest(String request_uuid) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Request/%s/", request_uuid),
+        return requestAndUnmarshall("DELETE", String.format("/Request/%s/", request_uuid),
                 null, GenericResponse.class);
     }
 
     // Conference
     public LiveConferenceFactory getLiveConferences() throws PlivoException {
-        return requestAndUnmarshell("GET", "/Conference/", null, LiveConferenceFactory.class);
+        return requestAndUnmarshall("GET", "/Conference/", null, LiveConferenceFactory.class);
     }
 
     public GenericResponse hangupAllConferences() throws PlivoException {
-        return requestAndUnmarshell("DELETE", "/Conference/", null, GenericResponse.class);
+        return requestAndUnmarshall("DELETE", "/Conference/", null, GenericResponse.class);
     }
 
     public Conference getLiveConference(String conference_name) throws PlivoException{
-        return requestAndUnmarshell("GET", String.format("/Conference/%s/", conference_name),
+        return requestAndUnmarshall("GET", String.format("/Conference/%s/", conference_name),
                 null, Conference.class);
     }
 
     public GenericResponse hangupConference(String conference_name) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%s/", conference_name),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%s/", conference_name),
                 null, GenericResponse.class);
     }
 
     public GenericResponse hangupMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%1$s/Member/%2$s/", conference_name, member_id),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%1$s/Member/%2$s/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse playMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id),
+        return requestAndUnmarshall("POST", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse stopPlayMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse speakMember(String text, String conference_name, String member_id) throws PlivoException {
         Map<String, String> parameters = new LinkedHashMap<String, String>();
 		parameters.put("text", HtmlEntity.convert(text));
-        return requestAndUnmarshell("POST", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id),
+        return requestAndUnmarshall("POST", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id),
                 parameters, GenericResponse.class);
     }
 
     public GenericResponse stopSpeakMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse deafMember(String conference_name, String memberId) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId),
+        return requestAndUnmarshall("POST", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId),
                 null, GenericResponse.class);
     }
 
     public GenericResponse undeafMember(String conference_name, String memberId) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId),
                 null, GenericResponse.class);
     }
 
     public GenericResponse muteMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id),
+        return requestAndUnmarshall("POST", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse unmuteMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public GenericResponse kickMember(String conference_name, String member_id) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Conference/%1$s/Member/%2$s/Kick/", conference_name, member_id),
+        return requestAndUnmarshall("POST", String.format("/Conference/%1$s/Member/%2$s/Kick/", conference_name, member_id),
                 null, GenericResponse.class);
     }
 
     public Record recordConference(Map<String, String> parameters, String conference_name) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Conference/%s/Record/", conference_name), parameters, Record.class);
+        return requestAndUnmarshall("POST", String.format("/Conference/%s/Record/", conference_name), parameters, Record.class);
     }
 
     public GenericResponse stopRecordConference(String conference_name) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Conference/%s/Record/", conference_name),
+        return requestAndUnmarshall("DELETE", String.format("/Conference/%s/Record/", conference_name),
                 null,GenericResponse.class);
     }
 
 
     // Endpoint
     public EndpointFactory getEndpoints(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Endpoint/", parameters, EndpointFactory.class);
+        return requestAndUnmarshall("GET", "/Endpoint/", parameters, EndpointFactory.class);
     }
 
     public Endpoint createEndpoint(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("POST", "/Endpoint/", parameters, Endpoint.class);
+        return requestAndUnmarshall("POST", "/Endpoint/", parameters, Endpoint.class);
     }
 
     public Endpoint getEndpoint(String endpoint_id) throws PlivoException {
-        return requestAndUnmarshell("GET", String.format("/Endpoint/%s/", endpoint_id),
+        return requestAndUnmarshall("GET", String.format("/Endpoint/%s/", endpoint_id),
                 null, Endpoint.class);
     }
 
     public Endpoint editEndpoint(Map<String, String> parameters, String endpoint_id) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Endpoint/%s/", endpoint_id), parameters, Endpoint.class);
+        return requestAndUnmarshall("POST", String.format("/Endpoint/%s/", endpoint_id), parameters, Endpoint.class);
     }
 
     public GenericResponse deleteEndpoint(String endpoint_id) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Endpoint/%s/", endpoint_id),
+        return requestAndUnmarshall("DELETE", String.format("/Endpoint/%s/", endpoint_id),
                 null, GenericResponse.class);
     }
 
 
     // Number
     public NumberSearchFactory getNumbers() throws PlivoException {
-        return requestAndUnmarshell("GET", "/Number/", null, NumberSearchFactory.class);
+        return requestAndUnmarshall("GET", "/Number/", null, NumberSearchFactory.class);
     }
 
     public NumberSearchFactory getNumbers(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Number/", parameters, NumberSearchFactory.class);
+        return requestAndUnmarshall("GET", "/Number/", parameters, NumberSearchFactory.class);
     }
 
     public Number getNumber(String number) throws PlivoException {
-        return requestAndUnmarshell("GET", String.format("/Number/%s/", number),
+        return requestAndUnmarshall("GET", String.format("/Number/%s/", number),
         		null, Number.class);
     }
 
     public GenericResponse editNumber(Map<String, String> parameters, String number) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
     }
 
     @Deprecated
     public NumberSearchFactory searchNumbers(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/AvailableNumber/", parameters, NumberSearchFactory.class);
+        return requestAndUnmarshall("GET", "/AvailableNumber/", parameters, NumberSearchFactory.class);
     }
 
     @Deprecated
     public GenericResponse rentNumber(Map<String, String> parameters, String number) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/AvailableNumber/%s/", number), parameters,
+        return requestAndUnmarshall("POST", String.format("/AvailableNumber/%s/", number), parameters,
                 GenericResponse.class);
     }
 
     public NumberGroupFactory searchNumberGroups(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/AvailableNumberGroup/", parameters, NumberGroupFactory.class);
+        return requestAndUnmarshall("GET", "/AvailableNumberGroup/", parameters, NumberGroupFactory.class);
     }
 
     public NumberResponse rentNumbers(Map<String, String> parameters, String groupId) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/AvailableNumberGroup/%s/", groupId), parameters, NumberResponse.class);
+        return requestAndUnmarshall("POST", String.format("/AvailableNumberGroup/%s/", groupId), parameters, NumberResponse.class);
     }
 
     public GenericResponse unRentNumber(String number) throws PlivoException {
-        return requestAndUnmarshell("DELETE", String.format("/Number/%s/", number), null, GenericResponse.class);
+        return requestAndUnmarshall("DELETE", String.format("/Number/%s/", number), null, GenericResponse.class);
     }
 
     public GenericResponse linkApplicationNumber(Map<String, String> parameters, String number) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
     }
 
     public GenericResponse unlinkApplicationNumber(Map<String, String> parameters, String number) throws PlivoException {
         parameters.put("app_id", "");
-        return requestAndUnmarshell("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
+        return requestAndUnmarshall("POST", String.format("/Number/%s/", number), parameters, GenericResponse.class);
     }
 
     public PhoneNumberSearchFactory searchPhoneNumber(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/PhoneNumber/", parameters, PhoneNumberSearchFactory.class);
+        return requestAndUnmarshall("GET", "/PhoneNumber/", parameters, PhoneNumberSearchFactory.class);
     }
 
     public NumberResponse buyPhoneNumber(Map<String, String> parameters, String number) throws PlivoException {
-        return requestAndUnmarshell("POST", String.format("/PhoneNumber/%s/", number),
+        return requestAndUnmarshall("POST", String.format("/PhoneNumber/%s/", number),
         		parameters, NumberResponse.class);
     }
 
     // Message
     public MessageResponse sendMessage(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("POST", "/Message/", parameters, MessageResponse.class);
+        return requestAndUnmarshall("POST", "/Message/", parameters, MessageResponse.class);
     }
 
     public Message getMessage(String record_id) throws PlivoException {
-        return requestAndUnmarshell("GET", String.format("/Message/%s/", record_id),
+        return requestAndUnmarshall("GET", String.format("/Message/%s/", record_id),
                 null, Message.class);
     }
 
     public MessageFactory getMessages() throws PlivoException {
-        return requestAndUnmarshell("GET", "/Message/", null, MessageFactory.class);
+        return requestAndUnmarshall("GET", "/Message/", null, MessageFactory.class);
     }
 
     public MessageFactory getMessages(Map<String, String> parameters) throws PlivoException {
-        return requestAndUnmarshell("GET", "/Message/", parameters, MessageFactory.class);
+        return requestAndUnmarshall("GET", "/Message/", parameters, MessageFactory.class);
     }
 
     // Incoming Carrier
     public IncomingCarrierFactory getIncomingCarriers(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("GET", "/IncomingCarrier/", parameters, IncomingCarrierFactory.class);
+    	return requestAndUnmarshall("GET", "/IncomingCarrier/", parameters, IncomingCarrierFactory.class);
     }
 
     public IncomingCarrier getIncomingCarrier(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("GET", String.format("/IncomingCarrier/%s/", carrier), parameters, IncomingCarrier.class);
+    	return requestAndUnmarshall("GET", String.format("/IncomingCarrier/%s/", carrier), parameters, IncomingCarrier.class);
     }
 
     public GenericResponse addIncomingCarrier(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("POST", "/IncomingCarrier/", parameters, GenericResponse.class);
+    	return requestAndUnmarshall("POST", "/IncomingCarrier/", parameters, GenericResponse.class);
     }
 
     public GenericResponse editIncomingCarrier(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("POST", String.format("/IncomingCarrier/%s/", carrier), parameters, GenericResponse.class);
+    	return requestAndUnmarshall("POST", String.format("/IncomingCarrier/%s/", carrier), parameters, GenericResponse.class);
     }
 
     public GenericResponse dropIncomingCarrier(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("DELETE", String.format("/IncomingCarrier/%s/", carrier), parameters, GenericResponse.class);
+    	return requestAndUnmarshall("DELETE", String.format("/IncomingCarrier/%s/", carrier), parameters, GenericResponse.class);
     }
 
     // Outgoing Carrier
     public OutgoingCarrierFactory getOutgoingCarriers(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("GET", "/OutgoingCarrier/", parameters, OutgoingCarrierFactory.class);
+    	return requestAndUnmarshall("GET", "/OutgoingCarrier/", parameters, OutgoingCarrierFactory.class);
     }
 
     public OutgoingCarrier getOutgoingCarrier(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("GET", String.format("/OutgoingCarrier/%s/", carrier), parameters, OutgoingCarrier.class);
+    	return requestAndUnmarshall("GET", String.format("/OutgoingCarrier/%s/", carrier), parameters, OutgoingCarrier.class);
     }
 
     public OutgoingCarrierCreatedResponse addOutgoingCarrier(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("POST", "/OutgoingCarrier/", parameters, OutgoingCarrierCreatedResponse.class);
+    	return requestAndUnmarshall("POST", "/OutgoingCarrier/", parameters, OutgoingCarrierCreatedResponse.class);
     }
 
     public GenericResponse editOutgoingCarrier(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("POST", String.format("/OutgoingCarrier/%s/", carrier), parameters, GenericResponse.class);
+    	return requestAndUnmarshall("POST", String.format("/OutgoingCarrier/%s/", carrier), parameters, GenericResponse.class);
     }
 
     public GenericResponse dropOutgoingCarrier(String carrier) throws PlivoException {
-    	return requestAndUnmarshell("DELETE", String.format("/OutgoingCarrier/%s/", carrier), null, GenericResponse.class);
+    	return requestAndUnmarshall("DELETE", String.format("/OutgoingCarrier/%s/", carrier), null, GenericResponse.class);
     }
 
     // Outgoing Carrier Routing
     public OutgoingCarrierRoutingFactory getOutgoingCarrierRoutings(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("GET", "/OutgoingCarrierRouting/", parameters, OutgoingCarrierRoutingFactory.class);
+    	return requestAndUnmarshall("GET", "/OutgoingCarrierRouting/", parameters, OutgoingCarrierRoutingFactory.class);
     }
 
     public OutgoingCarrierRouting getOutgoingCarrierRouting(Map<String, String> parameters, String carrier) throws PlivoException {
-    	return requestAndUnmarshell("GET", String.format("/OutgoingCarrierRouting/%s/", carrier), parameters, OutgoingCarrierRouting.class);
+    	return requestAndUnmarshall("GET", String.format("/OutgoingCarrierRouting/%s/", carrier), parameters, OutgoingCarrierRouting.class);
     }
 
     public OutgoingCarrierRoutingCreatedResponse addOutgoingCarrierRouting(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("POST", "/OutgoingCarrierRouting/", parameters, OutgoingCarrierRoutingCreatedResponse.class);
+    	return requestAndUnmarshall("POST", "/OutgoingCarrierRouting/", parameters, OutgoingCarrierRoutingCreatedResponse.class);
     }
 
     public GenericResponse editOutgoingCarrierRouting(Map<String, String> parameters, String routing_id) throws PlivoException {
-    	return requestAndUnmarshell("POST", String.format("/OutgoingCarrierRouting/%s/", routing_id), parameters, GenericResponse.class);
+    	return requestAndUnmarshall("POST", String.format("/OutgoingCarrierRouting/%s/", routing_id), parameters, GenericResponse.class);
     }
 
     public GenericResponse dropOutgoingCarrierRouting(String routing_id) throws PlivoException {
-    	return requestAndUnmarshell("DELETE", String.format("/OutgoingCarrierRouting/%s/", routing_id), null, GenericResponse.class);
+    	return requestAndUnmarshall("DELETE", String.format("/OutgoingCarrierRouting/%s/", routing_id), null, GenericResponse.class);
     }
 
     // Pricing
     public PlivoPricing getPricing(Map<String, String> parameters) throws PlivoException {
-    	return requestAndUnmarshell("GET", "/Pricing/", parameters, PlivoPricing.class);
+    	return requestAndUnmarshall("GET", "/Pricing/", parameters, PlivoPricing.class);
     }
 }
