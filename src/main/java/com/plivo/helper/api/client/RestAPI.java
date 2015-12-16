@@ -79,7 +79,7 @@ public class RestAPI implements Closeable {
 
 		gson = new Gson();
 
-		baseURI = String.format("%s://%s:%d/%s/Account/%s", target.getSchemeName(), target.getHostName(), target.getPort(), apiVersion, authId);
+		baseURI = String.format("%s/%s/Account/%s", target.toURI(), apiVersion, authId);
 	}
 
 	public RestAPI setProxy(HttpHost proxy) {
