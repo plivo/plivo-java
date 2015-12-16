@@ -60,7 +60,6 @@ public class RestAPI implements Closeable {
 	private final String baseURI;
 	private final CloseableHttpClient client;
 	private final Gson gson;
-    private final AuthCache authCache;
     private final HttpHost target;
 
     public RestAPI(String auth_id, String auth_token) {
@@ -77,13 +76,6 @@ public class RestAPI implements Closeable {
 
 		client = HttpClients.custom()
                 .setDefaultCredentialsProvider(credsProvider).build();
-
-        // Create AuthCache instance
-        this.authCache = new BasicAuthCache();
-        // Generate BASIC scheme object and add it to the local
-        // auth cache
-        BasicScheme basicAuth = new BasicScheme();
-        authCache.put(target, basicAuth);
 
 		gson = new Gson();
 
@@ -135,6 +127,13 @@ public class RestAPI implements Closeable {
 			} else {
                 throw new PlivoException("Unknown request method '" + method + "'");
             }
+
+            // Create AuthCache instance
+            AuthCache authCache = new BasicAuthCache();
+            // Generate BASIC scheme object and add it to the local
+            // auth cache
+            BasicScheme basicAuth = new BasicScheme();
+            authCache.put(target, basicAuth);
 
             // Add AuthCache to the execution context
             HttpClientContext localContext = HttpClientContext.create();
