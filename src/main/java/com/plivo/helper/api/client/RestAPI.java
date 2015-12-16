@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
+import org.apache.http.client.AuthCache;
 import org.apache.http.client.ClientProtocolException;
 
 import com.plivo.helper.api.response.account.*;
@@ -35,10 +36,12 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 
 // Handle HTTP requests
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.*;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.params.ConnRoutePNames;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 
@@ -53,24 +56,41 @@ import com.plivo.helper.util.HtmlEntity;
 
 public class RestAPI {
     public final static String DEFAULT_API_VERSION = "v1";
-	public final static String DEFAULT_API_BASE_URL = "https://api.plivo.com";
+	public final static String DEFAULT_API_HOST = "api.plivo.com";
+	public final static int DEFAULT_API_PORT = 443;
+	public final static String DEFAULT_API_PROTO = "https";
 
 	private final String baseURI;
-	private final AbstractHttpClient client;
+	private final CloseableHttpClient client;
 	private final Gson gson;
+    private final AuthCache authCache;
+    private final HttpHost target;
 
-	public RestAPI(String auth_id, String auth_token) {
-        this(auth_id, auth_token, DEFAULT_API_VERSION, DEFAULT_API_BASE_URL);
+    public RestAPI(String auth_id, String auth_token) {
+        this(auth_id, auth_token, DEFAULT_API_VERSION, DEFAULT_API_HOST, DEFAULT_API_PORT, DEFAULT_API_PROTO);
     }
 
-	public RestAPI(String authId, String authToken, String apiVersion, String baseUrl) {
-		baseURI = String.format("%s/%s/Account/%s", baseUrl, apiVersion, authId);
-		client = new DefaultHttpClient();
-		client.getCredentialsProvider().setCredentials(
-				new AuthScope("api.plivo.com", 443),
-				new UsernamePasswordCredentials(authId, authToken)
-				);
+	public RestAPI(String authId, String authToken, String apiVersion, String host, int port, String proto) {
+        this.target = new HttpHost(host, port, proto);
+
+        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+        credsProvider.setCredentials(
+                new AuthScope(target.getHostName(), target.getPort()),
+                new UsernamePasswordCredentials(authId, authToken));
+
+		client = HttpClients.custom()
+                .setDefaultCredentialsProvider(credsProvider).build();
+
+        // Create AuthCache instance
+        this.authCache = new BasicAuthCache();
+        // Generate BASIC scheme object and add it to the local
+        // auth cache
+        BasicScheme basicAuth = new BasicScheme();
+        authCache.put(target, basicAuth);
+
 		gson = new Gson();
+
+		baseURI = String.format("%s://%s:%d/%s/Account/%s", target.getSchemeName(), target.getHostName(), target.getPort(), apiVersion, authId);
 	}
 
 	public RestAPI setProxy(HttpHost proxy) {
@@ -118,7 +138,12 @@ public class RestAPI {
 			} else {
                 throw new PlivoException("Unknown request method '" + method + "'");
             }
-            response = this.client.execute(request);
+
+            // Add AuthCache to the execution context
+            HttpClientContext localContext = HttpClientContext.create();
+            localContext.setAuthCache(authCache);
+
+            response = this.client.execute(this.target, request, localContext);
 
 			int serverCode = response.getStatusLine().getStatusCode();
 

@@ -32,7 +32,7 @@ public class XPlivoSignature {
 	             if ( signature.equals(xsignature) )
 	            	 isMatch = true;
 	         } catch (Exception e) {
-	             throw new PlivoException(e.getLocalizedMessage());
+	             throw new PlivoException(e);
 	         }
 		
 		return isMatch;
