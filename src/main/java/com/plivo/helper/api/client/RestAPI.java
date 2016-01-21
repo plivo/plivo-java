@@ -46,6 +46,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
 //Add pay load to POST request 
 import org.apache.http.entity.StringEntity;
@@ -73,7 +75,19 @@ public class RestAPI {
 		AUTH_TOKEN = auth_token;
 		PLIVO_VERSION = version;
 		BaseURI = String.format("%s/%s/Account/%s", PLIVO_URL, PLIVO_VERSION, AUTH_ID);
-		Client = new DefaultHttpClient();
+
+        ClientConnectionManager clientConnectionManager;
+
+        try {
+            Class.forName("com.google.appengine.api.urlfetch.HTTPRequest");
+            clientConnectionManager = new AppEngineClientConnectionManager();
+        } catch (final ClassNotFoundException exception) {
+            clientConnectionManager = new PoolingClientConnectionManager();
+            ((PoolingClientConnectionManager) clientConnectionManager).setDefaultMaxPerRoute(10);
+        }
+
+		Client = new DefaultHttpClient(clientConnectionManager);
+
 		Client.getCredentialsProvider().setCredentials(
 				new AuthScope("api.plivo.com", 443),
 				new UsernamePasswordCredentials(AUTH_ID, AUTH_TOKEN)
