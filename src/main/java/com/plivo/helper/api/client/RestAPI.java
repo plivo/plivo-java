@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 
 import com.plivo.helper.api.response.account.*;
@@ -22,11 +23,7 @@ import com.plivo.helper.api.response.response.*;
 import com.plivo.helper.api.response.pricing.PlivoPricing;
 import com.plivo.helper.exception.PlivoException;
 
-import org.apache.http.HttpHost;
 // Plivo resources
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.ProtocolVersion;
 
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -57,6 +54,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
+import org.apache.http.util.EntityUtils;
 
 public class RestAPI {
 	public String AUTH_ID;
@@ -121,11 +119,13 @@ public class RestAPI {
 
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
-	        if ( response.getEntity() != null ) {
+	        if ( response.getEntity() != null && serverCode >= 200 && serverCode <= 203 ) {
 	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
 	        } else {
-	                // dummy response
-	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
+
+                HttpEntity entity = response.getEntity();
+                String responseString = EntityUtils.toString(entity, "UTF-8");
+	            json = String.format("{\"message\":\"%s\",\"error\":\"%s\",\"api_id\":\"unknown\", \"server_code\":%s}", responseString,response.getStatusLine().getReasonPhrase() ,serverCode.toString());
 	        }
 
 		} catch (ClientProtocolException e) {
