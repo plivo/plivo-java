@@ -119,13 +119,14 @@ public class RestAPI {
 
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
-	        if ( response.getEntity() != null && serverCode >= 200 && serverCode <= 203 ) {
-	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
-	        } else {
-
+	        if ( serverCode == 401) {
                 HttpEntity entity = response.getEntity();
                 String responseString = EntityUtils.toString(entity, "UTF-8");
-	            json = String.format("{\"message\":\"%s\",\"error\":\"%s\",\"api_id\":\"unknown\", \"server_code\":%s}", responseString,response.getStatusLine().getReasonPhrase() ,serverCode.toString());
+                json = String.format("{\"message\":\"%s\",\"error\":\"%s\",\"api_id\":\"unknown\", \"server_code\":%s}", responseString,response.getStatusLine().getReasonPhrase() ,serverCode.toString());
+
+	        } else {
+                json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
+
 	        }
 
 		} catch (ClientProtocolException e) {
