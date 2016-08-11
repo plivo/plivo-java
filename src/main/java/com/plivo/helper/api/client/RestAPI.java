@@ -57,6 +57,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 // Handle unicode characters
 import com.plivo.helper.util.HtmlEntity;
+import org.apache.http.HttpEntity;
+import org.apache.http.util.EntityUtils;
 
 public class RestAPI {
 	public String AUTH_ID;
@@ -121,12 +123,16 @@ public class RestAPI {
 
 			Integer serverCode = response.getStatusLine().getStatusCode();
 
-	        if ( response.getEntity() != null ) {
-	        	json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
-	        } else {
-	                // dummy response
-	            json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
-	        }
+			if ( serverCode >= HttpStatus.SC_OK && serverCode < HttpStatus.SC_MULTIPLE_CHOICES && response.getEntity() != null ) {
+				json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
+			} else if ( serverCode >= HttpStatus.SC_MULTIPLE_CHOICES && response.getEntity() != null ) {
+				HttpEntity entity = response.getEntity();
+				String responseString = EntityUtils.toString(entity, "UTF-8");
+				json = String.format("{\"message\":\"%s\",\"error\":\"%s\",\"api_id\":\"unknown\", \"server_code\":%s}", responseString, response.getStatusLine().getReasonPhrase(), serverCode.toString());
+			} else {
+				// dummy response
+				json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
+			}
 
 		} catch (ClientProtocolException e) {
 			throw new PlivoException(e.getLocalizedMessage());
