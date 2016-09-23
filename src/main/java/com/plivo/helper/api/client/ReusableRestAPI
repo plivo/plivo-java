@@ -1,0 +1,121 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.plivo.helper.api.client;
+
+//Exceptions
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URLEncoder;
+
+import org.apache.http.client.ClientProtocolException;
+
+import com.plivo.helper.exception.PlivoException;
+
+// Plivo resources
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.ProtocolVersion;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+// Authentication for HTTP resources
+// Handle HTTP requests
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.protocol.HTTP;
+
+//Add pay load to POST request 
+import org.apache.http.entity.StringEntity;
+
+// Handle JSON response
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.plivo.helper.api.client.RestAPI;
+// Handle unicode characters
+
+public class ReusableRestAPI extends RestAPI {
+
+    private String BaseURI;
+    private DefaultHttpClient Client;
+
+    public ReusableRestAPI(String auth_id, String auth_token, String version) {
+        super(auth_id, auth_token, version);
+    }
+
+    @Override
+    public String request(String method, String resource, LinkedHashMap<String, String> parameters)
+            throws PlivoException {
+        HttpResponse response = new BasicHttpResponse(new ProtocolVersion("HTTP", 1, 1),
+                HttpStatus.SC_OK, "OK");
+        String json = "";
+        try {
+            if ("GET".equals(method)) {
+                // Prepare a String with GET parameters
+                String getparams = "?";
+                for (Entry<String, String> pair : parameters.entrySet()) {
+                    getparams += pair.getKey() + "=" + URLEncoder.encode(pair.getValue(), "UTF-8") + "&";
+                }
+                // remove the trailing '&'
+                getparams = getparams.substring(0, getparams.length() - 1);
+
+                HttpGet httpget = new HttpGet(this.BaseURI + resource + getparams);
+                response = this.Client.execute(httpget);
+            } else if ("POST".equals(method)) {
+                HttpPost httpost = new HttpPost(this.BaseURI + resource);
+                Gson gson = new GsonBuilder().serializeNulls().create();
+                // Create a String entity with the POST parameters
+                StringEntity se = new StringEntity(gson.toJson(parameters), "utf-8");
+                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                // Now, attach the pay load to the request 
+                httpost.setEntity(se);
+
+                response = this.Client.execute(httpost);
+            } else if ("DELETE".equals(method)) {
+                HttpDelete httpdelete = new HttpDelete(this.BaseURI + resource);
+                response = this.Client.execute(httpdelete);
+            }
+
+            Integer serverCode = response.getStatusLine().getStatusCode();
+
+            if (response.getEntity() != null) {
+                json = this.convertStreamToString(response.getEntity().getContent()).replaceFirst("\\{", String.format("{ \"server_code\": %s, ", serverCode.toString()));
+            } else {
+                // dummy response
+                json = String.format("{\"message\":\"no response\",\"api_id\":\"unknown\", \"server_code\":%s}", serverCode.toString());
+            }
+
+        } catch (ClientProtocolException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } catch (IOException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } catch (IllegalStateException e) {
+            throw new PlivoException(e.getLocalizedMessage());
+        } finally {
+            this.Client.clearResponseInterceptors();
+        }
+
+        return json;
+    }
+
+    private String convertStreamToString(InputStream istream)
+            throws IOException {
+        BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
+        StringBuilder responseString = new StringBuilder();
+        String line = "";
+        while ((line = breader.readLine()) != null) {
+            responseString.append(line);
+        }
+        breader.close();
+        return responseString.toString();
+    }
+}
