@@ -359,7 +359,7 @@ public class RestAPI {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+                parameters), GenericResponse.class);
     }
 
     public GenericResponse stopPlayMember(LinkedHashMap<String, String> parameters) throws PlivoException {
