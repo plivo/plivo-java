@@ -212,7 +212,7 @@ public class RestAPI {
     public Application getApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
         String app_id = this.getKeyValue(parameters, "app_id");
         return this.gson.fromJson(request("GET", String.format("/Application/%s/", app_id), 
-                new LinkedHashMap<String, String>()), Application.class);
+                parameters), Application.class);
     }
     
     public Application createApplication(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -237,7 +237,7 @@ public class RestAPI {
     public CDR getCDR(LinkedHashMap<String, String> parameters) throws PlivoException {
         String record_id = getKeyValue(parameters, "record_id");
         return this.gson.fromJson(request("GET", String.format("/Call/%s/", record_id), 
-                new LinkedHashMap<String, String>()), CDR.class);
+        		parameters), CDR.class);
     }
 
     public LiveCallFactory getLiveCalls() throws PlivoException {
@@ -273,7 +273,7 @@ public class RestAPI {
     public GenericResponse hangupCall(LinkedHashMap<String, String> parameters) throws PlivoException {
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("DELETE", String.format("/Call/%s/", call_uuid), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse transferCall(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -289,7 +289,7 @@ public class RestAPI {
     public GenericResponse stopRecord(LinkedHashMap<String, String> parameters) throws PlivoException {
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("DELETE", String.format("/Call/%s/Record/", call_uuid), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse play(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -300,7 +300,7 @@ public class RestAPI {
     public GenericResponse stopPlay(LinkedHashMap<String, String> parameters) throws PlivoException {
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("DELETE", String.format("/Call/%s/Play/", call_uuid), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse speak(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -313,7 +313,7 @@ public class RestAPI {
     public GenericResponse stopSpeak(LinkedHashMap<String, String> parameters) throws PlivoException {
         String call_uuid = getKeyValue(parameters, "call_uuid");
         return this.gson.fromJson(request("DELETE", String.format("/Call/%s/Speak/", call_uuid), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse sendDigits(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -324,7 +324,7 @@ public class RestAPI {
     public GenericResponse hangupRequest(LinkedHashMap<String, String> parameters) throws PlivoException {
         String request_uuid = getKeyValue(parameters, "request_uuid");
         return this.gson.fromJson(request("DELETE", String.format("/Request/%s/", request_uuid), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
     
     // Conference
@@ -339,34 +339,34 @@ public class RestAPI {
     public Conference getLiveConference(LinkedHashMap<String, String> parameters) throws PlivoException{
         String conference_name = getKeyValue(parameters, "conference_name");
         return this.gson.fromJson(request("GET", String.format("/Conference/%s/", conference_name), 
-                new LinkedHashMap<String, String>()), Conference.class);
+        		parameters), Conference.class);
     }
 
     public GenericResponse hangupConference(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%s/", conference_name), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse hangupMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%1$s/Member/%2$s/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse playMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse stopPlayMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%1$s/Member/%2$s/Play/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse speakMember(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -375,49 +375,49 @@ public class RestAPI {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+                parameters), GenericResponse.class);
     }
     
     public GenericResponse stopSpeakMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%1$s/Member/%2$s/Speak/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+                parameters), GenericResponse.class);
     }
 
     public GenericResponse deafMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String memberId = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse undeafMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String memberId = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%1$s/Member/%2$s/Deaf/", conference_name, memberId), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse muteMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse unmuteMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%1$s/Member/%2$s/Mute/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public GenericResponse kickMember(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         String member_id = getKeyValue(parameters, "member_id");
         return this.gson.fromJson(request("POST", String.format("/Conference/%1$s/Member/%2$s/Kick/", conference_name, member_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+        		parameters), GenericResponse.class);
     }
 
     public Record recordConference(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -428,7 +428,7 @@ public class RestAPI {
     public GenericResponse stopRecordConference(LinkedHashMap<String, String> parameters) throws PlivoException {
         String conference_name = getKeyValue(parameters, "conference_name");
         return this.gson.fromJson(request("DELETE", String.format("/Conference/%s/Record/", conference_name), 
-                new LinkedHashMap<String, String>()),GenericResponse.class);
+        		parameters),GenericResponse.class);
     }
     
 
@@ -444,7 +444,7 @@ public class RestAPI {
     public Endpoint getEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException { 
         String endpoint_id = getKeyValue(parameters, "endpoint_id");
         return this.gson.fromJson(request("GET", String.format("/Endpoint/%s/", endpoint_id), 
-                new LinkedHashMap<String, String>()), Endpoint.class);
+                parameters), Endpoint.class);
     }
 
     public Endpoint editEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -455,7 +455,7 @@ public class RestAPI {
     public GenericResponse deleteEndpoint(LinkedHashMap<String, String> parameters) throws PlivoException {
         String endpoint_id = getKeyValue(parameters, "endpoint_id");
         return this.gson.fromJson(request("DELETE", String.format("/Endpoint/%s/", endpoint_id), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+                parameters), GenericResponse.class);
     }
     
     
@@ -471,7 +471,7 @@ public class RestAPI {
     public Number getNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
     	String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("GET", String.format("/Number/%s/", number), 
-        		new LinkedHashMap<String, String>()), Number.class);
+        		parameters), Number.class);
     }
     
     public GenericResponse editNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -488,7 +488,7 @@ public class RestAPI {
     public GenericResponse rentNumber(LinkedHashMap<String, String> parameters) throws PlivoException {
         String number = getKeyValue(parameters, "number");
         return this.gson.fromJson(request("POST", String.format("/AvailableNumber/%s/", number, parameters), 
-                new LinkedHashMap<String, String>()), GenericResponse.class);
+                parameters), GenericResponse.class);
     }
     
     public NumberGroupFactory searchNumberGroups(LinkedHashMap<String, String> parameters) throws PlivoException {
@@ -533,7 +533,7 @@ public class RestAPI {
     public Message getMessage(LinkedHashMap<String, String> parameters) throws PlivoException {
         String record_id = getKeyValue(parameters, "record_id");
         return this.gson.fromJson(request("GET", String.format("/Message/%s/", record_id), 
-                new LinkedHashMap<String, String>()), Message.class);
+                parameters), Message.class);
     }
 
     public MessageFactory getMessages() throws PlivoException {
