@@ -1,6 +1,8 @@
 Plivo Java Helper Library
 =========================
 
+**Important:** A new version of the Java SDK `4.0.0-beta-1` is released as a public Beta and is now available on Maven. Visit the [4.0 release branch](https://github.com/plivo/plivo-java/tree/4.0) to know more.
+
 Description
 -----------
 
@@ -20,7 +22,7 @@ Use this if you have issues with conflicting jars in your project. See the pom.x
 Manual Install
 ------------
 
-### Download and Install Maven3 
+### Download and Install Maven3
 
 
 [http://maven.apache.org](http://maven.apache.org)
@@ -31,11 +33,11 @@ Manual Install
 ### Generating a release
 
 To generate the final release,
-  
+
 	mvn install -Dmaven.test.skip=true
 
 Note: The parameter *-Dmaven.test.skip=true* will skip all test and generate the release.
-	
+
 ### Use the Library in your Java IDE
 
 Create Stubs for Eclipse
@@ -62,11 +64,11 @@ How to use
 		try {
 			response = restAPI.makeCall(params);
 			System.out.println(response.apiId);
-		} 
+		}
 		catch (PlivoException e) {
 			System.out.println(e.getMessage());
 		}
- 
+
 ### Check the [examples](https://github.com/plivo/plivo-examples-java)
 
 ### Note
