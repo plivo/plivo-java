@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.io.UnsupportedEncodingException;
 
 public class Utils {
 
@@ -55,29 +58,26 @@ public class Utils {
     return map;
   }
 
-  private final static String SIGNATURE_ALGORITHM = "HmacSHA1";
+  private final static String SIGNATURE_ALGORITHM = "HmacSHA256";
 
-  public static String computeSignature(String authId, String url, Map<String, String> params)
-    throws NoSuchAlgorithmException, InvalidKeyException {
-    if (!allNotNull(authId, url, params)) {
-      throw new IllegalArgumentException("authId, url and params must be non-null");
+  public static String computeSignature(String url, String nonce, String authToken)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    if (!allNotNull(url, nonce, authToken)) {
+      throw new IllegalArgumentException("url, nonce and authToken must be non-null");
     }
 
-    List<Entry<String, String>> entryList =  new ArrayList<Entry<String, String>>(params.entrySet());
-    entryList.sort((Comparator<Entry<String, String>>) (o1, o2) -> {
-      return o1.getKey().compareTo(o2.getKey());
-    });
+    URL parsedURL = new URL(url);
+    String baseUrl = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
 
-    String joinedParams = url.concat(entryList.stream().map(it -> it.getKey().concat(it.getValue())).collect(Collectors.joining("")));
-
-    SecretKeySpec signingKey = new SecretKeySpec(authId.getBytes(), SIGNATURE_ALGORITHM);
+    String payload = baseUrl + nonce;
+    SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
     Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
     mac.init(signingKey);
-    return new String(Base64.getEncoder().encode(mac.doFinal(joinedParams.getBytes())));
+    return new String(Base64.getEncoder().encode(mac.doFinal(payload.getBytes("UTF-8"))));
   }
 
-  public static boolean validateSignature(String authId, String url, Map<String, String> params, String signature)
-    throws InvalidKeyException, NoSuchAlgorithmException {
-    return computeSignature(authId, url, params).equals(signature);
+  public static boolean validateSignature(String url, String nonce, String signature, String authToken)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    return computeSignature(url, nonce, authToken).equals(signature);
   }
 }
