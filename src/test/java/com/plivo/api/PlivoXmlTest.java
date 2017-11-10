@@ -70,7 +70,9 @@ public class PlivoXmlTest {
       .children(
         p(new PreAnswer()
           .children(
-            p(new Speak("test"))
+            p(new Speak("test")),
+            p(new Play("http://url.to.media")),
+            p(new Wait())
           )),
         p(new Speak("test")),
         p(new Wait()),
@@ -84,7 +86,8 @@ public class PlivoXmlTest {
         p(new Record("http://action")),
         p(new GetDigits()
           .children(
-            p(new Speak("getDigits"))
+            p(new Speak("getDigits")),
+            p(new Play("http://url.to.media"))
           )),
         p(new Conference("test"))
       );

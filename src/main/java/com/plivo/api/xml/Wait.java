@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "Wait")
-public class Wait extends PlivoXml implements ResponseNestable {
+public class Wait extends PlivoXml implements ResponseNestable, PreAnswerNestable {
 
   @XmlAttribute
   private Integer length;
