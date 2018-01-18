@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.0](https://github.com/plivo/plivo-java/tree/v4.0.0) (2018-01-18)
+- No changes since Beta 3. Releasing in GA.
+
 ## [4.0.0-beta-3](https://github.com/plivo/plivo-java/tree/v4.0.0-beta-3) (2017-11-10)
 - Fix #31.
 - Support X-Plivo-Signature-V2. Dropped support for V1 signature.

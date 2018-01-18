@@ -1,13 +1,13 @@
 # plivo-java
 
-[![Build Status](https://travis-ci.org/plivo/plivo-java.svg?branch=4.0)](https://travis-ci.org/plivo/plivo-java)
+[![Build Status](https://travis-ci.org/plivo/plivo-java.svg?branch=master)](https://travis-ci.org/plivo/plivo-java)
 
 The Plivo Java SDK makes it simpler to integrate communications into your Java applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
 **Supported Java versions:** This SDK works with Java 1.8 & 1.9 i.e., JDK 8 and JDK 9. While using the SDK with Java 1.9, you may have to use the `--add-modules java.se.ee` flag to include modules that are no longer present by default.
 
 ## Installation
-You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/4.0.0-beta-1/plivo-java-4.0.0-beta-1.jar).
+You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/4.0.0/plivo-java-4.0.0.jar).
 
 If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
 
@@ -15,14 +15,16 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>4.0.0-beta-3</version>
+  <version>4.0.0</version>
 </dependency>
 ```
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:4.0.0-beta-3'
+compile 'com.plivo:plivo-java:4.0.0'
 ```
+
+Note: if you are already using Retrofit, exclude this SDK's dependency so there is no version conflict.
 
 ## Getting started
 
@@ -142,4 +144,4 @@ This generates the following XML:
 Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/java/introduction/overview) for more examples.
 
 ## Reporting issues
-Report any feedback or problems with this beta version by [opening an issue on Github](https://github.com/plivo/plivo-java/issues).
+Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-java/issues).
