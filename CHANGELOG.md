@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.1](https://github.com/plivo/plivo-java/tree/v4.0.1) (2018-02-20)
+- Fix #38. The SDK now supports using Subaccounts to make API calls.
+
 ## [4.0.0](https://github.com/plivo/plivo-java/tree/v4.0.0) (2018-01-18)
 - No changes since Beta 3. Releasing in GA.
 
