@@ -23,6 +23,7 @@ public class ApplicationTest extends BaseTest {
       .fallbackMethod("POST")
       .messageUrl("http://message.url")
       .messageMethod("POST")
+      .logIncomingMessage(true)
       .create();
 
     assertRequest("POST", "Application/");
