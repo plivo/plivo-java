@@ -22,10 +22,10 @@ import retrofit2.Response;
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public abstract class BaseRequest<T extends BaseResource> {
   @JsonIgnore
-  private PlivoClient plivoClient = Plivo.getClient();
+  protected PlivoClient plivoClient = Plivo.getClient();
 
   public PlivoClient client() {
-    return this.plivoClient;
+      return this.plivoClient;
   }
 
   public BaseRequest client(final PlivoClient plivoClient) {

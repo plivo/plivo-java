@@ -1,5 +1,6 @@
 package com.plivo.api.models.base;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import okhttp3.ResponseBody;
@@ -32,6 +33,13 @@ public abstract class Deleter<T extends BaseResource> extends BaseRequest<T> {
 
     handleResponse(response);
   }
+
+  @Override
+  public Deleter<T> client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 
   protected abstract Call<ResponseBody> obtainCall();
 }
