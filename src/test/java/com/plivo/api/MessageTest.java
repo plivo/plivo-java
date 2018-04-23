@@ -22,10 +22,30 @@ public class MessageTest extends BaseTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Message.creator("+911231231230", null, "text")
+      .client(client)
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void messageSendShouldFailWhenSameSrcDst() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
     Message.creator("+911231231230", Arrays.asList("+911231231230"), "test")
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void messageSendWithClientShouldFailWhenSameSrcDst() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Message.creator("+911231231230", Arrays.asList("+911231231230"), "test")
+      .client(client)
       .create();
   }
 
@@ -36,6 +56,20 @@ public class MessageTest extends BaseTest {
     expectResponse(fixtureName, 202);
 
     Message.creator("+911231231230", Arrays.asList("+911231231330"), "test")
+      .create();
+
+    assertRequest("POST", "Message/");
+  }
+
+  @Test
+  public void messageCreateWithClientShouldSucceed() throws Exception {
+    String fixtureName = "messageSendResponse.json";
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    expectResponse(fixtureName, 202);
+
+    Message.creator("+911231231230", Arrays.asList("+911231231330"), "test")
+      .client(client)
       .create();
 
     assertRequest("POST", "Message/");
@@ -57,6 +91,22 @@ public class MessageTest extends BaseTest {
   }
 
   @Test
+  public void messageGetWithClientShouldSucceed() throws Exception {
+    String fixtureName = "messageGetResponse.json";
+    String messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+
+    expectResponse(fixtureName, 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Message message = Message.getter(messageUuid).client(client).get();
+
+    assertEquals(message.getId(), message.getMessageUuid());
+
+    assertRequest("GET", "Message/%s/", messageUuid);
+    assertEquals(messageUuid, message.getMessageUuid());
+  }
+
+  @Test
   public void messageListShouldSucceed() throws Exception {
     String fixtureName = "messageListResponse.json";
 
@@ -65,6 +115,32 @@ public class MessageTest extends BaseTest {
     Message.lister()
       .messageDirection(MessageDirection.OUTBOUND)
       .messageState(MessageState.FAILED)
+      .list();
+
+
+    Map<String, String> params = new LinkedHashMap<>();
+    params.put("message_direction", "outbound");
+    params.put("message_state", "failed");
+
+//    RecordedRequest recordedRequest = server.takeRequest();
+//    assertEquals("GET", recordedRequest.getMethod());
+//    assertEquals(String.format("/Account/%s/Message/", authId),
+//      URI.create(recordedRequest.getPath()).getPath());
+
+    assertRequest("GET", "Message/", params);
+  }
+
+  @Test
+  public void messageListWithClientShouldSucceed() throws Exception {
+    String fixtureName = "messageListResponse.json";
+
+    expectResponse(fixtureName, 200);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Message.lister()
+      .messageDirection(MessageDirection.OUTBOUND)
+      .messageState(MessageState.FAILED)
+      .client(client)
       .list();
 
 
@@ -98,6 +174,24 @@ public class MessageTest extends BaseTest {
   }
 
   @Test
+  public void messageIteratorWithClientShouldSucceed() throws Exception {
+    String fixtureName = "messageListResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Map<String, String> params = new LinkedHashMap<>();
+
+    Iterator<Message> iter = Message.lister().client(client).iterator();
+    iter.hasNext();
+    iter.next();
+
+    params.put("limit", "20");
+    params.put("offset", "0");
+    assertRequest("GET", "Message/", params);
+  }
+
+  @Test
   public void messageIteratorShouldSucceed1() throws Exception {
     String fixtureName = "messageListResponse.json";
 
@@ -106,6 +200,24 @@ public class MessageTest extends BaseTest {
     Map<String, String> params = new LinkedHashMap<>();
 
     Iterator<Message> iter = Message.lister().iterator();
+    iter.next();
+    iter.hasNext();
+
+    params.put("limit", "20");
+    params.put("offset", "0");
+    assertRequest("GET", "Message/", params);
+  }
+
+  @Test
+  public void messageIteratorWithClientShouldSucceed1() throws Exception {
+    String fixtureName = "messageListResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Map<String, String> params = new LinkedHashMap<>();
+
+    Iterator<Message> iter = Message.lister().client(client).iterator();
     iter.next();
     iter.hasNext();
 
