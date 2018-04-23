@@ -118,6 +118,20 @@ public class ConferenceTest extends BaseTest {
   }
 
   @Test
+  public void conferenceMemberDeleteWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceMemberDeleteResponse.json", 204);
+    final String confId = "confId";
+    final String memberId = "memberId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Conference.memberHangupper(confId, memberId)
+      .client(client)
+      .hangup();
+
+    assertRequest("DELETE", "Conference/%s/Member/%s/", confId, memberId);
+  }
+
+  @Test
   public void conferenceMemberKickCreateShouldSucceed() throws Exception {
     expectResponse("conferenceMemberKickCreateResponse.json", 202);
     final String confId = "confId";
