@@ -188,6 +188,18 @@ public class ConferenceTest extends BaseTest {
     assertRequest("POST", "Conference/%s/Member/%s/Deaf/", confId, memberId);
   }
 
+  @Test
+  public void conferenceMemberDeafWithClientCreateShouldSucceed() throws Exception {
+    expectResponse("conferenceMemberDeafCreateResponse.json", 202);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    final String confId = "confId";
+    final String memberId = "memberId";
+
+    Conference.memberDeafer(confId, memberId).client(client)
+      .deaf();
+
+    assertRequest("POST", "Conference/%s/Member/%s/Deaf/", confId, memberId);
+  }
 
   @Test
   public void conferenceMemberSpeakDeleteShouldSucceed() throws Exception {
@@ -232,6 +244,18 @@ public class ConferenceTest extends BaseTest {
     final String memberId = "memberId";
 
     Conference.memberDeafStopper(confId, memberId)
+      .stop();
+
+    assertRequest("DELETE", "Conference/%s/Member/%s/Deaf/", confId, memberId);
+  }
+
+  @Test
+  public void conferenceMemberDeafDeleteWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceMemberDeafDeleteResponse.json", 204);
+    final String confId = "confId";
+    final String memberId = "memberId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Conference.memberDeafStopper(confId, memberId).client(client)
       .stop();
 
     assertRequest("DELETE", "Conference/%s/Member/%s/Deaf/", confId, memberId);
