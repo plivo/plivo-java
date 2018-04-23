@@ -29,11 +29,45 @@ public class ApplicationTest extends BaseTest {
   }
 
   @Test
+  public void applicationCreateWithClientShouldSucceed() throws Exception {
+    expectResponse("applicationCreateResponse.json", 201);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Application.creator("My App")
+      .answerUrl("http://test.answer.url/")
+      .answerMethod("POST")
+      .defaultEndpointApp(true)
+      .defaultNumberApp(true)
+      .fallbackAnswerUrl("http://fa.url")
+      .fallbackMethod("POST")
+      .messageUrl("http://message.url")
+      .messageMethod("POST")
+      .client(client)
+      .create();
+
+    assertRequest("POST", "Application/");
+  }
+
+  @Test
   public void applicationGetShouldSucceed() throws Exception {
     String appId = "appId";
     expectResponse("applicationGetResponse.json", 200);
 
     Application application = Application.getter(appId)
+      .get();
+
+    assertEquals(application.getId(), application.getAppId());
+
+    assertRequest("GET", "Application/%s/", appId);
+  }
+
+  @Test
+  public void applicationGetWithClientShouldSucceed() throws Exception {
+    String appId = "appId";
+    expectResponse("applicationGetResponse.json", 200);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Application application = Application.getter(appId).client(client)
       .get();
 
     assertEquals(application.getId(), application.getAppId());
@@ -51,6 +85,24 @@ public class ApplicationTest extends BaseTest {
     );
 
     Application.lister()
+      .list();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("GET", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Application/", authId), recordedRequest.getPath());
+  }
+
+  @Test
+  public void applicationListWithClientShouldSucceed() throws Exception {
+    String fixtureName = "applicationListResponse.json";
+
+    server.enqueue(new MockResponse()
+      .setResponseCode(200)
+      .setBody(loadFixture(fixtureName))
+    );
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Application.lister().client(client)
       .list();
 
     RecordedRequest recordedRequest = server.takeRequest();
@@ -77,6 +129,25 @@ public class ApplicationTest extends BaseTest {
       recordedRequest.getPath());
   }
 
+  @Test
+  public void applicationModifyWithClientShouldSucceed() throws Exception {
+    String fixtureName = "applicationModifyResponse.json";
+    String appId = "appId";
+
+    server.enqueue(new MockResponse()
+      .setResponseCode(200)
+      .setBody(loadFixture(fixtureName))
+    );
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Application.updater(appId).client(client)
+      .update();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("POST", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Application/%s/", authId, appId),
+      recordedRequest.getPath());
+  }
+
 //  @Test(expected = IllegalStateException.class)
 //  public void applicationModifyShouldFailWithNoChanges() throws Exception {
 //    Application application = new Application();
@@ -92,6 +163,23 @@ public class ApplicationTest extends BaseTest {
     );
 
     Application.deleter(appId)
+      .delete();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("DELETE", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Application/%s/", authId, appId),
+      recordedRequest.getPath());
+  }
+
+  @Test
+  public void applicationDeleteWithClientShouldSucceed() throws Exception {
+    String appId = "appId";
+
+    server.enqueue(new MockResponse()
+      .setResponseCode(204)
+    );
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Application.deleter(appId).client(client)
       .delete();
 
     RecordedRequest recordedRequest = server.takeRequest();
