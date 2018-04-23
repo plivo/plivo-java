@@ -255,11 +255,37 @@ public class CallTest extends BaseTest {
   }
 
   @Test
+  public void callRecordCreateWithClientShouldWork() throws Exception {
+    expectResponse("liveCallRecordCreateResponse.json", 202);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.recorder(callId)
+      .client(client)
+      .record();
+
+    assertRequest("POST", "Call/%s/Record/", callId);
+  }
+
+  @Test
   public void callRecordDeleteShouldWork() throws Exception {
     expectResponse("liveCallRecordDeleteResponse.json", 204);
     final String callId = "callId";
 
     Call.recordStopper(callId)
+      .recordStop();
+
+    assertRequest("DELETE", "Call/%s/Record/", callId);
+  }
+
+  @Test
+  public void callRecordDeleteWithClientShouldWork() throws Exception {
+    expectResponse("liveCallRecordDeleteResponse.json", 204);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.recordStopper(callId)
+      .client(client)
       .recordStop();
 
     assertRequest("DELETE", "Call/%s/Record/", callId);
@@ -277,11 +303,37 @@ public class CallTest extends BaseTest {
   }
 
   @Test
+  public void callSpeakCreateWithClientShouldWork() throws Exception {
+    expectResponse("liveCallSpeakCreateResponse.json", 202);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.speaker(callId, "test")
+      .client(client)
+      .speak();
+
+    assertRequest("POST", "Call/%s/Speak/", callId);
+  }
+
+  @Test
   public void callSpeakDeleteShouldWork() throws Exception {
     expectResponse("liveCallSpeakDeleteResponse.json", 204);
     final String callId = "callId";
 
     Call.speakStopper(callId)
+      .speakStop();
+
+    assertRequest("DELETE", "Call/%s/Speak/", callId);
+  }
+
+  @Test
+  public void callSpeakDeleteWithClientShouldWork() throws Exception {
+    expectResponse("liveCallSpeakDeleteResponse.json", 204);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.speakStopper(callId)
+      .client(client)
       .speakStop();
 
     assertRequest("DELETE", "Call/%s/Speak/", callId);
@@ -299,6 +351,19 @@ public class CallTest extends BaseTest {
   }
 
   @Test
+  public void callPlayCreateWithClientShouldWork() throws Exception {
+    expectResponse("liveCallPlayCreateResponse.json", 202);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.player(callId, Collections.singletonList("http://url.to.music"))
+      .client(client)
+      .play();
+
+    assertRequest("POST", "Call/%s/Play/", callId);
+  }
+
+  @Test
   public void callPlayDeleteShouldWork() throws Exception {
     expectResponse("liveCallPlayDeleteResponse.json", 204);
     final String callId = "callId";
@@ -308,4 +373,43 @@ public class CallTest extends BaseTest {
 
     assertRequest("DELETE", "Call/%s/Play/", callId);
   }
+
+  @Test
+  public void callPlayDeleteWithClientShouldWork() throws Exception {
+    expectResponse("liveCallPlayDeleteResponse.json", 204);
+    final String callId = "callId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.playStopper(callId)
+      .client(client)
+      .playStop();
+
+    assertRequest("DELETE", "Call/%s/Play/", callId);
+  }
+
+  @Test
+  public void callDTMFCreateShouldWork() throws Exception {
+    expectResponse("liveCallDtmfCreateResponse.json", 204);
+    final String callId = "callId";
+    final String digits = "1234";
+    Call.digitSender(callId, digits).sendDigits();
+
+    assertRequest("POST", "Call/%s/DTMF/", callId);
+  }
+
+  @Test
+  public void callDTMFCreateWithClientShouldWork() throws Exception {
+    expectResponse("liveCallDtmfCreateResponse.json", 204);
+    final String callId = "callId";
+    final String digits = "1234";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.digitSender(callId, digits)
+      .client(client)
+      .sendDigits();
+
+    assertRequest("POST", "Call/%s/DTMF/", callId);
+  }
+
+
 }

@@ -1,5 +1,6 @@
 package com.plivo.api.models.call.actions;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Deleter;
 import com.plivo.api.models.call.Call;
@@ -20,4 +21,11 @@ public class CallPlayDeleter extends Deleter<Call> {
   public void playStop() throws IOException, PlivoRestException {
     delete();
   }
+
+  @Override
+  public CallPlayDeleter client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 }
