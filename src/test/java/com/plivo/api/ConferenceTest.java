@@ -146,10 +146,21 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberPlayCreateResponse.json", 202);
     final String confId = "confId";
     final String memberId = "memberId";
-
     Conference.memberPlayer(confId, memberId, "http://www.example.com/")
       .play();
+    assertRequest("POST", "Conference/%s/Member/%s/Play/", confId, memberId);
+  }
 
+  @Test
+  public void conferenceMemberPlayCreateWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceMemberPlayCreateResponse.json", 202);
+    final String confId = "confId";
+    final String memberId = "memberId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Conference.memberPlayer(confId, memberId, "http://www.example.com/")
+      .client(client)
+      .play();
     assertRequest("POST", "Conference/%s/Member/%s/Play/", confId, memberId);
   }
 
