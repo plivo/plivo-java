@@ -18,11 +18,38 @@ public class ConferenceTest extends BaseTest {
   }
 
   @Test
+  public void conferenceListWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceListResponse.json", 200);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Conference.listGetter()
+      .client(client)
+      .get();
+
+    assertRequest("GET", "Conference/");
+  }
+
+  @Test
   public void conferenceGetShouldSucceed() throws Exception {
     expectResponse("conferenceGetResponse.json", 200);
     final String conferenceId = "conferenceId";
 
     Conference conference = Conference.getter(conferenceId)
+      .get();
+
+
+    assertEquals(conference.getId(), conference.getConferenceName());
+
+    assertRequest("GET", "Conference/%s/", conferenceId);
+  }
+
+  @Test
+  public void conferenceGetWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceGetResponse.json", 200);
+    final String conferenceId = "conferenceId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Conference conference = Conference.getter(conferenceId)
+      .client(client)
       .get();
 
 
@@ -43,11 +70,36 @@ public class ConferenceTest extends BaseTest {
   }
 
   @Test
+  public void conferenceDeleteWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceDeleteResponse.json", 204);
+    final String conferenceId = "conferenceId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Conference.deleter(conferenceId)
+      .client(client)
+      .delete();
+
+    assertRequest("DELETE", "Conference/%s/", conferenceId);
+  }
+
+  @Test
   public void conferenceDeleteAllShouldSucceed() throws Exception {
     expectResponse("conferenceDeleteAllResponse.json", 204);
     final String conferenceId = "conferenceId";
 
     Conference.allDeleter()
+      .delete();
+
+    assertRequest("DELETE", "Conference/");
+  }
+
+  @Test
+  public void conferenceDeleteAllWithClientShouldSucceed() throws Exception {
+    expectResponse("conferenceDeleteAllResponse.json", 204);
+    final String conferenceId = "conferenceId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Conference.allDeleter().client(client)
       .delete();
 
     assertRequest("DELETE", "Conference/");
