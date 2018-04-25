@@ -14,10 +14,34 @@ public class UtilsTest {
 
   @Test
   public void validateSignatureShouldWork() throws Exception {
-    assertEquals(false,
-      Utils.validateSignature("https://answer.url", "12345", "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc", "my_auth_token")
+    assertEquals(true,
+      Utils.validateSignature("https://answer.url", "12345", "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=", "my_auth_token")
     );
   }
+
+  @Test
+  public void validateSignatureWithTrailingSlashShouldWork() throws Exception {
+    assertEquals(
+      true,
+      Utils.validateSignature(
+        "https://answer.url/",
+        "12345",
+        "do1CXv+k99A6+B+eTcyqbxWlezFIxJ/1vz72787r37g=",
+        "my_auth_token")
+    );
+  }
+
+  public void validateSignatureWithPortShouldWork() throws Exception {
+    assertEquals(
+      true,
+      Utils.validateSignature(
+        "https://answer.url:8000",
+        "12345",
+        "Gm7Z7AGBmf5JpSHrtUmeofrGyA4xV0ZiV0rH8JPXWGU=",
+        "my_auth_token")
+    );
+  }
+
 
   @Test
   public void validateSignatureShouldFail() throws Exception {
