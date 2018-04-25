@@ -67,8 +67,11 @@ public class Utils {
     }
 
     URL parsedURL = new URL(url);
-    String baseUrl = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
-
+    String baseUrl = parsedURL.getProtocol() + "://" + parsedURL.getHost();
+    if (parsedURL.getPort() != -1) {
+      baseUrl += ":" + Integer.toString(parsedURL.getPort());
+    }
+    baseUrl += parsedURL.getPath();
     String payload = baseUrl + nonce;
     SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
     Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
