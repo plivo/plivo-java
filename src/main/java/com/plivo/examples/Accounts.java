@@ -12,8 +12,8 @@ import com.plivo.api.models.account.SubaccountCreateResponse;
 import java.io.IOException;
 
 public class Accounts {
-  private static final String authId = "MANTQ4ZMIZNWRLYZMXOD";
-  private static final String authToken = "ZmY5ZDUxNTU5N2VlOTEyM2NhOTRkNDdkM2UzZjg5";
+  private static final String authId = "MANTXXXXXXXXXXXXXXXX";
+  private static final String authToken = "ZMANTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
   private static PlivoClient client = new PlivoClient(authId, authToken);
 
   public static void main(String[] args) {
