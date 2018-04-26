@@ -25,6 +25,13 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
   protected Integer limit = null;
   protected Integer offset = null;
 
+  @Override
+  public Lister<T> client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
+
   /**
    * @return Used to display the number of results per page. The maximum number of results that can
    * be fetched is 20.

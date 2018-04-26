@@ -1,5 +1,6 @@
 package com.plivo.api.models.conference;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -48,4 +49,11 @@ public class ConferenceMemberSpeakCreator extends
   public ConferenceMemberActionResponse speak() throws IOException, PlivoRestException {
     return create();
   }
+
+  @Override
+  public ConferenceMemberSpeakCreator client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 }

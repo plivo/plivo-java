@@ -1,5 +1,6 @@
 package com.plivo.api.models.conference;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -19,4 +20,11 @@ public class ConferenceMemberDeleter extends ConferenceMemberDeleterAction {
   public void hangup() throws IOException, PlivoRestException {
     delete();
   }
+
+  @Override
+  public ConferenceMemberDeleter client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 }

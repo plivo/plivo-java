@@ -17,9 +17,29 @@ public class EndpointTest extends BaseTest {
     assertRequest("POST", "Endpoint/");
   }
 
+  @Test
+  public void endpointCreateWithClientShouldWork() throws Exception {
+    expectResponse("endpointCreateResponse.json", 201);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Endpoint.creator("username", "password", "alias")
+      .client(client)
+      .create();
+
+    assertRequest("POST", "Endpoint/");
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void endpointCreateShouldFailWithoutAllParams() throws Exception {
     Endpoint.creator(null, null, null)
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void endpointCreateWithClientShouldFailWithoutAllParams() throws Exception {
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Endpoint.creator(null, null, null)
+      .client(client)
       .create();
   }
 
@@ -36,11 +56,36 @@ public class EndpointTest extends BaseTest {
     assertRequest("GET", "Endpoint/%s/", endpointId);
   }
 
+  @Test
+  public void endpointGetWithClientShouldWork() throws Exception {
+    expectResponse("endpointGetResponse.json", 200);
+    final String endpointId = "endpointId";
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Endpoint endpoint = Endpoint.getter(endpointId)
+      .client(client)
+      .get();
+
+    assertEquals(endpoint.getId(), endpoint.getEndpointId());
+
+    assertRequest("GET", "Endpoint/%s/", endpointId);
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void endpointGetNullIdShouldThrow() throws Exception {
     expectResponse("endpointGetResponse.json", 200);
 
     Endpoint.getter(null)
+      .get();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void endpointGetNullIdWithClientShouldThrow() throws Exception {
+    expectResponse("endpointGetResponse.json", 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Endpoint.getter(null)
+      .client(client)
       .get();
   }
 
@@ -53,10 +98,30 @@ public class EndpointTest extends BaseTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void endpointUpdateNullIdWithClientShouldThrow() throws Exception {
+    expectResponse("endpointUpdateResponse.json", 202);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Endpoint.updater(null)
+      .client(client)
+      .update();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void endpointDeleteNullIdShouldThrow() throws Exception {
     expectResponse(null, 204);
 
     Endpoint.deleter(null)
+      .delete();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void endpointDeleteNullIdWithClientShouldThrow() throws Exception {
+    expectResponse(null, 204);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Endpoint.deleter(null)
+      .client(client)
       .delete();
   }
 
@@ -70,6 +135,17 @@ public class EndpointTest extends BaseTest {
     assertRequest("GET", "Endpoint/");
   }
 
+  @Test
+  public void endpointListWithClientShouldWork() throws Exception {
+    expectResponse("endpointListResponse.json", 200);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Endpoint.lister()
+      .client(client)
+      .list();
+
+    assertRequest("GET", "Endpoint/");
+  }
 
   @Test
   public void endpointUpdateShouldWork() throws Exception {
@@ -84,11 +160,38 @@ public class EndpointTest extends BaseTest {
   }
 
   @Test
-  public void endpointDeleteShouldWork() throws Exception {
+  public void endpointUpdateWithClientShouldWork() throws Exception {
+    expectResponse("endpointUpdateResponse.json", 200);
+    final String endpointId = "endpointId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Endpoint.updater(endpointId)
+      .alias("test")
+      .client(client)
+      .update();
+
+    assertRequest("POST", "Endpoint/%s/", endpointId);
+  }
+
+  @Test
+  public void endpointDeleteWithClientShouldWork() throws Exception {
     expectResponse(null, 204);
     final String endpointId = "endpointId";
 
     Endpoint.deleter(endpointId)
+      .delete();
+
+    assertRequest("DELETE", "Endpoint/%s/", endpointId);
+  }
+
+  @Test
+  public void endpointDeleteShouldWork() throws Exception {
+    expectResponse(null, 204);
+    final String endpointId = "endpointId";
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Endpoint.deleter(endpointId)
+      .client(client)
       .delete();
 
     assertRequest("DELETE", "Endpoint/%s/", endpointId);

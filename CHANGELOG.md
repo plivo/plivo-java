@@ -1,5 +1,13 @@
 # Change Log
 
+## [4.0.2](https://github.com/plivo/plivo-java/tree/v4.0.2) (2018-04-25)
+- Fix validate Signature. Supporting URL with Port.
+- Add .create(), .get(), .delete(), and other actions to Resource.client(client).
+- Add call_state parameter to Call resource.
+- Add test classes for DTMF send digits.
+- Upgrade gradle to fix travis build.
+- Add Examples.
+
 ## [4.0.1](https://github.com/plivo/plivo-java/tree/v4.0.1) (2018-02-20)
 - Fix #38. The SDK now supports using Subaccounts to make API calls.
 

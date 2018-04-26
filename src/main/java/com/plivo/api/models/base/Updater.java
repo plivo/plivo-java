@@ -2,6 +2,7 @@ package com.plivo.api.models.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -31,6 +32,13 @@ public abstract class Updater<T extends BaseResponse> extends BaseRequest {
 
     return response.body();
   }
+
+  @Override
+  public Updater<T> client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 
   protected abstract Call<T> obtainCall();
 }

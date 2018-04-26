@@ -18,6 +18,7 @@ public class Call extends BaseResource {
   private Long billedDuration;
   private CallDirection callDirection;
   private Long callDuration;
+  private String callState;
   private String callUuid;
   private String endTime;
   private String fromNumber;
@@ -98,6 +99,10 @@ public class Call extends BaseResource {
 
   public Long getCallDuration() {
     return callDuration;
+  }
+
+  public String getcallState() {
+    return callState;
   }
 
   public String getCallUuid() {

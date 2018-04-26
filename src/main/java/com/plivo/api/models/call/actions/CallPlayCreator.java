@@ -1,5 +1,6 @@
 package com.plivo.api.models.call.actions;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.models.call.LegSpecifier;
@@ -75,4 +76,12 @@ public class CallPlayCreator extends Creator<CallPlayCreateResponse> {
   public CallPlayCreateResponse play() throws IOException, PlivoRestException {
     return create();
   }
+
+  @Override
+  public CallPlayCreator client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
+
 }

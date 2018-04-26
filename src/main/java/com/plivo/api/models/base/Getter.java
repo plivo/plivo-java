@@ -1,5 +1,6 @@
 package com.plivo.api.models.base;
 
+import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -33,6 +34,13 @@ public abstract class Getter<T extends BaseResource> extends BaseRequest<T> {
 
     return response.body();
   }
+
+  @Override
+  public Getter<T> client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
+    return this;
+  }
+
 
   protected abstract Call<T> obtainCall();
 }
