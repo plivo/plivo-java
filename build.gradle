@@ -91,6 +91,17 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
   from javadoc.destinationDir
 }
 
+task fatJar(type: Jar) {
+    manifest {
+      attributes 'Implementation-Title': 'Plivo fat jar',
+      'Implementation-Version': version
+    }
+    archiveName = "plivo-java-${version}-jar-with-dependencies.jar"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+    print("Created fatjar: ${destinationDir}/${archiveName}")
+}
+
 task createPom << {
   pom {
     project {
