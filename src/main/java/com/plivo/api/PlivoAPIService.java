@@ -1,70 +1,46 @@
 package com.plivo.api;
 
-import com.plivo.api.models.account.Account;
-import com.plivo.api.models.account.AccountUpdateResponse;
-import com.plivo.api.models.account.AccountUpdater;
-import com.plivo.api.models.account.Subaccount;
-import com.plivo.api.models.account.SubaccountCreateResponse;
-import com.plivo.api.models.account.SubaccountCreator;
-import com.plivo.api.models.account.SubaccountUpdateResponse;
-import com.plivo.api.models.account.SubaccountUpdater;
-import com.plivo.api.models.application.Application;
-import com.plivo.api.models.application.ApplicationCreateResponse;
-import com.plivo.api.models.application.ApplicationCreator;
-import com.plivo.api.models.application.ApplicationUpdateResponse;
-import com.plivo.api.models.application.ApplicationUpdater;
+import com.plivo.api.models.account.*;
+import com.plivo.api.models.address.*;
+import com.plivo.api.models.application.*;
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.call.CallCreateResponse;
-import com.plivo.api.models.call.CallCreator;
-import com.plivo.api.models.call.CallUpdateResponse;
-import com.plivo.api.models.call.CallUpdater;
-import com.plivo.api.models.call.LiveCall;
-import com.plivo.api.models.call.LiveCallListResponse;
-import com.plivo.api.models.call.actions.CallDtmfCreateResponse;
-import com.plivo.api.models.call.actions.CallDtmfCreator;
-import com.plivo.api.models.call.actions.CallPlayCreateResponse;
-import com.plivo.api.models.call.actions.CallPlayCreator;
-import com.plivo.api.models.call.actions.CallRecordCreateResponse;
-import com.plivo.api.models.call.actions.CallRecordCreator;
-import com.plivo.api.models.call.actions.CallSpeakCreateResponse;
-import com.plivo.api.models.call.actions.CallSpeakCreator;
-import com.plivo.api.models.conference.Conference;
-import com.plivo.api.models.conference.ConferenceList;
-import com.plivo.api.models.conference.ConferenceMemberActionResponse;
-import com.plivo.api.models.conference.ConferenceMemberPlayCreator;
-import com.plivo.api.models.conference.ConferenceMemberSpeakCreator;
-import com.plivo.api.models.conference.ConferenceRecordCreateResponse;
-import com.plivo.api.models.endpoint.Endpoint;
-import com.plivo.api.models.endpoint.EndpointCreateResponse;
-import com.plivo.api.models.endpoint.EndpointCreator;
-import com.plivo.api.models.endpoint.EndpointUpdateResponse;
-import com.plivo.api.models.endpoint.EndpointUpdater;
+import com.plivo.api.models.call.*;
+import com.plivo.api.models.call.actions.*;
+import com.plivo.api.models.conference.*;
+import com.plivo.api.models.endpoint.*;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
 import com.plivo.api.models.number.Number;
-import com.plivo.api.models.number.NumberCreateResponse;
-import com.plivo.api.models.number.NumberCreator;
-import com.plivo.api.models.number.NumberUpdateResponse;
-import com.plivo.api.models.number.NumberUpdater;
-import com.plivo.api.models.number.PhoneNumber;
-import com.plivo.api.models.number.PhoneNumberCreateResponse;
-import com.plivo.api.models.number.PhoneNumberCreator;
+import com.plivo.api.models.number.*;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
-import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
+import retrofit2.http.*;
+
+import java.util.Map;
 
 public interface PlivoAPIService {
+
+  // Address
+  @POST("Account/{authId}/Verification/Address/")
+  Call<AddressCreateResponse> addressCreate(@Path("authId") String authId,
+                                                @Body AddressCreator address);
+
+  @GET("Account/{authId}/Verification/Address/")
+  Call<ListResponse<Address>> addressList(@Path("authId") String authId,
+                                                  @QueryMap Map<String, Object> addressListRequest);
+
+  @GET("Account/{authId}/Verification/Address/{addressId}/")
+  Call<Address> addressGet(@Path("authId") String authId, @Path("addressId") String addressId);
+
+  @POST("Account/{authId}/Verification/Address/{addressId}/")
+  Call<AddressUpdateResponse> addressUpdate(@Path("authId") String authId,
+                                                @Path("addressId") String addressId, @Body AddressUpdater address);
+
+  @DELETE("Account/{authId}/Verification/Address/{addressId}/")
+  Call<ResponseBody> addressDelete(@Path("authId") String authId, @Path("addressId") String addressId);
 
   // Application
   @POST("Account/{authId}/Application/")
@@ -325,4 +301,5 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/Request/{requestUuid}/")
   Call<ResponseBody> requestDelete(@Path("authId") String authId, @Path("requestUuid") String requestUuid);
+
 }
