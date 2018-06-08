@@ -1,8 +1,10 @@
 package com.plivo.api.models.address;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
 // FIX ME : documentation
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address extends BaseResource {
 
   private String id;
