@@ -3,6 +3,9 @@ package com.plivo.api.models.identity;
 import com.plivo.api.models.base.Creator;
 import retrofit2.Call;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class IdentityCreator extends Creator<IdentityCreateResponse> {
 
   private String countryIso;
@@ -30,18 +33,18 @@ public class IdentityCreator extends Creator<IdentityCreateResponse> {
   private String file;
 
   public IdentityCreator(String countryIso, String salutation, String firstName, String lastName,
-                         String birthPlace, String birthDate, String nationality, String idNationality,
-                         String idIssueDate, String businessName, String idType, String idNumber,
+                         String birthPlace, LocalDate birthDate, String nationality, String idNationality,
+                         LocalDate idIssueDate, String businessName, String idType, String idNumber,
                          String addressLine1, String addressLine2, String city, String region, String postalCode ){
     this.countryIso = countryIso;
     this.salutation = salutation;
     this.firstName = firstName;
     this.lastName = lastName;
     this.birthPlace = birthPlace;
-    this.birthDate = birthDate;
+    this.birthDate = birthDate.format(DateTimeFormatter.ISO_DATE);
     this.nationality = nationality;
     this.idNationality = idNationality;
-    this.idIssueDate = idIssueDate;
+    this.idIssueDate = idIssueDate.format(DateTimeFormatter.ISO_DATE);;
     this.businessName = businessName;
     this.idType = idType;
     this.idNumber = idNumber;

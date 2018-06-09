@@ -3,6 +3,8 @@ package com.plivo.api.models.identity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
+import java.time.LocalDate;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Identity extends BaseResource {
 
@@ -34,8 +36,8 @@ public class Identity extends BaseResource {
   private String url;
 
   public static IdentityCreator creator(String countryIso, String salutation, String firstName, String lastName,
-                                        String birthPlace, String birthDate, String nationality, String idNationality,
-                                        String idIssueDate, String businessName, String idType, String idNumber,
+                                        String birthPlace, LocalDate birthDate, String nationality, String idNationality,
+                                        LocalDate idIssueDate, String businessName, String idType, String idNumber,
                                         String addressLine1, String addressLine2, String city, String region, String postalCode) {
     return new IdentityCreator(countryIso, salutation, firstName, lastName, birthPlace, birthDate,
       nationality, idNationality, idIssueDate, businessName, idType, idNumber, addressLine1, addressLine2,

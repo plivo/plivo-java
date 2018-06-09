@@ -8,7 +8,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
 
   private String countryIso;
   private String alias;
-  private String salutation;
+  private Salutation salutation;
   private String firstName;
   private String lastName;
   private String addressLine1;
@@ -24,7 +24,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return countryIso;
   }
 
-  public String salutation() {
+  public Salutation salutation() {
     return salutation;
   }
 
@@ -68,7 +68,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return addressProofType;
   }
 
-  public AddressCreator(String countryIso, String salutation, String firstName, String lastName,
+  public AddressCreator(String countryIso, Salutation salutation, String firstName, String lastName,
                         String addressLine1, String addressLine2, String city, String region, String postalCode) {
     if (!Utils.allNotNull(countryIso, salutation, firstName, lastName,
       addressLine1, addressLine2, city, region, postalCode)) {
@@ -96,7 +96,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return this;
   }
 
-  public AddressCreator salutation(String salutation) {
+  public AddressCreator salutation(Salutation salutation) {
     this.salutation = salutation;
     return this;
   }

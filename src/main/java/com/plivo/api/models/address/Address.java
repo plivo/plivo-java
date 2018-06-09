@@ -9,7 +9,7 @@ public class Address extends BaseResource {
   private String id;
   private String countryIso;
   private String alias;
-  private String salutation;
+  private Salutation salutation;
   private String firstName;
   private String lastName;
   private String addressLine1;
@@ -27,7 +27,7 @@ public class Address extends BaseResource {
   private AddressProofType addressProofType;
 
   public static AddressCreator creator(
-    String countryIso, String salutation, String firstName, String lastName,
+    String countryIso, Salutation salutation, String firstName, String lastName,
     String addressLine1, String addressLine2, String city, String region, String postalCode) {
     return new AddressCreator(countryIso, salutation, firstName, lastName, addressLine1, addressLine2, city, region, postalCode);
   }
@@ -62,7 +62,7 @@ public class Address extends BaseResource {
     return alias;
   }
 
-  public String getSalutation() {
+  public Salutation getSalutation() {
     return salutation;
   }
 

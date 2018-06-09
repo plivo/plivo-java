@@ -1,6 +1,7 @@
 package com.plivo.api;
 
 import com.plivo.api.models.address.Address;
+import com.plivo.api.models.address.Salutation;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
 import org.junit.Test;
@@ -14,7 +15,7 @@ public class AddressTest extends BaseTest {
     expectResponse("addressCreateResponse.json", 201);
 
     Address.creator("FR",
-      "Mr",
+      Salutation.MR,
       "Bruce",
       "Wayne",
       "128",
@@ -30,10 +31,11 @@ public class AddressTest extends BaseTest {
   @Test
   public void addressCreateWithClientShouldSucceed() throws Exception {
     expectResponse("addressCreateResponse.json", 201);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Address.creator("FR",
-      "Mr",
+      Salutation.MR,
       "Bruce",
       "Wayne",
       "128",
@@ -61,7 +63,8 @@ public class AddressTest extends BaseTest {
   public void addressGetWithClientShouldSucceed() throws Exception {
     expectResponse("addressGetResponse.json", 200);
     String addressId = "myaddress";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Address.getter(addressId).client(client).get();
 
@@ -73,42 +76,45 @@ public class AddressTest extends BaseTest {
     String fixtureName  = "addressListResponse.json";
 
     server.enqueue(new MockResponse()
-      .setResponseCode(200)
-      .setBody(loadFixture(fixtureName))
+          .setResponseCode(200)
+          .setBody(loadFixture(fixtureName))
     );
 
     Address.lister().list();
 
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("GET", recordedRequest.getMethod());
-    assertEquals(String.format("/Account/%s/Verification/Address/", authId ), recordedRequest.getPath());
+    assertEquals(String.format("/Account/%s/Verification/Address/", authId ),
+          recordedRequest.getPath());
   }
 
   @Test
   public void addressListWithClientShouldSucceed() throws Exception {
     String fixtureName  = "addressListResponse.json";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     server.enqueue(new MockResponse()
-      .setResponseCode(200)
-      .setBody(loadFixture(fixtureName))
+          .setResponseCode(200)
+          .setBody(loadFixture(fixtureName))
     );
 
     Address.lister().client(client).list();
 
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("GET", recordedRequest.getMethod());
-    assertEquals(String.format("/Account/%s/Verification/Address/", authId ), recordedRequest.getPath());
+    assertEquals(String.format("/Account/%s/Verification/Address/", authId ),
+          recordedRequest.getPath());
   }
 
   @Test
   public void addressModifyShouldSucceed() throws Exception {
-    String fixtureName  = "addressModifyResponse.json";
+    String fixtureName = "addressModifyResponse.json";
     String addressId = "myaddressId";
 
     server.enqueue(new MockResponse()
-      .setResponseCode(200)
-      .setBody(loadFixture(fixtureName))
+          .setResponseCode(200)
+          .setBody(loadFixture(fixtureName))
     );
 
     Address.updater(addressId).update();
@@ -116,8 +122,7 @@ public class AddressTest extends BaseTest {
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("POST", recordedRequest.getMethod());
     assertEquals(String.format("/Account/%s/Verification/Address/%s/", authId, addressId),
-      recordedRequest.getPath());
-
+          recordedRequest.getPath());
   }
 
   @Test
@@ -125,11 +130,12 @@ public class AddressTest extends BaseTest {
     String fixtureName  = "addressModifyResponse.json";
     String addressId = "myaddressId";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     server.enqueue(new MockResponse()
-      .setResponseCode(200)
-      .setBody(loadFixture(fixtureName))
+          .setResponseCode(200)
+          .setBody(loadFixture(fixtureName))
     );
 
     Address.updater(addressId).client(client).update();
@@ -137,7 +143,7 @@ public class AddressTest extends BaseTest {
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("POST", recordedRequest.getMethod());
     assertEquals(String.format("/Account/%s/Verification/Address/%s/", authId, addressId),
-      recordedRequest.getPath());
+          recordedRequest.getPath());
   }
 
   @Test
@@ -145,7 +151,7 @@ public class AddressTest extends BaseTest {
     String addressId = "myaddress";
 
     server.enqueue(new MockResponse()
-      .setResponseCode(204)
+          .setResponseCode(204)
     );
 
     Address.deleter(addressId)
@@ -154,16 +160,17 @@ public class AddressTest extends BaseTest {
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("DELETE", recordedRequest.getMethod());
     assertEquals(String.format("/Account/%s/Verification/Address/%s/", authId, addressId),
-      recordedRequest.getPath());
+          recordedRequest.getPath());
   }
 
   @Test
   public void addressDeleteWithClientShouldSucceed() throws Exception {
     String addressId = "myaddress";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     server.enqueue(new MockResponse()
-      .setResponseCode(204)
+          .setResponseCode(204)
     );
 
     Address.deleter(addressId).client(client)
@@ -172,6 +179,6 @@ public class AddressTest extends BaseTest {
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("DELETE", recordedRequest.getMethod());
     assertEquals(String.format("/Account/%s/Verification/Address/%s/", authId, addressId),
-      recordedRequest.getPath());
+          recordedRequest.getPath());
   }
 }
