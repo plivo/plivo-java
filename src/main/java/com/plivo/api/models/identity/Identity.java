@@ -3,7 +3,6 @@ package com.plivo.api.models.identity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
-// FIX ME: documentation
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Identity extends BaseResource {
 
@@ -34,106 +33,6 @@ public class Identity extends BaseResource {
   private String subaccount;
   private String url;
 
-  public String getCountryIso() {
-    return countryIso;
-  }
-
-  public String getAlias() {
-    return alias;
-  }
-
-  public String getSalutation() {
-    return salutation;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getBirthPlace() {
-    return birthPlace;
-  }
-
-  public String getBirthDate() {
-    return birthDate;
-  }
-
-  public String getNationality() {
-    return nationality;
-  }
-
-  public String getIdNationality() {
-    return idNationality;
-  }
-
-  public String getIdIssueDate() {
-    return idIssueDate;
-  }
-
-  public String getBusinessName() {
-    return businessName;
-  }
-
-  public String getIdType() {
-    return idType;
-  }
-
-  public String getIdNumber() {
-    return idNumber;
-  }
-
-  public String getAddressLine1() {
-    return addressLine1;
-  }
-
-  public String getAddressLine2() {
-    return addressLine2;
-  }
-
-  public String getCity() {
-    return city;
-  }
-
-  public String getRegion() {
-    return region;
-  }
-
-  public String getPostalCode() {
-    return postalCode;
-  }
-
-  public String getFiscalIdentificationCode() {
-    return fiscalIdentificationCode;
-  }
-
-  public String getStreetCode() {
-    return streetCode;
-  }
-
-  public String getMunicipalCode() {
-    return municipalCode;
-  }
-
-  public String getValidationStatus() {
-    return validationStatus;
-  }
-
-  public String getVerificationStatus() {
-    return verificationStatus;
-  }
-
-  public String getSubaccount() {
-    return subaccount;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
   public static IdentityCreator creator(String countryIso, String salutation, String firstName, String lastName,
                                         String birthPlace, String birthDate, String nationality, String idNationality,
                                         String idIssueDate, String businessName, String idType, String idNumber,
@@ -157,6 +56,180 @@ public class Identity extends BaseResource {
 
   public static IdentityLister lister(){
     return new IdentityLister();
+  }
+
+  /**
+   * @return Country ISO 2 code.
+   */
+  public String getCountryIso() {
+    return countryIso;
+  }
+
+  /**
+   * @return Alias name of the address.
+   */
+  public String getAlias() {
+    return alias;
+  }
+
+  public String getSalutation() {
+    return salutation;
+  }
+
+  /**
+   * @return First name of the user for whom the identity is created.
+   */
+  public String getFirstName() {
+    return firstName;
+  }
+
+  /**
+   * @return Last name of the user for whom the identity is created.
+   */
+  public String getLastName() {
+    return lastName;
+  }
+
+  /**
+   * @return Birthplace of the user for whom the identity is created.
+   */
+  public String getBirthPlace() {
+    return birthPlace;
+  }
+
+  /**
+   * @return Birth date in yyyy-mm-dd format of the user for whom the identity is created.
+   */
+  public String getBirthDate() {
+    return birthDate;
+  }
+
+  /**
+   * @return Nationality of the user for whom the identity is created.
+   */
+  public String getNationality() {
+    return nationality;
+  }
+
+  /**
+   * @return Nationality mentioned in the identity proof.
+   */
+  public String getIdNationality() {
+    return idNationality;
+  }
+
+  /**
+   * @return Issue date in yyyy-mm-dd mentioned in the identity proof.
+   */
+  public String getIdIssueDate() {
+    return idIssueDate;
+  }
+
+  /**
+   * @return Business name of the user for whom the identity is created.
+   */
+  public String getBusinessName() {
+    return businessName;
+  }
+
+  /**
+   * @return Building name/number
+   */
+  public String getIdType() {
+    return idType;
+  }
+
+  /**
+   * @return The unique number on the identifier.
+   */
+  public String getIdNumber() {
+    return idNumber;
+  }
+
+  /**
+   * @return Building name/number
+   */
+  public String getAddressLine1() {
+    return addressLine1;
+  }
+
+  /**
+   * @return The street name/number of the address
+   */
+  public String getAddressLine2() {
+    return addressLine2;
+  }
+
+  /**
+   * @return The city of the address for which the address proof is created
+   */
+  public String getCity() {
+    return city;
+  }
+
+  /**
+   * @return The region of the address for which the address proof is created
+   */
+  public String getRegion() {
+    return region;
+  }
+
+  /**
+   * @return The postal code of the address that is being created
+   */
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+  /**
+   * @return The code is available for businesses alone and will be available for spain mobile numbers.
+   *         If not present, return null
+   */
+  public String getFiscalIdentificationCode() {
+    return fiscalIdentificationCode;
+  }
+
+  /**
+    * @return Street code of the address. Return null if not present.
+   */
+  public String getStreetCode() {
+    return streetCode;
+  }
+
+  /**
+   * @return Municipal code of the address. Return null if not present.
+   */
+  public String getMunicipalCode() {
+    return municipalCode;
+  }
+
+  /**
+   * @return Can take the following values: pending. accepted, rejected, null
+   */
+  public String getValidationStatus() {
+    return validationStatus;
+  }
+
+  /**
+   * @return Can take the following values: pending. verified, rejected
+   */
+  public String getVerificationStatus() {
+    return verificationStatus;
+  }
+
+  /**
+   * @return The link to the subaccount resource associated with the application.
+   *         If the application belongs to the main account, this field will be null.
+   */
+  public String getSubaccount() {
+    return subaccount;
+  }
+
+  /**
+   * @return A plivo wrapped link to the document stored in the Plivo CDN.
+   */
+  public String getUrl() {
+    return url;
   }
 
   @Override

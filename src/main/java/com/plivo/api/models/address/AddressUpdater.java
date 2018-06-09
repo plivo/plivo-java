@@ -3,7 +3,6 @@ package com.plivo.api.models.address;
 import com.plivo.api.models.base.Updater;
 import retrofit2.Call;
 
-// FIX ME : documentation
 public class AddressUpdater extends Updater<AddressUpdateResponse> {
 
   private String countryIso;

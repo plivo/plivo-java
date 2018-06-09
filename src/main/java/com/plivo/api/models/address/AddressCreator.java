@@ -4,7 +4,6 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-// FIX ME : documentation
 public class AddressCreator extends Creator<AddressCreateResponse> {
 
   private String countryIso;

@@ -96,7 +96,6 @@ public class IdentityTest extends BaseTest {
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("GET", recordedRequest.getMethod());
     assertEquals(String.format("/Account/%s/Verification/Identity/", authId), recordedRequest.getPath());
-
   }
 
   @Test

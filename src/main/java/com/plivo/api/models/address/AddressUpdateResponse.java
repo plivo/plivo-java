@@ -2,7 +2,6 @@ package com.plivo.api.models.address;
 
 import com.plivo.api.models.base.BaseResponse;
 
-// FIX ME : documentation
 public class AddressUpdateResponse extends BaseResponse {
   private String appId;
 
