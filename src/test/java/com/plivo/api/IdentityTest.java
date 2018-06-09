@@ -1,5 +1,8 @@
 package com.plivo.api;
 
+import static com.plivo.api.TestUtil.loadFixture;
+import static junit.framework.TestCase.assertEquals;
+
 import com.plivo.api.models.identity.Identity;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
@@ -7,9 +10,6 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
-
-import static com.plivo.api.TestUtil.loadFixture;
-import static junit.framework.TestCase.assertEquals;
 
 public class IdentityTest extends BaseTest {
   @Test
