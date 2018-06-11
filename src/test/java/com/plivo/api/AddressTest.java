@@ -1,13 +1,12 @@
 package com.plivo.api;
 
-import static com.plivo.api.TestUtil.loadFixture;
-import static junit.framework.TestCase.assertEquals;
-
 import com.plivo.api.models.address.Address;
-import com.plivo.api.models.address.Salutation;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
 import org.junit.Test;
+
+import static com.plivo.api.TestUtil.loadFixture;
+import static junit.framework.TestCase.assertEquals;
 
 public class AddressTest extends BaseTest {
   @Test
@@ -15,7 +14,7 @@ public class AddressTest extends BaseTest {
     expectResponse("addressCreateResponse.json", 201);
 
     Address.creator("FR",
-      Salutation.MR,
+      "Mr",
       "Bruce",
       "Wayne",
       "128",
@@ -35,7 +34,7 @@ public class AddressTest extends BaseTest {
           "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Address.creator("FR",
-      Salutation.MR,
+      "Ms",
       "Bruce",
       "Wayne",
       "128",

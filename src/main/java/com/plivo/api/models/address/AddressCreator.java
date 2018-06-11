@@ -8,7 +8,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
 
   private String countryIso;
   private String alias;
-  private Salutation salutation;
+  private String salutation;
   private String firstName;
   private String lastName;
   private String addressLine1;
@@ -18,13 +18,13 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
   private String postalCode;
   private String file;
   private Boolean autoCorrectAddress;
-  private AddressProofType addressProofType;
+  private String addressProofType;
 
   public String countryIso() {
     return countryIso;
   }
 
-  public Salutation salutation() {
+  public String salutation() {
     return salutation;
   }
 
@@ -64,11 +64,11 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return autoCorrectAddress;
   }
 
-  public AddressProofType addressProofType() {
+  public String addressProofType() {
     return addressProofType;
   }
 
-  public AddressCreator(String countryIso, Salutation salutation, String firstName, String lastName,
+  public AddressCreator(String countryIso, String salutation, String firstName, String lastName,
                         String addressLine1, String addressLine2, String city, String region, String postalCode) {
     if (!Utils.allNotNull(countryIso, salutation, firstName, lastName,
       addressLine1, addressLine2, city, region, postalCode)) {
@@ -96,7 +96,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return this;
   }
 
-  public AddressCreator salutation(Salutation salutation) {
+  public AddressCreator salutation(String salutation) {
     this.salutation = salutation;
     return this;
   }
@@ -146,7 +146,7 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
     return this;
   }
 
-  public AddressCreator addressProofType(AddressProofType addressProofType) {
+  public AddressCreator addressProofType(String addressProofType) {
     this.addressProofType = addressProofType;
     return this;
   }

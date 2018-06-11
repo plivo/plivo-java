@@ -9,7 +9,7 @@ public class Address extends BaseResource {
   private String id;
   private String countryIso;
   private String alias;
-  private Salutation salutation;
+  private String salutation;
   private String firstName;
   private String lastName;
   private String addressLine1;
@@ -24,10 +24,10 @@ public class Address extends BaseResource {
   private String verificationStatus;
   private String subaccount;
   private String url;
-  private AddressProofType addressProofType;
+  private String addressProofType;
 
   public static AddressCreator creator(
-    String countryIso, Salutation salutation, String firstName, String lastName,
+    String countryIso, String salutation, String firstName, String lastName,
     String addressLine1, String addressLine2, String city, String region, String postalCode) {
     return new AddressCreator(countryIso, salutation, firstName, lastName, addressLine1, addressLine2, city, region, postalCode);
   }
@@ -62,7 +62,7 @@ public class Address extends BaseResource {
     return alias;
   }
 
-  public Salutation getSalutation() {
+  public String getSalutation() {
     return salutation;
   }
 
@@ -168,7 +168,7 @@ public class Address extends BaseResource {
   /**
    * @return The type of document that is provided as address proof.
    */
-  public AddressProofType getAddressProofType() {
+  public String getAddressProofType() {
     return addressProofType;
   }
 
