@@ -74,6 +74,7 @@ public class Identity extends BaseResource {
     return alias;
   }
 
+  // FIXME: This has to be an enum, plivoClient current implementaion breaking upper case enums
   public String getSalutation() {
     return salutation;
   }

@@ -62,6 +62,7 @@ public class Address extends BaseResource {
     return alias;
   }
 
+  // FIXME: This has to be an enum, plivoClient current implementaion breaking upper case enums
   public String getSalutation() {
     return salutation;
   }
@@ -168,6 +169,7 @@ public class Address extends BaseResource {
   /**
    * @return The type of document that is provided as address proof.
    */
+  // FIXME: This has to be an enum, some invalid values in DB needs to be fixed before making the change
   public String getAddressProofType() {
     return addressProofType;
   }
