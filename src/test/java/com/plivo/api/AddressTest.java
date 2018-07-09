@@ -1,12 +1,12 @@
 package com.plivo.api;
 
+import static com.plivo.api.TestUtil.loadFixture;
+import static junit.framework.TestCase.assertEquals;
+
 import com.plivo.api.models.address.Address;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
 import org.junit.Test;
-
-import static com.plivo.api.TestUtil.loadFixture;
-import static junit.framework.TestCase.assertEquals;
 
 public class AddressTest extends BaseTest {
   @Test
