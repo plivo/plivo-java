@@ -527,6 +527,15 @@ public class RestAPI {
     
     // Message
     public MessageResponse sendMessage(LinkedHashMap<String, String> parameters) throws PlivoException {
+	    src = getKeyValue(parameters, "src");
+	    powerpackUUID = getKeyValue(parameters, "powerpack_uuid");
+	    if (src == null && powerpackUUID == null) {
+	        throw new PlivoException("Either of src number or powrpack UUID is required, none given");
+        }
+
+        if (src != null && powerpackUUID != null) {
+	        throw new PlivoException("Either src number or powerpack UUID is required, both given");
+        }
         return this.gson.fromJson(request("POST", "/Message/", parameters), MessageResponse.class);
     }
     
