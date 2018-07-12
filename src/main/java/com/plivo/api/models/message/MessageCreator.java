@@ -15,11 +15,13 @@ import retrofit2.Call;
 public class MessageCreator extends Creator<MessageCreateResponse> {
 
   @JsonProperty("src")
-  private final String source;
+  private String source;
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
   private final List<String> destination;
   private final String text;
+  @JsonProperty("powerpack_uuid")
+  private String powerpackUUID;
   private MessageType type = MessageType.SMS;
   private URL url = null;
   private String method = "POST";
@@ -42,6 +44,15 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     this.source = source;
     this.destination = destination;
     this.text = text;
+  }
+
+  MessageCreator(List<String> destination, String text, String powerpackUUID) {
+    if (!Utils.allNotNull(powerpackUUID, destination, text)) {
+      throw new IllegalArgumentException("powerpack uuid, destination and text must not be null");
+    }
+    this.destination = destination;
+    this.text = text;
+    this.powerpackUUID = powerpackUUID;
   }
 
   public String source() {
