@@ -1,10 +1,5 @@
 # Change Log
 
-
-## [4.0.3](https://github.com/plivo/plivo-java/tree/v4.0.3) (2018-07-27)
-- Add gradle task `fatJar` to create fat jar.
-- Fix gradle task `javadocJar`.
-
 ## [4.0.2](https://github.com/plivo/plivo-java/tree/v4.0.2) (2018-04-25)
 - Fix validate Signature. Supporting URL with Port.
 - Add .create(), .get(), .delete(), and other actions to Resource.client(client).
