@@ -527,8 +527,8 @@ public class RestAPI {
     
     // Message
     public MessageResponse sendMessage(LinkedHashMap<String, String> parameters) throws PlivoException {
-	    src = getKeyValue(parameters, "src");
-	    powerpackUUID = getKeyValue(parameters, "powerpack_uuid");
+	    String src = parameters.get("src");
+	    String powerpackUUID = parameters.get("powerpack_uuid");
 	    if (src == null && powerpackUUID == null) {
 	        throw new PlivoException("Either of src number or powrpack UUID is required, none given");
         }
