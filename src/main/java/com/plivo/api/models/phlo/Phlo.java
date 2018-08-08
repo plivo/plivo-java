@@ -6,7 +6,8 @@ import com.plivo.api.models.node.NodeType;
 public class Phlo extends BaseResource {
 
   private String phloId;
-  private String phloName;
+  private String name;
+  private String createdOn;
 
   @Override
   public String getId() {
@@ -17,8 +18,12 @@ public class Phlo extends BaseResource {
     return phloId;
   }
 
-  public String getPhloName() {
-    return phloName;
+  public String getName() {
+    return name;
+  }
+
+  public String getCreatedOn() {
+    return createdOn;
   }
 
   public NodeGetter nodeGetter(final NodeType nodeType, final String nodeId) {

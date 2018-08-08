@@ -7,7 +7,8 @@ public class Node extends BaseResource {
   private String phloId;
   private String nodeId;
   private NodeType nodeType;
-  private String nodeName;
+  private String name;
+  private String createdOn;
 
   public Node(){}
 
@@ -19,8 +20,12 @@ public class Node extends BaseResource {
     return nodeId;
   }
 
-  public String getNodeName() {
-    return nodeName;
+  public String getName() {
+    return name;
+  }
+
+  public String getCreatedOn() {
+    return createdOn;
   }
 
   public TriggerApiNodeAction update(final NodeActionType nodeActionType, final NodeType nodeType, final String triggerSource,
