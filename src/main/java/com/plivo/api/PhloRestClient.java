@@ -3,7 +3,7 @@ package com.plivo.api;
 import okhttp3.OkHttpClient;
 
 public class PhloRestClient extends BaseClient {
-  protected static String BASE_URL = "https://phlorunner.plivo.com/";
+  protected static String BASE_URL = "https://phlorunner.plivo.com/v1/";
 
   public PhloRestClient(String authId, String authToken) {
     super(authId, authToken, BASE_URL);
