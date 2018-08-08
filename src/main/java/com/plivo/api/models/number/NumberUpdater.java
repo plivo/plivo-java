@@ -51,6 +51,6 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
 
   @Override
   protected Call<NumberUpdateResponse> obtainCall() {
-    return client().getApiService().numberUpdate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService().numberUpdate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 }

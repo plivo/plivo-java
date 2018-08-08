@@ -12,8 +12,8 @@ public class ConferenceMemberDeafDeleter extends ConferenceMemberDeleterAction<C
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService()
-      .conferenceMemberDeafDelete(client().getAuthId(), conferenceName, id);
+    return client().getPlivoRestClient().getApiService()
+      .conferenceMemberDeafDelete(client().getPlivoRestClient().getAuthId(), conferenceName, id);
   }
 
   @Override

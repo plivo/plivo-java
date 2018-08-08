@@ -14,8 +14,8 @@ public class ConferenceMemberKickCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getApiService()
-      .conferenceMemberKickCreate(client().getAuthId(), conferenceName, memberId);
+    return client().getPlivoRestClient().getApiService()
+      .conferenceMemberKickCreate(client().getPlivoRestClient().getAuthId(), conferenceName, memberId);
   }
 
   public ConferenceMemberActionResponse kick() throws IOException, PlivoRestException {

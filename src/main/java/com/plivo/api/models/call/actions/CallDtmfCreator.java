@@ -34,7 +34,7 @@ public class CallDtmfCreator extends Creator<CallDtmfCreateResponse> {
 
   @Override
   protected Call<CallDtmfCreateResponse> obtainCall() {
-    return client().getApiService().callDtmfCreate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService().callDtmfCreate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 
   public CallDtmfCreateResponse sendDigits() throws IOException, PlivoRestException {

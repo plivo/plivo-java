@@ -15,7 +15,7 @@ public class CallPlayDeleter extends Deleter<Call> {
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainCall() {
-    return client().getApiService().callPlayDelete(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().callPlayDelete(client().getPlivoRestClient().getAuthId(), id);
   }
 
   public void playStop() throws IOException, PlivoRestException {

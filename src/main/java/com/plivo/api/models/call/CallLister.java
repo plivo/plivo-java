@@ -90,6 +90,6 @@ public class CallLister extends Lister<Call> {
 
   @Override
   protected retrofit2.Call<ListResponse<Call>> obtainCall() {
-    return client().getApiService().callList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService().callList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

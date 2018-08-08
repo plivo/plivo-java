@@ -24,7 +24,7 @@ public class CallSpeakCreator extends Creator<CallSpeakCreateResponse> {
 
   @Override
   protected Call<CallSpeakCreateResponse> obtainCall() {
-    return client().getApiService().callSpeakCreate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService().callSpeakCreate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 
   public CallSpeakCreateResponse speak() throws IOException, PlivoRestException {

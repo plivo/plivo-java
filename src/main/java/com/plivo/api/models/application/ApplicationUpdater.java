@@ -123,6 +123,6 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
 
   @Override
   protected Call<ApplicationUpdateResponse> obtainCall() {
-    return client().getApiService().applicationUpdate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService().applicationUpdate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 }

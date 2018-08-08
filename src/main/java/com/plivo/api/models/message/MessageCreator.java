@@ -108,6 +108,6 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
 
   @Override
   protected Call<MessageCreateResponse> obtainCall() {
-    return client().getApiService().messageSend(client().getAuthId(), this);
+    return client().getPlivoRestClient().getApiService().messageSend(client().getPlivoRestClient().getAuthId(), this);
   }
 }

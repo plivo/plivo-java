@@ -14,8 +14,8 @@ public class ConferenceMemberMuteCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getApiService()
-      .conferenceMemberMuteCreate(client().getAuthId(), conferenceName, memberId);
+    return client().getPlivoRestClient().getApiService()
+      .conferenceMemberMuteCreate(client().getPlivoRestClient().getAuthId(), conferenceName, memberId);
   }
 
   public ConferenceMemberActionResponse mute() throws IOException, PlivoRestException {

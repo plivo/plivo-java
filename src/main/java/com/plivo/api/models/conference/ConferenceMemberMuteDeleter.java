@@ -12,8 +12,8 @@ public class ConferenceMemberMuteDeleter extends ConferenceMemberDeleterAction<C
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService()
-      .conferenceMemberMuteDelete(client().getAuthId(), conferenceName, id);
+    return client().getPlivoRestClient().getApiService()
+      .conferenceMemberMuteDelete(client().getPlivoRestClient().getAuthId(), conferenceName, id);
   }
 
   @Override

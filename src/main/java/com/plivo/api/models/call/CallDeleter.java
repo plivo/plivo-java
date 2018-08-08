@@ -11,6 +11,6 @@ public class CallDeleter extends Deleter<Call> {
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainCall() {
-    return client().getApiService().callDelete(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().callDelete(client().getPlivoRestClient().getAuthId(), id);
   }
 }

@@ -11,6 +11,6 @@ public class EndpointGetter extends Getter<Endpoint> {
 
   @Override
   protected Call<Endpoint> obtainCall() {
-    return client().getApiService().endpointGet(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().endpointGet(client().getPlivoRestClient().getAuthId(), id);
   }
 }

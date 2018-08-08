@@ -5,7 +5,7 @@ public class Plivo {
   private static PlivoClient instance = null;
 
   /**
-   * Initializes the global {@link PlivoClient} instance
+   * Initializes the global {@link PlivoClient} instance.
    */
   public static synchronized PlivoClient init(String authId, String authToken) {
     instance = new PlivoClient(authId, authToken);

@@ -27,6 +27,6 @@ public class EndpointCreator extends Creator<EndpointCreateResponse> {
 
   @Override
   protected Call<EndpointCreateResponse> obtainCall() {
-    return client().getApiService().endpointCreate(client().getAuthId(), this);
+    return client().getPlivoRestClient().getApiService().endpointCreate(client().getPlivoRestClient().getAuthId(), this);
   }
 }

@@ -20,6 +20,6 @@ public class ApplicationLister extends Lister<Application> {
 
   @Override
   protected Call<ListResponse<Application>> obtainCall() {
-    return client().getApiService().applicationList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService().applicationList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

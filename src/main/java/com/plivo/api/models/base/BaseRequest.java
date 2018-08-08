@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.plivo.api.BaseClient;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.AuthenticationException;
@@ -39,7 +40,7 @@ public abstract class BaseRequest<T extends BaseResource> {
     }
 
     // Convenient way to test setters and getters
-    if (plivoClient.isTesting()) {
+    if (plivoClient.getPlivoRestClient().isTesting() || plivoClient.getPhloRestClient().isTesting()) {
       HashMap<String, Object> values = new HashMap<>();
       for (Method method : this.getClass().getMethods()) {
         if (method.getParameterCount() == 0) {
@@ -68,10 +69,10 @@ public abstract class BaseRequest<T extends BaseResource> {
   }
 
   protected void handleResponse(Response response) throws PlivoRestException, IOException {
-    if (plivoClient.isTesting()) {
+    if (plivoClient.getPlivoRestClient().isTesting() || plivoClient.getPhloRestClient().isTesting()) {
       if (response.body() != null) {
         if (!(response.body() instanceof ResponseBody)) {
-          PlivoClient.getObjectMapper().convertValue(response.body(), JsonNode.class);
+          BaseClient.getObjectMapper().convertValue(response.body(), JsonNode.class);
         }
         //noinspection ResultOfMethodCallIgnored
         response.body().toString();
