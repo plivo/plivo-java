@@ -38,6 +38,10 @@ public class Phlo extends BaseResource {
     return new PhloGetter(phloId);
   }
 
+  public PhloRunner runner() {
+    return runner(this.phloId);
+  }
+
   public static PhloRunner runner(final String phloId) {
     return new PhloRunner(phloId);
   }
