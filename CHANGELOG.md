@@ -1,5 +1,7 @@
 # Change Log
 
+## [4.0.4](https://github.com/plivo/plivo-java/tree/v4.0.4) (2018-08-15)
+- Fixed asynchronous outbound call
 
 ## [4.0.3](https://github.com/plivo/plivo-java/tree/v4.0.3) (2018-07-27)
 - Add gradle task `fatJar` to create fat jar.
