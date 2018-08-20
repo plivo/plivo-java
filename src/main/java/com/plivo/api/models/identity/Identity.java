@@ -1,13 +1,13 @@
 package com.plivo.api.models.identity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.base.BaseResource;
 
 import java.time.LocalDate;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Identity extends BaseResource {
 
+  private String account;
   private String id;
   private String countryIso;
   private String alias;
@@ -34,6 +34,7 @@ public class Identity extends BaseResource {
   private String verificationStatus;
   private String subaccount;
   private String url;
+  private JsonNode documentDetails;
 
   public static IdentityCreator creator(String countryIso, String salutation, String firstName, String lastName,
                                         String birthPlace, LocalDate birthDate, String nationality, String idNationality,
@@ -58,6 +59,13 @@ public class Identity extends BaseResource {
 
   public static IdentityLister lister(){
     return new IdentityLister();
+  }
+
+  /**
+   * @return Account the address belongs to
+   */
+  public String getAccount() {
+    return account;
   }
 
   /**
@@ -233,6 +241,14 @@ public class Identity extends BaseResource {
    */
   public String getUrl() {
     return url;
+  }
+
+  /**
+   * @return The document details json object of the address.
+   */
+
+  public JsonNode getDocumentDetails() {
+    return documentDetails;
   }
 
   @Override

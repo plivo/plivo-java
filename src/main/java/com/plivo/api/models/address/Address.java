@@ -1,11 +1,11 @@
 package com.plivo.api.models.address;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.base.BaseResource;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address extends BaseResource {
 
+  private String account;
   private String id;
   private String countryIso;
   private String alias;
@@ -25,6 +25,7 @@ public class Address extends BaseResource {
   private String subaccount;
   private String url;
   private String addressProofType;
+  private JsonNode documentDetails;
 
   public static AddressCreator creator(
     String countryIso, String salutation, String firstName, String lastName,
@@ -46,6 +47,13 @@ public class Address extends BaseResource {
 
   public static AddressLister lister(){
     return new AddressLister();
+  }
+
+  /**
+   * @return Account the address belongs to.
+   */
+  public String getAccount() {
+    return account;
   }
 
   /**
@@ -107,6 +115,14 @@ public class Address extends BaseResource {
    */
   public String getRegion() {
     return region;
+  }
+
+  /**
+   * @return The document details json object of the address.
+   */
+
+  public JsonNode getDocumentDetails() {
+    return documentDetails;
   }
 
   /**
