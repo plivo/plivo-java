@@ -23,6 +23,7 @@ public class Application extends BaseResource {
   private String resourceUri;
   private String sipUri;
   private String subAccount;
+  private Boolean logIncomingMessage;
 
   public static ApplicationCreator creator(String appName) {
     return new ApplicationCreator(appName);
@@ -166,6 +167,13 @@ public class Application extends BaseResource {
    */
   public String getSubAccount() {
     return subAccount;
+  }
+
+  /**
+   * @return indicates if the the incoming message will be logged. By default it is true
+   */
+  public Boolean getLogIncomingMessage() {
+    return logIncomingMessage;
   }
 
   public ApplicationUpdater updater() {
