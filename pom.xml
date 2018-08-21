@@ -18,7 +18,7 @@
     <developer>
       <name>The Plivo SDKs Team</name>
       <email>sdks@plivo.com</email>
-      <organization>org.apache.maven.model.Organization@2ddf89f</organization>
+      <organization>org.apache.maven.model.Organization@25ad90f4</organization>
       <organizationUrl>https://plivo.com</organizationUrl>
     </developer>
   </developers>
