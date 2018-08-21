@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.1.0](https://github.com/plivo/plivo-java/tree/v4.1.0) (2018-08-21)
+- Added api's for address and identity verification
+
 ## [4.0.4](https://github.com/plivo/plivo-java/tree/v4.0.4) (2018-08-15)
 - Fixed asynchronous outbound call
 
