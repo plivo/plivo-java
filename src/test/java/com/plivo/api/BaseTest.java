@@ -3,10 +3,13 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.MockWebServer;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
@@ -20,6 +23,7 @@ public class BaseTest {
   protected MockWebServer server;
   protected String authId = "MA123456789012345678";
   private String authToken = "authToken";
+  ObjectMapper mapper = new ObjectMapper();
 
   protected String expectResponse(String fixtureName, int statusCode) {
     MockResponse mockResponse = new MockResponse()
@@ -36,6 +40,11 @@ public class BaseTest {
     );
 
     return body;
+  }
+
+  protected JsonNode actualRequestPayload() throws InterruptedException, IOException {
+    RecordedRequest recordedRequest = server.takeRequest();
+    return mapper.readTree(recordedRequest.getBody().readUtf8());
   }
 
   private static Map<String, String> splitQuery(URI uri) throws UnsupportedEncodingException {
@@ -73,14 +82,6 @@ public class BaseTest {
     throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, apiPrefix + format,
       new LinkedHashMap<>());
-  }
-
-  protected void assertApiRequest(String method, String apiPrefix, String format, String jsonBody)
-    throws InterruptedException, UnsupportedEncodingException {
-    RecordedRequest recordedRequest = server.takeRequest();
-    assertRequest(recordedRequest, method, apiPrefix + format,
-      new LinkedHashMap<>());
-    assertEquals(recordedRequest.getBody().readUtf8(), jsonBody);
   }
 
   protected void assertRequest(String method, String format, Map<String, String> params, Object... objects)
