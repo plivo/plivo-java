@@ -20,6 +20,8 @@ public class CallCreator extends Creator<CallCreateResponse> {
   private String hangupMethod;
   private String fallbackUrl;
   private String fallbackMethod;
+  private String callbackUrl;
+  private String callbackMethod;
   private String callerName;
   private String sendDigits;
   private Boolean sendOnPreanswer;
@@ -115,10 +117,24 @@ public class CallCreator extends Creator<CallCreateResponse> {
   }
 
   /**
+   * @return If added, asynchronous request made to this callback_url
+   */
+  public String callbackUrl() {
+    return this.callbackUrl;
+  }
+
+  /**
    * @return The method used to call the fallback_url. Defaults to POST.
    */
   public String fallbackMethod() {
     return this.fallbackMethod;
+  }
+
+  /**
+   * @return The method used to call the callback_url. Defaults to POST.
+   */
+  public String callbackMethod() {
+    return this.callbackMethod;
   }
 
   /**
@@ -265,6 +281,17 @@ public class CallCreator extends Creator<CallCreateResponse> {
     this.fallbackMethod = fallbackMethod;
     return this;
   }
+
+  public CallCreator callbackUrl(final String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+  public CallCreator callbackMethod(final String callbackMethod) {
+    this.callbackMethod = callbackMethod;
+    return this;
+  }
+
 
   public CallCreator callerName(final String callerName) {
     this.callerName = callerName;
