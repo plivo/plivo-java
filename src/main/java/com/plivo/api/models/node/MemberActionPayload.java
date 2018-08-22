@@ -4,7 +4,7 @@ public class MemberActionPayload {
 
   private MemberActionType action;
 
-  public MemberActionPayload(final MemberActionType action){
+  public MemberActionPayload(final MemberActionType action) {
     this.action = action;
   }
 

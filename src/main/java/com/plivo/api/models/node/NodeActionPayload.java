@@ -7,7 +7,15 @@ public class NodeActionPayload {
   private String role;
   private NodeActionType action;
 
-  public NodeActionPayload(final String triggerSource, final String to, final String role, final NodeActionType action) {
+  /**
+   *
+   * @param triggerSource the number triggering the action.
+   * @param to to number.
+   * @param role role of the node.
+   * @param action one of the node action types.
+   */
+  public NodeActionPayload(final String triggerSource, final String to,
+      final String role, final NodeActionType action) {
     this.triggerSource = triggerSource;
     this.to = to;
     this.role = role;

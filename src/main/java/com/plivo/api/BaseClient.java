@@ -65,11 +65,11 @@ public class BaseClient {
     simpleModule.setDeserializerModifier(new BeanDeserializerModifier() {
       @Override
       public JsonDeserializer<?> modifyEnumDeserializer(DeserializationConfig config, JavaType type,
-                                                        BeanDescription beanDesc, JsonDeserializer<?> deserializer) {
+            BeanDescription beanDesc, JsonDeserializer<?> deserializer) {
         return new JsonDeserializer<Enum>() {
           @Override
           public Enum deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+                throws IOException, JsonProcessingException {
             Class<? extends Enum> rawClass = (Class<Enum<?>>) type.getRawClass();
             return Enum.valueOf(rawClass, jp.getValueAsString().toUpperCase().replace("-", "_"));
           }
@@ -79,7 +79,7 @@ public class BaseClient {
     simpleModule.addSerializer(Enum.class, new StdSerializer<Enum>(Enum.class) {
       @Override
       public void serialize(Enum value, JsonGenerator gen, SerializerProvider provider)
-        throws IOException {
+          throws IOException {
         gen.writeString(value.name().toLowerCase().replace("_", "-"));
       }
     });
@@ -87,20 +87,20 @@ public class BaseClient {
   }
 
   private final Interceptor interceptor = new HttpLoggingInterceptor()
-     .setLevel(HttpLoggingInterceptor.Level.BODY);
+      .setLevel(HttpLoggingInterceptor.Level.BODY);
   private final String authId;
   private final String authToken;
   private OkHttpClient httpClient;
   private Retrofit retrofit;
   private PlivoAPIService apiService = null;
 
-  public BaseClient(String authId, String authToken, String apiUrl ) {
+  public BaseClient(String authId, String authToken, String apiUrl) {
     this(authId, authToken, new OkHttpClient.Builder(), apiUrl);
   }
 
   /**
-   * Constructs a new BaseClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
-   * the timeout and proxy using:
+   * Constructs a new BaseClient instance. To set a proxy, timeout etc, you can pass in an
+   * OkHttpClient.Builder, on which you can set the timeout and proxy using:
    *
    * <pre><code>
    *   new OkHttpClient.Builder()
@@ -108,12 +108,12 @@ public class BaseClient {
    *   .connectTimeout(1, TimeUnit.MINUTES);
    * </code></pre>
    *
-   * @param authId plivo authenticationId
-   * @param authToken plivo authentication token
+   * @param authId            plivo authenticationId
+   * @param authToken         plivo authentication token
    * @param httpClientBuilder http client builder to make requests
-   * @param apiUrl url to the api server
+   * @param apiUrl            url to the api server
    */
-  public BaseClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, String apiUrl ) {
+  public BaseClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, String apiUrl) {
     if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
       throw new IllegalArgumentException("invalid account ID");
     }
@@ -127,7 +127,8 @@ public class BaseClient {
         chain.request()
           .newBuilder()
           .addHeader("Authorization", Credentials.basic(getAuthId(), getAuthToken()))
-          .addHeader("User-Agent", String.format("%s/%s (Implementation: %s %s %s, Specification: %s %s %s)", "plivo-java", version,
+          .addHeader("User-Agent",
+              String.format("%s/%s (Implementation: %s %s %s, Specification: %s %s %s)", "plivo-java", version,
             Runtime.class.getPackage().getImplementationVendor(),
             Runtime.class.getPackage().getImplementationTitle(),
             Runtime.class.getPackage().getImplementationVersion(),

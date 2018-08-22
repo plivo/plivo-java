@@ -36,33 +36,34 @@ public class Identity extends BaseResource {
   private String url;
   private JsonNode documentDetails;
 
-  public static IdentityCreator creator(String countryIso, String salutation, String firstName, String lastName,
-                                        String birthPlace, LocalDate birthDate, String nationality, String idNationality,
-                                        LocalDate idIssueDate, String businessName, String idType, String idNumber,
-                                        String addressLine1, String addressLine2, String city, String region, String postalCode) {
+  public static IdentityCreator creator(
+        String countryIso, String salutation, String firstName, String lastName,
+        String birthPlace, LocalDate birthDate, String nationality, String idNationality,
+        LocalDate idIssueDate, String businessName, String idType, String idNumber,
+        String addressLine1, String addressLine2, String city, String region, String postalCode) {
     return new IdentityCreator(countryIso, salutation, firstName, lastName, birthPlace, birthDate,
-      nationality, idNationality, idIssueDate, businessName, idType, idNumber, addressLine1, addressLine2,
-      city, region, postalCode);
+      nationality, idNationality, idIssueDate, businessName, idType, idNumber,
+      addressLine1, addressLine2, city, region, postalCode);
   }
 
-  public static IdentityUpdater updater(String id){
+  public static IdentityUpdater updater(String id) {
     return new IdentityUpdater(id);
   }
 
-  public static IdentityDeleter deleter(String id){
+  public static IdentityDeleter deleter(String id) {
     return new IdentityDeleter(id);
   }
 
-  public static IdentityGetter getter(String id){
+  public static IdentityGetter getter(String id) {
     return new IdentityGetter(id);
   }
 
-  public static IdentityLister lister(){
+  public static IdentityLister lister() {
     return new IdentityLister();
   }
 
   /**
-   * @return Account the address belongs to
+   * @return Account the address belongs to.
    */
   public String getAccount() {
     return account;
@@ -144,7 +145,7 @@ public class Identity extends BaseResource {
   }
 
   /**
-   * @return Building name/number
+   * @return Building name/number.
    */
   public String getIdType() {
     return idType;
@@ -158,50 +159,50 @@ public class Identity extends BaseResource {
   }
 
   /**
-   * @return Building name/number
+   * @return Building name/number.
    */
   public String getAddressLine1() {
     return addressLine1;
   }
 
   /**
-   * @return The street name/number of the address
+   * @return The street name/number of the address.
    */
   public String getAddressLine2() {
     return addressLine2;
   }
 
   /**
-   * @return The city of the address for which the address proof is created
+   * @return The city of the address for which the address proof is created.
    */
   public String getCity() {
     return city;
   }
 
   /**
-   * @return The region of the address for which the address proof is created
+   * @return The region of the address for which the address proof is created.
    */
   public String getRegion() {
     return region;
   }
 
   /**
-   * @return The postal code of the address that is being created
+   * @return The postal code of the address that is being created.
    */
   public String getPostalCode() {
     return postalCode;
   }
 
   /**
-   * @return The code is available for businesses alone and will be available for spain mobile numbers.
-   *         If not present, return null
+   * @return The code is available for businesses alone and will be available
+   *        for spain mobile numbers. If not present, return null.
    */
   public String getFiscalIdentificationCode() {
     return fiscalIdentificationCode;
   }
 
   /**
-    * @return Street code of the address. Return null if not present.
+   * @return Street code of the address. Return null if not present.
    */
   public String getStreetCode() {
     return streetCode;
@@ -230,7 +231,7 @@ public class Identity extends BaseResource {
 
   /**
    * @return The link to the subaccount resource associated with the application.
-   *         If the application belongs to the main account, this field will be null.
+   *        If the application belongs to the main account, this field will be null.
    */
   public String getSubaccount() {
     return subaccount;

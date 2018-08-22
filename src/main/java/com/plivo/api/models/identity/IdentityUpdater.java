@@ -28,7 +28,7 @@ public class IdentityUpdater extends Updater<IdentityUpdateResponse> {
   private String subaccount;
   private String file;
 
-  public IdentityUpdater( String id ){
+  public IdentityUpdater(String id) {
     super(id);
   }
 
@@ -120,123 +120,123 @@ public class IdentityUpdater extends Updater<IdentityUpdateResponse> {
     return file;
   }
 
-  public IdentityUpdater alias( String alias ){
+  public IdentityUpdater alias(String alias) {
     this.alias = alias;
     return this;
   }
 
-  public IdentityUpdater countryIso( String countryIso ){
+  public IdentityUpdater countryIso(String countryIso) {
     this.countryIso = countryIso;
     return this;
   }
 
-  public IdentityUpdater salutation( String salutation ){
+  public IdentityUpdater salutation(String salutation) {
     this.salutation = salutation;
     return this;
   }
 
-  public IdentityUpdater firstName( String firstName ){
+  public IdentityUpdater firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-  public IdentityUpdater lastName( String lastName ){
+  public IdentityUpdater lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
 
-  public IdentityUpdater birthPlace( String birthPlace ){
+  public IdentityUpdater birthPlace(String birthPlace) {
     this.birthPlace = birthPlace;
     return this;
   }
 
-  public IdentityUpdater birthDate( String birthDate ){
+  public IdentityUpdater birthDate(String birthDate) {
     this.birthDate = birthDate;
     return this;
   }
 
-  public IdentityUpdater nationality( String nationality ){
+  public IdentityUpdater nationality(String nationality) {
     this.nationality = nationality;
     return this;
   }
 
-  public IdentityUpdater idNationality( String idNationality ){
+  public IdentityUpdater idNationality(String idNationality) {
     this.idNationality = idNationality;
     return this;
   }
 
-  public IdentityUpdater idIssueDate( String idIssueDate ){
+  public IdentityUpdater idIssueDate(String idIssueDate) {
     this.idIssueDate = idIssueDate;
     return this;
   }
 
-  public IdentityUpdater businessName( String businessName ){
+  public IdentityUpdater businessName(String businessName) {
     this.businessName = businessName;
     return this;
   }
 
-  public IdentityUpdater idType( String idType ){
+  public IdentityUpdater idType(String idType) {
     this.idType = idType;
     return this;
   }
 
-  public IdentityUpdater idNumber( String idNumber ){
+  public IdentityUpdater idNumber(String idNumber) {
     this.idNumber = idNumber;
     return this;
   }
 
-  public IdentityUpdater addressLine1( String addressLine1 ){
+  public IdentityUpdater addressLine1(String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
 
-  public IdentityUpdater addressLine2( String addressLine2 ){
+  public IdentityUpdater addressLine2(String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
 
-  public IdentityUpdater city( String city ){
+  public IdentityUpdater city(String city) {
     this.city = city;
     return this;
   }
 
-  public IdentityUpdater region( String region ){
+  public IdentityUpdater region(String region) {
     this.region = region;
     return this;
   }
 
-  public IdentityUpdater postalCode( String postalCode ){
+  public IdentityUpdater postalCode(String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-  public IdentityUpdater fiscalIdentificationCode( String fiscalIdentificationCode ){
+  public IdentityUpdater fiscalIdentificationCode(String fiscalIdentificationCode) {
     this.fiscalIdentificationCode = fiscalIdentificationCode;
     return this;
   }
 
-  public IdentityUpdater streetCode( String streetCode ){
+  public IdentityUpdater streetCode(String streetCode) {
     this.streetCode = streetCode;
     return this;
   }
 
-  public IdentityUpdater municipalCode( String municipalCode ){
+  public IdentityUpdater municipalCode(String municipalCode) {
     this.municipalCode = municipalCode;
     return this;
   }
 
-  public IdentityUpdater subaccount( String subaccount ){
+  public IdentityUpdater subaccount(String subaccount) {
     this.subaccount = subaccount;
     return this;
   }
 
-  public IdentityUpdater file( String file ){
+  public IdentityUpdater file(String file) {
     this.file = file;
     return this;
   }
 
   @Override
   protected Call<IdentityUpdateResponse> obtainCall() {
-    return client().getApiService().identityUpdate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService().identityUpdate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 }

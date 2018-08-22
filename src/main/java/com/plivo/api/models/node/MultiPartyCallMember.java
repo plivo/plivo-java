@@ -9,7 +9,15 @@ public class MultiPartyCallMember extends BaseResource {
   private NodeType nodeType;
   private String memberId;
 
-  public MultiPartyCallMember(final String phloId, final NodeType nodeType, final String nodeId, final String memberId) {
+  /**
+   *
+   * @param phloId phlo id of the current flow.
+   * @param nodeType node type of the node.
+   * @param nodeId node id of the node.
+   * @param memberId member id of the member.
+   */
+  public MultiPartyCallMember(final String phloId, final NodeType nodeType,
+        final String nodeId, final String memberId) {
     this.nodeId = nodeId;
     this.phloId = phloId;
     this.nodeType = nodeType;
@@ -33,7 +41,8 @@ public class MultiPartyCallMember extends BaseResource {
   }
 
   public TriggerApiMemberAction update(final MemberActionType actionType) {
-    return new TriggerApiMemberAction(this.phloId, this.nodeType, this.nodeId, this.memberId, actionType);
+    return new TriggerApiMemberAction(this.phloId, this.nodeType, this.nodeId,
+        this.memberId, actionType);
   }
 
   public TriggerApiMemberAction hold() {

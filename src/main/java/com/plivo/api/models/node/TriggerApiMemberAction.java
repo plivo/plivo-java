@@ -12,7 +12,17 @@ public class TriggerApiMemberAction<T extends BaseResponse> extends Creator<Acti
   private final NodeType nodeType;
   private MemberActionPayload payload;
 
-  public TriggerApiMemberAction(final String phloId, final NodeType nodeType, final String nodeId, final String memberId, final MemberActionType actionType) {
+  /**
+   *
+   * @param phloId phlo id of the phlo.
+   * @param nodeType node type.
+   * @param nodeId id of the node.
+   * @param memberId id of the member.
+   * @param actionType action type, can be one of the action types.
+   */
+  public TriggerApiMemberAction(final String phloId, final NodeType nodeType,
+                                final String nodeId, final String memberId,
+                                final MemberActionType actionType) {
     this.phloId = phloId;
     this.nodeType = nodeType;
     this.nodeId = nodeId;
@@ -22,6 +32,7 @@ public class TriggerApiMemberAction<T extends BaseResponse> extends Creator<Acti
 
   @Override
   protected Call<ActionResponse> obtainCall() {
-    return client().getPhloRestClient().getApiService().memberAction(this.phloId, this.nodeType, this.nodeId, this.memberId, this.payload);
+    return client().getPhloRestClient().getApiService()
+        .memberAction(this.phloId, this.nodeType, this.nodeId, this.memberId, this.payload);
   }
 }

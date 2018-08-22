@@ -33,9 +33,10 @@ public class IdentityCreator extends Creator<IdentityCreateResponse> {
   private String file;
 
   public IdentityCreator(String countryIso, String salutation, String firstName, String lastName,
-                         String birthPlace, LocalDate birthDate, String nationality, String idNationality,
-                         LocalDate idIssueDate, String businessName, String idType, String idNumber,
-                         String addressLine1, String addressLine2, String city, String region, String postalCode ){
+                         String birthPlace, LocalDate birthDate, String nationality,
+                         String idNationality, LocalDate idIssueDate, String businessName,
+                         String idType, String idNumber, String addressLine1, String addressLine2,
+                         String city, String region, String postalCode) {
     this.countryIso = countryIso;
     this.salutation = salutation;
     this.firstName = firstName;
@@ -44,7 +45,8 @@ public class IdentityCreator extends Creator<IdentityCreateResponse> {
     this.birthDate = birthDate.format(DateTimeFormatter.ISO_DATE);
     this.nationality = nationality;
     this.idNationality = idNationality;
-    this.idIssueDate = idIssueDate.format(DateTimeFormatter.ISO_DATE);;
+    this.idIssueDate = idIssueDate.format(DateTimeFormatter.ISO_DATE);
+    ;
     this.businessName = businessName;
     this.idType = idType;
     this.idNumber = idNumber;
@@ -143,123 +145,124 @@ public class IdentityCreator extends Creator<IdentityCreateResponse> {
     return file;
   }
 
-  public IdentityCreator alias( String alias ){
+  public IdentityCreator alias(String alias) {
     this.alias = alias;
     return this;
   }
 
-  public IdentityCreator countryIso( String countryIso ){
+  public IdentityCreator countryIso(String countryIso) {
     this.countryIso = countryIso;
     return this;
   }
 
-  public IdentityCreator salutation( String salutation ){
+  public IdentityCreator salutation(String salutation) {
     this.salutation = salutation;
     return this;
   }
 
-  public IdentityCreator firstName( String firstName ){
+  public IdentityCreator firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-  public IdentityCreator lastName( String lastName ){
+  public IdentityCreator lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
 
-  public IdentityCreator birthPlace( String birthPlace ){
+  public IdentityCreator birthPlace(String birthPlace) {
     this.birthPlace = birthPlace;
     return this;
   }
 
-  public IdentityCreator birthDate( String birthDate ){
+  public IdentityCreator birthDate(String birthDate) {
     this.birthDate = birthDate;
     return this;
   }
 
-  public IdentityCreator nationality( String nationality ){
+  public IdentityCreator nationality(String nationality) {
     this.nationality = nationality;
     return this;
   }
 
-  public IdentityCreator idNationality( String idNationality ){
+  public IdentityCreator idNationality(String idNationality) {
     this.idNationality = idNationality;
     return this;
   }
 
-  public IdentityCreator idIssueDate( String idIssueDate ){
+  public IdentityCreator idIssueDate(String idIssueDate) {
     this.idIssueDate = idIssueDate;
     return this;
   }
 
-  public IdentityCreator businessName( String businessName ){
+  public IdentityCreator businessName(String businessName) {
     this.businessName = businessName;
     return this;
   }
 
-  public IdentityCreator idType( String idType ){
+  public IdentityCreator idType(String idType) {
     this.idType = idType;
     return this;
   }
 
-  public IdentityCreator idNumber( String idNumber ){
+  public IdentityCreator idNumber(String idNumber) {
     this.idNumber = idNumber;
     return this;
   }
 
-  public IdentityCreator addressLine1( String addressLine1 ){
+  public IdentityCreator addressLine1(String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
 
-  public IdentityCreator addressLine2( String addressLine2 ){
+  public IdentityCreator addressLine2(String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
 
-  public IdentityCreator city( String city ){
+  public IdentityCreator city(String city) {
     this.city = city;
     return this;
   }
 
-  public IdentityCreator region( String region ){
+  public IdentityCreator region(String region) {
     this.region = region;
     return this;
   }
 
-  public IdentityCreator postalCode( String postalCode ){
+  public IdentityCreator postalCode(String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-  public IdentityCreator fiscalIdentificationCode( String fiscalIdentificationCode ){
+  public IdentityCreator fiscalIdentificationCode(String fiscalIdentificationCode) {
     this.fiscalIdentificationCode = fiscalIdentificationCode;
     return this;
   }
 
-  public IdentityCreator streetCode( String streetCode ){
+  public IdentityCreator streetCode(String streetCode) {
     this.streetCode = streetCode;
     return this;
   }
 
-  public IdentityCreator municipalCode( String municipalCode ){
+  public IdentityCreator municipalCode(String municipalCode) {
     this.municipalCode = municipalCode;
     return this;
   }
 
-  public IdentityCreator subaccount( String subaccount ){
+  public IdentityCreator subaccount(String subaccount) {
     this.subaccount = subaccount;
     return this;
   }
 
-  public IdentityCreator file( String file ){
+  public IdentityCreator file(String file) {
     this.file = file;
     return this;
   }
 
   @Override
   protected Call<IdentityCreateResponse> obtainCall() {
-    return client().getApiService().identityCreate(client().getAuthId(), this);
+    return client().getPlivoRestClient().getApiService()
+      .identityCreate(client().getPlivoRestClient().getAuthId(), this);
   }
 }

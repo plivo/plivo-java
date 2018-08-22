@@ -11,7 +11,8 @@ public class AddressGetter extends Getter<Address> {
 
   @Override
   protected Call<Address> obtainCall() {
-    return client().getApiService().addressGet(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService()
+      .addressGet(client().getPlivoRestClient().getAuthId(), id);
   }
 
 }

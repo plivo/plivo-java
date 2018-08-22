@@ -13,7 +13,8 @@ public class AddressDeleter extends Deleter<Application> {
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService().addressDelete(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService()
+      .addressDelete(client().getPlivoRestClient().getAuthId(), id);
   }
 }
 

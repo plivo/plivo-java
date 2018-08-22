@@ -28,12 +28,13 @@ public class Address extends BaseResource {
   private JsonNode documentDetails;
 
   public static AddressCreator creator(
-    String countryIso, String salutation, String firstName, String lastName,
-    String addressLine1, String addressLine2, String city, String region, String postalCode) {
-    return new AddressCreator(countryIso, salutation, firstName, lastName, addressLine1, addressLine2, city, region, postalCode);
+        String countryIso, String salutation, String firstName, String lastName,
+        String addressLine1, String addressLine2, String city, String region, String postalCode) {
+    return new AddressCreator(countryIso, salutation, firstName, lastName, addressLine1,
+      addressLine2, city, region, postalCode);
   }
 
-  public static AddressUpdater updater(String id){
+  public static AddressUpdater updater(String id) {
     return new AddressUpdater(id);
   }
 
@@ -45,7 +46,7 @@ public class Address extends BaseResource {
     return new AddressDeleter(id);
   }
 
-  public static AddressLister lister(){
+  public static AddressLister lister() {
     return new AddressLister();
   }
 
@@ -133,8 +134,8 @@ public class Address extends BaseResource {
   }
 
   /**
-   * @return The code is available for businesses alone and will be available for spain mobile numbers.
-   *         If not present, return null.
+   * @return The code is available for businesses alone and will be available for
+   *        spain mobile numbers. If not present, return null.
    */
   public String getFiscalIdentificationCode() {
     return fiscalIdentificationCode;
@@ -158,7 +159,8 @@ public class Address extends BaseResource {
    * @return Can take the following values: pending. accepted, rejected, null.
    */
   public String getValidationStatus() {
-    return validationStatus; }
+    return validationStatus;
+  }
 
   /**
    * @return Can take the following values: pending. verified, rejected, null.
@@ -169,7 +171,7 @@ public class Address extends BaseResource {
 
   /**
    * @return The link to the subaccount resource associated with the application.
-   *         If the application belongs to the main account, this field will be null.
+   *        If the application belongs to the main account, this field will be null.
    */
   public String getSubaccount() {
     return subaccount;
@@ -185,7 +187,8 @@ public class Address extends BaseResource {
   /**
    * @return The type of document that is provided as address proof.
    */
-  // FIXME: This has to be an enum, some invalid values in DB needs to be fixed before making the change
+  // FIXME: This has to be an enum, some invalid values in DB needs
+  // to be fixed before making the change
   public String getAddressProofType() {
     return addressProofType;
   }

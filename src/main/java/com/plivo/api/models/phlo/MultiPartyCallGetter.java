@@ -15,7 +15,8 @@ public class MultiPartyCallGetter extends Getter<MultiPartyCall> {
 
   @Override
   protected Call<MultiPartyCall> obtainCall() {
-    return client().getPhloRestClient().getApiService().multiPartyCallGet(this.phloId, NodeType.MULTIPARTYCALL, this.id);
+    return client().getPhloRestClient().getApiService()
+        .multiPartyCallGet(this.phloId, NodeType.MULTIPARTYCALL, this.id);
   }
 
 }

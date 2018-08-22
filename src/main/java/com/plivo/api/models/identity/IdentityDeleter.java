@@ -6,12 +6,13 @@ import retrofit2.Call;
 
 public class IdentityDeleter extends Deleter<Identity> {
 
-  public IdentityDeleter(String id){
+  public IdentityDeleter(String id) {
     super(id);
   }
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService().identityDelete(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService()
+      .identityDelete(client().getPlivoRestClient().getAuthId(), id);
   }
 }

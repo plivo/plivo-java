@@ -10,6 +10,12 @@ public class NodeGetter extends Getter<Node> {
   private final String phloId;
   private final NodeType nodeType;
 
+  /**
+   *
+   * @param phloId phloId of the current flow.
+   * @param nodeType node type of this node.
+   * @param nodeId node id of the node.
+   */
   public NodeGetter(final String phloId, final NodeType nodeType, final String nodeId) {
     super(nodeId);
     this.phloId = phloId;
