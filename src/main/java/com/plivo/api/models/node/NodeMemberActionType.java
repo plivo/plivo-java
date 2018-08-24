@@ -1,6 +1,6 @@
 package com.plivo.api.models.node;
 
-public enum MemberActionType {
+public enum NodeMemberActionType {
   HOLD("hold"),
   UNHOLD("unhold"),
   HANGUP("hangup"),
@@ -10,7 +10,7 @@ public enum MemberActionType {
 
   private final String action;
 
-  MemberActionType(final String action) {
+  NodeMemberActionType(final String action) {
     this.action = action;
   }
 
