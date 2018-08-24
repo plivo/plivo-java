@@ -4,7 +4,7 @@ import com.plivo.api.models.base.BaseResponse;
 import com.plivo.api.models.base.Creator;
 import retrofit2.Call;
 
-public class TriggerApiNodeAction<T extends BaseResponse> extends Creator<ActionResponse> {
+public class NodeTriggerApiAction<T extends BaseResponse> extends Creator<NodeActionResponse> {
 
   private final String phloId;
   private final String nodeId;
@@ -20,7 +20,7 @@ public class TriggerApiNodeAction<T extends BaseResponse> extends Creator<Action
    * @param role           the role.
    * @param nodeActionType one of the node action types.
    */
-  public TriggerApiNodeAction(final String phloId, final NodeType nodeType, final String nodeId,
+  public NodeTriggerApiAction(final String phloId, final NodeType nodeType, final String nodeId,
                               final String triggerSource, final String to, final String role,
                               final NodeActionType nodeActionType) {
     this.nodeType = nodeType;
@@ -30,7 +30,7 @@ public class TriggerApiNodeAction<T extends BaseResponse> extends Creator<Action
   }
 
   @Override
-  protected Call<ActionResponse> obtainCall() {
+  protected Call<NodeActionResponse> obtainCall() {
     return client().getPhloRestClient().getApiService()
       .nodeAction(this.phloId, this.nodeType, this.nodeId, this.nodeActionPayload);
   }

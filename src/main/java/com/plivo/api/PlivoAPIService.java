@@ -52,11 +52,11 @@ import com.plivo.api.models.identity.IdentityUpdater;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
-import com.plivo.api.models.node.ActionResponse;
-import com.plivo.api.models.node.MemberActionPayload;
-import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.node.Node;
 import com.plivo.api.models.node.NodeActionPayload;
+import com.plivo.api.models.node.NodeActionResponse;
+import com.plivo.api.models.node.NodeMemberActionPayload;
+import com.plivo.api.models.node.NodeMultiPartyCall;
 import com.plivo.api.models.node.NodeType;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.number.NumberCreateResponse;
@@ -386,17 +386,17 @@ public interface PlivoAPIService {
   Call<Phlo> phloGet(@Path("phloId") String phloId);
 
   @POST("phlo/{phloId}/{nodeType}/{nodeId}")
-  Call<ActionResponse> nodeAction(@Path("phloId") String phloId,
-                                  @Path("nodeType") NodeType nodeType,
-                                  @Path("nodeId") String nodeId,
-                                  @Body NodeActionPayload payload);
+  Call<NodeActionResponse> nodeAction(@Path("phloId") String phloId,
+                                      @Path("nodeType") NodeType nodeType,
+                                      @Path("nodeId") String nodeId,
+                                      @Body NodeActionPayload payload);
 
   @POST("phlo/{phloId}/{nodeType}/{nodeId}/members/{memberId}")
-  Call<ActionResponse> memberAction(@Path("phloId") String phloId,
-                                    @Path("nodeType") NodeType nodeType,
-                                    @Path("nodeId") String nodeId,
-                                    @Path("memberId") String memberId,
-                                    @Body MemberActionPayload payload);
+  Call<NodeActionResponse> memberAction(@Path("phloId") String phloId,
+                                        @Path("nodeType") NodeType nodeType,
+                                        @Path("nodeId") String nodeId,
+                                        @Path("memberId") String memberId,
+                                        @Body NodeMemberActionPayload payload);
 
   @GET("phlo/{phloId}/{nodeType}/{nodeId}")
   Call<Node> nodeGet(@Path("phloId") String phloId,
@@ -404,9 +404,9 @@ public interface PlivoAPIService {
                      @Path("nodeId") final String nodeId);
 
   @GET("phlo/{phloId}/{nodeType}/{nodeId}")
-  Call<MultiPartyCall> multiPartyCallGet(@Path("phloId") String phloId,
-                                         @Path("nodeType") NodeType nodeType,
-                                         @Path("nodeId") final String nodeId);
+  Call<NodeMultiPartyCall> multiPartyCallGet(@Path("phloId") String phloId,
+                                             @Path("nodeType") NodeType nodeType,
+                                             @Path("nodeId") final String nodeId);
 
   // Required as there is no body
   @Headers("Content-Type: application/json")
