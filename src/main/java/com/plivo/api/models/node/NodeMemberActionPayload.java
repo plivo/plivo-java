@@ -1,5 +1,8 @@
 package com.plivo.api.models.node;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class NodeMemberActionPayload {
 
   private NodeMemberActionType action;

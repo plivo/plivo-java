@@ -1,12 +1,14 @@
 package com.plivo.api.models.node;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Node extends BaseResource {
 
-  private String phloId;
-  private String nodeId;
-  private NodeType nodeType;
+  protected String phloId;
+  protected String nodeId;
+  protected NodeType nodeType;
   private String name;
   private String createdOn;
 
@@ -30,12 +32,6 @@ public class Node extends BaseResource {
 
   public String getCreatedOn() {
     return createdOn;
-  }
-
-  public NodeTriggerApiAction update(final NodeActionType nodeActionType, final NodeType nodeType,
-                                     final String triggerSource, final String to, final String role) {
-    return new NodeTriggerApiAction(this.phloId, nodeType, this.nodeId,
-        triggerSource, to, role, nodeActionType);
   }
 
   @Override

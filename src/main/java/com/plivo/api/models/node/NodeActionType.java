@@ -1,7 +1,7 @@
 package com.plivo.api.models.node;
 
 public enum NodeActionType {
-  CALL("call"), COLDTRANSFER("coldtransfer"), WARMTRANSFER("warmtransfer");
+  CALL("call"), COLD_TRANSFER("cold_transfer"), WARM_TRANSFER("warm_transfer");
 
   private final String action;
 

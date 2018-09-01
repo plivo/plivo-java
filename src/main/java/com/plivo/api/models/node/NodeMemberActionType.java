@@ -4,14 +4,18 @@ public enum NodeMemberActionType {
   HOLD("hold"),
   UNHOLD("unhold"),
   HANGUP("hangup"),
-  RESUMECALL("resumecall"),
-  ABORTWARMTRANSFER("abortwarmtransfer"),
-  VOICEMAILDROP("voicemaildrop");
+  RESUME_CALL("resume_call"),
+  ABORT_TRANSFER("abort_transfer"),
+  VOICEMAIL_DROP("voicemail_drop");
 
   private final String action;
 
   NodeMemberActionType(final String action) {
     this.action = action;
+  }
+
+  public String getAction() {
+    return action;
   }
 
   @Override

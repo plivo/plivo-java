@@ -1,5 +1,8 @@
 package com.plivo.api.models.node;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class NodeActionPayload {
 
   private String triggerSource;
@@ -8,7 +11,6 @@ public class NodeActionPayload {
   private NodeActionType action;
 
   /**
-   *
    * @param triggerSource the number triggering the action.
    * @param to to number.
    * @param role role of the node.
