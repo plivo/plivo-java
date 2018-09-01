@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.junit.After;
 import org.junit.Before;
 
@@ -32,7 +33,7 @@ public class BaseTest {
     String body = loadFixture(fixtureName);
 
     if (body != null) {
-        mockResponse.setBody(body);
+      mockResponse.setBody(body);
     }
 
     server.enqueue(
@@ -64,8 +65,8 @@ public class BaseTest {
     return queryPairs;
   }
 
-  protected void assertRequest(RecordedRequest request, String method, String format, Map<String, String> params,
-    Object... objects) throws UnsupportedEncodingException {
+  protected void assertRequest(RecordedRequest request, String method, String format, Map<String,
+      String> params, Object... objects) throws UnsupportedEncodingException {
     assertEquals(method, request.getMethod());
     URI uri = URI.create(request.getPath());
     assertEquals(String.format(format, objects), uri.getPath());
@@ -73,20 +74,21 @@ public class BaseTest {
   }
 
   protected void assertRequest(String method, String format, Object... objects)
-    throws InterruptedException, UnsupportedEncodingException {
+      throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format,
-      new LinkedHashMap<>(), objects);
+        new LinkedHashMap<>(), objects);
   }
 
   protected void assertApiRequest(String method, String apiPrefix, String format)
-    throws InterruptedException, UnsupportedEncodingException {
+      throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, apiPrefix + format,
-      new LinkedHashMap<>());
+        new LinkedHashMap<>());
   }
 
-  protected void assertRequest(String method, String format, Map<String, String> params, Object... objects)
-    throws InterruptedException, UnsupportedEncodingException {
-    assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format, params, objects);
+  protected void assertRequest(String method, String format, Map<String, String> params,
+      Object... objects) throws InterruptedException, UnsupportedEncodingException {
+    assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format,
+        params, objects);
   }
 
   @Before

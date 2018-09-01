@@ -381,16 +381,18 @@ public interface PlivoAPIService {
   @DELETE("Account/{authId}/Request/{requestUuid}/")
   Call<ResponseBody> requestDelete(@Path("authId") String authId, @Path("requestUuid") String requestUuid);
 
-  // PHLO
+  // PHLO - server is different from plivo server. Need content-type setting fir POST
   @GET("phlo/{phloId}")
   Call<Phlo> phloGet(@Path("phloId") String phloId);
 
+  @Headers("Content-Type: application/json")
   @POST("phlo/{phloId}/{nodeType}/{nodeId}")
   Call<NodeActionResponse> nodeAction(@Path("phloId") String phloId,
                                       @Path("nodeType") NodeType nodeType,
                                       @Path("nodeId") String nodeId,
                                       @Body NodeActionPayload payload);
 
+  @Headers("Content-Type: application/json")
   @POST("phlo/{phloId}/{nodeType}/{nodeId}/members/{memberId}")
   Call<NodeActionResponse> memberAction(@Path("phloId") String phloId,
                                         @Path("nodeType") NodeType nodeType,
@@ -408,8 +410,6 @@ public interface PlivoAPIService {
                                              @Path("nodeType") NodeType nodeType,
                                              @Path("nodeId") final String nodeId);
 
-  // Required as there is no body
-  @Headers("Content-Type: application/json")
   @POST("account/{authId}/phlo/{phloId}")
   Call<PhloRunResponse> runPhlo(@Path("authId") String authId,
                                 @Path("phloId") String phloId);

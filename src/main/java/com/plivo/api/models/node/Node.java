@@ -20,6 +20,10 @@ public class Node extends BaseResource {
     return nodeId;
   }
 
+  public NodeType getNodeType() {
+    return nodeType;
+  }
+
   public String getName() {
     return name;
   }

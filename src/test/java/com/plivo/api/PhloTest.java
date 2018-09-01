@@ -50,7 +50,7 @@ public class PhloTest extends BaseTest {
 
     assertApiRequest("GET", "/", "phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6");
 
-    Node node = phlo.nodeGetter(NodeType.MULTIPARTYCALL,
+    Node node = phlo.nodeGetter(NodeType.MULTI_PARTY_CALL,
           "f4789ccf-25f5-4a1f-91a4-55ca022ba903").get();
 
     assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", node.getNodeId());
@@ -73,7 +73,7 @@ public class PhloTest extends BaseTest {
 
     assertApiRequest("GET", "/", "phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6");
 
-    Node node = phlo.nodeGetter(NodeType.MULTIPARTYCALL,
+    Node node = phlo.nodeGetter(NodeType.MULTI_PARTY_CALL,
           "f4789ccf-25f5-4a1f-91a4-55ca022ba903").client(client).get();
 
     assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", node.getNodeId());

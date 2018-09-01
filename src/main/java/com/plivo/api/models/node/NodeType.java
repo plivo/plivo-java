@@ -2,7 +2,7 @@ package com.plivo.api.models.node;
 
 public enum NodeType {
 
-  MULTIPARTYCALL("multi_party_call");
+  MULTI_PARTY_CALL("multi_party_call");
 
   private final String type;
 
