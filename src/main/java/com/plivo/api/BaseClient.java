@@ -80,7 +80,7 @@ public class BaseClient {
       @Override
       public void serialize(Enum value, JsonGenerator gen, SerializerProvider provider)
           throws IOException {
-        gen.writeString(value.name().toLowerCase().replace("_", "-"));
+        gen.writeString(value.name().toLowerCase());
       }
     });
     objectMapper.registerModule(simpleModule);
