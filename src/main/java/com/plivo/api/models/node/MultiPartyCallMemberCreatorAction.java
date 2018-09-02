@@ -12,10 +12,10 @@ public abstract class MultiPartyCallMemberCreatorAction<T extends BaseResponse> 
   protected MultiPartyCallMemberActionPayload payload;
 
   /**
-   * @param phloId phlo id of the phlo.
-   * @param nodeType node type.
-   * @param nodeId id of the node.
-   * @param memberId id of the member.
+   * @param phloId     phlo id of the phlo.
+   * @param nodeType   node type.
+   * @param nodeId     id of the node.
+   * @param memberId   id of the member.
    * @param actionType action type, can be one of the action types.
    */
   public MultiPartyCallMemberCreatorAction(final String phloId, final NodeType nodeType,

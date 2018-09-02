@@ -9,13 +9,13 @@ import java.io.IOException;
 public class MultiPartyCallMemberHoldCreator extends MultiPartyCallMemberCreatorAction<NodeActionResponse> {
 
   /**
-   * @param phloId phlo id of the phlo.
+   * @param phloId   phlo id of the phlo.
    * @param nodeType node type.
-   * @param nodeId id of the node.
+   * @param nodeId   id of the node.
    * @param memberId id of the member.
    */
   public MultiPartyCallMemberHoldCreator(final String phloId, final NodeType nodeType,
-                                         final String nodeId, final String memberId){
+                                         final String nodeId, final String memberId) {
     super(phloId, nodeType, nodeId, memberId, MultiPartyCallMemberActionType.HOLD);
 
   }

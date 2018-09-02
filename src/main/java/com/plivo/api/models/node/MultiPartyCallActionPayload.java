@@ -12,9 +12,9 @@ public class MultiPartyCallActionPayload {
 
   /**
    * @param triggerSource the number triggering the action.
-   * @param to to number.
-   * @param role role of the node.
-   * @param action one of the node action types.
+   * @param to            to number.
+   * @param role          role of the node.
+   * @param action        one of the node action types.
    */
   public MultiPartyCallActionPayload(final String triggerSource, final String to,
                                      final String role, final MultiPartyCallActionType action) {
