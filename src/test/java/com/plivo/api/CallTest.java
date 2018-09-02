@@ -51,7 +51,7 @@ public class CallTest extends BaseTest {
 
     Map<String, String> headers = new HashMap<>();
     headers.put("test", "test");
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.creator("+911231231230", Arrays.asList("+911234567890", "+910987654321"),
       "http://example.answer.url/")
@@ -79,7 +79,7 @@ public class CallTest extends BaseTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void callCreateWithClientShouldFailWithoutRequiredAttrs() throws Exception {
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Call.creator(null, null, null)
       .client(client)
       .create();
@@ -102,7 +102,7 @@ public class CallTest extends BaseTest {
     String fixtureName = "callListResponse.json";
 
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.lister()
       .client(client)
@@ -128,7 +128,7 @@ public class CallTest extends BaseTest {
   public void callGetWithClientShouldSucceed() throws Exception {
     expectResponse("callGetResponse.json", 200);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Call call = Call.getter(callId)
       .client(client)
       .get();
@@ -153,7 +153,7 @@ public class CallTest extends BaseTest {
   public void callDeleteWithClientShouldSucceed() throws Exception {
     expectResponse("callDeleteResponse.json", 204);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Call.deleter(callId)
       .client(client)
       .delete();
@@ -178,7 +178,7 @@ public class CallTest extends BaseTest {
     expectResponse("callUpdateResponse.json", 202);
     String callId = "callId";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Call.updater(callId)
       .alegMethod("GET")
       .client(client)
@@ -202,7 +202,7 @@ public class CallTest extends BaseTest {
   @Test
   public void liveCallListGetWithClientShouldWork() throws Exception {
     expectResponse("liveCallListGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     LiveCall.listGetter()
       .client(client)
@@ -233,7 +233,7 @@ public class CallTest extends BaseTest {
   public void liveCallGetWithClientShouldWork() throws Exception {
     expectResponse("liveCallGetResponse.json", 200);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     LiveCall liveCall = LiveCall.getter(callId).client(client)
       .get();
@@ -261,7 +261,7 @@ public class CallTest extends BaseTest {
   public void callRecordCreateWithClientShouldWork() throws Exception {
     expectResponse("liveCallRecordCreateResponse.json", 202);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.recorder(callId)
       .client(client)
@@ -285,7 +285,7 @@ public class CallTest extends BaseTest {
   public void callRecordDeleteWithClientShouldWork() throws Exception {
     expectResponse("liveCallRecordDeleteResponse.json", 204);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.recordStopper(callId)
       .client(client)
@@ -309,7 +309,7 @@ public class CallTest extends BaseTest {
   public void callSpeakCreateWithClientShouldWork() throws Exception {
     expectResponse("liveCallSpeakCreateResponse.json", 202);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.speaker(callId, "test")
       .client(client)
@@ -333,7 +333,7 @@ public class CallTest extends BaseTest {
   public void callSpeakDeleteWithClientShouldWork() throws Exception {
     expectResponse("liveCallSpeakDeleteResponse.json", 204);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.speakStopper(callId)
       .client(client)
@@ -357,7 +357,7 @@ public class CallTest extends BaseTest {
   public void callPlayCreateWithClientShouldWork() throws Exception {
     expectResponse("liveCallPlayCreateResponse.json", 202);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.player(callId, Collections.singletonList("http://url.to.music"))
       .client(client)
@@ -381,7 +381,7 @@ public class CallTest extends BaseTest {
   public void callPlayDeleteWithClientShouldWork() throws Exception {
     expectResponse("liveCallPlayDeleteResponse.json", 204);
     final String callId = "callId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.playStopper(callId)
       .client(client)
@@ -405,7 +405,7 @@ public class CallTest extends BaseTest {
     expectResponse("liveCallDtmfCreateResponse.json", 204);
     final String callId = "callId";
     final String digits = "1234";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.digitSender(callId, digits)
       .client(client)
@@ -421,7 +421,7 @@ public class CallTest extends BaseTest {
 
     expectResponse(fixtureName, 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.creator("+911231231230", Arrays.asList("+911234567890"),
       "http://example.answer.url/")
@@ -446,7 +446,7 @@ public class CallTest extends BaseTest {
 
     expectResponse(fixtureName, 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Call.creator("+911231231230", Arrays.asList("+911234567890"),
       "http://example.answer.url/")

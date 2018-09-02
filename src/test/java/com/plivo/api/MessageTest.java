@@ -24,7 +24,7 @@ public class MessageTest extends BaseTest {
   @Test(expected = IllegalArgumentException.class)
   public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Message.creator("+911231231230", null, "text")
       .client(client)
@@ -42,7 +42,7 @@ public class MessageTest extends BaseTest {
   @Test(expected = IllegalArgumentException.class)
   public void messageSendWithClientShouldFailWhenSameSrcDst() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Message.creator("+911231231230", Arrays.asList("+911231231230"), "test")
       .client(client)
@@ -65,7 +65,7 @@ public class MessageTest extends BaseTest {
   public void messageCreateWithClientShouldSucceed() throws Exception {
     String fixtureName = "messageSendResponse.json";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     expectResponse(fixtureName, 202);
 
     Message.creator("+911231231230", Arrays.asList("+911231231330"), "test")
@@ -97,7 +97,7 @@ public class MessageTest extends BaseTest {
 
     expectResponse(fixtureName, 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Message message = Message.getter(messageUuid).client(client).get();
 
     assertEquals(message.getId(), message.getMessageUuid());
@@ -135,7 +135,7 @@ public class MessageTest extends BaseTest {
     String fixtureName = "messageListResponse.json";
 
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Message.lister()
       .messageDirection(MessageDirection.OUTBOUND)
@@ -179,7 +179,7 @@ public class MessageTest extends BaseTest {
 
     expectResponse(fixtureName, 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Map<String, String> params = new LinkedHashMap<>();
 
     Iterator<Message> iter = Message.lister().client(client).iterator();
@@ -214,7 +214,7 @@ public class MessageTest extends BaseTest {
 
     expectResponse(fixtureName, 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Map<String, String> params = new LinkedHashMap<>();
 
     Iterator<Message> iter = Message.lister().client(client).iterator();

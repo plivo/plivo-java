@@ -24,7 +24,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void numberListWithClientShouldSucceed() throws Exception {
     expectResponse("numberListResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Number.lister().client(client)
       .list();
@@ -45,7 +45,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void numberCreateWithClientShouldSucceed() throws Exception {
     expectResponse("numberCreateResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Number.creator(Collections.singletonList("1231231231"), "carrier", "region").client(client)
       .create();
@@ -69,7 +69,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void numberUpdateWithClientShouldSucceed() throws Exception {
     expectResponse("numberUpdateResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     final String number = "1231231231";
 
@@ -99,7 +99,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void numberGetWithClientShouldSucceed() throws Exception {
     expectResponse("numberGetResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     final String numberNumber = "1231231231";
 
@@ -127,7 +127,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void phoneNumberListWithClientShouldSucceed() throws Exception {
     expectResponse("phoneNumberListResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     PhoneNumber.lister("US").client(client)
       .list();
@@ -152,7 +152,7 @@ public class NumberTest extends BaseTest {
   @Test
   public void phoneNumberCreateWithClientShouldSucceed() throws Exception {
     expectResponse("phoneNumberCreateResponse.json", 201);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     final String number = "1231231231";
 

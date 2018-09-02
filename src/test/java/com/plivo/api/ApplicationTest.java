@@ -31,7 +31,7 @@ public class ApplicationTest extends BaseTest {
   @Test
   public void applicationCreateWithClientShouldSucceed() throws Exception {
     expectResponse("applicationCreateResponse.json", 201);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Application.creator("My App")
       .answerUrl("http://test.answer.url/")
@@ -65,7 +65,7 @@ public class ApplicationTest extends BaseTest {
   public void applicationGetWithClientShouldSucceed() throws Exception {
     String appId = "appId";
     expectResponse("applicationGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Application application = Application.getter(appId).client(client)
       .get();
@@ -101,7 +101,7 @@ public class ApplicationTest extends BaseTest {
       .setBody(loadFixture(fixtureName))
     );
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.lister().client(client)
       .list();
 
@@ -138,7 +138,7 @@ public class ApplicationTest extends BaseTest {
       .setResponseCode(200)
       .setBody(loadFixture(fixtureName))
     );
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.updater(appId).client(client)
       .update();
 
@@ -178,7 +178,7 @@ public class ApplicationTest extends BaseTest {
     server.enqueue(new MockResponse()
       .setResponseCode(204)
     );
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.deleter(appId).client(client)
       .delete();
 

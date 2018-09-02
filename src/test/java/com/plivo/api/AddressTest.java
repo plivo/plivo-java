@@ -30,8 +30,8 @@ public class AddressTest extends BaseTest {
   @Test
   public void addressCreateWithClientShouldSucceed() throws Exception {
     expectResponse("addressCreateResponse.json", 201);
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Address.creator("FR",
       "Ms",
@@ -62,8 +62,8 @@ public class AddressTest extends BaseTest {
   public void addressGetWithClientShouldSucceed() throws Exception {
     expectResponse("addressGetResponse.json", 200);
     String addressId = "myaddress";
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Address.getter(addressId).client(client).get();
 
@@ -90,8 +90,8 @@ public class AddressTest extends BaseTest {
   @Test
   public void addressListWithClientShouldSucceed() throws Exception {
     String fixtureName  = "addressListResponse.json";
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     server.enqueue(new MockResponse()
           .setResponseCode(200)
@@ -129,8 +129,8 @@ public class AddressTest extends BaseTest {
     String fixtureName  = "addressModifyResponse.json";
     String addressId = "myaddressId";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     server.enqueue(new MockResponse()
           .setResponseCode(200)
@@ -165,8 +165,8 @@ public class AddressTest extends BaseTest {
   @Test
   public void addressDeleteWithClientShouldSucceed() throws Exception {
     String addressId = "myaddress";
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     server.enqueue(new MockResponse()
           .setResponseCode(204)

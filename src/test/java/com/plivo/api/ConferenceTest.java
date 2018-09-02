@@ -20,7 +20,7 @@ public class ConferenceTest extends BaseTest {
   @Test
   public void conferenceListWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceListResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Conference.listGetter()
       .client(client)
       .get();
@@ -46,7 +46,7 @@ public class ConferenceTest extends BaseTest {
   public void conferenceGetWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceGetResponse.json", 200);
     final String conferenceId = "conferenceId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference conference = Conference.getter(conferenceId)
       .client(client)
@@ -73,7 +73,7 @@ public class ConferenceTest extends BaseTest {
   public void conferenceDeleteWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceDeleteResponse.json", 204);
     final String conferenceId = "conferenceId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.deleter(conferenceId)
       .client(client)
@@ -97,7 +97,7 @@ public class ConferenceTest extends BaseTest {
   public void conferenceDeleteAllWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceDeleteAllResponse.json", 204);
     final String conferenceId = "conferenceId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.allDeleter().client(client)
       .delete();
@@ -122,7 +122,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberDeleteResponse.json", 204);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberHangupper(confId, memberId)
       .client(client)
@@ -148,7 +148,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberKickCreateResponse.json", 202);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberKicker(confId, memberId).client(client)
       .kick();
@@ -173,7 +173,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberSpeakCreateResponse.json", 202);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberSpeaker(confId, memberId, "test").client(client)
       .speak();
@@ -196,7 +196,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberPlayCreateResponse.json", 202);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberPlayer(confId, memberId, "http://www.example.com/")
       .client(client)
@@ -221,7 +221,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberMuteCreateResponse.json", 202);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberMuter(confId, memberId)
       .client(client)
@@ -245,7 +245,7 @@ public class ConferenceTest extends BaseTest {
   @Test
   public void conferenceMemberDeafWithClientCreateShouldSucceed() throws Exception {
     expectResponse("conferenceMemberDeafCreateResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -272,7 +272,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberSpeakDeleteResponse.json", 204);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberSpeakStopper(confId, memberId)
       .client(client)
@@ -298,7 +298,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberPlayDeleteResponse.json", 204);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberPlayStopper(confId, memberId)
       .client(client)
@@ -324,7 +324,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberMuteDeleteResponse.json", 204);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.memberMuteStopper(confId, memberId)
       .client(client)
@@ -350,7 +350,7 @@ public class ConferenceTest extends BaseTest {
     expectResponse("conferenceMemberDeafDeleteResponse.json", 204);
     final String confId = "confId";
     final String memberId = "memberId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Conference.memberDeafStopper(confId, memberId).client(client)
       .stop();
 
@@ -372,7 +372,7 @@ public class ConferenceTest extends BaseTest {
   public void conferenceRecordCreateWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceRecordCreateResponse.json", 202);
     final String confId = "confId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.recorder(confId)
       .client(client)
@@ -396,7 +396,7 @@ public class ConferenceTest extends BaseTest {
   public void conferenceRecordDeleteWithClientShouldSucceed() throws Exception {
     expectResponse("conferenceRecordDeleteResponse.json", 204);
     final String confId = "confId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Conference.recordStopper(confId)
       .client(client)

@@ -20,7 +20,7 @@ public class EndpointTest extends BaseTest {
   @Test
   public void endpointCreateWithClientShouldWork() throws Exception {
     expectResponse("endpointCreateResponse.json", 201);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Endpoint.creator("username", "password", "alias")
       .client(client)
@@ -37,7 +37,7 @@ public class EndpointTest extends BaseTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void endpointCreateWithClientShouldFailWithoutAllParams() throws Exception {
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Endpoint.creator(null, null, null)
       .client(client)
       .create();
@@ -61,7 +61,7 @@ public class EndpointTest extends BaseTest {
     expectResponse("endpointGetResponse.json", 200);
     final String endpointId = "endpointId";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Endpoint endpoint = Endpoint.getter(endpointId)
       .client(client)
       .get();
@@ -83,7 +83,7 @@ public class EndpointTest extends BaseTest {
   public void endpointGetNullIdWithClientShouldThrow() throws Exception {
     expectResponse("endpointGetResponse.json", 200);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Endpoint.getter(null)
       .client(client)
       .get();
@@ -101,7 +101,7 @@ public class EndpointTest extends BaseTest {
   public void endpointUpdateNullIdWithClientShouldThrow() throws Exception {
     expectResponse("endpointUpdateResponse.json", 202);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Endpoint.updater(null)
       .client(client)
       .update();
@@ -119,7 +119,7 @@ public class EndpointTest extends BaseTest {
   public void endpointDeleteNullIdWithClientShouldThrow() throws Exception {
     expectResponse(null, 204);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Endpoint.deleter(null)
       .client(client)
       .delete();
@@ -138,7 +138,7 @@ public class EndpointTest extends BaseTest {
   @Test
   public void endpointListWithClientShouldWork() throws Exception {
     expectResponse("endpointListResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Endpoint.lister()
       .client(client)
@@ -163,7 +163,7 @@ public class EndpointTest extends BaseTest {
   public void endpointUpdateWithClientShouldWork() throws Exception {
     expectResponse("endpointUpdateResponse.json", 200);
     final String endpointId = "endpointId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Endpoint.updater(endpointId)
       .alias("test")
@@ -188,7 +188,7 @@ public class EndpointTest extends BaseTest {
   public void endpointDeleteShouldWork() throws Exception {
     expectResponse(null, 204);
     final String endpointId = "endpointId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Endpoint.deleter(endpointId)
       .client(client)

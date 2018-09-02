@@ -43,8 +43,8 @@ public class IdentityTest extends BaseTest {
   public void identityCreateWithClientShouldSucceed() throws Exception {
     expectResponse("identityCreateResponse.json", 201);
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-                                "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+                                "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Identity
       .creator("FR",
@@ -83,8 +83,8 @@ public class IdentityTest extends BaseTest {
   public void identityGetWithClientShouldSucceed() throws Exception {
     String id = "24856289978366";
     expectResponse("identityGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Identity.getter(id).client(client).get();
     assertRequest("GET", "Verification/Identity/%s/", id);
@@ -113,8 +113,8 @@ public class IdentityTest extends BaseTest {
           .setBody(loadFixture(fixtureName))
     );
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Identity.lister().client(client).list();
     RecordedRequest recordedRequest = server.takeRequest();
@@ -151,8 +151,8 @@ public class IdentityTest extends BaseTest {
           .setBody(loadFixture(fixtureName))
     );
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-            "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+            "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Identity.updater(identityId).client(client).update();
 
@@ -187,8 +187,8 @@ public class IdentityTest extends BaseTest {
           .setResponseCode(204)
     );
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678",
+          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Identity.deleter(identityId).client(client)
       .delete();

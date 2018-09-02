@@ -1,6 +1,7 @@
 package com.plivo.examples;
 
 import com.plivo.api.PlivoClient;
+import com.plivo.api.PlivoRestClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.account.Account;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class Accounts {
   private static final String authId = "MANTXXXXXXXXXXXXXXXX";
   private static final String authToken = "ZMANTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-  private static PlivoClient client = new PlivoClient(authId, authToken);
+  private static PlivoClient client = new PlivoRestClient(authId, authToken).getClient();
 
   public static void main(String[] args) {
     Plivo.init(authId, authToken);

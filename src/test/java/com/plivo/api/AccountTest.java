@@ -27,7 +27,7 @@ public class AccountTest extends BaseTest {
   @Test
   public void accountGetWithClientShouldSucceed() throws Exception {
     String response = expectResponse("accountGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Account account = Account.getter().client(client)
       .get();
     assertEquals(account.getId(), account.getAuthId());
@@ -64,7 +64,7 @@ public class AccountTest extends BaseTest {
       .setResponseCode(202)
       .setBody(loadFixture(fixtureName))
     );
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Account.updater()
       .address("test")
       .name("test")
@@ -100,7 +100,7 @@ public class AccountTest extends BaseTest {
   public void subaccountCreateWithClientShouldSucceed() throws Exception {
 
     expectResponse("subaccountCreateResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Subaccount.creator("Test")
       .enabled(true)
       .client(client).create();
@@ -127,7 +127,7 @@ public class AccountTest extends BaseTest {
     String fixtureName = "subaccountGetResponse.json";
     String subauthId = "SAODNKNDDMY2EXY2JKMG";
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Subaccount subaccount = Subaccount.getter(subauthId).client(client).get();
 
     assertEquals(subaccount.getId(), subaccount.getAuthId());
@@ -153,7 +153,7 @@ public class AccountTest extends BaseTest {
     String fixtureName = "subaccountListResponse.json";
 
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Subaccount.lister().client(client)
       .list();
@@ -179,7 +179,7 @@ public class AccountTest extends BaseTest {
   public void subaccountModifyWithClientShouldSucceed() throws Exception {
     String fixtureName = "subaccountModifyResponse.json";
     String subauthId = "SAMTVIYJDIYWYYMZHLYZ";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     expectResponse(fixtureName, 202);
 
@@ -205,7 +205,7 @@ public class AccountTest extends BaseTest {
   @Test
   public void subaccountDeleteWithClientShouldSucceed() throws Exception {
     expectResponse(null, 204);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     String subauthId = "SAMTVIYJDIYWYYMZHLYZ";
 
