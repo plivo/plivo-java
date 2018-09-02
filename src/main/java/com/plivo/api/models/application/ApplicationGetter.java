@@ -11,6 +11,6 @@ public class ApplicationGetter extends Getter<Application> {
 
   @Override
   protected Call<Application> obtainCall() {
-    return client().getApiService().applicationGet(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().applicationGet(client().getPlivoRestClient().getAuthId(), id);
   }
 }

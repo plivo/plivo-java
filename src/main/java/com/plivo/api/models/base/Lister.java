@@ -2,6 +2,7 @@ package com.plivo.api.models.base;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Typing;
+import com.plivo.api.BaseClient;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.IterableError;
 import com.plivo.api.exceptions.PlivoRestException;
@@ -80,7 +81,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
 
   protected Map<String, Object> toMap() {
     client();
-    return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
+    return Utils.objectToMap(BaseClient.getObjectMapper(), this);
   }
 
   @Override

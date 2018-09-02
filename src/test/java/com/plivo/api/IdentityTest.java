@@ -3,6 +3,7 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.identity.Identity;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
@@ -40,6 +41,35 @@ public class IdentityTest extends BaseTest {
   }
 
   @Test
+  public void identityCreateVerifyRequestBody() throws Exception {
+    expectResponse("identityCreateResponse.json", 201);
+
+    Identity
+      .creator("FR",
+        "Mr",
+        "Bruce",
+        "Wayne",
+        "Rome",
+        LocalDate.of(1980, Month.FEBRUARY, 4),
+        "FR",
+        "100",
+        LocalDate.of(1996, Month.JANUARY, 4),
+        "plivo",
+        "passport",
+        "33522",
+        "128",
+        "RUE DU COMMANDANT GUILBAUD",
+        "PARIS",
+        "PARIS",
+        "75016")
+      .create();
+
+    JsonNode payload = actualRequestPayload();
+    assertEquals("Mr", payload.get("salutation").asText());
+    assertEquals("75016", payload.get("postal_code").asText());
+  }
+
+  @Test
   public void identityCreateWithClientShouldSucceed() throws Exception {
     expectResponse("identityCreateResponse.json", 201);
 
@@ -48,7 +78,7 @@ public class IdentityTest extends BaseTest {
 
     Identity
       .creator("FR",
-        "MR",
+        "Mr",
         "Bruce",
         "Wayne",
         "Rome",

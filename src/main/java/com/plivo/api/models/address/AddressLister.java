@@ -51,6 +51,7 @@ public class AddressLister extends Lister<Address> {
 
   @Override
   protected Call<ListResponse<Address>> obtainCall() {
-    return client().getApiService().addressList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService()
+      .addressList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

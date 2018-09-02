@@ -102,6 +102,7 @@ public class AddressUpdater extends Updater<AddressUpdateResponse> {
 
   @Override
   protected Call<AddressUpdateResponse> obtainCall() {
-    return client().getApiService().addressUpdate(client().getAuthId(), id, this);
+    return client().getPlivoRestClient().getApiService()
+      .addressUpdate(client().getPlivoRestClient().getAuthId(), id, this);
   }
 }

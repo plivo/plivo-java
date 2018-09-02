@@ -11,6 +11,6 @@ public class LiveCallGetter extends Getter<LiveCall> {
 
   @Override
   protected Call<LiveCall> obtainCall() {
-    return client().getApiService().liveCallGet(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().liveCallGet(client().getPlivoRestClient().getAuthId(), id);
   }
 }

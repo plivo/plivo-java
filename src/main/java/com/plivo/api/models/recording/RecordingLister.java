@@ -51,6 +51,6 @@ public class RecordingLister extends Lister<Recording> {
 
   @Override
   protected Call<ListResponse<Recording>> obtainCall() {
-    return client().getApiService().recordingList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService().recordingList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

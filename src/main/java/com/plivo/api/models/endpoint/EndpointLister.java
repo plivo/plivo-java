@@ -8,6 +8,6 @@ public class EndpointLister extends Lister<Endpoint> {
 
   @Override
   protected Call<ListResponse<Endpoint>> obtainCall() {
-    return client().getApiService().endpointList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService().endpointList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

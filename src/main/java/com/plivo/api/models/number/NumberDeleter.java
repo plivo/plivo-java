@@ -21,7 +21,7 @@ public class NumberDeleter extends Deleter<Number> {
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService().numberDelete(client().getAuthId(), number);
+    return client().getPlivoRestClient().getApiService().numberDelete(client().getPlivoRestClient().getAuthId(), number);
   }
 
   public void unrent() throws IOException, PlivoRestException {

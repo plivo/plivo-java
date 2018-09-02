@@ -7,6 +7,7 @@ import retrofit2.Call;
 public class IdentityLister extends Lister<Identity> {
   @Override
   protected Call<ListResponse<Identity>> obtainCall() {
-    return client().getApiService().identityList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService()
+      .identityList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

@@ -361,6 +361,6 @@ public class CallCreator extends Creator<CallCreateResponse> {
 
   @Override
   protected Call<CallCreateResponse> obtainCall() {
-    return client().getApiService().callCreate(client().getAuthId(), this);
+    return client().getPlivoRestClient().getApiService().callCreate(client().getPlivoRestClient().getAuthId(), this);
   }
 }

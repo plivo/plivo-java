@@ -14,8 +14,8 @@ public class ConferenceMemberDeafCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getApiService()
-      .conferenceMemberDeafCreate(client().getAuthId(), conferenceName, memberId);
+    return client().getPlivoRestClient().getApiService()
+      .conferenceMemberDeafCreate(client().getPlivoRestClient().getAuthId(), conferenceName, memberId);
   }
 
   public ConferenceMemberActionResponse deaf() throws IOException, PlivoRestException {

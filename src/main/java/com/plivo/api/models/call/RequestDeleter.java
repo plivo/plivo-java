@@ -12,7 +12,7 @@ public class RequestDeleter extends Deleter<Call> {
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainCall() {
-    return client().getApiService().requestDelete(client().getAuthId(), id);
+    return client().getPlivoRestClient().getApiService().requestDelete(client().getPlivoRestClient().getAuthId(), id);
   }
 
   public void cancel() throws IOException, PlivoRestException {

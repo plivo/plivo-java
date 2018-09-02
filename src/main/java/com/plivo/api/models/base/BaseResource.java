@@ -1,8 +1,8 @@
 package com.plivo.api.models.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.plivo.api.BaseClient;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
 
@@ -30,7 +30,7 @@ public abstract class BaseResource {
   @Override
   public String toString() {
     try {
-      return getClass().getCanonicalName() + ": " + PlivoClient.getObjectMapper()
+      return getClass().getCanonicalName() + ": " + BaseClient.getObjectMapper()
         .writeValueAsString(this);
     } catch (JsonProcessingException e) {
       e.printStackTrace();

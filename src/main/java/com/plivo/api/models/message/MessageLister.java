@@ -66,6 +66,6 @@ public class MessageLister extends Lister<Message> {
 
   @Override
   protected Call<ListResponse<Message>> obtainCall() {
-    return client().getApiService().messageList(client().getAuthId(), toMap());
+    return client().getPlivoRestClient().getApiService().messageList(client().getPlivoRestClient().getAuthId(), toMap());
   }
 }

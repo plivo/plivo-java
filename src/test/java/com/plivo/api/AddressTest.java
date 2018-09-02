@@ -3,6 +3,7 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.address.Address;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
@@ -25,6 +26,26 @@ public class AddressTest extends BaseTest {
       .create();
 
     assertRequest("POST", "Verification/Address/");
+  }
+
+  @Test
+  public void addressCreateVerifyRequestBody() throws Exception {
+    expectResponse("addressCreateResponse.json", 201);
+
+    Address.creator("FR",
+      "Mr",
+      "Bruce",
+      "Wayne",
+      "128",
+      "RUE DU COMMANDANT GUILBAUD",
+      "PARIS",
+      "PARIS",
+      "75016")
+      .create();
+
+    JsonNode payload = actualRequestPayload();
+    assertEquals("Mr", payload.get("salutation").asText());
+    assertEquals("75016", payload.get("postal_code").asText());
   }
 
   @Test

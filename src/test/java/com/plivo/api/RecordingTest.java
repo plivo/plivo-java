@@ -17,7 +17,7 @@ public class RecordingTest extends BaseTest {
     expectResponse("recordingListResponse.json", 200);
 
     Date date = Date.from(Instant.EPOCH);
-    String stringDate = PlivoClient.getObjectMapper().readValue(PlivoClient.getObjectMapper().writeValueAsString(date), String.class);
+    String stringDate = BaseClient.getObjectMapper().readValue(BaseClient.getObjectMapper().writeValueAsString(date), String.class);
 
     Recording.lister()
       .addTime(new PropertyFilter<Date>()
@@ -44,7 +44,7 @@ public class RecordingTest extends BaseTest {
     expectResponse("recordingListResponse.json", 200);
 
     Date date = Date.from(Instant.EPOCH);
-    String stringDate = PlivoClient.getObjectMapper().readValue(PlivoClient.getObjectMapper().writeValueAsString(date), String.class);
+    String stringDate = BaseClient.getObjectMapper().readValue(BaseClient.getObjectMapper().writeValueAsString(date), String.class);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Recording.lister()
       .addTime(new PropertyFilter<Date>()

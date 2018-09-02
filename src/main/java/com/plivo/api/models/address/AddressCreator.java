@@ -69,11 +69,12 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
   }
 
   public AddressCreator(String countryIso, String salutation, String firstName, String lastName,
-                        String addressLine1, String addressLine2, String city, String region, String postalCode) {
+                        String addressLine1, String addressLine2, String city,
+                        String region, String postalCode) {
     if (!Utils.allNotNull(countryIso, salutation, firstName, lastName,
-      addressLine1, addressLine2, city, region, postalCode)) {
-      throw new IllegalArgumentException("countryIso, salutation, firstName, lastName," +
-        "addressLine1, addressLine2, city, region and postalCode must not be null");
+        addressLine1, addressLine2, city, region, postalCode)) {
+      throw new IllegalArgumentException("countryIso, salutation, firstName, lastName,"
+        + "addressLine1, addressLine2, city, region and postalCode must not be null");
     }
     this.countryIso = countryIso;
     this.salutation = salutation;
@@ -153,7 +154,8 @@ public class AddressCreator extends Creator<AddressCreateResponse> {
 
   @Override
   protected Call<AddressCreateResponse> obtainCall() {
-    return client().getApiService().addressCreate(client().getAuthId(), this);
+    return client().getPlivoRestClient().getApiService()
+      .addressCreate(client().getPlivoRestClient().getAuthId(), this);
   }
 }
 
