@@ -16,8 +16,8 @@ public class MultiPartyCallCallCreator extends MultiPartyCallCreatorAction<NodeA
    * @param to            the to number.
    * @param role          the role.
    */
-  public MultiPartyCallCallCreator(final String phloId, final NodeType nodeType, final String nodeId,
-                                   final String triggerSource, final String to, final String role) {
+  public MultiPartyCallCallCreator(final String phloId, final NodeType nodeType,
+      final String nodeId, final String triggerSource, final String to, final String role) {
     super(phloId, nodeType, nodeId, triggerSource, to, role, MultiPartyCallActionType.CALL);
   }
 

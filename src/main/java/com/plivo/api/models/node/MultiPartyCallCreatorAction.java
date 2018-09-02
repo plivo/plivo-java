@@ -19,12 +19,13 @@ public abstract class MultiPartyCallCreatorAction<T extends BaseResponse> extend
    * @param role                     the role.
    * @param multiPartyCallActionType one of the node action types.
    */
-  public MultiPartyCallCreatorAction(final String phloId, final NodeType nodeType, final String nodeId,
-                                     final String triggerSource, final String to, final String role,
-                                     final MultiPartyCallActionType multiPartyCallActionType) {
+  public MultiPartyCallCreatorAction(final String phloId, final NodeType nodeType,
+       final String nodeId, final String triggerSource, final String to, final String role,
+       final MultiPartyCallActionType multiPartyCallActionType) {
     this.nodeType = nodeType;
     this.phloId = phloId;
     this.nodeId = nodeId;
-    this.multiPartyCallActionPayload = new MultiPartyCallActionPayload(triggerSource, to, role, multiPartyCallActionType);
+    this.multiPartyCallActionPayload = new MultiPartyCallActionPayload(triggerSource,
+      to, role, multiPartyCallActionType);
   }
 }

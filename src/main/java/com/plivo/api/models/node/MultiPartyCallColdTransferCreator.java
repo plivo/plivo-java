@@ -6,18 +6,20 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class MultiPartyCallColdTransferCreator extends MultiPartyCallCreatorAction<NodeActionResponse> {
+public class MultiPartyCallColdTransferCreator
+    extends MultiPartyCallCreatorAction<NodeActionResponse> {
   /**
-   * @param phloId         phlo id of the phlo object.
-   * @param nodeType       node type.
-   * @param nodeId         id of the node.
-   * @param triggerSource  the trigger source number.
-   * @param to             the to number.
-   * @param role           the role.
+   * @param phloId        phlo id of the phlo object.
+   * @param nodeType      node type.
+   * @param nodeId        id of the node.
+   * @param triggerSource the trigger source number.
+   * @param to            the to number.
+   * @param role          the role.
    */
-  public MultiPartyCallColdTransferCreator(final String phloId, final NodeType nodeType, final String nodeId,
-                                           final String triggerSource, final String to, final String role) {
-    super(phloId, nodeType, nodeId, triggerSource, to, role, MultiPartyCallActionType.COLD_TRANSFER);
+  public MultiPartyCallColdTransferCreator(final String phloId, final NodeType nodeType,
+      final String nodeId, final String triggerSource, final String to, final String role) {
+    super(phloId, nodeType, nodeId, triggerSource, to, role,
+      MultiPartyCallActionType.COLD_TRANSFER);
   }
 
   public NodeActionResponse coldtransfer() throws IOException, PlivoRestException {

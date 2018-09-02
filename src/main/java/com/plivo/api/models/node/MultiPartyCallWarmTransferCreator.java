@@ -6,7 +6,8 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class MultiPartyCallWarmTransferCreator extends MultiPartyCallCreatorAction<NodeActionResponse> {
+public class MultiPartyCallWarmTransferCreator
+      extends MultiPartyCallCreatorAction<NodeActionResponse> {
   /**
    * @param phloId         phlo id of the phlo object.
    * @param nodeType       node type.
@@ -15,9 +16,10 @@ public class MultiPartyCallWarmTransferCreator extends MultiPartyCallCreatorActi
    * @param to             the to number.
    * @param role           the role.
    */
-  public MultiPartyCallWarmTransferCreator(final String phloId, final NodeType nodeType, final String nodeId,
-                                           final String triggerSource, final String to, final String role) {
-    super(phloId, nodeType, nodeId, triggerSource, to, role, MultiPartyCallActionType.WARM_TRANSFER);
+  public MultiPartyCallWarmTransferCreator(final String phloId, final NodeType nodeType,
+      final String nodeId, final String triggerSource, final String to, final String role) {
+    super(phloId, nodeType, nodeId, triggerSource, to, role,
+      MultiPartyCallActionType.WARM_TRANSFER);
   }
 
   public NodeActionResponse warmtransfer() throws IOException, PlivoRestException {
