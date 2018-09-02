@@ -6,9 +6,19 @@ import static junit.framework.TestCase.assertEquals;
 import com.plivo.api.models.application.Application;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ApplicationTest extends BaseTest {
+
+  private PlivoClient client;
+
+  @Before
+  public void setUp() throws Exception {
+    super.setUp();
+    client = new PlivoRestClient("MA123456789012345678",
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+  }
 
   @Test
   public void applicationCreateShouldSucceed() throws Exception {
@@ -31,7 +41,6 @@ public class ApplicationTest extends BaseTest {
   @Test
   public void applicationCreateWithClientShouldSucceed() throws Exception {
     expectResponse("applicationCreateResponse.json", 201);
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Application.creator("My App")
       .answerUrl("http://test.answer.url/")
@@ -65,7 +74,6 @@ public class ApplicationTest extends BaseTest {
   public void applicationGetWithClientShouldSucceed() throws Exception {
     String appId = "appId";
     expectResponse("applicationGetResponse.json", 200);
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Application application = Application.getter(appId).client(client)
       .get();
@@ -101,7 +109,6 @@ public class ApplicationTest extends BaseTest {
       .setBody(loadFixture(fixtureName))
     );
 
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.lister().client(client)
       .list();
 
@@ -138,7 +145,6 @@ public class ApplicationTest extends BaseTest {
       .setResponseCode(200)
       .setBody(loadFixture(fixtureName))
     );
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.updater(appId).client(client)
       .update();
 
@@ -178,7 +184,6 @@ public class ApplicationTest extends BaseTest {
     server.enqueue(new MockResponse()
       .setResponseCode(204)
     );
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     Application.deleter(appId).client(client)
       .delete();
 
