@@ -52,11 +52,11 @@ import com.plivo.api.models.identity.IdentityUpdater;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
+import com.plivo.api.models.node.MultiPartyCall;
+import com.plivo.api.models.node.MultiPartyCallMemberActionPayload;
 import com.plivo.api.models.node.Node;
 import com.plivo.api.models.node.NodeActionPayload;
 import com.plivo.api.models.node.NodeActionResponse;
-import com.plivo.api.models.node.NodeMemberActionPayload;
-import com.plivo.api.models.node.NodeMultiPartyCall;
 import com.plivo.api.models.node.NodeType;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.number.NumberCreateResponse;
@@ -398,7 +398,7 @@ public interface PlivoAPIService {
                                         @Path("nodeType") NodeType nodeType,
                                         @Path("nodeId") String nodeId,
                                         @Path("memberId") String memberId,
-                                        @Body NodeMemberActionPayload payload);
+                                        @Body MultiPartyCallMemberActionPayload payload);
 
   @GET("phlo/{phloId}/{nodeType}/{nodeId}")
   Call<Node> nodeGet(@Path("phloId") String phloId,
@@ -406,9 +406,9 @@ public interface PlivoAPIService {
                      @Path("nodeId") final String nodeId);
 
   @GET("phlo/{phloId}/{nodeType}/{nodeId}")
-  Call<NodeMultiPartyCall> multiPartyCallGet(@Path("phloId") String phloId,
-                                             @Path("nodeType") NodeType nodeType,
-                                             @Path("nodeId") final String nodeId);
+  Call<MultiPartyCall> multiPartyCallGet(@Path("phloId") String phloId,
+                                         @Path("nodeType") NodeType nodeType,
+                                         @Path("nodeId") final String nodeId);
 
   @POST("account/{authId}/phlo/{phloId}")
   Call<PhloRunResponse> runPhlo(@Path("authId") String authId,

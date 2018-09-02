@@ -6,7 +6,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class NodeMemberHangUpCreator extends NoderMemberCreatorAction<NodeActionResponse> {
+public class MultiPartyCallMemberVoiceMailDropCreator extends MultiPartyCallMemberCreatorAction<NodeActionResponse> {
 
   /**
    * @param phloId phlo id of the phlo.
@@ -14,18 +14,18 @@ public class NodeMemberHangUpCreator extends NoderMemberCreatorAction<NodeAction
    * @param nodeId id of the node.
    * @param memberId id of the member.
    */
-  public NodeMemberHangUpCreator(final String phloId, final NodeType nodeType,
-                                 final String nodeId, final String memberId) {
-    super(phloId, nodeType, nodeId, memberId, NodeMemberActionType.HANGUP);
+  public MultiPartyCallMemberVoiceMailDropCreator(final String phloId, final NodeType nodeType,
+                                                  final String nodeId, final String memberId) {
+    super(phloId, nodeType, nodeId, memberId, MultiPartyCallMemberActionType.VOICEMAIL_DROP);
 
   }
 
-  public NodeActionResponse hangup() throws IOException, PlivoRestException {
+  public NodeActionResponse voicemaildrop() throws IOException, PlivoRestException {
     return create();
   }
 
   @Override
-  public NodeMemberHangUpCreator client(final PlivoClient plivoClient) {
+  public MultiPartyCallMemberVoiceMailDropCreator client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }

@@ -6,7 +6,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class NodeMemberHoldCreator extends NoderMemberCreatorAction<NodeActionResponse> {
+public class MultiPartyCallMemberAbortWarmTransferCreator extends MultiPartyCallMemberCreatorAction<NodeActionResponse> {
 
   /**
    * @param phloId phlo id of the phlo.
@@ -14,21 +14,22 @@ public class NodeMemberHoldCreator extends NoderMemberCreatorAction<NodeActionRe
    * @param nodeId id of the node.
    * @param memberId id of the member.
    */
-  public NodeMemberHoldCreator(final String phloId, final NodeType nodeType,
-                               final String nodeId, final String memberId){
-    super(phloId, nodeType, nodeId, memberId, NodeMemberActionType.HOLD);
+  public MultiPartyCallMemberAbortWarmTransferCreator(final String phloId, final NodeType nodeType,
+                                                      final String nodeId, final String memberId) {
+    super(phloId, nodeType, nodeId, memberId, MultiPartyCallMemberActionType.ABORT_TRANSFER);
 
   }
 
-  public NodeActionResponse hold() throws IOException, PlivoRestException {
+  public NodeActionResponse abortwarmtransfer() throws IOException, PlivoRestException {
     return create();
   }
 
   @Override
-  public NodeMemberHoldCreator client(final PlivoClient plivoClient) {
+  public MultiPartyCallMemberAbortWarmTransferCreator client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }
+
 
   @Override
   protected Call<NodeActionResponse> obtainCall() {

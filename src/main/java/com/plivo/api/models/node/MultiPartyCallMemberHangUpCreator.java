@@ -6,7 +6,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class NodeMemberUnHoldCreator extends NoderMemberCreatorAction<NodeActionResponse> {
+public class MultiPartyCallMemberHangUpCreator extends MultiPartyCallMemberCreatorAction<NodeActionResponse> {
 
   /**
    * @param phloId phlo id of the phlo.
@@ -14,18 +14,18 @@ public class NodeMemberUnHoldCreator extends NoderMemberCreatorAction<NodeAction
    * @param nodeId id of the node.
    * @param memberId id of the member.
    */
-  public NodeMemberUnHoldCreator(final String phloId, final NodeType nodeType,
-                                 final String nodeId, final String memberId) {
-    super(phloId, nodeType, nodeId, memberId, NodeMemberActionType.UNHOLD);
+  public MultiPartyCallMemberHangUpCreator(final String phloId, final NodeType nodeType,
+                                           final String nodeId, final String memberId) {
+    super(phloId, nodeType, nodeId, memberId, MultiPartyCallMemberActionType.HANGUP);
 
   }
 
-  public NodeActionResponse unhold() throws IOException, PlivoRestException {
+  public NodeActionResponse hangup() throws IOException, PlivoRestException {
     return create();
   }
 
   @Override
-  public NodeMemberUnHoldCreator client(final PlivoClient plivoClient) {
+  public MultiPartyCallMemberHangUpCreator client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }

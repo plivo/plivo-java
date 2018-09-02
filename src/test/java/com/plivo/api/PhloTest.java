@@ -2,8 +2,8 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
+import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.node.Node;
-import com.plivo.api.models.node.NodeMultiPartyCall;
 import com.plivo.api.models.node.NodeType;
 import com.plivo.api.models.phlo.Phlo;
 import com.plivo.api.models.phlo.PhloRunResponse;
@@ -93,10 +93,10 @@ public class PhloTest extends BaseTest {
 
     assertApiRequest("GET", "/", "phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6");
 
-    NodeMultiPartyCall nodeMultiPartyCall = phlo.multiPartyCallGetter(
+    MultiPartyCall multiPartyCall = phlo.multiPartyCallGetter(
         "f4789ccf-25f5-4a1f-91a4-55ca022ba903").get();
 
-    assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", nodeMultiPartyCall.getNodeId());
+    assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", multiPartyCall.getNodeId());
 
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
         "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
@@ -116,10 +116,10 @@ public class PhloTest extends BaseTest {
 
     assertApiRequest("GET", "/", "phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6");
 
-    NodeMultiPartyCall nodeMultiPartyCall = phlo.multiPartyCallGetter(
+    MultiPartyCall multiPartyCall = phlo.multiPartyCallGetter(
         "f4789ccf-25f5-4a1f-91a4-55ca022ba903").client(client).get();
 
-    assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", nodeMultiPartyCall.getNodeId());
+    assertEquals("f4789ccf-25f5-4a1f-91a4-55ca022ba903", multiPartyCall.getNodeId());
 
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
         "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");

@@ -1,11 +1,11 @@
 package com.plivo.api.models.phlo;
 
 import com.plivo.api.models.base.Getter;
-import com.plivo.api.models.node.NodeMultiPartyCall;
+import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.node.NodeType;
 import retrofit2.Call;
 
-public class MultiPartyCallGetter extends Getter<NodeMultiPartyCall> {
+public class MultiPartyCallGetter extends Getter<MultiPartyCall> {
   private final String phloId;
 
   public MultiPartyCallGetter(final String phloId, final String nodeId) {
@@ -14,7 +14,7 @@ public class MultiPartyCallGetter extends Getter<NodeMultiPartyCall> {
   }
 
   @Override
-  protected Call<NodeMultiPartyCall> obtainCall() {
+  protected Call<MultiPartyCall> obtainCall() {
     return client().getPhloRestClient().getApiService()
         .multiPartyCallGet(this.phloId, NodeType.MULTI_PARTY_CALL, this.id);
   }
