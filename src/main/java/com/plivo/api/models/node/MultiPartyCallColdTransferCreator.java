@@ -6,7 +6,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class NodeColdTransferCreator extends NodeCreatorAction<NodeActionResponse> {
+public class MultiPartyCallColdTransferCreator extends MultiPartyCallCreatorAction<NodeActionResponse> {
   /**
    * @param phloId         phlo id of the phlo object.
    * @param nodeType       node type.
@@ -15,9 +15,9 @@ public class NodeColdTransferCreator extends NodeCreatorAction<NodeActionRespons
    * @param to             the to number.
    * @param role           the role.
    */
-  public NodeColdTransferCreator(final String phloId, final NodeType nodeType, final String nodeId,
-                                 final String triggerSource, final String to, final String role) {
-    super(phloId, nodeType, nodeId, triggerSource, to, role, NodeActionType.COLD_TRANSFER);
+  public MultiPartyCallColdTransferCreator(final String phloId, final NodeType nodeType, final String nodeId,
+                                           final String triggerSource, final String to, final String role) {
+    super(phloId, nodeType, nodeId, triggerSource, to, role, MultiPartyCallActionType.COLD_TRANSFER);
   }
 
   public NodeActionResponse coldtransfer() throws IOException, PlivoRestException {
@@ -25,7 +25,7 @@ public class NodeColdTransferCreator extends NodeCreatorAction<NodeActionRespons
   }
 
   @Override
-  public NodeColdTransferCreator client(final PlivoClient plivoClient) {
+  public MultiPartyCallColdTransferCreator client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }
@@ -33,6 +33,6 @@ public class NodeColdTransferCreator extends NodeCreatorAction<NodeActionRespons
   @Override
   protected Call<NodeActionResponse> obtainCall() {
     return client().getPhloRestClient().getApiService()
-      .nodeAction(phloId, this.nodeType, this.nodeId, this.nodeActionPayload);
+      .nodeAction(phloId, this.nodeType, this.nodeId, this.multiPartyCallActionPayload);
   }
 }

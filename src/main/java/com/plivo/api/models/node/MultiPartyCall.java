@@ -2,16 +2,16 @@ package com.plivo.api.models.node;
 
 public class MultiPartyCall extends Node {
 
-  public NodeCallCreator callCreator(final String triggerSource, final String to, final String role){
-    return new NodeCallCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
+  public MultiPartyCallCallCreator callCreator(final String triggerSource, final String to, final String role){
+    return new MultiPartyCallCallCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
   }
 
-  public NodeColdTransferCreator coldTransferCreator(final String triggerSource, final String to, final String role){
-    return new NodeColdTransferCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
+  public MultiPartyCallColdTransferCreator coldTransferCreator(final String triggerSource, final String to, final String role){
+    return new MultiPartyCallColdTransferCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
   }
 
-  public NodeWarmTransferCreator warmTransferCreator(final String triggerSource, final String to, final String role){
-    return new NodeWarmTransferCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
+  public MultiPartyCallWarmTransferCreator warmTransferCreator(final String triggerSource, final String to, final String role){
+    return new MultiPartyCallWarmTransferCreator(this.phloId, this.nodeType, this.nodeId, triggerSource, to, role);
   }
 
   public MultiPartyCallMemberHangUpCreator memberHangUpCreator(final String memberId){

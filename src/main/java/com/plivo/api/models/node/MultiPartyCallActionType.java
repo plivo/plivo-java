@@ -1,11 +1,11 @@
 package com.plivo.api.models.node;
 
-public enum NodeActionType {
+public enum MultiPartyCallActionType {
   CALL("call"), COLD_TRANSFER("cold_transfer"), WARM_TRANSFER("warm_transfer");
 
   private final String action;
 
-  NodeActionType(final String action) {
+  MultiPartyCallActionType(final String action) {
     this.action = action;
   }
 

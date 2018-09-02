@@ -6,7 +6,7 @@ import retrofit2.Call;
 
 import java.io.IOException;
 
-public class NodeCallCreator extends NodeCreatorAction<NodeActionResponse> {
+public class MultiPartyCallCallCreator extends MultiPartyCallCreatorAction<NodeActionResponse> {
 
   /**
    * @param phloId        phlo id of the phlo object.
@@ -16,9 +16,9 @@ public class NodeCallCreator extends NodeCreatorAction<NodeActionResponse> {
    * @param to            the to number.
    * @param role          the role.
    */
-  public NodeCallCreator(final String phloId, final NodeType nodeType, final String nodeId,
-                         final String triggerSource, final String to, final String role) {
-    super(phloId, nodeType, nodeId, triggerSource, to, role, NodeActionType.CALL);
+  public MultiPartyCallCallCreator(final String phloId, final NodeType nodeType, final String nodeId,
+                                   final String triggerSource, final String to, final String role) {
+    super(phloId, nodeType, nodeId, triggerSource, to, role, MultiPartyCallActionType.CALL);
   }
 
   public NodeActionResponse call() throws IOException, PlivoRestException {
@@ -26,7 +26,7 @@ public class NodeCallCreator extends NodeCreatorAction<NodeActionResponse> {
   }
 
   @Override
-  public NodeCallCreator client(final PlivoClient plivoClient) {
+  public MultiPartyCallCallCreator client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }
@@ -34,6 +34,6 @@ public class NodeCallCreator extends NodeCreatorAction<NodeActionResponse> {
   @Override
   protected Call<NodeActionResponse> obtainCall() {
     return client().getPhloRestClient().getApiService()
-      .nodeAction(phloId, this.nodeType, this.nodeId, this.nodeActionPayload);
+      .nodeAction(phloId, this.nodeType, this.nodeId, this.multiPartyCallActionPayload);
   }
 }

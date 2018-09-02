@@ -55,7 +55,7 @@ import com.plivo.api.models.message.MessageCreator;
 import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.node.MultiPartyCallMemberActionPayload;
 import com.plivo.api.models.node.Node;
-import com.plivo.api.models.node.NodeActionPayload;
+import com.plivo.api.models.node.MultiPartyCallActionPayload;
 import com.plivo.api.models.node.NodeActionResponse;
 import com.plivo.api.models.node.NodeType;
 import com.plivo.api.models.number.Number;
@@ -390,7 +390,7 @@ public interface PlivoAPIService {
   Call<NodeActionResponse> nodeAction(@Path("phloId") String phloId,
                                       @Path("nodeType") NodeType nodeType,
                                       @Path("nodeId") String nodeId,
-                                      @Body NodeActionPayload payload);
+                                      @Body MultiPartyCallActionPayload payload);
 
   @Headers("Content-Type: application/json")
   @POST("phlo/{phloId}/{nodeType}/{nodeId}/members/{memberId}")

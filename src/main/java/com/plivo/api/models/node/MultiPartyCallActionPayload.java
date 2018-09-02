@@ -3,12 +3,12 @@ package com.plivo.api.models.node;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class NodeActionPayload {
+public class MultiPartyCallActionPayload {
 
   private String triggerSource;
   private String to;
   private String role;
-  private NodeActionType action;
+  private MultiPartyCallActionType action;
 
   /**
    * @param triggerSource the number triggering the action.
@@ -16,8 +16,8 @@ public class NodeActionPayload {
    * @param role role of the node.
    * @param action one of the node action types.
    */
-  public NodeActionPayload(final String triggerSource, final String to,
-      final String role, final NodeActionType action) {
+  public MultiPartyCallActionPayload(final String triggerSource, final String to,
+                                     final String role, final MultiPartyCallActionType action) {
     this.triggerSource = triggerSource;
     this.to = to;
     this.role = role;
@@ -36,7 +36,7 @@ public class NodeActionPayload {
     return role;
   }
 
-  public NodeActionType getAction() {
+  public MultiPartyCallActionType getAction() {
     return action;
   }
 }
