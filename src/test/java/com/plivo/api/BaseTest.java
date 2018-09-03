@@ -79,8 +79,7 @@ public class BaseTest {
     server = new MockWebServer();
     server.start();
 
-    PlivoClient.BASE_URL = server.url("/").toString();
-    Plivo.init(authId, authToken);
+    Plivo.init(authId, authToken, server.url("/").toString());
     Plivo.getClient().setTesting(true);
   }
 
