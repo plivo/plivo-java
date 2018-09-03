@@ -95,13 +95,12 @@ public class PlivoClient {
     .setLevel(Level.BODY);
   private final String authId;
   private final String authToken;
-  private final String baseUrl;
   private OkHttpClient httpClient;
   private Retrofit retrofit;
   private PlivoAPIService apiService = null;
 
   public PlivoClient(String authId, String authToken) {
-    this(authId, authToken, new Builder());
+    this(authId, authToken, BASE_URL, new Builder());
   }
 
   public PlivoClient(String authId, String authToken, String baseUrl) {
@@ -112,7 +111,7 @@ public class PlivoClient {
   * Constructor left for backward compatibility
   */
   public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this(authId, authToken, BASE_URL, new Builder());
+    this(authId, authToken, BASE_URL, httpClientBuilder);
   }
 
   /**
@@ -136,7 +135,6 @@ public class PlivoClient {
 
     this.authId = authId;
     this.authToken = authToken;
-    this.baseUrl = baseUrl;
 
      httpClient = httpClientBuilder
       .addNetworkInterceptor(interceptor)
