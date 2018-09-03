@@ -16,6 +16,11 @@ public class NodeGetter extends Getter<Node> {
   @JsonIgnore
   protected PlivoClient plivoClient = Plivo.getPhloClient();
 
+  @Override
+  public PlivoClient client() {
+    return this.plivoClient;
+  }
+
   /**
    *
    * @param phloId phloId of the current flow.
