@@ -19,8 +19,8 @@ public class IdentityTest extends BaseTest {
   @Before
   public void setUp() throws Exception {
     super.setUp();
-    client = new PlivoRestClient("MA123456789012345678",
-      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    client = new PlivoClient("MA123456789012345678",
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   }
 
   @Test

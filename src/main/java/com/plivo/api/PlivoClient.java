@@ -1,10 +1,21 @@
 package com.plivo.api;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.plivo.api.util.Utils;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
@@ -26,9 +37,11 @@ import java.text.SimpleDateFormat;
 
 public class PlivoClient {
 
+  private static SimpleModule simpleModule = new SimpleModule();
+  protected static String BASE_URL = "https://api.plivo.com/v1/";
+  private static String version = "Unknown Version";
   private boolean testing = false;
   private ObjectMapper objectMapper = new ObjectMapper();
-  private static String version = "Unknown Version";
 
   public void setTesting(boolean testing) {
     this.testing = testing;
@@ -36,6 +49,30 @@ public class PlivoClient {
 
   public boolean isTesting() {
     return testing;
+  }
+
+  static {
+    simpleModule.setDeserializerModifier(new BeanDeserializerModifier() {
+      @Override
+      public JsonDeserializer<?> modifyEnumDeserializer(DeserializationConfig config, JavaType type,
+                                                        BeanDescription beanDesc, JsonDeserializer<?> deserializer) {
+        return new JsonDeserializer<Enum>() {
+          @Override
+          public Enum deserialize(JsonParser jp, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
+            Class<? extends Enum> rawClass = (Class<Enum<?>>) type.getRawClass();
+            return Enum.valueOf(rawClass, jp.getValueAsString().toUpperCase().replace("-", "_"));
+          }
+        };
+      }
+    });
+    simpleModule.addSerializer(Enum.class, new StdSerializer<Enum>(Enum.class) {
+      @Override
+      public void serialize(Enum value, JsonGenerator gen, SerializerProvider provider)
+        throws IOException {
+        gen.writeString(value.name().toLowerCase().replace("_", "-"));
+      }
+    });
   }
 
   {
@@ -75,6 +112,8 @@ public class PlivoClient {
    * @param authId
    * @param authToken
    * @param httpClientBuilder
+   * @param baseUrl
+   * @param simpleModule
    */
   public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, final String baseUrl, final SimpleModule simpleModule) {
     if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
@@ -124,6 +163,41 @@ public class PlivoClient {
       .build();
 
     this.apiService = retrofit.create(PlivoAPIService.class);
+  }
+
+  /**
+   * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
+   * the timeout and proxy using:
+   *
+   * <pre><code>
+   *   new OkHttpClient.Builder()
+   *   .proxy(proxy)
+   *   .connectTimeout(1, TimeUnit.MINUTES);
+   * </code></pre>
+   *
+   * @param authId
+   * @param authToken
+   */
+  public PlivoClient(String authId, String authToken) {
+    this(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule);
+  }
+
+  /**
+   * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
+   * the timeout and proxy using:
+   *
+   * <pre><code>
+   *   new OkHttpClient.Builder()
+   *   .proxy(proxy)
+   *   .connectTimeout(1, TimeUnit.MINUTES);
+   * </code></pre>
+   *
+   * @param authId
+   * @param authToken
+   * @param httpClientBuilder
+   */
+  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
+    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
   }
 
   public ObjectMapper getObjectMapper() {

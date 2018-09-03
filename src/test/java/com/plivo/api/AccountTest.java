@@ -17,8 +17,8 @@ public class AccountTest extends BaseTest {
   @Before
   public void setUp() throws Exception {
     super.setUp();
-    client = new PlivoRestClient("MA123456789012345678",
-      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    client = new PlivoClient("MA123456789012345678",
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   }
 
   @Test
@@ -107,7 +107,7 @@ public class AccountTest extends BaseTest {
   public void subaccountCreateWithClientShouldSucceed() throws Exception {
 
     expectResponse("subaccountCreateResponse.json", 200);
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Subaccount.creator("Test")
       .enabled(true)
       .client(client).create();
@@ -184,7 +184,7 @@ public class AccountTest extends BaseTest {
   public void subaccountModifyWithClientShouldSucceed() throws Exception {
     String fixtureName = "subaccountModifyResponse.json";
     String subauthId = "SAMTVIYJDIYWYYMZHLYZ";
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     expectResponse(fixtureName, 202);
 

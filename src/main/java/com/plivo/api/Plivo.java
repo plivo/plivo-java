@@ -2,19 +2,19 @@ package com.plivo.api;
 
 public class Plivo {
 
-  private static PlivoClient instance = null;
+  private static PlivoClient plivoInstance = null;
   private static PlivoClient phloInstance = null;
 
   /**
-   * Initializes the global {@link PlivoClient} instance
+   * Initializes the global {@link PlivoClient} plivoInstance
    */
   public static synchronized void init(String authId, String authToken) {
-    instance = new PlivoRestClient(authId, authToken).getClient();
+    plivoInstance = new PlivoClient(authId, authToken);
     phloInstance = new PhloRestClient(authId, authToken).getClient();
   }
 
   /**
-   * Initializes the global {@link PlivoClient} instance, taking the authId and authToken from
+   * Initializes the global {@link PlivoClient} plivoInstance, taking the authId and authToken from
    * environment variables called PLIVO_AUTH_ID and PLIVO_AUTH_TOKEN.
    */
   public static synchronized void init() {
@@ -22,7 +22,7 @@ public class Plivo {
   }
 
   public static PlivoClient getClient() {
-    return instance;
+    return plivoInstance;
   }
 
   public static PlivoClient getPhloClient() {

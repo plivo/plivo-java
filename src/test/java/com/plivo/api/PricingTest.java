@@ -28,7 +28,7 @@ public class PricingTest extends BaseTest {
 
   public void pricingGetWithClientShouldSucceed() throws Exception {
     expectResponse("pricingGetResponse.json", 200);
-    PlivoClient client = new PlivoRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Pricing pricing = Pricing.getter("US").client(client)
       .get();
