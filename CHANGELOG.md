@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.2.0-alpha-1](https://github.com/plivo/plivo-java/tree/v4.2.0-alpha-1) (2018-09-05)
+- Add Phlo Support. Releasing in Alpha.
+
 ## [4.1.0](https://github.com/plivo/plivo-java/tree/v4.1.0) (2018-08-21)
 - Added api's for address and identity verification
 
