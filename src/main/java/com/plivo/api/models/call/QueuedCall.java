@@ -11,7 +11,7 @@ public class QueuedCall extends BaseResource {
   private CallStatus callStatus;
   private String callerName;
   private String callUuid;
-  pricate String apiId;
+  private String apiId;
 
 
   public static QueuedCallGetter getter(String id) {
@@ -20,10 +20,6 @@ public class QueuedCall extends BaseResource {
 
   public static QueuedCallListGetter listGetter() {
     return new QueuedCallListGetter();
-  }
-
-  public String getRequestUuid() {
-    return requestUuid;
   }
 
   public CallDirection getDirection() {
