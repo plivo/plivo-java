@@ -30,7 +30,7 @@ public abstract class BaseResource {
   @Override
   public String toString() {
     try {
-      return getClass().getCanonicalName() + ": " + PlivoClient.getObjectMapper()
+      return getClass().getCanonicalName() + ": " + plivoClient.getObjectMapper()
         .writeValueAsString(this);
     } catch (JsonProcessingException e) {
       e.printStackTrace();

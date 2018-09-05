@@ -80,7 +80,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
 
   protected Map<String, Object> toMap() {
     client();
-    return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
+    return Utils.objectToMap(plivoClient.getObjectMapper(), this);
   }
 
   @Override

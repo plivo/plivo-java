@@ -71,7 +71,7 @@ public abstract class BaseRequest<T extends BaseResource> {
     if (plivoClient.isTesting()) {
       if (response.body() != null) {
         if (!(response.body() instanceof ResponseBody)) {
-          PlivoClient.getObjectMapper().convertValue(response.body(), JsonNode.class);
+          client().getObjectMapper().convertValue(response.body(), JsonNode.class);
         }
         //noinspection ResultOfMethodCallIgnored
         response.body().toString();
