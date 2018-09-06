@@ -12,7 +12,7 @@ public class QueuedCall extends BaseResource {
   private String callerName;
   private String callUuid;
   private String apiId;
-  pricate String requestUUID;
+  private String requestUUID;
 
 
   public static QueuedCallGetter getter(String id) {
