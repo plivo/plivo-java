@@ -24,6 +24,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   private URL url = null;
   private String method = "POST";
   private Boolean log = null;
+  private Boolean trackable = null;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -72,6 +73,9 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     return this.log;
   }
 
+  public Boolean trackable(){
+    return this.trackable;
+  }
   /**
    * @param type Must be {@link MessageType#SMS}
    */
@@ -102,6 +106,15 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    */
   public MessageCreator log(final Boolean log) {
     this.log = log;
+    return this;
+  }
+
+ /**
+   * @param trackabel optional field
+   * infrastructure and the dst value will be masked
+   */
+  public MessageCreator trackable(final Boolean trackable){
+    this.trackable = log;
     return this;
   }
 
