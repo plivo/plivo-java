@@ -16,6 +16,7 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
   private Boolean defaultNumberApp;
   private Boolean defaultEndpointApp;
   private String subaccount;
+  private Boolean logIncomingMessages;
 
   public ApplicationUpdater(String id) {
     super(id);
@@ -63,6 +64,10 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
 
   public String subaccount() {
     return this.subaccount;
+  }
+
+  public Boolean logIncomingMessages() {
+    return this.logIncomingMessages;
   }
 
   public ApplicationUpdater answerUrl(final String answerUrl) {
@@ -117,6 +122,11 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
 
   public ApplicationUpdater subaccount(final String subaccount) {
     this.subaccount = subaccount;
+    return this;
+  }
+
+  public ApplicationUpdater logIncomingMessages(final Boolean logIncomingMessages) {
+    this.logIncomingMessages = logIncomingMessages;
     return this;
   }
 

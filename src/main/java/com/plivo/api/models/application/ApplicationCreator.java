@@ -18,6 +18,7 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
   private Boolean defaultNumberApp;
   private Boolean defaultEndpointApp;
   private String subaccount;
+  private Boolean logIncomingMessages;
 
   /**
    * @param appName The name of your application
@@ -78,6 +79,10 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
     return this.subaccount;
   }
 
+  public Boolean logIncomingMessages() {
+    return this.logIncomingMessages;
+  }
+
   public ApplicationCreator appName(final String appName) {
     this.appName = appName;
     return this;
@@ -135,6 +140,11 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
 
   public ApplicationCreator subaccount(final String subaccount) {
     this.subaccount = subaccount;
+    return this;
+  }
+
+  public ApplicationCreator logIncomingMessages(final Boolean logIncomingMessages) {
+    this.logIncomingMessages = logIncomingMessages;
     return this;
   }
 
