@@ -26,6 +26,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   private URL url = null;
   private String method = "POST";
   private Boolean log = null;
+  private Boolean trackable = null;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -46,6 +47,11 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     this.text = text;
   }
 
+  /**
+   * @param destination The numbers to which the message will be sent.
+   * @param text The text message that will be sent.
+   * @param powerpackUUID The powerpack UUID to be used.
+   */
   MessageCreator(List<String> destination, String text, String powerpackUUID) {
     if (!Utils.allNotNull(powerpackUUID, destination, text)) {
       throw new IllegalArgumentException("powerpack uuid, destination and text must not be null");
@@ -113,6 +119,14 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    */
   public MessageCreator log(final Boolean log) {
     this.log = log;
+    return this;
+  }
+
+  /**
+   * @param trackable 
+   */
+  public MessageCreator trackable(final Boolean trackable) {
+    this.trackable = trackable;
     return this;
   }
 
