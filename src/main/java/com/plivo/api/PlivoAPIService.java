@@ -8,6 +8,11 @@ import com.plivo.api.models.account.SubaccountCreateResponse;
 import com.plivo.api.models.account.SubaccountCreator;
 import com.plivo.api.models.account.SubaccountUpdateResponse;
 import com.plivo.api.models.account.SubaccountUpdater;
+import com.plivo.api.models.address.Address;
+import com.plivo.api.models.address.AddressCreateResponse;
+import com.plivo.api.models.address.AddressCreator;
+import com.plivo.api.models.address.AddressUpdateResponse;
+import com.plivo.api.models.address.AddressUpdater;
 import com.plivo.api.models.application.Application;
 import com.plivo.api.models.application.ApplicationCreateResponse;
 import com.plivo.api.models.application.ApplicationCreator;
@@ -39,6 +44,11 @@ import com.plivo.api.models.endpoint.EndpointCreateResponse;
 import com.plivo.api.models.endpoint.EndpointCreator;
 import com.plivo.api.models.endpoint.EndpointUpdateResponse;
 import com.plivo.api.models.endpoint.EndpointUpdater;
+import com.plivo.api.models.identity.Identity;
+import com.plivo.api.models.identity.IdentityCreateResponse;
+import com.plivo.api.models.identity.IdentityCreator;
+import com.plivo.api.models.identity.IdentityUpdateResponse;
+import com.plivo.api.models.identity.IdentityUpdater;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
@@ -65,6 +75,25 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface PlivoAPIService {
+
+  // Address
+  @POST("Account/{authId}/Verification/Address/")
+  Call<AddressCreateResponse> addressCreate(@Path("authId") String authId,
+                                            @Body AddressCreator addressCreator);
+
+  @GET("Account/{authId}/Verification/Address/")
+  Call<ListResponse<Address>> addressList(@Path("authId") String authId,
+                                          @QueryMap Map<String, Object> addressListRequest);
+
+  @GET("Account/{authId}/Verification/Address/{addressId}/")
+  Call<Address> addressGet(@Path("authId") String authId, @Path("addressId") String addressId);
+
+  @POST("Account/{authId}/Verification/Address/{addressId}/")
+  Call<AddressUpdateResponse> addressUpdate(@Path("authId") String authId,
+                                            @Path("addressId") String addressId, @Body AddressUpdater addressUpdater);
+
+  @DELETE("Account/{authId}/Verification/Address/{addressId}/")
+  Call<ResponseBody> addressDelete(@Path("authId") String authId, @Path("addressId") String addressId);
 
   // Application
   @POST("Account/{authId}/Application/")
@@ -167,6 +196,24 @@ public interface PlivoAPIService {
   Call<CallDtmfCreateResponse> callDtmfCreate(@Path("authId") String authId,
     @Path("callId") String callId, @Body
     CallDtmfCreator callDtmfCreator);
+
+  // Identity
+  @POST("Account/{authId}/Verification/Identity/")
+  Call<IdentityCreateResponse> identityCreate(@Path("authId") String authId,
+                                              @Body IdentityCreator identitycreator);
+
+  @GET("Account/{authId}/Verification/Identity/")
+  Call<ListResponse<Identity>> identityList(@Path("authId") String authId,
+                                            @QueryMap Map<String, Object> identityListRequest);
+
+  @GET("Account/{authId}/Verification/Identity/{id}/")
+  Call<Identity> identityGet(@Path("authId") String authId, @Path("id") String id);
+
+  @DELETE("Account/{authId}/Verification/Identity/{id}/")
+  Call<ResponseBody> identityDelete(@Path("authId") String authId, @Path("id") String number);
+
+  @POST("Account/{authId}/Verification/Identity/{id}/")
+  Call<IdentityUpdateResponse> identityUpdate(@Path("authId") String authId, @Path("id") String identityId, @Body IdentityUpdater identityUpdater);
 
   // Message
   @POST("Account/{authId}/Message/")

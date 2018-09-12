@@ -2,6 +2,7 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.models.call.Call;
 import com.plivo.api.models.call.LiveCall;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
@@ -13,6 +14,8 @@ import java.util.Map;
 import org.junit.Test;
 
 public class CallTest extends BaseTest {
+
+  final ObjectMapper objectMapper = new ObjectMapper();
 
   @Test
   public void callCreateShouldSucceed() throws Exception {
@@ -412,4 +415,52 @@ public class CallTest extends BaseTest {
   }
 
 
+  @Test
+  public void callCreateWithCallbackSucceed() throws Exception {
+    String fixtureName = "callCreateResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.creator("+911231231230", Arrays.asList("+911234567890"),
+      "http://example.answer.url/")
+      .answerMethod("POST")
+      .callbackMethod("POST")
+      .callbackUrl("http://example.answer.url/")
+      .client(client)
+      .create();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    Map<String, Object> body = objectMapper.readValue(recordedRequest.getBody().readUtf8(), Map.class);
+    assertEquals("POST", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Call/", authId),
+      recordedRequest.getPath());
+    assertEquals(body.get("callback_url"), "http://example.answer.url/");
+    assertEquals(body.get("callback_method"), "POST");
+  }
+
+  @Test
+  public void callCreateWithCallbackUrlOnlySucceed() throws Exception {
+    String fixtureName = "callCreateResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Call.creator("+911231231230", Arrays.asList("+911234567890"),
+      "http://example.answer.url/")
+      .answerMethod("POST")
+      .callbackUrl("http://example.answer.url/")
+      .client(client)
+      .create();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    Map<String, Object> body = objectMapper.readValue(recordedRequest.getBody().readUtf8(), Map.class);
+    assertEquals("POST", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Call/", authId),
+      recordedRequest.getPath());
+    assertEquals(body.get("callback_url"), "http://example.answer.url/");
+    assertEquals(body.get("callback_method"), null);
+  }
 }
