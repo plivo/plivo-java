@@ -10,6 +10,7 @@ public class CallLister extends Lister<Call> {
   private CallDirection callDirection;
   private String fromNumber;
   private String toNumber;
+  private String parentCallUuid;
   // TODO XXX PropertyFilter
   private PropertyFilter<Long> billDuration;
   private PropertyFilter<Long> endTime;
@@ -30,6 +31,10 @@ public class CallLister extends Lister<Call> {
     return this.toNumber;
   }
 
+  public String parentCallUuid(){
+    return this.parentCallUuid;
+  }
+  
   public PropertyFilter<Long> billDuration() {
     return this.billDuration;
   }
@@ -68,6 +73,14 @@ public class CallLister extends Lister<Call> {
    */
   public CallLister toNumber(final String toNumber) {
     this.toNumber = toNumber;
+    return this;
+  }
+
+  /**
+   * @param parentCallUuid Filter the results by the number to which the call was made.
+   */
+  public CallLister parentCallUuid(final String parentCallUuid) {
+    this.parentCallUuid = parentCallUuid;
     return this;
   }
 
