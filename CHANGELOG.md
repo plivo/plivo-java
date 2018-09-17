@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.1.3](https://github.com/plivo/plivo-java/tree/v4.1.0) (2018-08-21)
+- Add support for fetching queued_call details
+- Add powerpack support
+- Add Log Incoming Message in resources
+
 ## [4.1.0](https://github.com/plivo/plivo-java/tree/v4.1.0) (2018-08-21)
 - Added api's for address and identity verification
 
