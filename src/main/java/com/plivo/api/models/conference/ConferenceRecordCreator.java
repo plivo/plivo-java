@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Creator;
-import java.io.IOException;
 import retrofit2.Call;
+
+import java.io.IOException;
 
 public class ConferenceRecordCreator extends Creator<ConferenceRecordCreateResponse> {
 
   @JsonIgnore
   private final String conferenceName;
+  private Integer timeLimit;
   private String fileFormat;
   private String transcriptionType;
   private String transcriptionUrl;
@@ -20,6 +22,10 @@ public class ConferenceRecordCreator extends Creator<ConferenceRecordCreateRespo
 
   public ConferenceRecordCreator(String conferenceName) {
     this.conferenceName = conferenceName;
+  }
+
+  public Integer timeLimit() {
+    return timeLimit;
   }
 
   public String fileFormat() {
@@ -44,6 +50,11 @@ public class ConferenceRecordCreator extends Creator<ConferenceRecordCreateRespo
 
   public String callbackMethod() {
     return this.callbackMethod;
+  }
+
+  public ConferenceRecordCreator timeLimit(Integer timeLimit) {
+    this.timeLimit = timeLimit;
+    return this;
   }
 
   public ConferenceRecordCreator fileFormat(final String fileFormat) {
