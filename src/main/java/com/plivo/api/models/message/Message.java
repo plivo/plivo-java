@@ -22,6 +22,10 @@ public class Message extends BaseResource {
     return new MessageCreator(source, destination, text);
   }
 
+  public static MessageCreator creator(List<String> destination, String text, String powerpackUUID) {
+    return new MessageCreator(destination, text, powerpackUUID);
+  }
+
   public static MessageGetter getter(String id) {
     return new MessageGetter(id);
   }

@@ -15,15 +15,18 @@ import retrofit2.Call;
 public class MessageCreator extends Creator<MessageCreateResponse> {
 
   @JsonProperty("src")
-  private final String source;
+  private String source;
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
   private final List<String> destination;
   private final String text;
+  @JsonProperty("powerpack_uuid")
+  private String powerpackUUID;
   private MessageType type = MessageType.SMS;
   private URL url = null;
   private String method = "POST";
   private Boolean log = null;
+  private Boolean trackable = null;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -42,6 +45,20 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     this.source = source;
     this.destination = destination;
     this.text = text;
+  }
+
+  /**
+   * @param destination The numbers to which the message will be sent.
+   * @param text The text message that will be sent.
+   * @param powerpackUUID The powerpack UUID to be used.
+   */
+  MessageCreator(List<String> destination, String text, String powerpackUUID) {
+    if (!Utils.allNotNull(powerpackUUID, destination, text)) {
+      throw new IllegalArgumentException("powerpack uuid, destination and text must not be null");
+    }
+    this.destination = destination;
+    this.text = text;
+    this.powerpackUUID = powerpackUUID;
   }
 
   public String source() {
@@ -102,6 +119,14 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    */
   public MessageCreator log(final Boolean log) {
     this.log = log;
+    return this;
+  }
+
+  /**
+   * @param trackable 
+   */
+  public MessageCreator trackable(final Boolean trackable) {
+    this.trackable = trackable;
     return this;
   }
 
