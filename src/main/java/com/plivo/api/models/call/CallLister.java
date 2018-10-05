@@ -11,6 +11,8 @@ public class CallLister extends Lister<Call> {
   private String fromNumber;
   private String toNumber;
   private String parentCallUuid;
+  private String hangupSource;
+  private Integer hangupCauseCode;
   // TODO XXX PropertyFilter
   private PropertyFilter<Long> billDuration;
   private PropertyFilter<Long> endTime;
@@ -33,6 +35,14 @@ public class CallLister extends Lister<Call> {
 
   public String parentCallUuid(){
     return this.parentCallUuid;
+  }
+
+  public String hangupSource() {
+    return hangupSource;
+  }
+
+  public Integer hangupCauseCode() {
+    return hangupCauseCode;
   }
   
   public PropertyFilter<Long> billDuration() {
@@ -81,6 +91,22 @@ public class CallLister extends Lister<Call> {
    */
   public CallLister parentCallUuid(final String parentCallUuid) {
     this.parentCallUuid = parentCallUuid;
+    return this;
+  }
+
+  /**
+   * @param hangupSource Filter the results by hangup source.
+   */
+  public CallLister hangupSource(String hangupSource) {
+    this.hangupSource = hangupSource;
+    return this;
+  }
+
+  /**
+   * @param hangupCauseCode Filter the results by hangup cause code.
+   */
+  public CallLister hangupCauseCode(Integer hangupCauseCode) {
+    this.hangupCauseCode = hangupCauseCode;
     return this;
   }
 
