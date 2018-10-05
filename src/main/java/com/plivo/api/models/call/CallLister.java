@@ -11,8 +11,8 @@ public class CallLister extends Lister<Call> {
   private String fromNumber;
   private String toNumber;
   private String parentCallUuid;
-  private String plivoHangupSource;
-  private Integer plivoHangupCauseCode;
+  private String hangupSource;
+  private Integer hangupCauseCode;
   // TODO XXX PropertyFilter
   private PropertyFilter<Long> billDuration;
   private PropertyFilter<Long> endTime;
@@ -37,12 +37,12 @@ public class CallLister extends Lister<Call> {
     return this.parentCallUuid;
   }
 
-  public String plivoHangupSource() {
-    return plivoHangupSource;
+  public String hangupSource() {
+    return hangupSource;
   }
 
-  public Integer plivoHangupCauseCode() {
-    return plivoHangupCauseCode;
+  public Integer hangupCauseCode() {
+    return hangupCauseCode;
   }
   
   public PropertyFilter<Long> billDuration() {
@@ -95,18 +95,18 @@ public class CallLister extends Lister<Call> {
   }
 
   /**
-   * @param plivoHangupSource Filter the results by plivo hangup source.
+   * @param hangupSource Filter the results by hangup source.
    */
-  public CallLister plivoHangupSource(String plivoHangupSource) {
-    this.plivoHangupSource = plivoHangupSource;
+  public CallLister hangupSource(String hangupSource) {
+    this.hangupSource = hangupSource;
     return this;
   }
 
   /**
-   * @param plivoHangupCauseCode Filter the results by plivo hangup cause code.
+   * @param hangupCauseCode Filter the results by hangup cause code.
    */
-  public CallLister plivoHangupCauseCode(Integer plivoHangupCauseCode) {
-    this.plivoHangupCauseCode = plivoHangupCauseCode;
+  public CallLister hangupCauseCode(Integer hangupCauseCode) {
+    this.hangupCauseCode = hangupCauseCode;
     return this;
   }
 
