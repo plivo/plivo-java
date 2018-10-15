@@ -165,7 +165,7 @@ public interface PlivoAPIService {
   Call<ResponseBody> callDelete(@Path("authId") String authId, @Path("callId") String callId);
 
   @GET("Account/{authId}/Call/?status=live")
-  Call<LiveCallListResponse> liveCallListGet(@Path("authId") String authId);
+  Call<LiveCallListResponse> liveCallListGet(@Path("authId") String authId, @QueryMap Map<String, Object> callListRequest);
 
   @GET("Account/{authId}/Call/{callId}/?status=live")
   Call<LiveCall> liveCallGet(@Path("authId") String authId, @Path("callId") String callId);
