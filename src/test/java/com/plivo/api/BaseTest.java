@@ -49,8 +49,10 @@ public class BaseTest {
     String[] pairs = query.split("&");
     for (String pair : pairs) {
       int idx = pair.indexOf("=");
-      queryPairs.put(
-        URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+      if (pair.substring(idx+1).length() > 0){
+        queryPairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), 
+        URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+      }
     }
     return queryPairs;
   }
