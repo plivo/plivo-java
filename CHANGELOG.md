@@ -1,6 +1,10 @@
 # Change Log
 
-## [4.1.3](https://github.com/plivo/plivo-java/tree/v4.1.0) (2018-08-21)
+## [4.1.4](https://github.com/plivo/plivo-java/tree/v4.1.4) (2018-10-23)
+- Add support for filtering live calls by from number, to number and call direction.
+- Add hangup party details in get CDR. Add filtering by hangup source and hangup cause code.
+
+## [4.1.3](https://github.com/plivo/plivo-java/tree/v4.1.3) (2018-08-21)
 - Add support for fetching queued_call details
 - Add powerpack support
 - Add Log Incoming Message in resources
