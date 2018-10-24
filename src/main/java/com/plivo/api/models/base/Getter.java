@@ -3,6 +3,9 @@ package com.plivo.api.models.base;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
+import java.util.Map;
+
+import com.plivo.api.util.Utils;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -41,6 +44,10 @@ public abstract class Getter<T extends BaseResource> extends BaseRequest<T> {
     return this;
   }
 
+  protected Map<String, Object> toMap() {
+    client();
+    return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
+  }
 
   protected abstract Call<T> obtainCall();
 }

@@ -41,7 +41,7 @@ public class PlivoClient {
   protected static String BASE_URL = "https://api.plivo.com/v1/";
   private static String version = "Unknown Version";
   private boolean testing = false;
-  private ObjectMapper objectMapper = new ObjectMapper();
+  private static ObjectMapper objectMapper = new ObjectMapper();
 
   public void setTesting(boolean testing) {
     this.testing = testing;
@@ -200,7 +200,7 @@ public class PlivoClient {
     this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
   }
 
-  public ObjectMapper getObjectMapper() {
+  public static ObjectMapper getObjectMapper() {
     return objectMapper;
   }
 
