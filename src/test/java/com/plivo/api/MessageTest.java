@@ -33,10 +33,28 @@ public class MessageTest extends BaseTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
+
+    Message.creator(null, "text", "testUUID")
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
     Message.creator("+911231231230", null, "text")
+      .client(client)
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void messageWithPowerpackBuildWithClientShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+    Message.creator( null, "text", "testUUID")
       .client(client)
       .create();
   }
@@ -48,6 +66,7 @@ public class MessageTest extends BaseTest {
     Message.creator("+911231231230", Arrays.asList("+911231231230"), "test")
       .create();
   }
+
 
   @Test(expected = IllegalArgumentException.class)
   public void messageSendWithClientShouldFailWhenSameSrcDst() throws Exception {
@@ -71,12 +90,38 @@ public class MessageTest extends BaseTest {
   }
 
   @Test
+  public void messageWithPowerpackCreateShouldSucceed() throws Exception {
+    String fixtureName = "messageSendResponse.json";
+
+    expectResponse(fixtureName, 202);
+
+    Message.creator(Arrays.asList("+911231231330"), "test", "testUUID")
+      .create();
+
+    assertRequest("POST", "Message/");
+  }
+
+  @Test
   public void messageCreateWithClientShouldSucceed() throws Exception {
     String fixtureName = "messageSendResponse.json";
 
     expectResponse(fixtureName, 202);
 
     Message.creator("+911231231230", Arrays.asList("+911231231330"), "test")
+      .client(client)
+      .create();
+
+    assertRequest("POST", "Message/");
+  }
+
+  @Test
+  public void messageWithPowerpackCreateWithClientShouldSucceed() throws Exception {
+    String fixtureName = "messageSendResponse.json";
+
+    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    expectResponse(fixtureName, 202);
+
+    Message.creator(Arrays.asList("+911231231330"), "test", "testUUID")
       .client(client)
       .create();
 

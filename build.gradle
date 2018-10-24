@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
+if (JavaVersion.current() >= JavaVersion.VERSION_1_9){
   compileJava {
     doFirst {
       options.compilerArgs = [

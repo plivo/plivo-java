@@ -25,6 +25,8 @@ import com.plivo.api.models.call.CallUpdateResponse;
 import com.plivo.api.models.call.CallUpdater;
 import com.plivo.api.models.call.LiveCall;
 import com.plivo.api.models.call.LiveCallListResponse;
+import com.plivo.api.models.call.QueuedCall;
+import com.plivo.api.models.call.QueuedCallListResponse;
 import com.plivo.api.models.call.actions.CallDtmfCreateResponse;
 import com.plivo.api.models.call.actions.CallDtmfCreator;
 import com.plivo.api.models.call.actions.CallPlayCreateResponse;
@@ -171,10 +173,16 @@ public interface PlivoAPIService {
   Call<ResponseBody> callDelete(@Path("authId") String authId, @Path("callId") String callId);
 
   @GET("Account/{authId}/Call/?status=live")
-  Call<LiveCallListResponse> liveCallListGet(@Path("authId") String authId);
+  Call<LiveCallListResponse> liveCallListGet(@Path("authId") String authId, @QueryMap Map<String, Object> callListRequest);
 
   @GET("Account/{authId}/Call/{callId}/?status=live")
   Call<LiveCall> liveCallGet(@Path("authId") String authId, @Path("callId") String callId);
+
+  @GET("Account/{authId}/Call/?status=queued")
+  Call<QueuedCallListResponse> queuedCallListGet(@Path("authId") String authId);
+
+  @GET("Account/{authId}/Call/{callId}/?status=queued")
+  Call<QueuedCall> queuedCallGet(@Path("authId") String authId, @Path("callId") String callId);
 
   @POST("Account/{authId}/Call/{callId}/Record/")
   Call<CallRecordCreateResponse> callRecordCreate(@Path("authId") String authId,
