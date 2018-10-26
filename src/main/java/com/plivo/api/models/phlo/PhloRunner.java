@@ -9,10 +9,13 @@ import com.plivo.api.models.base.Creator;
 import retrofit2.Call;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PhloRunner extends Creator<PhloRunResponse> {
 
   private final String phloId;
+  private Map<String, String> payload = new HashMap<>();;
 
   @JsonIgnore
   protected PlivoClient plivoClient = Plivo.getPhloClient();
@@ -26,10 +29,15 @@ public class PhloRunner extends Creator<PhloRunResponse> {
     this.phloId = phloId;
   }
 
+  public PhloRunner(final String phloId, final Map<String, String> payload) {
+    this.phloId = phloId;
+    this.payload = payload;
+  }
+
   @Override
   protected Call<PhloRunResponse> obtainCall() {
     return client().getApiService().runPhlo(this.client()
-      .getAuthId(), this.phloId);
+      .getAuthId(), this.phloId, this.payload);
   }
 
   public PhloRunResponse run() throws IOException, PlivoRestException {

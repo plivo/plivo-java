@@ -418,7 +418,9 @@ public interface PlivoAPIService {
                                          @Path("nodeType") NodeType nodeType,
                                          @Path("nodeId") final String nodeId);
 
+  @Headers("Content-Type: application/json")
   @POST("account/{authId}/phlo/{phloId}")
   Call<PhloRunResponse> runPhlo(@Path("authId") String authId,
-                                @Path("phloId") String phloId);
+                                @Path("phloId") String phloId,
+                                @QueryMap Map<String, String> payload);
 }

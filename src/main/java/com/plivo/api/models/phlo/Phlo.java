@@ -3,6 +3,8 @@ package com.plivo.api.models.phlo;
 import com.plivo.api.models.base.BaseResource;
 import com.plivo.api.models.node.NodeType;
 
+import java.util.Map;
+
 public class Phlo extends BaseResource {
 
   private String phloId;
@@ -44,6 +46,10 @@ public class Phlo extends BaseResource {
 
   public static PhloRunner runner(final String phloId) {
     return new PhloRunner(phloId);
+  }
+
+  public static PhloRunner runner(final String phloId, final Map<String, String> payload) {
+    return new PhloRunner(phloId, payload);
   }
 
 }
