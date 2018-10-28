@@ -7,6 +7,8 @@ import retrofit2.Call;
 
 public class SubaccountDeleter extends Deleter<Subaccount> {
 
+  private Boolean cascade;
+
   public SubaccountDeleter(String id) {
     super(id);
 
@@ -15,8 +17,23 @@ public class SubaccountDeleter extends Deleter<Subaccount> {
     }
   }
 
+  /**
+   * @return Specify if the subaccount should be cascade deleted or not.
+   */
+  public Boolean cascade() {
+    return this.cascade;
+  }
+
+  /**
+   * @param cascade Specify if the subaccount should be cascade or not.
+   */
+  public SubaccountDeleter cascade(final Boolean cascade) {
+    this.cascade = cascade;
+    return this;
+  }
+
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService().subaccountDelete(client().getAuthId(), id);
+    return client().getApiService().subaccountDelete(client().getAuthId(), id, this);
   }
 }
