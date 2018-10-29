@@ -4,6 +4,7 @@ import static junit.framework.TestCase.assertEquals;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.node.MultiPartyCall;
+import com.plivo.api.models.node.MultiPartyCallUpdateResponse;
 import com.plivo.api.models.phlo.Phlo;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,8 @@ import org.junit.Test;
 public class MultiPartyCallMemberTest extends BaseTest {
   private Phlo phlo;
   PlivoClient client;
-  private MultiPartyCall multiPartyCall;
+  private String phloId = "a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6";
+  private String nodeId = "f4789ccf-25f5-4a1f-91a4-55ca022ba903";
 
   @Before
   public void setUp() throws Exception {
@@ -22,11 +24,11 @@ public class MultiPartyCallMemberTest extends BaseTest {
     client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     phlo = Phlo
-      .getter("a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6")
+      .getter(phloId)
       .get();
 
-    multiPartyCall = phlo.multiPartyCallGetter(
-      "f4789ccf-25f5-4a1f-91a4-55ca022ba903").get();
+    MultiPartyCall multiPartyCall = MultiPartyCall.getter(phloId, nodeId).get();
+
   }
 
   @Test
@@ -37,7 +39,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberAbortWarmTransferCreator("11111111111").abortwarmtransfer();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").abort_transfer().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -51,7 +53,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberAbortWarmTransferCreator("11111111111").abortwarmtransfer();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").abort_warm_transfer().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("abort_transfer", payload.get("action").asText());
@@ -65,7 +67,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberAbortWarmTransferCreator("11111111111").client(client).abortwarmtransfer();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").abort_warm_transfer().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -79,7 +81,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberResumeCallCreator("11111111111").resumecall();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").resume_call().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -93,7 +95,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberResumeCallCreator("11111111111").resumecall();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").resume_call().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("resume_call", payload.get("action").asText());
@@ -107,8 +109,8 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberResumeCallCreator("11111111111")
-      .client(client).resumecall();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").resume_call().client(client).update();
+
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -122,7 +124,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberVoiceMailDropCreator("11111111111").voicemaildrop();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").voicemail_drop().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -136,7 +138,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberVoiceMailDropCreator("11111111111").voicemaildrop();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").voicemail_drop().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("voicemail_drop", payload.get("action").asText());
@@ -150,8 +152,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberVoiceMailDropCreator("11111111111")
-      .client(client).voicemaildrop();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").voicemail_drop().client(client).update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -165,7 +166,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHangUpCreator("11111111111").hangup();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hangup().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -179,7 +180,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHangUpCreator("11111111111").hangup();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hangup().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("hangup", payload.get("action").asText());
@@ -193,8 +194,8 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHangUpCreator("11111111111").client(client)
-      .hangup();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hangup().client(client).update();
+
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -208,7 +209,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHoldCreator("11111111111").hold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hold().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -222,7 +223,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHoldCreator("11111111111").hold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hold().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("hold", payload.get("action").asText());
@@ -236,7 +237,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberHoldCreator("11111111111").client(client).hold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").hold().client(client).update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
           "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -250,7 +251,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberUnHoldCreator("11111111111").unhold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").unhold().update();
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903/members/11111111111");
@@ -264,7 +265,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberUnHoldCreator("11111111111").unhold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").unhold().update();
 
     JsonNode payload = actualRequestPayload();
     assertEquals("unhold", payload.get("action").asText());
@@ -278,7 +279,7 @@ public class MultiPartyCallMemberTest extends BaseTest {
     assertApiRequest("GET", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",
          "multi_party_call/f4789ccf-25f5-4a1f-91a4-55ca022ba903");
 
-    multiPartyCall.memberUnHoldCreator("11111111111").client(client).unhold();
+    MultiPartyCallUpdateResponse response = MultiPartyCall.updater(phloId, nodeId).member("11111111111").unhold().client(client).update();
 
 
     assertApiRequest("POST", "/phlo/a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6/",

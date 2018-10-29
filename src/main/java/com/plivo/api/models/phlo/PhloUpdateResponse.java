@@ -2,7 +2,7 @@ package com.plivo.api.models.phlo;
 
 import com.plivo.api.models.base.BaseResponse;
 
-public class PhloRunResponse extends BaseResponse {
+public class PhloUpdateResponse extends BaseResponse {
   private String phloId;
   private String phloRunId;
   private String error;

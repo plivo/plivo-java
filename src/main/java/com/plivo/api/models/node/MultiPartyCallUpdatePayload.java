@@ -1,9 +1,10 @@
 package com.plivo.api.models.node;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.plivo.api.models.node.MultiPartyCallActionType;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MultiPartyCallActionPayload {
+public class MultiPartyCallUpdatePayload {
 
   private String triggerSource;
   private String to;
@@ -16,7 +17,7 @@ public class MultiPartyCallActionPayload {
    * @param role          role of the node.
    * @param action        one of the node action types.
    */
-  public MultiPartyCallActionPayload(final String triggerSource, final String to,
+  public MultiPartyCallUpdatePayload(final String triggerSource, final String to,
                                      final String role, final MultiPartyCallActionType action) {
     this.triggerSource = triggerSource;
     this.to = to;
