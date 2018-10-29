@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.2.0-beta-3](https://github.com/plivo/plivo-java/tree/v4.2.0-beta-3) (2018-10-29)
+- Phlo params support
+- Phlo and node level execution revamp
+
 ## [4.2.0-beta-2](https://github.com/plivo/plivo-java/tree/v4.2.0-beta-2) (2018-10-24)
 - Beta release of Phlo
 - Live calls filtering
