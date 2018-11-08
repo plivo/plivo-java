@@ -14,5 +14,8 @@
   "resource_uri": "/v1/Account/MAJHUDTEYWLSIUYTDBCZ/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/",
   "to_number": "919999999999",
   "total_amount": "0.00000",
-  "total_rate": "0.03570"
+  "total_rate": "0.03570",
+  "hangup_cause_name": "End Of XML Instructions",
+  "hangup_cause_code": 4010,
+  "hangup_source": "Plivo"
 }
