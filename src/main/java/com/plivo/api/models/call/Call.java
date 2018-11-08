@@ -28,6 +28,9 @@ public class Call extends BaseResource {
   private String toNumber;
   private String totalAmount;
   private String totalRate;
+  private String hangupSource;
+  private String hangupCauseName;
+  private Integer hangupCauseCode;
 
   public static CallCreator creator(String from, List<String> to, String answerUrl) {
     return new CallCreator(from, to, answerUrl);
@@ -139,6 +142,18 @@ public class Call extends BaseResource {
 
   public String getTotalRate() {
     return totalRate;
+  }
+
+  public String getHangupCauseName(){
+    return hangupCauseName;
+  }
+
+  public String getHangupSource(){
+    return hangupSource;
+  }
+
+  public Integer getHangupCauseCode(){
+    return hangupCauseCode;
   }
 
   public CallDeleter deleter() {
