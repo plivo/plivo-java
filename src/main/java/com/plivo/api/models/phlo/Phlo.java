@@ -21,6 +21,22 @@ public class Phlo extends BaseResource {
     return phloId;
   }
 
+  public String getCreatedOn() {
+    return createdOn;
+  }
+
+  public void setPhloId(String phloId) {
+    this.phloId = phloId;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setCreatedOn(String createdOn) {
+    this.createdOn = createdOn;
+  }
+
   public String getName() {
     return name;
   }

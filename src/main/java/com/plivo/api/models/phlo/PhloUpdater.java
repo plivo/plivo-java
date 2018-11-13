@@ -43,7 +43,7 @@ public class PhloUpdater extends Updater<PhloUpdateResponse> {
       return response.body();
     } catch (JsonParseException je) {
       //FIXME( server side needs to be updated to return proper json )
-      System.out.println("Improperly formed json recieved as response, ignoring!!");
+      System.out.println("Improperly formed json received as response, ignoring!!");
     }
     return null;
 
