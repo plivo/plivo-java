@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.3.0-beta-2](https://github.com/plivo/plivo-java/tree/v4.3.0-beta-2) (2018-11-13)
+- Fixed Phlo response support.
+
 ## [4.3.0-beta-1](https://github.com/plivo/plivo-java/tree/v4.3.0-beta-1) (2018-11-03)
 - Add support for filtering live calls by from number, to number and call direction.
 - Add hangup party details in get CDR. Add filtering by hangup source and hangup cause code.
