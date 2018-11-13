@@ -8,4 +8,8 @@ public class MultiPartyCallUpdateResponse extends NodeUpdateResponse {
   public String getError() {
     return error;
   }
+  @Override
+  public void setError(String error) {
+    this.error = error;
+  }
 }
