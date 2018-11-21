@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.1.6](https://github.com/plivo/plivo-java/tree/v4.1.6) (2018-11-21)
+- Add sub-account cascade delete support.
+
 ## [4.1.5](https://github.com/plivo/plivo-java/tree/v4.1.5) (2018-11-08)
 - fixed the field lookup for hangup source, hangup cause name and hangup cause code in call retrieval.
 
