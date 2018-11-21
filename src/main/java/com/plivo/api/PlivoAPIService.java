@@ -8,6 +8,7 @@ import com.plivo.api.models.account.SubaccountCreateResponse;
 import com.plivo.api.models.account.SubaccountCreator;
 import com.plivo.api.models.account.SubaccountUpdateResponse;
 import com.plivo.api.models.account.SubaccountUpdater;
+import com.plivo.api.models.account.SubaccountDeleter;
 import com.plivo.api.models.address.Address;
 import com.plivo.api.models.address.AddressCreateResponse;
 import com.plivo.api.models.address.AddressCreator;
@@ -75,6 +76,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.HTTP;
 
 public interface PlivoAPIService {
 
@@ -140,9 +142,9 @@ public interface PlivoAPIService {
   Call<ListResponse<Subaccount>> subaccountList(@Path("authId") String authId,
     @Query("limit") Integer limit, @Query("offset") Integer offset);
 
-  @DELETE("Account/{authId}/Subaccount/{subauthId}/")
+  @HTTP(method = "DELETE", path= "Account/{authId}/Subaccount/{subauthId}/", hasBody = true)
   Call<ResponseBody> subaccountDelete(@Path("authId") String authId,
-    @Path("subauthId") String subauthId);
+    @Path("subauthId") String subauthId, @Body SubaccountDeleter subaccount);
 
   // Call
   @POST("Account/{authId}/Call/")
