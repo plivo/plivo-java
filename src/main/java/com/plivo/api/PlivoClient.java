@@ -100,7 +100,18 @@ public class PlivoClient {
   private PlivoAPIService apiService = null;
 
   public PlivoClient(String authId, String authToken) {
-    this(authId, authToken, new Builder());
+    this(authId, authToken, BASE_URL, new Builder());
+  }
+
+  public PlivoClient(String authId, String authToken, String baseUrl) {
+    this(authId, authToken, baseUrl, new Builder());
+  }
+
+  /**
+  * Constructor left for backward compatibility
+  */
+  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
+    this(authId, authToken, BASE_URL, httpClientBuilder);
   }
 
   /**
@@ -117,7 +128,7 @@ public class PlivoClient {
    * @param authToken
    * @param httpClientBuilder
    */
-  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
+  public PlivoClient(String authId, String authToken, String baseUrl, OkHttpClient.Builder httpClientBuilder) {
     if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
       throw new IllegalArgumentException("invalid account ID");
     }
@@ -159,7 +170,7 @@ public class PlivoClient {
 
      retrofit = new Retrofit.Builder()
       .client(httpClient)
-      .baseUrl(BASE_URL)
+      .baseUrl(baseUrl)
       .addConverterFactory(JacksonConverterFactory.create(objectMapper))
       .build();
 

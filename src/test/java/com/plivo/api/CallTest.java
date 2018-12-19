@@ -1,17 +1,14 @@
 package com.plivo.api;
 
-import static junit.framework.TestCase.assertEquals;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.models.call.Call;
 import com.plivo.api.models.call.LiveCall;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import org.junit.Test;
+
+import java.util.*;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class CallTest extends BaseTest {
 

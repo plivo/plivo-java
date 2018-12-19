@@ -80,7 +80,6 @@ public class BaseTest {
   public void setUp() throws Exception {
     server = new MockWebServer();
     server.start();
-
     PlivoClient.BASE_URL = server.url("/").toString();
     Plivo.init(authId, authToken);
     Plivo.getClient().setTesting(true);

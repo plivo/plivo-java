@@ -8,9 +8,17 @@ public class Plivo {
    * Initializes the global {@link PlivoClient} instance
    */
   public static synchronized PlivoClient init(String authId, String authToken) {
-    instance = new PlivoClient(authId, authToken);
+    return init(authId, authToken, PlivoClient.BASE_URL);
+  }
+
+  /**
+   * Initializes the global {@link PlivoClient} instance
+   */
+  public static synchronized PlivoClient init(String authId, String authToken, String baseUrl) {
+    instance = new PlivoClient(authId, authToken, baseUrl);
     return instance;
   }
+
 
   /**
    * Initializes the global {@link PlivoClient} instance, taking the authId and authToken from
