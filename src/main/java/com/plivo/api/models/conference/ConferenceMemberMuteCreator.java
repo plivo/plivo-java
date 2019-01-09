@@ -1,7 +1,8 @@
 package com.plivo.api.models.conference;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
+
 import java.io.IOException;
 import retrofit2.Call;
 
@@ -23,8 +24,8 @@ public class ConferenceMemberMuteCreator extends
   }
 
   @Override
-  public ConferenceMemberMuteCreator client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public ConferenceMemberMuteCreator client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 

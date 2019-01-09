@@ -98,7 +98,7 @@ public class BaseTest {
     server.start();
 
     PlivoClient.BASE_URL = server.url("/").toString();
-    PhloRestClient.BASE_URL = server.url("/").toString();
+    PhloClient.BASE_URL = server.url("/").toString();
     Plivo.init(authId, authToken);
     Plivo.getClient().setTesting(true);
     Plivo.getPhloClient().setTesting(true);

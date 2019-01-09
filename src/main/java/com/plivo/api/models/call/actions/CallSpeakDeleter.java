@@ -1,6 +1,6 @@
 package com.plivo.api.models.call.actions;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Deleter;
 import com.plivo.api.models.call.Call;
@@ -23,8 +23,8 @@ public class CallSpeakDeleter extends Deleter<Call> {
   }
 
   @Override
-  public CallSpeakDeleter client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public CallSpeakDeleter client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 

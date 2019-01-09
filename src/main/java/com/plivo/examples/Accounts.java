@@ -1,5 +1,6 @@
 package com.plivo.examples;
 
+import com.plivo.api.Client;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class Accounts {
   private static final String authId = "MANTXXXXXXXXXXXXXXXX";
   private static final String authToken = "ZMANTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-  private static PlivoClient client = new PlivoClient(authId, authToken);
+  private static Client plivoClient = new PlivoClient(authId, authToken).getClient();
 
   public static void main(String[] args) {
     Plivo.init(authId, authToken);
@@ -41,7 +42,7 @@ public class Accounts {
   private static void getAccountInfoBySettingClient() {
     try {
       Account response = Account.getter()
-        .client(client)
+        .client(plivoClient)
         .get();
       System.out.println(response);
     } catch (PlivoRestException | IOException e) {
@@ -66,7 +67,7 @@ public class Accounts {
     try {
       AccountUpdateResponse response = Account.updater()
         .city("Test city")
-        .client(client)
+        .client(plivoClient)
         .update();
       System.out.println(response);
     } catch (PlivoRestException | IOException e) {
@@ -91,7 +92,7 @@ public class Accounts {
     try {
       SubaccountCreateResponse subaccount = Subaccount.creator("Test 2")
         .enabled(true)
-        .client(client)
+        .client(plivoClient)
         .create();
       System.out.println(subaccount);
     } catch (PlivoRestException | IOException e) {

@@ -3,8 +3,8 @@ package com.plivo.api.models.base;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.plivo.api.Client;
 import com.plivo.api.Plivo;
-import com.plivo.api.PlivoClient;
 
 //@JsonIgnoreProperties(value = {"api_id"})
 public abstract class BaseResource {
@@ -16,14 +16,14 @@ public abstract class BaseResource {
 
   public abstract String getId();
 
-  protected PlivoClient plivoClient = Plivo.getClient();
+  protected Client plivoClient = Plivo.getClient();
 
   @JsonIgnore
-  public PlivoClient getPlivoClient() {
+  public Client getPlivoClient() {
     return plivoClient;
   }
 
-  public void setPlivoClient(PlivoClient plivoClient) {
+  public void setPlivoClient(Client plivoClient) {
     this.plivoClient = plivoClient;
   }
 

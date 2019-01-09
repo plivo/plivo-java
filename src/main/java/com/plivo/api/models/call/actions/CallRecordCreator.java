@@ -1,6 +1,6 @@
 package com.plivo.api.models.call.actions;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Creator;
 import java.io.IOException;
@@ -23,8 +23,8 @@ public class CallRecordCreator extends Creator<CallRecordCreateResponse> {
   }
 
   @Override
-  public CallRecordCreator client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public CallRecordCreator client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 

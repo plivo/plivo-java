@@ -2,7 +2,7 @@ package com.plivo.api.models.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -29,8 +29,8 @@ public abstract class Creator<CreateResponse extends BaseResponse> extends BaseR
   }
 
   @Override
-  public Creator<CreateResponse> client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public Creator<CreateResponse> client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 
