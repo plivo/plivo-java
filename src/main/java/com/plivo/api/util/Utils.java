@@ -1,6 +1,8 @@
 package com.plivo.api.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.plivo.api.models.address.FileExtensionType;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 public class Utils {
@@ -83,4 +86,28 @@ public class Utils {
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     return computeSignature(url, nonce, authToken).equals(signature);
   }
+  
+  public static boolean isValidExtension(String fileName) {
+	String[] fileParts = fileName.split("\\.");
+	if(fileParts.length<2) {
+		throw new IllegalArgumentException("Invalid file specified");
+	}
+	String extension = fileParts[fileParts.length-1].toLowerCase();
+	if(extension.equals(FileExtensionType.JPG.toString()) || 
+			extension.equals(FileExtensionType.PNG.toString()) ||
+			extension.equals(FileExtensionType.PDF.toString())) {
+		return true;
+	 }
+	 return false;
+   }
+
+   public static  boolean isValidSize(File file) {
+	 long sizeInBytes = file.length();
+	 long sizeInMb = sizeInBytes / (1024 * 1024);
+	 if(sizeInMb >= 5) {
+		return false;
+	 }
+	 return true;
+   }
+   
 }

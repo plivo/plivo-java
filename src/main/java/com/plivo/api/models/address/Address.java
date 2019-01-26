@@ -27,10 +27,11 @@ public class Address extends BaseResource {
   private String addressProofType;
   private JsonNode documentDetails;
 
+  
   public static AddressCreator creator(
-    String countryIso, String salutation, String firstName, String lastName,
-    String addressLine1, String addressLine2, String city, String region, String postalCode) {
-    return new AddressCreator(countryIso, salutation, firstName, lastName, addressLine1, addressLine2, city, region, postalCode);
+		    String phoneNumberCountry, NumberType numberType, SalutationType salutation, String firstName,
+		    String lastName, String addressLine1, String addressLine2, String city, String region, String postalCode, String countryIso) {
+	  return new AddressCreator(phoneNumberCountry, numberType, salutation, firstName, lastName, addressLine1, addressLine2, city, region, postalCode, countryIso);
   }
 
   public static AddressUpdater updater(String id){
