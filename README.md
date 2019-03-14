@@ -7,6 +7,9 @@ The Plivo Java SDK makes it simpler to integrate communications into your Java a
 **Supported Java versions:** This SDK works with Java 1.8 & 1.9 i.e., JDK 8 and JDK 9. While using the SDK with Java 1.9, you may have to use the `--add-modules java.se.ee` flag to include modules that are no longer present by default.
 
 ## Installation
+
+### To Install Stable release
+
 You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/4.1.6/plivo-java-4.1.6.jar).
 
 If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
@@ -22,6 +25,25 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 If you are using Gradle, use the following line in your dependencies.
 ```
 compile 'com.plivo:plivo-java:4.1.6'
+```
+
+### To Install Beta release
+
+You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/4.3.0-beta-2/plivo-java-4.3.0-beta-2.jar).
+
+If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
+
+```xml
+<dependency>
+  <groupId>com.plivo</groupId>
+  <artifactId>plivo-java</artifactId>
+  <version>4.3.0-beta-2</version>
+</dependency>
+```
+
+If you are using Gradle, use the following line in your dependencies.
+```
+compile 'com.plivo:plivo-java:4.3.0-beta-2'
 ```
 
 Note: if you are already using Retrofit, exclude this SDK's dependency so there is no version conflict.

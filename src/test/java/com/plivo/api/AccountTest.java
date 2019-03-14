@@ -3,14 +3,23 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.account.Account;
 import com.plivo.api.models.account.Subaccount;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
+import org.junit.Before;
 import org.junit.Test;
 
 public class AccountTest extends BaseTest {
+
+  private PlivoClient client;
+
+  @Before
+  public void setUp() throws Exception {
+    super.setUp();
+    client = new PlivoClient("MA123456789012345678",
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  }
 
   @Test
   public void accountGetShouldSucceed() throws Exception {
@@ -27,7 +36,6 @@ public class AccountTest extends BaseTest {
   @Test
   public void accountGetWithClientShouldSucceed() throws Exception {
     String response = expectResponse("accountGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Account account = Account.getter().client(client)
       .get();
     assertEquals(account.getId(), account.getAuthId());
@@ -64,7 +72,6 @@ public class AccountTest extends BaseTest {
       .setResponseCode(202)
       .setBody(loadFixture(fixtureName))
     );
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Account.updater()
       .address("test")
       .name("test")
@@ -127,7 +134,6 @@ public class AccountTest extends BaseTest {
     String fixtureName = "subaccountGetResponse.json";
     String subauthId = "SAODNKNDDMY2EXY2JKMG";
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Subaccount subaccount = Subaccount.getter(subauthId).client(client).get();
 
     assertEquals(subaccount.getId(), subaccount.getAuthId());
@@ -153,7 +159,6 @@ public class AccountTest extends BaseTest {
     String fixtureName = "subaccountListResponse.json";
 
     expectResponse(fixtureName, 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Subaccount.lister().client(client)
       .list();
@@ -205,7 +210,6 @@ public class AccountTest extends BaseTest {
   @Test
   public void subaccountDeleteWithClientShouldSucceed() throws Exception {
     expectResponse(null, 204);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     String subauthId = "SAMTVIYJDIYWYYMZHLYZ";
 

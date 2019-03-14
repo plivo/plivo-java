@@ -6,12 +6,23 @@ import static junit.framework.TestCase.assertEquals;
 import com.plivo.api.models.identity.Identity;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 public class IdentityTest extends BaseTest {
+
+  private PlivoClient client;
+
+  @Before
+  public void setUp() throws Exception {
+    super.setUp();
+    client = new PlivoClient("MA123456789012345678",
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  }
+
   @Test
   public void identityCreateShouldSucceed() throws Exception {
     expectResponse("identityCreateResponse.json", 201);
@@ -42,9 +53,6 @@ public class IdentityTest extends BaseTest {
   @Test
   public void identityCreateWithClientShouldSucceed() throws Exception {
     expectResponse("identityCreateResponse.json", 201);
-
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-                                "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Identity
       .creator("FR",
@@ -83,8 +91,6 @@ public class IdentityTest extends BaseTest {
   public void identityGetWithClientShouldSucceed() throws Exception {
     String id = "24856289978366";
     expectResponse("identityGetResponse.json", 200);
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Identity.getter(id).client(client).get();
     assertRequest("GET", "Verification/Identity/%s/", id);
@@ -112,9 +118,6 @@ public class IdentityTest extends BaseTest {
           .setResponseCode(200)
           .setBody(loadFixture(fixtureName))
     );
-
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Identity.lister().client(client).list();
     RecordedRequest recordedRequest = server.takeRequest();
@@ -151,9 +154,6 @@ public class IdentityTest extends BaseTest {
           .setBody(loadFixture(fixtureName))
     );
 
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-            "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
     Identity.updater(identityId).client(client).update();
 
     RecordedRequest recordedRequest = server.takeRequest();
@@ -186,9 +186,6 @@ public class IdentityTest extends BaseTest {
     server.enqueue(new MockResponse()
           .setResponseCode(204)
     );
-
-    PlivoClient client = new PlivoClient("MA123456789012345678",
-          "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     Identity.deleter(identityId).client(client)
       .delete();
