@@ -3,12 +3,30 @@
 ## [4.1.6](https://github.com/plivo/plivo-java/tree/v4.1.6) (2018-11-21)
 - Add sub-account cascade delete support.
 
+## [4.3.0-beta-2](https://github.com/plivo/plivo-java/tree/v4.3.0-beta-2) (2018-11-13)
+- Fixed Phlo response support.
+
+## [4.3.0-beta-1](https://github.com/plivo/plivo-java/tree/v4.3.0-beta-1) (2018-11-03)
+- Add support for filtering live calls by from number, to number and call direction.
+- Add hangup party details in get CDR. Add filtering by hangup source and hangup cause code.
+
+## [4.2.0-beta-3](https://github.com/plivo/plivo-java/tree/v4.2.0-beta-3) (2018-10-29)
+- Phlo params support
+- Phlo and node level execution revamp
+
+## [4.2.0-beta-2](https://github.com/plivo/plivo-java/tree/v4.2.0-beta-2) (2018-10-24)
+- Beta release of Phlo
+- Live calls filtering
+
 ## [4.1.5](https://github.com/plivo/plivo-java/tree/v4.1.5) (2018-11-08)
 - fixed the field lookup for hangup source, hangup cause name and hangup cause code in call retrieval.
 
 ## [4.1.4](https://github.com/plivo/plivo-java/tree/v4.1.4) (2018-10-23)
 - Add support for filtering live calls by from number, to number and call direction.
 - Add hangup party details in get CDR. Add filtering by hangup source and hangup cause code.
+
+## [4.2.0-alpha-1](https://github.com/plivo/plivo-java/tree/v4.2.0-alpha-1) (2018-09-05)
+- Add Phlo Support. Releasing in Alpha.
 
 ## [4.1.3](https://github.com/plivo/plivo-java/tree/v4.1.3) (2018-08-21)
 - Add support for fetching queued_call details

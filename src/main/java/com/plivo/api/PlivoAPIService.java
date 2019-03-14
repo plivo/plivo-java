@@ -55,6 +55,7 @@ import com.plivo.api.models.identity.IdentityUpdater;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
+import com.plivo.api.models.node.*;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.number.NumberCreateResponse;
 import com.plivo.api.models.number.NumberCreator;
@@ -63,6 +64,8 @@ import com.plivo.api.models.number.NumberUpdater;
 import com.plivo.api.models.number.PhoneNumber;
 import com.plivo.api.models.number.PhoneNumberCreateResponse;
 import com.plivo.api.models.number.PhoneNumberCreator;
+import com.plivo.api.models.phlo.Phlo;
+import com.plivo.api.models.phlo.PhloUpdateResponse;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
 import java.util.Map;
@@ -382,4 +385,33 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/Request/{requestUuid}/")
   Call<ResponseBody> requestDelete(@Path("authId") String authId, @Path("requestUuid") String requestUuid);
-}
+
+  // PHLO - server is different from plivo server. Need content-type setting for POST
+  @GET("phlo/{phloId}")
+  Call<Phlo> phloGet(@Path("phloId") String phloId);
+
+  @Headers("Content-Type: application/json")
+  @POST("phlo/{phloId}/{nodeType}/{nodeId}")
+  Call<MultiPartyCallUpdateResponse> nodeAction(@Path("phloId") String phloId,
+                                                @Path("nodeType") NodeType nodeType,
+                                                @Path("nodeId") String nodeId,
+                                                @Body MultiPartyCallUpdatePayload payload);
+
+  @Headers("Content-Type: application/json")
+  @POST("phlo/{phloId}/{nodeType}/{nodeId}/members/{memberId}")
+  Call<MultiPartyCallUpdateResponse> memberAction(@Path("phloId") String phloId,
+                                        @Path("nodeType") NodeType nodeType,
+                                        @Path("nodeId") String nodeId,
+                                        @Path("memberId") String memberId,
+                                        @Body MultiPartyCallUpdatePayload payload);
+
+  @GET("phlo/{phloId}/{nodeType}/{nodeId}")
+  Call<MultiPartyCall> multiPartyCallGet(@Path("phloId") String phloId,
+                                         @Path("nodeType") NodeType nodeType,
+                                         @Path("nodeId") final String nodeId);
+
+  @Headers("Content-Type: application/json")
+  @POST("account/{authId}/phlo/{phloId}")
+  Call<PhloUpdateResponse> runPhlo(@Path("authId") String authId,
+                                   @Path("phloId") String phloId,
+                                   @Body Map<String, Object> payload);}

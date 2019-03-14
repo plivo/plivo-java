@@ -8,16 +8,25 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class RecordingTest extends BaseTest {
 
+  private PlivoClient client;
+
+  @Before
+  public void setUp() throws Exception {
+    super.setUp();
+    client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  }
+
   @Test
   public void recordingListShouldWork() throws Exception {
     expectResponse("recordingListResponse.json", 200);
-
     Date date = Date.from(Instant.EPOCH);
-    String stringDate = PlivoClient.getObjectMapper().readValue(PlivoClient.getObjectMapper().writeValueAsString(date), String.class);
+    String stringDate = client.getObjectMapper().readValue(client.getObjectMapper().writeValueAsString(date), String.class);
 
     Recording.lister()
       .addTime(new PropertyFilter<Date>()
@@ -44,8 +53,7 @@ public class RecordingTest extends BaseTest {
     expectResponse("recordingListResponse.json", 200);
 
     Date date = Date.from(Instant.EPOCH);
-    String stringDate = PlivoClient.getObjectMapper().readValue(PlivoClient.getObjectMapper().writeValueAsString(date), String.class);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    String stringDate = client.getObjectMapper().readValue(client.getObjectMapper().writeValueAsString(date), String.class);
     Recording.lister()
       .addTime(new PropertyFilter<Date>()
         .greaterOrEqual(date)
@@ -70,7 +78,6 @@ public class RecordingTest extends BaseTest {
   public void recordingGetShouldWork() throws Exception {
     expectResponse("recordingGetResponse.json", 200);
     final String recordingId = "recordingId";
-
     Recording recording = Recording.getter(recordingId)
       .get();
 
@@ -84,7 +91,6 @@ public class RecordingTest extends BaseTest {
   public void recordingGetWithClientShouldWork() throws Exception {
     expectResponse("recordingGetResponse.json", 200);
     final String recordingId = "recordingId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Recording recording = Recording.getter(recordingId).client(client)
       .get();
 
@@ -109,7 +115,6 @@ public class RecordingTest extends BaseTest {
   public void recordingDeleteWithClientShouldWork() throws Exception {
     expectResponse(null, 204);
     final String recordingId = "recordingId";
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     Recording.deleter(recordingId).client(client)
       .delete();
 
