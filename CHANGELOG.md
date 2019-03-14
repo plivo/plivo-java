@@ -1,5 +1,12 @@
 # Change Log
 
+## [4.4.0](https://github.com/plivo/plivo-java/tree/v4.4.0) (2019-03-14)
+- Add PHLO support
+- Add Multi-Party Call triggers
+
+## [4.1.6](https://github.com/plivo/plivo-java/tree/v4.1.6) (2018-11-21)
+- Add sub-account cascade delete support.
+
 ## [4.3.0-beta-2](https://github.com/plivo/plivo-java/tree/v4.3.0-beta-2) (2018-11-13)
 - Fixed Phlo response support.
 
