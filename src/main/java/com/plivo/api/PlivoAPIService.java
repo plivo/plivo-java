@@ -65,6 +65,7 @@ import com.plivo.api.models.number.PhoneNumber;
 import com.plivo.api.models.number.PhoneNumberCreateResponse;
 import com.plivo.api.models.number.PhoneNumberCreator;
 import com.plivo.api.models.phlo.Phlo;
+import com.plivo.api.models.phlo.PhloRunGetterResponse;
 import com.plivo.api.models.phlo.PhloUpdateResponse;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
@@ -389,6 +390,9 @@ public interface PlivoAPIService {
   // PHLO - server is different from plivo server. Need content-type setting for POST
   @GET("phlo/{phloId}")
   Call<Phlo> phloGet(@Path("phloId") String phloId);
+
+  @GET("phlo/{phloId}/runs/{runId}")
+  Call<PhloRunGetterResponse> phloRunGet(@Path("phloId") String phloId, @Path("runId") String runId);
 
   @Headers("Content-Type: application/json")
   @POST("phlo/{phloId}/{nodeType}/{nodeId}")
