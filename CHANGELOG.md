@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.4.1](https://github.com/plivo/plivo-java/tree/v4.4.1) (2019-04-12)
+- Add PHLO Run getter
+
 ## [4.4.0](https://github.com/plivo/plivo-java/tree/v4.4.0) (2019-03-28)
 - Add PHLO support
 - Add Multi-Party Call triggers
