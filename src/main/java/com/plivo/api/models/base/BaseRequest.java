@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.plivo.api.Client;
 import com.plivo.api.Plivo;
-import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.AuthenticationException;
 import com.plivo.api.exceptions.InvalidRequestException;
 import com.plivo.api.exceptions.PlivoRestException;
@@ -22,24 +22,24 @@ import retrofit2.Response;
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public abstract class BaseRequest<T extends BaseResource> {
   @JsonIgnore
-  protected PlivoClient plivoClient = Plivo.getClient();
+  protected Client client = Plivo.getClient();
 
-  public PlivoClient client() {
-      return this.plivoClient;
+  public Client client() {
+      return this.client;
   }
 
-  public BaseRequest client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public BaseRequest client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 
   protected void validate() {
-    if (plivoClient == null) {
+    if (this.client == null) {
       throw new IllegalStateException("client cannot be null");
     }
 
     // Convenient way to test setters and getters
-    if (plivoClient.isTesting()) {
+    if (client.isTesting()) {
       HashMap<String, Object> values = new HashMap<>();
       for (Method method : this.getClass().getMethods()) {
         if (method.getParameterCount() == 0) {
@@ -68,7 +68,7 @@ public abstract class BaseRequest<T extends BaseResource> {
   }
 
   protected void handleResponse(Response response) throws PlivoRestException, IOException {
-    if (plivoClient.isTesting()) {
+    if (client.isTesting()) {
       if (response.body() != null) {
         if (!(response.body() instanceof ResponseBody)) {
           client().getObjectMapper().convertValue(response.body(), JsonNode.class);

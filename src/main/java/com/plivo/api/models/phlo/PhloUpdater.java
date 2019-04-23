@@ -2,8 +2,8 @@ package com.plivo.api.models.phlo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.plivo.api.Client;
 import com.plivo.api.Plivo;
-import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Updater;
 import retrofit2.Call;
@@ -18,7 +18,7 @@ public class PhloUpdater extends Updater<PhloUpdateResponse> {
   private Map<String, Object> payload = new HashMap<>();
 
   @JsonIgnore
-  protected PlivoClient plivoClient = Plivo.getPhloClient();
+  protected Client plivoClient = Plivo.getPhloClient();
 
   public PhloUpdater(final String phloId) {
     super(phloId);
@@ -28,9 +28,16 @@ public class PhloUpdater extends Updater<PhloUpdateResponse> {
     this.payload = payload;
     return this;
   }
-
+  
   @Override
-  public PlivoClient client() {
+  public PhloUpdater client(final Client plivoClient) {
+	super.client(plivoClient);
+    this.plivoClient = plivoClient;
+    return this;
+  }
+  
+  @Override
+  public Client client() {
     return this.plivoClient;
   }
 

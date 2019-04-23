@@ -8,13 +8,13 @@ import org.junit.Test;
 
 public class ConferenceTest extends BaseTest {
 
-  private PlivoClient client;
+  private Client client;
 
   @Before
   public void setUp() throws Exception {
     super.setUp();
     client = new PlivoClient("MA123456789012345678",
-      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
   }
 
   @Test

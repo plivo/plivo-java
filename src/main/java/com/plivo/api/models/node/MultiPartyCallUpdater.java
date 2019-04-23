@@ -1,8 +1,8 @@
 package com.plivo.api.models.node;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.plivo.api.Client;
 import com.plivo.api.Plivo;
-import com.plivo.api.PlivoClient;
 import com.plivo.api.models.base.Updater;
 import retrofit2.Call;
 
@@ -25,10 +25,17 @@ public class MultiPartyCallUpdater extends Updater<MultiPartyCallUpdateResponse>
   }
 
   @JsonIgnore
-  protected PlivoClient plivoClient = Plivo.getPhloClient();
+  protected Client plivoClient = Plivo.getPhloClient();
 
   @Override
-  public PlivoClient client() {
+  public MultiPartyCallUpdater client(final Client plivoClient) {
+	super.client(plivoClient);
+    this.plivoClient = plivoClient;
+    return this;
+  }
+  
+  @Override
+  public Client client() {
     return this.plivoClient;
   }
 

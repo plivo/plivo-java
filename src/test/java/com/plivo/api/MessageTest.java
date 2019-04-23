@@ -15,13 +15,13 @@ import org.junit.Test;
 
 public class MessageTest extends BaseTest {
 
-  private PlivoClient client;
+  private Client client;
 
   @Before
   public void setUp() throws Exception {
     super.setUp();
     client = new PlivoClient("MA123456789012345678",
-      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -52,7 +52,7 @@ public class MessageTest extends BaseTest {
   @Test(expected = IllegalArgumentException.class)
   public void messageWithPowerpackBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Client client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     Message.creator( null, "text", "testUUID")
       .client(client)
@@ -118,7 +118,7 @@ public class MessageTest extends BaseTest {
   public void messageWithPowerpackCreateWithClientShouldSucceed() throws Exception {
     String fixtureName = "messageSendResponse.json";
 
-    PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    Client client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
     expectResponse(fixtureName, 202);
 
     Message.creator(Arrays.asList("+911231231330"), "test", "testUUID")

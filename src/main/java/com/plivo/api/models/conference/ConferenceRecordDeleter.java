@@ -1,6 +1,6 @@
 package com.plivo.api.models.conference;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Deleter;
 import java.io.IOException;
@@ -23,8 +23,8 @@ public class ConferenceRecordDeleter extends Deleter<Conference> {
   }
 
   @Override
-  public ConferenceRecordDeleter client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public ConferenceRecordDeleter client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 

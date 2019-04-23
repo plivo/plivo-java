@@ -1,6 +1,6 @@
 package com.plivo.api.models.base;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import java.util.Map;
@@ -39,14 +39,14 @@ public abstract class Getter<T extends BaseResource> extends BaseRequest<T> {
   }
 
   @Override
-  public Getter<T> client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public Getter<T> client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 
   protected Map<String, Object> toMap() {
     client();
-    return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
+    return Utils.objectToMap(Client.getObjectMapper(), this);
   }
 
   protected abstract Call<T> obtainCall();

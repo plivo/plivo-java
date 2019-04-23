@@ -12,7 +12,7 @@ import org.junit.Test;
 public class MultiPartyCallTest extends BaseTest {
 
   private Phlo phlo;
-  private PlivoClient client;
+  private Client client;
 
   private String phloId = "a9f74ec4-2d3f-41d6-b8f0-f341fcfb59b6";
   private String nodeId = "f4789ccf-25f5-4a1f-91a4-55ca022ba903";
@@ -23,7 +23,7 @@ public class MultiPartyCallTest extends BaseTest {
     expectResponse("phloGetResponse.json", 200);
     expectResponse("multiPartyCallGetResponse.json", 200);
     expectResponse("multiPartyCallActionResponse.json", 200);
-    client = new PhloRestClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
+    client = new PhloClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").getClient();
 
     phlo = Phlo
       .getter(phloId)

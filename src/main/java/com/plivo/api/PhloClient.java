@@ -12,15 +12,16 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+
 import okhttp3.OkHttpClient;
 
 import java.io.IOException;
 
-public class PhloRestClient {
+public class PhloClient {
 
   protected static String BASE_URL = "https://phlorunner.plivo.com/v1/";
   private SimpleModule simpleModule = new SimpleModule();
-  private final PlivoClient client;
+  private final Client client;
 
   {
     simpleModule.setDeserializerModifier(new BeanDeserializerModifier() {
@@ -46,15 +47,15 @@ public class PhloRestClient {
     });
   }
 
-  public PhloRestClient(String authId, String authToken) {
-    this.client = new PlivoClient(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule);
+  public PhloClient(String authId, String authToken) {
+    this.client = new Client(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule);
   }
 
-  public PhloRestClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this.client = new PlivoClient(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
+  public PhloClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
+    this.client = new Client(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
   }
 
-  public PlivoClient getClient() {
+  public Client getClient() {
     return client;
   }
 }

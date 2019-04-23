@@ -1,6 +1,7 @@
 package com.plivo.api.models.conference;
 
-import com.plivo.api.PlivoClient;
+import com.plivo.api.Client;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
@@ -17,8 +18,8 @@ public class ConferenceMemberPlayDeleter extends ConferenceMemberDeleterAction<C
   }
 
   @Override
-  public ConferenceMemberPlayDeleter client(final PlivoClient plivoClient) {
-    this.plivoClient = plivoClient;
+  public ConferenceMemberPlayDeleter client(final Client plivoClient) {
+    this.client = plivoClient;
     return this;
   }
 
