@@ -5,15 +5,32 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 import com.plivo.api.exceptions.PlivoXmlException;
 import com.plivo.api.util.Utils;
 
 @XmlRootElement(name = "Speak")
+@XmlSeeAlso({Lang.class,
+      Emphasis.class,
+      Break.class,
+      SayAs.class,
+      Sub.class,
+      S.class,
+      W.class,
+      P.class,
+      Phoneme.class,
+      Prosody.class,
+      })
 public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestable, GetDigitsNestable {
 
-  @XmlValue
-  private String content;
+  //public String content;
+  @XmlMixed
+  private List<Object> mixedContent = new ArrayList<Object>();
 
   @XmlAttribute
   private String voice;
@@ -23,7 +40,7 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
 
   @XmlAttribute
   private Integer loop;
-	
+
   private static int MAX_CONTENT_LENGTH = 3000;
 
   public Speak() {
@@ -31,23 +48,21 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
   }
 
   public Speak(String content) {
-    this.content = content;
+    this.mixedContent.add(content);
   }
 
   public Speak(String content, String voice, String language, Integer loop) throws PlivoXmlException {
- 
-    this.content = content;
+
+    this.mixedContent.add(content);
     this.voice = voice;
     this.language = language;
     this.loop = loop;
-    
+
     if (voice == null || voice.trim().isEmpty()){
     	this.voice = "WOMAN";
-    	this.validateLength();
     	return;
     }
     if (voice.equalsIgnoreCase("MAN") || voice.equalsIgnoreCase("WOMAN")) {
-    	this.validateLength();
     	return;
     }
 
@@ -73,7 +88,7 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
   		throw new PlivoXmlException("SSML support is available only for Amazon Polly!");
     }
   }
-  
+
   private static String transformVoiceString(String voice) {
     String[] voiceParts = voice.trim().split("\\.");
     if (voiceParts.length == 1) {
@@ -83,73 +98,79 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
     return voiceParts[0] + "." + voiceName;
   }
 
-  public Speak addBreak(String content, String strength, String time) throws PlivoXmlException {
-    Break breakElement = new Break(content, strength, time);
-    return this.appendChildren(breakElement.toXmlString());
+  public Speak addBreak(String strength, String time) throws PlivoXmlException {
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Break(strength, time));
+    return this;
   }
 
   public Speak addEmphasis(String content, String level) throws PlivoXmlException {
-  	Emphasis emphasis = new Emphasis(content, level);
-    return this.appendChildren(emphasis.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Emphasis(content, level));
+    return this;
   }
 
   public Speak addLang(String content, String xmllang) throws PlivoXmlException {
-  	Lang lang = new Lang(content, xmllang);
-    return this.appendChildren(lang.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Lang(content, xmllang));
+    return this;
   }
 
   public Speak addP(String content) throws PlivoXmlException {
-  	P p = new P(content);
-    return this.appendChildren(p.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new P(content));
+    return this;
   }
 
   public Speak addPhoneme(String content, String alphabet, String ph) throws PlivoXmlException {
-  	Phoneme phoneme = new Phoneme(content, alphabet, ph);
-    return this.appendChildren(phoneme.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Phoneme(content, alphabet, ph));
+    return this;
   }
 
   public Speak addProsody(String content, String volume, String rate, String pitch) throws PlivoXmlException {
-    Prosody prosody = new Prosody(content, volume, rate, pitch);
-    return this.appendChildren(prosody.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Prosody(content, volume, rate, pitch));
+    return this;
   }
 
   public Speak addS(String content) throws PlivoXmlException {
-    S s = new S(content);
-    return this.appendChildren(s.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new S(content));
+    return this;
   }
 
   public Speak addSayAs(String content, String interpretAs, String format) throws PlivoXmlException {
-    SayAs sayAs = new SayAs(content, interpretAs, format);
-    return this.appendChildren(sayAs.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new SayAs(content, interpretAs, format));
+    return this;
   }
 
   public Speak addSub(String content, String alias) throws PlivoXmlException {
-    Sub sub = new Sub(content, alias);
-    return this.appendChildren(sub.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new Sub(content, alias));
+    return this;
   }
 
   public Speak addW(String content, String role) throws PlivoXmlException {
-    W w = new W(content, role);
-    return this.appendChildren(w.toXmlString());
+  	this.checkIsSSMLSupported();
+    this.mixedContent.add(new W(content, role));
+    return this;
   }
 
-  public Speak appendChildren(String content) throws PlivoXmlException {
-  	this.checkIsSSMLSupported();
-  	this.validateLength();
-    this.content += content;
-    return this;
-  }
-  
-	public Speak validateLength() throws PlivoXmlException {
-		if (content.length() > MAX_CONTENT_LENGTH) {
-      throw new PlivoXmlException("XML Validation Error: <Speak> text exceeds upper limit of 3000 characters.");
-    }
-    return this;
-  }
-	
   public Speak continueSpeak(String content) throws PlivoXmlException {
-  	this.validateLength();
-    this.content += content;
+    this.mixedContent.add(content);
+    return this;
+  }
+
+  public Speak children(Object... nestables) throws PlivoXmlException {
+    for (Object obj : nestables) {
+      if (obj instanceof SpeakNestable || obj instanceof String) {
+        mixedContent.add(obj);
+      } else {
+        throw new PlivoXmlException("XML Validation Error: <" + obj.getClass().getSimpleName() + "> can not be nested in <Speak>");
+      }
+    }
     return this;
   }
 }

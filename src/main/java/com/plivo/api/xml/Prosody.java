@@ -3,12 +3,22 @@ package com.plivo.api.xml;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
+import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlMixed;
+import java.util.List;
+import com.plivo.api.exceptions.PlivoXmlException;
 
 @XmlRootElement(name = "prosody")
-public class Prosody extends PlivoXml implements ResponseNestable {
+public class Prosody extends PlivoXml implements EmphasisNestable,
+                                                 LangNestable,
+                                                 PNestable,
+                                                 ProsodyNestable,
+                                                 SNestable,
+                                                 SpeakNestable,
+                                                 WNestable {
 
-  @XmlValue
-  private String content;
+  @XmlMixed
+  private List<Object> mixedContent = new ArrayList<Object>();
 
   @XmlAttribute
   private String volume;
@@ -23,11 +33,11 @@ public class Prosody extends PlivoXml implements ResponseNestable {
   }
 
   public Prosody(String content) {
-    this.content = content;
+    this.mixedContent.add(content);
   }
 
   public Prosody(String content, String volume, String rate, String pitch) {
-    this.content = content;
+    this.mixedContent.add(content);
     this.volume = volume;
     this.rate = rate;
     this.pitch = pitch;
@@ -45,4 +55,14 @@ public class Prosody extends PlivoXml implements ResponseNestable {
     return pitch;
   }
 
+  public Prosody children(Object... nestables) throws PlivoXmlException {
+    for (Object obj : nestables) {
+      if (obj instanceof ProsodyNestable || obj instanceof String) {
+        mixedContent.add(obj);
+      } else {
+        throw new PlivoXmlException("XML Validation Error: <" + obj.getClass().getSimpleName() + "> can not be nested in <prosody>");
+      }
+    }
+    return this;
+  }
 }

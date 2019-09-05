@@ -5,7 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlRootElement(name = "say-as")
-public class SayAs extends PlivoXml implements ResponseNestable {
+public class SayAs extends PlivoXml implements EmphasisNestable,
+                                               LangNestable,
+                                               PNestable,
+                                               ProsodyNestable,
+                                               SNestable,
+                                               SpeakNestable,
+                                               WNestable {
 
   @XmlValue
   private String content;

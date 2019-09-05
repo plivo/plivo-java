@@ -15,7 +15,7 @@ public class SSML {
 		try {
 			response = new Response().children(
 					new Speak("validate speak", "", "US English", 0)
-					.addBreak("", "maximum", "250ms"));
+					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException e) {
 			// TODO Auto-generated catch block
@@ -29,7 +29,7 @@ public class SSML {
 		try {
 			response = new Response().children(
 					new Speak("validate speak", "MAN", "US English", 0)
-					.addBreak("", "maximum", "250ms"));
+					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +69,7 @@ public class SSML {
 		try {
 			Response response = new Response().children(
 					new Speak("validate speak", "Polly.Salli", "US English", 0)
-					.addBreak("", "maximum", "250ms")
+					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
 					.addLang("LANG LANG", "maximum")
@@ -87,7 +87,7 @@ public class SSML {
 		try {
 			Response response = new Response().children(
 					new Speak("validate speak", "Polly.", "US English", 0)
-					.addBreak("", "maximum", "250ms")
+					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
 					.addLang("LANG LANG", "maximum")
@@ -105,7 +105,7 @@ public class SSML {
 		try {
 			Response response = new Response().children(
 					new Speak("validate speak", "Polly.", "US Englis", 0)
-					.addBreak("", "maximum", "250ms")
+					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
 					.addLang("LANG LANG", "maximum")

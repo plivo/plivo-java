@@ -5,7 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlRootElement(name = "phoneme")
-public class Phoneme extends PlivoXml implements ResponseNestable {
+public class Phoneme extends PlivoXml implements EmphasisNestable,
+                                                 LangNestable,
+                                                 PNestable,
+                                                 ProsodyNestable,
+                                                 SNestable,
+                                                 SpeakNestable,
+                                                 WNestable {
 
   @XmlValue
   private String content;

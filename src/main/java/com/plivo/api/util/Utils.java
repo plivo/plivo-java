@@ -91,42 +91,45 @@ public class Utils {
 
   private static Map<String, List<String>> getLanguageVoices() {
     Map<String, List<String>> languageVoices = new HashMap<>();
-    languageVoices.put("Australian English", new ArrayList<String>(Arrays.asList("Nicole", "Russell")));
-    languageVoices.put("Brazilian Portuguese", new ArrayList<String>(Arrays.asList("Vitória", "Ricardo")));
-    languageVoices.put("Canadian French", new ArrayList<String>(Arrays.asList("Chantal", "Chantal")));
-    languageVoices.put("Danish", new ArrayList<String>(Arrays.asList("Naja", "Mads")));
-    languageVoices.put("Dutch", new ArrayList<String>(Arrays.asList("Lotte", "Ruben")));
-    languageVoices.put("French", new ArrayList<String>(Arrays.asList("Léa", "Céline", "Mathieu")));
-    languageVoices.put("German", new ArrayList<String>(Arrays.asList("Vicki", "Hans")));
-    languageVoices.put("Hindi", new ArrayList<String>(Arrays.asList("Aditi")));
-    languageVoices.put("Icelandic", new ArrayList<String>(Arrays.asList("Dóra", "Karl")));
-    languageVoices.put("Indian English", new ArrayList<String>(Arrays.asList("Raveena", "Aditi")));
-    languageVoices.put("Italian", new ArrayList<String>(Arrays.asList("Carla", "Giorgio")));
-    languageVoices.put("Japanese", new ArrayList<String>(Arrays.asList("Mizuki", "Takumi")));
-    languageVoices.put("Korean", new ArrayList<String>(Arrays.asList("Seoyeon")));
-    languageVoices.put("Mandarin Chinese", new ArrayList<String>(Arrays.asList("Zhiyu")));
-    languageVoices.put("Norwegian", new ArrayList<String>(Arrays.asList("Liv")));
-    languageVoices.put("Polish", new ArrayList<String>(Arrays.asList("Ewa", "Maja", "Jacek", "Jan")));
-    languageVoices.put("Portuguese-Iberic", new ArrayList<String>(Arrays.asList("Inês", "Cristiano")));
-    languageVoices.put("Romanian", new ArrayList<String>(Arrays.asList("Carmen")));
-    languageVoices.put("Russian", new ArrayList<String>(Arrays.asList("Tatyana", "Maxim")));
-    languageVoices.put("Spanish-Castilian", new ArrayList<String>(Arrays.asList("Conchita", "Enrique")));
-    languageVoices.put("Swedish", new ArrayList<String>(Arrays.asList("Astrid")));
-    languageVoices.put("Turkish", new ArrayList<String>(Arrays.asList("Filiz")));
-    languageVoices.put("UK English", new ArrayList<String>(Arrays.asList("Amy", "Emma", "Brian")));
-    languageVoices.put("US English", new ArrayList<String>(Arrays.asList("Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey")));
-    languageVoices.put("US Spanish", new ArrayList<String>(Arrays.asList("Penélope","Miguel")));
-    languageVoices.put("Welsh", new ArrayList<String>(Arrays.asList("Gwyneth")));
-    languageVoices.put("Welsh English", new ArrayList<String>(Arrays.asList("Geraint")));
+    languageVoices.put("arb", new ArrayList<String>(Arrays.asList("Zeina")));
+    languageVoices.put("cmn-CN", new ArrayList<String>(Arrays.asList("Zhiyu")));
+    languageVoices.put("da-DK", new ArrayList<String>(Arrays.asList("Naja", "Mads")));
+    languageVoices.put("nl-NL", new ArrayList<String>(Arrays.asList("Lotte", "Ruben")));
+    languageVoices.put("en-AU", new ArrayList<String>(Arrays.asList("Nicole", "Russell")));
+    languageVoices.put("en-GB", new ArrayList<String>(Arrays.asList("Amy", "Emma", "Brian")));
+    languageVoices.put("en-IN", new ArrayList<String>(Arrays.asList("Raveena", "Aditi")));
+    languageVoices.put("en-US", new ArrayList<String>(Arrays.asList("Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey")));
+    languageVoices.put("en-GB-WLS", new ArrayList<String>(Arrays.asList("Geraint")));
+    languageVoices.put("fr-CA", new ArrayList<String>(Arrays.asList("Chantal", "Chantal")));
+    languageVoices.put("fr-FR", new ArrayList<String>(Arrays.asList("Léa", "Céline", "Mathieu")));
+    languageVoices.put("de-DE", new ArrayList<String>(Arrays.asList("Vicki", "Hans")));
+    languageVoices.put("hi-IN", new ArrayList<String>(Arrays.asList("Aditi")));
+    languageVoices.put("is-IS", new ArrayList<String>(Arrays.asList("Dóra", "Karl")));
+    languageVoices.put("it-IT", new ArrayList<String>(Arrays.asList("Carla", "Giorgio")));
+    languageVoices.put("ja-JP", new ArrayList<String>(Arrays.asList("Mizuki", "Takumi")));
+    languageVoices.put("ko-KR", new ArrayList<String>(Arrays.asList("Seoyeon")));
+    languageVoices.put("nb-NO", new ArrayList<String>(Arrays.asList("Liv")));
+    languageVoices.put("pl-PL", new ArrayList<String>(Arrays.asList("Ewa", "Maja", "Jacek", "Jan")));
+    languageVoices.put("pt-BR", new ArrayList<String>(Arrays.asList("Vitória", "Ricardo")));
+    languageVoices.put("pt-PT", new ArrayList<String>(Arrays.asList("Inês", "Cristiano")));
+    languageVoices.put("ro-RO", new ArrayList<String>(Arrays.asList("Carmen")));
+    languageVoices.put("ru-RU", new ArrayList<String>(Arrays.asList("Tatyana", "Maxim")));
+    languageVoices.put("es-ES", new ArrayList<String>(Arrays.asList("Conchita", "Lucia", "Enrique")));
+    languageVoices.put("es-MX", new ArrayList<String>(Arrays.asList("Mia")));
+    languageVoices.put("es-US", new ArrayList<String>(Arrays.asList("Penélope", "Miguel")));
+    languageVoices.put("sv-SE", new ArrayList<String>(Arrays.asList("Astrid")));
+    languageVoices.put("tr-TR", new ArrayList<String>(Arrays.asList("Filiz")));
+    languageVoices.put("cy-GB", new ArrayList<String>(Arrays.asList("Gwyneth")));
 
     return languageVoices;
   }
 
   public static void validateLanguageVoice(String language, String voice) throws PlivoXmlException {
     String[] voiceParts = voice.split("\\.");
+    System.out.println(language);
     if (voiceParts.length != 2 || !voiceParts[0].equals("Polly")) {
       throw new PlivoXmlException("XML Validation Error: Invalid language. Voice " + voice + " is not valid. " +
-        "Refer <link> for the list of supported voices.");
+                                  "Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.");
     }
 
     Map<String, List<String>> languageVoices = getLanguageVoices();
@@ -144,7 +147,7 @@ public class Utils {
 
     if (!voiceParts[1].equals("*") && !availableLanguageVoices.contains(transformedVoiceName) ){
       throw new PlivoXmlException("XML Validation Error: <Speak> voice '" + voice +
-        "' is not valid. Refer <link> for list of supported voices.");
+                                  "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.");
     }
   }
 

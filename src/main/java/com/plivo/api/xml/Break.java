@@ -5,10 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlRootElement(name = "break")
-public class Break extends PlivoXml implements ResponseNestable {
-
-  @XmlValue
-  private String content;
+public class Break extends PlivoXml implements EmphasisNestable,
+                                               LangNestable,
+                                               PNestable,
+                                               ProsodyNestable,
+                                               SNestable,
+                                               SpeakNestable,
+                                               WNestable {
 
   @XmlAttribute
   private String strength;
@@ -19,12 +22,7 @@ public class Break extends PlivoXml implements ResponseNestable {
   public Break() {
   }
 
-  public Break(String content) {
-    this.content = content;
-  }
-
-  public Break(String content, String strength, String time) {
-    this.content = content;
+  public Break(String strength, String time) {
     this.strength = strength;
     this.time = time;
   }
