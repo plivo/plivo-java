@@ -3,7 +3,7 @@ package com.plivo.api.models.call.actions;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.Creator;
-import com.plivo.api.models.call.CallCreator;
+
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class CallRecordCreator extends Creator<CallRecordCreateResponse> {
   private String transcriptionUrl;
   private String transcriptionMethod;
   private String transcriptionType;
-  
+
 
   public CallRecordCreator(String id)
   {
