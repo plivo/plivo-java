@@ -38,9 +38,15 @@ public class Prosody extends PlivoXml implements EmphasisNestable,
 
   public Prosody(String content, String volume, String rate, String pitch) {
     this.mixedContent.add(content);
-    this.volume = volume;
-    this.rate = rate;
-    this.pitch = pitch;
+    if (!(volume == null || "".equals(volume))) {
+      this.volume = volume;
+    }
+    if (!(rate == null || "".equals(rate))) {
+      this.rate = rate;
+    }
+    if (!(pitch == null || "".equals(pitch))) {
+      this.pitch = pitch;
+    }
   }
 
   public String getVolume() {

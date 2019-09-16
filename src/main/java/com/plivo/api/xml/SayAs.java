@@ -29,6 +29,11 @@ public class SayAs extends PlivoXml implements EmphasisNestable,
     this.content = content;
   }
 
+  public SayAs(String content, String interpretAs) {
+    this.content = content;
+    this.interpretAs = interpretAs;
+  }
+
   public SayAs(String content, String interpretAs, String format) {
     this.content = content;
     this.interpretAs = interpretAs;

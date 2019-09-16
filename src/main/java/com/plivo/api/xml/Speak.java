@@ -140,8 +140,14 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
     return this;
   }
 
-  public Speak addSayAs(String content, String interpretAs, String format) throws PlivoXmlException {
+  public Speak addSayAs(String content, String interpretAs) throws PlivoXmlException {
   	this.checkIsSSMLSupported();
+    this.mixedContent.add(new SayAs(content, interpretAs));
+    return this;
+  }
+
+  public Speak addSayAs(String content, String interpretAs, String format) throws PlivoXmlException {
+    this.checkIsSSMLSupported();
     this.mixedContent.add(new SayAs(content, interpretAs, format));
     return this;
   }
