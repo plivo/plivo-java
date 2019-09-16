@@ -128,8 +128,14 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
     return this;
   }
 
+  public Speak addProsody(String content) throws PlivoXmlException {
+    this.checkIsSSMLSupported();
+    this.mixedContent.add(new Prosody(content));
+    return this;
+  }
+
   public Speak addProsody(String content, String volume, String rate, String pitch) throws PlivoXmlException {
-  	this.checkIsSSMLSupported();
+    this.checkIsSSMLSupported();
     this.mixedContent.add(new Prosody(content, volume, rate, pitch));
     return this;
   }
