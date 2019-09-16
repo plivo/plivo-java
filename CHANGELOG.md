@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.4.3](https://github.com/plivo/plivo-java/tree/v4.4.2) (2019-09-13)
+## [4.4.2](https://github.com/plivo/plivo-java/tree/v4.4.2) (2019-09-13)
 - Fix Record a Call API
 
 ## [4.4.1](https://github.com/plivo/plivo-java/tree/v4.4.1) (2019-04-12)
