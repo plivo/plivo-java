@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlRootElement(name = "Speak")
-public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestable, GetDigitsNestable {
+public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestable, GetDigitsNestable, GetInputNestable {
 
   @XmlValue
   private String content;

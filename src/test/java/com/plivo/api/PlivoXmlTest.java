@@ -4,6 +4,7 @@ import com.plivo.api.exceptions.PlivoXmlException;
 import com.plivo.api.xml.Conference;
 import com.plivo.api.xml.Dial;
 import com.plivo.api.xml.GetDigits;
+import com.plivo.api.xml.GetInput;
 import com.plivo.api.xml.Message;
 import com.plivo.api.xml.Number;
 import com.plivo.api.xml.Play;
@@ -87,6 +88,11 @@ public class PlivoXmlTest {
         p(new GetDigits()
           .children(
             p(new Speak("getDigits")),
+            p(new Play("http://url.to.media"))
+          )),
+        p(new GetInput()
+          .children(
+            p(new Speak("getInput")),
             p(new Play("http://url.to.media"))
           )),
         p(new Conference("test"))
