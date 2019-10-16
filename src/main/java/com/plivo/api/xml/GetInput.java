@@ -56,6 +56,9 @@ public class GetInput extends PlivoXml implements ResponseNestable {
   @XmlAttribute
   private Boolean log;
 
+  @XmlAttribute
+  private String profanityFilter;
+
   @XmlElements({
     @XmlElement(name = "Speak", type = Speak.class),
     @XmlElement(name = "Wait", type = Wait.class)
@@ -121,6 +124,10 @@ public class GetInput extends PlivoXml implements ResponseNestable {
 
   public Boolean log() {
     return this.log;
+  }
+
+  public String profanityFilter() {
+    return this.profanityFilter;
   }
 
   public List<GetInputNestable> children() {
@@ -199,6 +206,11 @@ public class GetInput extends PlivoXml implements ResponseNestable {
 
   public GetInput log(final Boolean log) {
     this.log = log;
+    return this;
+  }
+
+  public GetInput profanityFilter(final String profanityFilter) {
+    this.profanityFilter = profanityFilter;
     return this;
   }
 
