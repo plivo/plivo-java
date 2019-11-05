@@ -3,5 +3,4 @@ language: java-sdk
 build:
   command: |
       ./build.sh
-      ./publish.sh
       ./gradlew fatJar
