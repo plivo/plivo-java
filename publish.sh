@@ -1,2 +1,1 @@
-./gradlew clean
-./gradlew publish
+./gradlew clean publish -PmavenUserName=$MAVEN_USERNAME -PmavenPassword=$MAVEN_PASSWORD
