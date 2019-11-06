@@ -1,5 +1,11 @@
 # Change Log
 
+## [4.4.3](https://github.com/plivo/plivo-java/tree/v4.4.3) (2019-11-06)
+- Add SSML support
+
+## [4.4.2](https://github.com/plivo/plivo-java/tree/v4.4.2) (2019-09-16)
+- Fix Record a Call API
+
 ## [4.4.1](https://github.com/plivo/plivo-java/tree/v4.4.1) (2019-04-12)
 - Add PHLO Run getter
 
