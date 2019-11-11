@@ -61,7 +61,7 @@ public class GetInput extends PlivoXml implements ResponseNestable {
 
   @XmlElements({
     @XmlElement(name = "Speak", type = Speak.class),
-    @XmlElement(name = "Wait", type = Wait.class)
+    @XmlElement(name = "Wait", type = Wait.class),
     @XmlElement(name = "Play", type = Play.class)
   })
   private List<GetInputNestable> children = new ArrayList<>();
