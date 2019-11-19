@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.4.4](https://github.com/plivo/plivo-java/tree/v4.4.4) (2019-11-19)
+- Add GetInput XML support
+
 ## [4.4.3](https://github.com/plivo/plivo-java/tree/v4.4.3) (2019-11-06)
 - Add SSML support
 
