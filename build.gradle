@@ -46,8 +46,10 @@ repositories {
 }
 
 tasks.withType(JavaCompile) {
-  options.compilerArgs << "-Xlint:unchecked"
-}
+   options.compilerArgs << "-Xlint:unchecked"
+   options.fork = true; options.forkOptions.executable = 'javac'
+   options.compilerArgs << "-XDignore.symbol.file=true"
+ }
 
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -93,6 +95,39 @@ task fatJar(type: Jar) {
   from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
   with jar
   print("Created fatjar: ${destinationDir}/${archiveName}")
+}
+
+task createPom << {
+  pom {
+    project {
+      name 'plivo-java'
+      packaging 'jar'
+      description 'A Java SDK to make voice calls & send SMS using Plivo and to generate Plivo XML'
+
+      licenses {
+        license {
+          name 'The MIT License'
+          url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
+          distribution 'repo'
+        }
+      }
+
+      developers {
+        developer {
+          name 'The Plivo SDKs Team'
+          email 'sdks@plivo.com'
+          organization 'Plivo, Inc.'
+          organizationUrl 'https://plivo.com'
+        }
+      }
+
+      scm {
+        url 'git@github.com:plivo/plivo-java.git'
+        connection 'scm:git:git@github.com:plivo/plivo-java.git'
+        developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
+      }
+    }
+  }.writeTo("pom.xml")
 }
 
 uploadArchives {
