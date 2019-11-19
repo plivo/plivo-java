@@ -435,7 +435,7 @@ public interface PlivoAPIService {
   Call<PowerpackUpdateResponse> powerpackUpdate(@Path("authId") String authId,
                                                 @Path("uuid") String uuid, @Body PowerpackUpdater powerpackUpdater);
   //
-  @DELETE("Account/{authId}/Powerpack/{id}/")
+  @HTTP(method = "DELETE", path= "Account/{authId}/Powerpack/{id}/", hasBody = true)
   Call<ResponseBody> powerpackDeleter(@Path("authId") String authId, @Path("uuid") String uuid, @Body PowerpackDeleter powerpackDelete);
 
   @GET("Account/{authId}/NumberPool/{uuid}/Number/")
@@ -453,9 +453,9 @@ public interface PlivoAPIService {
   Call<Shortcode> powerpackFindShortcodeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode);
 
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
-  Call<Numbers> powerpackAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number);
+  Call<Numbers> powerpackAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body PowerpackAddNumber addnumber);
 
-  @DELETE("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Number/{number}/", hasBody = true)
   Call<ResponseBody> powerpackNumberDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body RemoveNumber numberDeleter);
 
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")

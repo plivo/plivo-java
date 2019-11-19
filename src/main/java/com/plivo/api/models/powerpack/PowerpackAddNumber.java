@@ -26,6 +26,6 @@ public class PowerpackAddNumber extends Getter<Numbers> {
     if (number == null) {
       throw new IllegalArgumentException("number cannot be null");
     }
-    return client().getApiService().powerpackAddNumberCreate(client().getAuthId(), uuid, number);
+    return client().getApiService().powerpackAddNumberCreate(client().getAuthId(), uuid, number, this);
   }
 }

@@ -14,6 +14,7 @@ public class RemoveNumber extends Deleter<Numbers> {
       throw new IllegalArgumentException("powerpack uuid cannot be null");
     }
     this.id = id;
+    this.unrent = Boolean.TRUE;
   }
 
 

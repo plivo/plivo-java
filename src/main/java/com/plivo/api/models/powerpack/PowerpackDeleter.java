@@ -13,6 +13,7 @@ public class PowerpackDeleter extends Deleter<Powerpack> {
       throw new IllegalArgumentException("powerpack uuid cannot be null");
     }
     this.id = id;
+    this.unrent_numbers = Boolean.TRUE;
   }
 
   public Boolean unrent_numbers() {
