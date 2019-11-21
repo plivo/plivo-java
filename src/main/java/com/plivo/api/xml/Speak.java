@@ -1,18 +1,18 @@
 package com.plivo.api.xml;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlValue;
+import com.plivo.api.exceptions.PlivoXmlException;
+import com.plivo.api.util.Utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlValue;
 
-import com.plivo.api.exceptions.PlivoXmlException;
-import com.plivo.api.util.Utils;
 
 @XmlRootElement(name = "Speak")
 @XmlSeeAlso({Lang.class,
@@ -26,7 +26,7 @@ import com.plivo.api.util.Utils;
       Phoneme.class,
       Prosody.class,
       })
-public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestable, GetDigitsNestable {
+public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestable, GetDigitsNestable, GetInputNestable {
 
   //public String content;
   @XmlMixed
