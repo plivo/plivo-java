@@ -19,7 +19,9 @@ public class Numbers extends BaseResource {
   public Numbers getter() {
     return this;
   }
+  public Numbers(){
 
+  }
   public String getNumberPoolId() {
     return number_pool_uuid;
   }
