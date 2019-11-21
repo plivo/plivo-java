@@ -436,7 +436,7 @@ public interface PlivoAPIService {
                                                 @Path("uuid") String uuid, @Body PowerpackUpdater powerpackUpdater);
   //
   @HTTP(method = "DELETE", path= "Account/{authId}/Powerpack/{id}/", hasBody = true)
-  Call<ResponseBody> powerpackDeleter(@Path("authId") String authId, @Path("uuid") String uuid, @Body PowerpackDeleter powerpackDelete);
+  Call<ResponseBody> powerpackDeleter(@Path("authId") String authId, @Path("id") String id, @Body PowerpackDeleter powerpackDelete);
 
   @GET("Account/{authId}/NumberPool/{uuid}/Number/")
   Call <ListResponse<Numbers>> powerpackNumberList(@Path("authId") String authId, @Path("uuid") String uuid,
