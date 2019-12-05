@@ -119,9 +119,9 @@ public class PlivoClient {
    * @param simpleModule
    */
   public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, final String baseUrl, final SimpleModule simpleModule) {
-    // if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
-    //   throw new IllegalArgumentException("invalid account ID");
-    // }
+    if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
+      throw new IllegalArgumentException("invalid account ID");
+    }
 
     this.authId = authId;
     this.authToken = authToken;
