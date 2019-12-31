@@ -19,28 +19,6 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-if (JavaVersion.current() >= JavaVersion.VERSION_1_9){
-  compileJava {
-    doFirst {
-      options.compilerArgs = [
-        '--add-modules', 'java.xml.bind'
-      ]
-    }
-  }
-
-  javadoc {
-    options.addStringOption('-add-modules', 'java.xml.bind')
-  }
-
-  test {
-    doFirst {
-      jvmArgs = [
-        '--add-modules', 'java.xml.bind'
-      ]
-    }
-  }
-}
-
 repositories {
   mavenCentral()
 }
@@ -58,6 +36,9 @@ dependencies {
   compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
   compile 'com.squareup.retrofit2:retrofit:2.2.0'
   compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+
+  compile 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+  compile 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
 }
 
 javadoc {
