@@ -4,7 +4,7 @@ package com.plivo.api.models.message;
  * Possible types of a message. For now, only SMS is allowed.
  */
 public enum MessageType {
-  SMS("sms");
+  SMS("sms"),  MMS("mms");
 
   private final String type;
 
