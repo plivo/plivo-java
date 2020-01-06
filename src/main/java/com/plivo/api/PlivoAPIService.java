@@ -68,6 +68,7 @@ import com.plivo.api.models.number.PhoneNumberCreator;
 import com.plivo.api.models.phlo.Phlo;
 import com.plivo.api.models.phlo.PhloRunGetterResponse;
 import com.plivo.api.models.phlo.PhloUpdateResponse;
+import com.plivo.api.models.powerpack.*;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
 
@@ -431,4 +432,45 @@ public interface PlivoAPIService {
   Call<PhloUpdateResponse> runPhlo(@Path("authId") String authId,
                                    @Path("phloId") String phloId,
                                    @Body Map<String, Object> payload);
+  //Powerpack
+  @POST("Account/{authId}/Powerpack/")
+  Call<PowerpackResponse> createPowerpack(@Path("authId") String authId, @Body PowerpackCreator powerpackCreator);
+
+  @GET("Account/{authId}/Powerpack/{uuid}/")
+  Call<Powerpack> powerpackGet(@Path("authId") String authId, @Path("uuid") String uuid);
+
+  @GET("Account/{authId}/Powerpack/")
+  Call<ListResponse<Powerpack>> powerpackList(@Path("authId") String authId,
+                                              @QueryMap Map<String, Object> powerpackListRequest);
+  //
+  @POST("Account/{authId}/Powerpack/{uuid}/")
+  Call<PowerpackUpdateResponse> powerpackUpdate(@Path("authId") String authId,
+                                                @Path("uuid") String uuid, @Body PowerpackUpdater powerpackUpdater);
+  //
+  @HTTP(method = "DELETE", path= "Account/{authId}/Powerpack/{id}/", hasBody = true)
+  Call<ResponseBody> powerpackDeleter(@Path("authId") String authId, @Path("id") String id, @Body PowerpackDeleter powerpackDelete);
+
+  @GET("Account/{authId}/NumberPool/{uuid}/Number/")
+  Call <ListResponse<Numbers>> powerpackNumberList(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                   @QueryMap Map<String,Object> powerpackNumberListRequest);
+
+  @GET("Account/{authId}/NumberPool/{uuid}/Shortcode/")
+  Call<ListResponse<Shortcode>> powerpackShortcodeList(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                       @QueryMap Map<String,Object> powerpackShortcodeListRequest);
+  //
+  @GET("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
+  Call<Numbers> powerpackFindNumberGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number);
+
+  @GET("Account/{authId}/NumberPool/{uuid}/Shortcode/{shortcode}/")
+  Call<Shortcode> powerpackFindShortcodeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode);
+
+  @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
+  Call<Numbers> powerpackAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body PowerpackAddNumber addnumber);
+
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Number/{number}/", hasBody = true)
+  Call<ResponseBody> powerpackNumberDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body RemoveNumber numberDeleter);
+
+  @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
+  Call<Numbers> powerpackBuyAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body BuyAddNumbers numbers);
 }
+
