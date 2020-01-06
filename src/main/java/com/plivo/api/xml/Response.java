@@ -22,6 +22,7 @@ public class Response extends PlivoXml {
     @XmlElement(name = "Hangup", type = Hangup.class),
     @XmlElement(name = "Redirect", type = Redirect.class),
     @XmlElement(name = "GetDigits", type = GetDigits.class),
+    @XmlElement(name = "GetInput", type = GetInput.class),
     @XmlElement(name = "Record", type = Record.class),
   })
   private List<com.plivo.api.xml.XmlElement> children = new ArrayList<>();
