@@ -6,11 +6,13 @@ import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.IterableError;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.util.Utils;
+
 import java.io.IOException;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -49,7 +51,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
 
   /**
    * @param limit Used to display the number of results per page. The maximum number of results that
-   * can be fetched is 20.
+   *              can be fetched is 20.
    */
   public Lister<T> limit(final Integer limit) {
     this.limit = limit;
@@ -77,6 +79,18 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
 
     return response.body();
   }
+
+  public Long get() throws IOException, PlivoRestException {
+    validate();
+    Response<ListResponse<T>> response = obtainCall().execute();
+    handleResponse(response);
+    try {
+      return response.body().getMeta().getTotalCount();
+    } catch (Exception e) {
+      return 0L;
+    }
+  }
+
 
   protected Map<String, Object> toMap() {
     client();
