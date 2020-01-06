@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.4.5](https://github.com/plivo/plivo-java/tree/v4.4.5) (2020-01-06)
+- Add MMS and Powerpack support
+
 ## [4.4.4](https://github.com/plivo/plivo-java/tree/v4.4.4) (2019-11-19)
 - Add GetInput XML support
 
