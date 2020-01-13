@@ -28,6 +28,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   private Boolean log = null;
   private Boolean trackable = null;
   private  String[] media_urls = null;
+  private String[] media_ids = null;
 
 
   /**
@@ -93,6 +94,8 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
 
   public String[] media_urls() { return this.media_urls; }
 
+  public String[] media_ids() { return this.media_ids; }
+
 
   /**
    * @param type Must be {@link MessageType#SMS}
@@ -128,7 +131,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   }
 
   /**
-   * @param trackable 
+   * @param trackable
    */
   public MessageCreator trackable(final Boolean trackable) {
     this.trackable = trackable;
@@ -142,6 +145,13 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
        return this;
   }
 
+  /**
+   +   * @param media_ids The media ids is used to send media for MMS.
+   +   */
+  public MessageCreator media_ids(final String[] media_ids) {
+        this.media_ids = media_ids;
+       return this;
+  }
 
 
   @Override
