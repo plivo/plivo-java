@@ -7,6 +7,7 @@ import retrofit2.Call;
 public class ApplicationDeleter extends Deleter<Application> {
 
   private Boolean cascade;
+  private String newEndpointApplication;
 
   public ApplicationDeleter(String id) {
     super(id);
@@ -21,10 +22,25 @@ public class ApplicationDeleter extends Deleter<Application> {
   }
 
   /**
+   * @return newEndpointApplication to be associated with associated endpoints
+   */
+  public String newEndpointApplication() {
+    return this.newEndpointApplication;
+  }
+
+  /**
    * @param cascade Specify if the subaccount should be cascade or not.
    */
   public ApplicationDeleter cascade(final Boolean cascade) {
     this.cascade = cascade;
+    return this;
+  }
+
+  /**
+   * @param Specify newEndpointApplication to be associated with endpoints
+   */
+  public ApplicationDeleter newEndpointApplication(final String newEndpointApplication) {
+    this.newEndpointApplication = newEndpointApplication;
     return this;
   }
 
