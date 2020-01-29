@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.4.6](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-01-29)
+- Send feedback for a Call
+
 ## [4.4.5](https://github.com/plivo/plivo-java/tree/v4.4.5) (2020-01-06)
 - Add MMS and Powerpack support
 
