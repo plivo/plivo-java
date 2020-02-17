@@ -1,6 +1,7 @@
 package com.plivo.api.models.media;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.BaseResource;
 
 public class Media extends BaseResource{
@@ -15,8 +16,8 @@ public class Media extends BaseResource{
   private int statusCode;
 
   public static MediaUploader creator(
-    String[] fileName) {
-    return new MediaUploader(fileName);
+    String[] fileNames) throws ResourceNotFoundException {
+    return new MediaUploader(fileNames);
   }
 
 

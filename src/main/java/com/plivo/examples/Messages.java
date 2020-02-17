@@ -3,6 +3,9 @@ package com.plivo.examples;
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.ListResponse;
+import com.plivo.api.models.media.Media;
+import com.plivo.api.models.media.MediaResponse;
+import com.plivo.api.models.media.MediaUploader;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageType;
@@ -14,12 +17,14 @@ import java.util.Collections;
 public class Messages {
 
   public static void main(String[] args) {
-    Plivo.init("xxxxx", "xxxx");
+    Plivo.init("MAODZKMDFJMJU3MTEYNG", "YTZlMmQ3MTcxOWRlNjYzNWM0NDg1NzQ5YWQ4OTU5");
     sendmms();
     // getMessage();
     // listMedia();
     //getMedia();
     //deleteMedia();
+//    uploadMedia();
+
   }
 
   // send mms
@@ -83,6 +88,20 @@ public class Messages {
       System.out.println("Deleted successfully.");
 
     } catch (PlivoRestException | IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static void uploadMedia(){
+
+    try {
+      System.out.println("'Before Media upload");
+      MediaResponse mediaResponse = Media.creator(new String[]{"/Users/shibinsurendranath/Downloads/image2.png",
+    		  "/Users/shibinsurendranath/Downloads/Jira.csv.txt"}).create();
+      System.out.println("'Response got " + mediaResponse.getApiId());
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (PlivoRestException e) {
       e.printStackTrace();
     }
   }

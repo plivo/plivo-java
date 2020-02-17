@@ -1,39 +1,51 @@
 package com.plivo.api.models.media;
 
+import java.io.File;
+
+import com.plivo.api.PlivoClient;
+import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.Creator;
-import com.plivo.api.models.media.MediaResponse;
-import com.plivo.api.models.media.MediaUploader;
-import com.plivo.api.models.message.MessageCreateResponse;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.MultipartBody.Builder;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
-import java.io.File;
-
 public class MediaUploader extends Creator<MediaResponse> {
 
-  private  String[] fileName = null;
-  RequestBody body = null;
+  private RequestBody files = null;
 
-  MediaUploader(String[] filename){
-
+  MediaUploader(String[] fileNames) throws ResourceNotFoundException{
+	  files = getFilesForFilenames(fileNames);
   }
-  public MediaUploader fileName(final String[] fileName) {
-    this.fileName = fileName;
-    for (i = 0; i < this.fileName.length; i++) { 
-    MediaType mediaType = MediaType.parse("application/json");
-    this.body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-      .addFormDataPart("file","filename",
-        RequestBody.create(MediaType.parse("application/octet-stream"),
-          new File(this.fileName[i])))
-      .build();
+  
+  private RequestBody getFilesForFilenames(String[] fileNames) throws ResourceNotFoundException {
+	  Builder builder = new MultipartBody.Builder()
+			  				.setType(MultipartBody.FORM);
+	  for(int i = 0; i < fileNames.length; i++) {
+		  File tempFile = new File(fileNames[i]);
+		  boolean exists = tempFile.exists();
+		  if(!exists)
+			  throw new ResourceNotFoundException("File mising " + fileNames[i]);
+		  builder
+		  	.addFormDataPart("file", fileNames[i],
+		            RequestBody.create(null, tempFile));
+	  }
+	  return builder.build();
+  }
+  
+
+  @Override
+  public Creator<MediaResponse> client(final PlivoClient plivoClient) {
+    this.plivoClient = plivoClient;
     return this;
-    }
   }
+
+
   @Override
   protected Call<MediaResponse> obtainCall() {
-    return client().getApiService().uploadMedia(client().getAuthId(), this);
+    return client().getApiService().uploadMedia(client().getAuthId(), this.files);
   }
 
 }
