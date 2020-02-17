@@ -472,5 +472,15 @@ public interface PlivoAPIService {
 
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackBuyAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body BuyAddNumbers numbers);
+
+  @GET("Account/{authId}/Media/")
+  Call<ListResponse<Media>> mediaList(@Path("authId") String authId, @QueryMap Map<String, Object> mediaListRequest);
+
+  @GET("Account/{authId}/Media/{id}/")
+  Call<Media> mediaGet(@Path("authId") String authId, @Path("id") String id);
+
+  @POST("Account/{authId}/Media/")
+  Call<MediaResponse> uploadMedia(@Path("authId") String authId,
+                                  @Body MediaUploader mediaUpload);
 }
 
