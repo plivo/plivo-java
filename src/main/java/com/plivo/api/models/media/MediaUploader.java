@@ -1,6 +1,8 @@
 package com.plivo.api.models.media;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.ResourceNotFoundException;
@@ -28,9 +30,13 @@ public class MediaUploader extends Creator<MediaResponse> {
 		  boolean exists = tempFile.exists();
 		  if(!exists)
 			  throw new ResourceNotFoundException("File mising " + fileNames[i]);
-		  builder
-		  	.addFormDataPart("file", fileNames[i],
-		            RequestBody.create(null, tempFile));
+		  try {
+			builder
+			  	.addFormDataPart("file", fileNames[i],
+			            RequestBody.create(MediaType.parse(Files.probeContentType(tempFile.toPath())), tempFile));
+		} catch (IOException e) {
+			throw new ResourceNotFoundException("Unable to read file " + fileNames[i]);
+		}
 	  }
 	  return builder.build();
   }
