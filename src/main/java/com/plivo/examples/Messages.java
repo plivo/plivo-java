@@ -17,7 +17,7 @@ import java.util.Collections;
 public class Messages {
 
   public static void main(String[] args) {
-    Plivo.init("MAODZKMDFJMJU3MTEYNG", "YTZlMmQ3MTcxOWRlNjYzNWM0NDg1NzQ5YWQ4OTU5");
+    Plivo.init("xx", "xxx");
     sendmms();
     // getMessage();
     // listMedia();
@@ -96,9 +96,30 @@ public class Messages {
 
     try {
       System.out.println("'Before Media upload");
-      MediaResponse mediaResponse = Media.creator(new String[]{"/Users/shibinsurendranath/Downloads/image2.png",
-    		  "/Users/shibinsurendranath/Downloads/Jira.csv.txt"}).create();
+      MediaResponse mediaResponse = Media.creator(new String[]{"/Users/xz/Downloads/image2.png",
+    		  "/yourpath/Jira.csv.txt"}).create();
       System.out.println("'Response got " + mediaResponse.getApiId());
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (PlivoRestException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static  void getMedia(string mediaId){
+    try {
+      Media p = Media.getter(mediaId).get();
+       System.out.println(p);
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (PlivoRestException e) {
+      e.printStackTrace();
+    }
+  }
+  private static  void listMedia(){
+    try {
+      ListResponse<Media> p = Media.lister().list();
+      System.out.println(p);
     } catch (IOException e) {
       e.printStackTrace();
     } catch (PlivoRestException e) {

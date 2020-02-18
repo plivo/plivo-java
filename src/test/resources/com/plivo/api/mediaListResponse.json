@@ -1,0 +1,17 @@
+{
+  "api_id": "2a220ac0-526e-11ea-a86e-0242ac110009",
+  "meta": {
+    "limit": 1,
+    "next": "https://apollo-dev-internal.mms.plivodev.com/external/Account/xxxx/Media?offset=1&limit=1",
+    "offset": 0,
+    "total_count": 44
+  },
+  "objects": [{
+    "content_type": "image/jpeg",
+    "file_name": "sample2.jpg",
+    "media_id": "d1f1dafc-a124-4e0f-b808-9de53caf005c",
+    "size": 113730,
+    "upload_time": "2020-02-17T05:46:54.481186Z",
+    "url": "https://media.sms.plivodev.com/Account/xxxx/Media/d1f1dafc-a124-4e0f-b808-9de53caf005c"
+  }]
+}
