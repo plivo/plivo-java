@@ -16,10 +16,10 @@ import retrofit2.Call;
 
 public class MediaUploader extends Creator<MediaResponse> {
 
-  private RequestBody files = null;
+  private RequestBody filesAsRequestBody = null;
 
   MediaUploader(String[] fileNames) throws ResourceNotFoundException{
-	  files = getFilesForFilenames(fileNames);
+	  filesAsRequestBody = getFilesForFilenames(fileNames);
   }
   
   private RequestBody getFilesForFilenames(String[] fileNames) throws ResourceNotFoundException {
@@ -41,6 +41,10 @@ public class MediaUploader extends Creator<MediaResponse> {
 	  return builder.build();
   }
   
+  public RequestBody getFilesAsRequestBody() {
+	  return this.filesAsRequestBody;
+  }
+  
 
   @Override
   public Creator<MediaResponse> client(final PlivoClient plivoClient) {
@@ -51,7 +55,7 @@ public class MediaUploader extends Creator<MediaResponse> {
 
   @Override
   protected Call<MediaResponse> obtainCall() {
-    return client().getApiService().uploadMedia(client().getAuthId(), this.files);
+    return client().getApiService().uploadMedia(client().getAuthId(), this.getFilesAsRequestBody());
   }
 
 }
