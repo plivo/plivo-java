@@ -3,6 +3,7 @@ package com.plivo.api;
 import com.plivo.api.models.powerpack.Numbers;
 import com.plivo.api.models.powerpack.Powerpack;
 import com.plivo.api.models.powerpack.Shortcode;
+import com.plivo.api.models.powerpack.Tollfree;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -114,5 +115,28 @@ public class PowerpackTest extends BaseTest {
     Shortcode response = Powerpack.getter(uuid).get().find_shortcode().shortcode("444444").get();
     assertEquals(response.getShortcode(), "444444");
   }
+
+  @Test
+  public void powerpackFindTollfreeShouldSucceed() throws Exception {
+    String fixtureName = "numberpoolResponse.json";
+    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+
+    expectResponse(fixtureName, 200);
+
+    Tollfree response = Powerpack.getter(uuid).get().find_tollfree().tollfree("18772209942").get();
+    assertEquals(response.getTollfree(), "18772209942");
+  }
+
+  @Test
+  public void powerpackAddTollfreeShouldSucceed() throws Exception {
+    String fixtureName = "numberpoolResponse.json";
+    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+
+    expectResponse(fixtureName, 200);
+
+    Numbers response = Powerpack.getter(uuid).get().add_tollfree().number("18772209942").get();
+    assertEquals(response.getTollfree(), "18772209942");
+  }
+  
 
 }
