@@ -15,7 +15,10 @@ public class CallFeedbackCreator extends Creator<CallFeedbackCreateResponse> {
 
   CallFeedbackCreator(String callUUID, Float rating) {
     if (!Utils.allNotNull(callUUID, rating)) {
-      throw new IllegalArgumentException("from, to and answerUrl must not be null");
+      throw new IllegalArgumentException("callUUID or rating cannot be null");
+    }
+    if (rating < 1 && rating > 5) {
+      throw new IllegalArgumentException("Rating has to be a float between 1 - 5");
     }
     this.callUUID = callUUID;
     this.rating = rating;
