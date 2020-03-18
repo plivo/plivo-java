@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.lang.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -87,6 +88,52 @@ public class Utils {
   public static boolean validateSignature(String url, String nonce, String signature, String authToken)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     return computeSignature(url, nonce, authToken).equals(signature);
+  }
+
+  public static String generateUrl(String url, String method, HashMap<String, String> params){
+    URL parsedURL = new URL(url);
+    paramString = "";
+    if method == "GET"{
+      keys = params.keySet();
+      for(String key : keys){
+        paramString += key + "=" + params[key] + "&";
+      }
+      Strip(paramString, "&");
+      if parsedURL.getQuery(){
+        url += "/?" + paramString;
+      }
+      else{
+        url += "&" + paramString;
+      }
+    }
+    else{
+      keys = Arrays.sort(params.keySet());
+      for(String key : keys){
+        paramString += key + params[key];
+      }
+      url += "." + paramString;
+    }
+    return url;
+  }
+
+  public static String computeSignatureV3(String url, String nonce, String authToken, String method, HashMap<String, String> params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    if (!allNotNull(url, nonce, authToken)) {
+      throw new IllegalArgumentException("url, nonce and authToken must be non-null");
+    }
+
+    URL parsedURL = new URL(url);
+    String payload = generateUrl(url, method, params) + "." + nonce;
+    SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
+    Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
+    mac.init(signingKey);
+    return new String(Base64.getEncoder().encode(mac.doFinal(payload.getBytes("UTF-8"))));
+  }
+
+  public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, HashMap<String, String> params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    String[] splitSignature = signature.split(",");
+    return splitSignature.contains(computeSignatureV3(url, nonce, authToken, method, params));
   }
 
   private static Map<String, List<String>> getLanguageVoices() {
@@ -165,6 +212,6 @@ public class Utils {
       .collect(Collectors.joining("_"));
     return transformedString;
   }
-  
-  
+
+
 }
