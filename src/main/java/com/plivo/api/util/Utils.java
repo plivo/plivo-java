@@ -15,10 +15,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.apache.commons.lang.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -90,26 +91,25 @@ public class Utils {
     return computeSignature(url, nonce, authToken).equals(signature);
   }
 
-  public static String generateUrl(String url, String method, HashMap<String, String> params){
+  public static String generateUrl(String url, String method, HashMap<String, String> params) throws MalformedURLException {
     URL parsedURL = new URL(url);
-    paramString = "";
-    if method == "GET"{
-      keys = params.keySet();
-      for(String key : keys){
-        paramString += key + "=" + params[key] + "&";
+    String paramString = "";
+    List<String> keys = new ArrayList<String>(params.keySet());
+    if(method == "GET"){
+      for (String key : keys) {
+        paramString += key + "=" + params.get(key) + "&";
       }
-      Strip(paramString, "&");
-      if parsedURL.getQuery(){
-        url += "/?" + paramString;
-      }
-      else{
+      paramString = paramString.substring(0, paramString.length() - 1);
+      try{
+        parsedURL.getQuery().length();
         url += "&" + paramString;
+      } catch (Exception e) {
+        url += "/?" + paramString;
       }
     }
     else{
-      keys = Arrays.sort(params.keySet());
-      for(String key : keys){
-        paramString += key + params[key];
+      for (String key : keys) {
+        paramString += key + params.get(key);
       }
       url += "." + paramString;
     }
@@ -132,7 +132,7 @@ public class Utils {
 
   public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, HashMap<String, String> params)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
-    String[] splitSignature = signature.split(",");
+    List<String> splitSignature = Arrays.asList(signature.split(","));
     return splitSignature.contains(computeSignatureV3(url, nonce, authToken, method, params));
   }
 
@@ -176,7 +176,7 @@ public class Utils {
     System.out.println(language);
     if (voiceParts.length != 2 || !voiceParts[0].equals("Polly")) {
       throw new PlivoXmlException("XML Validation Error: Invalid language. Voice " + voice + " is not valid. " +
-                                  "Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.");
+        "Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.");
     }
 
     Map<String, List<String>> languageVoices = getLanguageVoices();
@@ -192,9 +192,9 @@ public class Utils {
     }
     String transformedVoiceName = transformString(voiceParts[1]);
 
-    if (!voiceParts[1].equals("*") && !availableLanguageVoices.contains(transformedVoiceName) ){
+    if (!voiceParts[1].equals("*") && !availableLanguageVoices.contains(transformedVoiceName)) {
       throw new PlivoXmlException("XML Validation Error: <Speak> voice '" + voice +
-                                  "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.");
+        "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.");
     }
   }
 
@@ -212,6 +212,4 @@ public class Utils {
       .collect(Collectors.joining("_"));
     return transformedString;
   }
-
-
 }
