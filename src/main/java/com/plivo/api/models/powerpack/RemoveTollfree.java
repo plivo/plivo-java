@@ -7,6 +7,7 @@ public class RemoveTollfree extends Deleter<Tollfree> {
 
   private Boolean unrent;
   private String number;
+  private String tollfree;
 
   public RemoveTollfree(String id) {
     super(id);
@@ -14,7 +15,7 @@ public class RemoveTollfree extends Deleter<Tollfree> {
       throw new IllegalArgumentException("powerpack uuid cannot be null");
     }
     this.id = id;
-    this.unrent = Boolean.TRUE;
+    this.unrent = Boolean.FALSE;
   }
 
 
@@ -37,6 +38,6 @@ public class RemoveTollfree extends Deleter<Tollfree> {
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainCall() {
-    return client().getApiService().powerpackNumberDelete(client().getAuthId(), id, tollfree, this);
+    return client().getApiService().powerpackTollfreeDelete(client().getAuthId(), id, tollfree, this);
   }
 }
