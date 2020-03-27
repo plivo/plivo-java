@@ -52,6 +52,9 @@ import com.plivo.api.models.identity.IdentityCreateResponse;
 import com.plivo.api.models.identity.IdentityCreator;
 import com.plivo.api.models.identity.IdentityUpdateResponse;
 import com.plivo.api.models.identity.IdentityUpdater;
+import com.plivo.api.models.media.Media;
+import com.plivo.api.models.media.MediaResponse;
+import com.plivo.api.models.media.MediaUploader;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
@@ -74,17 +77,11 @@ import com.plivo.api.models.recording.Recording;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.HTTP;
+import retrofit2.http.*;
 
 public interface PlivoAPIService {
 
@@ -472,5 +469,15 @@ public interface PlivoAPIService {
 
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackBuyAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body BuyAddNumbers numbers);
+
+  @GET("Account/{authId}/Media/")
+  Call<ListResponse<Media>> mediaList(@Path("authId") String authId, @QueryMap Map<String, Object> mediaListRequest);
+
+  @GET("Account/{authId}/Media/{id}/")
+  Call<Media> mediaGet(@Path("authId") String authId, @Path("id") String id);
+
+  @POST("Account/{authId}/Media/")
+  Call<MediaResponse> uploadMedia(@Path("authId") String authId,
+                        @Body RequestBody mediaUploads);
 }
 
