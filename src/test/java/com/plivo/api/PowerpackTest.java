@@ -19,7 +19,7 @@ public class PowerpackTest extends BaseTest {
   @Before
   public void setUp() throws Exception {
     super.setUp();
-    client = new PlivoClient("MA123456789012345678",
+    client = new PlivoClient("MA1234powerpackGetShouldSucceed56789012345678",
       "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   }
   @Test
@@ -37,7 +37,7 @@ public class PowerpackTest extends BaseTest {
   @Test
   public void powerpackGetShouldSucceed() throws Exception {
     String fixtureName = "powerpackCreateResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+    String uuid = "86bbb125-97bb-4d72-89fd-81d5c515b015";
 
     expectResponse(fixtureName, 200);
 
@@ -104,17 +104,7 @@ public class PowerpackTest extends BaseTest {
     Numbers response = Powerpack.getter(uuid).get().add_number().number("15799140348").get();
     assertEquals(response.getNumber(), "15799140348");
   }
-
-  @Test
-  public void powerpackFindShortcodeShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-
-    expectResponse(fixtureName, 200);
-
-    Shortcode response = Powerpack.getter(uuid).get().find_shortcode().shortcode("444444").get();
-    assertEquals(response.getShortcode(), "444444");
-  }
+  
 
   @Test
   public void powerpackFindTollfreeShouldSucceed() throws Exception {
