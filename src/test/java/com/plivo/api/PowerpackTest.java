@@ -118,25 +118,37 @@ public class PowerpackTest extends BaseTest {
 
   @Test
   public void powerpackFindTollfreeShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolResponse.json";
+    String fixtureName = "tollfreeResponse.json";
     String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
 
     expectResponse(fixtureName, 200);
 
     Tollfree response = Powerpack.getter(uuid).get().find_tollfree().tollfree("18772209942").get();
-    assertEquals(response.getTollfree(), "18772209942");
+    assertEquals(response.getNumber(), "18889140579");
   }
 
   @Test
   public void powerpackAddTollfreeShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolResponse.json";
+    String fixtureName = "tollfreeResponse.json";
     String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
 
     expectResponse(fixtureName, 200);
 
-    Numbers response = Powerpack.getter(uuid).get().add_tollfree().number("18772209942").get();
-    assertEquals(response.getTollfree(), "18772209942");
+    Tollfree response = Powerpack.getter(uuid).get().add_tollfree().tollfree("18772209942").get();
+    assertEquals(response.getNumber(), "18889140579");
   }
+
+  @Test
+  public void powerpackListTollfreeShouldSucceed() throws Exception {
+    String fixtureName = "tollfreeListResponse.json";
+    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+
+    expectResponse(fixtureName, 200);
+
+    Tollfree response = Powerpack.getter(uuid).get().list_tollfree().list();
+    assertEquals(response.getNumber(), "18889140579");
+  }
+
   
 
 }
