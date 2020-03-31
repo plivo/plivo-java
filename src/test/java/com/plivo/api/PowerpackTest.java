@@ -64,45 +64,45 @@ public class PowerpackTest extends BaseTest {
     params.put("offset", "0");
     assertRequest("GET", "Powerpack/", params);
   }
-  @Test
-  public void numberpoolIteratorWithClientShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolListResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-    expectResponse(fixtureName, 200);
-
-    Map<String, String> params = new LinkedHashMap<>();
-    Powerpack powerpack = Powerpack.getter(uuid).get();
-    Iterator<Numbers> iter = powerpack.list_numbers().client(client).iterator();
-    iter.hasNext();
-    iter.next();
-
-    params.put("limit", "20");
-    params.put("offset", "0");
-    assertRequest("GET", "Numberpool/xxxxxxx/Number/", params);
-  }
-
-  @Test
-  public void powerpackFindNumberShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-
-    expectResponse(fixtureName, 200);
-
-    Numbers response = Powerpack.getter(uuid).get().find_number().number("15799140348").get();
-
-
-    assertEquals(response.getNumber(), "15799140348");
-  }
-  @Test
-  public void powerpackAddNumberShouldSucceed() throws Exception {
-    String fixtureName = "numberpoolResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-
-    expectResponse(fixtureName, 200);
-
-    Numbers response = Powerpack.getter(uuid).get().add_number().number("15799140348").get();
-    assertEquals(response.getNumber(), "15799140348");
-  }
+//  @Test
+//  public void numberpoolIteratorWithClientShouldSucceed() throws Exception {
+//    String fixtureName = "numberpoolListResponse.json";
+//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+//    expectResponse(fixtureName, 200);
+//
+//    Map<String, String> params = new LinkedHashMap<>();
+//    Powerpack powerpack = Powerpack.getter(uuid).get();
+//    Iterator<Numbers> iter = powerpack.list_numbers().client(client).iterator();
+//    iter.hasNext();
+//    iter.next();
+//
+//    params.put("limit", "20");
+//    params.put("offset", "0");
+//    assertRequest("GET", "Numberpool/xxxxxxx/Number/", params);
+//  }
+//
+//  @Test
+//  public void powerpackFindNumberShouldSucceed() throws Exception {
+//    String fixtureName = "numberpoolResponse.json";
+//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+//
+//    expectResponse(fixtureName, 200);
+//
+//    Numbers response = Powerpack.getter(uuid).get().find_number().number("15799140348").get();
+//
+//
+//    assertEquals(response.getNumber(), "15799140348");
+//  }
+//  @Test
+//  public void powerpackAddNumberShouldSucceed() throws Exception {
+//    String fixtureName = "numberpoolResponse.json";
+//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+//
+//    expectResponse(fixtureName, 200);
+//
+//    Numbers response = Powerpack.getter(uuid).get().add_number().number("15799140348").get();
+//    assertEquals(response.getNumber(), "15799140348");
+//  }
   
 
 }
