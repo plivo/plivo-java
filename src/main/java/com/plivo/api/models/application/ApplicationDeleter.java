@@ -37,7 +37,7 @@ public class ApplicationDeleter extends Deleter<Application> {
   }
 
   /**
-   * @param Specify newEndpointApplication to be associated with endpoints
+   * @param newEndpointApplication to be associated with endpoints
    */
   public ApplicationDeleter newEndpointApplication(final String newEndpointApplication) {
     this.newEndpointApplication = newEndpointApplication;
