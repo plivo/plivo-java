@@ -18,7 +18,7 @@ public class PowerpackTest extends BaseTest {
   @Before
   public void setUp() throws Exception {
     super.setUp();
-    client = new PlivoClient("MA1234powerpackGetShouldSucceed56789012345678",
+    client = new PlivoClient("MA123456789012345678",
       "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   }
   @Test
