@@ -53,6 +53,9 @@ import com.plivo.api.models.identity.IdentityCreateResponse;
 import com.plivo.api.models.identity.IdentityCreator;
 import com.plivo.api.models.identity.IdentityUpdateResponse;
 import com.plivo.api.models.identity.IdentityUpdater;
+import com.plivo.api.models.media.Media;
+import com.plivo.api.models.media.MediaResponse;
+import com.plivo.api.models.media.MediaUploader;
 import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
@@ -75,17 +78,11 @@ import com.plivo.api.models.recording.Recording;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.HTTP;
+import retrofit2.http.*;
 
 public interface PlivoAPIService {
 
@@ -459,19 +456,45 @@ public interface PlivoAPIService {
   Call<ListResponse<Shortcode>> powerpackShortcodeList(@Path("authId") String authId, @Path("uuid") String uuid,
                                                        @QueryMap Map<String,Object> powerpackShortcodeListRequest);
   //
+  @GET("Account/{authId}/NumberPool/{uuid}/Tollfree/")
+  Call<ListResponse<Tollfree>> powerpackTollfreeList(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                       @QueryMap Map<String,Object> powerpackTollfreeListRequest);
+
   @GET("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackFindNumberGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number);
 
   @GET("Account/{authId}/NumberPool/{uuid}/Shortcode/{shortcode}/")
   Call<Shortcode> powerpackFindShortcodeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode);
 
+  @GET("Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/")
+  Call<Tollfree> powerpackFindTollfreeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree);
+
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body PowerpackAddNumber addnumber);
+
+  @POST("Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/")
+  Call<Tollfree> powerpackAddTollfreeCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree, @Body PowerpackAddTollfree addtollfree);
 
   @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Number/{number}/", hasBody = true)
   Call<ResponseBody> powerpackNumberDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body RemoveNumber numberDeleter);
 
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/", hasBody = true)
+  Call<ResponseBody> powerpackTollfreeDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree, @Body RemoveTollfree tollfreeDeleter);
+
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Shortcode/{shortcode}/", hasBody = true)
+  Call<ResponseBody> powerpackShortcodeDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode, @Body RemoveShortcode shortcodeDeleter);
+
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackBuyAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body BuyAddNumbers numbers);
+
+  @GET("Account/{authId}/Media/")
+  Call<ListResponse<Media>> mediaList(@Path("authId") String authId, @QueryMap Map<String, Object> mediaListRequest);
+
+  @GET("Account/{authId}/Media/{id}/")
+  Call<Media> mediaGet(@Path("authId") String authId, @Path("id") String id);
+
+  @POST("Account/{authId}/Media/")
+  Call<MediaResponse> uploadMedia(@Path("authId") String authId,
+                        @Body RequestBody mediaUploads);
 }
 

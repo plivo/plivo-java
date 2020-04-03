@@ -45,16 +45,36 @@ public class Powerpack extends BaseResource {
     return new PowerpackAddNumber(getNumberPoolId());
   }
 
+  public PowerpackAddTollfree add_tollfree() {
+    return new PowerpackAddTollfree(getNumberPoolId());
+  }
+
   public FindShortcode find_shortcode() {
     return new FindShortcode(getNumberPoolId());
+  }
+
+  public FindTollfree find_tollfree() {
+    return new FindTollfree(getNumberPoolId());
   }
 
   public ShortcodeLister list_shortcode() {
     return new ShortcodeLister(getNumberPoolId());
   }
 
+  public TollfreeLister list_tollfree() {
+    return new TollfreeLister(getNumberPoolId());
+  }
+
   public RemoveNumber remove_number() {
     return new RemoveNumber(getNumberPoolId());
+  }
+
+  public RemoveShortcode remove_shortcode() {
+    return new RemoveShortcode(getNumberPoolId());
+  }
+
+  public RemoveTollfree remove_tollfree() {
+    return new RemoveTollfree(getNumberPoolId());
   }
 
   public PowerpackNumberLister count_numbers() {

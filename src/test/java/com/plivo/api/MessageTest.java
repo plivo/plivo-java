@@ -238,18 +238,6 @@ public class MessageTest extends BaseTest {
     assertRequest("GET", "Message/", params);
   }
 
-  @Test
-  public void mmsMediaGetShouldSucceed() throws Exception {
-    String fixtureName = "mmsMediaGetResponse.json";
-    String messageUuid = "f734eeec-e59f-11e9-89dc-0242ac110003";
-    String mediaId = "bff5dae7-ebb5-4d18-a18e-f489751b5f2b";
-
-    expectResponse(fixtureName, 200);
-    MmsMedia media = Message.getter(messageUuid).get().getMedia(mediaId).get();
-    assertEquals(media.getId(), media.getMediaId());
-    assertRequest("GET", "Message/%s/Media/%s/", messageUuid, mediaId);
-    assertEquals(messageUuid, media.getMessageUuid());
-  }
 
   @Test
   public void messageIteratorWithClientShouldSucceed() throws Exception {

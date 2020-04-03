@@ -7,11 +7,13 @@ public class NumberPool extends BaseResource {
   public Shortcode shortcodes;
   public Numbers numbers;
   private String uuid;
+  public Tollfree tollfree;
 
   public NumberPool(String uuid) {
     this.uuid = uuid;
     shortcodes = new Shortcode(uuid);
     numbers = new Numbers(uuid);
+    tollfree = new Tollfree(uuid);
   }
 
   public String getNumberPoolId() {

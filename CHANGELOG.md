@@ -1,5 +1,14 @@
 # Change Log
 
+## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
+- Add post call quality feedback API support.
+
+## [4.4.7](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-03-30)
+- Add Tollfree support for Powerpack
+
+## [4.4.6](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-02-25)
+- Add Media support
+
 ## [4.4.5](https://github.com/plivo/plivo-java/tree/v4.4.5) (2020-01-06)
 - Add MMS and Powerpack support
 

@@ -27,6 +27,10 @@ public class Shortcode extends BaseResource {
     return new FindShortcode(uuid);
   }
 
+  public RemoveShortcode remove() {
+    return new RemoveShortcode(uuid);
+  }
+
   public String getNumberPoolId() {
     return number_pool_uuid;
   }
