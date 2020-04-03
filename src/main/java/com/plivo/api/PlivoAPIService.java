@@ -19,6 +19,7 @@ import com.plivo.api.models.application.ApplicationCreateResponse;
 import com.plivo.api.models.application.ApplicationCreator;
 import com.plivo.api.models.application.ApplicationUpdateResponse;
 import com.plivo.api.models.application.ApplicationUpdater;
+import com.plivo.api.models.application.ApplicationDeleter;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.CallCreateResponse;
 import com.plivo.api.models.call.CallCreator;
@@ -120,8 +121,8 @@ public interface PlivoAPIService {
   Call<ApplicationUpdateResponse> applicationUpdate(@Path("authId") String authId,
                                                     @Path("appId") String appId, @Body ApplicationUpdater application);
 
-  @DELETE("Account/{authId}/Application/{appId}/")
-  Call<ResponseBody> applicationDelete(@Path("authId") String authId, @Path("appId") String appId);
+  @HTTP(method = "DELETE", path="Account/{authId}/Application/{appId}/", hasBody = true)
+  Call<ResponseBody> applicationDelete(@Path("authId") String authId, @Path("appId") String appId, @Body ApplicationDeleter application);
 
   // Account
   @GET("Account/{authId}/")
