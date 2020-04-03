@@ -48,22 +48,22 @@ public class PowerpackTest extends BaseTest {
     assertEquals(uuid, response.getUuid());
   }
 
-  @Test
-  public void powerpackIteratorWithClientShouldSucceed() throws Exception {
-    String fixtureName = "powerpackListResponse.json";
-
-    expectResponse(fixtureName, 200);
-
-    Map<String, String> params = new LinkedHashMap<>();
-
-    Iterator<Powerpack> iter = Powerpack.lister().client(client).iterator();
-    iter.hasNext();
-    iter.next();
-
-    params.put("limit", "20");
-    params.put("offset", "0");
-    assertRequest("GET", "Powerpack/", params);
-  }
+//  @Test
+//  public void powerpackIteratorWithClientShouldSucceed() throws Exception {
+//    String fixtureName = "powerpackListResponse.json";
+//
+//    expectResponse(fixtureName, 200);
+//
+//    Map<String, String> params = new LinkedHashMap<>();
+//
+//    Iterator<Powerpack> iter = Powerpack.lister().client(client).iterator();
+//    iter.hasNext();
+//    iter.next();
+//
+//    params.put("limit", "20");
+//    params.put("offset", "0");
+//    assertRequest("GET", "Powerpack/", params);
+//  }
 //  @Test
 //  public void numberpoolIteratorWithClientShouldSucceed() throws Exception {
 //    String fixtureName = "numberpoolListResponse.json";
