@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.4.8](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-01-29)
+## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
 - Add post call quality feedback API support.
 
 ## [4.4.7](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-03-30)
