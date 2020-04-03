@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.5.1](https://github.com/plivo/plivo-java/tree/v4.5.1) (2020-03-30)
+- Add application cascade delete support.
+
 ## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
 - Add post call quality feedback API support.
 
