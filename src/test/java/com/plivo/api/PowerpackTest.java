@@ -116,38 +116,38 @@ public class PowerpackTest extends BaseTest {
     assertEquals(response.getShortcode(), "444444");
   }
 
-  @Test
-  public void powerpackFindTollfreeShouldSucceed() throws Exception {
-    String fixtureName = "tollfreeResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+  // @Test
+  // public void powerpackFindTollfreeShouldSucceed() throws Exception {
+  //   String fixtureName = "tollfreeResponse.json";
+  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
 
-    expectResponse(fixtureName, 200);
+  //   expectResponse(fixtureName, 200);
 
-    Tollfree response = Powerpack.getter(uuid).get().find_tollfree().tollfree("18772209942").get();
-    assertEquals(response.getNumber(), "18889140579");
-  }
+  //   Tollfree response = Powerpack.getter(uuid).get().find_tollfree().tollfree("18772209942").get();
+  //   assertEquals(response.getNumber(), "18889140579");
+  // }
 
-  @Test
-  public void powerpackAddTollfreeShouldSucceed() throws Exception {
-    String fixtureName = "tollfreeResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+  // @Test
+  // public void powerpackAddTollfreeShouldSucceed() throws Exception {
+  //   String fixtureName = "tollfreeResponse.json";
+  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
 
-    expectResponse(fixtureName, 200);
+  //   expectResponse(fixtureName, 200);
 
-    Tollfree response = Powerpack.getter(uuid).get().add_tollfree().tollfree("18772209942").get();
-    assertEquals(response.getNumber(), "18889140579");
-  }
+  //   Tollfree response = Powerpack.getter(uuid).get().add_tollfree().tollfree("18772209942").get();
+  //   assertEquals(response.getNumber(), "18889140579");
+  // }
 
-  @Test
-  public void powerpackListTollfreeShouldSucceed() throws Exception {
-    String fixtureName = "tollfreeListResponse.json";
-    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+  // @Test
+  // public void powerpackListTollfreeShouldSucceed() throws Exception {
+  //   String fixtureName = "tollfreeListResponse.json";
+  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
 
-    expectResponse(fixtureName, 200);
+  //   expectResponse(fixtureName, 200);
 
-    Tollfree response = Powerpack.getter(uuid).get().list_tollfree().list();
-    assertEquals(response.getNumber(), "18889140579");
-  }
+  //   Tollfree response = Powerpack.getter(uuid).get().list_tollfree().list();
+  //   assertEquals(response.getNumber(), "18889140579");
+  // }
 
   
 
