@@ -1,19 +1,11 @@
 # Change Log
 
-## [4.5.1](https://github.com/plivo/plivo-java/tree/v4.5.1) (2020-03-30)
-- Add application cascade delete support.
-
 ## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
+- Add application cascade delete support.
 - Add post call quality feedback API support.
-
-## [4.4.7](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-03-30)
 - Add Tollfree support for Powerpack
-
-## [4.4.6](https://github.com/plivo/plivo-java/tree/v4.4.6) (2020-02-25)
-- Add Media support
-
-## [4.4.5](https://github.com/plivo/plivo-java/tree/v4.4.5) (2020-01-06)
-- Add MMS and Powerpack support
+- Add Media support.
+- Add MMS and Powerpack support.
 
 ## [4.4.4](https://github.com/plivo/plivo-java/tree/v4.4.4) (2019-11-19)
 - Add GetInput XML support
