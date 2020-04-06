@@ -107,11 +107,13 @@ public class Utils {
         url += "/?" + paramString;
       }
     }
-    else{
-      for (String key : keys) {
-        paramString += key + params.get(key);
+    else {
+      if (keys.size() > 0) {
+        for (String key : keys) {
+          paramString += key + params.get(key);
+        }
+        url += "." + paramString;
       }
-      url += "." + paramString;
     }
     return url;
   }
