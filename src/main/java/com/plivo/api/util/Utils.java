@@ -9,6 +9,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -95,24 +96,59 @@ public class Utils {
     URL parsedURL = new URL(url);
     String paramString = "";
     List<String> keys = new ArrayList<String>(params.keySet());
-    if(method == "GET"){
-      for (String key : keys) {
-        paramString += key + "=" + params.get(key) + "&";
+    String uri = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
+    int queryParamLength = 0;
+    try {
+      queryParamLength = parsedURL.getQuery().length();
+      if (params.size() > 0 || queryParamLength > 0) {
+        uri += "?";
       }
-      paramString = paramString.substring(0, paramString.length() - 1);
-      try{
-        parsedURL.getQuery().length();
-        url += "&" + paramString;
-      } catch (Exception e) {
-        url += "/?" + paramString;
+    } catch (Exception e) {
+      queryParamLength = 0;
+      uri += "?";
+    }
+    if (queryParamLength > 0) {
+      if (method == "GET") {
+        Map<String, String> queryParamMap = getMapFromQueryString(parsedURL.getQuery());
+        for (Entry<String, String> entry : params.entrySet()) {
+          queryParamMap.put(entry.getKey(), entry.getValue());
+        }
+        uri += GetSortedQueryParamString(queryParamMap, true);
+      } else {
+        uri += GetSortedQueryParamString(getMapFromQueryString(parsedURL.getQuery()), true) + "." + GetSortedQueryParamString(params, false);
+        uri = uri.replace(".$", "");
+      }
+    } else {
+      if (method == "GET") {
+        uri += GetSortedQueryParamString(params, true);
+      } else {
+        uri += GetSortedQueryParamString(params, false);
       }
     }
-    else {
-      if (keys.size() > 0) {
-        for (String key : keys) {
-          paramString += key + params.get(key);
-        }
-        url += "." + paramString;
+    return uri;
+  }
+
+  public static Map<String, String> getMapFromQueryString(String query) {
+    Map<String, String> params = null;
+    if (query.length() == 0) {
+      return params;
+    }
+    params = Arrays.stream(query.split("&")).map(s -> s.split("=", 2)).collect(Collectors.toMap(a -> a[0], a -> a.length > 1 ? a[1] : ""));
+    return params;
+  }
+
+  public static String GetSortedQueryParamString(Map<String, String> params, boolean queryParams) {
+    String url = "";
+    List<String> keys = new ArrayList(params.keySet());
+    Collections.sort(keys);
+    if (queryParams) {
+      for (String key : keys) {
+        url += key + "=" + params.get(key) + "&";
+      }
+      url = url.substring(0, url.length() - 1);
+    } else {
+      for (String key : keys) {
+        url += key + params.get(key);
       }
     }
     return url;
