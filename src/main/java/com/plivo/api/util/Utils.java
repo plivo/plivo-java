@@ -93,7 +93,7 @@ public class Utils {
     return computeSignature(url, nonce, authToken).equals(signature);
   }
 
-  public static String generateUrl(String url, String method, HashMap<String, String> params) throws MalformedURLException {
+  public static String generateUrl(String url, String method, Map<String, String> params) throws MalformedURLException {
     String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8);
     URL parsedURL = new URL(decodedUrl);
     String paramString = "";
@@ -156,7 +156,7 @@ public class Utils {
     return url;
   }
 
-  public static String computeSignatureV3(String url, String nonce, String authToken, String method, HashMap<String, String> params)
+  public static String computeSignatureV3(String url, String nonce, String authToken, String method, Map<String, String> params)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     if (!allNotNull(url, nonce, authToken)) {
       throw new IllegalArgumentException("url, nonce and authToken must be non-null");
@@ -170,10 +170,14 @@ public class Utils {
     return new String(Base64.getEncoder().encode(mac.doFinal(payload.getBytes("UTF-8"))));
   }
 
-  public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, HashMap<String, String> params)
+  public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, Map<String, String>... params)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    Map<String, String> parameters = new HashMap<String, String>();
+    if(params.length > 0){
+      parameters = params[0];
+    }
     List<String> splitSignature = Arrays.asList(signature.split(","));
-    return splitSignature.contains(computeSignatureV3(url, nonce, authToken, method, params));
+    return splitSignature.contains(computeSignatureV3(url, nonce, authToken, method, parameters));
   }
 
   private static Map<String, List<String>> getLanguageVoices() {
