@@ -3,6 +3,7 @@ package com.plivo.api.util;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.Normalizer;
@@ -93,7 +94,8 @@ public class Utils {
   }
 
   public static String generateUrl(String url, String method, HashMap<String, String> params) throws MalformedURLException {
-    URL parsedURL = new URL(url);
+    String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8);
+    URL parsedURL = new URL(decodedUrl);
     String paramString = "";
     List<String> keys = new ArrayList<String>(params.keySet());
     String uri = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
