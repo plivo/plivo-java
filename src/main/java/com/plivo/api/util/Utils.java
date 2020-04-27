@@ -93,8 +93,8 @@ public class Utils {
     return computeSignature(url, nonce, authToken).equals(signature);
   }
 
-  public static String generateUrl(String url, String method, Map<String, String> params) throws MalformedURLException {
-    String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8);
+  public static String generateUrl(String url, String method, Map<String, String> params) throws MalformedURLException, UnsupportedEncodingException {
+    String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
     URL parsedURL = new URL(decodedUrl);
     String paramString = "";
     List<String> keys = new ArrayList<String>(params.keySet());
