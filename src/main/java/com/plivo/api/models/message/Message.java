@@ -34,9 +34,6 @@ public class Message extends BaseResource {
     return new MessageLister();
   }
 
-  public  MmsMediaDeleter deleteMedia() {
-    return new MmsMediaDeleter(getId());
-  }
 
   public MmsMediaGetter getMedia(String media_id){return  new MmsMediaGetter(getId(), media_id);}
 

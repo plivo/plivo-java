@@ -39,6 +39,7 @@ public class PlivoClient {
 
   private static SimpleModule simpleModule = new SimpleModule();
   protected static String BASE_URL = "https://api.plivo.com/v1/";
+  protected static String CALLINSIGHTS_BASE_URL = "https://stats.plivo.com/v1/";
   private static String version = "Unknown Version";
   private boolean testing = false;
   private static ObjectMapper objectMapper = new ObjectMapper();
@@ -97,7 +98,9 @@ public class PlivoClient {
   private final String authToken;
   private OkHttpClient httpClient;
   private Retrofit retrofit;
+  private Retrofit callInsightsRetrofit;
   private PlivoAPIService apiService = null;
+  private CallInsightsAPIService callInsightsAPIService = null;
 
   /**
    * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
@@ -163,6 +166,14 @@ public class PlivoClient {
       .build();
 
     this.apiService = retrofit.create(PlivoAPIService.class);
+
+    callInsightsRetrofit = new Retrofit.Builder()
+      .client(httpClient)
+      .baseUrl((CALLINSIGHTS_BASE_URL))
+      .addConverterFactory(JacksonConverterFactory.create(objectMapper))
+      .build();
+
+    this.callInsightsAPIService = callInsightsRetrofit.create(CallInsightsAPIService.class);
   }
 
   /**
@@ -210,6 +221,10 @@ public class PlivoClient {
 
   public PlivoAPIService getApiService() {
     return apiService;
+  }
+
+  public CallInsightsAPIService getCallInsightsAPIService() {
+    return callInsightsAPIService;
   }
 
   void setApiService(PlivoAPIService apiService) {
