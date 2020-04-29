@@ -3,18 +3,22 @@ package com.plivo.api.util;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -89,6 +93,93 @@ public class Utils {
     return computeSignature(url, nonce, authToken).equals(signature);
   }
 
+  public static String generateUrl(String url, String method, Map<String, String> params) throws MalformedURLException, UnsupportedEncodingException {
+    String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
+    URL parsedURL = new URL(decodedUrl);
+    String paramString = "";
+    List<String> keys = new ArrayList<String>(params.keySet());
+    String uri = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
+    int queryParamLength = 0;
+    try {
+      queryParamLength = parsedURL.getQuery().length();
+      if (params.size() > 0 || queryParamLength > 0) {
+        uri += "?";
+      }
+    } catch (Exception e) {
+      queryParamLength = 0;
+      uri += "?";
+    }
+    if (queryParamLength > 0) {
+      if (method == "GET") {
+        Map<String, String> queryParamMap = getMapFromQueryString(parsedURL.getQuery());
+        for (Entry<String, String> entry : params.entrySet()) {
+          queryParamMap.put(entry.getKey(), entry.getValue());
+        }
+        uri += GetSortedQueryParamString(queryParamMap, true);
+      } else {
+        uri += GetSortedQueryParamString(getMapFromQueryString(parsedURL.getQuery()), true) + "." + GetSortedQueryParamString(params, false);
+        uri = uri.replace(".$", "");
+      }
+    } else {
+      if (method == "GET") {
+        uri += GetSortedQueryParamString(params, true);
+      } else {
+        uri += GetSortedQueryParamString(params, false);
+      }
+    }
+    return uri;
+  }
+
+  public static Map<String, String> getMapFromQueryString(String query) {
+    Map<String, String> params = null;
+    if (query.length() == 0) {
+      return params;
+    }
+    params = Arrays.stream(query.split("&")).map(s -> s.split("=", 2)).collect(Collectors.toMap(a -> a[0], a -> a.length > 1 ? a[1] : ""));
+    return params;
+  }
+
+  public static String GetSortedQueryParamString(Map<String, String> params, boolean queryParams) {
+    String url = "";
+    List<String> keys = new ArrayList(params.keySet());
+    Collections.sort(keys);
+    if (queryParams) {
+      for (String key : keys) {
+        url += key + "=" + params.get(key) + "&";
+      }
+      url = url.substring(0, url.length() - 1);
+    } else {
+      for (String key : keys) {
+        url += key + params.get(key);
+      }
+    }
+    return url;
+  }
+
+  public static String computeSignatureV3(String url, String nonce, String authToken, String method, Map<String, String> params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    if (!allNotNull(url, nonce, authToken)) {
+      throw new IllegalArgumentException("url, nonce and authToken must be non-null");
+    }
+
+    URL parsedURL = new URL(url);
+    String payload = generateUrl(url, method, params) + "." + nonce;
+    SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
+    Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
+    mac.init(signingKey);
+    return new String(Base64.getEncoder().encode(mac.doFinal(payload.getBytes("UTF-8"))));
+  }
+
+  public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, Map<String, String>... params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    Map<String, String> parameters = new HashMap<String, String>();
+    if(params.length > 0){
+      parameters = params[0];
+    }
+    List<String> splitSignature = Arrays.asList(signature.split(","));
+    return splitSignature.contains(computeSignatureV3(url, nonce, authToken, method, parameters));
+  }
+
   private static Map<String, List<String>> getLanguageVoices() {
     Map<String, List<String>> languageVoices = new HashMap<>();
     languageVoices.put("arb", new ArrayList<String>(Arrays.asList("Zeina")));
@@ -129,7 +220,7 @@ public class Utils {
     System.out.println(language);
     if (voiceParts.length != 2 || !voiceParts[0].equals("Polly")) {
       throw new PlivoXmlException("XML Validation Error: Invalid language. Voice " + voice + " is not valid. " +
-                                  "Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.");
+        "Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.");
     }
 
     Map<String, List<String>> languageVoices = getLanguageVoices();
@@ -145,9 +236,9 @@ public class Utils {
     }
     String transformedVoiceName = transformString(voiceParts[1]);
 
-    if (!voiceParts[1].equals("*") && !availableLanguageVoices.contains(transformedVoiceName) ){
+    if (!voiceParts[1].equals("*") && !availableLanguageVoices.contains(transformedVoiceName)) {
       throw new PlivoXmlException("XML Validation Error: <Speak> voice '" + voice +
-                                  "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.");
+        "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.");
     }
   }
 
@@ -165,6 +256,4 @@ public class Utils {
       .collect(Collectors.joining("_"));
     return transformedString;
   }
-  
-  
 }
