@@ -1,6 +1,5 @@
 # Change Log
 
-
 ## [4.6.0](https://github.com/plivo/plivo-java/tree/v4.6.0) (2020-04-29)
 - Add V3 signature helper functions.
 
