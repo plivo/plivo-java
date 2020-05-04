@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.6.0](https://github.com/plivo/plivo-java/tree/v4.6.0) (2020-05-04)
+- Add JWT helper functions.
+
 ## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
 - Add application cascade delete support.
 - Add post call quality feedback API support.
