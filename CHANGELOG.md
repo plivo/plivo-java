@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.7.0](https://github.com/plivo/plivo-java/tree/v4.7.0) (2020-05-11)
+- Add JWT helper functions.
+
 ## [4.6.0](https://github.com/plivo/plivo-java/tree/v4.6.0) (2020-04-29)
 - Add V3 signature helper functions.
 
