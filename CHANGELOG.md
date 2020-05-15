@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.7.1](https://github.com/plivo/plivo-java/tree/v4.7.1) (2020-05-15)
+- Fix Get Number details API response.
+
 ## [4.7.0](https://github.com/plivo/plivo-java/tree/v4.7.0) (2020-05-11)
 - Add JWT helper functions.
 
