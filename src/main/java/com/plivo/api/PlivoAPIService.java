@@ -19,6 +19,7 @@ import com.plivo.api.models.application.ApplicationCreateResponse;
 import com.plivo.api.models.application.ApplicationCreator;
 import com.plivo.api.models.application.ApplicationUpdateResponse;
 import com.plivo.api.models.application.ApplicationUpdater;
+import com.plivo.api.models.application.ApplicationDeleter;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.CallCreateResponse;
 import com.plivo.api.models.call.CallCreator;
@@ -120,8 +121,8 @@ public interface PlivoAPIService {
   Call<ApplicationUpdateResponse> applicationUpdate(@Path("authId") String authId,
                                                     @Path("appId") String appId, @Body ApplicationUpdater application);
 
-  @DELETE("Account/{authId}/Application/{appId}/")
-  Call<ResponseBody> applicationDelete(@Path("authId") String authId, @Path("appId") String appId);
+  @HTTP(method = "DELETE", path="Account/{authId}/Application/{appId}/", hasBody = true)
+  Call<ResponseBody> applicationDelete(@Path("authId") String authId, @Path("appId") String appId, @Body ApplicationDeleter application);
 
   // Account
   @GET("Account/{authId}/")
@@ -455,17 +456,33 @@ public interface PlivoAPIService {
   Call<ListResponse<Shortcode>> powerpackShortcodeList(@Path("authId") String authId, @Path("uuid") String uuid,
                                                        @QueryMap Map<String,Object> powerpackShortcodeListRequest);
   //
+  @GET("Account/{authId}/NumberPool/{uuid}/Tollfree/")
+  Call<ListResponse<Tollfree>> powerpackTollfreeList(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                       @QueryMap Map<String,Object> powerpackTollfreeListRequest);
+
   @GET("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackFindNumberGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number);
 
   @GET("Account/{authId}/NumberPool/{uuid}/Shortcode/{shortcode}/")
   Call<Shortcode> powerpackFindShortcodeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode);
 
+  @GET("Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/")
+  Call<Tollfree> powerpackFindTollfreeGet(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree);
+
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body PowerpackAddNumber addnumber);
 
+  @POST("Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/")
+  Call<Tollfree> powerpackAddTollfreeCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree, @Body PowerpackAddTollfree addtollfree);
+
   @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Number/{number}/", hasBody = true)
   Call<ResponseBody> powerpackNumberDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body RemoveNumber numberDeleter);
+
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Tollfree/{tollfree}/", hasBody = true)
+  Call<ResponseBody> powerpackTollfreeDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("tollfree") String tollfree, @Body RemoveTollfree tollfreeDeleter);
+
+  @HTTP(method = "DELETE", path= "Account/{authId}/NumberPool/{uuid}/Shortcode/{shortcode}/", hasBody = true)
+  Call<ResponseBody> powerpackShortcodeDelete(@Path("authId") String authId, @Path("uuid") String uuid, @Path("shortcode") String shortcode, @Body RemoveShortcode shortcodeDeleter);
 
   @POST("Account/{authId}/NumberPool/{uuid}/Number/{number}/")
   Call<Numbers> powerpackBuyAddNumberCreate(@Path("authId") String authId, @Path("uuid") String uuid, @Path("number") String number, @Body BuyAddNumbers numbers);
