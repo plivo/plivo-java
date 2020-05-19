@@ -20,6 +20,8 @@ public class Number extends BaseResource {
   private String voiceRate;
   private String subAccount;
   private Boolean active;
+  private Boolean mmsEnabled;
+  private String mmsRate;
 
   public Boolean getActive() {
     return active;
@@ -116,6 +118,12 @@ public class Number extends BaseResource {
   public NumberDeleter unrenter() {
     return deleter();
   }
+
+  public Boolean getMMSEnabled() {
+    return mmsEnabled;
+  }
+
+  public String getMMSRate() { return mmsRate; }
 
   @Override
   public String getId() {
