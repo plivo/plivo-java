@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.7.2](https://github.com/plivo/plivo-java/tree/v4.7.2) (2020-06-10)
+- Fix Record a Call API by adding optional params.
+
 ## [4.7.1](https://github.com/plivo/plivo-java/tree/v4.7.1) (2020-05-15)
 - Fix Get Number details API response.
 
