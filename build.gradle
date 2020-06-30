@@ -18,6 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
+apply plugin: 'nexus-workflow'
 
 if (JavaVersion.current() >= JavaVersion.VERSION_1_9){
   compileJava {
@@ -93,6 +94,12 @@ task fatJar(type: Jar) {
   from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
   with jar
   print("Created fatjar: ${destinationDir}/${archiveName}")
+}
+
+task nexusStagingRelease(type: Jar) {
+  ext."oss-releases.username" = project.hasProperty("mavenUserName")
+  ext."oss-releases.password" = project.hasProperty("mavenPassword")
+  ext."oss-releases.url" = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 }
 
 uploadArchives {
