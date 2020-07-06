@@ -86,7 +86,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
     Response<ListResponse<T>> response = obtainCall().execute();
     handleResponse(response);
     try {
-      return response.body().getMeta().getTotalCount();
+      return response.body().getMeta().getCount();
     } catch (Exception e) {
       return 0L;
     }
