@@ -29,5 +29,4 @@ public class Meta {
   public Long getTotalCount() throws NoSuchMethodException {
     return totalCount;
   }
-
 }
