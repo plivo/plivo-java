@@ -10,7 +10,7 @@ import java.io.IOException;
 public class GetMPC {
   public static void main(String[] args) throws IOException, PlivoRestException {
 
-    Plivo.init("<YOUR-AUTH-ID>", "YOUR-AUTH-TOKEN");
+    Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // Fetch specific MultiPartyCall
     MultiPartyCall mpc = MultiPartyCall.getter(MultiPartyCallUtils.mpcUuid("<YOUR-MPC-UUID>")).get();
