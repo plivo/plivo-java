@@ -20,7 +20,7 @@ public class ListMPC {
   }
 
   public static void main(String[] args) throws IOException, PlivoRestException {
-    Plivo.init("<YOUR-AUTH-ID>", "YOUR-AUTH-TOKEN");
+    Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // Fetch all MultiPartyCalls for an account
     ListResponse<MultiPartyCall> allMPC = MultiPartyCall.lister().list();
