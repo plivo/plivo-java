@@ -3,6 +3,7 @@ package com.plivo.api;
 import com.plivo.api.models.account.*;
 import com.plivo.api.models.address.*;
 import com.plivo.api.models.application.*;
+import com.plivo.api.models.base.BaseResponse;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
@@ -20,6 +21,14 @@ import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageCreateResponse;
 import com.plivo.api.models.message.MessageCreator;
 import com.plivo.api.models.message.MmsMedia;
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipantUpdateResponse;
+import com.plivo.api.models.multipartycall.MultiPartyCallRecordingStartResponse;
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipantAddResponse;
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipantAdd;
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipantUpdate;
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipant;
+import com.plivo.api.models.multipartycall.MultiPartyCallRecordingPause;
+import com.plivo.api.models.multipartycall.MultiPartyCallRecordingStart;
 import com.plivo.api.models.node.*;
 import com.plivo.api.models.number.*;
 import com.plivo.api.models.number.Number;
@@ -450,8 +459,7 @@ public interface PlivoAPIService {
     Call<Media> mediaGet(@Path("authId") String authId, @Path("id") String id);
 
     @POST("Account/{authId}/Media/")
-    Call<MediaResponse> uploadMedia(@Path("authId") String authId,
-                                    @Body RequestBody mediaUploads);
+    Call<MediaResponse> uploadMedia(@Path("authId") String authId, @Body RequestBody mediaUploads);
 
 
     // Enduser
@@ -555,4 +563,55 @@ public interface PlivoAPIService {
     @DELETE("Account/{authId}/ComplianceDocument/{id}/")
     Call<ResponseBody> complianceDocumentDelete(@Path("authId") String authId, @Path("id") String complianceDocumentId);
 
+    // List multiparty calls
+    @GET("Account/{authId}/MultiPartyCall/")
+    Call<ListResponse<com.plivo.api.models.multipartycall.MultiPartyCall>> mpcList(@Path("authId") String authId, @QueryMap Map<String, Object> params);
+
+    // Get multiparty call
+    @GET("Account/{authId}/MultiPartyCall/{mpcId}/")
+    Call<com.plivo.api.models.multipartycall.MultiPartyCall> mpcGet(@Path("authId") String authId, @Path("mpcId") String mpcId);
+
+    // Start multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/")
+    Call<BaseResponse> mpcStart(@Path("authId") String authId, @Path("mpcId") String mpcId, @Body Map<String, Object> body);
+
+    // End multiparty call
+    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/")
+    Call<ResponseBody> mpcStop(@Path("authId") String authId, @Path("mpcId") String mpcId);
+
+    // Add new participant to multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/")
+    Call<MultiPartyCallParticipantAddResponse> mpcAddParticipant(@Path("authId") String authId, @Path("mpcId") String mpcId, @Body MultiPartyCallParticipantAdd addParticipant);
+
+    // List participants of multiparty call
+    @GET("Account/{authId}/MultiPartyCall/{mpcId}/Participant/")
+    Call<ListResponse<MultiPartyCallParticipant>> mpcListParticipants(@Path("authId") String authId, @Path("mpcId") String mpcId, @QueryMap Map<String, Object> params);
+
+    // Start recording multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/")
+    Call<MultiPartyCallRecordingStartResponse> mpcStartRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Body MultiPartyCallRecordingStart startRecording);
+
+    // Stop recording multiparty call
+    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Record/")
+    Call<ResponseBody> mpcRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId);
+
+    // Pause recording multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Pause/")
+    Call<BaseResponse> mpcPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Body MultiPartyCallRecordingPause pauseRecording);
+
+    // Resume recording multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Resume/")
+    Call<BaseResponse> mpcResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);
+
+    // Get participant of multiparty call
+    @GET("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
+    Call<MultiPartyCallParticipant> mpcMemberGet(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    // Update participant of multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
+    Call<MultiPartyCallParticipantUpdateResponse> mpcMemberUpdate(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId, @Body MultiPartyCallParticipantUpdate updateParticipant);
+
+    // Kick participant of multiparty call
+    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
+    Call<ResponseBody> mpcMemberKick(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
 }
