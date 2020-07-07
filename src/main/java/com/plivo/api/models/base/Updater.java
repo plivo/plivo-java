@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoValidationException;
+import com.plivo.api.exceptions.InvalidRequestException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
