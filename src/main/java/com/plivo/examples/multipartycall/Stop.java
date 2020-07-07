@@ -7,7 +7,7 @@ import com.plivo.api.models.multipartycall.MultiPartyCallUtils;
 
 import java.io.IOException;
 
-public class StopMPC {
+public class Stop {
 
   public static void main(String[] args) throws IOException, PlivoRestException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
