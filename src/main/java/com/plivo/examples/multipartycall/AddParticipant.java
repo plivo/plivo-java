@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-public class AddParticipantMPC {
+public class AddParticipant {
 
   public static void main(String[] args) throws IOException, PlivoRestException, InterruptedException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
