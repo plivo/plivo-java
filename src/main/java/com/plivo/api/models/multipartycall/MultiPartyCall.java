@@ -57,7 +57,7 @@ public class MultiPartyCall extends BaseResource {
     stop.delete();
   }
 
-  public static MultiPartyCallParticipantAdd addParticipant(String mpcId, String role, String from, List<String> to) {
+  public static MultiPartyCallParticipantAdd addParticipant(String mpcId, String role, String from, List<String> to) throws InvalidRequestException {
     return new MultiPartyCallParticipantAdd(mpcId, role, from, to);
   }
 
