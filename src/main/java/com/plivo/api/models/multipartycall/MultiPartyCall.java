@@ -116,6 +116,14 @@ public class MultiPartyCall extends BaseResource {
     return recordPause.update();
   }
 
+  public static MultiPartyCallRecordingResume recordResume(String mpcId) throws InvalidRequestException {
+    return new MultiPartyCallRecordingResume(mpcId);
+  }
+
+  public BaseResponse recordResume() throws IOException, PlivoRestException {
+    return new MultiPartyCallRecordingResume(getId()).update();
+  }
+
   public MultiPartyCallParticipantGet participantGetter(String mpcId, String participantId) {
     return new MultiPartyCallParticipantGet(mpcId, participantId);
   }
