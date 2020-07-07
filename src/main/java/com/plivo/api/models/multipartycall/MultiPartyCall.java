@@ -124,7 +124,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallRecordingResume(getId()).update();
   }
 
-  public MultiPartyCallParticipantGet participantGetter(String mpcId, String participantId) {
+  public static MultiPartyCallParticipantGet participantGetter(String mpcId, String participantId) {
     return new MultiPartyCallParticipantGet(mpcId, participantId);
   }
 
@@ -133,7 +133,7 @@ public class MultiPartyCall extends BaseResource {
     return getter.get();
   }
 
-  public MultiPartyCallParticipantUpdate participantUpdater(String mpcId, String participantId) {
+  public static MultiPartyCallParticipantUpdate participantUpdater(String mpcId, String participantId) {
     return new MultiPartyCallParticipantUpdate(mpcId, participantId);
   }
 
@@ -141,7 +141,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantUpdate(getId(), participantId);
   }
 
-  public MultiPartyCallParticipantKick participantKicker(String mpcId, String participantId) {
+  public static MultiPartyCallParticipantKick participantKicker(String mpcId, String participantId) {
     return new MultiPartyCallParticipantKick(mpcId, participantId);
   }
 
