@@ -68,7 +68,7 @@ public class Validate {
           }
         } else if (annotation instanceof UrlValues) {
           String actualValue = (String) value;
-          if (!(urlPattern.matcher(actualValue).matches() || isNotAmong(((UrlValues) annotation).options(), actualValue, ((UrlValues) annotation).caseSensitive()))) {
+          if ((!urlPattern.matcher(actualValue).matches() && isNotAmong(((UrlValues) annotation).options(), actualValue, ((UrlValues) annotation).caseSensitive()))) {
             throw new InvalidRequestException(composeErrorMessage(field.getName(), ((UrlValues) annotation).message()));
           }
         } else if (annotation instanceof MultiOf) {
