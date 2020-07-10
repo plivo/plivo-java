@@ -26,7 +26,7 @@ public class RequestDeleter extends VoiceDeleter<Call> {
     return client().getVoiceFallback2Service().requestDelete(client().getAuthId(), id);
   }
 
-  public void cancel() throws IOException, PlivoRestException, PlivoValidationException {
+  public void cancel() throws IOException, PlivoRestException {
     delete();
   }
 }
