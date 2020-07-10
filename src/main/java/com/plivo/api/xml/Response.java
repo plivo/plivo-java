@@ -17,6 +17,7 @@ public class Response extends PlivoXml {
             @XmlElement(name = "Wait", type = Wait.class),
             @XmlElement(name = "Dial", type = Dial.class),
             @XmlElement(name = "Conference", type = Conference.class),
+            @XmlElement(name = "MultiPartyCall", type = MultiPartyCall.class),
             @XmlElement(name = "Message", type = Message.class),
             @XmlElement(name = "Play", type = Play.class),
             @XmlElement(name = "Speak", type = Speak.class),
