@@ -1,8 +1,6 @@
 package com.plivo.api.validators;
 
-import com.plivo.api.exceptions.InvalidRequestException;
-import com.plivo.api.models.base.BaseRequest;
-import com.plivo.api.models.base.BaseResource;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.util.Utils;
 
 import java.lang.annotation.Annotation;
@@ -18,10 +16,10 @@ public class Validate {
   private static final String COLON = ": ";
 
 
-  private static Object fetchValue(Field field, BaseRequest request) {
+  private static Object fetchValue(Field field, Object request) {
     // Find the correct method
     for (Method method: request.getClass().getMethods()) {
-      if ((method.getName().startsWith("get")) && (method.getName().length() == (field.getName().length() + 3)) && (method.getName().toLowerCase().endsWith(field.getName().toLowerCase()))) {
+      if (method.getName().equalsIgnoreCase(field.getName()) && field.getType().toString().equals(method.getReturnType().toString())) {
         try {
           return method.invoke(request);
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -47,7 +45,7 @@ public class Validate {
     return fieldName + COLON + errorMessage;
   }
 
-  public static void check(BaseRequest request) throws InvalidRequestException {
+  public static void check(Object request) throws PlivoValidationException {
     Field[] fields = request.getClass().getDeclaredFields();
     for (Field field: fields) {
       Object value = fetchValue(field, request);
@@ -59,17 +57,17 @@ public class Validate {
         if (annotation instanceof InRange) {
           int actualValue = (int) value;
           if ((((InRange) annotation).min() > actualValue) || (((InRange) annotation).max() < actualValue)) {
-            throw new InvalidRequestException(composeErrorMessage(field.getName(), ((InRange) annotation).message()));
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((InRange) annotation).message()));
           }
         } else if (annotation instanceof OneOf) {
           String actualValue = (String) value;
           if (isNotAmong(((OneOf) annotation).options(), actualValue, ((OneOf) annotation).caseSensitive())) {
-            throw new InvalidRequestException(composeErrorMessage(field.getName(), ((OneOf) annotation).message()));
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((OneOf) annotation).message()));
           }
         } else if (annotation instanceof UrlValues) {
           String actualValue = (String) value;
           if ((!urlPattern.matcher(actualValue).matches() && isNotAmong(((UrlValues) annotation).options(), actualValue, ((UrlValues) annotation).caseSensitive()))) {
-            throw new InvalidRequestException(composeErrorMessage(field.getName(), ((UrlValues) annotation).message()));
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((UrlValues) annotation).message()));
           }
         } else if (annotation instanceof MultiOf) {
           if (!(value instanceof String[])) {
@@ -78,13 +76,13 @@ public class Validate {
           String[] actualValue = (String[]) value;
           for (String val: actualValue) {
             if (isNotAmong(((MultiOf) annotation).options(), val, ((MultiOf) annotation).caseSensitive())) {
-              throw new InvalidRequestException(composeErrorMessage(field.getName(), ((MultiOf) annotation).message()));
+              throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultiOf) annotation).message()));
             }
           }
         } else if (annotation instanceof SubAccount) {
           String actualValue = (String) value;
           if (!Utils.isSubaccountIdValid(actualValue)) {
-            throw new InvalidRequestException(composeErrorMessage(field.getName(), ((SubAccount) annotation).message()));
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((SubAccount) annotation).message()));
           }
         }
       }

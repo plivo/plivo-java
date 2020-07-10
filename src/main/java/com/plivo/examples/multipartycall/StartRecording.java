@@ -2,6 +2,7 @@ package com.plivo.examples.multipartycall;
 
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.multipartycall.MultiPartyCall;
 import com.plivo.api.models.multipartycall.MultiPartyCallRecordingStart;
 import com.plivo.api.models.multipartycall.MultiPartyCallRecordingStartResponse;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class StartRecording {
 
-  public static void main(String[] args) throws IOException, PlivoRestException {
+  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // You can start recording for an MPC by

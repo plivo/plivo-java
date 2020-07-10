@@ -1,7 +1,8 @@
 package com.plivo.api.models.multipartycall;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.Updater;
+import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
 public class MultiPartyCallParticipantUpdate extends Updater<MultiPartyCallParticipantUpdateResponse> {
@@ -14,15 +15,15 @@ public class MultiPartyCallParticipantUpdate extends Updater<MultiPartyCallParti
     super(mpcId, secondaryId);
   }
 
-  public Boolean getMute() {
+  public Boolean mute() {
     return mute;
   }
 
-  public Boolean getHold() {
+  public Boolean hold() {
     return hold;
   }
 
-  public Boolean getCoachMode() {
+  public Boolean coachMode() {
     return coachMode;
   }
 
@@ -42,8 +43,14 @@ public class MultiPartyCallParticipantUpdate extends Updater<MultiPartyCallParti
   }
 
   @Override
-  protected Call<MultiPartyCallParticipantUpdateResponse> obtainCall() throws InvalidRequestException {
+  protected Call<MultiPartyCallParticipantUpdateResponse> obtainCall() throws PlivoValidationException {
     MultiPartyCallUtils.validMultiPartyCallId(id);
+    if (secondaryId.equalsIgnoreCase(MultiPartyCallUtils.allParticipants) && coachMode != null) {
+      throw new PlivoValidationException("cannot update coachMode for all participants");
+    }
+    if (!Utils.anyNotNull(coachMode, mute, hold)) {
+      throw new PlivoValidationException("please update either mute, hold or coach_mode");
+    }
     return client().getApiService().mpcMemberUpdate(client().getAuthId(), id, secondaryId, this);
   }
 }

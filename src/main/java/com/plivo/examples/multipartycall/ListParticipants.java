@@ -1,7 +1,7 @@
 package com.plivo.examples.multipartycall;
 
 import com.plivo.api.Plivo;
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.multipartycall.MultiPartyCall;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class ListParticipants {
 
-  public static void main(String[] args) throws IOException, PlivoRestException {
+  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // You can list MPC participants by
@@ -24,7 +24,7 @@ public class ListParticipants {
     System.out.printf("Participants are properly fetched: %s", resp1.getObjects().stream().allMatch(p -> {
       try {
         return (p.getId().equals("myMPCUuid1") && p.getCallUuid().equals("<your-call-uuid-2>"));
-      } catch (InvalidRequestException e) {
+      } catch (PlivoValidationException e) {
         e.printStackTrace();
         return false;
       }
@@ -37,7 +37,7 @@ public class ListParticipants {
     System.out.printf("Participants are properly fetched: %s", resp1.getObjects().stream().allMatch(p -> {
       try {
         return (p.getId().equals("myMPCUuid2") && p.getCallUuid().equals("<your-call-uuid-2>"));
-      } catch (InvalidRequestException e) {
+      } catch (PlivoValidationException e) {
         e.printStackTrace();
         return false;
       }
