@@ -1,0 +1,12 @@
+{
+  "api_id": "bcfca4f4-c1e7-11ea-ae24-0242ac110004",
+  "calls": [
+    {
+      "to": "1800123456",
+      "from": "1800654321",
+      "call_uuid": "b2d45aac-e9e6-4790-a29e-383e8724c900"
+    }
+  ],
+  "message": "add participant action initiated",
+  "request_uuid": "b2d45aac-e9e6-4790-a29e-383e8724c900"
+}
