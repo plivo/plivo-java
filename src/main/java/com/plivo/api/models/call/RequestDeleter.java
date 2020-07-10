@@ -1,6 +1,7 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.Deleter;
 import java.io.IOException;
 import okhttp3.ResponseBody;
@@ -15,7 +16,7 @@ public class RequestDeleter extends Deleter<Call> {
     return client().getApiService().requestDelete(client().getAuthId(), id);
   }
 
-  public void cancel() throws IOException, PlivoRestException {
+  public void cancel() throws IOException, PlivoRestException, PlivoValidationException {
     delete();
   }
 }
