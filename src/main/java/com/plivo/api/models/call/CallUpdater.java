@@ -2,6 +2,8 @@ package com.plivo.api.models.call;
 
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.VoiceUpdater;
+import com.plivo.api.exceptions.PlivoValidationException;
+import com.plivo.api.models.base.Updater;
 import com.plivo.api.util.Utils;
 import java.io.IOException;
 import retrofit2.Call;
@@ -107,7 +109,7 @@ public class CallUpdater extends VoiceUpdater<CallUpdateResponse> {
     return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), identifier, this);
   }
 
-  public CallUpdateResponse transfer() throws IOException, PlivoRestException {
+  public CallUpdateResponse transfer() throws IOException, PlivoRestException, PlivoValidationException {
     return update();
   }
 }

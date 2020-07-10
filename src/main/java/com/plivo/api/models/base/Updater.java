@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.plivo.api.PlivoClient;
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import retrofit2.Call;
@@ -32,13 +32,13 @@ public abstract class Updater<T extends BaseResponse> extends BaseRequest {
     }
 
     this.id = id;
-    this.secondaryId = id;
+    this.secondaryId = secondaryId;
   }
 
   /**
    * Actually update the resource.
    */
-  public T update() throws IOException, PlivoRestException {
+  public T update() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<T> response = obtainCall().execute();
 
@@ -54,5 +54,5 @@ public abstract class Updater<T extends BaseResponse> extends BaseRequest {
   }
 
 
-  protected abstract Call<T> obtainCall() throws InvalidRequestException;
+  protected abstract Call<T> obtainCall() throws PlivoValidationException;
 }

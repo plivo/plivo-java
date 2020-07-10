@@ -3,6 +3,7 @@ package com.plivo.examples;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.account.Account;
 import com.plivo.api.models.account.AccountUpdateResponse;
 import com.plivo.api.models.account.Subaccount;
@@ -32,7 +33,7 @@ public class Accounts {
       Account response = Account.getter()
         .get();
       System.out.println(response);
-    } catch (PlivoRestException | IOException e) {
+    } catch (PlivoRestException | IOException | PlivoValidationException e) {
       e.printStackTrace();
     }
   }
@@ -44,7 +45,7 @@ public class Accounts {
         .client(client)
         .get();
       System.out.println(response);
-    } catch (PlivoRestException | IOException e) {
+    } catch (PlivoRestException | IOException | PlivoValidationException e) {
       e.printStackTrace();
     }
   }
@@ -56,7 +57,7 @@ public class Accounts {
         .address("Test Address")
         .update();
       System.out.println(response);
-    } catch (PlivoRestException | IOException e) {
+    } catch (PlivoRestException | IOException | PlivoValidationException e) {
       e.printStackTrace();
     }
   }
@@ -69,7 +70,7 @@ public class Accounts {
         .client(client)
         .update();
       System.out.println(response);
-    } catch (PlivoRestException | IOException e) {
+    } catch (PlivoRestException | IOException | PlivoValidationException e) {
       e.printStackTrace();
     }
   }

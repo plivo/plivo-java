@@ -3,6 +3,7 @@ package com.plivo.api.models.base;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Typing;
 import com.plivo.api.PlivoClient;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.IterableError;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.util.Utils;
@@ -66,12 +67,12 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
     return this;
   }
 
-  protected abstract Call<ListResponse<T>> obtainCall();
+  protected abstract Call<ListResponse<T>> obtainCall() throws PlivoValidationException;
 
   /**
    * Actually list instances of the resource.
    */
-  public ListResponse<T> list() throws IOException, PlivoRestException {
+  public ListResponse<T> list() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<ListResponse<T>> response = obtainCall().execute();
 
@@ -79,6 +80,18 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
 
     return response.body();
   }
+
+  public Long get() throws IOException, PlivoRestException, PlivoValidationException {
+    validate();
+    Response<ListResponse<T>> response = obtainCall().execute();
+    handleResponse(response);
+    try {
+      return response.body().getMeta().getCount();
+    } catch (Exception e) {
+      return 0L;
+    }
+  }
+
 
   protected Map<String, Object> toMap() {
     client();
@@ -111,7 +124,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
           }
           this.items.addAll(itemList.getObjects());
           offset += limit;
-        } catch (IOException | PlivoRestException exception) {
+        } catch (IOException | PlivoRestException | PlivoValidationException exception) {
           throw new IterableError();
         }
         return true;
@@ -124,7 +137,7 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
             ListResponse<T> itemList = Lister.this.list();
             this.items.addAll(itemList.getObjects());
             offset += limit;
-          } catch (IOException | PlivoRestException exception) {
+          } catch (IOException | PlivoRestException | PlivoValidationException exception) {
             throw new IterableError();
           }
         }

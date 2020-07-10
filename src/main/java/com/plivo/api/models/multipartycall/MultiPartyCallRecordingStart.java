@@ -1,6 +1,6 @@
 package com.plivo.api.models.multipartycall;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.Updater;
 import com.plivo.api.validators.OneOf;
 import com.plivo.api.validators.UrlValues;
@@ -14,22 +14,22 @@ public class MultiPartyCallRecordingStart extends Updater<MultiPartyCallRecordin
   @UrlValues
   private String statusCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String StatusCallbackMethod = "POST";
+  private String statusCallbackMethod = "POST";
 
   public MultiPartyCallRecordingStart(String mpcId) {
     super(mpcId);
   }
 
-  public String getFileFormat() {
+  public String fileFormat() {
     return fileFormat;
   }
 
-  public String getStatusCallbackUrl() {
+  public String statusCallbackUrl() {
     return statusCallbackUrl;
   }
 
-  public String getStatusCallbackMethod() {
-    return StatusCallbackMethod;
+  public String statusCallbackMethod() {
+    return statusCallbackMethod;
   }
 
   public MultiPartyCallRecordingStart fileFormat(String fileFormat) {
@@ -43,12 +43,12 @@ public class MultiPartyCallRecordingStart extends Updater<MultiPartyCallRecordin
   }
 
   public MultiPartyCallRecordingStart statusCallbackMethod(String statusCallbackMethod) {
-    StatusCallbackMethod = statusCallbackMethod;
+    this.statusCallbackMethod = statusCallbackMethod;
     return this;
   }
 
   @Override
-  protected Call<MultiPartyCallRecordingStartResponse> obtainCall() throws InvalidRequestException {
+  protected Call<MultiPartyCallRecordingStartResponse> obtainCall() throws PlivoValidationException {
     MultiPartyCallUtils.validMultiPartyCallId(id);
     Validate.check(this);
     return client().getApiService().mpcStartRecording(client().getAuthId(), id, this);

@@ -1,6 +1,6 @@
 package com.plivo.api.models.multipartycall;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.BaseResource;
 import com.plivo.api.models.base.BaseResponse;
@@ -34,7 +34,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallGet(mpcId);
   }
 
-  public MultiPartyCall get() throws IOException, PlivoRestException {
+  public MultiPartyCall get() throws IOException, PlivoRestException, PlivoValidationException {
     MultiPartyCallGet getter = MultiPartyCall.getter(getId());
     return getter.get();
   }
@@ -43,7 +43,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallStart(mpcId);
   }
 
-  public BaseResponse start() throws IOException, PlivoRestException {
+  public BaseResponse start() throws IOException, PlivoRestException, PlivoValidationException {
     MultiPartyCallStart start = MultiPartyCall.starter(getId());
     return start.update();
   }
@@ -52,12 +52,12 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallStop(mpcId);
   }
 
-  public void stop() throws IOException, PlivoRestException {
+  public void stop() throws IOException, PlivoRestException, PlivoValidationException {
     MultiPartyCallStop stop = MultiPartyCall.stopper(getId());
     stop.delete();
   }
 
-  public static MultiPartyCallParticipantAdd addParticipant(String mpcId, String role, String from, List<String> to) throws InvalidRequestException {
+  public static MultiPartyCallParticipantAdd addParticipant(String mpcId, String role, String from, List<String> to) throws PlivoValidationException {
     return new MultiPartyCallParticipantAdd(mpcId, role, from, to);
   }
 
@@ -65,11 +65,11 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantAdd(mpcId, role, callUuid);
   }
 
-  public MultiPartyCallParticipantAdd addParticipant(String role, String from, List<String> to) throws InvalidRequestException {
+  public MultiPartyCallParticipantAdd addParticipant(String role, String from, List<String> to) throws PlivoValidationException {
     return new MultiPartyCallParticipantAdd(getId(), role, from, to);
   }
 
-  public MultiPartyCallParticipantAdd addParticipant(String role, String callUuid) throws InvalidRequestException {
+  public MultiPartyCallParticipantAdd addParticipant(String role, String callUuid) throws PlivoValidationException {
     return new MultiPartyCallParticipantAdd(getId(), role, callUuid);
   }
 
@@ -77,7 +77,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantList(mpcId);
   }
 
-  public MultiPartyCallParticipantList participantList() throws InvalidRequestException {
+  public MultiPartyCallParticipantList participantList() throws PlivoValidationException {
     return new MultiPartyCallParticipantList(getId());
   }
 
@@ -85,7 +85,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallRecordingStart(mpcId);
   }
 
-  public MultiPartyCallRecordingStart recordStarter() throws InvalidRequestException {
+  public MultiPartyCallRecordingStart recordStarter() throws PlivoValidationException {
     return new MultiPartyCallRecordingStart(getId());
   }
 
@@ -93,7 +93,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallRecordingStop(mpcId);
   }
 
-  public void recordStop() throws IOException, PlivoRestException {
+  public void recordStop() throws IOException, PlivoRestException, PlivoValidationException {
     MultiPartyCallRecordingStop recordStopper = new MultiPartyCallRecordingStop(getId());
     recordStopper.delete();
   }
@@ -102,25 +102,15 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallRecordingPause(mpcId);
   }
 
-  public static BaseResponse recordPause(String mpcId, Boolean trimSilence) throws IOException, PlivoRestException {
-    MultiPartyCallRecordingPause pause = new MultiPartyCallRecordingPause(mpcId).trimSilence(trimSilence);
-    return pause.update();
+  public BaseResponse recordPause() throws IOException, PlivoRestException, PlivoValidationException {
+    return new MultiPartyCallRecordingPause(getId()).update();
   }
 
-  public MultiPartyCallRecordingPause recordPause() throws InvalidRequestException {
-    return new MultiPartyCallRecordingPause(getId());
-  }
-
-  public BaseResponse recordPause(Boolean trimSilence) throws IOException, PlivoRestException {
-    MultiPartyCallRecordingPause recordPause = new MultiPartyCallRecordingPause(getId()).trimSilence(trimSilence);
-    return recordPause.update();
-  }
-
-  public static MultiPartyCallRecordingResume recordResume(String mpcId) throws InvalidRequestException {
+  public static MultiPartyCallRecordingResume recordResume(String mpcId) {
     return new MultiPartyCallRecordingResume(mpcId);
   }
 
-  public BaseResponse recordResume() throws IOException, PlivoRestException {
+  public BaseResponse recordResume() throws IOException, PlivoRestException, PlivoValidationException {
     return new MultiPartyCallRecordingResume(getId()).update();
   }
 
@@ -128,7 +118,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantGet(mpcId, participantId);
   }
 
-  public MultiPartyCallParticipant participantGet(String participantId) throws PlivoRestException, IOException {
+  public MultiPartyCallParticipant participantGet(String participantId) throws PlivoRestException, IOException, PlivoValidationException {
     MultiPartyCallParticipantGet getter = new MultiPartyCallParticipantGet(getId(), participantId);
     return getter.get();
   }
@@ -137,7 +127,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantUpdate(mpcId, participantId);
   }
 
-  public MultiPartyCallParticipantUpdate participantUpdate(String participantId) throws InvalidRequestException {
+  public MultiPartyCallParticipantUpdate participantUpdate(String participantId) throws PlivoValidationException {
     return new MultiPartyCallParticipantUpdate(getId(), participantId);
   }
 
@@ -145,7 +135,7 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallParticipantKick(mpcId, participantId);
   }
 
-  public void participantKick(String participantId) throws PlivoRestException, IOException {
+  public void participantKick(String participantId) throws PlivoRestException, IOException, PlivoValidationException {
     MultiPartyCallParticipantKick kicker = new MultiPartyCallParticipantKick(getId(), participantId);
     kicker.delete();
   }
@@ -215,7 +205,7 @@ public class MultiPartyCall extends BaseResource {
   }
 
   @Override
-  public String getId() throws InvalidRequestException {
+  public String getId() throws PlivoValidationException {
     return MultiPartyCallUtils.mpcUuid(getMpcUuid());
   }
 }

@@ -2,6 +2,7 @@ package com.plivo.examples.multipartycall;
 
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.multipartycall.MultiPartyCall;
 import com.plivo.api.models.multipartycall.MultiPartyCallUtils;
@@ -19,7 +20,7 @@ public class ListMPC {
     return OffsetDateTime.parse(timeString, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ssXXXXX")).isBefore(OffsetDateTime.now().minusHours(1));
   }
 
-  public static void main(String[] args) throws IOException, PlivoRestException {
+  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // Fetch all MultiPartyCalls for an account

@@ -1,7 +1,7 @@
 package com.plivo.api.models.base;
 
 import com.plivo.api.PlivoClient;
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import java.util.Map;
@@ -33,13 +33,13 @@ public abstract class Getter<T extends BaseResource> extends BaseRequest<T> {
       throw new IllegalArgumentException("id/secondaryId cannot be null");
     }
     this.id = id;
-    this.secondaryId = id;
+    this.secondaryId = secondaryId;
   }
 
   /**
    * Actually get an instance of the resource.
    */
-  public T get() throws IOException, PlivoRestException {
+  public T get() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<T> response = obtainCall().execute();
 
@@ -59,5 +59,5 @@ public abstract class Getter<T extends BaseResource> extends BaseRequest<T> {
     return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
   }
 
-  protected abstract Call<T> obtainCall() throws InvalidRequestException;
+  protected abstract Call<T> obtainCall() throws PlivoValidationException;
 }

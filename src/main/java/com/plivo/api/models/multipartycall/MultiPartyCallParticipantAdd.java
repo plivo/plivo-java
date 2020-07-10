@@ -2,7 +2,7 @@ package com.plivo.api.models.multipartycall;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.Updater;
 import com.plivo.api.serializers.CommaDelimitedListSerializer;
 import com.plivo.api.serializers.DelimitedListSerializer;
@@ -17,11 +17,11 @@ import java.util.Map;
 public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticipantAddResponse> {
 
   @OneOf(message = "should be one of [agent, customer, supervisor]", options = {"agent", "customer", "supervisor"})
-  private String role;
-  private String from;
+  private final String role;
+  private final String from;
   @JsonSerialize(using = DelimitedListSerializer.class)
-  private List<String> to;
-  private String callUuid;
+  private final List<String> to;
+  private final String callUuid;
   @UrlValues
   private String callStatusCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
@@ -61,7 +61,7 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
   @UrlValues
   private String statusCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String statusCallbackMethod ="GET";
+  private String statusCallbackMethod ="POST";
   @UrlValues
   private String onExitActionUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
@@ -88,43 +88,186 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
   private String exitSoundMethod = "GET";
 
-  public MultiPartyCallParticipantAdd(String mpcId, String role, String from, List<String> to) throws InvalidRequestException {
+  public MultiPartyCallParticipantAdd(String mpcId, String role, String from, List<String> to) throws PlivoValidationException {
     super(mpcId);
     if (to.size() > 20) {
-      throw new InvalidRequestException("max of 20 destination numbers are allowed for bulk dialing");
+      throw new PlivoValidationException("max of 20 destination numbers are allowed for bulk dialing");
     }
     if (to.size() > 1 && !role.equalsIgnoreCase(MultiPartyCallUtils.agent)) {
-      throw new InvalidRequestException("bulk dialing is allowed for role agent only");
+      throw new PlivoValidationException("bulk dialing is allowed for role agent only");
     }
     this.role = role;
     this.from = from;
     this.to = to;
+    this.callUuid = null;
   }
 
   public MultiPartyCallParticipantAdd(String mpcId, String role, String callUuid) {
     super(mpcId);
     this.role = role;
     this.callUuid = callUuid;
+    this.from = null;
+    this.to = null;
   }
 
-  public String getRole() {
+  public String role() {
     return role;
   }
 
-  public String getFrom() {
+  public String from() {
     return from;
   }
 
-  public List<String> getTo() {
+  public List<String> to() {
     return to;
   }
 
-  public String getCallUuid() {
+  public String callUuid() {
     return callUuid;
   }
 
-  public String getCallStatusCallbackUrl() {
+  public String callStatusCallbackUrl() {
     return callStatusCallbackUrl;
+  }
+
+  public String callStatusCallbackMethod() {
+    return callStatusCallbackMethod;
+  }
+
+  public Map<String, String> sipHeaders() {
+    return sipHeaders;
+  }
+
+  public String confirmKey() {
+    return confirmKey;
+  }
+
+  public String confirmKeySoundUrl() {
+    return confirmKeySoundUrl;
+  }
+
+  public String confirmKeySoundMethod() {
+    return confirmKeySoundMethod;
+  }
+
+  public String dialMusic() {
+    return dialMusic;
+  }
+
+  public Integer ringTimeout() {
+    return ringTimeout;
+  }
+
+  public Integer maxDuration() {
+    return maxDuration;
+  }
+
+  public Integer maxParticipants() {
+    return maxParticipants;
+  }
+
+  public String waitMusicUrl() {
+    return waitMusicUrl;
+  }
+
+  public String waitMusicMethod() {
+    return waitMusicMethod;
+  }
+
+  public String agentHoldMusicUrl() {
+    return agentHoldMusicUrl;
+  }
+
+  public String agentHoldMusicMethod() {
+    return agentHoldMusicMethod;
+  }
+
+  public String customerHoldMusicUrl() {
+    return customerHoldMusicUrl;
+  }
+
+  public String customerHoldMusicMethod() {
+    return customerHoldMusicMethod;
+  }
+
+  public String recordingCallbackUrl() {
+    return recordingCallbackUrl;
+  }
+
+  public String recordingCallbackMethod() {
+    return recordingCallbackMethod;
+  }
+
+  public String statusCallbackUrl() {
+    return statusCallbackUrl;
+  }
+
+  public String statusCallbackMethod() {
+    return statusCallbackMethod;
+  }
+
+  public String onExitActionUrl() {
+    return onExitActionUrl;
+  }
+
+  public String onExitActionMethod() {
+    return onExitActionMethod;
+  }
+
+  public Boolean record() {
+    return record;
+  }
+
+  public String recordFileFormat() {
+    return recordFileFormat;
+  }
+
+  public List<String> statusCallbackEvents() {
+    return statusCallbackEvents;
+  }
+
+  public Boolean stayAlone() {
+    return stayAlone;
+  }
+
+  public Boolean coachMode() {
+    return coachMode;
+  }
+
+  public Boolean mute() {
+    return mute;
+  }
+
+  public Boolean hold() {
+    return hold;
+  }
+
+  public Boolean startMpcOnEnter() {
+    return startMpcOnEnter;
+  }
+
+  public Boolean endMpcOnExit() {
+    return endMpcOnExit;
+  }
+
+  public Boolean relayDtmfInputs() {
+    return relayDtmfInputs;
+  }
+
+  public String enterSound() {
+    return enterSound;
+  }
+
+  public String enterSoundMethod() {
+    return enterSoundMethod;
+  }
+
+  public String exitSound() {
+    return exitSound;
+  }
+
+  public String exitSoundMethod() {
+    return exitSoundMethod;
   }
 
   public MultiPartyCallParticipantAdd callStatusCallbackUrl(String callStatusCallbackUrl) {
@@ -132,17 +275,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getCallStatusCallbackMethod() {
-    return callStatusCallbackMethod;
-  }
-
   public MultiPartyCallParticipantAdd callStatusCallbackMethod(String callStatusCallbackMethod) {
     this.callStatusCallbackMethod = callStatusCallbackMethod;
     return this;
-  }
-
-  public Map<String, String> getSipHeaders() {
-    return sipHeaders;
   }
 
   public MultiPartyCallParticipantAdd sipHeaders(Map<String, String> sipHeaders) {
@@ -150,17 +285,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getConfirmKey() {
-    return confirmKey;
-  }
-
   public MultiPartyCallParticipantAdd confirmKey(String confirmKey) {
     this.confirmKey = confirmKey;
     return this;
-  }
-
-  public String getConfirmKeySoundUrl() {
-    return confirmKeySoundUrl;
   }
 
   public MultiPartyCallParticipantAdd confirmKeySoundUrl(String confirmKeySoundUrl) {
@@ -168,17 +295,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getConfirmKeySoundMethod() {
-    return confirmKeySoundMethod;
-  }
-
   public MultiPartyCallParticipantAdd confirmKeySoundMethod(String confirmKeySoundMethod) {
     this.confirmKeySoundMethod = confirmKeySoundMethod;
     return this;
-  }
-
-  public String getDialMusic() {
-    return dialMusic;
   }
 
   public MultiPartyCallParticipantAdd dialMusic(String dialMusic) {
@@ -186,17 +305,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public Integer getRingTimeout() {
-    return ringTimeout;
-  }
-
   public MultiPartyCallParticipantAdd ringTimeout(Integer ringTimeout) {
     this.ringTimeout = ringTimeout;
     return this;
-  }
-
-  public Integer getMaxDuration() {
-    return maxDuration;
   }
 
   public MultiPartyCallParticipantAdd maxDuration(Integer maxDuration) {
@@ -204,17 +315,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public Integer getMaxParticipants() {
-    return maxParticipants;
-  }
-
   public MultiPartyCallParticipantAdd maxParticipants(Integer maxParticipants) {
     this.maxParticipants = maxParticipants;
     return this;
-  }
-
-  public String getWaitMusicUrl() {
-    return waitMusicUrl;
   }
 
   public MultiPartyCallParticipantAdd waitMusicUrl(String waitMusicUrl) {
@@ -222,17 +325,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getWaitMusicMethod() {
-    return waitMusicMethod;
-  }
-
   public MultiPartyCallParticipantAdd waitMusicMethod(String waitMusicMethod) {
     this.waitMusicMethod = waitMusicMethod;
     return this;
-  }
-
-  public String getAgentHoldMusicUrl() {
-    return agentHoldMusicUrl;
   }
 
   public MultiPartyCallParticipantAdd agentHoldMusicUrl(String agentHoldMusicUrl) {
@@ -240,17 +335,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getAgentHoldMusicMethod() {
-    return agentHoldMusicMethod;
-  }
-
   public MultiPartyCallParticipantAdd agentHoldMusicMethod(String agentHoldMusicMethod) {
     this.agentHoldMusicMethod = agentHoldMusicMethod;
     return this;
-  }
-
-  public String getCustomerHoldMusicUrl() {
-    return customerHoldMusicUrl;
   }
 
   public MultiPartyCallParticipantAdd customerHoldMusicUrl(String customerHoldMusicUrl) {
@@ -258,17 +345,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getCustomerHoldMusicMethod() {
-    return customerHoldMusicMethod;
-  }
-
   public MultiPartyCallParticipantAdd customerHoldMusicMethod(String customerHoldMusicMethod) {
     this.customerHoldMusicMethod = customerHoldMusicMethod;
     return this;
-  }
-
-  public String getRecordingCallbackUrl() {
-    return recordingCallbackUrl;
   }
 
   public MultiPartyCallParticipantAdd recordingCallbackUrl(String recordingCallbackUrl) {
@@ -276,17 +355,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getRecordingCallbackMethod() {
-    return recordingCallbackMethod;
-  }
-
   public MultiPartyCallParticipantAdd recordingCallbackMethod(String recordingCallbackMethod) {
     this.recordingCallbackMethod = recordingCallbackMethod;
     return this;
-  }
-
-  public String getStatusCallbackUrl() {
-    return statusCallbackUrl;
   }
 
   public MultiPartyCallParticipantAdd statusCallbackUrl(String statusCallbackUrl) {
@@ -294,17 +365,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getStatusCallbackMethod() {
-    return statusCallbackMethod;
-  }
-
   public MultiPartyCallParticipantAdd statusCallbackMethod(String statusCallbackMethod) {
     this.statusCallbackMethod = statusCallbackMethod;
     return this;
-  }
-
-  public String getOnExitActionUrl() {
-    return onExitActionUrl;
   }
 
   public MultiPartyCallParticipantAdd onExitActionUrl(String onExitActionUrl) {
@@ -312,17 +375,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getOnExitActionMethod() {
-    return onExitActionMethod;
-  }
-
   public MultiPartyCallParticipantAdd onExitActionMethod(String onExitActionMethod) {
     this.onExitActionMethod = onExitActionMethod;
     return this;
-  }
-
-  public Boolean getRecord() {
-    return record;
   }
 
   public MultiPartyCallParticipantAdd record(Boolean record) {
@@ -330,17 +385,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getRecordFileFormat() {
-    return recordFileFormat;
-  }
-
   public MultiPartyCallParticipantAdd recordFileFormat(String recordFileFormat) {
     this.recordFileFormat = recordFileFormat;
     return this;
-  }
-
-  public List<String> getStatusCallbackEvents() {
-    return statusCallbackEvents;
   }
 
   public MultiPartyCallParticipantAdd statusCallbackEvents(List<String> statusCallbackEvents) {
@@ -348,29 +395,14 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public Boolean getStayAlone() {
-    return stayAlone;
-  }
-
   public MultiPartyCallParticipantAdd stayAlone(Boolean stayAlone) {
     this.stayAlone = stayAlone;
     return this;
   }
 
-  public Boolean getCoachMode() {
-    return coachMode;
-  }
-
-  public MultiPartyCallParticipantAdd coachMode(Boolean coachMode) throws InvalidRequestException {
-    if (coachMode && !this.role.equals(MultiPartyCallUtils.supervisor)) {
-      throw new InvalidRequestException("cannot set coach mode for non-supervisor roles");
-    }
+  public MultiPartyCallParticipantAdd coachMode(Boolean coachMode) {
     this.coachMode = coachMode;
     return this;
-  }
-
-  public Boolean getMute() {
-    return mute;
   }
 
   public MultiPartyCallParticipantAdd mute(Boolean mute) {
@@ -378,17 +410,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public Boolean getHold() {
-    return hold;
-  }
-
   public MultiPartyCallParticipantAdd hold(Boolean hold) {
     this.hold = hold;
     return this;
-  }
-
-  public Boolean getStartMpcOnEnter() {
-    return startMpcOnEnter;
   }
 
   public MultiPartyCallParticipantAdd startMpcOnEnter(Boolean startMpcOnEnter) {
@@ -396,17 +420,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public Boolean getEndMpcOnExit() {
-    return endMpcOnExit;
-  }
-
   public MultiPartyCallParticipantAdd endMpcOnExit(Boolean endMpcOnExit) {
     this.endMpcOnExit = endMpcOnExit;
     return this;
-  }
-
-  public Boolean getRelayDtmfInputs() {
-    return relayDtmfInputs;
   }
 
   public MultiPartyCallParticipantAdd relayDtmfInputs(Boolean relayDtmfInputs) {
@@ -414,17 +430,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getEnterSound() {
-    return enterSound;
-  }
-
   public MultiPartyCallParticipantAdd enterSound(String enterSound) {
     this.enterSound = enterSound;
     return this;
-  }
-
-  public String getEnterSoundMethod() {
-    return enterSoundMethod;
   }
 
   public MultiPartyCallParticipantAdd enterSoundMethod(String enterSoundMethod) {
@@ -432,17 +440,9 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
     return this;
   }
 
-  public String getExitSound() {
-    return exitSound;
-  }
-
   public MultiPartyCallParticipantAdd exitSound(String exitSound) {
     this.exitSound = exitSound;
     return this;
-  }
-
-  public String getExitSoundMethod() {
-    return exitSoundMethod;
   }
 
   public MultiPartyCallParticipantAdd exitSoundMethod(String exitSoundMethod) {
@@ -451,7 +451,7 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
   }
 
   @Override
-  protected Call<MultiPartyCallParticipantAddResponse> obtainCall() throws InvalidRequestException {
+  protected Call<MultiPartyCallParticipantAddResponse> obtainCall() throws PlivoValidationException {
     Validate.check(this);
     return client().getApiService().mpcAddParticipant(client().getAuthId(), id, this);
   }

@@ -1,6 +1,6 @@
 package com.plivo.api.models.multipartycall;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.SecondaryResource;
 
@@ -29,7 +29,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
     return new MultiPartyCallParticipantGet(mpcId, participantId);
   }
 
-  public MultiPartyCallParticipant get() throws IOException, PlivoRestException {
+  public MultiPartyCallParticipant get() throws IOException, PlivoRestException, PlivoValidationException {
     MultiPartyCallParticipantGet getter = new MultiPartyCallParticipantGet(getId(), getSecondaryId());
     return getter.get();
   }
@@ -38,7 +38,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
     return new MultiPartyCallParticipantUpdate(mpcId, participantId);
   }
 
-  public MultiPartyCallParticipantUpdate update() throws InvalidRequestException {
+  public MultiPartyCallParticipantUpdate update() throws PlivoValidationException {
     return new MultiPartyCallParticipantUpdate(getId(), getSecondaryId());
   }
 
@@ -46,7 +46,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
     return new MultiPartyCallParticipantKick(mpcId, participantId);
   }
 
-  public void kick() throws PlivoRestException, IOException {
+  public void kick() throws PlivoRestException, IOException, PlivoValidationException {
     MultiPartyCallParticipantKick kicker = new MultiPartyCallParticipantKick(getId(), getSecondaryId());
     kicker.delete();
   }
@@ -121,7 +121,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
   }
 
   @Override
-  public String getId() throws InvalidRequestException {
+  public String getId() throws PlivoValidationException {
     return MultiPartyCallUtils.mpcUuid(getMpcUuid());
   }
 }

@@ -3,6 +3,8 @@ package com.plivo.api.models.conference;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
+
+import com.plivo.api.exceptions.PlivoValidationException;
 import retrofit2.Call;
 
 public class ConferenceMemberDeleter extends ConferenceMemberDeleterAction {
@@ -29,7 +31,7 @@ public class ConferenceMemberDeleter extends ConferenceMemberDeleterAction {
       .conferenceMemberDelete(client().getAuthId(), conferenceName, id);
   }
 
-  public void hangup() throws IOException, PlivoRestException {
+  public void hangup() throws IOException, PlivoRestException, PlivoValidationException {
     delete();
   }
 

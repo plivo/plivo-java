@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.phlo.Phlo;
 import com.plivo.api.models.phlo.PhloRunGetterResponse;
 import com.plivo.api.models.phlo.PhloUpdateResponse;
@@ -26,7 +27,7 @@ public class PhloRunGet {
 			PhloRunGetterResponse resp2 = Phlo.phloRunGetter("019c8486-65b6-4fe6-98a5-b0f0973fa45e",resp.getApiId()).get();
 			System.out.println(resp2);
 			
-		} catch (IOException | PlivoRestException e) {
+		} catch (IOException | PlivoRestException | PlivoValidationException e) {
 			e.printStackTrace();
 		}
 

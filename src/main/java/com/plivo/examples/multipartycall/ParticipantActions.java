@@ -2,6 +2,7 @@ package com.plivo.examples.multipartycall;
 
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.multipartycall.*;
 import com.plivo.api.util.Utils;
 
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 public class ParticipantActions {
 
-  public static void main(String[] args) throws IOException, PlivoRestException {
+  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // Get participant by name and participantID

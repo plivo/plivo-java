@@ -1,6 +1,6 @@
 package com.plivo.api.models.multipartycall;
 
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.base.Lister;
 import com.plivo.api.util.PropertyFilter;
@@ -20,27 +20,27 @@ public class MultiPartyCallList extends Lister<MultiPartyCall> {
   private PropertyFilter<String> creationTime;
   private PropertyFilter<String> endTime;
 
-  public String getSubAccount() {
+  public String subAccount() {
     return subAccount;
   }
 
-  public String getFriendlyName() {
+  public String friendlyName() {
     return friendlyName;
   }
 
-  public String getStatus() {
+  public String status() {
     return status;
   }
 
-  public Integer getTerminationCauseCode() {
+  public Integer terminationCauseCode() {
     return terminationCauseCode;
   }
 
-  public PropertyFilter<String> getCreationTime() {
+  public PropertyFilter<String> creationTime() {
     return creationTime;
   }
 
-  public PropertyFilter<String> getEndTime() {
+  public PropertyFilter<String> endTime() {
     return endTime;
   }
 
@@ -64,20 +64,20 @@ public class MultiPartyCallList extends Lister<MultiPartyCall> {
     return this;
   }
 
-  public MultiPartyCallList creationTime(PropertyFilter<String> creationTime) throws InvalidRequestException {
+  public MultiPartyCallList creationTime(PropertyFilter<String> creationTime) throws PlivoValidationException {
     MultiPartyCallUtils.validMultiPartyTime("creationTime", creationTime);
     this.creationTime = creationTime;
     return this;
   }
 
-  public MultiPartyCallList endTime(PropertyFilter<String> endTime) throws InvalidRequestException {
+  public MultiPartyCallList endTime(PropertyFilter<String> endTime) throws PlivoValidationException {
     MultiPartyCallUtils.validMultiPartyTime("endTime", endTime);
     this.endTime = endTime;
     return this;
   }
 
   @Override
-  protected Call<ListResponse<MultiPartyCall>> obtainCall() throws InvalidRequestException {
+  protected Call<ListResponse<MultiPartyCall>> obtainCall() throws PlivoValidationException {
     Validate.check(this);
     return client().getApiService().mpcList(client().getAuthId(), toMap());
   }
