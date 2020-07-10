@@ -17,7 +17,7 @@ import java.util.List;
 public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   @XmlAttribute
-  private final String role;
+  private String role;
 
   @XmlAttribute
   @InRange(message = "must be in range [300-28800]", min = 300, max = 28800)
@@ -125,7 +125,11 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
   private Boolean relayDtmfInputs = false;
 
   @XmlValue
-  private final String name;
+  private String name;
+
+  private MultiPartyCall() {
+
+  }
 
   public MultiPartyCall(String name, String role) {
     if (name == null) {
@@ -138,6 +142,10 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
     this.name = name;
     this.role = role;
+  }
+
+  public String role() {
+    return role;
   }
 
   public Integer maxDuration() {
@@ -250,6 +258,15 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   public Boolean relayDtmfInputs() {
     return relayDtmfInputs;
+  }
+
+  public String name() {
+    return name;
+  }
+
+  public MultiPartyCall role(String role) {
+    this.role = role;
+    return this;
   }
 
   public MultiPartyCall maxDuration(Integer maxDuration) {
@@ -389,6 +406,11 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   public MultiPartyCall relayDtmfInputs(Boolean relayDtmfInputs) {
     this.relayDtmfInputs = relayDtmfInputs;
+    return this;
+  }
+
+  public MultiPartyCall name(String name) {
+    this.name = name;
     return this;
   }
 }
