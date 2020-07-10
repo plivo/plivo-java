@@ -27,7 +27,6 @@ import com.plivo.api.models.multipartycall.MultiPartyCallParticipantAddResponse;
 import com.plivo.api.models.multipartycall.MultiPartyCallParticipantAdd;
 import com.plivo.api.models.multipartycall.MultiPartyCallParticipantUpdate;
 import com.plivo.api.models.multipartycall.MultiPartyCallParticipant;
-import com.plivo.api.models.multipartycall.MultiPartyCallRecordingPause;
 import com.plivo.api.models.multipartycall.MultiPartyCallRecordingStart;
 import com.plivo.api.models.node.*;
 import com.plivo.api.models.number.*;
@@ -589,7 +588,7 @@ public interface PlivoAPIService {
     Call<ResponseBody> mpcRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId);
 
     @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Pause/")
-    Call<BaseResponse> mpcPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Body MultiPartyCallRecordingPause pauseRecording);
+    Call<BaseResponse> mpcPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);
 
     @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Resume/")
     Call<BaseResponse> mpcResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);

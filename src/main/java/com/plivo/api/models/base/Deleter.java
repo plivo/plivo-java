@@ -1,7 +1,7 @@
 package com.plivo.api.models.base;
 
 import com.plivo.api.PlivoClient;
-import com.plivo.api.exceptions.InvalidRequestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import okhttp3.ResponseBody;
@@ -37,7 +37,7 @@ public abstract class Deleter<T extends BaseResource> extends BaseRequest<T> {
   /**
    * Actually delete the resource.
    */
-  public void delete() throws IOException, PlivoRestException {
+  public void delete() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<ResponseBody> response = obtainCall().execute();
 
@@ -51,5 +51,5 @@ public abstract class Deleter<T extends BaseResource> extends BaseRequest<T> {
   }
 
 
-  protected abstract Call<ResponseBody> obtainCall() throws InvalidRequestException;
+  protected abstract Call<ResponseBody> obtainCall() throws PlivoValidationException;
 }
