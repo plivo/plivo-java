@@ -38,7 +38,7 @@ import java.text.SimpleDateFormat;
 public class PlivoClient {
 
   private static SimpleModule simpleModule = new SimpleModule();
-  protected static String BASE_URL = "https://api.plivo.com/v1/";
+  protected static String BASE_URL = "https://api-qa.voice.plivodev.com/v1/";
   protected static String CALLINSIGHTS_BASE_URL = "https://stats.plivo.com/v1/";
   private static String version = "Unknown Version";
   private boolean testing = false;
