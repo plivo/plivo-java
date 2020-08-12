@@ -12,7 +12,19 @@ public class ConferenceMemberSpeakDeleter extends ConferenceMemberDeleterAction<
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService()
+    return client().getVoiceApiService()
+      .conferenceMemberSpeakDelete(client().getAuthId(), conferenceName, id);
+  }
+
+  @Override
+  protected Call<ResponseBody> obtainFallback1Call() {
+    return client().getVoiceFallback1Service()
+      .conferenceMemberSpeakDelete(client().getAuthId(), conferenceName, id);
+  }
+
+  @Override
+  protected Call<ResponseBody> obtainFallback2Call() {
+    return client().getVoiceFallback2Service()
       .conferenceMemberSpeakDelete(client().getAuthId(), conferenceName, id);
   }
 

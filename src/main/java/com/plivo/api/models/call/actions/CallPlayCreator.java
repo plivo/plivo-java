@@ -2,13 +2,13 @@ package com.plivo.api.models.call.actions;
 
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
-import com.plivo.api.models.base.Creator;
+import com.plivo.api.models.base.VoiceCreator;
 import com.plivo.api.models.call.LegSpecifier;
 import java.io.IOException;
 import java.util.List;
 import retrofit2.Call;
 
-public class CallPlayCreator extends Creator<CallPlayCreateResponse> {
+public class CallPlayCreator extends VoiceCreator<CallPlayCreateResponse> {
 
   private List<String> urls;
   private Long length;
@@ -70,7 +70,17 @@ public class CallPlayCreator extends Creator<CallPlayCreateResponse> {
 
   @Override
   protected Call<CallPlayCreateResponse> obtainCall() {
-    return client().getApiService().callPlayCreate(client().getAuthId(), id, this);
+    return client().getVoiceApiService().callPlayCreate(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<CallPlayCreateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().callPlayCreate(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<CallPlayCreateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().callPlayCreate(client().getAuthId(), id, this);
   }
 
   public CallPlayCreateResponse play() throws IOException, PlivoRestException {

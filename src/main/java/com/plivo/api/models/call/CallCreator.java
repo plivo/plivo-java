@@ -1,15 +1,14 @@
 package com.plivo.api.models.call;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.plivo.api.models.base.Creator;
+import com.plivo.api.models.base.VoiceCreator;
 import com.plivo.api.serializers.MapToCommaListSerializer;
 import com.plivo.api.util.Utils;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
 
-public class CallCreator extends Creator<CallCreateResponse> {
-
+public class CallCreator extends VoiceCreator<CallCreateResponse> {
   private String from;
   private List<String> to;
   private String answerUrl;
@@ -361,6 +360,16 @@ public class CallCreator extends Creator<CallCreateResponse> {
 
   @Override
   protected Call<CallCreateResponse> obtainCall() {
-    return client().getApiService().callCreate(client().getAuthId(), this);
+    return client().getVoiceApiService().callCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<CallCreateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().callCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<CallCreateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().callCreate(client().getAuthId(), this);
   }
 }
