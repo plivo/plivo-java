@@ -132,17 +132,20 @@ public class ApplicationUpdater extends VoiceUpdater<ApplicationUpdateResponse> 
 
 
   @Override
-  protected Call<ApplicationUpdateResponse> obtainCall() {
-    return client().getVoiceApiService().applicationUpdate(client().getAuthId(), id, this);
+  protected Call<ApplicationUpdateResponse> obtainCall(String identifier) {
+    this.id = null;
+    return client().getVoiceApiService().applicationUpdate(client().getAuthId(), identifier, this);
   }
 
   @Override
-  protected Call<ApplicationUpdateResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().applicationUpdate(client().getAuthId(), id, this);
+  protected Call<ApplicationUpdateResponse> obtainFallback1Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback1Service().applicationUpdate(client().getAuthId(), identifier, this);
   }
 
   @Override
-  protected Call<ApplicationUpdateResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().applicationUpdate(client().getAuthId(), id, this);
+  protected Call<ApplicationUpdateResponse> obtainFallback2Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback2Service().applicationUpdate(client().getAuthId(), identifier, this);
   }
 }

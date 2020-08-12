@@ -90,18 +90,21 @@ public class CallUpdater extends VoiceUpdater<CallUpdateResponse> {
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainCall() {
-    return client().getVoiceApiService().callUpdate(client().getAuthId(), id, this);
+  protected Call<CallUpdateResponse> obtainCall(String identifier) {
+    this.id = null;
+    return client().getVoiceApiService().callUpdate(client().getAuthId(), identifier, this);
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().callUpdate(client().getAuthId(), id, this);
+  protected Call<CallUpdateResponse> obtainFallback1Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback1Service().callUpdate(client().getAuthId(), identifier, this);
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), id, this);
+  protected Call<CallUpdateResponse> obtainFallback2Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), identifier, this);
   }
 
   public CallUpdateResponse transfer() throws IOException, PlivoRestException {

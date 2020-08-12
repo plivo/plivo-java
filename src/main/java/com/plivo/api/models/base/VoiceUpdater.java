@@ -26,12 +26,13 @@ public abstract class VoiceUpdater<T extends BaseResponse> extends BaseRequest {
    */
   public T update() throws IOException, PlivoRestException {
     validate();
-    Response<T> response = obtainCall().execute();
+    String identifier = this.id;
+    Response<T> response = obtainCall(identifier).execute();
 
     if(response.code()>=500){
-      response = obtainFallback1Call().execute();
+      response = obtainFallback1Call(identifier).execute();
       if(response.code()>=500){
-        response = obtainFallback2Call().execute();
+        response = obtainFallback2Call(identifier).execute();
       }
     }
 
@@ -47,7 +48,7 @@ public abstract class VoiceUpdater<T extends BaseResponse> extends BaseRequest {
   }
 
 
-  protected abstract Call<T> obtainCall();
-  protected abstract Call<T> obtainFallback1Call();
-  protected abstract Call<T> obtainFallback2Call();
+  protected abstract Call<T> obtainCall(String identifier);
+  protected abstract Call<T> obtainFallback1Call(String identifier);
+  protected abstract Call<T> obtainFallback2Call(String identifier);
 }
