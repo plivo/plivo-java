@@ -1,5 +1,8 @@
 # Change Log
- [4.7.3](https://github.com/plivo/plivo-java/tree/v4.7.3) (2020-08-03)
+## [4.8.0](https://github.com/plivo/plivo-java/tree/v4.8.0) (2020-08-12)
+- Add retries to multiple regions for voice requests.
+
+## [4.7.3](https://github.com/plivo/plivo-java/tree/v4.7.3) (2020-08-03)
 - Fix Media upload response.
 
 ## [4.7.2](https://github.com/plivo/plivo-java/tree/v4.7.2) (2020-06-10)
