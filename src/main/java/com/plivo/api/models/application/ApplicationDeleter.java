@@ -1,10 +1,10 @@
 package com.plivo.api.models.application;
 
-import com.plivo.api.models.base.Deleter;
+import com.plivo.api.models.base.VoiceDeleter;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class ApplicationDeleter extends Deleter<Application> {
+public class ApplicationDeleter extends VoiceDeleter<Application> {
 
   private Boolean cascade;
   private String newEndpointApplication;
@@ -46,6 +46,16 @@ public class ApplicationDeleter extends Deleter<Application> {
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getApiService().applicationDelete(client().getAuthId(), id, this);
+    return client().getVoiceApiService().applicationDelete(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<ResponseBody> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().applicationDelete(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<ResponseBody> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().applicationDelete(client().getAuthId(), id, this);
   }
 }

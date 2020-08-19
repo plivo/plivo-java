@@ -14,7 +14,19 @@ public class ConferenceMemberMuteCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getApiService()
+    return client().getVoiceApiService()
+      .conferenceMemberMuteCreate(client().getAuthId(), conferenceName, memberId);
+  }
+
+  @Override
+  protected Call<ConferenceMemberActionResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service()
+      .conferenceMemberMuteCreate(client().getAuthId(), conferenceName, memberId);
+  }
+
+  @Override
+  protected Call<ConferenceMemberActionResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service()
       .conferenceMemberMuteCreate(client().getAuthId(), conferenceName, memberId);
   }
 

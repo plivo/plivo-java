@@ -1,12 +1,12 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.exceptions.PlivoRestException;
-import com.plivo.api.models.base.Updater;
+import com.plivo.api.models.base.VoiceUpdater;
 import com.plivo.api.util.Utils;
 import java.io.IOException;
 import retrofit2.Call;
 
-public class CallUpdater extends Updater<CallUpdateResponse> {
+public class CallUpdater extends VoiceUpdater<CallUpdateResponse> {
 
   LegSpecifier legs;
   String alegUrl;
@@ -90,8 +90,21 @@ public class CallUpdater extends Updater<CallUpdateResponse> {
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainCall() {
-    return client().getApiService().callUpdate(client().getAuthId(), id, this);
+  protected Call<CallUpdateResponse> obtainCall(String identifier) {
+    this.id = null;
+    return client().getVoiceApiService().callUpdate(client().getAuthId(), identifier, this);
+  }
+
+  @Override
+  protected Call<CallUpdateResponse> obtainFallback1Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback1Service().callUpdate(client().getAuthId(), identifier, this);
+  }
+
+  @Override
+  protected Call<CallUpdateResponse> obtainFallback2Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), identifier, this);
   }
 
   public CallUpdateResponse transfer() throws IOException, PlivoRestException {

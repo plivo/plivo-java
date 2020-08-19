@@ -25,6 +25,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
+import okhttp3.ConnectionPool;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -34,11 +35,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ProtocolException;
 import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
 
 public class PlivoClient {
 
   private static SimpleModule simpleModule = new SimpleModule();
   protected static String BASE_URL = "https://api.plivo.com/v1/";
+  protected static String VOICE_BASE_URL = "https://voice.plivo.com/v1/";
+  protected static String VOICE_FALLBACK1_URL = "https://voice-usw1.plivo.com/v1/";
+  protected static String VOICE_FALLBACK2_URL = "https://voice-use1.plivo.com/v1/";
   protected static String CALLINSIGHTS_BASE_URL = "https://stats.plivo.com/v1/";
   private static String version = "Unknown Version";
   private boolean testing = false;
@@ -98,8 +103,14 @@ public class PlivoClient {
   private final String authToken;
   private OkHttpClient httpClient;
   private Retrofit retrofit;
+  private Retrofit voiceRetrofit;
+  private Retrofit voiceFallback1Retrofit;
+  private Retrofit voiceFallback2Retrofit;
   private Retrofit callInsightsRetrofit;
   private PlivoAPIService apiService = null;
+  private PlivoAPIService voiceApiService = null;
+  private PlivoAPIService voiceFallback1Service = null;
+  private PlivoAPIService voiceFallback2Service = null;
   private CallInsightsAPIService callInsightsAPIService = null;
 
   /**
@@ -143,6 +154,7 @@ public class PlivoClient {
           ))
           .build()
       ))
+      .connectionPool(new ConnectionPool(5, 5, TimeUnit.MINUTES))
       .addNetworkInterceptor(chain -> {
         Response response;
         try {
@@ -166,6 +178,30 @@ public class PlivoClient {
       .build();
 
     this.apiService = retrofit.create(PlivoAPIService.class);
+
+    voiceRetrofit = new Retrofit.Builder()
+      .client(httpClient)
+      .baseUrl((VOICE_BASE_URL))
+      .addConverterFactory(JacksonConverterFactory.create(objectMapper))
+      .build();
+
+    this.voiceApiService = voiceRetrofit.create(PlivoAPIService.class);
+
+    voiceFallback1Retrofit = new Retrofit.Builder()
+      .client(httpClient)
+      .baseUrl((VOICE_FALLBACK1_URL))
+      .addConverterFactory(JacksonConverterFactory.create(objectMapper))
+      .build();
+
+    this.voiceFallback1Service = voiceFallback1Retrofit.create(PlivoAPIService.class);
+
+    voiceFallback2Retrofit = new Retrofit.Builder()
+      .client(httpClient)
+      .baseUrl((VOICE_FALLBACK2_URL))
+      .addConverterFactory(JacksonConverterFactory.create(objectMapper))
+      .build();
+
+    this.voiceFallback2Service = voiceFallback2Retrofit.create(PlivoAPIService.class);
 
     callInsightsRetrofit = new Retrofit.Builder()
       .client(httpClient)
@@ -221,6 +257,18 @@ public class PlivoClient {
 
   public PlivoAPIService getApiService() {
     return apiService;
+  }
+
+  public PlivoAPIService getVoiceApiService(){
+    return voiceApiService;
+  }
+
+  public PlivoAPIService getVoiceFallback1Service(){
+    return voiceFallback1Service;
+  }
+
+  public PlivoAPIService getVoiceFallback2Service(){
+    return voiceFallback2Service;
   }
 
   public CallInsightsAPIService getCallInsightsAPIService() {
