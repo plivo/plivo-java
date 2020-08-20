@@ -42,19 +42,7 @@ public class ConferenceMemberSpeakCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getVoiceApiService()
-      .conferenceMemberSpeakCreate(client().getAuthId(), conferenceName, memberId, this);
-  }
-
-  @Override
-  protected Call<ConferenceMemberActionResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service()
-      .conferenceMemberSpeakCreate(client().getAuthId(), conferenceName, memberId, this);
-  }
-
-  @Override
-  protected Call<ConferenceMemberActionResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service()
+    return client().getApiService()
       .conferenceMemberSpeakCreate(client().getAuthId(), conferenceName, memberId, this);
   }
 

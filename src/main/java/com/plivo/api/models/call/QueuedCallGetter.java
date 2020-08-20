@@ -1,9 +1,9 @@
 package com.plivo.api.models.call;
 
-import com.plivo.api.models.base.VoiceGetter;
+import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
-public class QueuedCallGetter extends VoiceGetter<QueuedCall> {
+public class QueuedCallGetter extends Getter<QueuedCall> {
 
   public QueuedCallGetter(String id) {
     super(id);
@@ -11,16 +11,6 @@ public class QueuedCallGetter extends VoiceGetter<QueuedCall> {
 
   @Override
   protected Call<QueuedCall> obtainCall() {
-    return client().getVoiceApiService().queuedCallGet(client().getAuthId(), id);
-  }
-
-  @Override
-  protected Call<QueuedCall> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().queuedCallGet(client().getAuthId(), id);
-  }
-
-  @Override
-  protected Call<QueuedCall> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().queuedCallGet(client().getAuthId(), id);
+    return client().getApiService().queuedCallGet(client().getAuthId(), id);
   }
 }

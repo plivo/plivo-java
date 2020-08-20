@@ -1,9 +1,9 @@
 package com.plivo.api.models.conference;
 
 import com.plivo.api.models.base.BaseResponse;
-import com.plivo.api.models.base.VoiceCreator;
+import com.plivo.api.models.base.Creator;
 
-public abstract class ConferenceMemberCreatorAction<T extends BaseResponse> extends VoiceCreator<T> {
+public abstract class ConferenceMemberCreatorAction<T extends BaseResponse> extends Creator<T> {
 
   protected final String conferenceName;
   protected final String memberId;

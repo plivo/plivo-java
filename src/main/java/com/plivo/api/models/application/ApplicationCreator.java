@@ -1,10 +1,10 @@
 package com.plivo.api.models.application;
 
-import com.plivo.api.models.base.VoiceCreator;
+import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> {
+public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
 
   private String appName;
   private String answerUrl;
@@ -150,16 +150,6 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
 
   @Override
   protected Call<ApplicationCreateResponse> obtainCall() {
-    return client().getVoiceApiService().applicationCreate(client().getAuthId(), this);
-  }
-
-  @Override
-  protected Call<ApplicationCreateResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().applicationCreate(client().getAuthId(), this);
-  }
-
-  @Override
-  protected Call<ApplicationCreateResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().applicationCreate(client().getAuthId(), this);
+    return client().getApiService().applicationCreate(client().getAuthId(), this);
   }
 }

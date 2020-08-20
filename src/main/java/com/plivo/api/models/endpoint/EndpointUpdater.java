@@ -1,9 +1,9 @@
 package com.plivo.api.models.endpoint;
 
-import com.plivo.api.models.base.VoiceUpdater;
+import com.plivo.api.models.base.Updater;
 import retrofit2.Call;
 
-public class EndpointUpdater extends VoiceUpdater<EndpointUpdateResponse> {
+public class EndpointUpdater extends Updater<EndpointUpdateResponse> {
 
   private String password;
   private String alias;
@@ -41,20 +41,7 @@ public class EndpointUpdater extends VoiceUpdater<EndpointUpdateResponse> {
   }
 
   @Override
-  protected Call<EndpointUpdateResponse> obtainCall(String identifier) {
-    this.id = null;
-    return client().getVoiceApiService().endpointUpdate(client().getAuthId(), identifier, this);
-  }
-
-  @Override
-  protected Call<EndpointUpdateResponse> obtainFallback1Call(String identifier) {
-    this.id = null;
-    return client().getVoiceFallback1Service().endpointUpdate(client().getAuthId(), identifier, this);
-  }
-
-  @Override
-  protected Call<EndpointUpdateResponse> obtainFallback2Call(String identifier) {
-    this.id = null;
-    return client().getVoiceFallback2Service().endpointUpdate(client().getAuthId(), identifier, this);
+  protected Call<EndpointUpdateResponse> obtainCall() {
+    return client().getApiService().endpointUpdate(client().getAuthId(), id, this);
   }
 }

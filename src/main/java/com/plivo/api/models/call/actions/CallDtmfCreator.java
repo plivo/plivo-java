@@ -2,12 +2,12 @@ package com.plivo.api.models.call.actions;
 
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
-import com.plivo.api.models.base.VoiceCreator;
+import com.plivo.api.models.base.Creator;
 import com.plivo.api.models.call.LegSpecifier;
 import java.io.IOException;
 import retrofit2.Call;
 
-public class CallDtmfCreator extends VoiceCreator<CallDtmfCreateResponse> {
+public class CallDtmfCreator extends Creator<CallDtmfCreateResponse> {
 
   private final String digits;
   private final String id;
@@ -34,17 +34,7 @@ public class CallDtmfCreator extends VoiceCreator<CallDtmfCreateResponse> {
 
   @Override
   protected Call<CallDtmfCreateResponse> obtainCall() {
-    return client().getVoiceApiService().callDtmfCreate(client().getAuthId(), id, this);
-  }
-
-  @Override
-  protected Call<CallDtmfCreateResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().callDtmfCreate(client().getAuthId(), id, this);
-  }
-
-  @Override
-  protected Call<CallDtmfCreateResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().callDtmfCreate(client().getAuthId(), id, this);
+    return client().getApiService().callDtmfCreate(client().getAuthId(), id, this);
   }
 
   public CallDtmfCreateResponse sendDigits() throws IOException, PlivoRestException {

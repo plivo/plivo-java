@@ -1,10 +1,10 @@
 package com.plivo.api.models.conference;
 
-import com.plivo.api.models.base.VoiceDeleter;
+import com.plivo.api.models.base.Deleter;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class ConferenceAllDeleter extends VoiceDeleter<Conference> {
+public class ConferenceAllDeleter extends Deleter<Conference> {
 
   public ConferenceAllDeleter() {
     super("");
@@ -12,16 +12,6 @@ public class ConferenceAllDeleter extends VoiceDeleter<Conference> {
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getVoiceApiService().conferenceDeleteAll(client().getAuthId());
-  }
-
-  @Override
-  protected Call<ResponseBody> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().conferenceDeleteAll(client().getAuthId());
-  }
-
-  @Override
-  protected Call<ResponseBody> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().conferenceDeleteAll(client().getAuthId());
+    return client().getApiService().conferenceDeleteAll(client().getAuthId());
   }
 }
