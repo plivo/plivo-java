@@ -12,19 +12,7 @@ public class ConferenceMemberDeafDeleter extends ConferenceMemberDeleterAction<C
 
   @Override
   protected Call<ResponseBody> obtainCall() {
-    return client().getVoiceApiService()
-      .conferenceMemberDeafDelete(client().getAuthId(), conferenceName, id);
-  }
-
-  @Override
-  protected Call<ResponseBody> obtainFallback1Call() {
-    return client().getVoiceFallback1Service()
-      .conferenceMemberDeafDelete(client().getAuthId(), conferenceName, id);
-  }
-
-  @Override
-  protected Call<ResponseBody> obtainFallback2Call() {
-    return client().getVoiceFallback2Service()
+    return client().getApiService()
       .conferenceMemberDeafDelete(client().getAuthId(), conferenceName, id);
   }
 

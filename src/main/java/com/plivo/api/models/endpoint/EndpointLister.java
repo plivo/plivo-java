@@ -1,23 +1,13 @@
 package com.plivo.api.models.endpoint;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.VoiceLister;
+import com.plivo.api.models.base.Lister;
 import retrofit2.Call;
 
-public class EndpointLister extends VoiceLister<Endpoint> {
+public class EndpointLister extends Lister<Endpoint> {
 
   @Override
   protected Call<ListResponse<Endpoint>> obtainCall() {
-    return client().getVoiceApiService().endpointList(client().getAuthId(), toMap());
-  }
-
-  @Override
-  protected Call<ListResponse<Endpoint>> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().endpointList(client().getAuthId(), toMap());
-  }
-
-  @Override
-  protected Call<ListResponse<Endpoint>> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().endpointList(client().getAuthId(), toMap());
+    return client().getApiService().endpointList(client().getAuthId(), toMap());
   }
 }

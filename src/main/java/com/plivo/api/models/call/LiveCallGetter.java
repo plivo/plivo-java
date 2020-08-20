@@ -1,9 +1,9 @@
 package com.plivo.api.models.call;
 
-import com.plivo.api.models.base.VoiceGetter;
+import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
-public class LiveCallGetter extends VoiceGetter<LiveCall> {
+public class LiveCallGetter extends Getter<LiveCall> {
 
   public LiveCallGetter(String id) {
     super(id);
@@ -11,16 +11,6 @@ public class LiveCallGetter extends VoiceGetter<LiveCall> {
 
   @Override
   protected Call<LiveCall> obtainCall() {
-    return client().getVoiceApiService().liveCallGet(client().getAuthId(), id);
-  }
-
-  @Override
-  protected Call<LiveCall> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().liveCallGet(client().getAuthId(), id);
-  }
-
-  @Override
-  protected Call<LiveCall> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().liveCallGet(client().getAuthId(), id);
+    return client().getApiService().liveCallGet(client().getAuthId(), id);
   }
 }

@@ -14,19 +14,7 @@ public class ConferenceMemberKickCreator extends
 
   @Override
   protected Call<ConferenceMemberActionResponse> obtainCall() {
-    return client().getVoiceApiService()
-      .conferenceMemberKickCreate(client().getAuthId(), conferenceName, memberId);
-  }
-
-  @Override
-  protected Call<ConferenceMemberActionResponse> obtainFallback1Call() {
-    return client().getVoiceFallback1Service()
-      .conferenceMemberKickCreate(client().getAuthId(), conferenceName, memberId);
-  }
-
-  @Override
-  protected Call<ConferenceMemberActionResponse> obtainFallback2Call() {
-    return client().getVoiceFallback2Service()
+    return client().getApiService()
       .conferenceMemberKickCreate(client().getAuthId(), conferenceName, memberId);
   }
 
