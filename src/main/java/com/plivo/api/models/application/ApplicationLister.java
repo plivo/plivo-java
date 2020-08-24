@@ -1,10 +1,10 @@
 package com.plivo.api.models.application;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.VoiceLister;
 import retrofit2.Call;
 
-public class ApplicationLister extends Lister<Application> {
+public class ApplicationLister extends VoiceLister<Application> {
 
   private String subaccount;
 
@@ -20,6 +20,16 @@ public class ApplicationLister extends Lister<Application> {
 
   @Override
   protected Call<ListResponse<Application>> obtainCall() {
-    return client().getApiService().applicationList(client().getAuthId(), toMap());
+    return client().getVoiceApiService().applicationList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<Application>> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().applicationList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<Application>> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().applicationList(client().getAuthId(), toMap());
   }
 }

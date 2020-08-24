@@ -1,12 +1,12 @@
 package com.plivo.api.models.recording;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.VoiceLister;
 import com.plivo.api.util.PropertyFilter;
 import java.util.Date;
 import retrofit2.Call;
 
-public class RecordingLister extends Lister<Recording> {
+public class RecordingLister extends VoiceLister<Recording> {
 
   private String subaccount;
   private String callUuid;
@@ -51,6 +51,16 @@ public class RecordingLister extends Lister<Recording> {
 
   @Override
   protected Call<ListResponse<Recording>> obtainCall() {
-    return client().getApiService().recordingList(client().getAuthId(), toMap());
+    return client().getVoiceApiService().recordingList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<Recording>> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().recordingList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<Recording>> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().recordingList(client().getAuthId(), toMap());
   }
 }
