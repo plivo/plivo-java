@@ -14,6 +14,7 @@ public class PowerpackNumberLister extends Lister<Numbers> {
   private String country_iso;
   private String type;
   private String id;
+  private String service;
 
   PowerpackNumberLister(String id) {
     if (!Utils.allNotNull(id)) {
@@ -44,6 +45,11 @@ public class PowerpackNumberLister extends Lister<Numbers> {
 
   public PowerpackNumberLister offset(String offset) {
     this.offset = offset;
+    return this;
+  }
+
+  public PowerpackNumberLister service(String service) {
+    this.service = service;
     return this;
   }
 
