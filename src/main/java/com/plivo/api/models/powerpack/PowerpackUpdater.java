@@ -10,6 +10,7 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
   private String application_id;
   private Boolean sticky_sender;
   private Boolean local_connect;
+  private List<Object> number_priority = new ArrayList<>();
 
   public PowerpackUpdater(String id) {
     super(id);
@@ -35,6 +36,9 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
     return local_connect;
   }
 
+  public List<Object> getNumberPriority() {
+    return number_priority;
+  }
 
   public PowerpackUpdater name(final String name) {
     this.name = name;
@@ -58,6 +62,11 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
 
   public PowerpackUpdater application_type(final String application_type) {
     this.application_type = application_type;
+    return this;
+  }
+
+  public PowerpackUpdater number_priority(final List<Object> number_priority) {
+    this.number_priority = number_priority;
     return this;
   }
 

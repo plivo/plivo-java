@@ -11,6 +11,7 @@ public class Powerpack extends BaseResource {
   private Boolean local_connect;
   private String number_pool;
   private String uuid;
+  private List<Object> number_priority;
   public NumberPool numberpool;
 
   public static PowerpackCreator creator(String name) {
@@ -115,6 +116,10 @@ public class Powerpack extends BaseResource {
 
   public String getUuid() {
     return uuid;
+  }
+
+  public List<Object> getNumberPriority() {
+    return number_priority;
   }
 
   public String getNumberId() {
