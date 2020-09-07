@@ -7,6 +7,7 @@ public class PowerpackAddNumber extends Getter<Numbers> {
 
   private String number;
   private String uuid;
+  private String service;
 
   public PowerpackAddNumber(String uuid) {
     super(uuid);
@@ -18,6 +19,11 @@ public class PowerpackAddNumber extends Getter<Numbers> {
 
   public PowerpackAddNumber number(String number) {
     this.number = number;
+    return this;
+  }
+
+  public PowerpackAddNumber service(String service) {
+    this.service = service;
     return this;
   }
 
