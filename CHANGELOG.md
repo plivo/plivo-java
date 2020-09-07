@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.8.1](https://github.com/plivo/plivo-java/tree/v4.7.4) (2020-09-04)
+## [4.9.0](https://github.com/plivo/plivo-java/tree/v4.7.4) (2020-09-04)
 - Powerpack for mms.
 
 ## [4.8.0](https://github.com/plivo/plivo-java/tree/v4.8.0) (2020-08-24)
