@@ -28,7 +28,7 @@ public class BaseTest {
 
   protected String expectResponse(String fixtureName, int statusCode) {
     MockResponse mockResponse = new MockResponse()
-        .setResponseCode(statusCode);
+      .setResponseCode(statusCode);
 
     String body = loadFixture(fixtureName);
 
@@ -37,7 +37,7 @@ public class BaseTest {
     }
 
     server.enqueue(
-        mockResponse
+      mockResponse
     );
 
     return body;
@@ -59,7 +59,7 @@ public class BaseTest {
     for (String pair : pairs) {
       int idx = pair.indexOf("=");
       if (pair.substring(idx+1).length() > 0){
-        queryPairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), 
+        queryPairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"),
           URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
       }
     }
@@ -67,7 +67,7 @@ public class BaseTest {
   }
 
   protected void assertRequest(RecordedRequest request, String method, String format, Map<String,
-      String> params, Object... objects) throws UnsupportedEncodingException {
+    String> params, Object... objects) throws UnsupportedEncodingException {
     assertEquals(method, request.getMethod());
     URI uri = URI.create(request.getPath());
     assertEquals(String.format(format, objects), uri.getPath());
@@ -75,21 +75,21 @@ public class BaseTest {
   }
 
   protected void assertRequest(String method, String format, Object... objects)
-      throws InterruptedException, UnsupportedEncodingException {
+    throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format,
-        new LinkedHashMap<>(), objects);
+      new LinkedHashMap<>(), objects);
   }
 
   protected void assertApiRequest(String method, String apiPrefix, String format)
-      throws InterruptedException, UnsupportedEncodingException {
+    throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, apiPrefix + format,
-        new LinkedHashMap<>());
+      new LinkedHashMap<>());
   }
 
   protected void assertRequest(String method, String format, Map<String, String> params,
-      Object... objects) throws InterruptedException, UnsupportedEncodingException {
+                               Object... objects) throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format,
-        params, objects);
+      params, objects);
   }
 
   @Before
@@ -98,6 +98,9 @@ public class BaseTest {
     server.start();
 
     PlivoClient.BASE_URL = server.url("/").toString();
+    PlivoClient.VOICE_BASE_URL = server.url("/").toString();
+    PlivoClient.VOICE_FALLBACK1_URL = server.url("/").toString();
+    PlivoClient.VOICE_FALLBACK2_URL = server.url("/").toString();
     PhloRestClient.BASE_URL = server.url("/").toString();
     Plivo.init(authId, authToken);
     Plivo.getClient().setTesting(true);

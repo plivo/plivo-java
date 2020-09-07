@@ -1,6 +1,10 @@
 # Change Log
- [4.7.4](https://github.com/plivo/plivo-java/tree/v4.7.4) (2020-09-04)
+
+## [4.8.1](https://github.com/plivo/plivo-java/tree/v4.7.4) (2020-09-04)
 - Powerpack for mms.
+
+## [4.8.0](https://github.com/plivo/plivo-java/tree/v4.8.0) (2020-08-24)
+- Add retries to multiple regions for voice requests.
 
 ## [4.7.3](https://github.com/plivo/plivo-java/tree/v4.7.3) (2020-08-03)
 - Fix Media upload response.

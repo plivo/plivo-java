@@ -3,11 +3,11 @@ package com.plivo.api.models.conference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
-import com.plivo.api.models.base.Creator;
+import com.plivo.api.models.base.VoiceCreator;
 import java.io.IOException;
 import retrofit2.Call;
 
-public class ConferenceRecordCreator extends Creator<ConferenceRecordCreateResponse> {
+public class ConferenceRecordCreator extends VoiceCreator<ConferenceRecordCreateResponse> {
 
   @JsonIgnore
   private final String conferenceName;
@@ -78,7 +78,17 @@ public class ConferenceRecordCreator extends Creator<ConferenceRecordCreateRespo
 
   @Override
   protected Call<ConferenceRecordCreateResponse> obtainCall() {
-    return client().getApiService().conferenceRecordCreate(client().getAuthId(), conferenceName);
+    return client().getVoiceApiService().conferenceRecordCreate(client().getAuthId(), conferenceName);
+  }
+
+  @Override
+  protected Call<ConferenceRecordCreateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().conferenceRecordCreate(client().getAuthId(), conferenceName);
+  }
+
+  @Override
+  protected Call<ConferenceRecordCreateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().conferenceRecordCreate(client().getAuthId(), conferenceName);
   }
 
   public ConferenceRecordCreateResponse record() throws IOException, PlivoRestException {
