@@ -44,7 +44,10 @@ public class Number extends BaseResource{
             return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+           e.printStackTrace();
         }
+
         return null;
     }
 
