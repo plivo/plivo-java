@@ -27,30 +27,31 @@ public class LookupTest extends BaseTest {
     expectResponse(fixtureName, 200);
 
     String numberInput = "+14154305555";
-    String infoInput = "service_provider";
+    String typeInput = "carrier";
 
     com.plivo.api.models.lookup.Number number =
-        com.plivo.api.models.lookup.Number.getter(numberInput, infoInput)
+        com.plivo.api.models.lookup.Number.getter(numberInput, typeInput)
         .get();
 
     assertBaseRequest("GET",
-        "/Lookup/Number/%s?info=%s",
-        Collections.singletonMap("info", infoInput),
-        numberInput, infoInput);
+        "/Lookup/Number/%s?type=%s",
+        Collections.singletonMap("type", typeInput),
+        numberInput, typeInput);
 
     assertEquals(number.getId(), number.getApiId());
+    assertEquals("/v1/Lookup/Number/+14154305555?type=carrier", number.getResourceURI());
     assertEquals("United States", number.getCountry().getName());
     assertEquals("US", number.getCountry().getCodeISO2());
     assertEquals("USA", number.getCountry().getCodeISO3());
-    assertEquals("+14154305555", number.getNumberFormat().getE164());
-    assertEquals("+1 415-430-5555", number.getNumberFormat().getInternational());
-    assertEquals("(415) 430-5555", number.getNumberFormat().getNational());
-    assertEquals("tel:+1-415-430-5555", number.getNumberFormat().getRFC3966());
-    assertEquals("Cingular Wireless", number.getServiceProvider().getName());
-    assertEquals("mobile", number.getServiceProvider().getType());
-    assertEquals("310", number.getServiceProvider().getMobileCountryCode());
-    assertEquals("160", number.getServiceProvider().getMobileNetworkCode());
-    assertEquals(true, number.getServiceProvider().isPorted());
+    assertEquals("+14154305555", number.getFormat().getE164());
+    assertEquals("+1 415-430-5555", number.getFormat().getInternational());
+    assertEquals("(415) 430-5555", number.getFormat().getNational());
+    assertEquals("tel:+1-415-430-5555", number.getFormat().getRFC3966());
+    assertEquals("Cingular Wireless", number.getCarrier().getName());
+    assertEquals("mobile", number.getCarrier().getType());
+    assertEquals("310", number.getCarrier().getMobileCountryCode());
+    assertEquals("150", number.getCarrier().getMobileNetworkCode());
+    assertEquals(true, number.getCarrier().isPorted());
   }
 
   @Test
@@ -59,31 +60,33 @@ public class LookupTest extends BaseTest {
     expectResponse(fixtureName, 200);
 
     String numberInput = "+14154305555";
-    String infoInput = "service_provider";
+    String typeInput = "carrier";
 
     com.plivo.api.models.lookup.Number number =
-        com.plivo.api.models.lookup.Number.getter(numberInput, infoInput)
+        com.plivo.api.models.lookup.Number.getter(numberInput, typeInput)
         .client(client)
         .get();
 
     assertBaseRequest("GET",
-        "/Lookup/Number/%s?info=%s",
-        Collections.singletonMap("info", infoInput),
-        numberInput, infoInput);
+        "/Lookup/Number/%s?type=%s",
+        Collections.singletonMap("type", typeInput),
+        numberInput, typeInput);
 
     assertEquals(number.getId(), number.getApiId());
+    assertEquals("/v1/Lookup/Number/+14154305555?type=carrier", number.getResourceURI());
     assertEquals("United States", number.getCountry().getName());
     assertEquals("US", number.getCountry().getCodeISO2());
     assertEquals("USA", number.getCountry().getCodeISO3());
-    assertEquals("+14154305555", number.getNumberFormat().getE164());
-    assertEquals("+1 415-430-5555", number.getNumberFormat().getInternational());
-    assertEquals("(415) 430-5555", number.getNumberFormat().getNational());
-    assertEquals("tel:+1-415-430-5555", number.getNumberFormat().getRFC3966());
-    assertEquals("Cingular Wireless", number.getServiceProvider().getName());
-    assertEquals("mobile", number.getServiceProvider().getType());
-    assertEquals("310", number.getServiceProvider().getMobileCountryCode());
-    assertEquals("160", number.getServiceProvider().getMobileNetworkCode());
-    assertEquals(true, number.getServiceProvider().isPorted());
+    assertEquals("+14154305555", number.getPhoneNumber());
+    assertEquals("+14154305555", number.getFormat().getE164());
+    assertEquals("+1 415-430-5555", number.getFormat().getInternational());
+    assertEquals("(415) 430-5555", number.getFormat().getNational());
+    assertEquals("tel:+1-415-430-5555", number.getFormat().getRFC3966());
+    assertEquals("Cingular Wireless", number.getCarrier().getName());
+    assertEquals("mobile", number.getCarrier().getType());
+    assertEquals("310", number.getCarrier().getMobileCountryCode());
+    assertEquals("150", number.getCarrier().getMobileNetworkCode());
+    assertEquals(true, number.getCarrier().isPorted());
   }
 
   @Test(expected = ResourceNotFoundException.class)
@@ -93,10 +96,10 @@ public class LookupTest extends BaseTest {
 
     // invalid phone number
     String numberInput = "+14154305555xxxxxxxxxxxxx";
-    String infoInput = "service_provider";
+    String typeInput = "carrier";
 
     com.plivo.api.models.lookup.Number number =
-        com.plivo.api.models.lookup.Number.getter(numberInput, infoInput)
+        com.plivo.api.models.lookup.Number.getter(numberInput, typeInput)
         .client(client)
         .get();
   }

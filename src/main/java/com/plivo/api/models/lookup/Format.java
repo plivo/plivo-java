@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 
-public class NumberFormat{
+public class Format{
     private String e164;
     private String international;
     private String national;

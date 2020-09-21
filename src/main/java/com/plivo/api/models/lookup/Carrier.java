@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 
-public class ServiceProvider{
+public class Carrier{
     private String mobileCountryCode;
     private String mobileNetworkCode;
     private String name;

@@ -498,5 +498,5 @@ public interface PlivoAPIService {
                         @Body RequestBody mediaUploads);
 
   @GET("Lookup/Number/{number}")
-  Call<com.plivo.api.models.lookup.Number> lookupGet(@Path("number") String number, @Query("info") String info);
+  Call<com.plivo.api.models.lookup.Number> lookupGet(@Path("number") String number, @Query("type") String type);
 }

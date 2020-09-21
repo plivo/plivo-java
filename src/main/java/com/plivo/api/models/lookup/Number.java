@@ -11,9 +11,11 @@ import com.plivo.api.models.base.BaseResource;
 
 public class Number extends BaseResource{
     private String apiId;
+    private String phoneNumber;
+    private String resourceURI;
     private Country country;
-    private NumberFormat numberFormat;
-    private ServiceProvider serviceProvider;
+    private Format format;
+    private Carrier carrier;
 
     private int statusCode;
 
@@ -23,19 +25,29 @@ public class Number extends BaseResource{
 	    return apiId;
     }
 
+    @JsonProperty("phone_number")
+    public String getPhoneNumber() {
+	    return phoneNumber;
+    }
+
     @JsonProperty("country")
     public Country getCountry() {
 	    return country;
     }
 
-    @JsonProperty("number_format")
-    public NumberFormat getNumberFormat() {
-	    return numberFormat;
+    @JsonProperty("format")
+    public Format getFormat() {
+	    return format;
     }
 
-    @JsonProperty("service_provider")
-    public ServiceProvider getServiceProvider() {
-	    return serviceProvider;
+    @JsonProperty("carrier")
+    public Carrier getCarrier() {
+	    return carrier;
+    }
+
+    @JsonProperty("resource_uri")
+    public String getResourceURI() {
+	    return resourceURI;
     }
 
     @Override
@@ -56,7 +68,7 @@ public class Number extends BaseResource{
 	    return apiId;
     }
 
-    public static Lookup getter(String number, String info) {
-        return new Lookup(number, info);
+    public static Lookup getter(String number, String type) {
+        return new Lookup(number, type);
     }
 }

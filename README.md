@@ -148,7 +148,7 @@ class Example {
   public static void main(String [] args) {
     Plivo.init("<insert your authentication ID here>", "<insert your authentication token here>");
     System.out.println(com.plivo.api.models.lookup.Number
-        .getter("+14154305555", "service_provider")
+        .getter("+14154305555", "carrier")
         .get());
   }
 }
