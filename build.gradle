@@ -131,60 +131,6 @@ task createPom << {
   }.writeTo("pom.xml")
 }
 
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      beforeDeployment {
-        MavenDeployment deployment -> signing.signPom(deployment)
-      }
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(
-          userName: mavenUserName,
-          password: mavenPassword
-        )
-      }
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(
-          userName: mavenUserName,
-          password: mavenPassword
-        )
-      }
-      pom.project {
-        name 'plivo-java'
-        packaging 'jar'
-        artifactId 'plivo-java'
-        description 'A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML'
-        url 'https://github.com/plivo/plivo-java/'
-        scm {
-          connection 'scm:git:git@github.com:plivo/plivo-java.git'
-          developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
-          url 'git@github.com:plivo/plivo-java.git'
-        }
-        licenses {
-          license {
-            name 'The MIT License'
-            url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
-          }
-        }
-        organization {
-          name 'Plivo'
-          url 'https://api-reference.plivo.com/latest/net/introduction/overview'
-        }
-        issueManagement {
-          system 'GitHub'
-          url 'https://github.com/plivo/plivo-java/issues'
-        }
-        developers {
-          developer {
-            name 'The Plivo SDKs Team'
-            email 'sdks@plivo.com'
-          }
-        }
-      }
-    }
-  }
-}
-
 artifacts {
   archives javadocJar, sourceJar
 }
