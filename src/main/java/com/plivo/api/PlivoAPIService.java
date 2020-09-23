@@ -8,7 +8,7 @@ import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
 import com.plivo.api.models.conference.*;
 import com.plivo.api.models.endpoint.*;
-import com.plivo.api.models.enduser.EndUser;
+import com.plivo.api.models.enduser.*;
 import com.plivo.api.models.identity.*;
 import com.plivo.api.models.media.Media;
 import com.plivo.api.models.media.MediaResponse;
@@ -450,8 +450,28 @@ public interface PlivoAPIService {
                                     @Body RequestBody mediaUploads);
 
 
-    // Add APIs over here
+    // Enduser
+    // Get
     @GET("Account/{authId}/EndUser/{id}/")
     Call<EndUser> endUserGet(@Path("authId") String authId, @Path("id") String id);
+
+    // Create
+    @POST("Account/{authId}/EndUser/")
+    Call<EndUserCreateResponse> endUserCreate(@Path("authId") String authId,
+                                              @Body EndUserCreator endUserCreator);
+
+    // Update
+    @POST("Account/{authId}/EndUser/{id}/")
+    Call<EndUserUpdateResponse> endUserUpdate(@Path("authId") String authId, @Path("id") String id,
+                                              @Body EndUserUpdater endUserUpdater);
+
+    // List all end user
+    @GET("Account/{authId}/EndUser/")
+    Call<ListResponse<EndUser>> endUserList(@Path("authId") String authId,
+                                            @QueryMap Map<String, Object> addressListRequest);
+
+    @DELETE("Account/{authId}/EndUser/{id}/")
+    Call<ResponseBody> endUserDelete(@Path("authId") String authId, @Path("id") String endUserId);
+
 }
 

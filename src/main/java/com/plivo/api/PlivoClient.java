@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class PlivoClient {
 
     private static SimpleModule simpleModule = new SimpleModule();
-    protected static String BASE_URL = "https://api.numbers.plivodev.com/";
+    protected static String BASE_URL = "https://api.plivo.com/v1/";
     protected static String VOICE_BASE_URL = "https://voice.plivo.com/v1/";
     protected static String VOICE_FALLBACK1_URL = "https://voice-usw1.plivo.com/v1/";
     protected static String VOICE_FALLBACK2_URL = "https://voice-use1.plivo.com/v1/";
