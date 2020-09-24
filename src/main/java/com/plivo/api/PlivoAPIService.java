@@ -6,6 +6,7 @@ import com.plivo.api.models.application.*;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
+import com.plivo.api.models.complianceapplication.*;
 import com.plivo.api.models.compliancedocumenttype.*;
 import com.plivo.api.models.compliancerequirement.*;
 import com.plivo.api.models.conference.*;
@@ -495,6 +496,36 @@ public interface PlivoAPIService {
     @GET("Account/{authId}/ComplianceRequirement/")
     Call<ComplianceRequirement> complianceRequirementList(@Path("authId") String authId,
                                                           @QueryMap Map<String, Object> complianceDocumentListRequest);
+
+
+    // Compliance Application
+    // Get
+    @GET("Account/{authId}/ComplianceApplication/{id}/")
+    Call<ComplianceApplication> complianceApplicationGet(@Path("authId") String authId, @Path("id") String id);
+
+    // Create
+    @POST("Account/{authId}/ComplianceApplication/")
+    Call<ComplianceApplicationCreateResponse> complianceApplicationCreate(@Path("authId") String authId,
+                                                                          @Body ComplianceApplicationCreator complianceApplicationCreator);
+
+    // Update
+    @POST("Account/{authId}/ComplianceApplication/{id}/")
+    Call<ComplianceApplicationUpdateResponse> complianceApplicationUpdate(@Path("authId") String authId, @Path("id") String id,
+                                                                          @Body ComplianceApplicationUpdater complianceApplicationUpdater);
+
+    // List
+    @GET("Account/{authId}/ComplianceApplication/")
+    Call<ListResponse<ComplianceApplication>> complianceApplicationList(@Path("authId") String authId,
+                                                                        @QueryMap Map<String, Object> complianceApplicationLister);
+
+
+    // Delete
+    @DELETE("Account/{authId}/ComplianceApplication/{id}/")
+    Call<ResponseBody> complianceApplicationDelete(@Path("authId") String authId, @Path("id") String complianceApplicationId);
+
+    // Submit
+    @POST("Account/{authId}/ComplianceApplication/{id}/Submit")
+    Call<ComplianceApplication> complianceApplicationSubmit(@Path("authId") String authId, @Path("id") String id);
 
 }
 
