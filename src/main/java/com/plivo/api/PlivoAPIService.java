@@ -6,6 +6,8 @@ import com.plivo.api.models.application.*;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
+import com.plivo.api.models.compliancedocumenttype.*;
+import com.plivo.api.models.compliancerequirement.*;
 import com.plivo.api.models.conference.*;
 import com.plivo.api.models.endpoint.*;
 import com.plivo.api.models.enduser.*;
@@ -468,10 +470,31 @@ public interface PlivoAPIService {
     // List all end user
     @GET("Account/{authId}/EndUser/")
     Call<ListResponse<EndUser>> endUserList(@Path("authId") String authId,
-                                            @QueryMap Map<String, Object> addressListRequest);
+                                            @QueryMap Map<String, Object> endUserListRequest);
 
     @DELETE("Account/{authId}/EndUser/{id}/")
     Call<ResponseBody> endUserDelete(@Path("authId") String authId, @Path("id") String endUserId);
+
+    // Compliance Document Type
+    // Get
+    @GET("Account/{authId}/ComplianceDocumentType/{id}/")
+    Call<ComplianceDocumentType> complianceDocumentTypeGet(@Path("authId") String authId, @Path("id") String id);
+
+    // List
+    @GET("Account/{authId}/ComplianceDocumentType/")
+    Call<ListResponse<ComplianceDocumentType>> complianceDocumentTypeList(@Path("authId") String authId,
+                                                                          @QueryMap Map<String, Object> complianceDocumentListRequest);
+
+
+    // Compliance Requirement
+    // Get
+    @GET("Account/{authId}/ComplianceRequirement/{id}/")
+    Call<ComplianceRequirement> complianceRequirementGet(@Path("authId") String authId, @Path("id") String id);
+
+    // List
+    @GET("Account/{authId}/ComplianceRequirement/")
+    Call<ComplianceRequirement> complianceRequirementList(@Path("authId") String authId,
+                                                          @QueryMap Map<String, Object> complianceDocumentListRequest);
 
 }
 
