@@ -1,6 +1,10 @@
 package com.plivo.api.models.complianceapplication;
 
+import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.BaseResource;
+
+import java.io.IOException;
+
 
 public class ComplianceApplication extends BaseResource {
     private String endUserId;
@@ -42,6 +46,10 @@ public class ComplianceApplication extends BaseResource {
 
     public static ComplianceApplicationLister lister() {
         return new ComplianceApplicationLister();
+    }
+
+    public ComplianceApplication submit() throws IOException, PlivoRestException {
+        return new ComplianceApplicationSubmitter(getComplianceApplicationId()).submit();
     }
 
     public String getNumberType() {
