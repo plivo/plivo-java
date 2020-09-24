@@ -85,7 +85,7 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
   }
 
   public Boolean publicUri() {
-    return this.publicUri
+    return this.publicUri;
   }
 
   public ApplicationCreator appName(final String appName) {
@@ -154,7 +154,7 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
   }
 
   public ApplicationCreator publicUri(final Boolean publicUri) {
-    this.publicUri = publicUri
+    this.publicUri = publicUri;
     return this;
   }
 
