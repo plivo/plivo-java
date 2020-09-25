@@ -1,6 +1,9 @@
 # Change Log
 
-## [4.9.0](https://github.com/plivo/plivo-java/tree/v4.7.4) (2020-09-04)
+## [4.10.0](https://github.com/plivo/plivo-java/tree/v4.10.0) (2020-09-25)
+- Add "publicUri" optional param support for Application API.
+
+## [4.9.0](https://github.com/plivo/plivo-java/tree/v4.9.0) (2020-09-04)
 - Add Powerpack for MMS.
 
 ## [4.8.0](https://github.com/plivo/plivo-java/tree/v4.8.0) (2020-08-24)
