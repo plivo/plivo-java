@@ -17,6 +17,7 @@ public class ApplicationUpdater extends VoiceUpdater<ApplicationUpdateResponse> 
   private Boolean defaultEndpointApp;
   private String subaccount;
   private Boolean logIncomingMessages;
+  private Boolean publicUri;
 
   public ApplicationUpdater(String id) {
     super(id);
@@ -68,6 +69,10 @@ public class ApplicationUpdater extends VoiceUpdater<ApplicationUpdateResponse> 
 
   public Boolean logIncomingMessages() {
     return this.logIncomingMessages;
+  }
+
+  public Boolean publicUri() {
+    return this.publicUri;
   }
 
   public ApplicationUpdater answerUrl(final String answerUrl) {
@@ -127,6 +132,11 @@ public class ApplicationUpdater extends VoiceUpdater<ApplicationUpdateResponse> 
 
   public ApplicationUpdater logIncomingMessages(final Boolean logIncomingMessages) {
     this.logIncomingMessages = logIncomingMessages;
+    return this;
+  }
+
+  public ApplicationUpdater publicUri(final Boolean publicUri) {
+    this.publicUri = publicUri;
     return this;
   }
 
