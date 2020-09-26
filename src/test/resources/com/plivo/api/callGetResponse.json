@@ -17,5 +17,6 @@
   "total_rate": "0.03570",
   "hangup_cause_name": "End Of XML Instructions",
   "hangup_cause_code": 4010,
-  "hangup_source": "Plivo"
+  "hangup_source": "Plivo",
+  "voice_network_group": "India All Networks"
 }
