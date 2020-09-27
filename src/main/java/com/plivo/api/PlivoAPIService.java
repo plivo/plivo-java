@@ -7,6 +7,7 @@ import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
 import com.plivo.api.models.complianceapplication.*;
+import com.plivo.api.models.compliancedocument.*;
 import com.plivo.api.models.compliancedocumenttype.*;
 import com.plivo.api.models.compliancerequirement.*;
 import com.plivo.api.models.conference.*;
@@ -526,6 +527,34 @@ public interface PlivoAPIService {
     // Submit
     @POST("Account/{authId}/ComplianceApplication/{id}/Submit")
     Call<ComplianceApplication> complianceApplicationSubmit(@Path("authId") String authId, @Path("id") String id);
+
+
+    // Compliance Document
+    // Get
+    @GET("Account/{authId}/ComplianceDocument/{id}/")
+    Call<ComplianceDocument> complianceDocumentGet(@Path("authId") String authId, @Path("id") String id);
+
+    // Create
+    @POST("Account/{authId}/ComplianceDocument/")
+    Call<ComplianceDocumentCreateResponse> complianceDocumentCreate(@Path("authId") String authId,
+                                                                    @Body ComplianceDocumentCreator complianceDocumentCreator,
+                                                                    @Body RequestBody file);
+
+    // Update
+    @POST("Account/{authId}/ComplianceDocument/{id}/")
+    Call<ComplianceDocumentUpdateResponse> complianceDocumentUpdate(@Path("authId") String authId, @Path("id") String id,
+                                                                    @Body ComplianceDocumentUpdater complianceDocumentUpdater,
+                                                                    @Body RequestBody file);
+
+    // List
+    @GET("Account/{authId}/ComplianceDocument/")
+    Call<ListResponse<ComplianceDocument>> complianceDocumentList(@Path("authId") String authId,
+                                                                  @QueryMap Map<String, Object> complianceDocumentLister);
+
+
+    // Delete
+    @DELETE("Account/{authId}/ComplianceDocument/{id}/")
+    Call<ResponseBody> complianceDocumentDelete(@Path("authId") String authId, @Path("id") String complianceDocumentId);
 
 }
 
