@@ -14,15 +14,6 @@ public class ComplianceRequirementLister extends Getter<ComplianceRequirement> {
         this.number = number;
     }
 
-//    public ComplianceRequirementLister limit(String limit) {
-//        this.limit = limit;
-//        return this;
-//    }
-//
-//    public ComplianceRequirementLister offset(String offset) {
-//        this.offset = offset;
-//        return this;
-//    }
 
     public ComplianceRequirementLister countryIso2(String countryIso2) {
         this.countryIso2 = countryIso2;

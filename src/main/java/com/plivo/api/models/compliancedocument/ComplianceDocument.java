@@ -2,16 +2,6 @@ package com.plivo.api.models.compliancedocument;
 
 import com.plivo.api.models.base.BaseResource;
 
-//{
-//        "api_id": "7191ebb2-00a8-11eb-8794-0242ac110004",
-//        "meta_information": {
-//        "address_line_1": "France",
-//        "address_line_2": "FR2",
-//        "city": "Doc11",
-//        "country": "FR",
-//        "postal_code": "wq211"
-//        }
-//}
 public class ComplianceDocument extends BaseResource {
     private String endUserId;
     private String createdAt;
