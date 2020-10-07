@@ -80,6 +80,15 @@ public class BaseTest {
       new LinkedHashMap<>(), objects);
   }
 
+  protected void assertBaseRequest(String method, String format, Map<String, String> params, Object... objects)
+    throws InterruptedException, UnsupportedEncodingException {
+    RecordedRequest request = server.takeRequest();
+    assertEquals(method, request.getMethod());
+    assertEquals(String.format(format, objects), request.getPath());
+    URI uri = URI.create(request.getPath());
+    assertEquals(params, splitQuery(uri));
+  }
+
   protected void assertApiRequest(String method, String apiPrefix, String format)
     throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, apiPrefix + format,

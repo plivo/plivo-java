@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.11.0](https://github.com/plivo/plivo-java/tree/v4.11.0) (2020-10-06)
+- Add Lookup API support.
+
 ## [4.10.0](https://github.com/plivo/plivo-java/tree/v4.10.0) (2020-09-25)
 - Add "publicUri" optional param support for Application API.
 
