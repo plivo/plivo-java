@@ -262,6 +262,7 @@ public class CallTest extends BaseTest {
     final String callId = "callId";
 
     Call.recorder(callId)
+      .timeLimit(60)
       .record();
 
     assertRequest("POST", "Call/%s/Record/", callId);
@@ -273,6 +274,7 @@ public class CallTest extends BaseTest {
     final String callId = "callId";
 
     Call.recorder(callId)
+      .timeLimit(60)
       .client(client)
       .record();
 
