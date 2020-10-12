@@ -36,12 +36,12 @@ public class ComplianceApplication extends BaseResource {
         return new ComplianceApplicationCreator(name, lastName, documentIds);
     }
 
-    public ComplianceApplicationUpdater updater() {
-        return new ComplianceApplicationUpdater(getComplianceApplicationId());
+    public ComplianceApplicationUpdater updater(String id) {
+        return new ComplianceApplicationUpdater(id);
     }
 
-    public ComplianceApplicationDeleter deleter() {
-        return new ComplianceApplicationDeleter(getComplianceApplicationId());
+    public ComplianceApplicationDeleter deleter(String id) {
+        return new ComplianceApplicationDeleter(id);
     }
 
     public static ComplianceApplicationLister lister() {

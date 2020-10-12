@@ -67,12 +67,12 @@ public class ComplianceDocument extends BaseResource {
         return new ComplianceDocumentCreator(endUserId, documentTypeId, alias);
     }
 
-    public ComplianceDocumentUpdater updater() {
-        return new ComplianceDocumentUpdater(getId());
+    public static ComplianceDocumentUpdater updater(String id) {
+        return new ComplianceDocumentUpdater(id);
     }
 
-    public ComplianceDocumentDeleter deleter() {
-        return new ComplianceDocumentDeleter(getId());
+    public static ComplianceDocumentDeleter deleter(String id) {
+        return new ComplianceDocumentDeleter(id);
     }
 
     public static ComplianceDocumentLister lister() {
