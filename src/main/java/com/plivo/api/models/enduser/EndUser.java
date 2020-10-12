@@ -17,12 +17,12 @@ public class EndUser extends BaseResource {
         return new EndUserCreator(name, lastName, endUserType);
     }
 
-    public EndUserUpdater updater() {
-        return new EndUserUpdater(getEndUserId());
+    public static EndUserUpdater updater(String id) {
+        return new EndUserUpdater(id);
     }
 
-    public EndUserDeleter deleter() {
-        return new EndUserDeleter(getEndUserId());
+    public static EndUserDeleter deleter(String id) {
+        return new EndUserDeleter(id);
     }
 
     public static EndUserLister lister() {

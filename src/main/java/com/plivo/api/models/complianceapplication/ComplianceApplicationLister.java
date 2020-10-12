@@ -6,25 +6,9 @@ import retrofit2.Call;
 
 public class ComplianceApplicationLister extends Lister<ComplianceApplication> {
 
-
-    private String limit;
-    private String offset;
-
-    private String status;
     private String endUserType;
     private String numberType;
     private String countryIso2;
-    private String alias;
-
-    public ComplianceApplicationLister limit(String limit) {
-        this.limit = limit;
-        return this;
-    }
-
-    public ComplianceApplicationLister offset(String offset) {
-        this.offset = offset;
-        return this;
-    }
 
     public ComplianceApplicationLister setNumberType(String numberType) {
         this.numberType = numberType;
