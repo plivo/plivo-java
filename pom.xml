@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>4.11.0</version>
+  <version>4.11.1</version>
   <name>plivo-java</name>
   <description>A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
   <licenses>
@@ -18,7 +18,7 @@
     <developer>
       <name>The Plivo SDKs Team</name>
       <email>sdks@plivo.com</email>
-      <organization>org.apache.maven.model.Organization@2b5b1d3a</organization>
+      <organization>org.apache.maven.model.Organization@5f687992</organization>
       <organizationUrl>https://plivo.com</organizationUrl>
     </developer>
   </developers>
