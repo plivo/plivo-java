@@ -4,14 +4,14 @@ import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
 public class ComplianceRequirementLister extends Getter<ComplianceRequirement> {
-    private String number;
+    private String phoneNumber;
     private String countryIso2;
     private String endUserType;
     private String numberType;
 
-    public ComplianceRequirementLister(String number) {
-        super(number);
-        this.number = number;
+    public ComplianceRequirementLister(String phoneNumber) {
+        super(phoneNumber);
+        this.phoneNumber = phoneNumber;
     }
 
 

@@ -16,31 +16,21 @@ public class ComplianceApplication extends BaseResource {
     private String alias;
     private String complianceApplicationId;
     private String complianceRequirementId;
-
-    private static class Document {
-        private String documentId;
-        private String documentName;
-        private String documentTypeId;
-        private String documentTypeName;
-        private String name;
-        private String scope;
-    }
-
     private Document[] documents;
 
     public static ComplianceApplicationGetter getter(String id) {
         return new ComplianceApplicationGetter(id);
     }
 
-    public static ComplianceApplicationCreator creator(String name, String lastName, String[] documentIds) {
-        return new ComplianceApplicationCreator(name, lastName, documentIds);
+    public static ComplianceApplicationCreator creator(String alias, String endUserId, String[] documentIds) {
+        return new ComplianceApplicationCreator(alias, endUserId, documentIds);
     }
 
-    public ComplianceApplicationUpdater updater(String id) {
+    public static ComplianceApplicationUpdater updater(String id) {
         return new ComplianceApplicationUpdater(id);
     }
 
-    public ComplianceApplicationDeleter deleter(String id) {
+    public static ComplianceApplicationDeleter deleter(String id) {
         return new ComplianceApplicationDeleter(id);
     }
 

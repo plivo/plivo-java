@@ -3,7 +3,6 @@ package com.plivo.api.models.compliancedocument;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.MultipartBody.Builder;
 import okhttp3.RequestBody;
@@ -30,18 +29,85 @@ public class ComplianceDocumentCreator extends Creator<ComplianceDocumentCreateR
     private String lastName;
     private String firstName;
     private String dateOfBirth;
+    private String uniqueIdentificationNumber;
+    private String businessName;
+    private String authorizedRepresentativeName;
+    private String nationality;
+  private enum typeOfUtility {
+      water,electricity,gas, propertyRental, others
+    };
+    private String billId;
+    private String typeOfId;
+    private String placeOfBirth;
+    private String dateOfIssue;
+    private String dateOfExpiration;
+    private String billDate;
+    private String supportEmail;
+    private String supportPhoneNumber;
+    private String useCaseDescription;
 
-    private RequestBody filesAsRequestBody = null;
-
-    ComplianceDocumentCreator(String endUserId, String documentTypeId, String alias) {
+  ComplianceDocumentCreator(String endUserId, String documentTypeId, String alias) {
         if (!Utils.allNotNull(alias, endUserId)) {
             throw new IllegalArgumentException("alias, endUserId must not be null");
         }
 
         this.alias = alias;
         this.endUserId = endUserId;
-        this.documentTypeId = documentTypeId;
-    }
+        this.documentTypeId = documentTypeId; }
+
+  public void setUniqueIdentificationNumber(String uniqueIdentificationNumber) {
+    this.uniqueIdentificationNumber = uniqueIdentificationNumber;
+  }
+
+  public void setTypeOfId(String typeOfId) {
+    this.typeOfId = typeOfId;
+  }
+
+  public void setBusinessName(String businessName) {
+    this.businessName = businessName;
+  }
+
+  public void setAuthorizedRepresentativeName(String authorizedRepresentativeName) {
+    this.authorizedRepresentativeName = authorizedRepresentativeName;
+  }
+
+  public void setNationality(String nationality) {
+    this.nationality = nationality;
+  }
+
+  public void setBillId(String billId) {
+    this.billId = billId;
+  }
+
+  public void setPlaceOfBirth(String placeOfBirth) {
+    this.placeOfBirth = placeOfBirth;
+  }
+
+  public void setDateOfIssue(String dateOfIssue) {
+    this.dateOfIssue = dateOfIssue;
+  }
+
+  public void setDateOfExpiration(String dateOfExpiration) {
+    this.dateOfExpiration = dateOfExpiration;
+  }
+
+  public void setBillDate(String billDate) {
+    this.billDate = billDate;
+  }
+
+  public void setSupportEmail(String supportEmail) {
+    this.supportEmail = supportEmail;
+  }
+
+  public void setSupportPhoneNumber(String supportPhoneNumber) {
+    this.supportPhoneNumber = supportPhoneNumber;
+  }
+
+  public void setUseCaseDescription(String useCaseDescription) {
+    this.useCaseDescription = useCaseDescription;
+  }
+
+    private RequestBody filesAsRequestBody = null;
 
     public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
@@ -128,6 +194,6 @@ public class ComplianceDocumentCreator extends Creator<ComplianceDocumentCreateR
 
     @Override
     protected Call<ComplianceDocumentCreateResponse> obtainCall() {
-        return client().getApiService().complianceDocumentCreate(client().getAuthId(), this, this.getFilesAsRequestBody());
+      return client().getApiService().complianceDocumentCreate( client().getAuthId(), this, this.getFilesAsRequestBody());
     }
 }

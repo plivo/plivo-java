@@ -50,8 +50,8 @@ public class ComplianceRequirement extends BaseResource {
     private DocumentType[] acceptableDocumentTypes;
 
 
-    public static ComplianceRequirementLister lister(String number) {
-        return new ComplianceRequirementLister(number);
+    public static ComplianceRequirementLister lister(String phoneNumber) {
+        return new ComplianceRequirementLister(phoneNumber);
     }
 
     public static ComplianceRequirementGetter getter(String id) {

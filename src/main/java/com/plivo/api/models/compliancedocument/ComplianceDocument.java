@@ -19,6 +19,70 @@ public class ComplianceDocument extends BaseResource {
         private String lastName;
         private String firstName;
         private String dateOfBirth;
+        private String uniqueIdentificationNumber;
+        private String businessName;
+        private String authorizedRepresentativeName;
+        private String nationality;
+        private enum typeOfUtility {
+          water,electricity,gas, propertyRental, others
+        };
+        private String billId;
+        private String typeOfId;
+        private String placeOfBirth;
+        private String dateOfIssue;
+        private String dateOfExpiration;
+        private String billDate;
+        private String supportEmail;
+        private String supportPhoneNumber;
+        private String useCaseDescription;
+
+      public String getUniqueIdentificationNumber() {
+        return uniqueIdentificationNumber;
+      }
+
+      public String getBusinessName() {
+        return businessName;
+      }
+
+      public String getAuthorizedRepresentativeName() {
+        return authorizedRepresentativeName;
+      }
+
+      public String getNationality() {
+        return nationality;
+      }
+
+      public String getBillId() {
+        return billId;
+      }
+
+      public String getPlaceOfBirth() {
+        return placeOfBirth;
+      }
+
+      public String getDateOfIssue() {
+        return dateOfIssue;
+      }
+
+      public String getDateOfExpiration() {
+        return dateOfExpiration;
+      }
+
+      public String getBillDate() {
+        return billDate;
+      }
+
+      public String getSupportEmail() {
+        return supportEmail;
+      }
+
+      public String getSupportPhoneNumber() {
+        return supportPhoneNumber;
+      }
+
+      public String getUseCaseDescription() {
+        return useCaseDescription;
+      }
 
         public MetaInformation() {
 
