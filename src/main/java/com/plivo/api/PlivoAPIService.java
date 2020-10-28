@@ -525,8 +525,9 @@ public interface PlivoAPIService {
     Call<ResponseBody> complianceApplicationDelete(@Path("authId") String authId, @Path("id") String complianceApplicationId);
 
     // Submit
-    @POST("Account/{authId}/ComplianceApplication/{id}/Submit")
-    Call<ComplianceApplication> complianceApplicationSubmit(@Path("authId") String authId, @Path("id") String id);
+    @POST("Account/{authId}/ComplianceApplication/{id}/Submit/")
+    Call<ComplianceApplicationCreateResponse> complianceApplicationSubmit(@Path("authId") String authId, @Path("id") String id,
+                                                                          @Body ComplianceApplicationSubmitter complianceDocumentCreator);
 
 
     // Compliance Document
@@ -537,14 +538,12 @@ public interface PlivoAPIService {
     // Create
     @POST("Account/{authId}/ComplianceDocument/")
     Call<ComplianceDocumentCreateResponse> complianceDocumentCreate(@Path("authId") String authId,
-                                                                    @Body ComplianceDocumentCreator complianceDocumentCreator,
-                                                                    @Body RequestBody file);
+                                                                    @Body RequestBody complianceDocumentCreator);
 
     // Update
     @POST("Account/{authId}/ComplianceDocument/{id}/")
     Call<ComplianceDocumentUpdateResponse> complianceDocumentUpdate(@Path("authId") String authId, @Path("id") String id,
-                                                                    @Body ComplianceDocumentUpdater complianceDocumentUpdater,
-                                                                    @Body RequestBody file);
+                                                                    @Body RequestBody complianceDocumentUpdater);
 
     // List
     @GET("Account/{authId}/ComplianceDocument/")
