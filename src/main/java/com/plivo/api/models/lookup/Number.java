@@ -71,4 +71,8 @@ public class Number extends BaseResource{
     public static Lookup getter(String number, String type) {
         return new Lookup(number, type);
     }
+
+    public static Lookup getter(String number) {
+        return new Lookup(number, "carrier");
+    }
 }

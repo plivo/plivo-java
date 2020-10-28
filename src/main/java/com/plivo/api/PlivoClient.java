@@ -45,6 +45,7 @@ public class PlivoClient {
   protected static String VOICE_FALLBACK1_URL = "https://voice-usw1.plivo.com/v1/";
   protected static String VOICE_FALLBACK2_URL = "https://voice-use1.plivo.com/v1/";
   protected static String CALLINSIGHTS_BASE_URL = "https://stats.plivo.com/v1/";
+  protected static String LOOKUP_BASE_URL = "https://lookup.plivo.com/v1/";
   private static String version = "Unknown Version";
   private boolean testing = false;
   private static ObjectMapper objectMapper = new ObjectMapper();
@@ -107,11 +108,13 @@ public class PlivoClient {
   private Retrofit voiceFallback1Retrofit;
   private Retrofit voiceFallback2Retrofit;
   private Retrofit callInsightsRetrofit;
+  private Retrofit lookupRetrofit;
   private PlivoAPIService apiService = null;
   private PlivoAPIService voiceApiService = null;
   private PlivoAPIService voiceFallback1Service = null;
   private PlivoAPIService voiceFallback2Service = null;
   private CallInsightsAPIService callInsightsAPIService = null;
+  private LookupAPIService lookupAPIService = null;
 
   /**
    * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
@@ -210,6 +213,14 @@ public class PlivoClient {
       .build();
 
     this.callInsightsAPIService = callInsightsRetrofit.create(CallInsightsAPIService.class);
+
+    lookupRetrofit = new Retrofit.Builder()
+      .client(httpClient)
+      .baseUrl((LOOKUP_BASE_URL))
+      .addConverterFactory(JacksonConverterFactory.create(objectMapper))
+      .build();
+
+    this.lookupAPIService = lookupRetrofit.create(LookupAPIService.class);
   }
 
   /**
@@ -273,6 +284,10 @@ public class PlivoClient {
 
   public CallInsightsAPIService getCallInsightsAPIService() {
     return callInsightsAPIService;
+  }
+
+  public LookupAPIService getLookupAPIService() {
+    return lookupAPIService;
   }
 
   void setApiService(PlivoAPIService apiService) {
