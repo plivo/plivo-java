@@ -34,15 +34,15 @@ public class LookupTest extends BaseTest {
         .get();
 
     assertBaseRequest("GET",
-        "/Lookup/Number/%s?type=%s",
+        "/Number/%s?type=%s",
         Collections.singletonMap("type", typeInput),
         numberInput, typeInput);
 
     assertEquals(number.getId(), number.getApiId());
-    assertEquals("/v1/Lookup/Number/+14154305555?type=carrier", number.getResourceURI());
+    assertEquals("/v1/Number/+14154305555?type=carrier", number.getResourceURI());
     assertEquals("United States", number.getCountry().getName());
-    assertEquals("US", number.getCountry().getCodeISO2());
-    assertEquals("USA", number.getCountry().getCodeISO3());
+    assertEquals("US", number.getCountry().getISO2());
+    assertEquals("USA", number.getCountry().getISO3());
     assertEquals("+14154305555", number.getFormat().getE164());
     assertEquals("+1 415-430-5555", number.getFormat().getInternational());
     assertEquals("(415) 430-5555", number.getFormat().getNational());
@@ -51,7 +51,7 @@ public class LookupTest extends BaseTest {
     assertEquals("mobile", number.getCarrier().getType());
     assertEquals("310", number.getCarrier().getMobileCountryCode());
     assertEquals("150", number.getCarrier().getMobileNetworkCode());
-    assertEquals(true, number.getCarrier().isPorted());
+    assertEquals("yes", number.getCarrier().getPorted());
   }
 
   @Test
@@ -68,15 +68,15 @@ public class LookupTest extends BaseTest {
         .get();
 
     assertBaseRequest("GET",
-        "/Lookup/Number/%s?type=%s",
+        "/Number/%s?type=%s",
         Collections.singletonMap("type", typeInput),
         numberInput, typeInput);
 
     assertEquals(number.getId(), number.getApiId());
-    assertEquals("/v1/Lookup/Number/+14154305555?type=carrier", number.getResourceURI());
+    assertEquals("/v1/Number/+14154305555?type=carrier", number.getResourceURI());
     assertEquals("United States", number.getCountry().getName());
-    assertEquals("US", number.getCountry().getCodeISO2());
-    assertEquals("USA", number.getCountry().getCodeISO3());
+    assertEquals("US", number.getCountry().getISO2());
+    assertEquals("USA", number.getCountry().getISO3());
     assertEquals("+14154305555", number.getPhoneNumber());
     assertEquals("+14154305555", number.getFormat().getE164());
     assertEquals("+1 415-430-5555", number.getFormat().getInternational());
@@ -86,7 +86,7 @@ public class LookupTest extends BaseTest {
     assertEquals("mobile", number.getCarrier().getType());
     assertEquals("310", number.getCarrier().getMobileCountryCode());
     assertEquals("150", number.getCarrier().getMobileNetworkCode());
-    assertEquals(true, number.getCarrier().isPorted());
+    assertEquals("yes", number.getCarrier().getPorted());
   }
 
   @Test(expected = ResourceNotFoundException.class)

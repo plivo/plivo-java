@@ -7,22 +7,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class Country{
     private String name;
-    private String codeISO2;
-    private String codeISO3;
+    private String iso2;
+    private String iso3;
 
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    @JsonProperty("code_iso2")
-    public String getCodeISO2() {
-        return codeISO2;
+    @JsonProperty("iso2")
+    public String getISO2() {
+        return iso2;
     }
 
-    @JsonProperty("code_iso3")
-    public String getCodeISO3() {
-        return codeISO3;
+    @JsonProperty("iso3")
+    public String getISO3() {
+        return iso3;
     }
 
     @Override

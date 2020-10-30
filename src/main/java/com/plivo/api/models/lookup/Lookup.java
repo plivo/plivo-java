@@ -17,6 +17,6 @@ public class Lookup extends Getter<Number> {
 
     @Override
     protected Call<Number> obtainCall() {
-       return client().getApiService().lookupGet(number, type);
+       return client().getLookupAPIService().lookupGet(number, type);
     }
 }

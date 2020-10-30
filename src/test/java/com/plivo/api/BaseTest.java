@@ -110,6 +110,7 @@ public class BaseTest {
     PlivoClient.VOICE_BASE_URL = server.url("/").toString();
     PlivoClient.VOICE_FALLBACK1_URL = server.url("/").toString();
     PlivoClient.VOICE_FALLBACK2_URL = server.url("/").toString();
+    PlivoClient.LOOKUP_BASE_URL = server.url("/").toString();
     PhloRestClient.BASE_URL = server.url("/").toString();
     Plivo.init(authId, authToken);
     Plivo.getClient().setTesting(true);

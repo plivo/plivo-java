@@ -9,7 +9,7 @@ public class Carrier{
     private String mobileCountryCode;
     private String mobileNetworkCode;
     private String name;
-    private boolean ported;
+    private String ported;
     private String type;
 
     @JsonProperty("name")
@@ -33,7 +33,7 @@ public class Carrier{
     }
 
     @JsonProperty("ported")
-    public boolean isPorted() {
+    public String getPorted() {
 	    return ported;
     }
 
