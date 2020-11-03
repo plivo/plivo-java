@@ -114,7 +114,7 @@ public class MPCTest extends BaseTest {
 
   @Test
   public void updateParticipant() throws Exception {
-    expectResponse(null, 204);
+    expectResponse("mpcParticipantUpdate.json", 202);
     final String mpcName = "myMpc";
     final String participantId = "88";
     final Map<String, Object> payload = new LinkedHashMap<String, Object>() {{
@@ -161,7 +161,7 @@ public class MPCTest extends BaseTest {
 
   @Test
   public void startRecording() throws Exception {
-    expectResponse("mpcRecordStart.json", 200);
+    expectResponse("mpcRecordStart.json", 202);
     final String mpcName = "myMpc";
     Map<String, Object> expectedPayload = new LinkedHashMap<>();
     expectedPayload.put("file_format", "mp3");

@@ -3,7 +3,7 @@ package com.plivo.api.models.multipartycall;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.Updater;
+import com.plivo.api.models.base.VoiceUpdater;
 import com.plivo.api.serializers.CommaDelimitedListSerializer;
 import com.plivo.api.serializers.DelimitedListSerializer;
 import com.plivo.api.serializers.MapToCommaListSerializer;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticipantAddResponse> {
+public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallParticipantAddResponse> {
 
   @OneOf(message = "should be one of [agent, customer, supervisor]", options = {"agent", "customer", "supervisor"})
   private final String role;
@@ -453,6 +453,18 @@ public class MultiPartyCallParticipantAdd extends Updater<MultiPartyCallParticip
   @Override
   protected Call<MultiPartyCallParticipantAddResponse> obtainCall() throws PlivoValidationException {
     Validate.check(this);
-    return client().getApiService().mpcAddParticipant(client().getAuthId(), id, this);
+    return client().getVoiceApiService().mpcAddParticipant(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<MultiPartyCallParticipantAddResponse> obtainFallback1Call() throws PlivoValidationException {
+    Validate.check(this);
+    return client().getVoiceFallback1Service().mpcAddParticipant(client().getAuthId(), id, this);
+  }
+
+  @Override
+  protected Call<MultiPartyCallParticipantAddResponse> obtainFallback2Call() throws PlivoValidationException {
+    Validate.check(this);
+    return client().getVoiceFallback2Service().mpcAddParticipant(client().getAuthId(), id, this);
   }
 }
