@@ -10,7 +10,6 @@ public class PowerpackCreator extends Creator<PowerpackResponse> {
   private String application_id = null;
   private Boolean sticky_sender = Boolean.TRUE;
   private Boolean local_connect = Boolean.TRUE;
-  private List<Object> number_priority = new ArrayList<>();
 
   PowerpackCreator(String name) {
     if (!Utils.allNotNull(name)) {
@@ -37,10 +36,6 @@ public class PowerpackCreator extends Creator<PowerpackResponse> {
 
   public Boolean local_connect() {
     return this.local_connect;
-  }
-
-  public List<Object> number_priority() {
-    return this.number_priority;
   }
 
   @Override

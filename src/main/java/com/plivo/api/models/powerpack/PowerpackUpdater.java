@@ -1,6 +1,7 @@
 package com.plivo.api.models.powerpack;
 
 import com.plivo.api.models.base.Updater;
+import com.plivo.api.xml.Number;
 import retrofit2.Call;
 
 public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
@@ -10,7 +11,7 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
   private String application_id;
   private Boolean sticky_sender;
   private Boolean local_connect;
-  private List<Object> number_priority = new ArrayList<>();
+  private NumberPriority[] number_priority;
 
   public PowerpackUpdater(String id) {
     super(id);
@@ -34,10 +35,6 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
 
   public Boolean getLocalConnect() {
     return local_connect;
-  }
-
-  public List<Object> getNumberPriority() {
-    return number_priority;
   }
 
   public PowerpackUpdater name(final String name) {
@@ -65,8 +62,8 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
     return this;
   }
 
-  public PowerpackUpdater number_priority(final List<Object> number_priority) {
-    this.number_priority = number_priority;
+  public PowerpackUpdater number_priority(final NumberPriority[] numberPriorities) {
+    this.number_priority = numberPriorities;
     return this;
   }
 
