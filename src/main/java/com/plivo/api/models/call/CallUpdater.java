@@ -3,7 +3,6 @@ package com.plivo.api.models.call;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.VoiceUpdater;
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.Updater;
 import com.plivo.api.util.Utils;
 import java.io.IOException;
 import retrofit2.Call;

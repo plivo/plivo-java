@@ -4,7 +4,6 @@ import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.VoiceDeleter;
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.Deleter;
 import java.io.IOException;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
