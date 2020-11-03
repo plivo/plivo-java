@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Typing;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.IterableError;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.util.Utils;
 
@@ -66,14 +67,14 @@ public abstract class VoiceLister<T extends BaseResource> extends BaseRequest<T>
     return this;
   }
 
-  protected abstract Call<ListResponse<T>> obtainCall();
-  protected abstract Call<ListResponse<T>> obtainFallback1Call();
-  protected abstract Call<ListResponse<T>> obtainFallback2Call();
+  protected abstract Call<ListResponse<T>> obtainCall() throws PlivoValidationException;
+  protected abstract Call<ListResponse<T>> obtainFallback1Call() throws PlivoValidationException;
+  protected abstract Call<ListResponse<T>> obtainFallback2Call() throws PlivoValidationException;
 
   /**
    * Actually list instances of the resource.
    */
-  public ListResponse<T> list() throws IOException, PlivoRestException {
+  public ListResponse<T> list() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<ListResponse<T>> response = obtainCall().execute();
 
@@ -89,7 +90,7 @@ public abstract class VoiceLister<T extends BaseResource> extends BaseRequest<T>
     return response.body();
   }
 
-  public Long get() throws IOException, PlivoRestException {
+  public Long get() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<ListResponse<T>> response = obtainCall().execute();
 
@@ -140,7 +141,7 @@ public abstract class VoiceLister<T extends BaseResource> extends BaseRequest<T>
           }
           this.items.addAll(itemList.getObjects());
           offset += limit;
-        } catch (IOException | PlivoRestException exception) {
+        } catch (IOException | PlivoRestException | PlivoValidationException exception) {
           throw new IterableError();
         }
         return true;
@@ -153,7 +154,7 @@ public abstract class VoiceLister<T extends BaseResource> extends BaseRequest<T>
             ListResponse<T> itemList = VoiceLister.this.list();
             this.items.addAll(itemList.getObjects());
             offset += limit;
-          } catch (IOException | PlivoRestException exception) {
+          } catch (IOException | PlivoRestException | PlivoValidationException exception) {
             throw new IterableError();
           }
         }
