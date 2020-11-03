@@ -177,7 +177,7 @@ This generates the following XML:
 ```
 
 ### More examples
-Refer to the [Plivo SDK Reference](https://www.plivo.com/docs/sdk/server/java-sdk) for more examples.
+Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/java/introduction/overview) for more examples.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-java/issues).
