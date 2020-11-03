@@ -2,6 +2,7 @@ package com.plivo.api.models.conference;
 
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.VoiceDeleter;
 import java.io.IOException;
 import okhttp3.ResponseBody;
@@ -28,7 +29,7 @@ public class ConferenceRecordDeleter extends VoiceDeleter<Conference> {
     return client().getVoiceFallback2Service().conferenceRecordDelete(client().getAuthId(), id);
   }
 
-  public void stop() throws IOException, PlivoRestException {
+  public void stop() throws IOException, PlivoRestException, PlivoValidationException {
     delete();
   }
 

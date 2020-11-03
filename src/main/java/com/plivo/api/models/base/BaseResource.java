@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
+import com.plivo.api.exceptions.PlivoValidationException;
 
 //@JsonIgnoreProperties(value = {"api_id"})
 public abstract class BaseResource {
@@ -14,7 +15,7 @@ public abstract class BaseResource {
     return apiId;
   }
 
-  public abstract String getId();
+  public abstract String getId() throws PlivoValidationException;
 
   protected PlivoClient plivoClient = Plivo.getClient();
 

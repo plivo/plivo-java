@@ -1,5 +1,8 @@
 package com.plivo.api.xml;
 
+import com.plivo.api.exceptions.PlivoValidationException;
+import com.plivo.api.validators.Validate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +17,7 @@ public class Response extends PlivoXml {
     @XmlElement(name = "Wait", type = Wait.class),
     @XmlElement(name = "Dial", type = Dial.class),
     @XmlElement(name = "Conference", type = Conference.class),
+    @XmlElement(name = "MultiPartyCall", type = MultiPartyCall.class),
     @XmlElement(name = "Message", type = Message.class),
     @XmlElement(name = "Play", type = Play.class),
     @XmlElement(name = "Speak", type = Speak.class),
@@ -27,7 +31,10 @@ public class Response extends PlivoXml {
   })
   private List<com.plivo.api.xml.XmlElement> children = new ArrayList<>();
 
-  public Response children(ResponseNestable... nestable) {
+  public Response children(ResponseNestable... nestable) throws PlivoValidationException {
+    for(ResponseNestable n: nestable){
+      Validate.check(n);
+    }
     children.addAll(Arrays.asList(nestable));
     return this;
   }

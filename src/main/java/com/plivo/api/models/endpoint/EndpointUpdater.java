@@ -41,20 +41,19 @@ public class EndpointUpdater extends VoiceUpdater<EndpointUpdateResponse> {
   }
 
   @Override
-  protected Call<EndpointUpdateResponse> obtainCall(String identifier) {
-    this.id = null;
-    return client().getVoiceApiService().endpointUpdate(client().getAuthId(), identifier, this);
+  protected Call<EndpointUpdateResponse> obtainCall() {
+    return client().getVoiceApiService().endpointUpdate(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call<EndpointUpdateResponse> obtainFallback1Call(String identifier) {
+  protected Call<EndpointUpdateResponse> obtainFallback1Call() {
     this.id = null;
-    return client().getVoiceFallback1Service().endpointUpdate(client().getAuthId(), identifier, this);
+    return client().getVoiceFallback1Service().endpointUpdate(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call<EndpointUpdateResponse> obtainFallback2Call(String identifier) {
+  protected Call<EndpointUpdateResponse> obtainFallback2Call() {
     this.id = null;
-    return client().getVoiceFallback2Service().endpointUpdate(client().getAuthId(), identifier, this);
+    return client().getVoiceFallback2Service().endpointUpdate(client().getAuthId(), id, this);
   }
 }

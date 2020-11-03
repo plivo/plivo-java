@@ -1,6 +1,7 @@
 package com.plivo.api.models.base;
 
 import com.plivo.api.PlivoClient;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
 import java.util.Map;
@@ -17,6 +18,7 @@ import retrofit2.Response;
 public abstract class VoiceGetter<T extends BaseResource> extends BaseRequest<T> {
 
   protected final String id;
+  protected String secondaryId;
 
   public VoiceGetter(String id) {
     this.id = id;
@@ -26,10 +28,19 @@ public abstract class VoiceGetter<T extends BaseResource> extends BaseRequest<T>
     }
   }
 
+  public VoiceGetter(String id, String secondaryId) {
+    if (id == null || secondaryId == null) {
+      throw new IllegalArgumentException("id/secondaryId cannot be null");
+    }
+    this.id = id;
+    this.secondaryId = secondaryId;
+  }
+
+
   /**
    * Actually get an instance of the resource.
    */
-  public T get() throws IOException, PlivoRestException {
+  public T get() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
     Response<T> response = obtainCall().execute();
 
@@ -56,7 +67,7 @@ public abstract class VoiceGetter<T extends BaseResource> extends BaseRequest<T>
     return Utils.objectToMap(PlivoClient.getObjectMapper(), this);
   }
 
-  protected abstract Call<T> obtainCall();
-  protected abstract Call<T> obtainFallback1Call();
-  protected abstract Call<T> obtainFallback2Call();
+  protected abstract Call<T> obtainCall()  throws PlivoValidationException;
+  protected abstract Call<T> obtainFallback1Call()  throws PlivoValidationException;
+  protected abstract Call<T> obtainFallback2Call() throws PlivoValidationException;
 }

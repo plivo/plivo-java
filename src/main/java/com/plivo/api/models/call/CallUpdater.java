@@ -1,6 +1,7 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.VoiceUpdater;
 import com.plivo.api.util.Utils;
 import java.io.IOException;
@@ -90,24 +91,21 @@ public class CallUpdater extends VoiceUpdater<CallUpdateResponse> {
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainCall(String identifier) {
-    this.id = null;
-    return client().getVoiceApiService().callUpdate(client().getAuthId(), identifier, this);
+  protected Call<CallUpdateResponse> obtainCall() {
+    return client().getVoiceApiService().callUpdate(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainFallback1Call(String identifier) {
-    this.id = null;
-    return client().getVoiceFallback1Service().callUpdate(client().getAuthId(), identifier, this);
+  protected Call<CallUpdateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().callUpdate(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call<CallUpdateResponse> obtainFallback2Call(String identifier) {
-    this.id = null;
-    return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), identifier, this);
+  protected Call<CallUpdateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().callUpdate(client().getAuthId(), id, this);
   }
 
-  public CallUpdateResponse transfer() throws IOException, PlivoRestException {
+  public CallUpdateResponse transfer() throws IOException, PlivoRestException, PlivoValidationException {
     return update();
   }
 }
