@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.0.0](https://github.com/plivo/plivo-java/tree/v5.0.0) (2020-11-03)
+- Added SDK support for MPC APIs (Voice retry included for APIs) and XML
+
 ## [4.12.0](https://github.com/plivo/plivo-java/tree/v4.12.0) (2020-10-30)
 - Change lookup API endpoint and response.
 
