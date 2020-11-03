@@ -2,14 +2,14 @@ package com.plivo.api.models.multipartycall;
 
 import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.VoiceLister;
 import com.plivo.api.util.PropertyFilter;
 import com.plivo.api.validators.OneOf;
 import com.plivo.api.validators.SubAccount;
 import com.plivo.api.validators.Validate;
 import retrofit2.Call;
 
-public class MultiPartyCallList extends Lister<MultiPartyCall> {
+public class MultiPartyCallList extends VoiceLister<MultiPartyCall> {
 
   @SubAccount
   private String subAccount;
@@ -64,13 +64,13 @@ public class MultiPartyCallList extends Lister<MultiPartyCall> {
     return this;
   }
 
-  public MultiPartyCallList creationTime(PropertyFilter<String> creationTime) throws PlivoValidationException {
+  public MultiPartyCallList creationTime(PropertyFilter<String> creationTime) throws PlivoValidationException  {
     MultiPartyCallUtils.validMultiPartyTime("creationTime", creationTime);
     this.creationTime = creationTime;
     return this;
   }
 
-  public MultiPartyCallList endTime(PropertyFilter<String> endTime) throws PlivoValidationException {
+  public MultiPartyCallList endTime(PropertyFilter<String> endTime) throws PlivoValidationException  {
     MultiPartyCallUtils.validMultiPartyTime("endTime", endTime);
     this.endTime = endTime;
     return this;
@@ -79,6 +79,18 @@ public class MultiPartyCallList extends Lister<MultiPartyCall> {
   @Override
   protected Call<ListResponse<MultiPartyCall>> obtainCall() throws PlivoValidationException {
     Validate.check(this);
-    return client().getApiService().mpcList(client().getAuthId(), toMap());
+    return client().getVoiceApiService().mpcList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<MultiPartyCall>> obtainFallback1Call() throws PlivoValidationException {
+    Validate.check(this);
+    return client().getVoiceFallback1Service().mpcList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<MultiPartyCall>> obtainFallback2Call() throws PlivoValidationException {
+    Validate.check(this);
+    return client().getVoiceFallback2Service().mpcList(client().getAuthId(), toMap());
   }
 }

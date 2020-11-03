@@ -1,11 +1,11 @@
 package com.plivo.api.models.multipartycall;
 
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.Updater;
+import com.plivo.api.models.base.VoiceUpdater;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class MultiPartyCallParticipantUpdate extends Updater<MultiPartyCallParticipantUpdateResponse> {
+public class MultiPartyCallParticipantUpdate extends VoiceUpdater<MultiPartyCallParticipantUpdateResponse> {
 
   private Boolean mute;
   private Boolean hold;
@@ -51,6 +51,30 @@ public class MultiPartyCallParticipantUpdate extends Updater<MultiPartyCallParti
     if (!Utils.anyNotNull(coachMode, mute, hold)) {
       throw new PlivoValidationException("please update either mute, hold or coach_mode");
     }
-    return client().getApiService().mpcMemberUpdate(client().getAuthId(), id, secondaryId, this);
+    return client().getVoiceApiService().mpcMemberUpdate(client().getAuthId(), id, secondaryId, this);
+  }
+
+  @Override
+  protected Call<MultiPartyCallParticipantUpdateResponse> obtainFallback1Call() throws PlivoValidationException {
+    MultiPartyCallUtils.validMultiPartyCallId(id);
+    if (secondaryId.equalsIgnoreCase(MultiPartyCallUtils.allParticipants) && coachMode != null) {
+      throw new PlivoValidationException("cannot update coachMode for all participants");
+    }
+    if (!Utils.anyNotNull(coachMode, mute, hold)) {
+      throw new PlivoValidationException("please update either mute, hold or coach_mode");
+    }
+    return client().getVoiceFallback1Service().mpcMemberUpdate(client().getAuthId(), id, secondaryId, this);
+  }
+
+  @Override
+  protected Call<MultiPartyCallParticipantUpdateResponse> obtainFallback2Call() throws PlivoValidationException {
+    MultiPartyCallUtils.validMultiPartyCallId(id);
+    if (secondaryId.equalsIgnoreCase(MultiPartyCallUtils.allParticipants) && coachMode != null) {
+      throw new PlivoValidationException("cannot update coachMode for all participants");
+    }
+    if (!Utils.anyNotNull(coachMode, mute, hold)) {
+      throw new PlivoValidationException("please update either mute, hold or coach_mode");
+    }
+    return client().getVoiceFallback2Service().mpcMemberUpdate(client().getAuthId(), id, secondaryId, this);
   }
 }
