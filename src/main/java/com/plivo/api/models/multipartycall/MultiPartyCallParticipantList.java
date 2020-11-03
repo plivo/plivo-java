@@ -3,10 +3,10 @@ package com.plivo.api.models.multipartycall;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.VoiceLister;
 import retrofit2.Call;
 
-public class MultiPartyCallParticipantList extends Lister<MultiPartyCallParticipant> {
+public class MultiPartyCallParticipantList extends VoiceLister<MultiPartyCallParticipant> {
 
   @JsonIgnore
   private final String mpcId;
@@ -28,6 +28,18 @@ public class MultiPartyCallParticipantList extends Lister<MultiPartyCallParticip
   @Override
   protected Call<ListResponse<MultiPartyCallParticipant>> obtainCall() throws PlivoValidationException {
     MultiPartyCallUtils.validMultiPartyCallId(mpcId);
-    return client().getApiService().mpcListParticipants(client().getAuthId(), mpcId, toMap());
+    return client().getVoiceApiService().mpcListParticipants(client().getAuthId(), mpcId, toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<MultiPartyCallParticipant>> obtainFallback1Call() throws PlivoValidationException {
+    MultiPartyCallUtils.validMultiPartyCallId(mpcId);
+    return client().getVoiceFallback1Service().mpcListParticipants(client().getAuthId(), mpcId, toMap());
+  }
+
+  @Override
+  protected Call<ListResponse<MultiPartyCallParticipant>> obtainFallback2Call() throws PlivoValidationException {
+    MultiPartyCallUtils.validMultiPartyCallId(mpcId);
+    return client().getVoiceFallback2Service().mpcListParticipants(client().getAuthId(), mpcId, toMap());
   }
 }
