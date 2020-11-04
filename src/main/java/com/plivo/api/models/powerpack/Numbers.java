@@ -16,12 +16,14 @@ public class Numbers extends BaseResource {
     this.uuid = uuid;
   }
 
-  public Numbers getter() {
-    return this;
-  }
+//  public Numbers getter() {
+//    return this;
+//  }
+  
   public Numbers(){
 
   }
+  
   public String getNumberPoolId() {
     return number_pool_uuid;
   }
@@ -72,7 +74,7 @@ public class Numbers extends BaseResource {
 
   @Override
   public String getId() {
-    return getNumberPoolId();
+    return "testing_sample";
   }
 
 }

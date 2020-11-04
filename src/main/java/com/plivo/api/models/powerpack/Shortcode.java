@@ -15,9 +15,9 @@ public class Shortcode extends BaseResource {
     this.uuid = uuid;
   }
 
-  public Shortcode getter() {
-    return this;
-  }
+//  public Shortcode getter() {
+//    return this;
+//  }
 
   public ShortcodeLister list() {
     return new ShortcodeLister(uuid);

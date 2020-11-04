@@ -20,9 +20,9 @@ public class Tollfree extends BaseResource {
     //Introducing the dummy constructor
    }
 
-  public Tollfree getter() {
-    return this;
-  }
+//  public Tollfree getter() {
+//    return this;
+//  }
 
   public TollfreeLister list() {
     return new TollfreeLister(uuid);
