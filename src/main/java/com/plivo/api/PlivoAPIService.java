@@ -497,4 +497,3 @@ public interface PlivoAPIService {
   Call<MediaResponse> uploadMedia(@Path("authId") String authId,
                         @Body RequestBody mediaUploads);
 }
-

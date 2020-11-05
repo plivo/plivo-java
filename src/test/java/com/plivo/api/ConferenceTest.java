@@ -359,6 +359,7 @@ public class ConferenceTest extends BaseTest {
     final String confId = "confId";
 
     Conference.recorder(confId)
+      .timeLimit(60)
       .record();
 
     assertRequest("POST", "Conference/%s/Record/", confId);
@@ -370,6 +371,7 @@ public class ConferenceTest extends BaseTest {
     final String confId = "confId";
 
     Conference.recorder(confId)
+      .timeLimit(60)
       .client(client)
       .record();
 

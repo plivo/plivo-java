@@ -10,6 +10,7 @@ public class BuyAddNumbers extends Getter<Numbers> {
   private String number;
   private String uuid;
   private String country_Iso2;
+  private String service;
   private Boolean rent;
 
   public BuyAddNumbers(String uuid) {
@@ -33,6 +34,11 @@ public class BuyAddNumbers extends Getter<Numbers> {
 
   public BuyAddNumbers number(String number) {
     this.number = number;
+    return this;
+  }
+
+  public BuyAddNumbers service(String service) {
+    this.service = service;
     return this;
   }
 

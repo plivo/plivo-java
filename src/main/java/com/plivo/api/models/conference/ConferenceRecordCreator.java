@@ -11,6 +11,7 @@ public class ConferenceRecordCreator extends VoiceCreator<ConferenceRecordCreate
 
   @JsonIgnore
   private final String conferenceName;
+  private Integer timeLimit;
   private String fileFormat;
   private String transcriptionType;
   private String transcriptionUrl;
@@ -20,6 +21,10 @@ public class ConferenceRecordCreator extends VoiceCreator<ConferenceRecordCreate
 
   public ConferenceRecordCreator(String conferenceName) {
     this.conferenceName = conferenceName;
+  }
+
+  public Integer timeLimit() {
+    return this.timeLimit;
   }
 
   public String fileFormat() {
@@ -44,6 +49,11 @@ public class ConferenceRecordCreator extends VoiceCreator<ConferenceRecordCreate
 
   public String callbackMethod() {
     return this.callbackMethod;
+  }
+
+  public ConferenceRecordCreator timeLimit(Integer timeLimit) {
+    this.timeLimit = timeLimit;
+    return this;
   }
 
   public ConferenceRecordCreator fileFormat(final String fileFormat) {
