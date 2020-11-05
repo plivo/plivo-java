@@ -14,12 +14,4 @@ public class ComplianceApplicationSubmitter extends Submitter<ComplianceApplicat
     protected Call<ComplianceApplicationCreateResponse> obtainCall() {
         return client().getApiService().complianceApplicationSubmit(client().getAuthId(), id,this);
     }
-
-//    public ComplianceApplication submit() throws IOException, PlivoRestException {
-//        Response<ComplianceApplication> response = obtainCall().execute();
-//
-//        handleResponse(response);
-//
-//        return response.body();
-//    }
 }

@@ -36,7 +36,6 @@ public class ComplianceApplication extends BaseResource {
     }
 
     public static ComplianceApplicationSubmitter submitter(String id) {
-//        return new ComplianceApplicationSubmitter(new ComplianceApplication().getComplianceApplicationId()).submit();
         return new ComplianceApplicationSubmitter(id);
     }
 

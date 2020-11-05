@@ -46,7 +46,7 @@ public class ComplianceDocumentUpdater extends Updater<ComplianceDocumentUpdateR
     private String useCaseDescription;
     private MultipartBody.Builder body;
 
-//    private RequestBody filesAsRequestBody = null;
+
 
 
     public ComplianceDocumentUpdater(String id) {
@@ -99,41 +99,7 @@ public class ComplianceDocumentUpdater extends Updater<ComplianceDocumentUpdateR
       return this;
     }
 
-//    public ComplianceDocumentUpdater setFile(String file) throws ResourceNotFoundException {
-//        this.file = file;
-//        filesAsRequestBody = getFilesForFilenames(new String[]{file});
-//        return this;
-//    }
-//
-//    private RequestBody getFilesForFilenames(String[] fileNames) throws ResourceNotFoundException {
-//        Builder builder = new MultipartBody.Builder()
-//                .setType(MultipartBody.FORM);
-//        for (int i = 0; i < fileNames.length; i++) {
-//            File tempFile = new File(fileNames[i]);
-//            boolean exists = tempFile.exists();
-//            if (!exists)
-//                throw new ResourceNotFoundException("File missing " + fileNames[i]);
-//            try {
-//                System.out.println(tempFile);
-//                System.out.println(tempFile.toPath());
-//                // handle for java 8
-//                String content_type = "";
-//                if (Files.probeContentType(tempFile.toPath()) != null) {
-//                    content_type = Files.probeContentType(tempFile.toPath());
-//                } else {
-//                    Path source = Paths.get(fileNames[i]);
-//                    MimetypesFileTypeMap m = new MimetypesFileTypeMap(source.toString());
-//                    content_type = m.getContentType(tempFile);
-//                }
-//                builder
-//                        .addFormDataPart("file", fileNames[i],
-//                                RequestBody.create(MediaType.parse(content_type), tempFile));
-//            } catch (IOException e) {
-//                throw new ResourceNotFoundException("Unable to read file " + fileNames[i]);
-//            }
-//        }
-//        return builder.build();
-//    }
+
 
     public ComplianceDocumentUpdater setEndUserId(String endUserId) {
         this.endUserId = endUserId;
@@ -261,9 +227,7 @@ public class ComplianceDocumentUpdater extends Updater<ComplianceDocumentUpdateR
       return this;
     }
 
-//    public RequestBody getFilesAsRequestBody() {
-//        return filesAsRequestBody;
-//    }
+
 
     @Override
     protected Call<ComplianceDocumentUpdateResponse> obtainCall() {
