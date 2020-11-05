@@ -20,10 +20,6 @@ public class Tollfree extends BaseResource {
     //Introducing the dummy constructor
    }
 
-  public Tollfree getter() {
-    return this;
-  }
-
   public TollfreeLister list() {
     return new TollfreeLister(uuid);
   }
@@ -40,34 +36,33 @@ public class Tollfree extends BaseResource {
     return new PowerpackAddTollfree(uuid);
   }
 
-  public String getNumberPoolId() {
-    return number_pool_uuid;
-  }
+  public String getNumber_pool_uuid() {
+	    return number_pool_uuid;
+	  }
 
   public String getNumber() {
-    return number;
-  }
-
-
-  public String getAddedOn() {
-    return added_on;
-  }
-
-  public String getCountryIso2() {
-    return country_iso2;
-  }
-
-  public String getAccountPhoneNumberResource() {
-    return account_phone_number_resource;
+  return number;
   }
 
   public String getType() {
-    return type;
+  return type;
+  }
+
+  public String getAdded_on() {
+  return added_on;
+  }
+
+  public String getCountry_iso2() {
+  return country_iso2;
+  }
+
+  public String getAccount_phone_number_resource() {
+  return account_phone_number_resource;
   }
 
   @Override
   public String getId() {
-    return getNumberPoolId();
+    return getNumber_pool_uuid();
   }
 
 }

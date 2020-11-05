@@ -16,14 +16,8 @@ public class Numbers extends BaseResource {
     this.uuid = uuid;
   }
 
-  public Numbers getter() {
-    return this;
-  }
   public Numbers(){
 
-  }
-  public String getNumberPoolId() {
-    return number_pool_uuid;
   }
 
   public RemoveNumber remove() {
@@ -50,6 +44,10 @@ public class Numbers extends BaseResource {
     return new BuyAddNumbers(uuid);
   }
 
+  public String getNumber_pool_uuid() {
+	  return number_pool_uuid;
+	}
+  
   public String getNumber() {
     return number;
   }
@@ -58,21 +56,21 @@ public class Numbers extends BaseResource {
     return type;
   }
 
-  public String getAddedOn() {
+  public String getAdded_on() {
     return added_on;
   }
 
-  public String getCountryIso2() {
+  public String getCountry_iso2() {
     return country_iso2;
   }
 
-  public String getAccountPhoneNumberResource() {
+  public String getAccount_phone_number_resource() {
     return account_phone_number_resource;
   }
 
   @Override
   public String getId() {
-    return getNumberPoolId();
+    return getNumber_pool_uuid();
   }
 
 }
