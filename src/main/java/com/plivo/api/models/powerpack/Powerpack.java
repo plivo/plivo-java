@@ -12,6 +12,7 @@ public class Powerpack extends BaseResource {
   private String number_pool;
   private String uuid;
   public NumberPool numberpool;
+  public NumberPriority[] number_priority;
 
   public static PowerpackCreator creator(String name) {
     return new PowerpackCreator(name);
@@ -111,6 +112,10 @@ public class Powerpack extends BaseResource {
 
   public String getNumber_pool() {
     return number_pool;
+  }
+
+  public NumberPriority[] getNumber_priority() {
+    return number_priority;
   }
 
   public String getUuid() {

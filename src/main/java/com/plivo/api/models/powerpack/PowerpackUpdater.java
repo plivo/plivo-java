@@ -10,6 +10,7 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
   private String application_id;
   private Boolean sticky_sender;
   private Boolean local_connect;
+  private NumberPriority[] number_priority;
 
   public PowerpackUpdater(String id) {
     super(id);
@@ -58,6 +59,11 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
 
   public PowerpackUpdater application_type(final String application_type) {
     this.application_type = application_type;
+    return this;
+  }
+
+  public PowerpackUpdater number_priority(final NumberPriority[] numberPriorities) {
+    this.number_priority = numberPriorities;
     return this;
   }
 
