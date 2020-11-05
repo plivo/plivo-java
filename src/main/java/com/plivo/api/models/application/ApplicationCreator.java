@@ -19,6 +19,7 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
   private Boolean defaultEndpointApp;
   private String subaccount;
   private Boolean logIncomingMessages;
+  private Boolean publicUri;
 
   /**
    * @param appName The name of your application
@@ -83,6 +84,10 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
     return this.logIncomingMessages;
   }
 
+  public Boolean publicUri() {
+    return this.publicUri;
+  }
+
   public ApplicationCreator appName(final String appName) {
     this.appName = appName;
     return this;
@@ -145,6 +150,11 @@ public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> 
 
   public ApplicationCreator logIncomingMessages(final Boolean logIncomingMessages) {
     this.logIncomingMessages = logIncomingMessages;
+    return this;
+  }
+
+  public ApplicationCreator publicUri(final Boolean publicUri) {
+    this.publicUri = publicUri;
     return this;
   }
 

@@ -556,4 +556,3 @@ public interface PlivoAPIService {
     Call<ResponseBody> complianceDocumentDelete(@Path("authId") String authId, @Path("id") String complianceDocumentId);
 
 }
-
