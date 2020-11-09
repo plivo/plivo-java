@@ -39,7 +39,7 @@ public abstract class PpkGetter<T extends BaseResource> extends BaseRequest<T> {
     try {
       Powerpack powerpack = (Powerpack) response.body();
       String numberpoolid = powerpack.getNumber_pool().split("/")[5];
-//      powerpack.numberpool = new NumberPool(numberpoolid);
+      powerpack.numberpool = new NumberPool(numberpoolid);
     } catch (Exception e) {
 //      /
     }

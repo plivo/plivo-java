@@ -1,5 +1,6 @@
 package com.plivo.api.models.powerpack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 
 public class Powerpack extends BaseResource {
@@ -12,6 +13,8 @@ public class Powerpack extends BaseResource {
   private String number_pool;
   private String uuid;
   public NumberPriority[] number_priority;
+  @JsonIgnore
+  public NumberPool numberpool;
 
   public static PowerpackCreator creator(String name) {
     return new PowerpackCreator(name);

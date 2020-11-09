@@ -1,5 +1,6 @@
 package com.plivo.api.models.powerpack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 
 public class Shortcode extends BaseResource {
@@ -15,6 +16,11 @@ public class Shortcode extends BaseResource {
   public Shortcode(String uuid) {
     this.uuid = uuid;
   }
+  
+  @JsonIgnore
+  public Shortcode getter() {
+	    return this;
+	  }
 
   public ShortcodeLister list() {
     return new ShortcodeLister(uuid);

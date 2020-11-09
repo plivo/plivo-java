@@ -1,5 +1,6 @@
 package com.plivo.api.models.powerpack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 
 public class Tollfree extends BaseResource {
@@ -19,6 +20,11 @@ public class Tollfree extends BaseResource {
   public Tollfree() {
     //Introducing the dummy constructor
    }
+  
+  @JsonIgnore
+  public Tollfree getter() {
+	    return this;
+	  }
 
   public TollfreeLister list() {
     return new TollfreeLister(uuid);

@@ -1,5 +1,6 @@
 package com.plivo.api.models.powerpack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 
 public class Numbers extends BaseResource {
@@ -15,9 +16,18 @@ public class Numbers extends BaseResource {
   public Numbers(String uuid) {
     this.uuid = uuid;
   }
-
+  
+  @JsonIgnore
+  public Numbers getter() {
+	    return this;
+	  }
+  
   public Numbers(){
 
+  }
+  
+  public String getNumberPoolId() {
+    return number_pool_uuid;
   }
 
   public RemoveNumber remove() {
