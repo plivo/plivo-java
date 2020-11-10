@@ -96,19 +96,19 @@ public class Powerpack extends BaseResource {
     return name;
   }
 
-  public String getApplicationType() {
+  public String getApplication_type() {
     return application_type;
   }
 
-  public String getApplicationID() {
+  public String getApplication_id() {
     return application_id;
   }
 
-  public Boolean getStickySender() {
+  public Boolean getSticky_sender() {
     return sticky_sender;
   }
 
-  public Boolean getLocalConnect() {
+  public Boolean getLocal_connect() {
     return local_connect;
   }
 
