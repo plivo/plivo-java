@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.14.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2020-11-17)
+- Add number_priority support for Powerpack API.
+
 ## [4.13.0](https://github.com/plivo/plivo-java/tree/v4.13.0) (2020-11-05)
 - Add Regulatory Compliance API support.
 
