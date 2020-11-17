@@ -1,5 +1,6 @@
 package com.plivo.api.models.powerpack;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 
 public class Numbers extends BaseResource {
@@ -15,13 +16,16 @@ public class Numbers extends BaseResource {
   public Numbers(String uuid) {
     this.uuid = uuid;
   }
-
+  
+  @JsonIgnore
   public Numbers getter() {
-    return this;
-  }
+	    return this;
+	  }
+  
   public Numbers(){
 
   }
+  
   public String getNumberPoolId() {
     return number_pool_uuid;
   }
@@ -50,6 +54,10 @@ public class Numbers extends BaseResource {
     return new BuyAddNumbers(uuid);
   }
 
+  public String getNumber_pool_uuid() {
+	  return number_pool_uuid;
+	}
+  
   public String getNumber() {
     return number;
   }
@@ -58,21 +66,21 @@ public class Numbers extends BaseResource {
     return type;
   }
 
-  public String getAddedOn() {
+  public String getAdded_on() {
     return added_on;
   }
 
-  public String getCountryIso2() {
+  public String getCountry_iso2() {
     return country_iso2;
   }
 
-  public String getAccountPhoneNumberResource() {
+  public String getAccount_phone_number_resource() {
     return account_phone_number_resource;
   }
 
   @Override
   public String getId() {
-    return getNumberPoolId();
+    return getNumber_pool_uuid();
   }
 
 }
