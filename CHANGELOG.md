@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.13.0](https://github.com/plivo/plivo-java/tree/v4.13.0) (2020-11-05)
+- Add Regulatory Compliance API support.
+
 ## [4.12.0](https://github.com/plivo/plivo-java/tree/v4.12.0) (2020-10-30)
 - Change lookup API endpoint and response.
 
