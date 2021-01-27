@@ -1,5 +1,51 @@
 # Change Log
 
+## [4.14.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2020-11-17)
+- Add number_priority support for Powerpack API.
+
+## [4.13.0](https://github.com/plivo/plivo-java/tree/v4.13.0) (2020-11-05)
+- Add Regulatory Compliance API support.
+
+## [4.12.0](https://github.com/plivo/plivo-java/tree/v4.12.0) (2020-10-30)
+- Change lookup API endpoint and response.
+
+## [4.11.1](https://github.com/plivo/plivo-java/tree/v4.11.1) (2020-10-13)
+- Add ConferenceUuid & CallState for Get Details of a Call API.
+
+## [4.11.0](https://github.com/plivo/plivo-java/tree/v4.11.0) (2020-10-06)
+- Add Lookup API support.
+
+## [4.10.0](https://github.com/plivo/plivo-java/tree/v4.10.0) (2020-09-25)
+- Add "publicUri" optional param support for Application API.
+
+## [4.9.0](https://github.com/plivo/plivo-java/tree/v4.9.0) (2020-09-04)
+- Add Powerpack for MMS.
+
+## [4.8.0](https://github.com/plivo/plivo-java/tree/v4.8.0) (2020-08-24)
+- Add retries to multiple regions for voice requests.
+
+## [4.7.3](https://github.com/plivo/plivo-java/tree/v4.7.3) (2020-08-03)
+- Fix Media upload response.
+
+## [4.7.2](https://github.com/plivo/plivo-java/tree/v4.7.2) (2020-06-10)
+- Fix Record a Call API by adding optional params.
+
+## [4.7.1](https://github.com/plivo/plivo-java/tree/v4.7.1) (2020-05-15)
+- Fix Get Number details API response.
+
+## [4.7.0](https://github.com/plivo/plivo-java/tree/v4.7.0) (2020-05-11)
+- Add JWT helper functions.
+
+## [4.6.0](https://github.com/plivo/plivo-java/tree/v4.6.0) (2020-04-29)
+- Add V3 signature helper functions.
+
+## [4.5.0](https://github.com/plivo/plivo-java/tree/v4.5.0) (2020-01-29)
+- Add application cascade delete support.
+- Add post call quality feedback API support.
+- Add Tollfree support for Powerpack
+- Add Media support.
+- Add MMS and Powerpack support.
+
 ## [4.4.4](https://github.com/plivo/plivo-java/tree/v4.4.4) (2019-11-19)
 - Add GetInput XML support
 

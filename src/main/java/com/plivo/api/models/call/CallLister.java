@@ -1,10 +1,11 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.VoiceLister;
 import com.plivo.api.util.PropertyFilter;
+import okhttp3.ResponseBody;
 
-public class CallLister extends Lister<Call> {
+public class CallLister extends VoiceLister<Call> {
 
   private String subaccount;
   private CallDirection callDirection;
@@ -44,7 +45,7 @@ public class CallLister extends Lister<Call> {
   public Integer hangupCauseCode() {
     return hangupCauseCode;
   }
-  
+
   public PropertyFilter<Long> billDuration() {
     return this.billDuration;
   }
@@ -129,6 +130,16 @@ public class CallLister extends Lister<Call> {
 
   @Override
   protected retrofit2.Call<ListResponse<Call>> obtainCall() {
-    return client().getApiService().callList(client().getAuthId(), toMap());
+    return client().getVoiceApiService().callList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected retrofit2.Call<ListResponse<Call>> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().callList(client().getAuthId(), toMap());
+  }
+
+  @Override
+  protected retrofit2.Call<ListResponse<Call>> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().callList(client().getAuthId(), toMap());
   }
 }

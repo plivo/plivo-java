@@ -1,9 +1,9 @@
 package com.plivo.api.models.application;
 
-import com.plivo.api.models.base.Updater;
+import com.plivo.api.models.base.VoiceUpdater;
 import retrofit2.Call;
 
-public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
+public class ApplicationUpdater extends VoiceUpdater<ApplicationUpdateResponse> {
 
   private String answerUrl;
   private String answerMethod;
@@ -17,6 +17,7 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
   private Boolean defaultEndpointApp;
   private String subaccount;
   private Boolean logIncomingMessages;
+  private Boolean publicUri;
 
   public ApplicationUpdater(String id) {
     super(id);
@@ -68,6 +69,10 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
 
   public Boolean logIncomingMessages() {
     return this.logIncomingMessages;
+  }
+
+  public Boolean publicUri() {
+    return this.publicUri;
   }
 
   public ApplicationUpdater answerUrl(final String answerUrl) {
@@ -130,9 +135,27 @@ public class ApplicationUpdater extends Updater<ApplicationUpdateResponse> {
     return this;
   }
 
+  public ApplicationUpdater publicUri(final Boolean publicUri) {
+    this.publicUri = publicUri;
+    return this;
+  }
+
 
   @Override
-  protected Call<ApplicationUpdateResponse> obtainCall() {
-    return client().getApiService().applicationUpdate(client().getAuthId(), id, this);
+  protected Call<ApplicationUpdateResponse> obtainCall(String identifier) {
+    this.id = null;
+    return client().getVoiceApiService().applicationUpdate(client().getAuthId(), identifier, this);
+  }
+
+  @Override
+  protected Call<ApplicationUpdateResponse> obtainFallback1Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback1Service().applicationUpdate(client().getAuthId(), identifier, this);
+  }
+
+  @Override
+  protected Call<ApplicationUpdateResponse> obtainFallback2Call(String identifier) {
+    this.id = null;
+    return client().getVoiceFallback2Service().applicationUpdate(client().getAuthId(), identifier, this);
   }
 }

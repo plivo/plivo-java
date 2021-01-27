@@ -2,12 +2,12 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
-import com.plivo.api.models.message.Message;
-import com.plivo.api.models.message.MessageDirection;
-import com.plivo.api.models.message.MessageState;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+
+import com.plivo.api.models.message.*;
+
 import java.util.Map;
 
 import org.junit.Before;
@@ -49,12 +49,26 @@ public class MessageTest extends BaseTest {
       .create();
   }
 
+  @Test
+  public void messageCreateWithMMSClientShouldSucceed() throws Exception {
+    String fixtureName = "messageSendResponse.json";
+
+    expectResponse(fixtureName, 202);
+
+    Message.creator("+911231231230", Arrays.asList("+911231231330"), "test").type(MessageType.MMS).media_urls(new String[]{"https://test.com/hello.jpg"})
+      .client(client)
+      .create();
+
+    assertRequest("POST", "Message/");
+  }
+
+
   @Test(expected = IllegalArgumentException.class)
   public void messageWithPowerpackBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-    Message.creator( null, "text", "testUUID")
+    Message.creator(null, "text", "testUUID")
       .client(client)
       .create();
   }
@@ -223,6 +237,7 @@ public class MessageTest extends BaseTest {
     params.put("offset", "0");
     assertRequest("GET", "Message/", params);
   }
+
 
   @Test
   public void messageIteratorWithClientShouldSucceed() throws Exception {

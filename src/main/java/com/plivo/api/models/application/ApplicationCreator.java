@@ -1,10 +1,10 @@
 package com.plivo.api.models.application;
 
-import com.plivo.api.models.base.Creator;
+import com.plivo.api.models.base.VoiceCreator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
+public class ApplicationCreator extends VoiceCreator<ApplicationCreateResponse> {
 
   private String appName;
   private String answerUrl;
@@ -19,6 +19,7 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
   private Boolean defaultEndpointApp;
   private String subaccount;
   private Boolean logIncomingMessages;
+  private Boolean publicUri;
 
   /**
    * @param appName The name of your application
@@ -81,6 +82,10 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
 
   public Boolean logIncomingMessages() {
     return this.logIncomingMessages;
+  }
+
+  public Boolean publicUri() {
+    return this.publicUri;
   }
 
   public ApplicationCreator appName(final String appName) {
@@ -148,8 +153,23 @@ public class ApplicationCreator extends Creator<ApplicationCreateResponse> {
     return this;
   }
 
+  public ApplicationCreator publicUri(final Boolean publicUri) {
+    this.publicUri = publicUri;
+    return this;
+  }
+
   @Override
   protected Call<ApplicationCreateResponse> obtainCall() {
-    return client().getApiService().applicationCreate(client().getAuthId(), this);
+    return client().getVoiceApiService().applicationCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<ApplicationCreateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().applicationCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<ApplicationCreateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().applicationCreate(client().getAuthId(), this);
   }
 }

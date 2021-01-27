@@ -1,9 +1,9 @@
 package com.plivo.api.models.endpoint;
 
-import com.plivo.api.models.base.Creator;
+import com.plivo.api.models.base.VoiceCreator;
 import retrofit2.Call;
 
-public class EndpointCreator extends Creator<EndpointCreateResponse> {
+public class EndpointCreator extends VoiceCreator<EndpointCreateResponse> {
 
   private final String username;
   private final String password;
@@ -27,6 +27,16 @@ public class EndpointCreator extends Creator<EndpointCreateResponse> {
 
   @Override
   protected Call<EndpointCreateResponse> obtainCall() {
-    return client().getApiService().endpointCreate(client().getAuthId(), this);
+    return client().getVoiceApiService().endpointCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<EndpointCreateResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().endpointCreate(client().getAuthId(), this);
+  }
+
+  @Override
+  protected Call<EndpointCreateResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().endpointCreate(client().getAuthId(), this);
   }
 }

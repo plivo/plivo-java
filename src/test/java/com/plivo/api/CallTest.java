@@ -56,7 +56,8 @@ public class CallTest extends BaseTest {
   @Test
   public void callCreateWithClientShouldSucceed() throws Exception {
     String fixtureName = "callCreateResponse.json";
-
+    expectResponse(fixtureName, 503);
+    expectResponse(fixtureName, 503);
     expectResponse(fixtureName, 200);
 
     Map<String, String> headers = new HashMap<>();
@@ -96,7 +97,8 @@ public class CallTest extends BaseTest {
   @Test
   public void callListShouldSucceed() throws Exception {
     String fixtureName = "callListResponse.json";
-
+    expectResponse(fixtureName, 503);
+    expectResponse(fixtureName, 503);
     expectResponse(fixtureName, 200);
 
     Call.lister()
@@ -133,6 +135,8 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callGetWithClientShouldSucceed() throws Exception {
+    expectResponse("callGetResponse.json", 503);
+    expectResponse("callGetResponse.json", 503);
     expectResponse("callGetResponse.json", 200);
     final String callId = "callId";
     Call call = Call.getter(callId)
@@ -146,6 +150,8 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callDeleteShouldSucceed() throws Exception {
+    expectResponse("callDeleteResponse.json", 503);
+    expectResponse("callDeleteResponse.json", 503);
     expectResponse("callDeleteResponse.json", 204);
     final String callId = "callId";
 
@@ -180,6 +186,8 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callUpdateWithClientShouldSucceed() throws Exception {
+    expectResponse("callUpdateResponse.json", 503);
+    expectResponse("callUpdateResponse.json", 503);
     expectResponse("callUpdateResponse.json", 202);
     String callId = "callId";
 
@@ -254,6 +262,7 @@ public class CallTest extends BaseTest {
     final String callId = "callId";
 
     Call.recorder(callId)
+      .timeLimit(60)
       .record();
 
     assertRequest("POST", "Call/%s/Record/", callId);
@@ -265,6 +274,7 @@ public class CallTest extends BaseTest {
     final String callId = "callId";
 
     Call.recorder(callId)
+      .timeLimit(60)
       .client(client)
       .record();
 

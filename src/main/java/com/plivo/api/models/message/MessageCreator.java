@@ -22,11 +22,14 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   private final String text;
   @JsonProperty("powerpack_uuid")
   private String powerpackUUID;
-  private MessageType type = MessageType.SMS;
+  private MessageType type = null;
   private URL url = null;
   private String method = "POST";
   private Boolean log = null;
   private Boolean trackable = null;
+  private  String[] media_urls = null;
+  private String[] media_ids = null;
+
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -34,8 +37,8 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    * @param text The text message that will be sent.
    */
   MessageCreator(String source, List<String> destination, String text) {
-    if (!Utils.allNotNull(source, destination, text)) {
-      throw new IllegalArgumentException("source, destination and text must not be null");
+    if (!Utils.allNotNull(source, destination)) {
+      throw new IllegalArgumentException("source, destination must not be null");
     }
 
     if (destination.contains(source)) {
@@ -53,7 +56,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    * @param powerpackUUID The powerpack UUID to be used.
    */
   MessageCreator(List<String> destination, String text, String powerpackUUID) {
-    if (!Utils.allNotNull(powerpackUUID, destination, text)) {
+    if (!Utils.allNotNull(powerpackUUID, destination)) {
       throw new IllegalArgumentException("powerpack uuid, destination and text must not be null");
     }
     this.destination = destination;
@@ -88,6 +91,10 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   public Boolean log() {
     return this.log;
   }
+
+  public String[] media_urls() { return this.media_urls; }
+
+  public String[] media_ids() { return this.media_ids; }
 
   /**
    * @param type Must be {@link MessageType#SMS}
@@ -127,6 +134,21 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    */
   public MessageCreator trackable(final Boolean trackable) {
     this.trackable = trackable;
+    return this;
+  }
+  /**
+   +   * @param media_url The media url is used to send media for MMS.
+   +   */
+  public MessageCreator media_urls(final String[] media_urls) {
+        this.media_urls = media_urls;
+       return this;
+  }
+
+  /**
+   +   * @param media_ids The media ids is used to send media for MMS.
+   +   */
+  public MessageCreator media_ids(final String[] media_ids) {
+    this.media_ids = media_ids;
     return this;
   }
 

@@ -20,6 +20,8 @@ public class PhoneNumber extends BaseResource {
   private Boolean voiceEnabled;
   private String voiceRate;
   private NumberType type;
+  private String mmsRate;
+  private Boolean mmsEnabled;
 
   public static PhoneNumberLister lister(String countryCode) {
     return new PhoneNumberLister(countryCode);
@@ -88,6 +90,11 @@ public class PhoneNumber extends BaseResource {
   public String getSmsRate() {
     return smsRate;
   }
+  public Boolean getMMSEnabled() {
+    return mmsEnabled;
+  }
+
+  public String getMMSRate() { return mmsRate; }
 
   public Boolean getVoiceEnabled() {
     return voiceEnabled;
