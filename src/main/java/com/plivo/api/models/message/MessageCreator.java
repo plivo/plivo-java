@@ -39,7 +39,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    */
 
   MessageCreator(String source, String destination, String text) {
-    System.out.println("You got this!! In the latest constructor");
     if (!Utils.allNotNull(source, destination)) {
       throw new IllegalArgumentException("source, destination must not be null");
     }
@@ -47,12 +46,10 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
       throw new IllegalArgumentException("destination cannot include source");
     }
     if (source.length()<= 14) {
-      System.out.println("executing source!!");
       this.source = source;
       this.destination = Collections.singletonList(destination);
       this.text = text;
     } else {
-      System.out.println("executing powerpack!!");
       this.powerpackUUID = source;
       this.destination = Collections.singletonList(destination);
       this.text = text;
