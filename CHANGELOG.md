@@ -1,8 +1,9 @@
 # Change Log
 
+## [4.15.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2021-02-09)
+- Add XML support JDK 11.
 ## [4.14.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
-
 ## [4.13.0](https://github.com/plivo/plivo-java/tree/v4.13.0) (2020-11-05)
 - Add Regulatory Compliance API support.
 

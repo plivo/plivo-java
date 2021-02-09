@@ -1,8 +1,8 @@
 package com.plivo.api.xml;
 
 import com.plivo.api.exceptions.PlivoXmlException;
-import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
-import com.sun.xml.internal.bind.marshaller.DataWriter;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
+import com.sun.xml.bind.marshaller.DataWriter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
