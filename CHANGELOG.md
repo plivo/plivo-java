@@ -1,7 +1,7 @@
 # Change Log
 
-## [4.16.0](https://github.com/plivo/plivo-java/tree/v4.16.0) (2021-04-22)
-- Create Powerpack function made compatible for the adaptive powerpack feature.
+## [4.15.1](https://github.com/plivo/plivo-java/tree/v4.15.1) (2021-04-22)
+- Bug Fix for adaptive powerpack feature.
 
 ## [4.15.0](https://github.com/plivo/plivo-java/tree/v4.15.0) (2021-02-09)
 - Add XML support JDK 11.
