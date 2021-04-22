@@ -6,19 +6,20 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.serializers.DelimitedListSerializer;
 import com.plivo.api.util.Utils;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
 
 /**
  * Represents an instance of a message created on PlivoClient.
  */
-public class MessageCreator extends Creator<MessageCreateResponse> {
+public class MessageCreator extends Creator < MessageCreateResponse > {
 
   @JsonProperty("src")
   private String source;
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
-  private final List<String> destination;
+  private final List < String > destination;
   private final String text;
   @JsonProperty("powerpack_uuid")
   private String powerpackUUID;
@@ -27,16 +28,41 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   private String method = "POST";
   private Boolean log = null;
   private Boolean trackable = null;
-  private  String[] media_urls = null;
+  private String[] media_urls = null;
   private String[] media_ids = null;
 
+
+  /**
+   * @param source The phone number that will be shown as the sender ID.
+   * @param destination The numbers to which the message will be sent in string format.
+   * @param text The text message that will be sent.
+   */
+
+  MessageCreator(String source, String destination, String text) {
+    if (!Utils.allNotNull(source, destination)) {
+      throw new IllegalArgumentException("source, destination must not be null");
+    }
+    if (destination.contains(source)) {
+      throw new IllegalArgumentException("destination cannot include source");
+    }
+    if (source.length()<= 14) {
+      this.source = source;
+      this.destination = Collections.singletonList(destination);
+      this.text = text;
+    } else {
+      this.powerpackUUID = source;
+      this.destination = Collections.singletonList(destination);
+      this.text = text;
+    }
+
+  }
 
   /**
    * @param source The phone number that will be shown as the sender ID.
    * @param destination The numbers to which the message will be sent.
    * @param text The text message that will be sent.
    */
-  MessageCreator(String source, List<String> destination, String text) {
+  MessageCreator(String source, List < String > destination, String text) {
     if (!Utils.allNotNull(source, destination)) {
       throw new IllegalArgumentException("source, destination must not be null");
     }
@@ -55,7 +81,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    * @param text The text message that will be sent.
    * @param powerpackUUID The powerpack UUID to be used.
    */
-  MessageCreator(List<String> destination, String text, String powerpackUUID) {
+  MessageCreator(List < String > destination, String text, String powerpackUUID) {
     if (!Utils.allNotNull(powerpackUUID, destination)) {
       throw new IllegalArgumentException("powerpack uuid, destination and text must not be null");
     }
@@ -68,7 +94,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     return this.source;
   }
 
-  public List<String> destination() {
+  public List < String > destination() {
     return this.destination;
   }
 
@@ -92,9 +118,13 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
     return this.log;
   }
 
-  public String[] media_urls() { return this.media_urls; }
+  public String[] media_urls() {
+    return this.media_urls;
+  }
 
-  public String[] media_ids() { return this.media_ids; }
+  public String[] media_ids() {
+    return this.media_ids;
+  }
 
   /**
    * @param type Must be {@link MessageType#SMS}
@@ -130,7 +160,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
   }
 
   /**
-   * @param trackable 
+   * @param trackable
    */
   public MessageCreator trackable(final Boolean trackable) {
     this.trackable = trackable;
@@ -140,8 +170,8 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
    +   * @param media_url The media url is used to send media for MMS.
    +   */
   public MessageCreator media_urls(final String[] media_urls) {
-        this.media_urls = media_urls;
-       return this;
+    this.media_urls = media_urls;
+    return this;
   }
 
   /**
@@ -154,7 +184,7 @@ public class MessageCreator extends Creator<MessageCreateResponse> {
 
 
   @Override
-  protected Call<MessageCreateResponse> obtainCall() {
+  protected Call < MessageCreateResponse > obtainCall() {
     return client().getApiService().messageSend(client().getAuthId(), this);
   }
 }
