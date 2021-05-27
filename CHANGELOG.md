@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.16.0](https://github.com/plivo/plivo-java/tree/v4.16.0) (2021-05-28)
+- New Send Message interface along with existing interface support.
+
 ## [4.14.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
 
