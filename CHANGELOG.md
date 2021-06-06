@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.15.2](https://github.com/plivo/plivo-java/tree/v4.15.2) (2021-06-07)
+- Adds VoiceNetworkGroup to List/Get Call response.
+
 ## [4.15.1](https://github.com/plivo/plivo-java/tree/v4.15.1) (2021-04-22)
 - Bug Fix for adaptive powerpack feature.
 
