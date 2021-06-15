@@ -68,7 +68,7 @@ Alternatively, you can provide these to `Plivo.init()`'s constructor yourself:
 ```java
 class Example {
   public static void main(String [] args) {
-    Plivo.init("<insert your authentication ID here>", "<insert your authentication token here>");
+    Plivo.init("<auth_id>", "<auth_id>");
   }
 }
 ```
@@ -78,8 +78,8 @@ To use multiple clients, you can create a `PlivoClient` instance yourself and se
 ```java
 class Example {
   public static void main(String [] args) {
-    PlivoClient client = new PlivoClient("<insert your authentication ID here>", "<insert your authentication token here>");
-    Message.creator("the_source_number", Collections.singletonList("the_destination_number"), "Hello, world!")
+    PlivoClient client = new PlivoClient("<auth_id>", "<auth_id>");
+    Message.creator("+14156667778", Collections.singletonList("+14156667777"), "Hello, world!")
                     .client(client)
                     .create();
   }
@@ -122,7 +122,7 @@ Please note that this makes several requests to the Plivo API, and hence will pa
 class Example {
   public static void main(String [] args) {
     Plivo.init();
-    Message.creator("the_source_number", Collections.singletonList("the_destination_number"), "Hello, world!")
+    Message.creator("+14156667778", Collections.singletonList("+14156667777"), "Hello, world!")
                     .create();
   }
 }
@@ -134,7 +134,7 @@ class Example {
 class Example {
   public static void main(String [] args) {
     Plivo.init();
-    Call.creator("the_from_number", Collections.singletonList("the_to_number"), "https://answer.url")
+    Call.creator("+14156667778", Collections.singletonList("+14156667777"), "https://answer.url")
                     .answerMethod("GET")
                     .create();
   }
@@ -146,9 +146,9 @@ class Example {
 ```java
 class Example {
   public static void main(String [] args) {
-    Plivo.init("<insert your authentication ID here>", "<insert your authentication token here>");
+    Plivo.init("<auth_id>", "<auth_id>");
     System.out.println(com.plivo.api.models.lookup.Number
-        .getter("+14154305555")
+        .getter("<number-goes-here>")
         .get());
   }
 }
@@ -177,7 +177,7 @@ This generates the following XML:
 ```
 
 ### More examples
-Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/java/introduction/overview) for more examples.
+More examples are available [here](https://github.com/plivo/plivo-examples-java). Also refer to the [guides for configuring the Java Spring to run various scenarios](https://plivo.com/docs/sms/quickstart/java-spring/) & use it to test out your integration in under 5 minutes.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-java/issues).
