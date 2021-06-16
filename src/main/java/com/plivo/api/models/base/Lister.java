@@ -80,18 +80,6 @@ public abstract class Lister<T extends BaseResource> extends BaseRequest<T> impl
     return response.body();
   }
 
-  public Long get() throws IOException, PlivoRestException {
-    validate();
-    Response<ListResponse<T>> response = obtainCall().execute();
-    handleResponse(response);
-    try {
-      return response.body().getMeta().getTotalCount();
-    } catch (Exception e) {
-      return 0L;
-    }
-  }
-
-
   protected Map<String, Object> toMap() {
     client();
     return Utils.objectToMap(plivoClient.getObjectMapper(), this);
