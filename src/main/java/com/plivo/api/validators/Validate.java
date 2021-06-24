@@ -45,6 +45,22 @@ public class Validate {
     return fieldName + COLON + errorMessage;
   }
 
+  public static void validMultipleIntegers(String paramName, String paramvalue, int lowerbound, int upperbound) throws PlivoValidationException {
+    String []values = paramvalue.split("<");
+    for (int i=0; i<values.length; i++){
+      try{
+        int val = Integer.parseInt(values[i]);
+        if (val < lowerbound || val > upperbound ){
+          System.out.println(lowerbound);
+          System.out.println(val);
+          throw new PlivoValidationException(composeErrorMessage(paramName, "Values passed in the string must be in the range [ " + Integer.toString(lowerbound) + ", " + Integer.toString(upperbound) + " ]"));
+        }
+      }catch (NumberFormatException e){
+        throw new PlivoValidationException(composeErrorMessage(paramName, "Values passed in the string must be integers"));
+      }
+    }
+  }
+
   public static void check(Object request) throws PlivoValidationException {
     Field[] fields = request.getClass().getDeclaredFields();
     for (Field field: fields) {
