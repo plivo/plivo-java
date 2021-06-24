@@ -114,6 +114,39 @@ public class MultiPartyCall extends BaseResource {
     return new MultiPartyCallRecordingResume(getId()).update();
   }
 
+  public static MultiPartyCallParticipantRecordingStart participantRecordStarter(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingStart(mpcId, participantId);
+  }
+
+  public MultiPartyCallParticipantRecordingStart participantRecordStarter(String participantId) throws PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingStart(getId(), participantId);
+  }
+
+  public static MultiPartyCallParticipantRecordingStop participantRecordStopper(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingStop(mpcId, participantId);
+  }
+
+  public void participantRecordStop(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    MultiPartyCallParticipantRecordingStop participantRecordStopper = new MultiPartyCallParticipantRecordingStop(getId(), participantId);
+    participantRecordStopper.delete();
+  }
+
+  public static MultiPartyCallParticipantRecordingPause participantRecordPause(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingPause(mpcId, participantId);
+  }
+
+  public BaseResponse participantRecordPause(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingPause(getId(), participantId).update();
+  }
+
+  public static MultiPartyCallParticipantRecordingResume participantRecordResume(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingResume(mpcId, participantId);
+  }
+
+  public BaseResponse participantRecordResume(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingPause(getId(), participantId).update();
+  }
+
   public static MultiPartyCallParticipantGet participantGetter(String mpcId, String participantId) {
     return new MultiPartyCallParticipantGet(mpcId, participantId);
   }

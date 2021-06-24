@@ -22,6 +22,7 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   @JsonSerialize(using = DelimitedListSerializer.class)
   private final List<String> to;
   private final String callUuid;
+  private String callerName;
   @UrlValues
   private String callStatusCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
@@ -36,8 +37,8 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   private String confirmKeySoundMethod = "GET";
   @UrlValues(message = "should be a valid URL or one of ['Real', 'None']", options = {"Real", "None"})
   private String dialMusic = "Real";
-  @InRange(message = "must be in range [15-120]", min = 15, max = 120)
-  private Integer ringTimeout = 45;
+  private String ringTimeout = "45";
+  private String delayDial="0";
   @InRange(message = "must be in range [300-28800]", min = 300, max = 28800)
   private Integer maxDuration = 14400;
   @InRange(message = "must be in range [2-10]", min = 2, max = 10)
@@ -100,6 +101,9 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     this.from = from;
     this.to = to;
     this.callUuid = null;
+    if(this.callerName==null){
+      this.callerName = this.from;
+    }
   }
 
   public MultiPartyCallParticipantAdd(String mpcId, String role, String callUuid) {
@@ -125,6 +129,8 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   public String callUuid() {
     return callUuid;
   }
+
+  public String callerName(){ return callerName;}
 
   public String callStatusCallbackUrl() {
     return callStatusCallbackUrl;
@@ -154,9 +160,13 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return dialMusic;
   }
 
-  public Integer ringTimeout() {
+  public String ringTimeout() {
     return ringTimeout;
   }
+
+  public  String delayDial(){ 
+    return delayDial;
+   }
 
   public Integer maxDuration() {
     return maxDuration;
@@ -270,6 +280,14 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return exitSoundMethod;
   }
 
+  public MultiPartyCallParticipantAdd callerName( String callerName) throws PlivoValidationException {
+    this.callerName = callerName;
+    if (callerName.length() > 50){
+      throw new PlivoValidationException("CallerName Length must be in range [0,50]");
+    }
+    return this;
+  }
+
   public MultiPartyCallParticipantAdd callStatusCallbackUrl(String callStatusCallbackUrl) {
     this.callStatusCallbackUrl = callStatusCallbackUrl;
     return this;
@@ -305,8 +323,15 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return this;
   }
 
-  public MultiPartyCallParticipantAdd ringTimeout(Integer ringTimeout) {
+  public MultiPartyCallParticipantAdd ringTimeout(String ringTimeout) throws PlivoValidationException {
+    Validate.validMultipleIntegers("ringTimeout", ringTimeout, 15, 120);
     this.ringTimeout = ringTimeout;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd delayDial(String delayDial) throws PlivoValidationException{
+    Validate.validMultipleIntegers("delayDial", delayDial, 0, 120);
+    this.delayDial = delayDial;
     return this;
   }
 
