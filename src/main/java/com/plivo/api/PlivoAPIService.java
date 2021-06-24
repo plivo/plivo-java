@@ -23,6 +23,7 @@ import com.plivo.api.models.message.MessageCreator;
 import com.plivo.api.models.message.MmsMedia;
 import com.plivo.api.models.multipartycall.*;
 import com.plivo.api.models.node.*;
+import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.number.*;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.phlo.Phlo;
@@ -589,12 +590,28 @@ public interface PlivoAPIService {
     Call<ResponseBody> mpcRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId);
 
     // Pause recording multiparty call
+    @Headers("Content-Type: application/json")
     @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Pause/")
     Call<BaseResponse> mpcPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);
 
     // Resume recording multiparty call
+    @Headers("Content-Type: application/json")
     @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Resume/")
     Call<BaseResponse> mpcResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);
+
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
+    Call<MultiPartyCallRecordingStartResponse> mpcParticipantStartRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId, @Body MultiPartyCallParticipantRecordingStart startParticipantRecording);
+
+    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
+    Call<ResponseBody> mpcParticipantRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    @Headers("Content-Type: application/json")
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Pause/")
+    Call<BaseResponse> mpcParticipantPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    @Headers("Content-Type: application/json")
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Resume/")
+    Call<BaseResponse> mpcParticipantResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
 
     // Get participant of multiparty call
     @GET("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
