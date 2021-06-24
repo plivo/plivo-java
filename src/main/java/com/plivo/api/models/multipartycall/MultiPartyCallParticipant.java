@@ -2,6 +2,7 @@ package com.plivo.api.models.multipartycall;
 
 import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.base.BaseResponse;
 import com.plivo.api.models.base.SecondaryResource;
 
 import java.io.IOException;
@@ -49,6 +50,39 @@ public class MultiPartyCallParticipant extends SecondaryResource {
   public void kick() throws PlivoRestException, IOException, PlivoValidationException {
     MultiPartyCallParticipantKick kicker = new MultiPartyCallParticipantKick(getId(), getSecondaryId());
     kicker.delete();
+  }
+
+  public static MultiPartyCallParticipantRecordingStart recordStarter(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingStart(mpcId, participantId);
+  }
+
+  public MultiPartyCallParticipantRecordingStart recordStarter(String participantId) throws PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingStart(getId(), getSecondaryId());
+  }
+
+  public static MultiPartyCallParticipantRecordingStop recordStopper(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingStop(mpcId, participantId);
+  }
+
+  public void recordStop(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    MultiPartyCallParticipantRecordingStop recordStopper = new MultiPartyCallParticipantRecordingStop(getId(), getSecondaryId());
+    recordStopper.delete();
+  }
+
+  public static MultiPartyCallParticipantRecordingPause recordPause(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingPause(mpcId, participantId);
+  }
+
+  public BaseResponse recordPause(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingPause(getId(), getSecondaryId()).update();
+  }
+
+  public static MultiPartyCallParticipantRecordingResume recordResume(String mpcId, String participantId) {
+    return new MultiPartyCallParticipantRecordingResume(mpcId, participantId);
+  }
+
+  public BaseResponse recordResume(String participantId) throws IOException, PlivoRestException, PlivoValidationException {
+    return new MultiPartyCallParticipantRecordingPause(getId(), getSecondaryId()).update();
   }
 
   public String getBilledAmount() {
