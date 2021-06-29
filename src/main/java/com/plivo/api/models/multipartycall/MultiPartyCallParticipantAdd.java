@@ -37,8 +37,10 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   private String confirmKeySoundMethod = "GET";
   @UrlValues(message = "should be a valid URL or one of ['Real', 'None']", options = {"Real", "None"})
   private String dialMusic = "Real";
-  private String ringTimeout = "45";
-  private String delayDial="0";
+  @MultipleValidIntegers(message1 = "must be in range [15,120]", message2 = "Destination Values must be in range [15,120]", message3 = "Destination Values must be integers", message4 = "Must be of type either String or Integer", lowerbound = 15, upperbound = 120)
+  private Object ringTimeout = 45;
+  @MultipleValidIntegers(message1 = "must be in range [0,120]", message2 = "Destination Values must be in range [0,120]", message3 = "Destination Values must be integers", message4 = "Must be of type either String or Integer", lowerbound = 0, upperbound = 120)
+  private Object delayDial = 0;
   @InRange(message = "must be in range [300-28800]", min = 300, max = 28800)
   private Integer maxDuration = 14400;
   @InRange(message = "must be in range [2-10]", min = 2, max = 10)
@@ -160,11 +162,11 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return dialMusic;
   }
 
-  public String ringTimeout() {
+  public Object ringTimeout() {
     return ringTimeout;
   }
-
-  public  String delayDial(){ 
+  
+  public  Object delayDial(){
     return delayDial;
    }
 
@@ -323,14 +325,12 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return this;
   }
 
-  public MultiPartyCallParticipantAdd ringTimeout(String ringTimeout) throws PlivoValidationException {
-    Validate.validMultipleIntegers("ringTimeout", ringTimeout, 15, 120);
+  public MultiPartyCallParticipantAdd ringTimeout(Object ringTimeout) {
     this.ringTimeout = ringTimeout;
     return this;
   }
 
-  public MultiPartyCallParticipantAdd delayDial(String delayDial) throws PlivoValidationException{
-    Validate.validMultipleIntegers("delayDial", delayDial, 0, 120);
+  public MultiPartyCallParticipantAdd delayDial(Object delayDial) {
     this.delayDial = delayDial;
     return this;
   }
