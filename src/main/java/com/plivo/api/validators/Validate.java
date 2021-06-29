@@ -45,22 +45,6 @@ public class Validate {
     return fieldName + COLON + errorMessage;
   }
 
-  public static void validMultipleIntegers(String paramName, String paramvalue, int lowerbound, int upperbound) throws PlivoValidationException {
-    String []values = paramvalue.split("<");
-    for (int i=0; i<values.length; i++){
-      try{
-        int val = Integer.parseInt(values[i]);
-        if (val < lowerbound || val > upperbound ){
-          System.out.println(lowerbound);
-          System.out.println(val);
-          throw new PlivoValidationException(composeErrorMessage(paramName, "Values passed in the string must be in the range [ " + Integer.toString(lowerbound) + ", " + Integer.toString(upperbound) + " ]"));
-        }
-      }catch (NumberFormatException e){
-        throw new PlivoValidationException(composeErrorMessage(paramName, "Values passed in the string must be integers"));
-      }
-    }
-  }
-
   public static void check(Object request) throws PlivoValidationException {
     Field[] fields = request.getClass().getDeclaredFields();
     for (Field field: fields) {
@@ -99,6 +83,28 @@ public class Validate {
           String actualValue = (String) value;
           if (!Utils.isSubaccountIdValid(actualValue)) {
             throw new PlivoValidationException(composeErrorMessage(field.getName(), ((SubAccount) annotation).message()));
+          }
+        } else if (annotation instanceof MultipleValidIntegers) {
+          if( value instanceof Integer) {
+            Integer actualValue = (Integer) value;
+            if ((((MultipleValidIntegers) annotation).lowerbound() > actualValue) || (((MultipleValidIntegers) annotation).upperbound() < actualValue)) {
+              throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message1()));
+            }
+          } else if ( value instanceof String){
+            String actualValue = (String) value;
+            String []values = actualValue.split("<");
+            for (int i=0; i<values.length; i++){
+              try{
+                int val = Integer.parseInt(values[i]);
+                if ((((MultipleValidIntegers) annotation).lowerbound() > val) || (((MultipleValidIntegers) annotation).upperbound() < val)) {
+                  throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message2()));
+                }
+              }catch (NumberFormatException e){
+                throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message3()));
+              }
+            }
+          } else{
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message4()));
           }
         }
       }
