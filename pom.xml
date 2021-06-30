@@ -5,6 +5,18 @@
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
   <version>4.15.1</version>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>7</source>
+          <target>7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <name>plivo-java</name>
   <description>A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
   <licenses>
