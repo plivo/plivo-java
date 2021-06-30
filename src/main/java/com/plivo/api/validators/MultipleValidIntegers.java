@@ -15,22 +15,7 @@ public @interface MultipleValidIntegers {
   /**
    * @return error message to return when validation fails
    */
-  String message1() default "value not in range";
-
-  /**
-   * @return error message to return when validation fails
-   */
-  String message2() default " Destination value not in range";
-
-  /**
-   * @return error message to return when validation fails
-   */
-  String message3() default "Destination values must be integer";
-
-  /**
-   * @return error message to return when validation fails
-   */
-  String message4() default "must be integer or string";
+  String message() default "value must be either integer or string containing integers separated by delimiter '<'";
 
   /**
    * @return min value the element must be higher than or equal to

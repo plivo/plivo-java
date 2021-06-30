@@ -88,7 +88,7 @@ public class Validate {
           if( value instanceof Integer) {
             Integer actualValue = (Integer) value;
             if ((((MultipleValidIntegers) annotation).lowerbound() > actualValue) || (((MultipleValidIntegers) annotation).upperbound() < actualValue)) {
-              throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message1()));
+              throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
             }
           } else if ( value instanceof String){
             String actualValue = (String) value;
@@ -97,14 +97,14 @@ public class Validate {
               try{
                 int val = Integer.parseInt(values[i]);
                 if ((((MultipleValidIntegers) annotation).lowerbound() > val) || (((MultipleValidIntegers) annotation).upperbound() < val)) {
-                  throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message2()));
+                  throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
                 }
               }catch (NumberFormatException e){
-                throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message3()));
+                throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
               }
             }
           } else{
-            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message4()));
+            throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
           }
         }
       }
