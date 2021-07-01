@@ -3,6 +3,7 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.mockwebserver.MockResponse;
@@ -99,6 +100,16 @@ public class BaseTest {
                                Object... objects) throws InterruptedException, UnsupportedEncodingException {
     assertRequest(server.takeRequest(), method, "/Account/" + authId + "/" + format,
       params, objects);
+  }
+
+  protected void assertRequestWithPayload(String method, String format, Map<String, Object> payload, Object... objects)
+    throws InterruptedException, UnsupportedEncodingException, JsonProcessingException {
+    RecordedRequest recordedRequest = server.takeRequest();
+    JsonNode expectedPayload = mapper.valueToTree(payload);
+    JsonNode actualPayload = mapper.readTree(recordedRequest.getBody().readUtf8());
+    assertRequest(recordedRequest, method, "/Account/" + authId + "/" + format,
+      new LinkedHashMap<>(), objects);
+    assertEquals(actualPayload, expectedPayload);
   }
 
   @Before

@@ -1,9 +1,11 @@
 package com.plivo.api.models.base;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -11,7 +13,10 @@ import retrofit2.Response;
 @JsonInclude(Include.NON_NULL)
 public abstract class VoiceUpdater<T extends BaseResponse> extends BaseRequest {
 
+  @JsonIgnore
   protected String id;
+  @JsonIgnore
+  protected String secondaryId;
 
   public VoiceUpdater(String id) {
     this.id = id;
@@ -21,18 +26,26 @@ public abstract class VoiceUpdater<T extends BaseResponse> extends BaseRequest {
     }
   }
 
+  public VoiceUpdater(String id, String secondaryId) {
+    if (id == null || secondaryId == null) {
+      throw new IllegalArgumentException("id/secondaryId cannot be null");
+    }
+
+    this.id = id;
+    this.secondaryId = secondaryId;
+  }
+
   /**
    * Actually update the resource.
    */
-  public T update() throws IOException, PlivoRestException {
+  public T update() throws IOException, PlivoRestException, PlivoValidationException {
     validate();
-    String identifier = this.id;
-    Response<T> response = obtainCall(identifier).execute();
+    Response<T> response = obtainCall().execute();
 
     if(response.code()>=500){
-      response = obtainFallback1Call(identifier).execute();
+      response = obtainFallback1Call().execute();
       if(response.code()>=500){
-        response = obtainFallback2Call(identifier).execute();
+        response = obtainFallback2Call().execute();
       }
     }
 
@@ -48,7 +61,7 @@ public abstract class VoiceUpdater<T extends BaseResponse> extends BaseRequest {
   }
 
 
-  protected abstract Call<T> obtainCall(String identifier);
-  protected abstract Call<T> obtainFallback1Call(String identifier);
-  protected abstract Call<T> obtainFallback2Call(String identifier);
+  protected abstract Call<T> obtainCall() throws PlivoValidationException;
+  protected abstract Call<T> obtainFallback1Call() throws PlivoValidationException;
+  protected abstract Call<T> obtainFallback2Call() throws PlivoValidationException;
 }

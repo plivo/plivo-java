@@ -6,7 +6,7 @@ public class Meta {
   private String next;
   private Long offset;
   private String previous;
-  private Long totalCount;
+  private Long count;
 
   public Long getLimit() {
     return limit;
@@ -24,7 +24,7 @@ public class Meta {
     return previous;
   }
 
-  public Long getTotalCount() {
-    return totalCount;
+  public Long getCount() {
+    return count;
   }
 }

@@ -1,6 +1,7 @@
 package com.plivo.api.models.number;
 
 import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.Deleter;
 import java.io.IOException;
 import okhttp3.ResponseBody;
@@ -24,7 +25,7 @@ public class NumberDeleter extends Deleter<Number> {
     return client().getApiService().numberDelete(client().getAuthId(), number);
   }
 
-  public void unrent() throws IOException, PlivoRestException {
+  public void unrent() throws IOException, PlivoRestException, PlivoValidationException {
     delete();
   }
 }
