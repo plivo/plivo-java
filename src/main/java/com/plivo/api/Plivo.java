@@ -1,5 +1,7 @@
 package com.plivo.api;
 
+import okhttp3.OkHttpClient;
+
 public class Plivo {
 
     private static PlivoClient plivoInstance = null;
@@ -13,6 +15,12 @@ public class Plivo {
         plivoInstance = new PlivoClient(authId, authToken);
         phloInstance = new PhloRestClient(authId, authToken).getClient();
     }
+
+  public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
+      System.out.println("New build");
+      plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder);
+      phloInstance = new PhloRestClient(authId, authToken, httpClientBuilder).getClient();
+  }
 
     /**
      * Initializes the global {@link PlivoClient} plivoInstance, taking the authId and authToken from

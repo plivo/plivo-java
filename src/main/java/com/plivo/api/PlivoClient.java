@@ -237,7 +237,7 @@ public class PlivoClient {
    * @param authToken
    */
   public PlivoClient(String authId, String authToken) {
-    this(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule);
+    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule);
   }
 
   /**
