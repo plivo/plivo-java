@@ -18,13 +18,13 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>4.15.2</version>
+  <version>4.15.3</version>
 </dependency>
 ```
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:4.12.0'
+compile 'com.plivo:plivo-java:4.15.3'
 ```
 
 ### To Install Beta release
@@ -177,7 +177,7 @@ This generates the following XML:
 ```
 
 ### More examples
-Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/java/introduction/overview) for more examples.
+Refer to the [Plivo SDK Reference](https://www.plivo.com/docs/sdk/server/java-sdk) for more examples.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-java/issues).

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 import com.plivo.api.models.message.*;
+import com.plivo.api.models.base.ListResponse;
 
 import java.util.Map;
 
@@ -218,6 +219,20 @@ public class MessageTest extends BaseTest {
 //    assertEquals(String.format("/Account/%s/Message/", authId),
 //      URI.create(recordedRequest.getPath()).getPath());
 
+    assertRequest("GET", "Message/", params);
+  }
+
+  @Test
+  public void messageListTotalCountShouldSucceed() throws Exception {
+    String fixtureName = "messageListResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    ListResponse<Message> response = Message.lister().list();
+
+    Map<String, String> params = new LinkedHashMap<>();
+    
+    assertEquals(response.getMeta().getTotalCount().toString(), "0");
     assertRequest("GET", "Message/", params);
   }
 

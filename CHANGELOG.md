@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.15.3](https://github.com/plivo/plivo-java/tree/v4.15.3) (2021-07-05)
+- **WARNING**: Remove total_count field from meta data for list MDR response. getTotalCount() for list MDR will return 0.
+
 ## [4.15.2](https://github.com/plivo/plivo-java/tree/v4.15.2) (2021-06-07)
 - Adds VoiceNetworkGroup to List/Get Call response.
 
