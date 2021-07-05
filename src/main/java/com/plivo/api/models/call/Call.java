@@ -31,6 +31,7 @@ public class Call extends BaseResource {
   private String hangupSource;
   private String hangupCauseName;
   private Integer hangupCauseCode;
+  private String voiceNetworkGroup;
 
   public static CallCreator creator(String from, List<String> to, String answerUrl) {
     return new CallCreator(from, to, answerUrl);
@@ -154,6 +155,10 @@ public class Call extends BaseResource {
 
   public Integer getHangupCauseCode(){
     return hangupCauseCode;
+  }
+
+  public String getVoiceNetworkGroup(){
+    return voiceNetworkGroup;
   }
 
   public CallDeleter deleter() {
