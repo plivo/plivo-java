@@ -82,9 +82,9 @@ public class MessageLister extends Lister<Message> {
     
     try 
     {
-      Field totalCount = response.body().getMeta().getClass().getDeclaredField("totalCount");
-      totalCount.setAccessible(true);
-      totalCount.set(response.body().getMeta(), 0L);
+      Field meta = response.body().getClass().getDeclaredField("meta");
+      meta.setAccessible(true);
+      meta.set(response.body(), new MessageMeta(response.body().getMeta()));
     }
     catch(Exception e) 
     {

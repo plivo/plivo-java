@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.0.0](https://github.com/plivo/plivo-java/tree/v5.0.0) (2021-07-05)
+- **BREAKING**: Remove getTotalCount() method for list MDR.
+
 ## [4.15.3](https://github.com/plivo/plivo-java/tree/v4.15.3) (2021-07-05)
 - **WARNING**: Remove total_count field from meta data for list MDR response. getTotalCount() for list MDR will return 0.
 

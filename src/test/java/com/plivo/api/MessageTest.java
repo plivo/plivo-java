@@ -222,6 +222,20 @@ public class MessageTest extends BaseTest {
     assertRequest("GET", "Message/", params);
   }
 
+  @Test(expected = NoSuchMethodException.class)
+  public void messageListTotalCountShouldFail() throws Exception {
+    String fixtureName = "messageListResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    ListResponse<Message> response = Message.lister().list();
+
+    Map<String, String> params = new LinkedHashMap<>();
+
+    response.getMeta().getTotalCount();
+    assertRequest("GET", "Message/", params);
+  }
+
   @Test
   public void messageListTotalCountShouldSucceed() throws Exception {
     String fixtureName = "messageListResponse.json";

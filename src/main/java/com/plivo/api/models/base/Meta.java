@@ -1,12 +1,14 @@
 package com.plivo.api.models.base;
 
+import java.lang.NoSuchMethodException;
+
 public class Meta {
 
-  private Long limit;
-  private String next;
-  private Long offset;
-  private String previous;
-  private Long totalCount;
+  protected Long limit;
+  protected String next;
+  protected Long offset;
+  protected String previous;
+  protected Long totalCount;
 
   public Long getLimit() {
     return limit;
@@ -24,7 +26,8 @@ public class Meta {
     return previous;
   }
 
-  public Long getTotalCount() {
+  public Long getTotalCount() throws NoSuchMethodException {
     return totalCount;
   }
+
 }
