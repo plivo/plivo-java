@@ -19,7 +19,6 @@ public class Plivo {
   public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
       System.out.println("New build");
       plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder);
-      phloInstance = new PhloRestClient(authId, authToken, httpClientBuilder).getClient();
   }
 
     /**
