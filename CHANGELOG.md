@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.1.0](https://github.com/plivo/plivo-java/tree/v5.1.0) (2021-07-06)
+- Powerpack ID filter for list MDR.
+
 ## [5.0.0](https://github.com/plivo/plivo-java/tree/v5.0.0) (2021-07-05)
 - **BREAKING**: Remove getTotalCount() method for list MDR.
 
