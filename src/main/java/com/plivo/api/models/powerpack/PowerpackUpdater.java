@@ -3,7 +3,7 @@ package com.plivo.api.models.powerpack;
 import com.plivo.api.models.base.Updater;
 import retrofit2.Call;
 
-public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
+public class PowerpackUpdater extends Updater<Powerpack> {
 
   private String name;
   private String application_type;
@@ -68,7 +68,7 @@ public class PowerpackUpdater extends Updater<PowerpackUpdateResponse> {
   }
 
   @Override
-  protected Call<PowerpackUpdateResponse> obtainCall() {
+  protected Call<Powerpack> obtainCall() {
     return client().getApiService().powerpackUpdate(client().getAuthId(), id, this);
   }
 }

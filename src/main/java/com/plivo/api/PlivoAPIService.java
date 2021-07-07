@@ -385,7 +385,7 @@ public interface PlivoAPIService {
 
     //Powerpack
     @POST("Account/{authId}/Powerpack/")
-    Call<PowerpackResponse> createPowerpack(@Path("authId") String authId, @Body PowerpackCreator powerpackCreator);
+    Call<Powerpack> createPowerpack(@Path("authId") String authId, @Body PowerpackCreator powerpackCreator);
 
     @GET("Account/{authId}/Powerpack/{uuid}/")
     Call<Powerpack> powerpackGet(@Path("authId") String authId, @Path("uuid") String uuid);
@@ -396,7 +396,7 @@ public interface PlivoAPIService {
 
     //
     @POST("Account/{authId}/Powerpack/{uuid}/")
-    Call<PowerpackUpdateResponse> powerpackUpdate(@Path("authId") String authId,
+    Call<Powerpack> powerpackUpdate(@Path("authId") String authId,
                                                   @Path("uuid") String uuid, @Body PowerpackUpdater powerpackUpdater);
 
     //

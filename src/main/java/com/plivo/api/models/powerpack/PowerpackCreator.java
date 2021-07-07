@@ -4,7 +4,7 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class PowerpackCreator extends Creator<PowerpackResponse> {
+public class PowerpackCreator extends Creator<Powerpack> {
   private String name;
   private String application_type = null;
   private String application_id = null;
@@ -49,7 +49,7 @@ public class PowerpackCreator extends Creator<PowerpackResponse> {
 	  }
   
   @Override
-  protected Call<PowerpackResponse> obtainCall() {
+  protected Call<Powerpack> obtainCall() {
     return client().getApiService().createPowerpack(client().getAuthId(), this);
   }
 }
