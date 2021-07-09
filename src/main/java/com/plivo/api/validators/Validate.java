@@ -87,18 +87,12 @@ public class Validate {
         } else if (annotation instanceof MultipleValidIntegers) {
           if( value instanceof Integer) {
             Integer actualValue = (Integer) value;
-            if ((((MultipleValidIntegers) annotation).lowerbound() > actualValue) || (((MultipleValidIntegers) annotation).upperbound() < actualValue)) {
-              throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
-            }
           } else if ( value instanceof String){
             String actualValue = (String) value;
             String []values = actualValue.split("<");
             for (int i=0; i<values.length; i++){
               try{
-                int val = Integer.parseInt(values[i]);
-                if ((((MultipleValidIntegers) annotation).lowerbound() > val) || (((MultipleValidIntegers) annotation).upperbound() < val)) {
-                  throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
-                }
+                Integer.parseInt(values[i]);
               }catch (NumberFormatException e){
                 throw new PlivoValidationException(composeErrorMessage(field.getName(), ((MultipleValidIntegers) annotation).message()));
               }

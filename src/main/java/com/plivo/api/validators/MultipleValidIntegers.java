@@ -15,16 +15,6 @@ public @interface MultipleValidIntegers {
   /**
    * @return error message to return when validation fails
    */
-  String message() default "value must be either integer or string containing integers separated by delimiter '<'";
-
-  /**
-   * @return min value the element must be higher than or equal to
-   */
-  int lowerbound();
-
-  /**
-   * @return max value the element must be lesser than or equal to
-   */
-  int upperbound();
+  String message() default "value must be either integer or string containing integers separated by delimiter '<' ";
 
 }
