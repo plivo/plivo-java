@@ -23,6 +23,7 @@ public class MessageLister extends Lister<Message> {
   private PropertyFilter<Date> messageTime = null;
   private MessageState messageState = null;
   private Long errorCode = null;
+  private String powerpackID = null;
 
   public String subaccount() {
     return this.subaccount;
@@ -42,6 +43,10 @@ public class MessageLister extends Lister<Message> {
 
   public Long errorCode() {
     return this.errorCode;
+  }
+
+  public String powerpackID() {
+    return this.powerpackID;
   }
 
   public MessageLister subaccount(final String subaccount) {
@@ -68,6 +73,11 @@ public class MessageLister extends Lister<Message> {
   public MessageLister errorCode(final Long errorCode) {
     this.errorCode = errorCode;
     return this;
+  }
+
+  public MessageLister powerpackID(final String powerpackID) {
+     this.powerpackID = powerpackID;
+     return this;
   }
 
   @Override  
