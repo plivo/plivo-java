@@ -20,6 +20,8 @@ import com.plivo.api.util.Utils;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.TlsVersion;
+import okhttp3.CipherSuite;
 import okhttp3.Protocol;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -143,6 +145,11 @@ public class PlivoClient {
 
     httpClient = httpClientBuilder
       .addNetworkInterceptor(interceptor)
+      .tlsVersions(TlsVersion.TLS_1_2)
+      .cipherSuites( 
+          CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+          CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+          CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256)
       .addInterceptor(chain -> chain.proceed(
         chain.request()
           .newBuilder()
