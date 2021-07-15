@@ -103,7 +103,7 @@ public abstract class VoiceLister<T extends BaseResource> extends BaseRequest<T>
 
     handleResponse(response);
     try {
-      return response.body().getMeta().getCount();
+      return response.body().getMeta().getTotalCount();
     } catch (Exception e) {
       return 0L;
     }
