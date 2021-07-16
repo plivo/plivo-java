@@ -599,20 +599,6 @@ public interface PlivoAPIService {
     @POST("Account/{authId}/MultiPartyCall/{mpcId}/Record/Resume/")
     Call<BaseResponse> mpcResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId);
 
-    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
-    Call<MultiPartyCallRecordingStartResponse> mpcParticipantStartRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId, @Body MultiPartyCallParticipantRecordingStart startParticipantRecording);
-
-    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
-    Call<ResponseBody> mpcParticipantRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
-
-    @Headers("Content-Type: application/json")
-    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Pause/")
-    Call<BaseResponse> mpcParticipantPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
-
-    @Headers("Content-Type: application/json")
-    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Resume/")
-    Call<BaseResponse> mpcParticipantResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
-
     // Get participant of multiparty call
     @GET("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
     Call<MultiPartyCallParticipant> mpcMemberGet(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
@@ -624,4 +610,22 @@ public interface PlivoAPIService {
     // Kick participant of multiparty call
     @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/")
     Call<ResponseBody> mpcMemberKick(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    // Start participant recording multiparty call
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
+    Call<MultiPartyCallRecordingStartResponse> mpcParticipantStartRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId, @Body MultiPartyCallParticipantRecordingStart startParticipantRecording);
+
+    // Stop participant recording multiparty call
+    @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/")
+    Call<ResponseBody> mpcParticipantRecordStop(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    // Pause participant recording multiparty call
+    @Headers("Content-Type: application/json")
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Pause/")
+    Call<BaseResponse> mpcParticipantPauseRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+    // Resume participant recording multiparty call
+    @Headers("Content-Type: application/json")
+    @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Resume/")
+    Call<BaseResponse> mpcParticipantResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
 }
