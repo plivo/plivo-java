@@ -165,10 +165,10 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   public Object ringTimeout() {
     return ringTimeout;
   }
-  
-  public  Object delayDial(){
+
+  public  Object delayDial() {
     return delayDial;
-   }
+  }
 
   public Integer maxDuration() {
     return maxDuration;
