@@ -20,7 +20,7 @@ public class ListMPC {
     return OffsetDateTime.parse(timeString, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ssXXXXX")).isBefore(OffsetDateTime.now().minusHours(1));
   }
 
-  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException {
+  public static void main(String[] args) throws IOException, PlivoRestException, PlivoValidationException, NoSuchMethodException {
     Plivo.init("<YOUR-AUTH-ID>", "<YOUR-AUTH-TOKEN>");
 
     // Fetch all MultiPartyCalls for an account
