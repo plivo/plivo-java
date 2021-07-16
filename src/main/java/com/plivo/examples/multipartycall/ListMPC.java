@@ -25,7 +25,7 @@ public class ListMPC {
 
     // Fetch all MultiPartyCalls for an account
     ListResponse<MultiPartyCall> allMPC = MultiPartyCall.lister().list();
-    System.out.println(allMPC.getMeta().getCount());
+    System.out.println(allMPC.getMeta().getTotalCount());
 
     // Fetch only ended MultiPartyCalls for an account. Other possible status are (initialized, active)
     ListResponse<MultiPartyCall> endedMPC = MultiPartyCall.lister().status(MultiPartyCallUtils.ended).list();
