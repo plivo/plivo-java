@@ -237,20 +237,6 @@ public class MessageTest extends BaseTest {
   }
 
   @Test
-  public void messageListTotalCountShouldSucceed() throws Exception {
-    String fixtureName = "messageListResponse.json";
-
-    expectResponse(fixtureName, 200);
-
-    ListResponse<Message> response = Message.lister().list();
-
-    Map<String, String> params = new LinkedHashMap<>();
-    
-    assertEquals(response.getMeta().getTotalCount().toString(), "0");
-    assertRequest("GET", "Message/", params);
-  }
-
-  @Test
   public void messageIteratorShouldSucceed() throws Exception {
     String fixtureName = "messageListResponse.json";
 
