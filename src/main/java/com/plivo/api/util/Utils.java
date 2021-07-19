@@ -31,6 +31,8 @@ import com.plivo.api.exceptions.PlivoXmlException;
 
 public class Utils {
 
+  private static final Pattern timePattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,6})?)?$");
+
   public static boolean allNotNull(Object... objects) {
     return Stream.of(objects)
       .noneMatch(Objects::isNull);
@@ -47,6 +49,10 @@ public class Utils {
   public static boolean anyNotNull(Object... objects) {
     return Stream.of(objects)
       .anyMatch(Objects::nonNull);
+  }
+
+  public static boolean isValidTimeString(String time) {
+    return timePattern.matcher(time).matches();
   }
 
   public static Map<String, Object> objectToMap(ObjectMapper objectMapper, Object object) {

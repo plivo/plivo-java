@@ -1,5 +1,6 @@
 package com.plivo.examples;
 
+import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoXmlException;
 import com.plivo.api.xml.Response;
 import com.plivo.api.xml.Speak;
@@ -17,7 +18,7 @@ public class SSML {
 					new Speak("validate speak", "", "US English", 0)
 					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -31,7 +32,7 @@ public class SSML {
 					new Speak("validate speak", "MAN", "US English", 0)
 					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -44,7 +45,7 @@ public class SSML {
 			response = new Response().children(
 					new Speak("validate speak", "MAN", "US English", 0));
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -59,7 +60,7 @@ public class SSML {
 							,
 							"MAN", "US English", 0));
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -77,7 +78,7 @@ public class SSML {
 					);
 
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -95,7 +96,7 @@ public class SSML {
 					);
 
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -113,7 +114,7 @@ public class SSML {
 					);
 
 			System.out.println(response.toXmlString());
-		} catch (PlivoXmlException e) {
+		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
