@@ -3,7 +3,6 @@ package com.plivo.api.models.multipartycall;
 import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.util.PropertyFilter;
 import com.plivo.api.util.Utils;
-import com.sun.istack.internal.NotNull;
 
 public class MultiPartyCallUtils {
   private static final String namePrefix = "name_";
@@ -20,14 +19,14 @@ public class MultiPartyCallUtils {
   public static final String wav = "wav";
 
 
-  public static String friendlyName(@NotNull String name) throws PlivoValidationException {
+  public static String friendlyName(String name) throws PlivoValidationException {
     if (name == null) {
       throw new PlivoValidationException("MultiPartyCall name cannot be null");
     }
     return namePrefix + name;
   }
 
-  public static String mpcUuid(@NotNull String uuid) throws PlivoValidationException {
+  public static String mpcUuid(String uuid) throws PlivoValidationException {
     if (uuid == null) {
       throw new PlivoValidationException("MultiPartyCall uuid cannot be null");
     }
