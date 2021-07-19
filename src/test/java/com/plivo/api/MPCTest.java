@@ -97,6 +97,8 @@ public class MPCTest extends BaseTest {
       put("enter_sound_method","GET");
       put("exit_sound","beep:2");
       put("exit_sound_method","POST");
+      put("caller_name", "developer");
+      put("delay_dial", 0);
     }};
 
     MultiPartyCall.addParticipant(MultiPartyCallUtils.friendlyName(mpcName),
@@ -107,6 +109,7 @@ public class MPCTest extends BaseTest {
       .endMpcOnExit(true)
       .recordFileFormat(MultiPartyCallUtils.wav)
       .maxDuration(20000)
+      .callerName("developer")
       .update();
 
     assertRequestWithPayload("POST", "MultiPartyCall/name_%s/Participant/", payload, mpcName);
