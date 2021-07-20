@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.3.0](https://github.com/plivo/plivo-java/tree/v5.3.0) (2021-07-20)
+- This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
+
 ## [5.2.0](https://github.com/plivo/plivo-java/tree/v5.2.0) (2021-07-15)
 - Added SDK support for MPC APIs (Voice retry included for APIs) and XML
 
