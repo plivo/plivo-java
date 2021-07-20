@@ -16,6 +16,8 @@ import com.plivo.api.xml.ResponseNestable;
 import com.plivo.api.xml.Speak;
 import com.plivo.api.xml.User;
 import com.plivo.api.xml.Wait;
+import com.plivo.api.xml.MultiPartyCall;
+import com.plivo.api.models.multipartycall.MultiPartyCallUtils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -95,7 +97,8 @@ public class PlivoXmlTest {
             p(new Speak("getInput")),
             p(new Play("http://url.to.media"))
           )),
-        p(new Conference("test"))
+        p(new Conference("test")),
+        p(new MultiPartyCall("testMPC", MultiPartyCallUtils.agent))
       );
     response.toXmlString();
   }

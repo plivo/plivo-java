@@ -1,7 +1,26 @@
 # Change Log
 
-## [4.16.0](https://github.com/plivo/plivo-java/tree/v4.16.0) (2021-05-28)
-- New Send Message interface along with existing interface support.
+## [5.2.0](https://github.com/plivo/plivo-java/tree/v5.2.0) (2021-07-15)
+- Added SDK support for MPC APIs (Voice retry included for APIs) and XML
+
+## [5.1.0](https://github.com/plivo/plivo-java/tree/v5.1.0) (2021-07-14)
+- Powerpack UUID has been included to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message).
+- Support for filtering messages by Powerpack UUID has been added to the [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages).
+
+## [5.0.0](https://github.com/plivo/plivo-java/tree/v5.0.0) (2021-07-05)
+- **BREAKING**: Remove getTotalCount() method for list MDR.
+
+## [4.15.3](https://github.com/plivo/plivo-java/tree/v4.15.3) (2021-07-05)
+- **WARNING**: Remove total_count field from meta data for list MDR response. getTotalCount() for list MDR will return 0.
+
+## [4.15.2](https://github.com/plivo/plivo-java/tree/v4.15.2) (2021-06-07)
+- Adds VoiceNetworkGroup to List/Get Call response.
+
+## [4.15.1](https://github.com/plivo/plivo-java/tree/v4.15.1) (2021-04-22)
+- Bug Fix for adaptive powerpack feature.
+
+## [4.15.0](https://github.com/plivo/plivo-java/tree/v4.15.0) (2021-02-09)
+- Add XML support JDK 11.
 
 ## [4.14.0](https://github.com/plivo/plivo-java/tree/v4.14.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
