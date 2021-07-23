@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.2.1](https://github.com/plivo/plivo-java/tree/v5.2.1) (2021-07-23)
+- Change default request timeout value to 5.
+
 ## [5.2.0](https://github.com/plivo/plivo-java/tree/v5.2.0) (2021-07-15)
 - Added SDK support for MPC APIs (Voice retry included for APIs) and XML
 
