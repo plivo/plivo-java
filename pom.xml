@@ -5,10 +5,14 @@
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <version>5.2.0</version>
 =======
   <version>5.1.1</version>
 >>>>>>> Updated SDK versioning
+=======
+  <version>5.2.0</version>
+>>>>>>> Resolve Conflicts
   <name>plivo-java</name>
   <description>A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
   <licenses>

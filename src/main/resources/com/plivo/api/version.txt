@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 5.2.0
 =======
 5.1.1
 >>>>>>> Updated SDK versioning
+=======
+5.2.0
+>>>>>>> Resolve Conflicts
