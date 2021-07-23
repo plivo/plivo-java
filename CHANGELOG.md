@@ -1,11 +1,14 @@
 # Change Log
 
+## [5.2.1](https://github.com/plivo/plivo-java/tree/v5.2.1) (2021-07-23)
+- Update default request timeout value to 5 seconds.
+
 ## [5.2.0](https://github.com/plivo/plivo-java/tree/v5.2.0) (2021-07-15)
-- Added SDK support for MPC APIs (Voice retry included for APIs) and XML
+- Add SDK support for MPC APIs (Voice retry included for APIs) and XML
 
 ## [5.1.0](https://github.com/plivo/plivo-java/tree/v5.1.0) (2021-07-14)
-- Powerpack UUID has been included to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message).
-- Support for filtering messages by Powerpack UUID has been added to the [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages).
+- Add Powerpack UUID to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message).
+- Add support for filtering messages by Powerpack UUID has been added to the [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages).
 
 ## [5.0.0](https://github.com/plivo/plivo-java/tree/v5.0.0) (2021-07-05)
 - **BREAKING**: Remove getTotalCount() method for list MDR.
