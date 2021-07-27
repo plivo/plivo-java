@@ -2,5 +2,6 @@
 language: java-sdk
 build:
   command: |
+      ./gradlew createPom
       ./build.sh
       ./gradlew fatJar
