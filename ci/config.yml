@@ -2,6 +2,7 @@
 language: java-sdk
 build:
   command: |
+      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
       ./gradlew createPom
       ./build.sh
       ./gradlew fatJar
