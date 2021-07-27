@@ -30,6 +30,8 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'io.codearte.nexus-staging'
+ext["mavenUserName"] = ''
+ext["mavenPassword"] = ''
 
 repositories {
   mavenCentral()
