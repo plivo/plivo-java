@@ -1,0 +1,11 @@
+---
+language: java-sdk
+build:
+  command: |
+      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+      ./gradlew createPom
+      ./build.sh
+      ./gradlew fatJar
+secrets:
+  files:
+    SONATYPE_SECRET_RING_FILE: "secring.gpg"

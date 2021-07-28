@@ -1,5 +1,8 @@
 group 'com.plivo'
 version new File("${projectDir}/src/main/resources/com/plivo/api/version.txt").readLines().get(0)
+ext["mavenUserName"] = System.getenv("MAVEN_USERNAME") ?: ""
+ext["mavenPassword"] = System.getenv("MAVEN_PASSWORD") ?: ""
+
 
 buildscript {
   repositories {
