@@ -66,6 +66,10 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
     	return;
     }
 
+    if (language == null || language.trim().isEmpty()){
+        this.language = "en-US";
+        return;
+    }
     this.voice = transformVoiceString(voice);
     Utils.validateLanguageVoice(language, voice);
   }
