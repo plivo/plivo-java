@@ -5,6 +5,7 @@ import com.plivo.api.util.Utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
@@ -41,33 +42,21 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
   @XmlAttribute
   private Integer loop;
 
+  private static boolean isLang = false;
+
+  private static boolean isVoice = false;
+
   private static int MAX_CONTENT_LENGTH = 3000;
 
-  public Speak() {
+  private Speak() {
 
   }
 
   public Speak(String content) {
     this.mixedContent.add(content);
-  }
-
-  public Speak(String content, String voice, String language, Integer loop) throws PlivoXmlException {
-
-    this.mixedContent.add(content);
-    this.voice = voice;
-    this.language = language;
-    this.loop = loop;
-
-    if (voice == null || voice.trim().isEmpty()){
-    	this.voice = "WOMAN";
-    	return;
-    }
-    if (voice.equalsIgnoreCase("MAN") || voice.equalsIgnoreCase("WOMAN")) {
-    	return;
-    }
-
-    this.voice = transformVoiceString(voice);
-    Utils.validateLanguageVoice(language, voice);
+    this.voice =  "WOMAN";
+    this.language = "en-US";
+    this.loop = 1;
   }
 
   public String getVoice() {
@@ -80,6 +69,41 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
 
   public Integer getLoop() {
     return loop;
+  }
+
+  public Speak voice (final String voice) throws PlivoXmlException {
+    this.voice = voice;
+    isVoice = true;
+    if (voice == null || voice.trim().isEmpty()){
+      this.voice = "WOMAN";
+      return this;
+    }
+    if (voice.equalsIgnoreCase("MAN") || voice.equalsIgnoreCase("WOMAN")) {
+      return this;
+    }
+    this.voice = transformVoiceString(voice);
+    if (isLang) {
+      Utils.validateLanguageVoice(this.language, this.voice);
+    }
+    return this;
+  }
+
+  public Speak language ( final  String language) throws  PlivoXmlException{
+    this.language = language;
+    isLang = true;
+    if (isVoice) {
+      if (this.voice.equalsIgnoreCase("MAN") || this.voice.equalsIgnoreCase("WOMAN")) {
+        return this;
+      } else {
+        Utils.validateLanguageVoice(this.language, this.voice);
+      }
+    }
+    return this;
+  }
+
+  public Speak loop ( final Integer loop){
+    this.loop = loop;
+    return this;
   }
 
   private void checkIsSSMLSupported() throws PlivoXmlException {

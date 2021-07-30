@@ -15,7 +15,9 @@ public class SSML {
 		Response response;
 		try {
 			response = new Response().children(
-					new Speak("validate speak", "", "US English", 0)
+					new Speak("validate speak")
+            .language("en-US")
+            .loop(0)
 					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException | PlivoValidationException e) {
@@ -29,7 +31,10 @@ public class SSML {
 		Response response;
 		try {
 			response = new Response().children(
-					new Speak("validate speak", "MAN", "US English", 0)
+					new Speak("validate speak")
+            .voice("MAN")
+            .language("en-US")
+            .loop(0)
 					.addBreak("maximum", "250ms"));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException | PlivoValidationException e) {
@@ -43,7 +48,10 @@ public class SSML {
 		Response response;
 		try {
 			response = new Response().children(
-					new Speak("validate speak", "MAN", "US English", 0));
+					new Speak("validate speak")
+            .voice("MAN")
+            .language("en-US")
+            .loop(0));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
@@ -56,9 +64,10 @@ public class SSML {
 		Response response;
 		try {
 			response = new Response().children(
-					new Speak(getAlphaNumericString(3330) 
-							,
-							"MAN", "US English", 0));
+					new Speak(getAlphaNumericString(3330))
+            .voice("MAN")
+            .language("en-US")
+            .loop(0));
 			System.out.println(response.toXmlString());
 		} catch (PlivoXmlException | PlivoValidationException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +78,10 @@ public class SSML {
 	public static void validateBasicSSML() {
 		try {
 			Response response = new Response().children(
-					new Speak("validate speak", "Polly.Salli", "US English", 0)
+					new Speak("validate speak")
+            .voice("Polly.Salli")
+            .language("en-US")
+            .loop(0)
 					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
@@ -87,7 +99,10 @@ public class SSML {
 	public static void validateSSMLVoiceLength() {
 		try {
 			Response response = new Response().children(
-					new Speak("validate speak", "Polly.", "US English", 0)
+					new Speak("validate speak")
+            .voice("Polly.Salli")
+            .language("en-US")
+            .loop(0)
 					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
@@ -105,7 +120,10 @@ public class SSML {
 	public static void validateSSMLInvalidLanguage() {
 		try {
 			Response response = new Response().children(
-					new Speak("validate speak", "Polly.", "US Englis", 0)
+					new Speak("validate speak")
+            .voice("Polly.Salli")
+            .language("en-US")
+            .loop(0)
 					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
