@@ -1,4 +1,6 @@
 ---
+parent: central
+serviceName: plivo-java
 language: java-sdk
 build:
   command: |
