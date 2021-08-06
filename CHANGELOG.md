@@ -1,7 +1,7 @@
 # Change Log
 
 ## [5.3.0](https://github.com/plivo/plivo-java/tree/v5.3.0) (2021-08-04)
-- Added setter methods for voice,language,loop params in Speak Xml element.
+- Add setter methods for voice,language,loop params in Speak Xml element.
 
 ## [5.2.1](https://github.com/plivo/plivo-java/tree/v5.2.1) (2021-07-23)
 - Update default request timeout value to 5 seconds.
