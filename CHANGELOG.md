@@ -1,4 +1,6 @@
 # Change Log
+## [5.3.1](https://github.com/plivo/plivo-java/tree/v5.3.1) (2021-08-17)
+- Bug fix on delete methods and powerpack response fix.
 
 ## [5.3.0](https://github.com/plivo/plivo-java/tree/v5.3.0) (2021-08-04)
 - Add setter methods for voice,language,loop params in Speak Xml element.
