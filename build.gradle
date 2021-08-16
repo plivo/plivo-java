@@ -1,23 +1,29 @@
 group 'com.plivo'
 version new File("${projectDir}/src/main/resources/com/plivo/api/version.txt").readLines().get(0)
+ext["mavenUserName"] = System.getenv("MAVEN_USERNAME") ?: ""
+ext["mavenPassword"] = System.getenv("MAVEN_PASSWORD") ?: ""
+
+
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
-    }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+  }
 }
+
 buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
-    dependencies {
-        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.12.0"
-    }
+  }
+  dependencies {
+    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.12.0"
+  }
 }
+
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 apply plugin: 'checkstyle'
@@ -27,157 +33,164 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'io.codearte.nexus-staging'
-ext["mavenUserName"] = ''
-ext["mavenPassword"] = ''
+
 nexusStaging {
-    numberOfRetries = 50
-    delayBetweenRetriesInMillis = 3000
-}
-repositories {
-    mavenCentral()
-}
-tasks.withType(JavaCompile) {
-    options.compilerArgs << "-Xlint:unchecked"
-    options.fork = true;
-    options.forkOptions.executable = 'javac'
-    options.compilerArgs << "-XDignore.symbol.file=true"
-}
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'com.squareup.okhttp', name: 'mockwebserver', version: '2.7.5'
-    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
-    compile 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
-    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
-    compile 'com.auth0:java-jwt:3.10.2'
-}
-javadoc {
-    title "Plivo Java SDK"
-    options.linkSource = true
-}
-jar {
-    manifest {
-        attributes(
-            "Created-By": 'Plivo',
-            'Implementation-Vendor': 'Plivo',
-            'Implementation-Title': 'Plivo Java SDK',
-            'Implementation-Version': version
-        )
-    }
-}
-task sourceJar(type: Jar, dependsOn: classes) {
-    classifier 'sources'
-    from sourceSets.main.allSource
-}
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Implementation-Title': 'Plivo fat jar',
-            'Implementation-Version': version
-    }
-    archiveName = "plivo-java-${version}-jar-with-dependencies.jar"
-    from {
-        configurations.compile.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
-    with jar
-    print("Created fatjar: ${destinationDir}/${archiveName}")
-}
-task createPom << {
-    pom {
-    project {
-        name 'plivo-java'
-        packaging 'jar'
-        description 'A Java SDK to make voice calls & send SMS using Plivo and to generate Plivo XML'
-        licenses {
-            license {
-                name 'The MIT License'
-                url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
-                distribution 'repo'
-            }
-        }
-        developers {
-            developer {
-                name 'The Plivo SDKs Team'
-                email 'sdks@plivo.com'
-                organization 'Plivo, Inc.'
-                organizationUrl 'https://plivo.com'
-            }
-        }
-        scm {
-            url 'git@github.com:plivo/plivo-java.git'
-            connection 'scm:git:git@github.com:plivo/plivo-java.git'
-            developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
-        }
-    }
-}.writeTo("pom.xml")
-}
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment {
-                MavenDeployment deployment - > signing.signPom(deployment)
-            }
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(
-                    userName: mavenUserName,
-                    password: mavenPassword
-                )
-            }
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(
-                    userName: mavenUserName,
-                    password: mavenPassword
-                )
-            }
-            pom.project {
-                name 'plivo-java'
-                packaging 'jar'
-                artifactId 'plivo-java'
-                description 'A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML'
-                url 'https://github.com/plivo/plivo-java/'
-                scm {
-                    connection 'scm:git:git@github.com:plivo/plivo-java.git'
-                    developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
-                    url 'git@github.com:plivo/plivo-java.git'
-                }
-                licenses {
-                    license {
-                        name 'The MIT License'
-                        url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
-                    }
-                }
-                organization {
-                    name 'Plivo'
-                    url 'https://api-reference.plivo.com/latest/net/introduction/overview'
-                }
-                issueManagement {
-                    system 'GitHub'
-                    url 'https://github.com/plivo/plivo-java/issues'
-                }
-                developers {
-                    developer {
-                        name 'The Plivo SDKs Team'
-                        email 'sdks@plivo.com'
-                    }
-                }
-            }
-        }
-    }
+  numberOfRetries = 50
+  delayBetweenRetriesInMillis = 3000
 }
 
+repositories {
+  mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+   options.compilerArgs << "-Xlint:unchecked"
+   options.fork = true; options.forkOptions.executable = 'javac'
+   options.compilerArgs << "-XDignore.symbol.file=true"
+ }
+
+dependencies {
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+  testCompile group: 'com.squareup.okhttp', name: 'mockwebserver', version: '2.7.5'
+
+  compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+  compile 'com.squareup.retrofit2:retrofit:2.2.0'
+  compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+  compile 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+  compile 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+  compile 'com.auth0:java-jwt:3.10.2'
+}
+
+javadoc {
+  title "Plivo Java SDK"
+  options.linkSource = true
+}
+
+jar {
+  manifest {
+    attributes(
+      "Created-By": 'Plivo',
+      'Implementation-Vendor': 'Plivo',
+      'Implementation-Title': 'Plivo Java SDK',
+      'Implementation-Version': version
+    )
+  }
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+  classifier 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+task fatJar(type: Jar) {
+  manifest {
+    attributes 'Implementation-Title': 'Plivo fat jar',
+      'Implementation-Version': version
+  }
+  archiveName = "plivo-java-${version}-jar-with-dependencies.jar"
+  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+  with jar
+  print("Created fatjar: ${destinationDir}/${archiveName}")
+}
+
+task createPom << {
+  pom {
+    project {
+      name 'plivo-java'
+      packaging 'jar'
+      description 'A Java SDK to make voice calls & send SMS using Plivo and to generate Plivo XML'
+
+      licenses {
+        license {
+          name 'The MIT License'
+          url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
+          distribution 'repo'
+        }
+      }
+
+      developers {
+        developer {
+          name 'The Plivo SDKs Team'
+          email 'sdks@plivo.com'
+          organization 'Plivo, Inc.'
+          organizationUrl 'https://plivo.com'
+        }
+      }
+
+      scm {
+        url 'git@github.com:plivo/plivo-java.git'
+        connection 'scm:git:git@github.com:plivo/plivo-java.git'
+        developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
+      }
+    }
+  }.writeTo("pom.xml")
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment {
+        MavenDeployment deployment -> signing.signPom(deployment)
+      }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(
+          userName: mavenUserName,
+          password: mavenPassword
+        )
+      }
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(
+          userName: mavenUserName,
+          password: mavenPassword
+        )
+      }
+      pom.project {
+        name 'plivo-java'
+        packaging 'jar'
+        artifactId 'plivo-java'
+        description 'A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML'
+        url 'https://github.com/plivo/plivo-java/'
+        scm {
+          connection 'scm:git:git@github.com:plivo/plivo-java.git'
+          developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
+          url 'git@github.com:plivo/plivo-java.git'
+        }
+        licenses {
+          license {
+            name 'The MIT License'
+            url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
+          }
+        }
+        organization {
+          name 'Plivo'
+          url 'https://api-reference.plivo.com/latest/net/introduction/overview'
+        }
+        issueManagement {
+          system 'GitHub'
+          url 'https://github.com/plivo/plivo-java/issues'
+        }
+        developers {
+          developer {
+            name 'The Plivo SDKs Team'
+            email 'sdks@plivo.com'
+          }
+        }
+      }
+    }
+  }
+}
+
+
 artifacts {
-    archives javadocJar, sourceJar
+  archives javadocJar, sourceJar
 }
 
 signing {
-    required {
-        gradle.taskGraph.hasTask("uploadArchives")
-    }
-    sign configurations.archives
+  required { gradle.taskGraph.hasTask("uploadArchives") }
+  sign configurations.archives
 }
