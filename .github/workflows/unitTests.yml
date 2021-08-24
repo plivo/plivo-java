@@ -9,11 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         java-version: [8,9]
-
     steps:
       - uses: actions/checkout@v2
 
