@@ -29,7 +29,7 @@ import static junit.framework.TestCase.*;
 public class PlivoXmlTest {
   @Test
   public void toStringShouldSucceed() throws Exception {
-    assertEquals("<Response>\n<Speak>Plivo®</Speak>\n</Response>", new Response()
+    assertEquals("<Response>\n<Speak voice=\"WOMAN\" language=\"en-US\" loop=\"1\">Plivo®</Speak>\n</Response>", new Response()
       .children(
         new Speak("Plivo®")
       ).toXmlString()

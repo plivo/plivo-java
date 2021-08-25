@@ -1,5 +1,8 @@
 group 'com.plivo'
 version new File("${projectDir}/src/main/resources/com/plivo/api/version.txt").readLines().get(0)
+ext["mavenUserName"] = System.getenv("MAVEN_USERNAME") ?: ""
+ext["mavenPassword"] = System.getenv("MAVEN_PASSWORD") ?: ""
+
 
 buildscript {
   repositories {
@@ -7,6 +10,17 @@ buildscript {
   }
   dependencies {
     classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+  }
+}
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.12.0"
   }
 }
 
@@ -18,6 +32,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
+apply plugin: 'io.codearte.nexus-staging'
 
 repositories {
   mavenCentral()
