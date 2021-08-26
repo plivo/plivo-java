@@ -92,7 +92,7 @@ public abstract class BaseRequest<T extends BaseResource> {
         throw new ServerException(response.errorBody().string());
     }
 
-    if (this instanceof Deleter && responseCode != 204) {
+    if (this instanceof Deleter && !(responseCode == 204 || responseCode == 200)) {
       throw new PlivoRestException(response.errorBody().string());
     }
 
