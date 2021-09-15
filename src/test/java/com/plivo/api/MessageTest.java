@@ -25,30 +25,30 @@ public class MessageTest extends BaseTest {
       "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   }
 
- @Test(expected = IllegalArgumentException.class)
- public void messageBuildShouldFailWithoutAllProps() throws Exception {
-   expectResponse("messageSendResponse.json", 202);
+  @Test(expected = IllegalArgumentException.class)
+  public void messageBuildShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
 
-   Message.creator("+911231231230", Arrays.asList("+911231231330"), "text")
-     .create();
- }
+    Message.creator("+911231231230", null, "text")
+      .create();
+  }
 
- @Test(expected = IllegalArgumentException.class)
- public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
-   expectResponse("messageSendResponse.json", 202);
+  @Test(expected = IllegalArgumentException.class)
+  public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
 
-   Message.creator(Arrays.asList("+911231231330"), "text", "testUUID")
-     .create();
- }
+    Message.creator(null, "text", "testUUID")
+      .create();
+  }
 
- @Test(expected = IllegalArgumentException.class)
- public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
-   expectResponse("messageSendResponse.json", 202);
+  @Test(expected = IllegalArgumentException.class)
+  public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
+    expectResponse("messageSendResponse.json", 202);
 
-   Message.creator("+911231231230", Arrays.asList("+911231231330"), "text")
-     .client(client)
-     .create();
- }
+    Message.creator("+911231231230", null, "text")
+      .client(client)
+      .create();
+  }
 
   @Test
   public void messageCreateWithMMSClientShouldSucceed() throws Exception {
@@ -69,7 +69,7 @@ public class MessageTest extends BaseTest {
     expectResponse("messageSendResponse.json", 202);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-    Message.creator(Arrays.asList("+911231231330"), "text", "testUUID")
+    Message.creator(null, "text", "testUUID")
       .client(client)
       .create();
   }
