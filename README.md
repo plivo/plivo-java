@@ -79,7 +79,7 @@ To use multiple clients, you can create a `PlivoClient` instance yourself and se
 class Example {
   public static void main(String [] args) {
     PlivoClient client = new PlivoClient("<auth_id>", "<auth_id>");
-    Message.creator("+14156667778", Collections.singletonList("+14156667777"), "Hello, world!")
+    Message.creator("+14156667778", "+14156667777", "Hello, this is sample text from Plivo")
                     .client(client)
                     .create();
   }
