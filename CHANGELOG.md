@@ -1,10 +1,9 @@
 # Change Log
 
-## [5.4.0](https://github.com/plivo/plivo-java/tree/v5.4.0) (2021-09-16)
+## [5.4.0](https://github.com/plivo/plivo-java/tree/v5.4.0) (2021-09-22)
 - This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
-```xml
-<response></response>
-```
+ 
+ Example for [send SMS](https://github.com/plivo/plivo-java#send-a-message)
 
 ## [5.3.1](https://github.com/plivo/plivo-java/tree/v5.3.1) (2021-08-26)
 - Bug fix on delete methods and powerpack response fix.
