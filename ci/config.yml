@@ -11,3 +11,7 @@ build:
 secrets:
   files:
     SONATYPE_SECRET_RING_FILE: "secring.gpg"
+postDeployJobs:
+  prod:
+    - name: plivo/messaging-qa/javaSDKSmoke
+      disabled: false
