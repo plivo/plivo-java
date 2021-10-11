@@ -105,6 +105,18 @@ public class MessageTest extends BaseTest {
   }
 
   @Test
+  public void newmessageCreateShouldSucceed() throws Exception {
+    String fixtureName = "messageSendResponse.json";
+
+    expectResponse(fixtureName, 202);
+
+    Message.creator("+911231231230", "+911231231330", "test")
+      .create();
+
+    assertRequest("POST", "Message/");
+  }
+
+  @Test
   public void messageWithPowerpackCreateShouldSucceed() throws Exception {
     String fixtureName = "messageSendResponse.json";
 
