@@ -29,7 +29,7 @@ public class MessageTest extends BaseTest {
   public void messageBuildShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator("+911231231230", null, "text")
+    Message.creator("+911231231230", (String) null, "text")
       .create();
   }
 
@@ -37,7 +37,7 @@ public class MessageTest extends BaseTest {
   public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator(null, "text", "testUUID")
+    Message.creator((String) null, "text", "testUUID")
       .create();
   }
 
@@ -45,7 +45,7 @@ public class MessageTest extends BaseTest {
   public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator("+911231231230", null, "text")
+    Message.creator("+911231231230", (String) null, "text")
       .client(client)
       .create();
   }
@@ -69,7 +69,7 @@ public class MessageTest extends BaseTest {
     expectResponse("messageSendResponse.json", 202);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-    Message.creator(null, "text", "testUUID")
+    Message.creator((String) null, "text", "testUUID")
       .client(client)
       .create();
   }
