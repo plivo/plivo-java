@@ -21,7 +21,7 @@ jobs:
           java-version: ${{ matrix.java-version }}
 
       - name: JUnit Tests
-        run: ./gradlew clean test --scan
+        run: ./gradlew clean test --scan --debug
       
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
