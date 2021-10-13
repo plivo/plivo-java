@@ -8,7 +8,7 @@ public class PowerpackUpdateResponse extends BaseResponse {
   private String applicationID;
   private Boolean stickySender;
   private Boolean localConnect;
-  private String numberpool;
+  private String numberPool;
   private String uuid;
   public NumberPriority[] numberPriority;
 
@@ -36,8 +36,8 @@ public class PowerpackUpdateResponse extends BaseResponse {
     return localConnect;
   }
 
-  public String getNumberpool() {
-    return numberpool;
+  public String getNumberPool() {
+    return numberPool;
   }
 
   public NumberPriority[] getNumberPriority() {
