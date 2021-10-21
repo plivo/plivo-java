@@ -2,7 +2,9 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import com.plivo.api.models.message.*;
 import com.plivo.api.models.base.ListResponse;
@@ -25,7 +27,7 @@ public class MessageTest extends BaseTest {
   public void messageBuildShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator("+911231231230", Collections.<String>emptyList(), "text")
+    Message.creator("+911231231230", (String) null, "text")
       .create();
   }
 
@@ -33,7 +35,7 @@ public class MessageTest extends BaseTest {
   public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator(Collections.<String>emptyList(), "text", "testUUID")
+    Message.creator((String) null, "text", "testUUID")
       .create();
   }
 
@@ -41,7 +43,7 @@ public class MessageTest extends BaseTest {
   public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
 
-    Message.creator("+911231231230", Collections.<String>emptyList(), "text")
+    Message.creator("+911231231230", (String) null, "text")
       .client(client)
       .create();
   }
@@ -65,7 +67,7 @@ public class MessageTest extends BaseTest {
     expectResponse("messageSendResponse.json", 202);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-    Message.creator(Collections.<String>emptyList() , "text", "testUUID")
+    Message.creator((String) null, "text", "testUUID")
       .client(client)
       .create();
   }
