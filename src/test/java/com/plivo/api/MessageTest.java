@@ -5,18 +5,19 @@ import static junit.framework.TestCase.assertEquals;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import com.plivo.api.models.message.*;
 import com.plivo.api.models.base.ListResponse;
 
 import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 
 public class MessageTest extends BaseTest {
 
   private PlivoClient client;
+  List<String> list = null;
 
   @Before
   public void setUp() throws Exception {
@@ -28,24 +29,21 @@ public class MessageTest extends BaseTest {
   @Test(expected = IllegalArgumentException.class)
   public void messageBuildShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-
-    Message.creator("+911231231230", null, "text")
+    Message.creator("+911231231230", list, "text")
       .create();
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void messageWithPowerpackShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-
-    Message.creator(null, "text", "testUUID")
+    Message.creator(list, "text", "testUUID")
       .create();
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void messageBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
-
-    Message.creator("+911231231230", null, "text")
+    Message.creator("+911231231230", list, "text")
       .client(client)
       .create();
   }
@@ -68,8 +66,7 @@ public class MessageTest extends BaseTest {
   public void messageWithPowerpackBuildWithClientShouldFailWithoutAllProps() throws Exception {
     expectResponse("messageSendResponse.json", 202);
     PlivoClient client = new PlivoClient("MA123456789012345678", "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
-    Message.creator(null, "text", "testUUID")
+    Message.creator(list , "text", "testUUID")
       .client(client)
       .create();
   }

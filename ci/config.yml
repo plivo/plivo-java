@@ -8,6 +8,7 @@ build:
       ./gradlew createPom
       ./build.sh
       ./gradlew fatJar
+      chmod 755 secring.gpg
 secrets:
   files:
     SONATYPE_SECRET_RING_FILE: "secring.gpg"
