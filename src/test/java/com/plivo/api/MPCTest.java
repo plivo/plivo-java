@@ -72,10 +72,12 @@ public class MPCTest extends BaseTest {
       put("role", "Agent");
       put("from", "12345");
       put("to", "67890<54321");
+      put("caller_name", "developer");
       put("call_status_callback_method", "POST");
       put("confirm_key_sound_method", "GET");
       put("dial_music", "Real");
       put("ring_timeout", 80);
+      put("delay_dial", 0);
       put("max_duration", 20000);
       put("max_participants", 10);
       put("wait_music_method", "GET");
@@ -98,8 +100,8 @@ public class MPCTest extends BaseTest {
       put("enter_sound_method", "GET");
       put("exit_sound", "beep:2");
       put("exit_sound_method", "POST");
-      put("caller_name", "developer");
-      put("delay_dial", 0);
+      put("start_recording_audio_method", "GET");
+      put("stop_recording_audio_method", "GET");
     }};
 
     MultiPartyCall.addParticipant(MultiPartyCallUtils.friendlyName(mpcName),
