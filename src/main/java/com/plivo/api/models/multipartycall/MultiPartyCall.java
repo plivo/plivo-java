@@ -173,6 +173,14 @@ public class MultiPartyCall extends BaseResource {
     kicker.delete();
   }
 
+  public static MultiPartyCallStartPlayAudio startPlayAudio(String mpcId, String participantId) {
+    return new MultiPartyCallStartPlayAudio(mpcId, participantId);
+  }
+
+  public static MultiPartyCallStopPlayAudio stopPlayAudio(String mpcId, String participantId) {
+    return new MultiPartyCallStopPlayAudio(mpcId,participantId);
+  }
+
   public String getBilledAmount() {
     return billedAmount;
   }

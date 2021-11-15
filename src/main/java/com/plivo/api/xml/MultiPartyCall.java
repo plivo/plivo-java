@@ -1,5 +1,6 @@
 package com.plivo.api.xml;
 
+import com.plivo.api.models.multipartycall.MultiPartyCallParticipantAdd;
 import com.plivo.api.serializers.DelimitedListXMLSerializer;
 import com.plivo.api.validators.InRange;
 import com.plivo.api.validators.MultiOf;
@@ -126,6 +127,22 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   @XmlValue
   private String name;
+
+  @XmlAttribute
+  @UrlValues
+  private String startRecordingAudio;
+
+  @XmlAttribute
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String startRecordingAudioMethod = "GET";
+
+  @XmlAttribute
+  @UrlValues
+  private String stopRecordingAudio;
+
+  @XmlAttribute
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String stopRecordingAudioMethod = "GET";
 
   private MultiPartyCall() {
 
@@ -262,6 +279,22 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   public String name() {
     return name;
+  }
+
+  public String startRecordingAudio() {
+    return startRecordingAudio;
+  }
+
+  public String startRecordingAudioMethod() {
+    return startRecordingAudioMethod;
+  }
+
+  public String stopRecordingAudio() {
+    return stopRecordingAudio;
+  }
+
+  public String stopRecordingAudioMethod() {
+    return stopRecordingAudioMethod;
   }
 
   public MultiPartyCall role(String role) {
@@ -411,6 +444,26 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   public MultiPartyCall name(String name) {
     this.name = name;
+    return this;
+  }
+
+  public MultiPartyCall startRecordingAudio(String startRecordingAudio) {
+    this.startRecordingAudio = startRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCall startRecordingAudioMethod(String startRecordingAudioMethod) {
+    this.startRecordingAudioMethod = startRecordingAudioMethod;
+    return this;
+  }
+
+  public MultiPartyCall stopRecordingAudio(String stopRecordingAudio) {
+    this.stopRecordingAudio= stopRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCall stopRecordingAudioMethod(String stopRecordingAudioMethod) {
+    this.stopRecordingAudioMethod = stopRecordingAudioMethod;
     return this;
   }
 }
