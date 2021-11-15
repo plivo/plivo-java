@@ -18,7 +18,7 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.4.1</version>
+  <version>5.5.0</version>
 </dependency>
 ```
 
@@ -89,7 +89,7 @@ class Example {
 ## The Basics
 The SDK uses consistent interfaces to create, retrieve, update, delete and list resources. The pattern followed is as follows:
 
-```java
+``` java
 Resource.creator(parameters).create();
 Resource.getter(parameters).get();
 Resource.updater(identifier, parameters).update();
