@@ -629,9 +629,13 @@ public interface PlivoAPIService {
   @POST("Account/{authId}/MultiPartyCall/{mpcId}/Participant/{participantId}/Record/Resume/")
   Call<BaseResponse> mpcParticipantResumeRecording(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
 
+  // Play audio in multiparty call
+  @Headers("Content-Type: application/json")
   @POST("Account/{authId}/MultiPartyCall/{mpcId}/Member/{participantId}/Play/")
   Call<MultiPartyCallStartPlayAudioResponse> mpcStartPlayAudio(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId, @Body MultiPartyCallStartPlayAudio multiPartyCallStartPlayAudio);
 
+  // Stop play audio in multiparty call
+  @Headers("Content-Type: application/json")
   @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Member/{participantId}/Play/")
   Call<ResponseBody> mpcStopPlayAudio(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
 }
