@@ -90,6 +90,15 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   private String exitSound = "beep:2";
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
   private String exitSoundMethod = "GET";
+  @UrlValues
+  private String startRecordingAudio;
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String startRecordingAudioMethod = "GET";
+  @UrlValues
+  private String stopRecordingAudio;
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String stopRecordingAudioMethod = "GET";
+
 
   public MultiPartyCallParticipantAdd(String mpcId, String role, String from, List<String> to) throws PlivoValidationException {
     super(mpcId);
@@ -284,6 +293,22 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return exitSoundMethod;
   }
 
+  public String startRecordingAudio() {
+    return startRecordingAudio;
+  }
+
+  public String startRecordingAudioMethod() {
+    return startRecordingAudioMethod;
+  }
+
+  public String stopRecordingAudio() {
+    return stopRecordingAudio;
+  }
+
+  public String stopRecordingAudioMethod() {
+    return stopRecordingAudioMethod;
+  }
+
   public MultiPartyCallParticipantAdd callerName(String callerName) throws PlivoValidationException {
     this.callerName = callerName;
     if (callerName.length() > 50) {
@@ -474,6 +499,26 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
 
   public MultiPartyCallParticipantAdd exitSoundMethod(String exitSoundMethod) {
     this.exitSoundMethod = exitSoundMethod;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd startRecordingAudio(String startRecordingAudio) {
+    this.startRecordingAudio = startRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd startRecordingAudioMethod(String startRecordingAudioMethod) {
+    this.startRecordingAudioMethod = startRecordingAudioMethod;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd stopRecordingAudio(String stopRecordingAudio) {
+    this.stopRecordingAudio= stopRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd stopRecordingAudioMethod(String stopRecordingAudioMethod) {
+    this.stopRecordingAudioMethod = stopRecordingAudioMethod;
     return this;
   }
 

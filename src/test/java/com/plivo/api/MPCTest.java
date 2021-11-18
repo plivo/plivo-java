@@ -100,6 +100,8 @@ public class MPCTest extends BaseTest {
       put("enter_sound_method", "GET");
       put("exit_sound", "beep:2");
       put("exit_sound_method", "POST");
+      put("start_recording_audio_method", "GET");
+      put("stop_recording_audio_method", "GET");
     }};
 
     MultiPartyCall.addParticipant(MultiPartyCallUtils.friendlyName(mpcName),
