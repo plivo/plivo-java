@@ -5,6 +5,7 @@ import com.plivo.api.models.multipartycall.MultiPartyCallUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -69,40 +70,42 @@ public class MPCTest extends BaseTest {
     final String mpcName = "myMpc";
     final Map<String, Object> payload = new LinkedHashMap<String, Object>() {{
       put("role", "Agent");
-      put("from","12345");
-      put("to","67890<54321");
-      put("call_status_callback_method","POST");
-      put("confirm_key_sound_method","GET");
-      put("dial_music","Real");
-      put("ring_timeout",80);
-      put("max_duration",20000);
-      put("max_participants",10);
-      put("wait_music_method","GET");
-      put("agent_hold_music_method","GET");
-      put("customer_hold_music_method","GET");
-      put("recording_callback_method","GET");
-      put("status_callback_method","POST");
-      put("on_exit_action_method","POST");
-      put("record",false);
-      put("record_file_format",MultiPartyCallUtils.wav);
-      put("status_callback_events","mpc-state-changes,participant-state-changes");
-      put("stay_alone",false);
-      put("coach_mode",true);
-      put("mute",false);
-      put("hold",false);
-      put("start_mpc_on_enter",true);
-      put("end_mpc_on_exit",true);
-      put("relay_dtmf_inputs",false);
-      put("enter_sound","beep:2");
-      put("enter_sound_method","GET");
-      put("exit_sound","beep:2");
-      put("exit_sound_method","POST");
+      put("from", "12345");
+      put("to", "67890<54321");
       put("caller_name", "developer");
+      put("call_status_callback_method", "POST");
+      put("confirm_key_sound_method", "GET");
+      put("dial_music", "Real");
+      put("ring_timeout", 80);
       put("delay_dial", 0);
+      put("max_duration", 20000);
+      put("max_participants", 10);
+      put("wait_music_method", "GET");
+      put("agent_hold_music_method", "GET");
+      put("customer_hold_music_method", "GET");
+      put("recording_callback_method", "GET");
+      put("status_callback_method", "POST");
+      put("on_exit_action_method", "POST");
+      put("record", false);
+      put("record_file_format", MultiPartyCallUtils.wav);
+      put("status_callback_events", "mpc-state-changes,participant-state-changes");
+      put("stay_alone", false);
+      put("coach_mode", true);
+      put("mute", false);
+      put("hold", false);
+      put("start_mpc_on_enter", true);
+      put("end_mpc_on_exit", true);
+      put("relay_dtmf_inputs", false);
+      put("enter_sound", "beep:2");
+      put("enter_sound_method", "GET");
+      put("exit_sound", "beep:2");
+      put("exit_sound_method", "POST");
+      put("start_recording_audio_method", "GET");
+      put("stop_recording_audio_method", "GET");
     }};
 
     MultiPartyCall.addParticipant(MultiPartyCallUtils.friendlyName(mpcName),
-      MultiPartyCallUtils.agent, "12345", Arrays.asList("67890", "54321"))
+        MultiPartyCallUtils.agent, "12345", Arrays.asList("67890", "54321"))
       .ringTimeout(80)
       .enterSound("beep:2")
       .exitSoundMethod("POST")
@@ -201,4 +204,66 @@ public class MPCTest extends BaseTest {
     assertRequest("POST", "MultiPartyCall/name_%s/Record/Resume/", mpcName);
   }
 
+  @Test
+  public void startParticipantRecording() throws Exception {
+    expectResponse("mpcParticipantRecordStart.json", 200);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+    Map<String, Object> expectedPayload = new LinkedHashMap<>();
+    expectedPayload.put("file_format", "mp3");
+    expectedPayload.put("status_callback_method", "POST");
+
+    MultiPartyCall.participantRecordStarter(MultiPartyCallUtils.friendlyName(mpcName), participantId).update();
+    assertRequestWithPayload("POST", "MultiPartyCall/name_%s/Participant/%s/Record/", expectedPayload, mpcName, participantId);
+  }
+
+  @Test
+  public void stopParticipantRecording() throws Exception {
+    expectResponse(null, 204);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+
+    MultiPartyCall.participantRecordStopper(MultiPartyCallUtils.friendlyName(mpcName), participantId).delete();
+    assertRequest("DELETE", "MultiPartyCall/name_%s/Participant/%s/Record/", mpcName, participantId);
+  }
+
+  @Test
+  public void pauseParticipantRecording() throws Exception {
+    expectResponse(null, 204);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+    MultiPartyCall.participantRecordPause(MultiPartyCallUtils.friendlyName(mpcName), participantId).update();
+    assertRequest("POST", "MultiPartyCall/name_%s/Participant/%s/Record/Pause/", mpcName, participantId);
+  }
+
+  @Test
+  public void resumeParticipantRecording() throws Exception {
+    expectResponse(null, 204);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+    MultiPartyCall.participantRecordResume(MultiPartyCallUtils.friendlyName(mpcName), participantId).update();
+    assertRequest("POST", "MultiPartyCall/name_%s/Participant/%s/Record/Resume/", mpcName, participantId);
+  }
+
+  @Test
+  public void startPlayAudio() throws Exception {
+    expectResponse("mpcStartPlayAudio.json",202);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+    Map<String, Object> expectedPayload = new LinkedHashMap<>();
+    expectedPayload.put("url","https://s3.amazonaws.com/plivocloud/music.mp3");
+
+    MultiPartyCall.startPlayAudio(MultiPartyCallUtils.friendlyName(mpcName),participantId).url("https://s3.amazonaws.com/plivocloud/music.mp3").update();
+    assertRequestWithPayload("POST","MultiPartyCall/name_%s/Member/%s/Play/",expectedPayload,mpcName,participantId);
+  }
+
+  @Test
+  public void stopPlayAudio() throws Exception {
+    expectResponse(null,204);
+    final String mpcName = "mpMPC";
+    final String participantId = "10";
+
+    MultiPartyCall.stopPlayAudio(MultiPartyCallUtils.friendlyName(mpcName),participantId).delete();
+    assertRequest("DELETE","MultiPartyCall/name_%s/Member/%s/Play/",mpcName,participantId);
+  }
 }

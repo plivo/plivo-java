@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class Validate {
 
 
-  private static final Pattern urlPattern = Pattern.compile("r'(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+|None)'");
+  private static final Pattern urlPattern = Pattern.compile("(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+|None)");
   private static final String COLON = ": ";
 
 

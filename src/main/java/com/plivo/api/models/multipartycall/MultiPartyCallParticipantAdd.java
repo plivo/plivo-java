@@ -56,22 +56,22 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   @UrlValues
   private String customerHoldMusicUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String customerHoldMusicMethod ="GET";
+  private String customerHoldMusicMethod = "GET";
   @UrlValues
   private String recordingCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String recordingCallbackMethod ="GET";
+  private String recordingCallbackMethod = "GET";
   @UrlValues
   private String statusCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String statusCallbackMethod ="POST";
+  private String statusCallbackMethod = "POST";
   @UrlValues
   private String onExitActionUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String onExitActionMethod ="POST";
+  private String onExitActionMethod = "POST";
   private Boolean record = false;
   @OneOf(message = "should be one of [mp3, wav]", options = {"mp3", "wav"})
-  private String recordFileFormat ="mp3";
+  private String recordFileFormat = "mp3";
   @JsonSerialize(using = CommaDelimitedListSerializer.class)
   @MultiOf(message = "should be among [mpc-state-changes, participant-state-changes, participant-speak-events, participant-digit-input-events, add-participant-api-events]", options = {"mpc-state-changes", "participant-state-changes", "participant-speak-events", "participant-digit-input-events", "add-participant-api-events"})
   private List<String> statusCallbackEvents = Arrays.asList("mpc-state-changes", "participant-state-changes");
@@ -90,6 +90,15 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   private String exitSound = "beep:2";
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
   private String exitSoundMethod = "GET";
+  @UrlValues
+  private String startRecordingAudio;
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String startRecordingAudioMethod = "GET";
+  @UrlValues
+  private String stopRecordingAudio;
+  @OneOf(message = "should be one of['GET',POST']", options = {"GET", "POST"})
+  private String stopRecordingAudioMethod = "GET";
+
 
   public MultiPartyCallParticipantAdd(String mpcId, String role, String from, List<String> to) throws PlivoValidationException {
     super(mpcId);
@@ -103,7 +112,7 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     this.from = from;
     this.to = to;
     this.callUuid = null;
-    if(this.callerName==null){
+    if (this.callerName == null) {
       this.callerName = this.from;
     }
   }
@@ -132,7 +141,9 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return callUuid;
   }
 
-  public String callerName(){ return callerName;}
+  public String callerName() {
+    return callerName;
+  }
 
   public String callStatusCallbackUrl() {
     return callStatusCallbackUrl;
@@ -166,7 +177,7 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return ringTimeout;
   }
 
-  public  Object delayDial() {
+  public Object delayDial() {
     return delayDial;
   }
 
@@ -282,9 +293,25 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
     return exitSoundMethod;
   }
 
-  public MultiPartyCallParticipantAdd callerName( String callerName) throws PlivoValidationException {
+  public String startRecordingAudio() {
+    return startRecordingAudio;
+  }
+
+  public String startRecordingAudioMethod() {
+    return startRecordingAudioMethod;
+  }
+
+  public String stopRecordingAudio() {
+    return stopRecordingAudio;
+  }
+
+  public String stopRecordingAudioMethod() {
+    return stopRecordingAudioMethod;
+  }
+
+  public MultiPartyCallParticipantAdd callerName(String callerName) throws PlivoValidationException {
     this.callerName = callerName;
-    if (callerName.length() > 50){
+    if (callerName.length() > 50) {
       throw new PlivoValidationException("CallerName Length must be in range [0,50]");
     }
     return this;
@@ -472,6 +499,26 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
 
   public MultiPartyCallParticipantAdd exitSoundMethod(String exitSoundMethod) {
     this.exitSoundMethod = exitSoundMethod;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd startRecordingAudio(String startRecordingAudio) {
+    this.startRecordingAudio = startRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd startRecordingAudioMethod(String startRecordingAudioMethod) {
+    this.startRecordingAudioMethod = startRecordingAudioMethod;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd stopRecordingAudio(String stopRecordingAudio) {
+    this.stopRecordingAudio= stopRecordingAudio;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd stopRecordingAudioMethod(String stopRecordingAudioMethod) {
+    this.stopRecordingAudioMethod = stopRecordingAudioMethod;
     return this;
   }
 
