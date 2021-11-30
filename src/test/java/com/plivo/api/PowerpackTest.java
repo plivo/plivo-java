@@ -1,9 +1,6 @@
 package com.plivo.api;
 
-import com.plivo.api.models.powerpack.Numbers;
-import com.plivo.api.models.powerpack.Powerpack;
-import com.plivo.api.models.powerpack.Shortcode;
-import com.plivo.api.models.powerpack.Tollfree;
+import com.plivo.api.models.powerpack.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,96 +46,130 @@ public class PowerpackTest extends BaseTest {
     assertEquals(uuid, response.getUuid());
   }
 
-//  @Test
-//  public void powerpackIteratorWithClientShouldSucceed() throws Exception {
-//    String fixtureName = "powerpackListResponse.json";
-//
-//    expectResponse(fixtureName, 200);
-//
-//    Map<String, String> params = new LinkedHashMap<>();
-//
-//    Iterator<Powerpack> iter = Powerpack.lister().client(client).iterator();
-//    iter.hasNext();
-//    iter.next();
-//
-//    params.put("limit", "20");
-//    params.put("offset", "0");
-//    assertRequest("GET", "Powerpack/", params);
-//  }
-//  @Test
-//  public void numberpoolIteratorWithClientShouldSucceed() throws Exception {
-//    String fixtureName = "numberpoolListResponse.json";
-//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-//    expectResponse(fixtureName, 200);
-//
-//    Map<String, String> params = new LinkedHashMap<>();
-//    Powerpack powerpack = Powerpack.getter(uuid).get();
-//    Iterator<Numbers> iter = powerpack.list_numbers().client(client).iterator();
-//    iter.hasNext();
-//    iter.next();
-//
-//    params.put("limit", "20");
-//    params.put("offset", "0");
-//    assertRequest("GET", "Numberpool/xxxxxxx/Number/", params);
-//  }
-//
-//  @Test
-//  public void powerpackFindNumberShouldSucceed() throws Exception {
-//    String fixtureName = "numberpoolResponse.json";
-//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-//
-//    expectResponse(fixtureName, 200);
-//
-//    Numbers response = Powerpack.getter(uuid).get().find_number().number("15799140348").get();
-//
-//
-//    assertEquals(response.getNumber(), "15799140348");
-//  }
-//  @Test
-//  public void powerpackAddNumberShouldSucceed() throws Exception {
-//    String fixtureName = "numberpoolResponse.json";
-//    String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
-//
-//    expectResponse(fixtureName, 200);
-//
-//    Numbers response = Powerpack.getter(uuid).get().add_number().number("15799140348").get();
-//    assertEquals(response.getNumber(), "15799140348");
-//  }
+  @Test
+  public void powerpackIteratorWithClientShouldSucceed() throws Exception {
+    String fixtureName = "powerpackListResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    Map<String, String> params = new LinkedHashMap<>();
+
+    Iterator<Powerpack> iter = Powerpack.lister().client(client).iterator();
+    iter.hasNext();
+    iter.next();
+
+    params.put("limit", "20");
+    params.put("offset", "0");
+    assertRequest("GET", "Powerpack/", params);
+  }
+  @Test
+  public void numberpoolIteratorWithClientShouldSucceed() throws Exception {
+    String fixtureName = "numberPoolPowerPack.json";
+    String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+    expectResponse(fixtureName, 200);
+
+    Map<String, String> params = new LinkedHashMap<>();
+    Powerpack powerpack = Powerpack.getter(uuid).get();
+    server.takeRequest();
+
+    fixtureName = "numberpoolListResponse.json";
+    expectResponse(fixtureName, 200);
+
+    Iterator<Numbers> iter = powerpack.list_numbers().client(client).iterator();
+    iter.hasNext();
+    iter.next();
+
+    params.put("limit", "20");
+    params.put("offset", "0");
+    params.put("id", "2b3aae01-22ae-4137-8730-8e0cd057f944");
+    assertRequest("GET", "NumberPool/2b3aae01-22ae-4137-8730-8e0cd057f944/Number/", params);
+  }
+
+  @Test
+  public void powerpackFindNumberShouldSucceed() throws Exception {
+    String fixtureName = "numberPoolPowerPack.json";
+    String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+    expectResponse(fixtureName, 200);
+
+    Powerpack powerpack = Powerpack.getter(uuid).get();
+    server.takeRequest();
+
+    fixtureName = "numberpoolResponse.json";
+    expectResponse(fixtureName, 200);
+
+    Numbers response = powerpack.find_number().number("15799140348").client(client).get();
+
+    assertEquals(response.getNumber(), "15799140348");
+  }
+
+  @Test
+  public void powerpackAddNumberShouldSucceed() throws Exception {
+    String fixtureName = "numberPoolPowerPack.json";
+    String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+    expectResponse(fixtureName, 200);
+
+    Powerpack powerpack = Powerpack.getter(uuid).get();
+    server.takeRequest();
+
+    fixtureName = "numberpoolResponse.json";
+    expectResponse(fixtureName, 200);
+
+    Numbers response = powerpack.add_number().number("15799140348").client(client).get();
+    assertEquals(response.getNumber(), "15799140348");
+  }
   
 
-  // @Test
-  // public void powerpackFindTollfreeShouldSucceed() throws Exception {
-  //   String fixtureName = "tollfreeResponse.json";
-  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+   @Test
+   public void powerpackFindTollfreeShouldSucceed() throws Exception {
+     String fixtureName = "numberPoolPowerPack.json";
+     String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+     expectResponse(fixtureName, 200);
 
-  //   expectResponse(fixtureName, 200);
+     Powerpack powerpack = Powerpack.getter(uuid).get();
+     server.takeRequest();
 
-  //   Tollfree response = Powerpack.getter(uuid).get().find_tollfree().tollfree("18772209942").get();
-  //   assertEquals(response.getNumber(), "18889140579");
-  // }
+     fixtureName = "tollfreeResponse.json";
 
-  // @Test
-  // public void powerpackAddTollfreeShouldSucceed() throws Exception {
-  //   String fixtureName = "tollfreeResponse.json";
-  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+     expectResponse(fixtureName, 200);
+     Tollfree response = powerpack.find_tollfree().tollfree("18772209942").client(client).get();
+     assertEquals(response.getNumber(), "18889140579");
+   }
 
-  //   expectResponse(fixtureName, 200);
+   @Test
+   public void powerpackAddTollfreeShouldSucceed() throws Exception {
+     String fixtureName = "numberPoolPowerPack.json";
+     String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+     expectResponse(fixtureName, 200);
 
-  //   Tollfree response = Powerpack.getter(uuid).get().add_tollfree().tollfree("18772209942").get();
-  //   assertEquals(response.getNumber(), "18889140579");
-  // }
+     Powerpack powerpack = Powerpack.getter(uuid).get();
+     server.takeRequest();
 
-  // @Test
-  // public void powerpackListTollfreeShouldSucceed() throws Exception {
-  //   String fixtureName = "tollfreeListResponse.json";
-  //   String uuid = "c5d77bad-b0b8-4cad-97bf-f97aa82ff7fe";
+     fixtureName = "tollfreeResponse.json";
 
-  //   expectResponse(fixtureName, 200);
+     expectResponse(fixtureName, 200);
+     Tollfree response = powerpack.add_tollfree().tollfree("18772209942").client(client).get();
+     assertEquals(response.getNumber(), "18889140579");
+   }
 
-  //   Tollfree response = Powerpack.getter(uuid).get().list_tollfree().list();
-  //   assertEquals(response.getNumber(), "18889140579");
-  // }
+   @Test
+   public void powerpackListTollfreeShouldSucceed() throws Exception {
+     String fixtureName = "numberPoolPowerPack.json";
+     String uuid = "d5125688-7c1a-43b5-b522-bbe70b54490a";
+     expectResponse(fixtureName, 200);
 
-  
+     Powerpack powerpack = Powerpack.getter(uuid).get();
+     server.takeRequest();
+
+     fixtureName = "tollfreeListResponse.json";
+     expectResponse(fixtureName, 200);
+
+     Iterator<Tollfree> response = powerpack.list_tollfree().client(client).iterator();
+     response.hasNext();
+     response.next();
+
+     assertRequest("GET", "NumberPool/2b3aae01-22ae-4137-8730-8e0cd057f944/Tollfree/");
+   }
+
+
 
 }

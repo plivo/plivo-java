@@ -1,0 +1,49 @@
+{
+    "api_id": "3d1876e6-5113-11ec-bff8-0242ac110004",
+    "application_id": "",
+    "application_type": "",
+    "created_on": "2021-11-23T08:34:45.181387Z",
+    "local_connect": true,
+    "name": "b27nxgksxnaimonk4kj4i",
+    "number_pool": "/v1/Account/MA123456789012345678/NumberPool/2b3aae01-22ae-4137-8730-8e0cd057f944/",
+    "number_priority": [
+      {
+        "country_iso": "US",
+        "priority": {
+          "priority1": "shortcode",
+          "priority2": "tollfree",
+          "priority3": "longcode"
+        },
+        "service_type": "SMS"
+      },
+      {
+        "country_iso": "US",
+        "priority": {
+          "priority1": "shortcode",
+          "priority2": "tollfree",
+          "priority3": "longcode"
+        },
+        "service_type": "MMS"
+      },
+      {
+        "country_iso": "CA",
+        "priority": {
+          "priority1": "shortcode",
+          "priority2": "longcode",
+          "priority3": "tollfree"
+        },
+        "service_type": "MMS"
+      },
+      {
+        "country_iso": "CA",
+        "priority": {
+          "priority1": "shortcode",
+          "priority2": "longcode",
+          "priority3": "tollfree"
+        },
+        "service_type": "SMS"
+      }
+    ],
+    "sticky_sender": false,
+    "uuid": "d5125688-7c1a-43b5-b522-bbe70b54490a"
+  }
