@@ -10,21 +10,6 @@ import retrofit2.Response;
 
 public class PowerpackLister extends Lister<Powerpack> {
 
-
-  private String limit;
-  private String offset;
-
-
-  public PowerpackLister limit(String limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  public PowerpackLister offset(String offset) {
-    this.offset = offset;
-    return this;
-  }
-
   public Long get() throws IOException, PlivoRestException {
     validate();
     Response<ListResponse<Powerpack>> response = obtainCall().execute();

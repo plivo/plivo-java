@@ -7,9 +7,6 @@ import retrofit2.Call;
 
 public class TollfreeLister extends Lister<Tollfree> {
 
-
-  private String limit;
-  private String offset;
   private String id;
 
   TollfreeLister(String id) {
@@ -18,17 +15,6 @@ public class TollfreeLister extends Lister<Tollfree> {
       throw new IllegalArgumentException("uuid cannot be null");
     }
     this.id = id;
-  }
-
-
-  public TollfreeLister limit(String limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  public TollfreeLister offset(String offset) {
-    this.offset = offset;
-    return this;
   }
 
   @Override

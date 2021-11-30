@@ -7,9 +7,6 @@ import retrofit2.Call;
 
 public class PowerpackNumberLister extends Lister<Numbers> {
 
-
-  private String limit;
-  private String offset;
   private String pattern;
   private String country_iso;
   private String type;
@@ -35,16 +32,6 @@ public class PowerpackNumberLister extends Lister<Numbers> {
 
   public PowerpackNumberLister type(String type) {
     this.type = type;
-    return this;
-  }
-
-  public PowerpackNumberLister limit(String limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  public PowerpackNumberLister offset(String offset) {
-    this.offset = offset;
     return this;
   }
 
