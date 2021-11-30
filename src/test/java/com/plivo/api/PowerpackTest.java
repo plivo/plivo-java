@@ -167,7 +167,11 @@ public class PowerpackTest extends BaseTest {
      response.hasNext();
      response.next();
 
-     assertRequest("GET", "NumberPool/2b3aae01-22ae-4137-8730-8e0cd057f944/Tollfree/");
+     Map<String, String> params = new LinkedHashMap<>();
+     params.put("limit", "20");
+     params.put("offset", "0");
+     params.put("id", "2b3aae01-22ae-4137-8730-8e0cd057f944");
+     assertRequest("GET", "NumberPool/2b3aae01-22ae-4137-8730-8e0cd057f944/Tollfree/", params);
    }
 
 
