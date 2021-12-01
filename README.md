@@ -1,6 +1,6 @@
 # plivo-java
 
-[![Build Status](https://travis-ci.org/plivo/plivo-java.svg?branch=master)](https://travis-ci.org/plivo/plivo-java)
+[![UnitTests](https://github.com/plivo/plivo-java/actions/workflows/unitTests.yml/badge.svg?branch=master)](https://github.com/plivo/plivo-java/actions/workflows/unitTests.yml)
 
 The Plivo Java SDK makes it simpler to integrate communications into your Java applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
