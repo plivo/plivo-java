@@ -7,9 +7,6 @@ import retrofit2.Call;
 
 public class ShortcodeLister extends Lister<Shortcode> {
 
-
-  private String limit;
-  private String offset;
   private String id;
 
   ShortcodeLister(String id) {
@@ -18,17 +15,6 @@ public class ShortcodeLister extends Lister<Shortcode> {
       throw new IllegalArgumentException("uuid cannot be null");
     }
     this.id = id;
-  }
-
-
-  public ShortcodeLister limit(String limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  public ShortcodeLister offset(String offset) {
-    this.offset = offset;
-    return this;
   }
 
   @Override

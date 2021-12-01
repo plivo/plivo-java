@@ -198,11 +198,6 @@ public class MessageTest extends BaseTest {
     params.put("message_direction", "outbound");
     params.put("message_state", "failed");
 
-//    RecordedRequest recordedRequest = server.takeRequest();
-//    assertEquals("GET", recordedRequest.getMethod());
-//    assertEquals(String.format("/Account/%s/Message/", authId),
-//      URI.create(recordedRequest.getPath()).getPath());
-
     assertRequest("GET", "Message/", params);
   }
 
@@ -222,11 +217,6 @@ public class MessageTest extends BaseTest {
     Map<String, String> params = new LinkedHashMap<>();
     params.put("message_direction", "outbound");
     params.put("message_state", "failed");
-
-//    RecordedRequest recordedRequest = server.takeRequest();
-//    assertEquals("GET", recordedRequest.getMethod());
-//    assertEquals(String.format("/Account/%s/Message/", authId),
-//      URI.create(recordedRequest.getPath()).getPath());
 
     assertRequest("GET", "Message/", params);
   }

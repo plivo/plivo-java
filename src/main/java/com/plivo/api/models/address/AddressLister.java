@@ -11,8 +11,6 @@ public class AddressLister extends Lister<Address> {
   private String alias;
   private String verificationStatus;
   private String validationStatus;
-  private String limit;
-  private String offset;
 
   public AddressLister countryIso(String countryIso) {
     this.countryIso = countryIso;
@@ -36,16 +34,6 @@ public class AddressLister extends Lister<Address> {
 
   public AddressLister validationStatus(String validationStatus) {
     this.validationStatus = validationStatus;
-    return this;
-  }
-
-  public AddressLister limit(String limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  public AddressLister offset(String offset) {
-    this.offset = offset;
     return this;
   }
 
