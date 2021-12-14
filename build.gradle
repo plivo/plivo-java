@@ -36,7 +36,7 @@ apply plugin: 'io.codearte.nexus-staging'
 
 nexusStaging {
   numberOfRetries = 60
-  delayBetweenRetriesInMillis = 30000
+  delayBetweenRetriesInMillis = 40000
 }
 
 repositories {
