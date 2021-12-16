@@ -254,7 +254,7 @@ public interface PlivoAPIService {
                                           @Body CampaignCreator campaignCreator);
 
   @GET("Account/{authId}/10dlc/Campaign/")
-  Call<ListResponse<CampaignsResponse>> campaignList(@Path("authId") String authId,
+  Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> campaignListRequest);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
