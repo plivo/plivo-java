@@ -32,6 +32,8 @@ import com.plivo.api.models.phlo.PhloUpdateResponse;
 import com.plivo.api.models.powerpack.*;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
+import com.plivo.api.models.brand.*;
+import com.plivo.api.models.campaign.*;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -234,6 +236,29 @@ public interface PlivoAPIService {
   Call<PhoneNumberCreateResponse> phoneNumberCreate(@Path("authId") String authId,
                                                     @Path("number") String number, @Body
                                                       PhoneNumberCreator creator);
+
+  //10dlc
+  @POST("Account/{authId}/10dlc/Brand/")
+  Call<BrandCreateResponse> createBrand(@Path("authId") String authId,
+                                          @Body BrandCreator createBrand);
+
+  @GET("Account/{authId}/10dlc/Brand/")
+  Call<ListResponse<Brand>> brandList(@Path("authId") String authId,
+                                          @QueryMap Map<String, Object> brandListRequest);
+
+  @GET("Account/{authId}/10dlc/Brand/{id}/")
+  Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
+
+  @POST("Account/{authId}/10dlc/Campaign/")
+  Call<CampaignCreateResponse> createCampaign(@Path("authId") String authId,
+                                          @Body CampaignCreator campaignCreator);
+
+  @GET("Account/{authId}/10dlc/Campaign/")
+  Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
+                                          @QueryMap Map<String, Object> campaignListRequest);
+
+  @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
+  Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);
 
   // Recording
 
