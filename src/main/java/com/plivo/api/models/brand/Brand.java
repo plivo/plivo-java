@@ -2,11 +2,12 @@ package com.plivo.api.models.brand;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
+import java.util.List;
 
 public class Brand extends BaseResource {  
   private String brandId;
   private BrandResponse brand;
-  List<Brand> brands;
+  private List<Brand> brands;
 
   public List<Brand> getBrands() {
     return brands;
