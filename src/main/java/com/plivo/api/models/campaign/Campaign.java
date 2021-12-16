@@ -2,6 +2,8 @@ package com.plivo.api.models.campaign;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
+import java.util.List;
+
 
 public class Campaign extends BaseResource {
   private String campaignId;
