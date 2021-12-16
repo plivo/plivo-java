@@ -246,8 +246,8 @@ public interface PlivoAPIService {
   Call<ListResponse<BrandsResponse>> brandList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> brandListRequest);
 
-  @GET("Account/{authId}/10dlc/Brand/{brandId}/")
-  Call<Brand> brandGet(@Path("authId") String authId, @Path("brandId") String brandId);
+  @GET("Account/{authId}/10dlc/Brand/{id}/")
+  Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
 
   @POST("Account/{authId}/10dlc/Campaign/")
   Call<Campaign> createCampaign(@Path("authId") String authId,

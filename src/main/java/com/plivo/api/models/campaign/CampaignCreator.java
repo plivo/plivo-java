@@ -90,6 +90,6 @@ public class CampaignCreator extends Creator<Campaign> {
 
   @Override
   protected Call<Campaign> obtainCall() {
-    return client().getApiService().campaignBrand(client().getAuthId(), this);
+    return client().getApiService().createCampaign(client().getAuthId(), this);
   }
 }
