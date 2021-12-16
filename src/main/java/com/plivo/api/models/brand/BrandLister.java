@@ -10,6 +10,6 @@ public class BrandLister extends Lister<BrandsResponse> {
 
   @Override
   protected Call<ListResponse<BrandsResponse>> obtainCall() {
-    return client().getApiService().brandList(client().getAuthId(), id, toMap());
+    return client().getApiService().brandList(client().getAuthId(), toMap());
   }
 }

@@ -4,7 +4,7 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class CampaignCreator extends Creator<Campaign> {
+public class CampaignCreator extends Creator<CampaignCreateResponse> {
   private String brandID;
   private String campaignAlias;
   private String vertical;
@@ -89,7 +89,7 @@ public class CampaignCreator extends Creator<Campaign> {
 
 
   @Override
-  protected Call<Campaign> obtainCall() {
+  protected Call<CampaignCreateResponse> obtainCall() {
     return client().getApiService().createCampaign(client().getAuthId(), this);
   }
 }

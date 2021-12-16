@@ -5,12 +5,12 @@ import retrofit2.Call;
 
 public class CampaignGetter extends Getter<Campaign> {
 
-  public CampaignGetter(String campaignId) {
-    super(campaignId);
+  public CampaignGetter(String id) {
+    super(id);
   }
 
   @Override
   protected Call<Campaign> obtainCall() {
-    return client().getApiService().campaignGet(client().getAuthId(), campaignId);
+    return client().getApiService().campaignGet(client().getAuthId(), id);
   }
 }

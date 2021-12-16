@@ -10,6 +10,6 @@ public class CampaignLister extends Lister<CampaignResponse> {
 
   @Override
   protected Call<ListResponse<CampaignResponse>> obtainCall() {
-    return client().getApiService().campaignList(client().getAuthId(), id, toMap());
+    return client().getApiService().campaignList(client().getAuthId(), toMap());
   }
 }

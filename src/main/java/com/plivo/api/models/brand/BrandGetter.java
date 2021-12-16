@@ -5,12 +5,12 @@ import retrofit2.Call;
 
 public class BrandGetter extends Getter<Brand> {
 
-  public BrandGetter(String brandId) {
-    super(brandId);
+  public BrandGetter(String id) {
+    super(id);
   }
 
   @Override
   protected Call<Brand> obtainCall() {
-    return client().getApiService().brandGet(client().getAuthId(), brandId);
+    return client().getApiService().brandGet(client().getAuthId(), id);
   }
 }
