@@ -66,25 +66,25 @@ public class CampaignCreator extends Creator<Campaign> {
       return this.sample1;
   }
   public Boolean subscriberHelp(){
-      return this.subscriberHelp
+      return this.subscriberHelp;
   }
   public Boolean subscriberOptout(){
-      return this.subscriberOptout
+      return this.subscriberOptout;
   }
   public Boolean subscriberOptin(){
-      return this.subscriberOptin
+      return this.subscriberOptin;
   }
   public Boolean directLending(){
-      return this.directLending
+      return this.directLending;
   }
   public Boolean ageGated(){
-      return this.ageGated
+      return this.ageGated;
   }
   public Boolean embeddedPhone(){
-      return this.embeddedPhone
+      return this.embeddedPhone;
   }
   public Boolean embeddedLink(){
-      return this.embeddedLink
+      return this.embeddedLink;
   }
 
 
