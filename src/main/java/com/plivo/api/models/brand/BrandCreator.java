@@ -7,7 +7,7 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class BrandCreator extends Creator<Brand> {
+public class BrandCreator extends Creator<BrandCreateResponse> {
   private String altBusinessIDType;
   private String altBusinessID;
   private String city;
@@ -126,7 +126,7 @@ public class BrandCreator extends Creator<Brand> {
   }
 
   @Override
-  protected Call<Brand> obtainCall() {
+  protected Call<BrandCreateResponse> obtainCall() {
     return client().getApiService().createBrand(client().getAuthId(), this);
   }
 }

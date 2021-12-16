@@ -239,7 +239,7 @@ public interface PlivoAPIService {
 
   //10dlc
   @POST("Account/{authId}/10dlc/Brand/")
-  Call<Brand> createBrand(@Path("authId") String authId,
+  Call<BrandCreateResponse> createBrand(@Path("authId") String authId,
                                           @Body BrandCreator createBrand);
 
   @GET("Account/{authId}/10dlc/Brand/")
