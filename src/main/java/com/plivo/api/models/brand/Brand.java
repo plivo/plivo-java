@@ -6,7 +6,11 @@ import com.plivo.api.models.base.BaseResource;
 public class Brand extends BaseResource {  
   private String brandId;
   private BrandResponse brand;
+  List<Brand> brands;
 
+  public List<Brand> getBrands() {
+    return brands;
+  }
   public static BrandCreator creator(String altBusinessIDType,String altBusinessID, String city,String companyName,String country,String ein,String einIssuingCountry,String email,String entityType,String firstName,String lastName,String phone,String postalCode,String registrationStatus,String state,String stockExchange,String stockSymbol, String street, String vertical,String website,String secondaryVetting) {
     return new BrandCreator(altBusinessIDType,altBusinessID,city,companyName,country,ein,einIssuingCountry,email,entityType,firstName,lastName,phone,postalCode,registrationStatus,state,stockExchange,stockSymbol, street, vertical,website,secondaryVetting);
   }

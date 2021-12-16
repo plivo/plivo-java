@@ -243,7 +243,7 @@ public interface PlivoAPIService {
                                           @Body BrandCreator createBrand);
 
   @GET("Account/{authId}/10dlc/Brand/")
-  Call<ListResponse<BrandsResponse>> brandList(@Path("authId") String authId,
+  Call<ListResponse<Brand>> brandList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> brandListRequest);
 
   @GET("Account/{authId}/10dlc/Brand/{id}/")
