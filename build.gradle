@@ -35,8 +35,8 @@ apply plugin: 'signing'
 apply plugin: 'io.codearte.nexus-staging'
 
 nexusStaging {
-  numberOfRetries = 50
-  delayBetweenRetriesInMillis = 10000
+  numberOfRetries = 60
+  delayBetweenRetriesInMillis = 40000
 }
 
 repositories {
