@@ -1,5 +1,6 @@
 package com.plivo.api;
 
+import com.plivo.api.models.base.LogLevel;
 import okhttp3.OkHttpClient;
 
 public class Plivo {
@@ -19,6 +20,18 @@ public class Plivo {
   public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
       System.out.println("New build");
       plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder);
+  }
+
+  public static synchronized void init(String authId, String authToken, LogLevel logLevel) {
+    System.out.println("New build");
+    plivoInstance = new PlivoClient(authId, authToken, logLevel);
+    phloInstance = new PhloRestClient(authId, authToken).getClient();
+  }
+
+  public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder,
+                                       LogLevel logLevel) {
+    System.out.println("New build");
+    plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder, logLevel);
   }
 
     /**

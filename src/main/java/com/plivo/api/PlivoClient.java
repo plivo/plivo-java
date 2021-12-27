@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.plivo.api.models.base.LogLevel;
 import com.plivo.api.util.Utils;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
@@ -98,8 +99,7 @@ public class PlivoClient {
     objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
   }
 
-  private final Interceptor interceptor = new HttpLoggingInterceptor()
-    .setLevel(Level.BODY);
+  private Interceptor interceptor;
   private final String authId;
   private final String authToken;
   private OkHttpClient httpClient;
@@ -131,8 +131,9 @@ public class PlivoClient {
    * @param httpClientBuilder
    * @param baseUrl
    * @param simpleModule
+   * @param logLevel
    */
-  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, final String baseUrl, final SimpleModule simpleModule) {
+  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, final String baseUrl, final SimpleModule simpleModule, final LogLevel logLevel) {
     if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
       throw new IllegalArgumentException("invalid account ID");
     }
@@ -140,6 +141,7 @@ public class PlivoClient {
     this.authId = authId;
     this.authToken = authToken;
     this.objectMapper.registerModule(simpleModule);
+    this.interceptor = new HttpLoggingInterceptor().setLevel(Level.valueOf(logLevel.toString()));
 
     httpClient = httpClientBuilder
       .addNetworkInterceptor(interceptor)
@@ -237,7 +239,7 @@ public class PlivoClient {
    * @param authToken
    */
   public PlivoClient(String authId, String authToken) {
-    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule);
+    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule, LogLevel.NONE);
   }
 
   /**
@@ -255,7 +257,57 @@ public class PlivoClient {
    * @param httpClientBuilder
    */
   public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
+    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, LogLevel.NONE);
+  }
+
+  /**
+   * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
+   * the timeout and proxy using:
+   *
+   * <pre><code>
+   *    new OkHttpClient.Builder()
+   *    .proxy(proxy)
+   *    .connectTimeout(1, TimeUnit.MINUTES);
+   * </code></pre>
+   *
+   * To set Log level you can pass LogLevel enum.It can be set to following values:
+   *
+   * NONE - No logs
+   * BASIC - Log request and response line
+   * HEADER - Log request and response line along with their headers
+   * BODY - Log request and response line along with their headers and bodies
+   *
+   * @param authId
+   * @param authToken
+   * @param logLevel
+   */
+  public PlivoClient(String authId, String authToken, LogLevel logLevel) {
+    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule, logLevel);
+  }
+
+  /**
+   * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
+   * the timeout and proxy using:
+   *
+   * <pre><code>
+   *   new OkHttpClient.Builder()
+   *   .proxy(proxy)
+   *   .connectTimeout(1, TimeUnit.MINUTES);
+   * </code></pre>
+   * To set Log level you can pass LogLevel enum.It can be set to following values:
+   *
+   * NONE - No logs
+   * BASIC - Log request and response line
+   * HEADER - Log request and response line along with their headers
+   * BODY - Log request and response line along with their headers and bodies
+   *
+   * @param authId
+   * @param authToken
+   * @param httpClientBuilder
+   * @param logLevel
+   */
+  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, LogLevel logLevel) {
+    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, logLevel);
   }
 
   public static ObjectMapper getObjectMapper() {
