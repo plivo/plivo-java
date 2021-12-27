@@ -2,8 +2,8 @@
 
 ## [5.8.0](https://github.com/plivo/plivo-java/tree/v5.8.0) (2021-12-29)
 **Features - Generic**
-- Default log level set to 'NONE'. 
-- Added ability to set log level.
+- Default log level set to 'NONE'
+- Enabled log level to be configurable from customers end
 
 ## [5.7.0](https://github.com/plivo/plivo-java/tree/v5.7.0) (2021-12-16)
 **Features - SMS**
