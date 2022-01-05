@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.8.0](https://github.com/plivo/plivo-java/tree/v5.8.0) (2021-12-29)
+## [5.8.0](https://github.com/plivo/plivo-java/tree/v5.8.0) (2022-01-05)
 **Features - Generic**
 - Default log level set to 'NONE'
 - Enabled log level to be configurable from customers end
