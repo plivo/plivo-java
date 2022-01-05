@@ -1,5 +1,9 @@
 package com.plivo.api.models.base;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.plivo.api.Plivo;
+import com.plivo.api.PlivoClient;
+
 public class BaseResponse {
 
   private String message;
@@ -19,5 +23,18 @@ public class BaseResponse {
 
   public void setApiId(String apiId) {
     this.apiId = apiId;
+  }
+
+  protected PlivoClient plivoClient = Plivo.getClient();
+
+  @Override
+  public String toString() {
+    try {
+      return getClass().getCanonicalName() + ": " + plivoClient.getObjectMapper()
+        .writeValueAsString(this);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 }

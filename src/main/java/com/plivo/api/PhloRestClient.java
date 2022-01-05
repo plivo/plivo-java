@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.plivo.api.models.base.LogLevel;
 import okhttp3.OkHttpClient;
 
 import java.io.IOException;
@@ -47,11 +48,11 @@ public class PhloRestClient {
   }
 
   public PhloRestClient(String authId, String authToken) {
-    this.client = new PlivoClient(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule);
+    this.client = new PlivoClient(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule, LogLevel.NONE);
   }
 
   public PhloRestClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this.client = new PlivoClient(authId, authToken, httpClientBuilder, BASE_URL, simpleModule);
+    this.client = new PlivoClient(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, LogLevel.NONE);
   }
 
   public PlivoClient getClient() {
