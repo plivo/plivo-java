@@ -176,6 +176,35 @@ This generates the following XML:
 </Response>
 ```
 
+### Log Level
+
+We’ve introduced a customizable logging mechanism in the Java SDK that enables you to choose the level of logging in your development/production environment. 
+
+| Log-level      | Description |
+| :---        |    :----:   |
+| NONE      | No logs       |
+| BASIC   | Logs request and response line |
+| HEADER   | Logs request and response line along with their headers        |
+| BODY   | Logs request and response line along with their headers and bodies |
+
+### Example
+
+```java
+package com.plivo.api.samples.call;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.models.base.LogLevel;
+
+class Example {
+    public static void main(String [] args) {
+        Plivo.init("<auth_id>","<auth_token>", LogLevel.NONE); // LogLevel.NONE is the default value.
+//        Plivo.init("<auth_id>","<auth_token>", LogLevel.BASIC);
+//        Plivo.init("<auth_id>","<auth_token>", LogLevel.BODY);
+//        Plivo.init("<auth_id>","<auth_token>", LogLevel.HEADERS);
+    }
+}
+```
+
 ### More examples
 More examples are available [here](https://github.com/plivo/plivo-examples-java). Also refer to the [guides for configuring the Java Spring to run various scenarios](https://plivo.com/docs/sms/quickstart/java-spring/) & use it to test out your integration in under 5 minutes.
 
