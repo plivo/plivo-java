@@ -12,9 +12,9 @@ public class MultiPartyCallParticipantRecordingStart extends VoiceUpdater<MultiP
   @OneOf(message = "should be one of [mp3, wav]", options = {"mp3", "wav"})
   private String fileFormat = "mp3";
   @UrlValues
-  private String statusCallbackUrl;
+  private String recordingCallbackUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
-  private String statusCallbackMethod = "POST";
+  private String recordingCallbackMethod = "POST";
 
   public MultiPartyCallParticipantRecordingStart(String mpcId, String secondaryId) {
     super(mpcId, secondaryId);
@@ -24,12 +24,12 @@ public class MultiPartyCallParticipantRecordingStart extends VoiceUpdater<MultiP
     return fileFormat;
   }
 
-  public String statusCallbackUrl() {
-    return statusCallbackUrl;
+  public String recordingCallbackUrl() {
+    return recordingCallbackUrl;
   }
 
-  public String statusCallbackMethod() {
-    return statusCallbackMethod;
+  public String recordingCallbackMethod() {
+    return recordingCallbackMethod;
   }
 
   public MultiPartyCallParticipantRecordingStart fileFormat(String fileFormat) {
@@ -37,13 +37,13 @@ public class MultiPartyCallParticipantRecordingStart extends VoiceUpdater<MultiP
     return this;
   }
 
-  public MultiPartyCallParticipantRecordingStart statusCallbackUrl(String statusCallbackUrl) {
-    this.statusCallbackUrl = statusCallbackUrl;
+  public MultiPartyCallParticipantRecordingStart recordingCallbackUrl(String recordingCallbackUrl) {
+    this.recordingCallbackUrl = recordingCallbackUrl;
     return this;
   }
 
-  public MultiPartyCallParticipantRecordingStart statusCallbackMethod(String statusCallbackMethod) {
-    this.statusCallbackMethod = statusCallbackMethod;
+  public MultiPartyCallParticipantRecordingStart recordingCallbackMethod(String recordingCallbackMethod) {
+    this.recordingCallbackMethod = recordingCallbackMethod;
     return this;
   }
 

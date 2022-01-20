@@ -19,7 +19,7 @@ public class StartRecording {
 
     // 1. either by using static recordStarter() method of MultiPartyCall class
     MultiPartyCallRecordingStart recordingStart1 = MultiPartyCall.recordStarter(MultiPartyCallUtils.friendlyName("myMPC1"));
-    MultiPartyCallRecordingStartResponse resp1 = recordingStart1.fileFormat("wav").statusCallbackUrl("http://status/recording/").update();
+    MultiPartyCallRecordingStartResponse resp1 = recordingStart1.fileFormat("wav").recordingCallbackUrl("http://status/recording/").update();
     System.out.println(resp1.getRecordingUrl());
     System.out.println(resp1.getRecordingId());
 
