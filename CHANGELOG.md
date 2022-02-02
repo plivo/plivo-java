@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.9.0](https://github.com/plivo/plivo-java/tree/v5.9.0) (2022-01-27)
+## [5.9.0](https://github.com/plivo/plivo-java/tree/v5.9.0) (2022-02-02)
 **Features - MPCCallRecording**
 - Parameter change from statusCall to recordingCallback
 
