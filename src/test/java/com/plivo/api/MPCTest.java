@@ -171,7 +171,7 @@ public class MPCTest extends BaseTest {
     final String mpcName = "myMpc";
     Map<String, Object> expectedPayload = new LinkedHashMap<>();
     expectedPayload.put("file_format", "mp3");
-    expectedPayload.put("status_callback_method", "POST");
+    expectedPayload.put("recording_callback_method", "POST");
 
     MultiPartyCall.recordStarter(MultiPartyCallUtils.friendlyName(mpcName)).update();
     assertRequestWithPayload("POST", "MultiPartyCall/name_%s/Record/", expectedPayload, mpcName);
@@ -211,7 +211,7 @@ public class MPCTest extends BaseTest {
     final String participantId = "10";
     Map<String, Object> expectedPayload = new LinkedHashMap<>();
     expectedPayload.put("file_format", "mp3");
-    expectedPayload.put("status_callback_method", "POST");
+    expectedPayload.put("recording_callback_method", "POST");
 
     MultiPartyCall.participantRecordStarter(MultiPartyCallUtils.friendlyName(mpcName), participantId).update();
     assertRequestWithPayload("POST", "MultiPartyCall/name_%s/Participant/%s/Record/", expectedPayload, mpcName, participantId);
