@@ -42,7 +42,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     if (!Utils.allNotNull(source, destination)) {
       throw new IllegalArgumentException("source, destination must not be null");
     }
-    if (destination.contains(source)) {
+    if (destination.equals(source)) {
       throw new IllegalArgumentException("destination cannot include source");
     }
     if (source.length()<= 14) {
