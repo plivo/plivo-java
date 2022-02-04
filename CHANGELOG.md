@@ -1,7 +1,6 @@
 # Change Log
 
-
-## [5.9.1](https://github.com/plivo/plivo-java/tree/v5.9.1) (2022-02-03)
+## [5.9.1](https://github.com/plivo/plivo-java/tree/v5.9.1) (2022-02-04)
 **BugFix - MessageCreate**
 - Source and Destination number validation
 
