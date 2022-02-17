@@ -20,6 +20,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
   private Boolean hold;
   private String joinTime;
   private String memberId;
+  private String memberAddress;
   private String mpcUuid;
   private Boolean mute;
   private String resourceUri;
@@ -128,6 +129,7 @@ public class MultiPartyCallParticipant extends SecondaryResource {
   public String getMemberId() {
     return memberId;
   }
+  public String getmemberAddress() { return memberAddress; }
 
   public String getMpcUuid() {
     return mpcUuid;
