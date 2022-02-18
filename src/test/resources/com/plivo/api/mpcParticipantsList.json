@@ -19,6 +19,7 @@
       "exit_time": "2020-07-09 07:25:07+00:00",
       "hold": null,
       "join_time": "2020-07-09 07:24:37+00:00",
+      "member_address": "sip:ajaydjv902035012689385@phone-qa.voice.plivodev.com",
       "member_id": "49",
       "mpc_uuid": "18905d56-79c8-41d4-a840-25feff71070e",
       "mute": null,
