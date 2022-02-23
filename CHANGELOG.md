@@ -1,5 +1,6 @@
 # Change Log
-## [5.9.2](https://github.com/plivo/plivo-java/tree/v5.9.2) (2022-02-17)
+
+## [5.9.2](https://github.com/plivo/plivo-java/tree/v5.9.2) (2022-02-22)
 **ResponseFix - memberAddressAdded**
 
 ## [5.9.1](https://github.com/plivo/plivo-java/tree/v5.9.1) (2022-02-04)
