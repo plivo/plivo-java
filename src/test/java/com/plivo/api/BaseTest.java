@@ -103,7 +103,7 @@ public class BaseTest {
   }
 
   protected void assertRequestWithPayload(String method, String format, Map<String, Object> payload, Object... objects)
-    throws InterruptedException, UnsupportedEncodingException, JsonProcessingException {
+    throws InterruptedException, IOException {
     RecordedRequest recordedRequest = server.takeRequest();
     JsonNode expectedPayload = mapper.valueToTree(payload);
     JsonNode actualPayload = mapper.readTree(recordedRequest.getBody().readUtf8());
