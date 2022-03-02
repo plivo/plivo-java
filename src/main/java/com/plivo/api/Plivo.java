@@ -12,25 +12,21 @@ public class Plivo {
      * Initializes the global {@link PlivoClient} plivoInstance
      */
     public static synchronized void init(String authId, String authToken) {
-        System.out.println("New build");
         plivoInstance = new PlivoClient(authId, authToken);
         phloInstance = new PhloRestClient(authId, authToken).getClient();
     }
 
   public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-      System.out.println("New build");
       plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder);
   }
 
   public static synchronized void init(String authId, String authToken, LogLevel logLevel) {
-    System.out.println("New build");
     plivoInstance = new PlivoClient(authId, authToken, logLevel);
     phloInstance = new PhloRestClient(authId, authToken).getClient();
   }
 
   public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder,
                                        LogLevel logLevel) {
-    System.out.println("New build");
     plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder, logLevel);
   }
 
@@ -39,7 +35,6 @@ public class Plivo {
      * environment variables called PLIVO_AUTH_ID and PLIVO_AUTH_TOKEN.
      */
     public static synchronized void init() {
-        System.out.println("New build");
         init(System.getenv("PLIVO_AUTH_ID"), System.getenv("PLIVO_AUTH_TOKEN"));
     }
 
