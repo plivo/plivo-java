@@ -35,6 +35,9 @@ public class Dial extends PlivoXml implements ResponseNestable {
   private String confirmSound;
 
   @XmlAttribute
+  private String confirmTimeout;
+
+  @XmlAttribute
   private String confirmKey;
 
   @XmlAttribute
@@ -88,6 +91,10 @@ public class Dial extends PlivoXml implements ResponseNestable {
 
   public String confirmSound() {
     return this.confirmSound;
+  }
+
+  public String confirmTimeout() {
+    return this.confirmTimeout;
   }
 
   public String confirmKey() {
@@ -163,6 +170,11 @@ public class Dial extends PlivoXml implements ResponseNestable {
 
   public Dial confirmSound(final String confirmSound) {
     this.confirmSound = confirmSound;
+    return this;
+  }
+
+  public Dial confirmTimeout(final String confirmTimeout) {
+    this.confirmTimeout = confirmTimeout;
     return this;
   }
 
