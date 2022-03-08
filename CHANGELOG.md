@@ -1,5 +1,6 @@
 # Change Log
-## [5.9.3](https://github.com/plivo/plivo-java/tree/v5.9.3) (2022-03-02)
+
+## [5.9.3](https://github.com/plivo/plivo-java/tree/v5.9.3) (2022-03-08)
 **LoggingRemoved - src/main/java/com/plivo/api/Plivo.java**
 
 ## [5.9.2](https://github.com/plivo/plivo-java/tree/v5.9.2) (2022-02-22)
