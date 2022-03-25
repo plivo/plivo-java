@@ -1,7 +1,8 @@
 # Change Log
 
-## [5.9.3](https://github.com/plivo/plivo-java/tree/v5.9.3) (2022-03-03)
-**DialElement - confirmTimeout parameter added**
+## [5.10.0](https://github.com/plivo/plivo-java/tree/v5.10.0) (2022-03-25)
+**Feature - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
 
 ## [5.9.2](https://github.com/plivo/plivo-java/tree/v5.9.2) (2022-02-22)
 **ResponseFix - memberAddressAdded**
