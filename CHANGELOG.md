@@ -4,6 +4,10 @@
 **Feature - DialElement**
 - `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
 
+## [5.9.3](https://github.com/plivo/plivo-java/tree/v5.9.3) (2022-03-08)
+**Bug fix** 
+- Remove unnecessary log lines.
+
 ## [5.9.2](https://github.com/plivo/plivo-java/tree/v5.9.2) (2022-02-22)
 **ResponseFix - memberAddressAdded**
 
