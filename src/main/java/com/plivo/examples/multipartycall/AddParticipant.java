@@ -27,7 +27,7 @@ public class AddParticipant {
 
     MultiPartyCallParticipantAddResponse resp = MultiPartyCall.addParticipant(MultiPartyCallUtils.friendlyName("myMPC"),
       MultiPartyCallUtils.customer, fromNumber, Collections.singletonList(toNumber)).
-      startMpcOnEnter(false).endMpcOnExit(true).maxDuration(1500).maxParticipants(7).record(true).update();
+      startMpcOnEnter(false).endMpcOnExit(true).maxDuration(1500).maxParticipants(7).record(true).recordMinMemberCount(1).update();
 
     System.out.println(resp.getMessage());
     System.out.printf("from number matches: %s", resp.getCalls().get(0).getFrom().equals(fromNumber));

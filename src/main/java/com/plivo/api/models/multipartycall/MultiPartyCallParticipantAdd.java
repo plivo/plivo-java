@@ -45,6 +45,8 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
   private Integer maxDuration = 14400;
   @InRange(message = "must be in range [2-10]", min = 2, max = 10)
   private Integer maxParticipants = 10;
+  @InRange(message = "must be in range [1-2]", min = 1, max = 2)
+  private Integer recordMinMemberCount = 1;
   @UrlValues
   private String waitMusicUrl;
   @OneOf(message = "should be one of [GET, POST]", options = {"GET", "POST"})
@@ -187,6 +189,10 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
 
   public Integer maxParticipants() {
     return maxParticipants;
+  }
+
+  public Integer recordMinMemberCount() {
+    return recordMinMemberCount;
   }
 
   public String waitMusicUrl() {
@@ -369,6 +375,11 @@ public class MultiPartyCallParticipantAdd extends VoiceUpdater<MultiPartyCallPar
 
   public MultiPartyCallParticipantAdd maxParticipants(Integer maxParticipants) {
     this.maxParticipants = maxParticipants;
+    return this;
+  }
+
+  public MultiPartyCallParticipantAdd recordMinMemberCount(Integer recordMinMemberCount) {
+    this.recordMinMemberCount = recordMinMemberCount;
     return this;
   }
 

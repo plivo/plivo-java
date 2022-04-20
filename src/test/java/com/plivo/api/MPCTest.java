@@ -80,6 +80,7 @@ public class MPCTest extends BaseTest {
       put("delay_dial", 0);
       put("max_duration", 20000);
       put("max_participants", 10);
+      put("record_min_member_count", 1);
       put("wait_music_method", "GET");
       put("agent_hold_music_method", "GET");
       put("customer_hold_music_method", "GET");
