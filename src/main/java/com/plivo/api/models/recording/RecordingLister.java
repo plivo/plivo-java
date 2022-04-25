@@ -26,6 +26,14 @@ public class RecordingLister extends VoiceLister<Recording> {
     return this.callUuid;
   }
 
+  public String fromNumber() {
+    return this.fromNumber;
+  }
+
+  public String toNumber() {
+    return this.toNumber;
+  }
+
   public String conferenceName() {
     return this.conferenceName;
   }
