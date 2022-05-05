@@ -29,6 +29,10 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
   private Integer maxParticipants = 10;
 
   @XmlAttribute
+  @InRange(message = "must be in range [1-2]", min = 1, max = 2)
+  private Integer recordMinMemberCount = 1;
+
+  @XmlAttribute
   @UrlValues
   private String waitMusicUrl;
 
@@ -173,6 +177,10 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
     return maxParticipants;
   }
 
+  public Integer recordMinMemberCount() {
+    return recordMinMemberCount;
+  }
+
   public String waitMusicUrl() {
     return waitMusicUrl;
   }
@@ -309,6 +317,11 @@ public class MultiPartyCall extends PlivoXml implements ResponseNestable {
 
   public MultiPartyCall maxParticipants(Integer maxParticipants) {
     this.maxParticipants = maxParticipants;
+    return this;
+  }
+
+  public MultiPartyCall recordMinMemberCount(Integer recordMinMemberCount) {
+    this.recordMinMemberCount = recordMinMemberCount;
     return this;
   }
 

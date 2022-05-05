@@ -15,6 +15,24 @@ public class Recording extends BaseResource {
   private String recordingUrl;
   private String resourceUri;
   private String recordingId;
+  private String fromNumber;
+  private String toNumber;
+
+  public String getFromNumber() {
+    return fromNumber;
+  }
+
+  public void setFromNumber(String fromNumber) {
+    this.fromNumber = fromNumber;
+  }
+
+  public String getToNumber() {
+    return toNumber;
+  }
+
+  public void setToNumber(String toNumber) {
+    this.toNumber = toNumber;
+  }
 
   public static RecordingGetter getter(String id) {
     return new RecordingGetter(id);

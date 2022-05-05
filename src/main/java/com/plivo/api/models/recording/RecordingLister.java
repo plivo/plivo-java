@@ -10,6 +10,12 @@ public class RecordingLister extends VoiceLister<Recording> {
 
   private String subaccount;
   private String callUuid;
+  private String fromNumber;
+  private String toNumber;
+  private String conferenceName;
+  private String mpcName;
+  private String conferenceUuid;
+  private String mpcUuid;
   private PropertyFilter<Date> addTime;
 
   public String subaccount() {
@@ -18,6 +24,30 @@ public class RecordingLister extends VoiceLister<Recording> {
 
   public String callUuid() {
     return this.callUuid;
+  }
+
+  public String fromNumber() {
+    return this.fromNumber;
+  }
+
+  public String toNumber() {
+    return this.toNumber;
+  }
+
+  public String conferenceName() {
+    return this.conferenceName;
+  }
+
+  public String mpcName() {
+    return this.mpcName;
+  }
+
+  public String conferenceUuid() {
+    return this.conferenceUuid;
+  }
+
+  public String mpcUuid() {
+    return this.mpcUuid;
   }
 
   public PropertyFilter<Date> addTime() {
@@ -30,6 +60,54 @@ public class RecordingLister extends VoiceLister<Recording> {
    */
   public RecordingLister subaccount(final String subaccount) {
     this.subaccount = subaccount;
+    return this;
+  }
+
+  /**
+   * @param fromNumber Used to filter recordings for a specific fromNumber.
+   */
+  public RecordingLister fromNumber(final String fromNumber) {
+    this.fromNumber = fromNumber;
+    return this;
+  }
+
+  /**
+   * @param toNumber Used to filter recordings for a specific toNumber.
+   */
+  public RecordingLister toNumber(final String toNumber) {
+    this.toNumber = toNumber;
+    return this;
+  }
+
+  /**
+   * @param conferenceName Used to filter recordings for a specific conferenceName.
+   */
+  public RecordingLister conferenceName(final String conferenceName) {
+    this.conferenceName = conferenceName;
+    return this;
+  }
+
+  /**
+   * @param mpcName Used to filter recordings for a specific mpcName.
+   */
+  public RecordingLister mpcName(final String mpcName) {
+    this.mpcName = mpcName;
+    return this;
+  }
+
+  /**
+   * @param conferenceUuid Used to filter recordings for a specific conferenceUuid.
+   */
+  public RecordingLister conferenceUuid(final String conferenceUuid) {
+    this.conferenceUuid = conferenceUuid;
+    return this;
+  }
+
+  /**
+   * @param mpcUuid Used to filter recordings for a specific mpcUuid.
+   */
+  public RecordingLister mpcUuid(final String mpcUuid) {
+    this.mpcUuid = mpcUuid;
     return this;
   }
 
