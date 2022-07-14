@@ -5,9 +5,9 @@ import java.util.List;
 
 public class CampaignCreateResponse extends BaseResponse {
 
-  private CampaignResponse campaign;
+  private CreateCampaignResponse campaign;
 
-  public CampaignResponse campaign() {
+  public CreateCampaignResponse campaign() {
     return campaign;
   }
 }

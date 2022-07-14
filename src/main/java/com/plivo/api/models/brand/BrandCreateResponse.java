@@ -5,9 +5,9 @@ import java.util.List;
 
 public class BrandCreateResponse extends BaseResponse {
 
-  private BrandResponse brand;
+  private CreateBrandResponse brand;
 
-  public BrandResponse brand() {
+  public CreateBrandResponse brand() {
     return brand;
   }
 }
