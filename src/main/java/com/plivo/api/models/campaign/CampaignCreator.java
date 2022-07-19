@@ -112,7 +112,7 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
     return this.url;
   }
   public String method(){
-    this.method;
+    return this.method;
   }
   public String subAccountID(){
     return this.subAccountID;

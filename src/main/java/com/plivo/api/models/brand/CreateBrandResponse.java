@@ -8,21 +8,19 @@ public class CreateBrandResponse extends BaseResponse {
     private String profileUUID;
     private String error;
 
-    public CreateBrandResponse() {
-        public String getBrandID() {
-            return brandID;
-        }
+    public String getBrandID() {
+        return brandID;
+    }
 
-        public String getMessage() {
-            return message;
-        }
+    public String getMessage() {
+        return message;
+    }
 
-        public String getProfileUUID() {
-            return profileUUID;
-        }
+    public String getProfileUUID() {
+        return profileUUID;
+    }
 
-        public String getError() {
-            return error;
-        }
+    public String getError() {
+        return error;
     }
 }

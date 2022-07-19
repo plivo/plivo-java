@@ -40,9 +40,9 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
         this.plivoSubaccount = plivoSubaccount;
         this.authorizedContact = authorizedContact;
     }
-    public String originator () [
+    public String originator(){
         return this.originator;
-    ]
+    }
     public String profileAlias(){
         return this.profileAlias;
     }
