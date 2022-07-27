@@ -2,7 +2,7 @@ package com.plivo.api.models.profile;
 
 import com.plivo.api.models.base.BaseResponse;
 
-public class ProfileADDResponse extends BaseResponse{
+public class ProfileAddResponse extends BaseResponse{
     private String apiID;
     private String profileUUID;
     private String message;

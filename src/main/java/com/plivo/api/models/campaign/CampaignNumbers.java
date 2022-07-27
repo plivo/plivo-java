@@ -1,10 +1,10 @@
 package com.plivo.api.models.campaign;
 
-public class Numbers {
+public class CampaignNumbers {
     private String number;
     private String status;
 
-    public Numbers(){
+    public CampaignNumbers(){
 
     }
 

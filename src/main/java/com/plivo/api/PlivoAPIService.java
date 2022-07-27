@@ -272,7 +272,7 @@ public interface PlivoAPIService {
                                           @Query("subaccount_id") String subaccountId);
 
   @POST("/Account/{auth_id}/Profile/")
-  Call<AddProfileResponse> addProfile(@Path("authId") String authId, @Body ProfileAdder profileAdder);
+  Call<AddProfileResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);
 
   @GET("Account/{authId}/Profile/")
   Call<ListResponse<Profile>> profileList(@Path("authId") String authId,

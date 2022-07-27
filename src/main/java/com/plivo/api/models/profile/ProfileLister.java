@@ -4,7 +4,7 @@ import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.base.Lister;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
-import com.plivo.api.models.Profile.Profile;
+import com.plivo.api.models.profile.Profile;
 
 public class ProfileLister extends Lister<Profile> {
   @Override

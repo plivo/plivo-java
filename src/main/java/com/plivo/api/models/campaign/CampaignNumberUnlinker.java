@@ -10,9 +10,9 @@ public class CampaignNumberUnlinker extends Deleter<CampaignNumberLinkerUnlikerR
     private String method;
     private String subaccountID;
 
-    CampaignNumberUnlinker(String id, String[] number,String url,String method,String subaccountID) {
+    CampaignNumberUnlinker(String id, String number,String url,String method,String subaccountID) {
         super(id);
-        this.numbers = numbers;
+        this.number = number;
         this.url = url;
         this.method = method;
         this.subaccountID = subaccountID;
@@ -27,7 +27,7 @@ public class CampaignNumberUnlinker extends Deleter<CampaignNumberLinkerUnlikerR
     }
 
     public String method(){
-        return this.methos;
+        return this.method;
     }
 
     public String subaccountID(){

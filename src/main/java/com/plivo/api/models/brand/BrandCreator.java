@@ -18,7 +18,7 @@ public class BrandCreator extends Creator<BrandCreateResponse> {
   private String emailRecipients;
   private String campaignName;
   private String campaignUseCase;
-  private String campaignUseCase;
+  private String[] campaignSubUseCases;
   private String campaignDescription;
   private String sampleMessage1;
   private String sampleMessage2;
@@ -45,7 +45,7 @@ public class BrandCreator extends Creator<BrandCreateResponse> {
     this.emailRecipients = emailRecipients;
     this.campaignName = campaignName;
     this.campaignUseCase = campaignUseCase;
-    this.campaignUseCase = campaignUseCase;
+    this.campaignSubUseCases = campaignSubUseCases;
     this.campaignDescription = campaignDescription;
     this.sampleMessage1 = sampleMessage1;
     this.sampleMessage2 = sampleMessage2;

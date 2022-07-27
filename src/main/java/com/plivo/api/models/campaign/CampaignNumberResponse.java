@@ -3,11 +3,11 @@ package com.plivo.api.models.campaign;
 import com.plivo.api.models.base.BaseResponse;
 import java.util.List;
 
-public class CampaignNumbersResponse extends BaseResponse{
+public class CampaignNumberResponse extends BaseResponse{
     private String campaignID;
     private String campaignAlias;
     private String usecase;
-    private Numbers[] phoneNumbers;
+    private CampaignNumbers[] phoneNumbers;
 
     public String getCampaignID() {
         return campaignID;
@@ -20,7 +20,7 @@ public class CampaignNumbersResponse extends BaseResponse{
         return usecase;
     }
 
-    public Numbers[] getPhoneNumbers(){
+    public CampaignNumbers[] getPhoneNumbers(){
         return phoneNumbers;
     }
 }

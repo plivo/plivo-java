@@ -5,12 +5,15 @@ import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
 public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlikerResponse> {
+    private String campaignID;
     private String[] numbers;
     private String url;
     private String method;
     private String subaccountID;
 
-    CampaignNumberLinker(String[] numbers,String url,String method,String subaccountID) {
+    CampaignNumberLinker(String campaignID,String[] numbers,String url,String method,String subaccountID) {
+        super(campaignID);
+        this.campaignID = campaignID;
         this.numbers = numbers;
         this.url = url;
         this.method = method;
@@ -18,7 +21,7 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlikerRes
     }
 
     public String[] numbers(){
-        return this.number;
+        return this.numbers;
     }
 
     public String url(){
@@ -26,7 +29,7 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlikerRes
     }
 
     public String method(){
-        return this.methos;
+        return this.method;
     }
 
     public String subaccountID(){
@@ -35,7 +38,7 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlikerRes
 
     @Override
     protected Call<CampaignNumberLinkerUnlikerResponse> obtainCall() {
-     return client().getApiService().linkCampaignNumber(client().getAuthId(), id, this);
+     return client().getApiService().linkCampaignNumber(client().getAuthId(), campaignID, this);
     }
 }
 

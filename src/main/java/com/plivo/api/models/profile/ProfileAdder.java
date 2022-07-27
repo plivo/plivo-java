@@ -12,7 +12,7 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     private String companyName;
     private String ein;
     private String einIssuingCountry;
-    private Address address;
+    private ProfileAddress address;
     private String stockSymbol;
     private String stockExchange;
     private String website;
@@ -22,7 +22,7 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     private String plivoSubaccount;
     private AuthorizedContact authorizedContact;
 
-    ProfileAdder(String originator,String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,Address address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,AuthorizedContact authorizedContact) {
+    ProfileAdder(String originator,String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,AuthorizedContact authorizedContact) {
         this.originator = originator;
         this.profileAlias = profileAlias;
         this.customerType = customerType;
@@ -61,7 +61,7 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     public String einIssuingCountry(){
         return this.einIssuingCountry;
     }
-    public Address address(){
+    public ProfileAddress address(){
         return this.address;
     }
     public String stockSymbol(){
@@ -79,8 +79,8 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     public String altBusinessID(){
         return this.altBusinessID;
     }
-    public String altBusinessidType(){
-        return this.altBusinessidType;
+    public String altBusinessIdType(){
+        return this.altBusinessIdType;
     }
     public String plivoSubaccount(){
         return this.plivoSubaccount;

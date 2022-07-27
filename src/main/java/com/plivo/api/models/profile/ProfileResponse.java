@@ -9,7 +9,7 @@ public class ProfileResponse extends BaseResponse{
     private String companyName;
     private String ein;
     private String einIssuingCountry;
-    private Address address;
+    private ProfileAddress address;
     private String stockSymbol;
     private String stockExchange;
     private String website;
@@ -44,7 +44,7 @@ public class ProfileResponse extends BaseResponse{
         return einIssuingCountry;
     }
 
-    public Address getAddress(){
+    public ProfileAddress getAddress(){
         return address;
     }
 
@@ -68,7 +68,7 @@ public class ProfileResponse extends BaseResponse{
         return altBusinessIdType;
     }
 
-    public authorizedContact getAuthorizedContact(){
+    public AuthorizedContact getAuthorizedContact(){
         return authorizedContact;
     }
 
