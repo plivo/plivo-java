@@ -3,7 +3,7 @@ package com.plivo.api.models.campaign;
 import com.plivo.api.models.base.BaseResponse;
 import java.util.List;
 
-public class CampaignNumberLinkerUnlikerResponse extends BaseResponse{
+public class CampaignNumberLinkerUnlinkerResponse extends BaseResponse{
     private String apiID;
     private String message;
     private String error;

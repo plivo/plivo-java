@@ -4,9 +4,9 @@ import com.plivo.api.models.base.BaseResponse;
 
 public class AddProfileResponse extends BaseResponse {
 
-  private ProfileADDResponse profile;
+  public ProfileAddResponse profile;
 
-  public ProfileADDResponse profile() {
+  public ProfileAddResponse profile() {
     return profile;
   }
 }

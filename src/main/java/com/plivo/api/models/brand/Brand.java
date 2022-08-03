@@ -12,8 +12,8 @@ public class Brand extends BaseResource {
   public List<Brand> getBrands() {
     return brands;
   }
-  public static BrandCreator creator(String altBusinessIDType,String altBusinessID, String city,String companyName,String country,String ein,String einIssuingCountry,String email,String entityType,String firstName,String lastName,String phone,String postalCode,String registrationStatus,String state,String stockExchange,String stockSymbol, String street, String vertical,String website,String secondaryVetting) {
-    return new BrandCreator(altBusinessIDType,altBusinessID,city,companyName,country,ein,einIssuingCountry,email,entityType,firstName,lastName,phone,postalCode,registrationStatus,state,stockExchange,stockSymbol, street, vertical,website,secondaryVetting);
+  public static BrandCreator creator(String brandAlias,String profileUUID,String brandType,Boolean secondaryVetting,String url,String method,String subaccountID,String emailRecipients,String campaignName,String campaignUseCase,String[] campaignSubUseCases,String campaignDescription,String sampleMessage1, String sampleMessage2,Boolean embeddedLink,Boolean embeddedPhone,Boolean numberPool,Boolean ageGated,Boolean directLending,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,Boolean affiliateMarketing,String resellerID) {
+    return new BrandCreator(brandAlias,profileUUID,brandType,secondaryVetting,url,method,subaccountID,emailRecipients,campaignName,campaignUseCase,campaignSubUseCases,campaignDescription,sampleMessage1,sampleMessage2,embeddedLink,embeddedPhone,numberPool,ageGated,directLending,subscriberOptin,subscriberOptout,subscriberHelp,affiliateMarketing,resellerID);
   }
 
   public static BrandGetter getter(String id) {

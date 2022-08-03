@@ -29,8 +29,12 @@ public class Campaign extends BaseResource {
       return this.campaign;
   }
 
-  public static CampaignNumberLinker creator(String[] numbers,String url,String method,String subaccountID) {
-    return new CampaignNumberLinker(numbers,url,method,subaccountID);
+  public static CampaignNumberLinker creator(String campaignId, String[] numbers,String url,String method,String subaccountID) {
+    return new CampaignNumberLinker(campaignId, numbers,url,method,subaccountID);
+  }
+
+  public static CampaignNumberUnlinker delete(String campaignId, String number,String url,String method,String subaccountID){
+    return new CampaignNumberUnlinker(campaignId, number,url,method,subaccountID);
   }
 
   public CampaignNumbersGetter getNumbers(){

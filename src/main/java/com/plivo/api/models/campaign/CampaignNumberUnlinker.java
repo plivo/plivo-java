@@ -4,13 +4,13 @@ import com.plivo.api.models.base.Deleter;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class CampaignNumberUnlinker extends Deleter<CampaignNumberLinkerUnlikerResponse> {
+public class CampaignNumberUnlinker extends Deleter<Campaign> {
     private String number;
     private String url;
     private String method;
     private String subaccountID;
 
-    CampaignNumberUnlinker(String id, String number,String url,String method,String subaccountID) {
+    public CampaignNumberUnlinker(String id, String number,String url,String method,String subaccountID) {
         super(id);
         this.number = number;
         this.url = url;
@@ -35,7 +35,12 @@ public class CampaignNumberUnlinker extends Deleter<CampaignNumberLinkerUnlikerR
     }
 
     @Override
-    protected Call<CampaignNumberLinkerUnlikerResponse> obtainCall() {
+    public String getNumber() {
+        return this.number;
+    }
+
+    @Override
+    protected Call<ResponseBody> obtainCall() {
      return client().getApiService().unlinkCampaignNumber(client().getAuthId(), id, number, url, method, subaccountID);
     }
 }

@@ -32,7 +32,9 @@ import com.plivo.api.models.phlo.PhloUpdateResponse;
 import com.plivo.api.models.powerpack.*;
 import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
-import com.plivo.api.models.brand.*;
+import com.plivo.api.models.brand.Brand;
+import com.plivo.api.models.brand.BrandCreateResponse;
+import com.plivo.api.models.brand.BrandCreator;
 import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import okhttp3.RequestBody;
@@ -255,19 +257,19 @@ public interface PlivoAPIService {
                                           @Body CampaignCreator campaignCreator);
 
   @POST("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")
-  Call<CampaignNumberLinkerUnlikerResponse> linkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID,
+  Call<CampaignNumberLinkerUnlinkerResponse> linkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID,
                                           @Body CampaignNumberLinker campaignNumberLinker);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")
-  Call<Number> campaignNumbersGet(@Path("authId") String authId, @Path("campaign_id") String campaignID,
-                                          @Query ("limit") Integer limit, @Query("offset") Integer offset);
+  Call<Campaign> campaignNumbersGet(@Path("authId") String authId, @Path("campaign_id") String campaignID,
+                                          @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
-  Call<Number> campaignNumberGet(@Path("authId") String authId, @Path("campaign_id") String campaignID, @Path("number") String number);
+  Call<Campaign> campaignNumberGet(@Path("authId") String authId, @Path("campaign_id") String campaignID, @Path("number") String number);
 
 
   @DELETE("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
-  Call<CampaignNumberLinkerUnlikerResponse> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
+  Call<ResponseBody> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
                                           @Path("number") String number, @Query("url") String url, @Query("method") String method,
                                           @Query("subaccount_id") String subaccountId);
 

@@ -3,7 +3,7 @@ package com.plivo.api.models.campaign;
 import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
-public class CampaignNumberGetter extends Getter<Number> {
+public class CampaignNumberGetter extends Getter<Campaign> {
 
   private String id;
   private String number;
@@ -18,7 +18,7 @@ public class CampaignNumberGetter extends Getter<Number> {
   }
 
   @Override
-  protected Call<Number> obtainCall() {
+  protected Call<Campaign> obtainCall() {
     return client().getApiService().campaignNumberGet(client().getAuthId(), id, number);
   }
 }

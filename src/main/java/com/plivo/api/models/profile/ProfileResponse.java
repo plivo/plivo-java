@@ -81,7 +81,7 @@ public class ProfileResponse extends BaseResponse{
     }
 
     public String getProfileUUID(){
-        return ProfileUUID;
+        return profileUUID;
     }
 
 }
