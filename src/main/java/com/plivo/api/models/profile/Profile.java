@@ -34,5 +34,9 @@ public class Profile extends BaseResource {
     return this.profileUUID;
   }
 
+ @Override
+  public String getId() {
+    return getProfileUUID();
+  }
 
 }
