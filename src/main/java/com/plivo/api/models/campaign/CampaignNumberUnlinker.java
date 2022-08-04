@@ -3,6 +3,7 @@ package com.plivo.api.models.campaign;
 import com.plivo.api.models.base.Deleter;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
+import okhttp3.ResponseBody;
 
 public class CampaignNumberUnlinker extends Deleter<Campaign> {
     private String number;

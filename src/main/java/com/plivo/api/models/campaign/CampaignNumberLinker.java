@@ -12,7 +12,7 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlinkerRe
     private String subaccountID;
 
     CampaignNumberLinker(String campaignID,String[] numbers,String url,String method,String subaccountID) {
-        super(campaignID);
+        super();
         this.campaignID = campaignID;
         this.numbers = numbers;
         this.url = url;
