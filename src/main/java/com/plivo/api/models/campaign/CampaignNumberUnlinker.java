@@ -35,10 +35,6 @@ public class CampaignNumberUnlinker extends Deleter<Campaign> {
         return this.subaccountID;
     }
 
-    @Override
-    public String getNumber() {
-        return this.number;
-    }
 
     @Override
     protected Call<ResponseBody> obtainCall() {
