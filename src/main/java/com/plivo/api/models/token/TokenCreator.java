@@ -70,6 +70,7 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
   public TokenCreator per(final JSONObject per) {
     JSONObject permission = new JSONObject();
     JSONObject voice = new JSONObject();
+    voice.put("incoming_allow", incoming_allow);
     voice.put("outgoing_allow", outgoing_allow);
     permission.put("voice", voice);
     this.per = permission;
