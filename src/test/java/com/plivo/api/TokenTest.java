@@ -27,4 +27,28 @@ public class TokenTest extends BaseTest {
 
     assertRequest("POST", "JWT/Token/");
   }
+
+  @Test
+  public void tokenCreateWithClientShouldWork() throws Exception {
+    expectResponse("tokenCreateResponse.json", 201);
+
+    Token.creator("username")
+      .client(client)
+      .create();
+
+    assertRequest("POST", "JWT/Token/");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void tokenCreateShouldFailWithoutAllParams() throws Exception {
+    Token.creator(null)
+      .create();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void tokenCreateWithClientShouldFailWithoutAllParams() throws Exception {
+    Token.creator(null)
+      .client(client)
+      .create();
+  }
 }
