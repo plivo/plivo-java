@@ -2,7 +2,7 @@ package com.plivo.api.models.token;
 
 import com.plivo.api.models.base.BaseResource;
 import com.plivo.api.util.Utils;
-//import org.json.simple.JSONObject;
+import org.json.simple.JSONObject;
 import retrofit2.Call;
 
 public class Token extends BaseResource {
@@ -20,7 +20,7 @@ public class Token extends BaseResource {
   private Boolean outgoing_allow;
 
   private String app;
-//  private JSONObject per;
+  private JSONObject per;
 
   public static TokenCreator creator(String iss) {
     if(!Utils.allNotNull(iss)){
@@ -52,9 +52,9 @@ public class Token extends BaseResource {
   public String getApp() {
     return app;
   }
-//  public JSONObject getPer() {
-//    return per;
-//  }
+  public JSONObject getPer() {
+    return per;
+  }
 
   public String getId() {
     return null;

@@ -2,7 +2,7 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
-import com.plivo.api.models.endpoint.Endpoint;
+import com.plivo.api.models.token.Token;
 import com.plivo.api.models.token.Token;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,14 +15,14 @@ public class TokenTest extends BaseTest {
   public void setUp() throws Exception {
     super.setUp();
     client = new PlivoClient("MA123456789012345678",
-      "Zmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+      "ZTJiODc5MTM1ODA3MzMyYmY4NTAwYzA3Mjc2OWNh");
   }
 
   @Test
   public void tokenCreateShouldWork() throws Exception {
-    expectResponse("TokenCreateResponse.json", 201);
+    expectResponse("TokenCreateResponse.json", 200);
 
-    Token.creator("MA123456789012345678")
+    Token.creator("MAMDVLZJY2ZGY5MWU1ZJ")
       .create();
 
     assertRequest("POST", "JWT/Token/");
@@ -30,9 +30,9 @@ public class TokenTest extends BaseTest {
 
   @Test
   public void tokenCreateWithClientShouldWork() throws Exception {
-    expectResponse("tokenCreateResponse.json", 201);
+    expectResponse("tokenCreateResponse.json", 200);
 
-    Token.creator("username")
+    Token.creator("MAMDVLZJY2ZGY5MWU1ZJ")
       .client(client)
       .create();
 
