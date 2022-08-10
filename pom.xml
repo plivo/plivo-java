@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.12.0</version>
+  <version>snapshot-6.0</version>
   <name>plivo-java</name>
   <description>A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
   <licenses>
@@ -27,10 +27,6 @@
     <developerConnection>scm:git:git@github.com:plivo/plivo-java.git</developerConnection>
     <url>git@github.com:plivo/plivo-java.git</url>
   </scm>
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
