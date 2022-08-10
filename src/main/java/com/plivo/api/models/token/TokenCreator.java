@@ -2,7 +2,7 @@ package com.plivo.api.models.token;
 
 import com.plivo.api.models.base.VoiceCreator;
 import retrofit2.Call;
-import org.json.simple.* ;
+//import org.json.simple.* ;
 
 
 public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
@@ -14,7 +14,7 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
   private String app;
   private Boolean incoming_allow;
   private Boolean outgoing_allow;
-  private JSONObject per;
+//  private JSONObject per;
 
 
 
@@ -64,17 +64,17 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
     this.outgoing_allow = outgoing_allow;
     return this;
   }
-  public JSONObject per() {
-    return this.per;
-  }
-  public TokenCreator per(final JSONObject per) {
-    JSONObject permission = new JSONObject();
-    JSONObject voice = new JSONObject();
-    voice.put("outgoing_allow", outgoing_allow);
-    permission.put("voice", voice);
-    this.per = permission;
-    return this;
-  }
+//  public JSONObject per() {
+//    return this.per;
+//  }
+//  public TokenCreator per(final JSONObject per) {
+//    JSONObject permission = new JSONObject();
+//    JSONObject voice = new JSONObject();
+//    voice.put("outgoing_allow", outgoing_allow);
+//    permission.put("voice", voice);
+//    this.per = permission;
+//    return this;
+//  }
 
   @Override
   protected Call<TokenCreateResponse> obtainCall() {
