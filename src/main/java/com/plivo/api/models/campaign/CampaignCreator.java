@@ -30,7 +30,6 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
     this.vertical = vertical;
     this.usecase = usecase;
     this.subUsecases = subUsecases;
-    this.resellerID = resellerID;
     this.description = description;
     this.embeddedLink = embeddedLink;
     this.embeddedPhone = embeddedPhone;
