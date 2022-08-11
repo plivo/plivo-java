@@ -13,12 +13,6 @@ public class CampaignNumbersGetter extends Getter<Campaign> {
     super(id);
   }
 
-  // public CampaignNumbersGetter limitAndOffset(Integer limit, Integer offset) {
-  //   this.limit = limit;
-  //   this.offset = offset;
-  //   return this;
-  // }
-
   @Override
   protected Call<Campaign> obtainCall() {
     return client().getApiService().campaignNumbersGet(client().getAuthId(), id, limit, offset);

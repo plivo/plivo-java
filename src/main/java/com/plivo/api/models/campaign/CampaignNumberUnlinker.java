@@ -11,12 +11,11 @@ public class CampaignNumberUnlinker extends Deleter<Campaign> {
     private String method;
     private String subaccountID;
 
-    public CampaignNumberUnlinker(String id, String number,String url,String method,String subaccountID) {
+    public CampaignNumberUnlinker(String id, String number,String url,String method) {
         super(id);
         this.number = number;
         this.url = url;
         this.method = method;
-        this.subaccountID = subaccountID;
     }
 
     public String number(){
@@ -29,10 +28,6 @@ public class CampaignNumberUnlinker extends Deleter<Campaign> {
 
     public String method(){
         return this.method;
-    }
-
-    public String subaccountID(){
-        return this.subaccountID;
     }
 
 

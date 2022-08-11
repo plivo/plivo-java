@@ -9,15 +9,13 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlinkerRe
     private String[] numbers;
     private String url;
     private String method;
-    private String subaccountID;
 
-    CampaignNumberLinker(String campaignID,String[] numbers,String url,String method,String subaccountID) {
+    CampaignNumberLinker(String campaignID,String[] numbers,String url,String method) {
         super();
         this.campaignID = campaignID;
         this.numbers = numbers;
         this.url = url;
         this.method = method;
-        this.subaccountID = subaccountID;
     }
 
     public String[] numbers(){
@@ -30,10 +28,6 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlinkerRe
 
     public String method(){
         return this.method;
-    }
-
-    public String subaccountID(){
-        return this.subaccountID;
     }
 
     @Override

@@ -13,8 +13,8 @@ public class Campaign extends BaseResource {
   public List<CampaignResponse> getCampaigns() {
     return campaigns;
   }
-  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String resellerID,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,Boolean affiliateMarketing,String sample1,String sample2,String sample3,String sample4,String sample5,String url, String method, String subAccountID) {
-    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,resellerID,description,embeddedLink,embeddedPhone,ageGated,directLending,subscriberOptin,subscriberOptout,subscriberHelp,affiliateMarketing,sample1,sample2,sample3,sample4,sample5,url,method,subAccountID);
+  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method) {
+    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method);
   }
 
   public static CampaignGetter getter(String id) {
@@ -29,12 +29,12 @@ public class Campaign extends BaseResource {
       return this.campaign;
   }
 
-  public static CampaignNumberLinker creator(String campaignId, String[] numbers,String url,String method,String subaccountID) {
-    return new CampaignNumberLinker(campaignId, numbers,url,method,subaccountID);
+  public static CampaignNumberLinker creator(String campaignId, String[] numbers,String url,String method) {
+    return new CampaignNumberLinker(campaignId, numbers,url,method);
   }
 
-  public static CampaignNumberUnlinker delete(String campaignId, String number,String url,String method,String subaccountID){
-    return new CampaignNumberUnlinker(campaignId, number,url,method,subaccountID);
+  public static CampaignNumberUnlinker delete(String campaignId, String number,String url,String method){
+    return new CampaignNumberUnlinker(campaignId, number,url,method);
   }
 
   public CampaignNumbersGetter getNumbers(){
