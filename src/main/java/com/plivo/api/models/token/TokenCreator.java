@@ -98,7 +98,6 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
         throw new IllegalArgumentException("exp should be greater than nbf");
       }
     }
-
   }
 
   @Override
