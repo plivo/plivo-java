@@ -14,7 +14,7 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
   private String app;
   private Boolean incoming_allow;
   private Boolean outgoing_allow;
-  private JSONObject per;
+  private String permission;
 
 
 
@@ -64,16 +64,18 @@ public class TokenCreator extends VoiceCreator<TokenCreateResponse> {
     this.outgoing_allow = outgoing_allow;
     return this;
   }
-  public JSONObject per() {
-    return this.per;
+  public String permission() {
+    return this.permission;
   }
-  public TokenCreator per(final JSONObject per) {
-    JSONObject permission = new JSONObject();
+  public TokenCreator per(final JSONObject permission) {
+    JSONObject per = new JSONObject();
+    JSONObject perm = new JSONObject();
     JSONObject voice = new JSONObject();
     voice.put("incoming_allow", incoming_allow);
     voice.put("outgoing_allow", outgoing_allow);
-    permission.put("voice", voice);
-    this.per = permission;
+    perm.put("voice", voice);
+    per.put("per", perm);
+    this.permission = per.toJSONString();
     return this;
   }
 
