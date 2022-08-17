@@ -34,6 +34,8 @@ import com.plivo.api.models.pricing.Pricing;
 import com.plivo.api.models.recording.Recording;
 import com.plivo.api.models.brand.*;
 import com.plivo.api.models.campaign.*;
+import com.plivo.api.models.token.TokenCreateResponse;
+import com.plivo.api.models.token.TokenCreator;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -280,6 +282,9 @@ public interface PlivoAPIService {
   Call<EndpointCreateResponse> endpointCreate(@Path("authId") String authId,
                                               @Body EndpointCreator endpointCreator);
 
+  @POST("Account/{authId}/JWT/Token/")
+  Call<TokenCreateResponse> tokenCreate(@Path("authId") String authId,
+                                                     @Body TokenCreator tokenCreator);
   @GET("Account/{authId}/Endpoint/")
   Call<ListResponse<Endpoint>> endpointList(@Path("authId") String authId,
                                             @QueryMap Map<String, Object> params);
