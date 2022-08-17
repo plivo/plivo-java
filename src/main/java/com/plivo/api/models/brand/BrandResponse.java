@@ -14,32 +14,30 @@ public class BrandResponse extends BaseResponse {
         private Address address;
         private AuthorizedContact authorizedContact;
 
-  public BrandResponse() {
-  }
   /**
-     * @return String return the altBusinessIDType
+     * @return String return the getBrandID
      */
     public String getBrandID() {
         return brandID;
     }
 
     /**
-     * @return String return the altBusinessID
+     * @return String return the getBrandType
      */
     public String getBrandType() {
         return brandType;
     }
 
     /**
-     * @return String return the city
+     * @return String return the geteinIssuingCountry
      */
-    public String geteInIssuingCountry() {
+    public String geteinIssuingCountry() {
         return einIssuingCountry;
     }
 
 
     /**
-     * @return String return the companyName
+     * @return String return the getEntityType
      */
     public String getEntityType() {
         return entityType;
@@ -47,14 +45,14 @@ public class BrandResponse extends BaseResponse {
 
 
     /**
-     * @return String return the country
+     * @return String return the getProfileUUID
      */
     public String getProfileUUID() {
         return profileUUID;
     }
 
     /**
-     * @return String return the ein
+     * @return String return the getRegistrationStatus
      */
     public String getRegistrationStatus() {
         return registrationStatus;
@@ -62,21 +60,21 @@ public class BrandResponse extends BaseResponse {
 
 
     /**
-     * @return String return the einIssuingCountry
+     * @return String return the getVertical
      */
     public String getVertical() {
         return vertical;
     }
 
     /**
-     * @return String return the email
+     * @return String return the getAddress
      */
     public Address  getAddress() {
         return address;
     }
 
     /**
-     * @return String return the entityType
+     * @return String return the getAuthorizedContact
      */
     public AuthorizedContact getAuthorizedContact() {
         return authorizedContact;

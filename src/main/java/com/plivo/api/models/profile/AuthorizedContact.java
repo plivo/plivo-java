@@ -20,7 +20,7 @@ public class AuthorizedContact {
   public AuthorizedContact() {
   }
 
-  public String getFirstrname() {
+  public String getFirstName() {
     return firstName;
   }
   public String getLastName(){

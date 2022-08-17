@@ -247,7 +247,8 @@ public interface PlivoAPIService {
 
   @GET("Account/{authId}/10dlc/Brand/")
   Call<ListResponse<Brand>> brandList(@Path("authId") String authId,
-                                          @QueryMap Map<String, Object> brandListRequest);
+                                          @QueryMap Map<String, Object> brandListRequest, 
+                                          @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/10dlc/Brand/{id}/")
   Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
@@ -261,11 +262,11 @@ public interface PlivoAPIService {
                                           @Body CampaignNumberLinker campaignNumberLinker);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")
-  Call<Campaign> campaignNumbersGet(@Path("authId") String authId, @Path("campaign_id") String campaignID,
+  Call<CampaignNumbers> campaignNumbersGet(@Path("authId") String authId, @Path("campaign_id") String campaignID,
                                           @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
-  Call<Campaign> campaignNumberGet(@Path("authId") String authId, @Path("campaign_id") String campaignID, @Path("number") String number);
+  Call<CampaignNumbers> campaignNumberGet(@Path("authId") String authId, @Path("campaign_id") String campaignID, @Path("number") String number);
 
 
   @DELETE("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
@@ -278,14 +279,16 @@ public interface PlivoAPIService {
 
   @GET("Account/{authId}/Profile/")
   Call<ListResponse<Profile>> profileList(@Path("authId") String authId,
-                                          @QueryMap Map<String, Object> profileListRequest);
+                                          @QueryMap Map<String, Object> profileListRequest, 
+                                          @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/Profile/{profileUUID}/")
   Call<Profile> profileGet(@Path("authId") String authId, @Path("profileUUID") String profileUUID);
 
   @GET("Account/{authId}/10dlc/Campaign/")
   Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
-                                          @QueryMap Map<String, Object> campaignListRequest);
+                                          @QueryMap Map<String, Object> campaignListRequest, 
+                                          @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);
