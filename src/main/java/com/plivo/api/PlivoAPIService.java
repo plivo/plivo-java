@@ -5,6 +5,7 @@ import com.plivo.api.models.address.*;
 import com.plivo.api.models.application.*;
 import com.plivo.api.models.base.BaseResponse;
 import com.plivo.api.models.base.ListResponse;
+import com.plivo.api.models.base.MessagingListResponse;
 import com.plivo.api.models.call.*;
 import com.plivo.api.models.call.actions.*;
 import com.plivo.api.models.complianceapplication.*;
@@ -245,7 +246,7 @@ public interface PlivoAPIService {
                                           @Body BrandCreator createBrand);
 
   @GET("Account/{authId}/10dlc/Brand/")
-  Call<ListResponse<Brand>> brandList(@Path("authId") String authId,
+  Call<MessagingListResponse<Brand>> brandList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> brandListRequest);
 
   @GET("Account/{authId}/10dlc/Brand/{id}/")
