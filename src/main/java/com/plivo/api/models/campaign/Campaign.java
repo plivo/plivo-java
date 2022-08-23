@@ -1,10 +1,10 @@
 package com.plivo.api.models.campaign;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 import java.util.List;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Campaign extends BaseResource {
   private String brandID;
   private String campaignID;
@@ -14,8 +14,9 @@ public class Campaign extends BaseResource {
   private String registrationStatus;
   private MnoMetadata mnoMetadata;
   private CampaignResponse campaign;
+
   
-  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method) {
+  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String sample3,String sample4, String sample5,String url, String method) {
     return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method);
   }
 
@@ -25,10 +26,6 @@ public class Campaign extends BaseResource {
 
   public static CampaignLister lister() {
     return new CampaignLister();
-  }
-
-  public CampaignResponse getCampaign(){
-      return this.campaign;
   }
 
   /**
@@ -84,21 +81,9 @@ public class Campaign extends BaseResource {
       return mnoMetadata;
   }
 
-  /*public static CampaignNumberLinker creator(String campaignId, String[] numbers,String url,String method) {
-    return new CampaignNumberLinker(campaignId, numbers,url,method);
+  public CampaignResponse getCampaign() {
+    return campaign;                               
   }
-
-  public static CampaignNumberUnlinker delete(String campaignId, String number,String url,String method){
-    return new CampaignNumberUnlinker(campaignId, number,url,method);
-  }
-
-  public CampaignNumbersGetter getNumbers(){
-    return new CampaignNumbersGetter(getId());
-  }
-
-  public CampaignNumberGetter getNumber(){
-    return new CampaignNumberGetter(getId());
-  }*/
 
  @Override
   public String getId() {

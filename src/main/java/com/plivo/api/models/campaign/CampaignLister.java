@@ -1,12 +1,12 @@
 package com.plivo.api.models.campaign;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.MessagingCampaignLister;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 import com.plivo.api.models.campaign.Campaign;
 
-public class CampaignLister extends Lister<Campaign> {
+public class CampaignLister extends MessagingCampaignLister<Campaign> {
   private Integer limit;
   private Integer offset;
 

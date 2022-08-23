@@ -1,4 +1,5 @@
 package com.plivo.api.models.base;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
@@ -7,6 +8,7 @@ import java.util.List;
  *
  * @param <T> The type of the contained resource.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ListResponse<T> extends BaseResponse {
 
   private Meta meta;

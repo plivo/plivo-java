@@ -8,7 +8,7 @@ public class AuthorizedContact {
   private String title;
   private String seniority;
 
-  public AuthorizedContact(String firstName, String lastName, String phone, String email, String title, String seniority) {
+  public ProfileAuthorizedContact(String firstName, String lastName, String phone, String email, String title, String seniority) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.phone = phone;

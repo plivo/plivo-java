@@ -1,8 +1,10 @@
 package com.plivo.api.models.profile;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.plivo.api.models.base.BaseResponse;
+import com.plivo.api.models.base.BaseResource;
 
-public class ProfileResponse extends BaseResponse{
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProfileResponse extends BaseResource{
     private String profileAlias;
     private String customerType;
     private String entityType;
@@ -15,7 +17,7 @@ public class ProfileResponse extends BaseResponse{
     private String website;
     private String vertical;
     private String altBusinessIdType;
-    private AuthorizedContact authorizedContact;
+    private ProfileAuthorizedContact authorizedContact;
     private String primaryProfile;
     private String profileType;
     private String profileUUID;
@@ -68,7 +70,7 @@ public class ProfileResponse extends BaseResponse{
         return altBusinessIdType;
     }
 
-    public AuthorizedContact getAuthorizedContact(){
+    public ProfileAuthorizedContact getAuthorizedContact(){
         return authorizedContact;
     }
 
@@ -82,6 +84,11 @@ public class ProfileResponse extends BaseResponse{
 
     public String getProfileUUID(){
         return profileUUID;
+    }
+
+    @Override
+    public String getId() {
+        return this.profileUUID;
     }
 
 }

@@ -1,9 +1,10 @@
 package com.plivo.api.models.brand;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Brand extends BaseResource {  
   private String brandID;
   private String brandAlias;
@@ -101,13 +102,14 @@ public class Brand extends BaseResource {
   public AuthorizedContact getAuthorizedContact() {
       return authorizedContact;
   }
+
+  public BrandResponse getBrand() {
+    return brand;                               
+  }
    
    @Override
   public String getId() {
     return this.brandID;
-  }
-  public BrandResponse getBrand() {
-    return brand;
   }
 
 }

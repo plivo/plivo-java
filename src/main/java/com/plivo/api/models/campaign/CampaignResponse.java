@@ -1,8 +1,11 @@
 package com.plivo.api.models.campaign;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.plivo.api.models.base.BaseResponse;
+import com.plivo.api.models.base.BaseResource;
 import java.util.List;
-public class CampaignResponse extends BaseResponse{
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CampaignResponse extends BaseResource{
     private String brandID;
     private String campaignID;
     private String resellerID;
@@ -10,6 +13,8 @@ public class CampaignResponse extends BaseResponse{
     private String subUsecase;
     private String registrationStatus;
     private MnoMetadata mnoMetadata;
+
+
     /**
      * @return String return the brandID
      */
@@ -25,7 +30,7 @@ public class CampaignResponse extends BaseResponse{
         return campaignID;
     }
 
-    
+
 
     /**
      * @return String return the resellerID
@@ -42,24 +47,29 @@ public class CampaignResponse extends BaseResponse{
         return usecase;
     }
 
-     /**
+    /**                                   
      * @return String return the subUsecase
-     */
-    public String getSubUsecase() {
-        return subUsecase;
-    }
-
-    /**
+     */                                    
+    public String getSubUsecase() {        
+        return subUsecase;                 
+    }                                      
+                                           
+    /**                                    
      * @return String return the registrationStatus
-     */
-    public String getRegistrationStatus() {
-        return registrationStatus;
-    }
-
-    /**
-     * @return MnoMetadata return the mnoMetadata
-     */
-    public MnoMetadata getMnoMetadata() {
-        return mnoMetadata;
-    }
+     */                                            
+    public String getRegistrationStatus() {        
+        return registrationStatus;                 
+    }                                              
+                                                   
+    /**                                            
+     * @return MnoMetadata return the mnoMetadata  
+     */                                            
+    public MnoMetadata getMnoMetadata() {          
+        return mnoMetadata;                        
+    }                                              
+                                                   
+    @Override                                      
+    public String getId() {                        
+        return this.campaignID;                    
+    }                                              
 }

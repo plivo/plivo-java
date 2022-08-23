@@ -1,7 +1,9 @@
 package com.plivo.api.models.base;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.lang.NoSuchMethodException;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Meta {
 
   protected Long limit;

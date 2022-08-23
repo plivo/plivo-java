@@ -4,7 +4,7 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class ProfileAdder extends Creator<AddProfileResponse> {
+public class ProfileAdder extends Creator<ProfileAddResponse> {
     private String originator;
     private String profileAlias;
     private String customerType;
@@ -20,9 +20,9 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     private String altBusinessID;
     private String altBusinessIdType;
     private String plivoSubaccount;
-    private AuthorizedContact authorizedContact;
+    private ProfileAuthorizedContact authorizedContact;
 
-    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,AuthorizedContact authorizedContact) {
+    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact) {
         this.profileAlias = profileAlias;
         this.customerType = customerType;
         this.entityType = entityType;
@@ -81,12 +81,12 @@ public class ProfileAdder extends Creator<AddProfileResponse> {
     public String plivoSubaccount(){
         return this.plivoSubaccount;
     }
-    public AuthorizedContact authorizedContact(){
+    public ProfileAuthorizedContact authorizedContact(){
         return this.authorizedContact;
     }
 
     @Override
-    protected Call<AddProfileResponse> obtainCall() {
+    protected Call<ProfileAddResponse> obtainCall() {
       return client().getApiService().profileAdd(client().getAuthId(), this);
     }
 }

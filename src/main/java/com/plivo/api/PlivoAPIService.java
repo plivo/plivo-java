@@ -35,6 +35,7 @@ import com.plivo.api.models.recording.Recording;
 import com.plivo.api.models.brand.Brand;
 import com.plivo.api.models.brand.BrandCreateResponse;
 import com.plivo.api.models.brand.BrandCreator;
+import com.plivo.api.models.brand.BrandResponse;
 import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import okhttp3.RequestBody;
@@ -270,12 +271,19 @@ public interface PlivoAPIService {
 
 
   @DELETE("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
-  Call<ResponseBody> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
+  Call<CampaignNumbers> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
                                           @Path("number") String number, @Query("url") String url, @Query("method") String method,
                                           @Query("subaccount_id") String subaccountId);
 
-  @POST("/Account/{auth_id}/Profile/")
-  Call<AddProfileResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);
+  @POST("Account/{authId}/Profile/")
+  Call<ProfileAddResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);
+
+  @POST("Account/{authId}/Profile/{profileUUID}/")
+  Call<Profile> profileUpdate(@Path("authId") String authId, @Path("profileUUID") String profileUUID, @Body ProfileUpdater profileUpdater);
+
+  @DELETE("Account/{authId}/Profile/{profileUUID}/")
+  Call<Profile> profileDelete(@Path("authId") String authId, @Path("profileUUID") String profileUUID);
+
 
   @GET("Account/{authId}/Profile/")
   Call<ListResponse<Profile>> profileList(@Path("authId") String authId,
@@ -288,7 +296,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Campaign/")
   Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> campaignListRequest, 
-                                          @Query("limit") Integer limit, @Query("offset") Integer offset);
+                                            @Query("limit") Integer limit, @Query("offset") Integer offset);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);

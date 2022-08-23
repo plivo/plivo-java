@@ -1,18 +1,19 @@
 package com.plivo.api.models.campaign;
 
-import com.plivo.api.models.base.Deleter;
+import com.plivo.api.models.base.MessagingDeleter;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 import okhttp3.ResponseBody;
 
-public class CampaignNumberUnlinker extends Deleter<Campaign> {
+public class CampaignNumberUnlinker extends MessagingDeleter<CampaignNumbers> {
+    private String campaignID;
     private String number;
     private String url;
     private String method;
-    private String subaccountID;
 
-    public CampaignNumberUnlinker(String id, String number,String url,String method) {
-        super(id);
+    public CampaignNumberUnlinker(String campaignID, String number,String url,String method) {
+        super(campaignID);
+        this.campaignID = campaignID;
         this.number = number;
         this.url = url;
         this.method = method;
@@ -32,7 +33,7 @@ public class CampaignNumberUnlinker extends Deleter<Campaign> {
 
 
     @Override
-    protected Call<ResponseBody> obtainCall() {
-     return client().getApiService().unlinkCampaignNumber(client().getAuthId(), id, number, url, method, subaccountID);
+    protected Call<CampaignNumbers> obtainCall() {
+     return client().getApiService().unlinkCampaignNumber(client().getAuthId(), campaignID, number, url, method);
     }
 }

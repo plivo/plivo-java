@@ -1,12 +1,12 @@
 package com.plivo.api.models.profile;
 
 import com.plivo.api.models.base.ListResponse;
-import com.plivo.api.models.base.Lister;
+import com.plivo.api.models.base.MessagingProfileLister;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 import com.plivo.api.models.profile.Profile;
 
-public class ProfileLister extends Lister<Profile> {
+public class ProfileLister extends MessagingProfileLister<Profile> {
   private Integer limit;
   private Integer offset;
 
