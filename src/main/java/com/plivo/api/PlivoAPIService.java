@@ -272,8 +272,7 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/{number}/")
   Call<CampaignNumbers> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
-                                          @Path("number") String number, @Query("url") String url, @Query("method") String method,
-                                          @Query("subaccount_id") String subaccountId);
+                                          @Path("number") String number, @Query("url") String url, @Query("method") String method);
 
   @POST("Account/{authId}/Profile/")
   Call<ProfileAddResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);

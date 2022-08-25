@@ -1,11 +1,11 @@
 package com.plivo.api.models.profile;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.plivo.api.models.base.BaseResource;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Profile extends BaseResource {
-
   private String profileAlias;
   private String customerType;
   private String entityType;
@@ -18,13 +18,15 @@ public class Profile extends BaseResource {
   private String website;
   private String vertical;
   private String altBusinessIdType;
-  private AuthorizedContact authorizedContact;
+  private ProfileAuthorizedContact authorizedContact;
   private String primaryProfile;
   private String profileType;
   private String profileUUID;
+  private String message;
   private ProfileResponse profile;
+
   
-  public static  ProfileAdder creator(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,AuthorizedContact authorizedContact) {
+  public static  ProfileAdder creator(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact) {
     return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact);
   }
 
@@ -35,9 +37,13 @@ public class Profile extends BaseResource {
   public static ProfileLister lister() {
     return new ProfileLister();
   }
+  
+  public static ProfileUpdater update(String profileUUID) {
+    return new ProfileUpdater(profileUUID);
+  }
 
-  public ProfileResponse getProfile(){
-      return this.profile;
+  public static ProfileDeleter delete(String profileUUID) {
+    return new ProfileUpdater(profileUUID);
   }
   
   public String getProfileUUID() {
@@ -92,7 +98,7 @@ public String getAltBusinessIdType(){
     return altBusinessIdType;
 }
 
-public AuthorizedContact getAuthorizedContact(){
+public ProfileAuthorizedContact getAuthorizedContact(){
     return authorizedContact;
 }
 
@@ -104,9 +110,17 @@ public String getProfileType(){
     return profileType;
 } 
 
+public String getMessage(){                            
+    return message;                                    
+}
+
+public ProfileResponse getProfile() {
+    return profile;                               
+  }
+
  @Override
   public String getId() {
-    return getProfileUUID();
+    return this.profileUUID;
   }
 
 }
