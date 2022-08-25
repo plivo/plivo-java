@@ -21,9 +21,6 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   private Boolean affiliateMarketing;
   private String sample1;
   private String sample2;
-  private String sample3;
-  private String sample4;
-  private String sample5;
   private String url;
   private String method;
   
@@ -45,9 +42,6 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
     this.affiliateMarketing = affiliateMarketing;
     this.sample2 = sample2;
     this.sample1 = sample1;
-    this.sample3 = sample3;
-    this.sample4 = sample4;
-    this.sample5 = sample5;
     this.url = url;
     this.method = method;
   }
@@ -76,15 +70,6 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   }
   public String sample1(){
       return this.sample1;
-  }
-  public String sample3(){
-    return this.sample3;
-  }
-  public String sample4(){
-    return this.sample4;
-  }
-  public String sample5(){
-    return this.sample5;
   }
   public Boolean affiliateMarketing(){
     return this.affiliateMarketing;
