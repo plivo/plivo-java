@@ -49,7 +49,7 @@ public abstract class MessagingProfileUpdater<T extends BaseResource> extends Ba
   }
 
   @Override
-  public Updater<T> client(final PlivoClient plivoClient) {
+  public MessagingProfileUpdater<T> client(final PlivoClient plivoClient) {
     this.plivoClient = plivoClient;
     return this;
   }

@@ -1,6 +1,6 @@
 package com.plivo.api.models.profile;
 
-public class AuthorizedContact {
+public class ProfileAuthorizedContact {
   private String firstName;
   private String lastName;
   private String phone;
@@ -17,7 +17,7 @@ public class AuthorizedContact {
     this.seniority =seniority;
   }
 
-  public AuthorizedContact() {
+  public ProfileAuthorizedContact() {
   }
 
   public String getFirstName() {

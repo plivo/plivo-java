@@ -1,7 +1,6 @@
 package com.plivo.api.models.campaign;
 
-import com.plivo.api.models.base.CmpgnGetter;
-import com.plivo.api.models.base.CmpgnGetResponse;
+import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
 public class CampaignGetter extends Getter<Campaign> {

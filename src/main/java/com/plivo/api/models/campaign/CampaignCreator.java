@@ -24,7 +24,7 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   private String url;
   private String method;
   
-  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing, Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2String url, String method) {
+  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing, Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2, String url, String method) {
    
     this.brandID = brandID;
     this.campaignAlias = campaignAlias;

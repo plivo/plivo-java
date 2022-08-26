@@ -43,7 +43,7 @@ public class Profile extends BaseResource {
   }
 
   public static ProfileDeleter delete(String profileUUID) {
-    return new ProfileUpdater(profileUUID);
+    return new ProfileDeleter(profileUUID);
   }
   
   public String getProfileUUID() {

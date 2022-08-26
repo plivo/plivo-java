@@ -36,32 +36,32 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
         return authorizedContact;
     }
 
-    public ProfileUpdator entityType (String entityType) {
+    public ProfileUpdater entityType (String entityType) {
         this.entityType = entityType;
         return this;
     }
 
-    public ProfileUpdator companyName (String companyName) {
+    public ProfileUpdater companyName (String companyName) {
         this.companyName = companyName;
         return this;
     }
 
-    public ProfileUpdator address (ProfileAddress address) {
+    public ProfileUpdater address (ProfileAddress address) {
         this.address = address;
         return this;
     }
 
-    public ProfileUpdator website (String website) {
+    public ProfileUpdater website (String website) {
         this.website = website;
         return this;
     }
 
-    public ProfileUpdator vertical (String vertical) {
+    public ProfileUpdater vertical (String vertical) {
         this.vertical = vertical;
         return this;
     }
 
-    public ProfileUpdator authorizedContact (ProfileAuthorizedContact authorizedContact) {
+    public ProfileUpdater authorizedContact (ProfileAuthorizedContact authorizedContact) {
         this.authorizedContact = authorizedContact;
         return this;
     }
