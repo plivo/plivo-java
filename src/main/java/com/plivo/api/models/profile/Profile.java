@@ -18,6 +18,7 @@ public class Profile extends BaseResource {
   private String website;
   private String vertical;
   private String altBusinessIdType;
+  private String plivoSubaccount;
   private ProfileAuthorizedContact authorizedContact;
   private String primaryProfile;
   private String profileType;
@@ -97,6 +98,10 @@ public String getVertical(){
 public String getAltBusinessIdType(){
     return altBusinessIdType;
 }
+
+public String getPlivoSubaccount(){                                                                                                                                                                         
+  return plivoSubaccount;                                                                                                                                                                                   
+} 
 
 public ProfileAuthorizedContact getAuthorizedContact(){
     return authorizedContact;

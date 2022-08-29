@@ -8,6 +8,8 @@ public class MnoMetadata  {
     @JsonProperty("T-Mobile")
     private OperatorDetail tMobile;
     @JsonProperty("AT&T")
+    private OperatorDetail atandt;
+    @JsonProperty("US Cellular")
     private OperatorDetail uSCellular;
     @JsonProperty("Verizon Wireless")
 

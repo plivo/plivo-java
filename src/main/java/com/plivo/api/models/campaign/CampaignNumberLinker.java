@@ -4,7 +4,7 @@ import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
 
-public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlinkerResponse> {
+public class CampaignNumberLinker extends Creator<CampaignNumberLinkerResponse> {
     private String campaignID;
     private String[] numbers;
     private String url;
@@ -31,7 +31,7 @@ public class CampaignNumberLinker extends Creator<CampaignNumberLinkerUnlinkerRe
     }
 
     @Override
-    protected Call<CampaignNumberLinkerUnlinkerResponse> obtainCall() {
+    protected Call<CampaignNumberLinkerResponse> obtainCall() {
      return client().getApiService().linkCampaignNumber(client().getAuthId(), campaignID, this);
     }
 }

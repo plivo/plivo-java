@@ -261,7 +261,7 @@ public interface PlivoAPIService {
                                           @Body CampaignCreator campaignCreator);
 
   @POST("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")
-  Call<CampaignNumberLinkerUnlinkerResponse> linkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID,
+  Call<CampaignNumberLinkerResponse> linkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID,
                                           @Body CampaignNumberLinker campaignNumberLinker);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")

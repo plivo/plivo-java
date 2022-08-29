@@ -17,6 +17,7 @@ public class ProfileResponse extends BaseResource{
     private String website;
     private String vertical;
     private String altBusinessIdType;
+    private String plivoSubaccount;
     private ProfileAuthorizedContact authorizedContact;
     private String primaryProfile;
     private String profileType;
@@ -68,6 +69,10 @@ public class ProfileResponse extends BaseResource{
 
     public String getAltBusinessIdType(){
         return altBusinessIdType;
+    }
+
+    public String getPlivoSubaccount(){                                                                                                                                                                         
+        return plivoSubaccount;                                                                                                                                                                                   
     }
 
     public ProfileAuthorizedContact getAuthorizedContact(){
