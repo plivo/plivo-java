@@ -22,6 +22,10 @@ public class CampaignNumbers extends BaseResource{
    return new CampaignNumberGetter(campaignID);
   }
 
+  public static CampaignNumberUnlinker unlink(String campaignID, String number,String url,String method) {
+    return new CampaignNumberUnlinker(campaignID, number,url,method);
+   }
+
    public String getCampaignID() {
         return campaignID;
     }
