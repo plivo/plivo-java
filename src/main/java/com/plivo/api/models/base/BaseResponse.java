@@ -1,9 +1,10 @@
 package com.plivo.api.models.base;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.plivo.api.Plivo;
 import com.plivo.api.PlivoClient;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseResponse {
 
   private String message;

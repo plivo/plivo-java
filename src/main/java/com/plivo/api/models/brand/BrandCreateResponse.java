@@ -4,10 +4,9 @@ import com.plivo.api.models.base.BaseResponse;
 import java.util.List;
 
 public class BrandCreateResponse extends BaseResponse {
+  private String brandID;
 
-  private BrandResponse brand;
-
-  public BrandResponse brand() {
-    return brand;
+  public String getBrandID() {
+      return brandID;
   }
 }

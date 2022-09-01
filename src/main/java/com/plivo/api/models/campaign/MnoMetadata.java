@@ -1,38 +1,17 @@
 package com.plivo.api.models.campaign;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.plivo.api.models.base.BaseResponse;
 import java.util.List;
 
 public class MnoMetadata  {
-     private OperatorDetail aTandT;
-    private OperatorDetail verizonWireless;
+    @JsonProperty("T-Mobile")
     private OperatorDetail tMobile;
+    @JsonProperty("AT&T")
+    private OperatorDetail atandt;
+    @JsonProperty("US Cellular")
     private OperatorDetail uSCellular;
-     /**
-     * @return OperatorDetail return the aTandT
-     */
-    public OperatorDetail getATandT() {
-        return aTandT;
-    }
-
-   
-
-    /**
-     * @return OperatorDetail return the verizonWireless
-     */
-    public OperatorDetail getVerizonWireless() {
-        return verizonWireless;
-    }
-
-    
-
-    /**
-     * @return OperatorDetail return the tMobile
-     */
-    public OperatorDetail getTMobile() {
-        return tMobile;
-    }
-
+    @JsonProperty("Verizon Wireless")
 
     /**
      * @return OperatorDetail return the uSCellular

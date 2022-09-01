@@ -18,10 +18,13 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   private Boolean subscriberOptin;
   private Boolean subscriberOptout;
   private Boolean subscriberHelp;
+  private Boolean affiliateMarketing;
   private String sample1;
   private String sample2;
+  private String url;
+  private String method;
   
-  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2) {
+  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing, Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2, String url, String method) {
    
     this.brandID = brandID;
     this.campaignAlias = campaignAlias;
@@ -36,8 +39,11 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
     this.subscriberOptin = subscriberOptin;
     this.subscriberOptout = subscriberOptout;
     this.subscriberHelp = subscriberHelp;
+    this.affiliateMarketing = affiliateMarketing;
     this.sample2 = sample2;
     this.sample1 = sample1;
+    this.url = url;
+    this.method = method;
   }
 
   public String brandID(){
@@ -65,6 +71,9 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   public String sample1(){
       return this.sample1;
   }
+  public Boolean affiliateMarketing(){
+    return this.affiliateMarketing;
+}
   public Boolean subscriberHelp(){
       return this.subscriberHelp;
   }
@@ -85,6 +94,12 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   }
   public Boolean embeddedLink(){
       return this.embeddedLink;
+  }
+  public String url(){
+    return this.url;
+  }
+  public String method(){
+    return this.method;
   }
 
 
