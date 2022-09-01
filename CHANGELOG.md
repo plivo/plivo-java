@@ -1,9 +1,11 @@
 # Change Log
+## [5.13.0](https://github.com/plivo/plivo-java/tree/v5.13.0) (2022-09-01)
+**Feature - 10DLC API Support**
+- New 10DLC API Support
 
 ## [5.12.0](https://github.com/plivo/plivo-java/tree/v5.12.0) (2022-08-08)
 **Feature - Token Creation**
 - `JWT Token Creation API` added API to create a new JWT token.
-
 
 ## [5.11.0](https://github.com/plivo/plivo-java/tree/v5.11.0) (2022-05-05)
 **Feature - List all recordings**
