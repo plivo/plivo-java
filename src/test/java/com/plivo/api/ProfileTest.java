@@ -37,7 +37,7 @@ public class ProfileTest extends BaseTest {
         String fixtureName = "profileGetResponse.json";
 
         expectResponse(fixtureName, 202);
-        String profileUUID = "201faedc-7df9-4840-9ab1-3997ce3f7cf4"
+        String profileUUID = "201faedc-7df9-4840-9ab1-3997ce3f7cf4";
         Profile response = Profile.getter(profileUUID).get();
 
         assertRequest("GET", "Profile/%s/", profileUUID);
@@ -63,7 +63,7 @@ public class ProfileTest extends BaseTest {
         ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("john", "Deo", "12345467987", "123j@plivo.com", "MTR1", "admin");
         Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5").entityType("PRIVATE").address(address).authorizedContact(authContact).update();
 
-        assertRequest("Post", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
+        assertRequest("POST", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
     }
 
     @Test
