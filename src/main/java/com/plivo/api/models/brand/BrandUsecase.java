@@ -6,11 +6,11 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandUsecase extends BaseResource {  
-  private UseCases useCases;
-  private BrandID brandID;
+  private private List<Object> useCases;
+  private String brandID;
 
-  public static BrandUsecaseGetter getter(String id) {
-    return new BrandUsecaseGetter(id);
+  public static BrandUseCaseGetter getter(String id) {
+    return new BrandUseCaseGetter(id);
   }
 
   /**

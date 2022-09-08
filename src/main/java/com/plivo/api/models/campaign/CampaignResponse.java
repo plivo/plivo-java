@@ -82,7 +82,7 @@ public class CampaignResponse extends BaseResource{
     /**                                            
      * @return campaignDescription return the campaignDescription  
      */
-    public campaignDescription getCampaignDescription() {
+    public String getCampaignDescription() {
         return campaignDescription;                               
     }
                                               
