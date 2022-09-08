@@ -11,7 +11,7 @@ public class CampaignNumbers extends BaseResource{
    private String usecase;
    public PhoneNumbers[] phoneNumbers;
    private String message;
-   public HashMap<String, Integer> phoneNumbersSummary = new HashMap();
+   public HashMap<String, Integer> phoneNumbersSummary;
    public Integer numberPoolLimit;
 
 
