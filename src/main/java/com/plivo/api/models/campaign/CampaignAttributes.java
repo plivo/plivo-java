@@ -69,9 +69,5 @@ public class CampaignAttributes extends BaseResource{
     public Boolean getSubscriberHelp() {          
         return subscriberHelp;                        
     }                                              
-                                                   
-    @Override                                      
-    public String getId() {                        
-        return this.campaignID;                    
-    }                                              
+                                          
 }
