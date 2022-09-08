@@ -9,6 +9,9 @@ public class CampaignNumbers extends BaseResource{
    private String usecase;
    public PhoneNumbers[] phoneNumbers;
    private String message;
+   public HashMap<String, Integer> phoneNumbersSummary = new HashMap();
+   public Integer numberPoolLimit;
+
 
    public static CampaignNumberLinker link(String campaignID, String url,String method,String[] numbers) {
     return new CampaignNumberLinker(campaignID, numbers,url,method);

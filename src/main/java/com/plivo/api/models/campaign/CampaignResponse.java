@@ -13,6 +13,10 @@ public class CampaignResponse extends BaseResource{
     private String subUsecase;
     private String registrationStatus;
     private MnoMetadata mnoMetadata;
+    private String sample1;
+    private String sample2;
+    private String campaignDescription;
+    private CampaignAttributes campaignAttributes;
 
 
     /**
@@ -66,7 +70,22 @@ public class CampaignResponse extends BaseResource{
      */                                            
     public MnoMetadata getMnoMetadata() {          
         return mnoMetadata;                        
-    }                                              
+    }
+    
+    /**                                            
+     * @return CampaignAttributes return the CampaignAttributes  
+     */
+    public CampaignAttributes getCampaignAttributes() {
+        return campaignAttributes;                               
+    }
+
+    /**                                            
+     * @return campaignDescription return the campaignDescription  
+     */
+    public campaignDescription getCampaignDescription() {
+        return campaignDescription;                               
+    }
+                                              
                                                    
     @Override                                      
     public String getId() {                        
