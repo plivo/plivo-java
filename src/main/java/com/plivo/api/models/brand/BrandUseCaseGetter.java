@@ -5,7 +5,7 @@ import retrofit2.Call;
 
 public class BrandUseCaseGetter extends Getter<BrandUsecase> {
 
-  public BrandGetter(String id) {
+  public BrandUseCaseGetter(String id) {
     super(id);
   }
 
