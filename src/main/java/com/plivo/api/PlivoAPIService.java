@@ -36,6 +36,7 @@ import com.plivo.api.models.brand.Brand;
 import com.plivo.api.models.brand.BrandCreateResponse;
 import com.plivo.api.models.brand.BrandCreator;
 import com.plivo.api.models.brand.BrandResponse;
+import com.plivo.api.models.brand.BrandUsecase;
 import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;

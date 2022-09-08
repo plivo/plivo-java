@@ -2,6 +2,8 @@ package com.plivo.api.models.campaign;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
+import java.util.HashMap;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CampaignNumbers extends BaseResource{
    private String campaignID;
