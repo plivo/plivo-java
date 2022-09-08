@@ -6,7 +6,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandUsecase extends BaseResource {  
-  private private List<Object> useCases;
+  private List<Object> useCases;
   private String brandID;
 
   public static BrandUseCaseGetter getter(String id) {
