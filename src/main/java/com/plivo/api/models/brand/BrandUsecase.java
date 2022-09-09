@@ -8,7 +8,7 @@ import java.util.List;
 public class BrandUsecase extends BaseResource {  
   private List<Object> useCases;
   private String brandID;
-  private BrandUsecaseResponse brandUsecase
+  private BrandUsecaseResponse brandUsecase;
 
   public static BrandUseCaseGetter getter(String id) {
     return new BrandUseCaseGetter(id);
