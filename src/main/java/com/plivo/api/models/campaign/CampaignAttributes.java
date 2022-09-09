@@ -1,11 +1,10 @@
 package com.plivo.api.models.campaign;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.plivo.api.models.base.BaseResource;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CampaignAttributes extends BaseResource{
+public class CampaignAttributes {
     private Boolean embeddedLink;
     private Boolean embeddedPhone;
     private Boolean ageGated;
