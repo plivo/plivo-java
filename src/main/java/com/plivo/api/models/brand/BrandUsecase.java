@@ -8,6 +8,7 @@ import java.util.List;
 public class BrandUsecase extends BaseResource {  
   private List<Object> useCases;
   private String brandID;
+  private BrandUsecaseResponse brandUsecase
 
   public static BrandUseCaseGetter getter(String id) {
     return new BrandUseCaseGetter(id);
@@ -18,6 +19,10 @@ public class BrandUsecase extends BaseResource {
      */
     public List<Object> getUsecases() {
       return useCases;
+  }
+  
+  public BrandUsecaseResponse getBrand() {
+    return brandUsecase;                               
   }
 
    @Override
