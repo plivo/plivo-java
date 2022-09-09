@@ -7,7 +7,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandUsecaseResponse extends BaseResponse {
 
-    private List<Object> useCases;
+    private List<T> useCases;
     private String brandID;
 
     /**
