@@ -10,8 +10,8 @@ public class BrandUsecase extends BaseResource {
   private String brandID;
   private BrandUsecaseResponse brandUsecase;
 
-  public static BrandUsecaseGetter getter(String id) {
-    return new BrandUsecaseGetter(id);
+  public static BrandUseCaseGetter getter(String id) {
+    return new BrandUseCaseGetter(id);
   }
 
   /**
