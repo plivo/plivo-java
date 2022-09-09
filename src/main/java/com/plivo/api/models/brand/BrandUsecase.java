@@ -17,7 +17,7 @@ public class BrandUsecase extends BaseResponse {
   /**
    * @return String return the UseCases
   */
-  public List<Object> getUsecases() {
+  public List<T> getUsecases() {
     return useCases;
   }
   
