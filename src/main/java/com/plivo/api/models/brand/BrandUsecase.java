@@ -5,7 +5,7 @@ import com.plivo.api.models.base.BaseResource;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BrandUsecase extends BaseResource {  
+public class BrandUsecase extends BaseResponse {  
   private List<Object> useCases;
   private String brandID;
   private BrandUsecaseResponse brandUsecase;
@@ -15,20 +15,33 @@ public class BrandUsecase extends BaseResource {
   }
 
   /**
-     * @return String return the UseCases
-     */
-    public List<Object> getUsecases() {
-      return useCases;
+   * @return String return the UseCases
+  */
+  public List<Object> getUsecases() {
+    return useCases;
   }
   
-  public BrandUsecaseResponse getBrand() {
+  public BrandUsecaseResponse getBrandUsecases() {
     return brandUsecase;                               
   }
 
-   @Override
+  @Override
   public String getId() {
     return this.brandID;
   }
 
+
+  @Override
+  public String toString() {
+      try {
+          return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+      } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+          e.printStackTrace();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      return null;
+  }
 
 }
