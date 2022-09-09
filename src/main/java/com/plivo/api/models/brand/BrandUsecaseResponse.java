@@ -20,7 +20,7 @@ public class BrandUsecaseResponse extends BaseResponse {
     /**
      * @return String return the getBrandType
      */
-    public List<Object> getBrandUsecases() {
+    public List<T> getBrandUsecases() {
         return useCases;
     }
 
