@@ -18,7 +18,7 @@ public class BrandUsecase extends BaseResource {
   /**
    * @return String return the UseCases
   */
-  public List<T> getUsecases() {
+  public List<Object> getUsecases() {
     return useCases;
   }
   
