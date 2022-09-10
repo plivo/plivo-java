@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-package com.plivo.api.models.brand;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import com.plivo.api.models.base.BaseResponse;
