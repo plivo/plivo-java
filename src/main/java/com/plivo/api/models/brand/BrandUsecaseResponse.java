@@ -1,7 +1,7 @@
 package com.plivo.api.models.brand;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import com.plivo.api.models.base.BaseResource;
+import com.plivo.api.models.base.BaseResponse;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
