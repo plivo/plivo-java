@@ -9,12 +9,9 @@ public class BrandUseCaseGetter extends Getter<BrandUsecase> {
     super(id);
   }
 
-  // @Override
-  // protected Call<BrandUsecase> obtainCall() {
-  //   return client().getApiService().brandUsecaseGet(client().getAuthId(), id);
-  // }
   @Override
-  protected Call<ListResponse<BrandUsecase>> obtainCall() {
+  protected Call<BrandUsecase> obtainCall() {
     return client().getApiService().brandUsecaseGet(client().getAuthId(), id);
   }
+  
 }
