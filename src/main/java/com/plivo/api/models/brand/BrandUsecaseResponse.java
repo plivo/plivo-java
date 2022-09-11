@@ -28,9 +28,5 @@ public class BrandUsecaseResponse extends BaseResponse {
         return useCases;
     }
 
-    @Override                                      
-    public String getId() {                        
-        return this.brandID;                    
-    }
   
 }
