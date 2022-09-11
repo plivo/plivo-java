@@ -84,6 +84,20 @@ public class Campaign extends BaseResource {
   public MnoMetadata getMnoMetadata() {
       return mnoMetadata;
   }
+  
+  /**
+   * @return String return the sample1
+   */
+  public String getSample1() {
+      return sample1;
+  }
+  
+  /**
+   * @return String return the sample2
+   */
+  public String getSample2() {
+      return sample2;
+  }
 
   public CampaignResponse getCampaign() {
     return campaign;                               
