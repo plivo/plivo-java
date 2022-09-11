@@ -35,18 +35,4 @@ public class BrandUsecase extends BaseResource {
     return this.brandID;
   }
 
-
-  @Override
-  public String toString() {
-      try {
-          return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
-      } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
-          e.printStackTrace();
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-
-      return null;
-  }
-
 }
