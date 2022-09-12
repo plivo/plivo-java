@@ -73,6 +73,20 @@ public class CampaignResponse extends BaseResource{
     }
     
     /**                                            
+     * @return sample1 return the sample1  
+     */
+    public String getSample1() {
+        return sample1;                               
+    }
+
+    /**                                            
+     * @return sample2 return the sample2
+     */
+    public String getSample2() {
+        return sample2;                               
+    }
+    
+    /**                                            
      * @return CampaignAttributes return the CampaignAttributes  
      */
     public CampaignAttributes getCampaignAttributes() {

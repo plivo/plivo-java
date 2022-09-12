@@ -1,5 +1,5 @@
 package com.plivo.api.models.brand;
-import com.plivo.api.models.base.ListResponse;
+
 import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 
