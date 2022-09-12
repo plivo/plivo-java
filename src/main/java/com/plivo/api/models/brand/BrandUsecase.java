@@ -6,12 +6,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import com.plivo.api.models.base.BaseResource;
-import com.plivo.api.models.base.BaseResponse;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandUsecase extends BaseResource {  
-  private List<Object> useCases = new ArrayList<Object>();
+  private List<useCase> useCases = new ArrayList<useCase>();
   private String brandId;
   private BrandUsecaseResponse brandUsecase;
 
@@ -22,7 +21,7 @@ public class BrandUsecase extends BaseResource {
   /**
    * @return String return the UseCases
   */
-  public List<Object> getUsecases() {
+  public List<useCase> getUsecases() {
     return useCases;
   }
   
