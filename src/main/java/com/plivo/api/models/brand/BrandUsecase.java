@@ -10,7 +10,7 @@ import com.plivo.api.models.base.BaseResource;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandUsecase extends BaseResource {  
-  private List<useCase> useCases;
+  private List<useCase> useCases = new ArrayList<useCase>();
   private String brandId;
   private BrandUsecaseResponse brandUsecase;
 
