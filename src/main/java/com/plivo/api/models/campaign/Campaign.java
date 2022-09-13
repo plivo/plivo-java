@@ -12,12 +12,19 @@ public class Campaign extends BaseResource {
   private String usecase;
   private String subUsecase;
   private String registrationStatus;
+  private String messageFlow;
+  private String helpMessage;
+  private String optoutMessage;
+  private String optinKeywords;
+  private String optinMessage;
+  private String optoutKeywords;
+  private String helpKeywords;
   private MnoMetadata mnoMetadata;
   private CampaignResponse campaign;
 
   
-  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method) {
-    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method);
+  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
+    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method,messageFlow,helpMessage,optoutMessage,optinKeywords,optinMessage,optoutKeywords,helpKeywords);
   }
 
   public static CampaignGetter getter(String id) {
@@ -72,6 +79,31 @@ public class Campaign extends BaseResource {
    */
   public String getRegistrationStatus() {
       return registrationStatus;
+  }
+
+  public String getMessageFlow(){
+    return this.messageFlow;
+  }
+  
+  public String getHelpMessage(){
+    return this.helpMessage;
+  }
+
+  public String getOptoutMessage(){
+    return this.optoutMessage;
+  }
+  public String getOptinKeywords(){
+    return this.optinKeywords;
+  }
+
+  public String getOptinMessage(){
+    return this.optinMessage;
+  }
+  public String getOptoutKeywords(){
+    return this.optoutKeywords;
+  }
+  public String getHelpKeywords(){
+    return this.helpKeywords;
   }
 
   /**
