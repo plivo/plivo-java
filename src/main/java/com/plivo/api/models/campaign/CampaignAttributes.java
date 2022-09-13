@@ -1,7 +1,6 @@
 package com.plivo.api.models.campaign;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CampaignAttributes {
@@ -67,6 +66,13 @@ public class CampaignAttributes {
      */                                            
     public Boolean getSubscriberHelp() {          
         return subscriberHelp;                        
-    }                                              
+    }  
+    
+    /**                                            
+     * @return Boolean return the affiliateMarketing  
+     */                                            
+    public Boolean getAffiliateMarketing() {          
+        return affiliateMarketing;                        
+    }  
                                           
 }
