@@ -1,7 +1,7 @@
 package com.plivo.api.models.brand;
 
 
-public class useCase {
+public class UseCase {
     private String name;
     private String code;
     private String details;
