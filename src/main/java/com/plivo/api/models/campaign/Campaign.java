@@ -16,7 +16,7 @@ public class Campaign extends BaseResource {
   private CampaignResponse campaign;
   private String sample1;
   private String sample2;
-  private String campaignDescription;
+  private String description;
   private CampaignAttributes campaignAttributes;
   
   
@@ -107,8 +107,8 @@ public class Campaign extends BaseResource {
     return campaignAttributes;                               
   }
 
-  public String getCampaignDescription() {
-    return campaignDescription;                               
+  public String getDescription() {
+    return description;                               
   }
 
  @Override

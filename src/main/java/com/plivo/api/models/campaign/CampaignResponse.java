@@ -14,7 +14,7 @@ public class CampaignResponse extends BaseResource{
     private MnoMetadata mnoMetadata;
     private String sample1;
     private String sample2;
-    private String campaignDescription;
+    private String description;
     private CampaignAttributes campaignAttributes;
 
 
@@ -93,10 +93,10 @@ public class CampaignResponse extends BaseResource{
     }
 
     /**                                            
-     * @return campaignDescription return the campaignDescription  
+     * @return description return the description  
      */
-    public String getCampaignDescription() {
-        return campaignDescription;                               
+    public String getDescription() {
+        return description;                               
     }
                                               
                                                    
