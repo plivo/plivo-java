@@ -37,10 +37,13 @@ public class CampaignTest extends BaseTest {
 
         expectResponse(fixtureName, 202);
         String campaignID = "CY5NVUA";
+        Boolean embeddedLink = false;
+
         Campaign response = Campaign.getter(campaignID).get();
 
         assertRequest("GET", "10dlc/Campaign/%s/", campaignID);
         assertEquals(campaignID, response.getCampaign().getCampaignID());
+        assertEquals(embeddedLink, response.getCampaignAttributes().getEmbeddedLink());
     }
 
     @Test
@@ -70,12 +73,18 @@ public class CampaignTest extends BaseTest {
         String fixtureName = "campaignGetNumbersResponse.json";                                     
                                                                                                     
         expectResponse(fixtureName, 202);                                                           
-        String campaignID = "C9PDW4R";                                                              
+        String campaignID = "CRIGC80";
+        String number = "14845007032";
+        Integer phoneNumbersCompletedStatusCount = 1;                                                   
         CampaignNumbers response = CampaignNumbers.getNumbers(campaignID).limit(2).offset(0).get();
-        System.out.println(response);
+        Integer numberPoolLimit = 49;
                                                                                                     
         assertRequest("GET", "10dlc/Campaign/%s/Number/",campaignID);      
         assertEquals(campaignID, response.getCampaignID());                         
+        assertEquals(number, response.getPhoneNumbers()[0].getNumber());                         
+        assertEquals(phoneNumbersCompletedStatusCount, response.getPhoneNumbersSummary().get("COMPLETED"));                         
+        assertEquals(numberPoolLimit, response.getNumberPoolLimit());                         
+        
     }                                                                                               
                                                                                                     
    @Test                                                                                            

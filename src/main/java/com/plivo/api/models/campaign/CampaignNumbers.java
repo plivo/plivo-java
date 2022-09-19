@@ -48,6 +48,12 @@ public class CampaignNumbers extends BaseResource{
     public String getMessage(){
         return message;
     }
+    public HashMap<String, Integer> getPhoneNumbersSummary(){
+        return phoneNumbersSummary;
+    }
+    public Integer getNumberPoolLimit(){
+        return numberPoolLimit;
+    }
  @Override
  public String getId() {
   return this.campaignID;

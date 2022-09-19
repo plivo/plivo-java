@@ -2,6 +2,7 @@ package com.plivo.api;
 
 import com.plivo.api.models.brand.BrandUsecase;
 
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,9 +20,13 @@ public class BrandUsecaseTest extends BaseTest {
 
   @Test
   public void brandUsecaseShouldSucceed() throws Exception {
+    
+    String code = "ACCOUNT_NOTIFICATION";
+    
     expectResponse("brandUsecaseGetResponse.json", 200);
-    BrandUsecase.getter("BFJRJUN").client(client).get();
-    assertRequest("GET", "10dlc/Brand/BFJRJUN/usecases/");
+    BrandUsecase response = BrandUsecase.getter("BFJRJUN").client(client).get();
+    assertRequest("GET", "10dlc/Brand/BFJXXXX/Usecases/");
+    assertEquals(code, response.getUseCases().get(0).getCode());
   }
 
 }
