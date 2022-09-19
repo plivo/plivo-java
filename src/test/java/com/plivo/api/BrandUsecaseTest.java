@@ -19,7 +19,7 @@ public class BrandUsecaseTest extends BaseTest {
 
   @Test
   public void brandUsecaseShouldSucceed() throws Exception {
-    expectResponse("numberListResponse.json", 200);
+    expectResponse("brandUsecaseGetResponse.json", 200);
     BrandUsecase.getter("BFJRJUN").client(client).get();
     assertRequest("GET", "10dlc/Brand/BFJRJUN/usecases/");
   }
