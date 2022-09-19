@@ -2,13 +2,14 @@ package com.plivo.api.xml;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 import java.util.HashMap;
 import java.util.Map;
 
 @XmlRootElement(name = "Stream")
 public class Stream extends PlivoXml implements ResponseNestable {
 
-  @XmlAttribute
+  @XmlValue
   private String content;
 
   @XmlAttribute
@@ -28,6 +29,9 @@ public class Stream extends PlivoXml implements ResponseNestable {
 
   @XmlAttribute
   private String contentType;
+
+  @XmlAttribute
+  private Map<String,String> extraHeaders;
 
   private Stream() {
 
