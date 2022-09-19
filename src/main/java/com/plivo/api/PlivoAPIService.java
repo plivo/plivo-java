@@ -258,7 +258,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Brand/{id}/")
   Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
 
-  @GET("Account/{authId}/10dlc/Brand/{id}/usecases/")
+  @GET("Account/{authId}/10dlc/Brand/{id}/Usecases/")
   Call<BrandUsecase> brandUsecaseGet(@Path("authId") String authId, @Path("id") String brandId);
 
   @POST("Account/{authId}/10dlc/Campaign/")

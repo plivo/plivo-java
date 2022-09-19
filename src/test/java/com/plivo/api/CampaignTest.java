@@ -71,9 +71,11 @@ public class CampaignTest extends BaseTest {
                                                                                                     
         expectResponse(fixtureName, 202);                                                           
         String campaignID = "C9PDW4R";                                                              
-        CampaignNumbers response = CampaignNumbers.getNumbers(campaignID).limit(2).offset(0).get();;
+        CampaignNumbers response = CampaignNumbers.getNumbers(campaignID).limit(2).offset(0).get();
+        System.out.println(response);
                                                                                                     
-        assertRequest("GET", "10dlc/Campaign/%s/Number/",campaignID);                               
+        assertRequest("GET", "10dlc/Campaign/%s/Number/",campaignID);      
+        assertEquals(campaignID, response.getCampaignID());                         
     }                                                                                               
                                                                                                     
    @Test                                                                                            

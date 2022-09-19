@@ -32,7 +32,7 @@ public class BrandUsecase extends BaseResource {
   /**
    * @return String return the brandId
    */
-  public String getbrandId() {
+  public String getBrandId() {
     return brandId;
 }
 
