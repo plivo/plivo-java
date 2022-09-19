@@ -28,6 +28,7 @@ public class Response extends PlivoXml {
             @XmlElement(name = "GetDigits", type = GetDigits.class),
             @XmlElement(name = "GetInput", type = GetInput.class),
             @XmlElement(name = "Record", type = Record.class),
+            @XmlElement(name = "Stream", type = Stream.class),
     })
     private List<com.plivo.api.xml.XmlElement> children = new ArrayList<>();
 
