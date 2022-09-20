@@ -43,7 +43,7 @@ public class CampaignTest extends BaseTest {
 
         assertRequest("GET", "10dlc/Campaign/%s/", campaignID);
         assertEquals(campaignID, response.getCampaign().getCampaignID());
-        assertEquals(embeddedLink, response.getCampaignAttributes().getEmbeddedLink());
+        assertEquals(embeddedLink, response.getCampaign().getCampaignAttributes().getEmbeddedLink());
     }
 
     @Test

@@ -9,6 +9,9 @@ public class PhoneNumbers {
     this.status = status;
   }
 
+  public PhoneNumbers() {
+  }
+
   public String getNumber() {
     return number;
   }
