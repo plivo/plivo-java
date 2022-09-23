@@ -64,6 +64,10 @@ public class Call extends BaseResource {
     return new CallStreamDeleter(callUuid);
   }
 
+  public static CallStreamGetter streamGetter(String callUuid) {
+    return new CallStreamGetter(callUuid);
+  }
+
   public static CallStreamGetSpecific streamGetSpecific(String callUuid, String streamId) {
     return new CallStreamGetSpecific(callUuid, streamId);
   }

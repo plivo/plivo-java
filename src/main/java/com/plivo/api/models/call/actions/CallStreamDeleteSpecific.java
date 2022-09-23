@@ -12,8 +12,9 @@ public class CallStreamDeleteSpecific extends VoiceDeleter<Call> {
 
   private String streamId;
 
-  public CallStreamDeleteSpecific(String id) {
-    super(id);
+  public CallStreamDeleteSpecific(String id, String streamId) {
+    super(id, streamId);
+    this.streamId = streamId;
   }
 
   @Override
@@ -23,12 +24,12 @@ public class CallStreamDeleteSpecific extends VoiceDeleter<Call> {
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainFallback1Call() {
-    return client().getVoiceFallback1Service().callStreamDelete(client().getAuthId(), id);
+    return client().getVoiceFallback1Service().callStreamDeleteSpecific(client().getAuthId(), id, streamId);
   }
 
   @Override
   protected retrofit2.Call<ResponseBody> obtainFallback2Call() {
-    return client().getVoiceFallback2Service().callStreamDelete(client().getAuthId(), id);
+    return client().getVoiceFallback2Service().callStreamDeleteSpecific(client().getAuthId(), id, streamId);
   }
 
   public void streamStopSpecific() throws IOException, PlivoRestException, PlivoValidationException {

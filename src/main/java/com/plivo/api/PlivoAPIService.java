@@ -674,9 +674,9 @@ public interface PlivoAPIService {
                                               @Path("streamId") String streamId);
 
   @GET("Account/{authId}/Call/{callId}/Stream/")
-  Call<CallStreamGet> callStreamGetAll(@Path("authId") String authId, @Path("callId") String callId);
+  Call<CallStreamGetSpecificResponse> callStreamGetAll(@Path("authId") String authId, @Path("callId") String callId);
 
   @GET("Account/{authId}/Call/{callId}/Stream/{streamId}")
-  Call<CallStreamGet> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
-                                              @Path("streamId") String streamId);
+  Call<CallStreamGetSpecificResponse> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
+                                                            @Path("streamId") String streamId);
 }

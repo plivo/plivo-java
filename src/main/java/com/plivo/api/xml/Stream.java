@@ -1,5 +1,8 @@
 package com.plivo.api.xml;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
@@ -31,7 +34,7 @@ public class Stream extends PlivoXml implements ResponseNestable {
   private String contentType;
 
   @XmlAttribute
-  private Map<String,String> extraHeaders;
+  private String extraHeaders;
 
   private Stream() {
 
@@ -59,6 +62,10 @@ public class Stream extends PlivoXml implements ResponseNestable {
 
   public String statusCallbackMethod() {
     return this.statusCallbackMethod;
+  }
+
+  public String extraHeaders() {
+    return this.extraHeaders;
   }
 
   public String contentType() {
@@ -92,6 +99,19 @@ public class Stream extends PlivoXml implements ResponseNestable {
 
   public Stream contentType(final String contentType) {
     this.contentType = contentType;
+    return this;
+  }
+
+  public Stream extraHeaders(Map<String, String> inputMap) throws JsonProcessingException {
+    Map<String, String> headersMap = new HashMap<String, String>();
+    for (Map.Entry<String,String> entry : inputMap.entrySet()) {
+      if (!entry.getKey().endsWith("X-PH")) {
+        headersMap.put(entry.getKey() + "X-PH", entry.getValue());
+      } else {
+        headersMap.put(entry.getKey(), entry.getValue());
+      }
+    }
+    this.extraHeaders = new ObjectMapper().writeValueAsString(headersMap);
     return this;
   }
 

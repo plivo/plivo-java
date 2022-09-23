@@ -1,28 +1,26 @@
 package com.plivo.api.models.call.actions;
 
-import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.models.base.VoiceGetter;
-import com.plivo.api.models.recording.Recording;
 import retrofit2.Call;
 
-public class CallStreamGetter extends VoiceGetter<CallStreamGet>  {
+public class CallStreamGetter extends VoiceGetter<CallStreamGetSpecificResponse>  {
 
   public CallStreamGetter(String id) {
     super(id);
   }
 
   @Override
-  protected Call<CallStreamGet> obtainCall() throws PlivoValidationException {
-    return null;
+  protected Call<CallStreamGetSpecificResponse> obtainCall() {
+    return client().getVoiceApiService().callStreamGetAll(client().getAuthId(), id);
   }
 
   @Override
-  protected Call<CallStreamGet> obtainFallback1Call() throws PlivoValidationException {
-    return null;
+  protected Call<CallStreamGetSpecificResponse> obtainFallback1Call() {
+    return client().getVoiceFallback1Service().callStreamGetAll(client().getAuthId(), id);
   }
 
   @Override
-  protected Call<CallStreamGet> obtainFallback2Call() throws PlivoValidationException {
-    return null;
+  protected Call<CallStreamGetSpecificResponse> obtainFallback2Call() {
+    return client().getVoiceFallback2Service().callStreamGetAll(client().getAuthId(), id);
   }
 }
