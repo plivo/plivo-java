@@ -18,7 +18,7 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.13.0</version>
+  <version>5.13.1</version>
 </dependency>
 ```
 
