@@ -23,8 +23,15 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   private String sample2;
   private String url;
   private String method;
+  private String messageFlow;
+  private String helpMessage;
+  private String optoutMessage;
+  private String optinKeywords;
+  private String optinMessage;
+  private String optoutKeywords;
+  private String helpKeywords;
   
-  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing, Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2, String url, String method) {
+  CampaignCreator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing, Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2, String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
    
     this.brandID = brandID;
     this.campaignAlias = campaignAlias;
@@ -44,6 +51,13 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
     this.sample1 = sample1;
     this.url = url;
     this.method = method;
+    this.messageFlow = messageFlow;
+    this.helpMessage = helpMessage;
+    this.optoutMessage = optoutMessage;
+    this.optinKeywords = optinKeywords;
+    this.optinMessage = optinMessage;
+    this.optoutKeywords = optoutKeywords;
+    this.helpKeywords = helpKeywords;
   }
 
   public String brandID(){
@@ -101,6 +115,32 @@ public class CampaignCreator extends Creator<CampaignCreateResponse> {
   public String method(){
     return this.method;
   }
+  
+  public String messageFlow(){
+    return this.messageFlow;
+  }
+  
+  public String helpMessage(){
+    return this.helpMessage;
+  }
+
+  public String optoutMessage(){
+    return this.optoutMessage;
+  }
+  public String optinKeywords(){
+    return this.optinKeywords;
+  }
+
+  public String optinMessage(){
+    return this.optinMessage;
+  }
+  public String optoutKeywords(){
+    return this.optoutKeywords;
+  }
+  public String helpKeywords(){
+    return this.helpKeywords;
+  }
+
 
 
   @Override
