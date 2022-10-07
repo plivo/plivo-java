@@ -12,6 +12,13 @@ public class CampaignResponse extends BaseResource{
     private String subUsecase;
     private String registrationStatus;
     private MnoMetadata mnoMetadata;
+    private String messageFlow;
+    private String helpMessage;
+    private String optoutMessage;
+    private String optinKeywords;
+    private String optinMessage;
+    private String optoutKeywords;
+    private String helpKeywords;
     private String sample1;
     private String sample2;
     private String description;
@@ -63,7 +70,30 @@ public class CampaignResponse extends BaseResource{
     public String getRegistrationStatus() {        
         return registrationStatus;                 
     }                                              
-                                                   
+
+    public String getMessageFlow(){
+    return this.messageFlow;
+    }
+    public String getHelpMessage(){
+        return this.helpMessage;
+    }
+
+    public String getOptoutMessage(){
+        return this.optoutMessage;
+    }
+    public String getOptinKeywords(){
+        return this.optinKeywords;
+    }
+
+    public String getOptinMessage(){
+        return this.optinMessage;
+    }
+    public String getOptoutKeywords(){
+        return this.optoutKeywords;
+    }
+    public String getHelpKeywords(){
+        return this.helpKeywords;
+    }     
     /**                                            
      * @return MnoMetadata return the mnoMetadata  
      */                                            
