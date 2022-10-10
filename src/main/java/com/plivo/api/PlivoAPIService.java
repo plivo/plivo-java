@@ -704,4 +704,24 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Member/{participantId}/Play/")
   Call<ResponseBody> mpcStopPlayAudio(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+  // Streaming
+  @POST("Account/{authId}/Call/{callId}/Stream/")
+  Call<CallStreamCreateResponse> callStreamCreate(@Path("authId") String authId,
+                                                  @Path("callId") String callId, @Body
+                                                  CallStreamCreator callStreamCreator);
+
+  @DELETE("Account/{authId}/Call/{callId}/Stream/")
+  Call<ResponseBody> callStreamDelete(@Path("authId") String authId, @Path("callId") String callId);
+
+  @DELETE("Account/{authId}/Call/{callId}/Stream/{streamId}")
+  Call<ResponseBody> callStreamDeleteSpecific(@Path("authId") String authId, @Path("callId") String callId,
+                                              @Path("streamId") String streamId);
+
+  @GET("Account/{authId}/Call/{callId}/Stream/")
+  Call<ListResponse<CallStreamGetSpecificResponse>> callStreamGetAll(@Path("authId") String authId, @Path("callId") String callId);
+
+  @GET("Account/{authId}/Call/{callId}/Stream/{streamId}")
+  Call<CallStreamGetSpecificResponse> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
+                                                            @Path("streamId") String streamId);
 }

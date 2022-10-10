@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.14.0](https://github.com/plivo/plivo-java/tree/v5.13.0) (2022-10-10)
+**Feature - Stream API and XML support**
+- Stream create, delete, get API implemented
+- Stream XML creation ability implemented
+
 ## [5.13.1](https://github.com/plivo/plivo-java/tree/v5.13.1) (2022-09-28)
 **Adding more Attributes to campaign creation as optional params**
 -Adding more Attributes to campaign creation as optional params
