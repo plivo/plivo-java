@@ -29,7 +29,7 @@ public class CallStreamDeleter extends VoiceDeleter<Call> {
     return client().getVoiceFallback2Service().callStreamDelete(client().getAuthId(), id);
   }
 
-  public void streamStop() throws IOException, PlivoRestException, PlivoValidationException {
+  public void stop() throws IOException, PlivoRestException, PlivoValidationException {
     delete();
   }
 

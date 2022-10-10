@@ -334,7 +334,7 @@ public class CallTest extends BaseTest {
     final String callId = "callId";
 
     Call.streamStopper(callId)
-      .streamStop();
+      .stop();
 
     assertRequest("DELETE", "Call/%s/Stream/", callId);
   }
