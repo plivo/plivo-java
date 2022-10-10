@@ -1,7 +1,7 @@
 # Change Log
-## [5.14.0](https://github.com/plivo/plivo-java/tree/v5.14.0) (2022-09-20)
-**Feature - 10DLC API Enhancement**
-- 10DLC API Enhancement
+## [5.14.0](https://github.com/plivo/plivo-java/tree/v5.14.0) (2022-10-10)
+**Feature - BrandUsecase API, 10DLC API Enhancement**
+- BrandUsecase API, 10DLC API Enhancement
 
 # Change Log
 
