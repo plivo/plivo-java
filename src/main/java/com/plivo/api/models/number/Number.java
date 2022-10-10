@@ -24,7 +24,7 @@ public class Number extends BaseResource {
   private String mmsRate;
   private String tendlcRegistrationStatus;
   private String tendlcCampaignId;
-  private String tollFreeSMSVerification;
+  private String tollFreeSmsVerification;
 
   public Boolean getActive() {
     return active;
@@ -141,7 +141,7 @@ public class Number extends BaseResource {
     return tendlcCampaignId;
   }
 
-  public String getTollFreeSMSVerification() {
-    return tollFreeSMSVerification;
+  public String getTollFreeSmsVerification() {
+    return tollFreeSmsVerification;
   }
 }

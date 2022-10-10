@@ -13,7 +13,7 @@ public class NumberLister extends Lister<Number> {
   private String services;
   private String tendlcRegistrationStatus;
   private String tendlcCampaignId;
-  private String tollFreeSMSVerification;
+  private String tollFreeSmsVerification;
 
   public NumberType numberType() {
     return this.numberType;
@@ -43,8 +43,8 @@ public class NumberLister extends Lister<Number> {
     return this.tendlcCampaignId;
   }
 
-  public String tollFreeSMSVerification() {
-    return this.tollFreeSMSVerification;
+  public String tollFreeSmsVerification() {
+    return this.tollFreeSmsVerification;
   }
 
   public NumberLister numberType(final NumberType numberType) {
@@ -82,8 +82,8 @@ public class NumberLister extends Lister<Number> {
     return this;
   }
 
-  public NumberLister tollFreeSMSVerification(final String tollFreeSMSVerification) {
-    this.tollFreeSMSVerification = tollFreeSMSVerification;
+  public NumberLister tollFreeSMSVerification(final String tollFreeSmsVerification) {
+    this.tollFreeSmsVerification = tollFreeSmsVerification;
     return this;
   }
 
