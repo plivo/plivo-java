@@ -3,7 +3,14 @@
 **Feature - 10DLC API Enhancement**
 - 10DLC API Enhancement
 
-# Change Log
+## [5.13.2](https://github.com/plivo/plivo-java/tree/v5.13.2) (2022-10-12)
+**Bug fix on number response**
+-MMSEnabled and MMSRate fix on list of all rented numbers,Single rented number,Search number
+
+## [5.13.1](https://github.com/plivo/plivo-java/tree/v5.13.1) (2022-09-28)
+**Adding more Attributes to campaign creation as optional params**
+-Adding more Attributes to campaign creation as optional params
+
 ## [5.13.0](https://github.com/plivo/plivo-java/tree/v5.13.0) (2022-09-01)
 **Feature - 10DLC API Support**
 - New 10DLC API Support
