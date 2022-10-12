@@ -26,7 +26,7 @@ public class CampaignTest extends BaseTest {
 
         expectResponse(fixtureName, 202);
         String[] sub_usecase = new String[]{"2FA", "MARKETING"};
-        Campaign.creator("BCKWPKX", "java sdk camp create", "ENTERTAINMENT", "2FA", sub_usecase, "description", false,false, false, false, true, true,true, true, "sample1", "sample2", null,  null).create();
+        Campaign.creator("BCKWPKX", "java sdk camp create", "ENTERTAINMENT", "2FA", sub_usecase, "description", false,false, false, false, true, true,true, true, "sample1", "sample2", "url", "method", "helpMessage", "messageFlow", "optoutMessage", "optinKeywords", "optinMessage", "optoutKeywords", "helpKeywords").create();
 
         assertRequest("POST", "10dlc/Campaign/");
     }
