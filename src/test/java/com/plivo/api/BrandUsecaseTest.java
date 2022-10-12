@@ -25,7 +25,7 @@ public class BrandUsecaseTest extends BaseTest {
     
     expectResponse("brandUsecaseGetResponse.json", 200);
     BrandUsecase response = BrandUsecase.getter("BFJXXXX").client(client).get();
-    assertRequest("GET", "10dlc/Brand/BFJXXXX/Usecases/");
+    assertRequest("GET", "10dlc/Brand/BFJXXXX/usecases/");
     assertEquals(code, response.getUseCases().get(0).getCode());
   }
 
