@@ -122,11 +122,11 @@ public class Number extends BaseResource {
     return deleter();
   }
 
-  public Boolean getMMSEnabled() {
+  public Boolean getMmsEnabled() {
     return mmsEnabled;
   }
 
-  public String getMMSRate() { return mmsRate; }
+  public String getMmsRate() { return mmsRate; }
 
   @Override
   public String getId() {
