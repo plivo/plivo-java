@@ -1,4 +1,9 @@
 # Change Log
+## [5.14.0](https://github.com/plivo/plivo-java/tree/v5.14.0) (2022-10-14)
+**Adding new attributes to Account PhoneNumber object**
+-Added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)
+-Added 3 new filters to AccountPhoneNumber - list all my numbers API:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
 ## [5.13.2](https://github.com/plivo/plivo-java/tree/v5.13.2) (2022-10-12)
 **Bug fix on number response**
 -MMSEnabled and MMSRate fix on list of all rented numbers,Single rented number,Search number
