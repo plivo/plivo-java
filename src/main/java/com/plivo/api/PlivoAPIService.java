@@ -36,6 +36,8 @@ import com.plivo.api.models.brand.Brand;
 import com.plivo.api.models.brand.BrandCreateResponse;
 import com.plivo.api.models.brand.BrandCreator;
 import com.plivo.api.models.brand.BrandResponse;
+import com.plivo.api.models.brand.BrandUsecase;
+import com.plivo.api.models.brand.BrandUsecaseResponse;
 import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;
@@ -255,6 +257,9 @@ public interface PlivoAPIService {
 
   @GET("Account/{authId}/10dlc/Brand/{id}/")
   Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
+
+  @GET("Account/{authId}/10dlc/Brand/{id}/usecases/")
+  Call<BrandUsecase> brandUsecaseGet(@Path("authId") String authId, @Path("id") String brandId);
 
   @POST("Account/{authId}/10dlc/Campaign/")
   Call<CampaignCreateResponse> createCampaign(@Path("authId") String authId,

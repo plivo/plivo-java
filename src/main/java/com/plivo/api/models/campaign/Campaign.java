@@ -2,7 +2,7 @@ package com.plivo.api.models.campaign;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import com.plivo.api.models.base.BaseResource;
-import java.util.List;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Campaign extends BaseResource {
@@ -21,7 +21,11 @@ public class Campaign extends BaseResource {
   private String helpKeywords;
   private MnoMetadata mnoMetadata;
   private CampaignResponse campaign;
-
+  private String sample1;
+  private String sample2;
+  private String description;
+  private CampaignAttributes campaignAttributes;
+  
   
   public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
     return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method,messageFlow,helpMessage,optoutMessage,optinKeywords,optinMessage,optoutKeywords,helpKeywords);
@@ -112,9 +116,31 @@ public class Campaign extends BaseResource {
   public MnoMetadata getMnoMetadata() {
       return mnoMetadata;
   }
+  
+  /**
+   * @return String return the sample1
+   */
+  public String getSample1() {
+      return sample1;
+  }
+  
+  /**
+   * @return String return the sample2
+   */
+  public String getSample2() {
+      return sample2;
+  }
 
   public CampaignResponse getCampaign() {
     return campaign;                               
+  }
+
+  public CampaignAttributes getCampaignAttributes() {
+    return campaignAttributes;                               
+  }
+
+  public String getDescription() {
+    return description;                               
   }
 
  @Override

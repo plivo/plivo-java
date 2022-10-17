@@ -20,6 +20,18 @@
         "registration_status": "ACTIVE",
         "reseller_id": "",
         "sub_usecase": "2FA,MARKETING",
-        "usecase": "STARTER"
+        "usecase": "STARTER",
+        "sample1":"OTP registration",
+        "sample2":"call forward",
+        "description": "",
+        "campaign_attributes": {
+            "embedded_link":false,
+            "embedded_phone":false,
+            "age_gated":false,
+            "direct_lending":false,
+            "subscriber_optin":false,
+            "subscriber_optout":false,
+            "subscriber_help":false
+        }
     }
 }
