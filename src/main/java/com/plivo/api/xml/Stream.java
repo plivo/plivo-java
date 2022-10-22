@@ -103,15 +103,7 @@ public class Stream extends PlivoXml implements ResponseNestable {
   }
 
   public Stream extraHeaders(Map<String, String> inputMap) throws JsonProcessingException {
-    Map<String, String> headersMap = new HashMap<String, String>();
-    for (Map.Entry<String,String> entry : inputMap.entrySet()) {
-      if (!entry.getKey().endsWith("X-PH")) {
-        headersMap.put(entry.getKey() + "X-PH", entry.getValue());
-      } else {
-        headersMap.put(entry.getKey(), entry.getValue());
-      }
-    }
-    this.extraHeaders = new ObjectMapper().writeValueAsString(headersMap);
+    this.extraHeaders = new ObjectMapper().writeValueAsString(inputMap);
     return this;
   }
 
