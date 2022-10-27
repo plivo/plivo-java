@@ -2,7 +2,6 @@ package com.plivo.api.models.campaign;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import com.plivo.api.models.base.BaseResource;
-import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CampaignResponse extends BaseResource{
@@ -20,6 +19,10 @@ public class CampaignResponse extends BaseResource{
     private String optinMessage;
     private String optoutKeywords;
     private String helpKeywords;
+    private String sample1;
+    private String sample2;
+    private String description;
+    private CampaignAttributes campaignAttributes;
 
 
     /**
@@ -96,7 +99,36 @@ public class CampaignResponse extends BaseResource{
      */                                            
     public MnoMetadata getMnoMetadata() {          
         return mnoMetadata;                        
-    }                                              
+    }
+    
+    /**                                            
+     * @return sample1 return the sample1  
+     */
+    public String getSample1() {
+        return sample1;                               
+    }
+
+    /**                                            
+     * @return sample2 return the sample2
+     */
+    public String getSample2() {
+        return sample2;                               
+    }
+    
+    /**                                            
+     * @return CampaignAttributes return the CampaignAttributes  
+     */
+    public CampaignAttributes getCampaignAttributes() {
+        return campaignAttributes;                               
+    }
+
+    /**                                            
+     * @return description return the description  
+     */
+    public String getDescription() {
+        return description;                               
+    }
+                                              
                                                    
     @Override                                      
     public String getId() {                        

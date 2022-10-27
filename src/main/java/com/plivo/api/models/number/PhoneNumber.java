@@ -90,11 +90,11 @@ public class PhoneNumber extends BaseResource {
   public String getSmsRate() {
     return smsRate;
   }
-  public Boolean getMMSEnabled() {
+  public Boolean getMmsEnabled() {
     return mmsEnabled;
   }
 
-  public String getMMSRate() { return mmsRate; }
+  public String getMmsRate() { return mmsRate; }
 
   public Boolean getVoiceEnabled() {
     return voiceEnabled;

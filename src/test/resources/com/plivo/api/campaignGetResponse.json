@@ -1,0 +1,37 @@
+{
+    "api_id": "f687a17e-0725-11ed-ab02-0242ac110004",
+    "campaign": {
+        "brand_id": "BOZ5T2X",
+        "campaign_id": "CY5NVUA",
+        "mno_metadata": {
+            "AT&T": {
+                "tpm": 15
+            },
+            "T-Mobile": {
+                "brand_tier": "SOLE_PROPRIETOR"
+            },
+            "US Cellular": {
+                "tpm": 15
+            },
+            "Verizon Wireless": {
+                "tpm": 15
+            }
+        },
+        "registration_status": "ACTIVE",
+        "reseller_id": "",
+        "sub_usecase": "2FA,MARKETING",
+        "usecase": "STARTER",
+        "sample1":"OTP registration",
+        "sample2":"call forward",
+        "description": "",
+        "campaign_attributes": {
+            "embedded_link":false,
+            "embedded_phone":false,
+            "age_gated":false,
+            "direct_lending":false,
+            "subscriber_optin":false,
+            "subscriber_optout":false,
+            "subscriber_help":false
+        }
+    }
+}

@@ -11,6 +11,9 @@ public class NumberLister extends Lister<Number> {
   private String subaccount;
   private String alias;
   private String services;
+  private String tendlcRegistrationStatus;
+  private String tendlcCampaignId;
+  private String tollFreeSmsVerification;
 
   public NumberType numberType() {
     return this.numberType;
@@ -30,6 +33,18 @@ public class NumberLister extends Lister<Number> {
 
   public String services() {
     return this.services;
+  }
+
+  public String tendlcRegistrationStatus() {
+    return this.tendlcRegistrationStatus;
+  }
+
+  public String tendlcCampaignId() {
+    return this.tendlcCampaignId;
+  }
+
+  public String tollFreeSmsVerification() {
+    return this.tollFreeSmsVerification;
   }
 
   public NumberLister numberType(final NumberType numberType) {
@@ -54,6 +69,21 @@ public class NumberLister extends Lister<Number> {
 
   public NumberLister services(final String services) {
     this.services = services;
+    return this;
+  }
+
+  public NumberLister tendlcRegistrationStatus(final String tendlcRegistrationStatus) {
+    this.tendlcRegistrationStatus = tendlcRegistrationStatus;
+    return this;
+  }
+
+  public NumberLister tendlcCampaignId(final String tendlcCampaignId) {
+    this.tendlcCampaignId = tendlcCampaignId;
+    return this;
+  }
+
+  public NumberLister tollFreeSMSVerification(final String tollFreeSmsVerification) {
+    this.tollFreeSmsVerification = tollFreeSmsVerification;
     return this;
   }
 

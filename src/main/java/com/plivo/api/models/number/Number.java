@@ -22,6 +22,9 @@ public class Number extends BaseResource {
   private Boolean active;
   private Boolean mmsEnabled;
   private String mmsRate;
+  private String tendlcRegistrationStatus;
+  private String tendlcCampaignId;
+  private String tollFreeSmsVerification;
 
   public Boolean getActive() {
     return active;
@@ -119,14 +122,26 @@ public class Number extends BaseResource {
     return deleter();
   }
 
-  public Boolean getMMSEnabled() {
+  public Boolean getMmsEnabled() {
     return mmsEnabled;
   }
 
-  public String getMMSRate() { return mmsRate; }
+  public String getMmsRate() { return mmsRate; }
 
   @Override
   public String getId() {
     return getNumber();
+  }
+
+  public String getTendlcRegistrationStatus() {
+    return tendlcRegistrationStatus;
+  }
+
+  public String getTendlcCampaignId() {
+    return tendlcCampaignId;
+  }
+
+  public String getTollFreeSmsVerification() {
+    return tollFreeSmsVerification;
   }
 }
