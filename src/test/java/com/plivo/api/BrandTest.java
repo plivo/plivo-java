@@ -51,4 +51,17 @@ public class BrandTest extends BaseTest {
 
         assertRequest("GET", "10dlc/Brand/");
     }
+
+    @Test
+    public void brandUsecaseShouldSucceed() throws Exception {
+        String fixtureName = "brandUsecaseGetResponse.json";
+        String code = "ACCOUNT_NOTIFICATION";
+
+        expectResponse(fixtureName, 202);
+        String brandID = "BFJXXXX";
+        BrandUsecase response = Brand.get_usecases(brandID);
+
+        assertRequest("GET", "10dlc/Brand/BFJXXXX/usecases/");
+        assertEquals(code, response.getUseCases().get(0).getCode());
+    }
 }

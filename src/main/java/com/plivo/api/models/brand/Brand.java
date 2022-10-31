@@ -30,6 +30,10 @@ public class Brand extends BaseResource {
     return new BrandLister();
   }
 
+  public static BrandUsecase get_usecases(String id) {
+    return new BrandUsecase();
+  }
+
   /**
      * @return String return the getBrandAlias
      */
