@@ -26,7 +26,7 @@ public class BrandTest extends BaseTest {
 
         expectResponse(fixtureName, 202);
         BrandCreateResponse response = Brand.creator("brand create", "42946d40-33de-4b7d-8421-45e3acc63eed", "STARTER", false, null, null).create();
-        
+
         assertRequest("POST", "10dlc/Brand/");
     }
 
@@ -59,7 +59,7 @@ public class BrandTest extends BaseTest {
 
         expectResponse(fixtureName, 202);
         String brandID = "BFJXXXX";
-        BrandUsecase response = Brand.get_usecases(brandID);
+        BrandUsecase response = Brand.get_usecases(brandID).get();
 
         assertRequest("GET", "10dlc/Brand/BFJXXXX/usecases/");
         assertEquals(code, response.getUseCases().get(0).getCode());
