@@ -1,4 +1,8 @@
 # Change Log
+## [5.15.1](https://github.com/plivo/plivo-java/tree/v5.15.1) (2022-11-04)
+**Adding - BrandUsecase API api contract refactor**
+- BrandUsecase API contract refactor
+
 ## [5.15.0](https://github.com/plivo/plivo-java/tree/v5.15.0) (2022-10-17)
 **Feature - BrandUsecase API, 10DLC API Enhancement**
 - BrandUsecase API, 10DLC API Enhancement
