@@ -7,6 +7,7 @@ public class CampaignDeleter extends MessagingDeleter<CampaignDeleteResponse> {
 
   public CampaignDeleter(String id) {
     super(id);
+    this.id = id;
   }
 
   @Override

@@ -4,11 +4,11 @@ import com.plivo.api.models.base.BaseResource;
 
 public class CampaignDeleteResponse extends BaseResource{
 
-  private String campaignID;
+  private String campaignId;
   private String message;
 
   public String getCampaignId(){
-      return this.campaignID;
+      return this.campaignId;
   }
 
   public String getMessage(){
@@ -17,7 +17,7 @@ public class CampaignDeleteResponse extends BaseResource{
 
   @Override
   public String getId(){
-      return this.campaignID;
+      return this.campaignId;
   }
 
 }
