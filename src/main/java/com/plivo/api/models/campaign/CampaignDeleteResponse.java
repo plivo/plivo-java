@@ -7,6 +7,7 @@ public class CampaignDeleteResponse extends BaseResource{
   private String campaignId;
   private String message;
 
+  @Override
   public String getId(){
       return this.campaignId;
   }
