@@ -97,4 +97,16 @@ public class CampaignTest extends BaseTest {
         assertRequest("DELETE", "10dlc/Campaign/C9PDW4R/Number/14845071194/");                           
     }
 
+    @Test
+    public void campaignDeleteShouldSucceed() throws Exception {
+        String fixtureName = "campaignDeleteResponse.json";
+        String campaignID = "CXXX";
+
+        expectResponse(fixtureName, 202);
+        CampaignDeleteResponse response = Campaign.deleter(campaignID).delete();
+
+        assertRequest("DELETE", "10dlc/Campaign/CXXX/");
+        assertEquals("Campaign Deactivated", response.getMessage());
+    }
+
 }
