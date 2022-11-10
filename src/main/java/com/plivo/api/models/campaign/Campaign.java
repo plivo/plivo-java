@@ -39,6 +39,9 @@ public class Campaign extends BaseResource {
     return new CampaignLister();
   }
 
+  public static CampaignDeleter deleter(String id) {
+    return new CampaignDeleter(id);
+  }
   /**
      * @return String return the brandID
      */

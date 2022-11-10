@@ -305,6 +305,9 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);
 
+  @DELETE("Account/{authId}/10dlc/Campaign/{campaignId}/")
+  Call<ResponseBody> campaignDelete(@Path("authId") String authId, @Path("campaignId") String campaignId);
+
   // Recording
 
   @GET("Account/{authId}/Recording/")
