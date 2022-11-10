@@ -256,6 +256,9 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Brand/{id}/")
   Call<Brand> brandGet(@Path("authId") String authId, @Path("id") String brandId);
 
+  @DELETE("Account/{authId}/10dlc/Brand/{id}/")
+  Call<BrandDeleteResponse> brandDelete(@Path("authId") String authId, @Path("id") String brandId);
+
   @GET("Account/{authId}/10dlc/Brand/{id}/usecases/")
   Call<BrandUsecase> brandUsecaseGet(@Path("authId") String authId, @Path("id") String brandId);
 
