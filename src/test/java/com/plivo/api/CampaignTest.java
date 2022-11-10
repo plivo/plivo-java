@@ -107,6 +107,7 @@ public class CampaignTest extends BaseTest {
 
         assertRequest("DELETE", "10dlc/Campaign/CXXX/");
         assertEquals("Campaign Deactivated", response.getMessage());
+        assertEquals("CXXX", response.getCampaignId());
     }
 
 }
