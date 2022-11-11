@@ -5,7 +5,6 @@ import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.base.VoiceCreator;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class CallStreamCreator extends VoiceCreator<CallStreamCreateResponse> {
 
@@ -17,7 +16,7 @@ public class CallStreamCreator extends VoiceCreator<CallStreamCreateResponse> {
   private String statusCallbackUrl;
   private String statusCallbackMethod;
   private String contentType;
-  private Map<String, String> extraHeaders;
+  private String extraHeaders;
 
   public CallStreamCreator(String id, String serviceUrl) {
     this.id = id;
@@ -80,7 +79,7 @@ public class CallStreamCreator extends VoiceCreator<CallStreamCreateResponse> {
     return this;
   }
 
-  public CallStreamCreator extraHeaders(final Map<String, String> extraHeaders) {
+  public CallStreamCreator extraHeaders(final String extraHeaders) {
     this.extraHeaders = extraHeaders;
     return this;
   }
@@ -113,7 +112,7 @@ public class CallStreamCreator extends VoiceCreator<CallStreamCreateResponse> {
     return this.contentType;
   }
 
-  public Map<String, String> extraHeaders() {
+  public String extraHeaders() {
     return this.extraHeaders;
   }
 }

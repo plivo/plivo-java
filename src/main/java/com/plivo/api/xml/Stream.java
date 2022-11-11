@@ -1,13 +1,8 @@
 package com.plivo.api.xml;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
-import java.util.HashMap;
-import java.util.Map;
 
 @XmlRootElement(name = "Stream")
 public class Stream extends PlivoXml implements ResponseNestable {
@@ -102,8 +97,8 @@ public class Stream extends PlivoXml implements ResponseNestable {
     return this;
   }
 
-  public Stream extraHeaders(Map<String, String> inputMap) throws JsonProcessingException {
-    this.extraHeaders = new ObjectMapper().writeValueAsString(inputMap);
+  public Stream extraHeaders(final String extraHeaders) {
+    this.extraHeaders = extraHeaders;
     return this;
   }
 
