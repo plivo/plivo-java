@@ -34,6 +34,10 @@ public class Brand extends BaseResource {
     return new BrandUseCaseGetter(id);
   }
 
+  public static BrandDeleter deleter(String id) {
+    return new BrandDeleter(id);
+  }
+
   /**
      * @return String return the getBrandAlias
      */

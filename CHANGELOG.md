@@ -1,4 +1,9 @@
 # Change Log
+
+## [5.16.0](https://github.com/plivo/plivo-java/tree/v5.16.0) (2022-12-06)
+**Feature - Delete Campaign and Brand**
+- Delete Campaign and Brand API Endpoints
+
 ## [5.15.1](https://github.com/plivo/plivo-java/tree/v5.15.1) (2022-11-04)
 **Adding - BrandUsecase API api contract refactor**
 - BrandUsecase API contract refactor
