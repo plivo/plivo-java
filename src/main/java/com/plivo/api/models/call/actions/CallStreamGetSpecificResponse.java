@@ -10,7 +10,7 @@ public class CallStreamGetSpecificResponse extends BaseResource {
   private String audioTrack;
   private String bidirectional;
   private String billedAmount;
-  private String billedDuration;
+  private String billDuration;
   private String callUuid;
   private String createdAt;
   private String endTime;
@@ -21,6 +21,7 @@ public class CallStreamGetSpecificResponse extends BaseResource {
   private String status;
   private String statusCallbackUrl;
   private String streamId;
+  private String roundedBillDuration;
 
   public String getAudioTrack() {
     return audioTrack;
@@ -34,8 +35,8 @@ public class CallStreamGetSpecificResponse extends BaseResource {
     return billedAmount;
   }
 
-  public String getBilledDuration() {
-    return billedDuration;
+  public String getBillDuration() {
+    return billDuration;
   }
 
   public String getCallUuid() {
@@ -77,6 +78,11 @@ public class CallStreamGetSpecificResponse extends BaseResource {
   public String getStreamId() {
     return streamId;
   }
+
+  public String getRoundedBillDuration() {
+    return roundedBillDuration;
+  }
+
 
   @Override
   public String getId() throws PlivoValidationException {
