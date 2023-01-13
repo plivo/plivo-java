@@ -18,7 +18,6 @@ public class Message extends BaseResource {
   private String totalRate;
   private Long units;
   private String powerpackID;
-  private Long messageExpiry;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -50,9 +49,6 @@ public class Message extends BaseResource {
     return errorCode;
   }
 
-  public Long getMessageExpiry(){
-    return messageExpiry;
-  }
   public String getPowerpackID() {
     return powerpackID;
   }
