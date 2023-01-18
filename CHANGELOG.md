@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.17.0](https://github.com/plivo/plivo-java/tree/v5.17.0) (2023-01-18)
+**Feature - Add new param(Message Expiry) in Send Message API**
+- Added new param(Message Expiry) in Send Message API
+
 ## [5.16.0](https://github.com/plivo/plivo-java/tree/v5.16.0) (2022-12-06)
 **Feature - Delete Campaign and Brand**
 - Delete Campaign and Brand API Endpoints
