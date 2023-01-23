@@ -267,6 +267,10 @@ public interface PlivoAPIService {
   Call<CampaignCreateResponse> createCampaign(@Path("authId") String authId,
                                           @Body CampaignCreator campaignCreator);
 
+  @POST("Account/{authId}/10dlc/Campaign/{id}/")
+  Call<CampaignUpdateResponse> updateCampaign(@Path("authId") String authId, @Path("id") String campaignId,
+                                          @Body CampaignUpdater campaignUpdater);
+
   @POST("Account/{authId}/10dlc/Campaign/{campaign_id}/Number/")
   Call<CampaignNumberLinkerResponse> linkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID,
                                           @Body CampaignNumberLinker campaignNumberLinker);
