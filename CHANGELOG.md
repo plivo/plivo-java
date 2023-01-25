@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.19.0](https://github.com/plivo/plivo-java/tree/v5.19.0) (2022-01-25)
+- Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
 ## [5.18.0](https://github.com/plivo/plivo-java/tree/v5.18.0) (2022-01-23)
 **Feature - Update Campaign API**
 - Update Campaign API
