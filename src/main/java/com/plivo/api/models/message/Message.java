@@ -18,6 +18,7 @@ public class Message extends BaseResource {
   private String totalRate;
   private Long units;
   private String powerpackID;
+  private String requesterIP;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -44,6 +45,9 @@ public class Message extends BaseResource {
 
   public MmsMediaLister listMedia(){return new MmsMediaLister(getId());}
 
+  public String getRequesterIP() {
+    return requesterIP;
+  }
 
   public String getErrorCode() {
     return errorCode;
