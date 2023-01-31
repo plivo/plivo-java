@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.18.1](https://github.com/plivo/plivo-java/tree/v5.18.0) (2022-01-23)
+**Build check**
+- Build check
+
+
 ## [5.18.0](https://github.com/plivo/plivo-java/tree/v5.18.0) (2022-01-23)
 **Feature - Update Campaign API**
 - Update Campaign API
