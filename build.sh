@@ -1,2 +1,2 @@
 ./gradlew clean
-./gradlew build
+./gradlew build --warning-mode all
