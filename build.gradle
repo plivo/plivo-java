@@ -98,7 +98,9 @@ task fatJar(type: Jar) {
   print("Created fatjar: ${destinationDir}/${archiveName}")
 }
 
-task createPom << {
+task createPom {
+  doLast
+  {
   pom {
     project {
       name 'plivo-java'
@@ -129,6 +131,7 @@ task createPom << {
       }
     }
   }.writeTo("pom.xml")
+}
 }
 
 uploadArchives {
