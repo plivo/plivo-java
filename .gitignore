@@ -20,5 +20,3 @@ hs_err_pid*
 *.iml
 /target/
 .DS_Store
-
-java-sdk-test/

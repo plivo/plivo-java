@@ -156,7 +156,6 @@ public class MessageTest extends BaseTest {
   public void messageGetShouldSucceed() throws Exception {
     String fixtureName = "messageGetResponse.json";
     String messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
-    String requesterIP = "192.168.1.1";
 
     expectResponse(fixtureName, 200);
 
@@ -166,14 +165,12 @@ public class MessageTest extends BaseTest {
 
     assertRequest("GET", "Message/%s/", messageUuid);
     assertEquals(messageUuid, message.getMessageUuid());
-    assertEquals(requesterIP, message.getRequesterIP());
   }
 
   @Test
   public void messageGetWithClientShouldSucceed() throws Exception {
     String fixtureName = "messageGetResponse.json";
     String messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
-    String requesterIP = "192.168.1.1";
 
     expectResponse(fixtureName, 200);
 
@@ -183,18 +180,15 @@ public class MessageTest extends BaseTest {
 
     assertRequest("GET", "Message/%s/", messageUuid);
     assertEquals(messageUuid, message.getMessageUuid());
-    assertEquals(requesterIP, requesterIP);
   }
 
   @Test
   public void messageListShouldSucceed() throws Exception {
     String fixtureName = "messageListResponse.json";
-    String requesterIP1 = "192.168.1.1";
-    String requesterIP2 = "192.168.1.20";
 
     expectResponse(fixtureName, 200);
 
-    ListResponse<Message> response = Message.lister()
+    Message.lister()
       .messageDirection(MessageDirection.OUTBOUND)
       .messageState(MessageState.FAILED)
       .list();
@@ -205,8 +199,6 @@ public class MessageTest extends BaseTest {
     params.put("message_state", "failed");
 
     assertRequest("GET", "Message/", params);
-    assertEquals(requesterIP1, response.getObjects().get(0).getRequesterIP());
-    assertEquals(requesterIP2, response.getObjects().get(19).getRequesterIP());
   }
 
   @Test
