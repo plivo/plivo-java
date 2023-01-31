@@ -18,6 +18,7 @@ public class Message extends BaseResource {
   private String totalRate;
   private Long units;
   private String powerpackID;
+  private String requesterIP;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -49,6 +50,10 @@ public class Message extends BaseResource {
     return errorCode;
   }
 
+  public String getRequesterIP() {
+    return requesterIP;
+  }
+  
   public String getPowerpackID() {
     return powerpackID;
   }
