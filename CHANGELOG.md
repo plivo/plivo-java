@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-02-06)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
 ## [5.19.1](https://github.com/plivo/plivo-java/tree/v5.19.1) (2022-01-31)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 
