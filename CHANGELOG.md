@@ -1,8 +1,24 @@
 # Change Log
-## [5.16.0](https://github.com/plivo/plivo-java/tree/v5.16.0) (2022-11-15)
+
+## [5.20.0-beta](https://github.com/plivo/plivo-java/tree/v5.20.0-beta) (2023-02-06)
 **Feature - Stream API and XML support**
 - Stream create, delete, get API implemented
 - Stream XML creation ability implemented
+
+## [5.19.1](https://github.com/plivo/plivo-java/tree/v5.19.1) (2022-01-31)
+- Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [5.18.0](https://github.com/plivo/plivo-java/tree/v5.18.0) (2022-01-23)
+**Feature - Update Campaign API**
+- Update Campaign API
+
+## [5.17.0](https://github.com/plivo/plivo-java/tree/v5.17.0) (2023-01-18)
+**Feature - Add new param(Message Expiry) in Send Message API**
+- Added new param(Message Expiry) in Send Message API
+
+## [5.16.0](https://github.com/plivo/plivo-java/tree/v5.16.0) (2022-12-06)
+**Feature - Delete Campaign and Brand**
+- Delete Campaign and Brand API Endpoints
 
 ## [5.15.1](https://github.com/plivo/plivo-java/tree/v5.15.1) (2022-11-04)
 **Adding - BrandUsecase API api contract refactor**

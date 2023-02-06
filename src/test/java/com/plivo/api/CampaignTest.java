@@ -32,6 +32,19 @@ public class CampaignTest extends BaseTest {
     }
 
     @Test
+    public void campaignUpdateShouldSucceed() throws Exception {
+        String fixtureName = "campaignUpdateResponse.json";
+
+        expectResponse(fixtureName, 202);
+        
+        CampaignUpdateResponse response = Campaign.updater("CY5NVUA","","","sample1 updated","","","","","","","","").client(client).update();
+        assertEquals("CY5NVUA", response.getCampaign().getCampaignID());
+
+        assertRequest("POST", "10dlc/Campaign/%s/", "CY5NVUA");
+        assertEquals("CY5NVUA", response.getCampaign().getCampaignID());
+    }
+
+    @Test
     public void campaignGetShouldSucceed() throws Exception {
         String fixtureName = "campaignGetResponse.json";
 
@@ -95,6 +108,19 @@ public class CampaignTest extends BaseTest {
         CampaignNumbers response = CampaignNumbers.unlink("C9PDW4R", "14845071194", null, null).delete();
                                                                                                          
         assertRequest("DELETE", "10dlc/Campaign/C9PDW4R/Number/14845071194/");                           
+    }
+
+    @Test
+    public void campaignDeleteShouldSucceed() throws Exception {
+        String fixtureName = "campaignDeleteResponse.json";
+        String campaignID = "CXXX";
+
+        expectResponse(fixtureName, 202);
+        CampaignDeleteResponse response = Campaign.deleter(campaignID).delete();
+
+        assertRequest("DELETE", "10dlc/Campaign/CXXX/");
+        assertEquals("Campaign Deactivated", response.getMessage());
+        assertEquals("CXXX", response.getCampaignId());
     }
 
 }

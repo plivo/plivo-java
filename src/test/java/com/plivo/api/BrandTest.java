@@ -64,4 +64,17 @@ public class BrandTest extends BaseTest {
         assertRequest("GET", "10dlc/Brand/BFJXXXX/usecases/");
         assertEquals(code, response.getUseCases().get(0).getCode());
     }
+
+    @Test
+    public void brandDeleteShouldSucceed() throws Exception {
+        String fixtureName = "brandDeleteResponse.json";
+        String brandID = "BXXX";
+
+        expectResponse(fixtureName, 202);
+        BrandDeleteResponse response = Brand.deleter(brandID).delete();
+
+        assertRequest("DELETE", "10dlc/Brand/BXXX/");
+        assertEquals("Brand Deactivated", response.getMessage());
+        assertEquals("BXXX", response.getBrandId());
+    }
 }

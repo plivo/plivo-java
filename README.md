@@ -10,7 +10,7 @@ The Plivo Java SDK makes it simpler to integrate communications into your Java a
 
 ### To Install Stable release
 
-You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.4.1/plivo-java-5.4.1.jar).
+You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.19.1/plivo-java-5.19.1.jar).
 
 If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
 
@@ -18,13 +18,13 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.16.0</version>
+  <version>5.20.0-beta</version>
 </dependency>
 ```
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:5.9.1'
+compile 'com.plivo:plivo-java:5.19.1'
 ```
 
 ### To Install Beta release

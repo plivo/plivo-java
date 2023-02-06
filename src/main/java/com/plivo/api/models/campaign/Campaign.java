@@ -31,6 +31,10 @@ public class Campaign extends BaseResource {
     return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method,messageFlow,helpMessage,optoutMessage,optinKeywords,optinMessage,optoutKeywords,helpKeywords);
   }
 
+  public static CampaignUpdater updater(String campaign_id, String reseller_id, String description, String sample1, String sample2, String message_flow, String help_message, String optin_keywords, String optin_message, String optout_keywords, String optout_message, String help_keywords) {
+    return new CampaignUpdater(campaign_id,reseller_id,description,sample1,sample2,message_flow,help_message,optin_keywords,optin_message,optout_keywords,optout_message,help_keywords);
+  }
+
   public static CampaignGetter getter(String id) {
     return new CampaignGetter(id);
   }
@@ -39,6 +43,9 @@ public class Campaign extends BaseResource {
     return new CampaignLister();
   }
 
+  public static CampaignDeleter deleter(String id) {
+    return new CampaignDeleter(id);
+  }
   /**
      * @return String return the brandID
      */
