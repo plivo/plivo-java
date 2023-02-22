@@ -21,6 +21,7 @@ public class Message extends BaseResource {
   private String tendlcCampaignID;
   private String tendlcRegistrationStatus;
   private String destinationCountryIso2;
+  private String requesterIP;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -54,6 +55,14 @@ public class Message extends BaseResource {
 
   public String getTendlcRegistrationStatus() {
     return tendlcRegistrationStatus;
+    }
+
+  public String getRequesterIP() {
+    return requesterIP;
+  }
+  
+  public String getPowerpackID() {
+    return powerpackID;
   }
   
    public String getPowerpackID() {

@@ -32,6 +32,19 @@ public class CampaignTest extends BaseTest {
     }
 
     @Test
+    public void campaignUpdateShouldSucceed() throws Exception {
+        String fixtureName = "campaignUpdateResponse.json";
+
+        expectResponse(fixtureName, 202);
+        
+        CampaignUpdateResponse response = Campaign.updater("CY5NVUA","","","sample1 updated","","","","","","","","").client(client).update();
+        assertEquals("CY5NVUA", response.getCampaign().getCampaignID());
+
+        assertRequest("POST", "10dlc/Campaign/%s/", "CY5NVUA");
+        assertEquals("CY5NVUA", response.getCampaign().getCampaignID());
+    }
+
+    @Test
     public void campaignGetShouldSucceed() throws Exception {
         String fixtureName = "campaignGetResponse.json";
 

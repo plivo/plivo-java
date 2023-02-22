@@ -30,6 +30,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private Boolean trackable = null;
   private String[] media_urls = null;
   private String[] media_ids = null;
+  private Long message_expiry;
 
 
   /**
@@ -126,6 +127,10 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this.media_ids;
   }
 
+public Long message_expiry() {
+    return this.message_expiry;
+}
+
   /**
    * @param type Must be {@link MessageType#SMS}
    */
@@ -179,6 +184,12 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    +   */
   public MessageCreator media_ids(final String[] media_ids) {
     this.media_ids = media_ids;
+    return this;
+  }
+
+  //@param message_expiry used to set message expiry.
+  public MessageCreator message_expiry(final Long message_expiry) {
+    this.message_expiry = message_expiry;
     return this;
   }
 
