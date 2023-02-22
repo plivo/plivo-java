@@ -65,10 +65,7 @@ public class Message extends BaseResource {
     return powerpackID;
   }
   
-   public String getPowerpackID() {
-    return powerpackID;
-  }
-   public String getTendlcCampaignID() {
+  public String getTendlcCampaignID() {
     return tendlcCampaignID;
   }
    public String getDestinationCountryIso2() {
