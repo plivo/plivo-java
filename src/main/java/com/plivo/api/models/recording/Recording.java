@@ -7,6 +7,8 @@ public class Recording extends BaseResource {
   private String addTime;
   private String callUuid;
   private String conferenceName;
+  private String cost;
+  private String daysOfStorage;
   private String recordingDurationMs;
   private String recordingEndMs;
   private String recordingFormat;
@@ -15,6 +17,7 @@ public class Recording extends BaseResource {
   private String recordingUrl;
   private String resourceUri;
   private String recordingId;
+  private String roundedDuration;
   private String fromNumber;
   private String toNumber;
 
@@ -110,6 +113,18 @@ public class Recording extends BaseResource {
    */
   public String getRecordingUrl() {
     return recordingUrl;
+  }
+
+  public String getCost() {
+    return cost;
+  }
+
+  public String getDaysOfStorage() {
+    return daysOfStorage;
+  }
+
+  public String getRoundedDuration() {
+    return roundedDuration;
   }
 
   public String getResourceUri() {
