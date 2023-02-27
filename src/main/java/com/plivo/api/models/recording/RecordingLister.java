@@ -16,6 +16,7 @@ public class RecordingLister extends VoiceLister<Recording> {
   private String mpcName;
   private String conferenceUuid;
   private String mpcUuid;
+  private String roundedDuration;
   private PropertyFilter<Date> addTime;
 
   public String subaccount() {
@@ -52,6 +53,10 @@ public class RecordingLister extends VoiceLister<Recording> {
 
   public PropertyFilter<Date> addTime() {
     return this.addTime;
+  }
+
+  public String roundedDuration() {
+    return roundedDuration;
   }
 
   /**
@@ -124,6 +129,14 @@ public class RecordingLister extends VoiceLister<Recording> {
    */
   public RecordingLister addTime(final PropertyFilter<Date> addTime) {
     this.addTime = addTime;
+    return this;
+  }
+
+  /**
+   * @param roundedDuration Used to filter out recordings according to their rounded duration as multiples of 60 seconds.
+   */
+  public RecordingLister roundedDuration(final String roundedDuration) {
+    this.roundedDuration = roundedDuration;
     return this;
   }
 
