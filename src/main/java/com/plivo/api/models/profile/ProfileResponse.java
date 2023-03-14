@@ -22,6 +22,7 @@ public class ProfileResponse extends BaseResource{
     private String primaryProfile;
     private String profileType;
     private String profileUUID;
+    private String createdAt;
 
      public String getProfileAlias(){
         return profileAlias;
@@ -89,6 +90,10 @@ public class ProfileResponse extends BaseResource{
 
     public String getProfileUUID(){
         return profileUUID;
+    }
+
+    public String getCreatedAt(){
+        return createdAt;
     }
 
     @Override
