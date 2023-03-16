@@ -27,7 +27,8 @@
       "hangup_cause_name":"End Of XML Instructions",
       "hangup_cause_code":4010,
       "hangup_source":"Plivo",
-      "voice_network_group": "USA All Networks"
+      "voice_network_group": "USA All Networks",
+      "cnam_lookup_number_config": ""
     },
     {
       "answer_time": "2015-07-26 16:45:02+05:30",
@@ -48,7 +49,8 @@
       "hangup_cause_name": "End Of XML Instructions",
       "hangup_cause_code": 4010,
       "hangup_source": "Plivo",
-      "voice_network_group": "USA All Networks"
+      "voice_network_group": "USA All Networks",
+      "cnam_lookup_number_config": ""
     }
   ]
 }
