@@ -19,5 +19,5 @@
   "hangup_cause_code": 4010,
   "hangup_source": "Plivo",
   "voice_network_group": "India All Networks",
-  "cnam_lookup_number_config": ""
+  "cnam_lookup": "disabled"
 }
