@@ -17,6 +17,7 @@ public class Brand extends BaseResource {
   private Address address;
   private AuthorizedContact authorizedContact;
   private BrandResponse brand;
+  private String createdAt;
 
   public static BrandCreator creator(String brandAlias,String profileUUID,String brandType,Boolean secondaryVetting,String url,String method) {
     return new BrandCreator(brandAlias,profileUUID,brandType,secondaryVetting,url,method);
@@ -109,6 +110,13 @@ public class Brand extends BaseResource {
    */
   public AuthorizedContact getAuthorizedContact() {
       return authorizedContact;
+  }
+
+    /**
+   * @return String return the getCreatedAt
+   */
+  public String getCreatedAt() {
+      return createdAt;
   }
 
   public BrandResponse getBrand() {

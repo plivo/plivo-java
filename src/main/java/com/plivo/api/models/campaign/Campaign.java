@@ -25,6 +25,7 @@ public class Campaign extends BaseResource {
   private String sample2;
   private String description;
   private CampaignAttributes campaignAttributes;
+  private String createdAt;
   
   
   public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
@@ -148,6 +149,10 @@ public class Campaign extends BaseResource {
 
   public String getDescription() {
     return description;                               
+  }
+
+  public String getCreatedAt() {
+    return createdAt;                               
   }
 
  @Override

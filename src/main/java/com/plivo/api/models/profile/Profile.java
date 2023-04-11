@@ -24,6 +24,7 @@ public class Profile extends BaseResource {
   private String profileType;
   private String profileUUID;
   private String message;
+  private String createdAt;
   private ProfileResponse profile;
 
   
@@ -117,6 +118,10 @@ public String getProfileType(){
 
 public String getMessage(){                            
     return message;                                    
+}
+
+public String getCreatedAt(){
+  return createdAt;
 }
 
 public ProfileResponse getProfile() {

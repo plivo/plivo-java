@@ -18,7 +18,11 @@ public class Message extends BaseResource {
   private String totalRate;
   private Long units;
   private String powerpackID;
+  private String tendlcCampaignID;
+  private String tendlcRegistrationStatus;
+  private String destinationCountryIso2;
   private String requesterIP;
+  private Boolean isDomestic;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -50,6 +54,10 @@ public class Message extends BaseResource {
     return errorCode;
   }
 
+  public String getTendlcRegistrationStatus() {
+    return tendlcRegistrationStatus;
+    }
+
   public String getRequesterIP() {
     return requesterIP;
   }
@@ -58,6 +66,13 @@ public class Message extends BaseResource {
     return powerpackID;
   }
   
+  public String getTendlcCampaignID() {
+    return tendlcCampaignID;
+  }
+   public String getDestinationCountryIso2() {
+    return destinationCountryIso2;
+  }
+
   public String getFromNumber() {
     return fromNumber;
   }
@@ -100,6 +115,10 @@ public class Message extends BaseResource {
 
   public Long getUnits() {
     return units;
+  }
+
+  public Boolean getIsDomestic() {
+    return isDomestic;
   }
 
   @Override

@@ -1,8 +1,20 @@
 # Change Log
 
-## [5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-02-06)
+
+## [5.22.0](https://github.com/plivo/plivo-dotnet/tree/v5.22.0) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
 - Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [5.21.0](https://github.com/plivo/plivo-java/tree/v5.21.0) (2023-17-03)
+- Added New Param `created_at` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)
+and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
+
+## [5.20.0](https://github.com/plivo/plivo-java/tree/v5.20.0) (2023-02-23)
+- Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [5.19.2](https://github.com/plivo/plivo-java/tree/v5.19.2) (2023-02-23)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [5.19.1](https://github.com/plivo/plivo-java/tree/v5.19.1) (2022-01-31)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)

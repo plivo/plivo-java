@@ -24,6 +24,9 @@ public class MessageLister extends Lister<Message> {
   private MessageState messageState = null;
   private Long errorCode = null;
   private String powerpackID = null;
+  private String tendlcCampaignID = null;
+  private String tendlcRegistrationStatus =  null;
+  private String destinationCountryIso2 = null;
 
   public String subaccount() {
     return this.subaccount;
@@ -48,6 +51,16 @@ public class MessageLister extends Lister<Message> {
   public String powerpackID() {
     return this.powerpackID;
   }
+  public String tendlcCampaignID() {
+    return this.tendlcCampaignID;
+  }
+  public String tendlcRegistrationStatus() {
+    return this.tendlcRegistrationStatus;
+  }
+  public String destinationCountryIso2() {
+    return this.destinationCountryIso2;
+  }
+
 
   public MessageLister subaccount(final String subaccount) {
     this.subaccount = subaccount;
@@ -73,6 +86,21 @@ public class MessageLister extends Lister<Message> {
   public MessageLister errorCode(final Long errorCode) {
     this.errorCode = errorCode;
     return this;
+  }
+
+  public MessageLister tendlcCampaignID(final String tendlcCampaignID) {
+     this.tendlcCampaignID = tendlcCampaignID;
+     return this;
+  }
+
+  public MessageLister tendlcRegistrationStatus(final String tendlcRegistrationStatus) {
+     this.tendlcRegistrationStatus = tendlcRegistrationStatus;
+     return this;
+  }
+
+  public MessageLister destinationCountryIso2(final String destinationCountryIso2) {
+     this.destinationCountryIso2 = destinationCountryIso2;
+     return this;
   }
 
   public MessageLister powerpackID(final String powerpackID) {
