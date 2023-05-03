@@ -1,5 +1,7 @@
 # Change Log
 
+## [5.22.1](https://github.com/plivo/plivo-java/tree/v5.22.1) (2023-02-23)
+**Removed unwanted files from the repo **
 
 ## [5.22.0](https://github.com/plivo/plivo-dotnet/tree/v5.22.0) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
