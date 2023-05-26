@@ -16,6 +16,7 @@ public class NumberLister extends Lister<Number> {
   private String tendlcCampaignId;
   private String tollFreeSmsVerification;
   private PropertyFilter<String> renewalDate;
+  private String cnamLookup;
 
   public NumberType numberType() {
     return this.numberType;
@@ -51,6 +52,9 @@ public class NumberLister extends Lister<Number> {
   public PropertyFilter<String> renewalDate() {
     return this.renewalDate;
   }
+  public String cnamLookup() {
+    return this.cnamLookup;
+  }
 
   public NumberLister numberType(final NumberType numberType) {
     this.numberType = numberType;
@@ -62,7 +66,10 @@ public class NumberLister extends Lister<Number> {
     return this;
   }
 
-
+  public NumberLister cnamLookup(final String cnamLookup) {
+    this.cnamLookup = cnamLookup;
+    return this;
+  }
   public NumberLister numberStartswith(final String numberStartswith) {
     this.numberStartswith = numberStartswith;
     return this;
