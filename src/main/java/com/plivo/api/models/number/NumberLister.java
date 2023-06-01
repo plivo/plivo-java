@@ -2,6 +2,7 @@ package com.plivo.api.models.number;
 
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.base.Lister;
+import com.plivo.api.util.PropertyFilter;
 import retrofit2.Call;
 
 public class NumberLister extends Lister<Number> {
@@ -14,6 +15,7 @@ public class NumberLister extends Lister<Number> {
   private String tendlcRegistrationStatus;
   private String tendlcCampaignId;
   private String tollFreeSmsVerification;
+  private PropertyFilter<String> renewalDate;
 
   public NumberType numberType() {
     return this.numberType;
@@ -46,11 +48,20 @@ public class NumberLister extends Lister<Number> {
   public String tollFreeSmsVerification() {
     return this.tollFreeSmsVerification;
   }
+  public PropertyFilter<String> renewalDate() {
+    return this.renewalDate;
+  }
 
   public NumberLister numberType(final NumberType numberType) {
     this.numberType = numberType;
     return this;
   }
+
+  public NumberLister renewalDate(final PropertyFilter<String> renewalDate) {
+    this.renewalDate = renewalDate;
+    return this;
+  }
+
 
   public NumberLister numberStartswith(final String numberStartswith) {
     this.numberStartswith = numberStartswith;

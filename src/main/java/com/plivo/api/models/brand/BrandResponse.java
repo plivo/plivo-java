@@ -15,6 +15,7 @@ public class BrandResponse extends BaseResource {
         private String  registrationStatus;
         private String  vertical;
         private Address address;
+        private String createdAt;
         private AuthorizedContact authorizedContact;
 
   /**
@@ -74,6 +75,13 @@ public class BrandResponse extends BaseResource {
      */
     public Address  getAddress() {
         return address;
+    }
+
+    /**
+    * @return String return the getCreatedAt
+    */
+    public String getCreatedAt() {
+        return createdAt;
     }
 
     /**

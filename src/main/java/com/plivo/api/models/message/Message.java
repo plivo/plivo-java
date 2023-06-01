@@ -23,6 +23,7 @@ public class Message extends BaseResource {
   private String destinationCountryIso2;
   private String requesterIP;
   private Boolean isDomestic;
+  private String replacedSender;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -60,6 +61,10 @@ public class Message extends BaseResource {
 
   public String getRequesterIP() {
     return requesterIP;
+  }
+
+  public String getReplacedSender() {
+    return replacedSender;
   }
   
   public String getPowerpackID() {
