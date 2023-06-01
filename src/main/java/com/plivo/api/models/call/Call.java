@@ -33,6 +33,7 @@ public class Call extends BaseResource {
   private Integer hangupCauseCode;
   private String voiceNetworkGroup;
   private String sourceIp;
+  private String cnamLookup;
 
   public static CallCreator creator(String from, List<String> to, String answerUrl) {
     return new CallCreator(from, to, answerUrl);
@@ -161,9 +162,12 @@ public class Call extends BaseResource {
   public String getVoiceNetworkGroup(){
     return voiceNetworkGroup;
   }
-
   public String getSourceIp () {
     return sourceIp;
+  }
+
+  public String getCnamLookup() {
+    return cnamLookup;
   }
 
   public CallDeleter deleter() {
