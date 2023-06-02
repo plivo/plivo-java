@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.26.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.1) (2023-03-16)
+## [5.26.0](https://github.com/plivo/plivo-java/tree/v5.26.0) (2023-06-01)
 **Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
 - Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
 
