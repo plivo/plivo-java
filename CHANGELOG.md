@@ -3,7 +3,7 @@
 ## [5.27.0](https://github.com/plivo/plivo-dotnet/tree/v5.27.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
-- Added `cnam_lookup` filters to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
 - Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
 - Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
 
