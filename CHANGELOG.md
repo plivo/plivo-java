@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.27.0](https://github.com/plivo/plivo-dotnet/tree/v5.27.0) (2023-05-02)
+## [5.27.0](https://github.com/plivo/plivo-java/tree/v5.27.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
 - Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
