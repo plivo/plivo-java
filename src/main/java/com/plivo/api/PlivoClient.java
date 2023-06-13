@@ -260,9 +260,8 @@ public class PlivoClient {
    * @param authToken
    * @param httpClientBuilder
    */
-  public PlivoClient(String authId, String authToken, HttpClientBuilder httpClientBuilder) {
-    CloseableHttpClient httpClient = httpClientBuilder.build();
-    this(authId, authToken, httpClient, BASE_URL, simpleModule, LogLevel.NONE);
+  public PlivoClient(String authId, String authToken, CloseableHttpClient httpClientBuilder) {
+    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, LogLevel.NONE);
 }
   /**
    * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
@@ -317,9 +316,9 @@ public class PlivoClient {
    * @param httpClientBuilder
    * @param logLevel
    */
-  public PlivoClient(String authId, String authToken, HttpClientBuilder httpClientBuilder, LogLevel logLevel) {
-    CloseableHttpClient httpClient = httpClientBuilder.build();
-    this(authId, authToken, httpClient, BASE_URL, simpleModule, logLevel);
+  public PlivoClient(String authId, String authToken, CloseableHttpClient httpClientBuilder, LogLevel logLevel) {
+    // CloseableHttpClient httpClient = httpClientBuilder.build();
+    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, logLevel);
 }
 
   public static ObjectMapper getObjectMapper() {
