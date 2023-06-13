@@ -18,15 +18,16 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.plivo.api.models.base.LogLevel;
 import com.plivo.api.util.Utils;
-import okhttp3.Credentials;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Protocol;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
-import okhttp3.ConnectionPool;
+import org.apache.http.HttpRequestInterceptor;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HttpContext;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -133,7 +134,7 @@ public class PlivoClient {
    * @param simpleModule
    * @param logLevel
    */
-  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, final String baseUrl, final SimpleModule simpleModule, final LogLevel logLevel) {
+  public PlivoClient(String authId, String authToken, CloseableHttpClient httpClientBuilder, final String baseUrl, final SimpleModule simpleModule, final LogLevel logLevel) {
     if (!(Utils.isAccountIdValid(authId) || Utils.isSubaccountIdValid(authId))) {
       throw new IllegalArgumentException("invalid account ID");
     }
@@ -143,38 +144,34 @@ public class PlivoClient {
     this.objectMapper.registerModule(simpleModule);
     this.interceptor = new HttpLoggingInterceptor().setLevel(Level.valueOf(logLevel.toString()));
 
-    httpClient = httpClientBuilder
-      .addNetworkInterceptor(interceptor)
-      .addInterceptor(chain -> chain.proceed(
-        chain.request()
-          .newBuilder()
-          .addHeader("Authorization", Credentials.basic(getAuthId(), getAuthToken()))
-          .addHeader("User-Agent", String.format("%s/%s (Implementation: %s %s %s, Specification: %s %s %s)", "plivo-java", version,
-            Runtime.class.getPackage().getImplementationVendor(),
-            Runtime.class.getPackage().getImplementationTitle(),
-            Runtime.class.getPackage().getImplementationVersion(),
-            Runtime.class.getPackage().getSpecificationVendor(),
-            Runtime.class.getPackage().getSpecificationTitle(),
-            Runtime.class.getPackage().getSpecificationVersion()
-          ))
-          .build()
-      ))
-      .connectionPool(new ConnectionPool(5, 5, TimeUnit.MINUTES))
-      .addNetworkInterceptor(chain -> {
-        Response response;
-        try {
-          response = chain.proceed(chain.request());
-        } catch (ProtocolException protocolException) {
-          // We return bodies for HTTP 204!
-          response = new Response.Builder()
-            .request(chain.request())
-            .code(204)
-            .protocol(Protocol.HTTP_1_1)
-            .body(ResponseBody.create(null, new byte[]{}))
-            .build();
-        }
-        return response;
-      }).build();
+    httpClient  = HttpClientBuilder.create()
+        .addInterceptorFirst((HttpRequestInterceptor) (request, context) -> {
+            request.addHeader("Authorization", Credentials.basic(getAuthId(), getAuthToken()));
+            request.addHeader("User-Agent", String.format("%s/%s (Implementation: %s %s %s, Specification: %s %s %s)", "plivo-java", version,
+                    Runtime.class.getPackage().getImplementationVendor(),
+                    Runtime.class.getPackage().getImplementationTitle(),
+                    Runtime.class.getPackage().getImplementationVersion(),
+                    Runtime.class.getPackage().getSpecificationVendor(),
+                    Runtime.class.getPackage().getSpecificationTitle(),
+                    Runtime.class.getPackage().getSpecificationVersion()
+            ));
+        })
+        .setConnectionManager(new PoolingHttpClientConnectionManager(5, 5, TimeUnit.MINUTES))
+        .addInterceptorLast((HttpRequestInterceptor) (request, context) -> {
+            try {
+                HttpResponse response = context.getHttpClient().execute(request, context);
+                if (response.getStatusLine().getStatusCode() == 204) {
+                    response.setEntity(null);
+                    response.setStatusCode(204);
+                    response.setProtocolVersion(HttpVersion.HTTP_1_1);
+                    response.removeHeaders("Content-Length");
+                    response.removeHeaders("Content-Type");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        })
+      .build();
 
     retrofit = new Retrofit.Builder()
       .client(httpClient)
@@ -239,7 +236,14 @@ public class PlivoClient {
    * @param authToken
    */
   public PlivoClient(String authId, String authToken) {
-    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule, LogLevel.NONE);
+    RequestConfig requestConfig = RequestConfig.custom()
+            .setConnectTimeout(5000)
+            .build();
+
+    CloseableHttpClient httpClient = HttpClientBuilder.create()
+            .setDefaultRequestConfig(requestConfig)
+            .build();
+    this(authId, authToken, httpClient, BASE_URL, simpleModule, LogLevel.NONE);
   }
 
   /**
@@ -256,10 +260,10 @@ public class PlivoClient {
    * @param authToken
    * @param httpClientBuilder
    */
-  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, LogLevel.NONE);
-  }
-
+  public PlivoClient(String authId, String authToken, HttpClientBuilder httpClientBuilder) {
+    CloseableHttpClient httpClient = httpClientBuilder.build();
+    this(authId, authToken, httpClient, BASE_URL, simpleModule, LogLevel.NONE);
+}
   /**
    * Constructs a new PlivoClient instance. To set a proxy, timeout etc, you can pass in an OkHttpClient.Builder, on which you can set
    * the timeout and proxy using:
@@ -282,7 +286,14 @@ public class PlivoClient {
    * @param logLevel
    */
   public PlivoClient(String authId, String authToken, LogLevel logLevel) {
-    this(authId, authToken, new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS), BASE_URL, simpleModule, logLevel);
+    RequestConfig requestConfig = RequestConfig.custom()
+            .setConnectTimeout(5000)
+            .build();
+
+    CloseableHttpClient httpClient = HttpClientBuilder.create()
+            .setDefaultRequestConfig(requestConfig)
+            .build();
+    this(authId, authToken, httpClient, BASE_URL, simpleModule, logLevel);
   }
 
   /**
@@ -306,9 +317,10 @@ public class PlivoClient {
    * @param httpClientBuilder
    * @param logLevel
    */
-  public PlivoClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder, LogLevel logLevel) {
-    this(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, logLevel);
-  }
+  public PlivoClient(String authId, String authToken, HttpClientBuilder httpClientBuilder, LogLevel logLevel) {
+    CloseableHttpClient httpClient = httpClientBuilder.build();
+    this(authId, authToken, httpClient, BASE_URL, simpleModule, logLevel);
+}
 
   public static ObjectMapper getObjectMapper() {
     return objectMapper;

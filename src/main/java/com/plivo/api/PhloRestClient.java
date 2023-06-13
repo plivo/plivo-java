@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.plivo.api.models.base.LogLevel;
 import okhttp3.OkHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 
@@ -48,12 +50,14 @@ public class PhloRestClient {
   }
 
   public PhloRestClient(String authId, String authToken) {
-    this.client = new PlivoClient(authId, authToken, new OkHttpClient.Builder(), BASE_URL, simpleModule, LogLevel.NONE);
-  }
+    CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+    this.client = new PlivoClient(authId, authToken, httpClient, BASE_URL, simpleModule, LogLevel.NONE);
+}
 
-  public PhloRestClient(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-    this.client = new PlivoClient(authId, authToken, httpClientBuilder, BASE_URL, simpleModule, LogLevel.NONE);
-  }
+  public PhloRestClient(String authId, String authToken, HttpClientBuilder httpClientBuilder) {
+    CloseableHttpClient httpClient = httpClientBuilder.build();
+    this.client = new PlivoClient(authId, authToken, httpClient, BASE_URL, simpleModule, LogLevel.NONE);
+}
 
   public PlivoClient getClient() {
     return client;

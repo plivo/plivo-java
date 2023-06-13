@@ -2,6 +2,8 @@ package com.plivo.api;
 
 import com.plivo.api.models.base.LogLevel;
 import okhttp3.OkHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 public class Plivo {
 
@@ -16,8 +18,9 @@ public class Plivo {
         phloInstance = new PhloRestClient(authId, authToken).getClient();
     }
 
-  public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder) {
-      plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder);
+  public static synchronized void init(String authId, String authToken, HttpClientBuilder httpClientBuilder) {
+    CloseableHttpClient httpClient = httpClientBuilder.build();
+      plivoInstance = new PlivoClient(authId, authToken, httpClient);
   }
 
   public static synchronized void init(String authId, String authToken, LogLevel logLevel) {
@@ -25,9 +28,10 @@ public class Plivo {
     phloInstance = new PhloRestClient(authId, authToken).getClient();
   }
 
-  public static synchronized void init(String authId, String authToken, OkHttpClient.Builder httpClientBuilder,
+  public static synchronized void init(String authId, String authToken, HttpClientBuilder httpClientBuilder,
                                        LogLevel logLevel) {
-    plivoInstance = new PlivoClient(authId, authToken, httpClientBuilder, logLevel);
+                                          CloseableHttpClient httpClient = httpClientBuilder.build();
+    plivoInstance = new PlivoClient(authId, authToken, httpClient, logLevel);
   }
 
     /**
