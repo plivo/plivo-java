@@ -27,7 +27,7 @@ public class Number extends BaseResource {
   private String tollFreeSmsVerification;
   private String renewalDate;
   private String cnamLookup;
-  private String cnam
+  private String cnam;
 
 
   public Boolean getActive() {
