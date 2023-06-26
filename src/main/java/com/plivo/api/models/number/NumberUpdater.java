@@ -10,6 +10,9 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
   private String subaccount;
   private String alias;
   private String cnamLookup;
+  private String cnam;
+  private String callbackUrl;
+  private String callbackMethod;
 
   NumberUpdater(final String number) {
     super(number);
@@ -31,6 +34,18 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
     return this.cnamLookup;
   }
 
+  public String cnam() {
+    return this.cnam;
+  }
+
+  public String callbackUrl() {
+    return this.callbackUrl;
+  }
+
+  public String callbackMethod() {
+    return this.callbackMethod;
+  }
+
   public NumberUpdater appId(final String appId) {
     this.appId = appId;
     return this;
@@ -50,10 +65,25 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
     return this;
   }
 
+  public NumberUpdater cnam(final String cnam) {
+    this.cnam = cnam;
+    return this;
+  }
+
+  public NumberUpdater callbackUrl(final String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+  public NumberUpdater callbackMethod(final String callbackMethod) {
+    this.callbackMethod = callbackMethod;
+    return this;
+  }
+
   @Override
   protected void validate() {
     if (!Utils.anyNotNull(alias, subaccount, appId, cnamLookup)) {
-      throw new IllegalStateException("one of alias, subaccount, appId, cnamLookup must be non-null");
+      throw new IllegalStateException("one of alias, subaccount, appId, cnamLookup, cnam must be non-null");
     }
     super.validate();
   }

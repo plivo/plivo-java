@@ -8,6 +8,9 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
   private String number;
   private String appId;
   private String cnamLookup;
+  private String cnam;
+  private String callbackUrl;
+  private String callbackMethod;
 
   public PhoneNumberCreator(String number) {
     if (number == null) {
@@ -25,6 +28,18 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
     return this.cnamLookup;
   }
 
+  public String cnam() {
+    return this.cnam;
+  }
+
+  public String callbackUrl() {
+    return this.callbackUrl;
+  }
+
+  public String callbackMethod() {
+    return this.callbackMethod;
+  }
+
   public PhoneNumberCreator appId(final String appId) {
     this.appId = appId;
     return this;
@@ -32,6 +47,21 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
 
   public PhoneNumberCreator cnamLookup(final String cnamLookup) {
     this.cnamLookup = cnamLookup;
+    return this;
+  }
+
+  public PhoneNumberCreator cnam(final String cnam) {
+    this.cnam = cnam;
+    return this;
+  }
+
+  public PhoneNumberCreator callbackMethod(final String callbackMethod) {
+    this.callbackMethod = callbackMethod;
+    return this;
+  }
+
+  public PhoneNumberCreator callbackUrl(final String callbackUrl) {
+    this.callbackUrl = callbackUrl;
     return this;
   }
 
