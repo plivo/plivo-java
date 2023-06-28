@@ -82,7 +82,7 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
 
   @Override
   protected void validate() {
-    if (!Utils.anyNotNull(alias, subaccount, appId, cnamLookup)) {
+    if (!Utils.anyNotNull(alias, subaccount, appId, cnamLookup, cnam)) {
       throw new IllegalStateException("one of alias, subaccount, appId, cnamLookup, cnam must be non-null");
     }
     super.validate();
