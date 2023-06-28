@@ -22,6 +22,7 @@ public class CampaignResponse extends BaseResource{
     private String sample1;
     private String sample2;
     private String description;
+    private String createdAt;
     private CampaignAttributes campaignAttributes;
 
 
@@ -128,6 +129,14 @@ public class CampaignResponse extends BaseResource{
     public String getDescription() {
         return description;                               
     }
+
+    /**
+    * @return createdAt return the CreatedAt
+    */
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
                                               
                                                    
     @Override                                      

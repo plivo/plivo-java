@@ -7,6 +7,7 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
 
   private String number;
   private String appId;
+  private String cnamLookup;
 
   public PhoneNumberCreator(String number) {
     if (number == null) {
@@ -20,8 +21,17 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
     return this.appId;
   }
 
+  public String cnamLookup() {
+    return this.cnamLookup;
+  }
+
   public PhoneNumberCreator appId(final String appId) {
     this.appId = appId;
+    return this;
+  }
+
+  public PhoneNumberCreator cnamLookup(final String cnamLookup) {
+    this.cnamLookup = cnamLookup;
     return this;
   }
 

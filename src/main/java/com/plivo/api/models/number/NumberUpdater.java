@@ -9,6 +9,7 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
   private String appId;
   private String subaccount;
   private String alias;
+  private String cnamLookup;
 
   NumberUpdater(final String number) {
     super(number);
@@ -26,6 +27,10 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
     return this.alias;
   }
 
+  public String cnamLookup() {
+    return this.cnamLookup;
+  }
+
   public NumberUpdater appId(final String appId) {
     this.appId = appId;
     return this;
@@ -40,11 +45,15 @@ public class NumberUpdater extends Updater<NumberUpdateResponse> {
     this.alias = alias;
     return this;
   }
+  public NumberUpdater cnamLookup(final String cnamLookup) {
+    this.cnamLookup = cnamLookup;
+    return this;
+  }
 
   @Override
   protected void validate() {
-    if (!Utils.anyNotNull(alias, subaccount, appId)) {
-      throw new IllegalStateException("one of alias, subaccount, appId must be non-null");
+    if (!Utils.anyNotNull(alias, subaccount, appId, cnamLookup)) {
+      throw new IllegalStateException("one of alias, subaccount, appId, cnamLookup must be non-null");
     }
     super.validate();
   }

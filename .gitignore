@@ -4,6 +4,10 @@ build/
 .idea/
 
 *.class
+# IDE related files
+.classpath
+.project
+.settings/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -20,3 +24,6 @@ hs_err_pid*
 *.iml
 /target/
 .DS_Store
+
+# Local test files
+java-sdk-test/*
