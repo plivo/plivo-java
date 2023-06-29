@@ -2,8 +2,8 @@
 
 ## [5.28.0](https://github.com/plivo/plivo-java/tree/v5.28.0) (2023-06-28)
 **Feature - Stream API and XML support**
-- Stream create, delete, get API implemented
-- Stream XML creation ability implemented
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
 
 ## [5.27.0](https://github.com/plivo/plivo-java/tree/v5.27.0) (2023-05-02)
 **Feature - CNAM Lookup**
