@@ -1,13 +1,7 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.models.base.BaseResource;
-import com.plivo.api.models.call.actions.CallDtmfCreator;
-import com.plivo.api.models.call.actions.CallPlayCreator;
-import com.plivo.api.models.call.actions.CallPlayDeleter;
-import com.plivo.api.models.call.actions.CallRecordCreator;
-import com.plivo.api.models.call.actions.CallRecordDeleter;
-import com.plivo.api.models.call.actions.CallSpeakCreator;
-import com.plivo.api.models.call.actions.CallSpeakDeleter;
+import com.plivo.api.models.call.actions.*;
 import java.util.List;
 
 // TODO Date
@@ -61,6 +55,26 @@ public class Call extends BaseResource {
 
   public static CallRecordDeleter recordStopper(String callUuid) {
     return new CallRecordDeleter(callUuid);
+  }
+
+  public static CallStreamCreator streamer(String callUuid, String serviceUrl) {
+    return new CallStreamCreator(callUuid, serviceUrl);
+  }
+
+  public static CallStreamDeleter streamStopper(String callUuid) {
+    return new CallStreamDeleter(callUuid);
+  }
+
+  public static CallStreamDeleteSpecific streamStopSpecific(String callUuid, String streamId) {
+    return new CallStreamDeleteSpecific(callUuid, streamId);
+  }
+
+  public static CallStreamGetter streamGetter(String callUuid) {
+    return new CallStreamGetter(callUuid);
+  }
+
+  public static CallStreamGetSpecific streamGetSpecific(String callUuid, String streamId) {
+    return new CallStreamGetSpecific(callUuid, streamId);
   }
 
   public static CallPlayCreator player(String callUuid, List<String> urls) {

@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.28.0](https://github.com/plivo/plivo-java/tree/v5.28.0) (2023-06-28)
+**Feature - Stream API and XML support**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
 ## [5.27.0](https://github.com/plivo/plivo-java/tree/v5.27.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
