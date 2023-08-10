@@ -5,7 +5,7 @@ public class PhoneNumberCreationStatus {
   private String number;
   private String status;
   private String NewCnam;
-  private String CnamUpdateStatus
+  private String CnamUpdateStatus;
 
   public String getNumber() {
     return number;
