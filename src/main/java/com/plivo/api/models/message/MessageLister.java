@@ -63,15 +63,6 @@ public class MessageLister extends Lister<Message> {
   public String destinationCountryIso2() {
     return this.destinationCountryIso2;
   }
-  public String destinationNetwork() {
-    return this.destinationNetwork;
-  }
-  public String carrierFeesRate() {
-    return this.carrierFeesRate;
-  }
-  public String carrierFees() {
-    return this.carrierFees;
-  }
 
   public MessageLister subaccount(final String subaccount) {
     this.subaccount = subaccount;
@@ -112,21 +103,6 @@ public class MessageLister extends Lister<Message> {
   public MessageLister destinationCountryIso2(final String destinationCountryIso2) {
      this.destinationCountryIso2 = destinationCountryIso2;
      return this;
-  }
-
-  public MessageLister destinationNetwork(final String destinationNetwork) {
-    this.destinationNetwork = destinationNetwork;
-    return this;
-  }
-
-  public MessageLister carrierFeesRate(final String carrierFeesRate) {
-    this.carrierFeesRate = carrierFeesRate;
-    return this;
-  }
-
-  public MessageLister carrierFees(final String carrierFees) {
-    this.carrierFees = carrierFees;
-    return this;
   }
 
   public MessageLister powerpackID(final String powerpackID) {
