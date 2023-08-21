@@ -27,9 +27,6 @@ public class MessageLister extends Lister<Message> {
   private String tendlcCampaignID = null;
   private String tendlcRegistrationStatus =  null;
   private String destinationCountryIso2 = null;
-  private String destinationNetwork = null;
-  private String carrierFeesRate = null;
-  private String carrierFees = null;
 
   public String subaccount() {
     return this.subaccount;
