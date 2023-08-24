@@ -27,6 +27,9 @@ public class Message extends BaseResource {
   private String requesterIP;
   private Boolean isDomestic;
   private String replacedSender;
+  private String dltEntityID;
+  private String dltTemplateID;
+  private String dltTemplateCategory;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -139,6 +142,18 @@ public class Message extends BaseResource {
 
   public Boolean getIsDomestic() {
     return isDomestic;
+  }
+
+  public String getDltEntityID() {
+    return dltEntityID;
+  }
+
+  public String getDltTemplateID() {
+    return dltTemplateID;
+  }
+
+  public String getDltTemplateCategory() {
+    return dltTemplateCategory;
   }
 
   @Override

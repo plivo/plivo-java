@@ -31,6 +31,9 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private String[] media_urls = null;
   private String[] media_ids = null;
   private Long message_expiry;
+  private String dlt_entity_id;
+  private String dlt_template_id;
+  private String dlt_template_category;
 
 
   /**
@@ -127,9 +130,21 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this.media_ids;
   }
 
-public Long message_expiry() {
-    return this.message_expiry;
-}
+  public Long message_expiry() {
+      return this.message_expiry;
+  }
+
+  public String dlt_entity_id() {
+    return this.dlt_entity_id;
+  }
+
+  public String dlt_template_id() {
+    return this.dlt_template_id;
+  }
+
+  public String dlt_template_category() {
+    return this.dlt_template_category;
+  }
 
   /**
    * @param type Must be {@link MessageType#SMS}
@@ -193,6 +208,29 @@ public Long message_expiry() {
     return this;
   }
 
+  /**
+   * @param dlt_entity_id This is the DLT entity id passed in the message request.
+   */
+  public MessageCreator dlt_entity_id(final String dlt_entity_id) {
+    this.dlt_entity_id = dlt_entity_id;
+    return this;
+  }
+
+  /**
+   * @param dlt_template_id This is the DLT template id passed in the message request.
+   */
+  public MessageCreator dlt_template_id(final String dlt_template_id) {
+    this.dlt_template_id = dlt_template_id;
+    return this;
+  }
+
+  /**
+   * @param dlt_template_category This is the DLT template category passed in the message request.
+   */
+  public MessageCreator dlt_template_category(final String dlt_template_category) {
+    this.dlt_template_category = dlt_template_category;
+    return this;
+  }
 
   @Override
   protected Call < MessageCreateResponse > obtainCall() {

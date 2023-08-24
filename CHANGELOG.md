@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.29.0](https://github.com/plivo/plivo-java/tree/v5.29.0) (2023-08-03)
+**Feature - DLT parameters**
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
 ## [5.28.0](https://github.com/plivo/plivo-java/tree/v5.28.0) (2023-06-28)
 **Feature - Stream API and XML support**
 - API support for starting, deleting, getting streams on a live call
