@@ -61,7 +61,6 @@ public class MessageLister extends Lister<Message> {
     return this.destinationCountryIso2;
   }
 
-
   public MessageLister subaccount(final String subaccount) {
     this.subaccount = subaccount;
     return this;

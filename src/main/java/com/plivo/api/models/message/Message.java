@@ -21,6 +21,9 @@ public class Message extends BaseResource {
   private String tendlcCampaignID;
   private String tendlcRegistrationStatus;
   private String destinationCountryIso2;
+  private String destinationNetwork;
+  private String carrierFeesRate;
+  private String carrierFees;
   private String requesterIP;
   private Boolean isDomestic;
   private String replacedSender;
@@ -79,6 +82,18 @@ public class Message extends BaseResource {
   }
    public String getDestinationCountryIso2() {
     return destinationCountryIso2;
+  }
+
+  public String getDestinationNetwork() {
+    return destinationNetwork;
+  }
+
+  public String getCarrierFeesRate() {
+    return carrierFeesRate;
+  }
+
+  public String getCarrierFees() {
+    return carrierFees;
   }
 
   public String getFromNumber() {
