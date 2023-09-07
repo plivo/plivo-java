@@ -1,0 +1,44 @@
+{
+  "api_id": "ea0b270f-411f-4f8e-af9e-ae91823c0d14",
+  "meta": {
+    "limit": 1,
+    "offset": 0,
+    "next": "/v1/Account/MAODZKMDFJMJU3MTEYNG/Verify/Session/?limit=1&offset=1",
+    "previous": null
+  },
+  "sessions": [
+    {
+      "session_uuid": "78ae7ada-b87c-449c-86b7-91443da3a68b",
+      "app_uuid": "34ee0c1f-c5af-4658-9c71-d9c7a14de9ed",
+      "alias": "",
+      "recipient": "918681951370",
+      "channel": "voice",
+      "status": "expired",
+      "count": 1,
+      "requestor_ip": "10.0.23.253",
+      "destination_country_iso2": "IN",
+      "destination_network": "IDEA",
+      "attempt_details": [
+        {
+          "channel": "voice",
+          "attempt_uuid": "e4bc0347-6c69-4626-a1f8-830fd898fde2",
+          "status": "answer",
+          "time": "2023-09-06T13:02:46.08128+05:30"
+        }
+      ],
+      "charges": {
+        "total_charge": "0.00600",
+        "validation_charge": "0.0000",
+        "attempt_charges": [
+          {
+            "attempt_uuid": "e4bc0347-6c69-4626-a1f8-830fd898fde2",
+            "channel": "voice",
+            "charge": "0.00600"
+          }
+        ]
+      },
+      "created_at": "2023-09-06T13:02:46.049845+05:30",
+      "updated_at": "2023-09-06T13:02:46.08128+05:30"
+    }
+  ]
+}

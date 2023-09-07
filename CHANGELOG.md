@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.30.0](https://github.com/plivo/plivo-java/tree/v5.30.0) (2023-09-15)
+**Verify Service**
+- Create Session
+- Validate Session
+- Get Session
+- List Session
+
 ## [5.29.0](https://github.com/plivo/plivo-java/tree/v5.29.0) (2023-08-03)
 **Feature - DLT parameters**
 - Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
