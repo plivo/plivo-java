@@ -308,7 +308,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Campaign/")
   Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> campaignListRequest, 
-                                            @Query("limit") Integer limit, @Query("offset") Integer offset);
+                                            @Query("limit") Integer limit, @Query("offset") Integer offset, @Query("campaign_source") String campaignSource);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);

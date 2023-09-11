@@ -8,7 +8,8 @@ import com.plivo.api.models.campaign.Campaign;
 
 public class CampaignLister extends MessagingCampaignLister<Campaign> {
   private Integer limit;
-  private Integer offset;
+  private Integer offse
+  private String campaignSource;
 
   public CampaignLister limit(Integer limit) {
     this.limit = limit;
@@ -21,9 +22,14 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
     return this;
 
   }
+  public CampaignLister campaignSource(String campaignSource) {
+    this.campaignSource = campaignSource;
+    return this;
+
+  }
 
   @Override
   protected Call<ListResponse<Campaign>> obtainCall() {
-    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset);
+    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset, campaignSource);
   }
 }
