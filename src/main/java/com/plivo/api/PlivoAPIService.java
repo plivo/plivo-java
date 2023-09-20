@@ -748,7 +748,7 @@ public interface PlivoAPIService {
                                           @Body SessionCreator sessionCreator);
 
   @POST("Account/{authId}/Verify/Session/{id}/")
-  Call<SessionCreateResponse> validateSessionSend(@Path("authId") String authId, @Path("id") String id,
+  Call<SessionCreateResponse> validateSession(@Path("authId") String authId, @Path("id") String id,
                                           @Body ValidateSession validateSession);
   @GET("Account/{authId}/Verify/Session/{id}/")
   Call<VerifySession> sessionGet(@Path("authId") String authId, @Path("id") String id);

@@ -26,7 +26,7 @@ public class ValidateSession extends Creator< SessionCreateResponse > {
 
   @Override
   protected Call<SessionCreateResponse> obtainCall() {
-    return client().getApiService().validateSessionSend(client().getAuthId(), this.id, this);
+    return client().getApiService().validateSession(client().getAuthId(), this.id, this);
   }
 
 }
