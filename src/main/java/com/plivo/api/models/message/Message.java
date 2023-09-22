@@ -30,6 +30,9 @@ public class Message extends BaseResource {
   private String dltEntityID;
   private String dltTemplateID;
   private String dltTemplateCategory;
+  private String conversationID;
+  private String conversationOrigin;
+  private String conversationTimeStamp;
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -156,6 +159,18 @@ public class Message extends BaseResource {
     return dltTemplateCategory;
   }
 
+  public String getConversationID() {
+    return conversationID;
+  }
+
+  public String getConversationOrigin() {
+    return conversationOrigin;
+  }
+
+  public String getConversationTimeStamp() {
+    return conversationTimeStamp;
+  }
+  
   @Override
   public String getId() {
     return getMessageUuid();

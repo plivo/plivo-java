@@ -2,6 +2,7 @@ package com.plivo.api.models.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.serializers.DelimitedListSerializer;
 import com.plivo.api.util.Utils;
@@ -34,7 +35,8 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private String dlt_entity_id;
   private String dlt_template_id;
   private String dlt_template_category;
-
+  @JsonProperty("template")
+  private Template template;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -229,6 +231,22 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    */
   public MessageCreator dlt_template_category(final String dlt_template_category) {
     this.dlt_template_category = dlt_template_category;
+    return this;
+  }
+
+  /**
+   * @param template This is the template passed in the whatsapp message request.
+   */
+  public MessageCreator template(final String templateJson) {
+
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      this.template = objectMapper.readValue(templateJson, Template.class);
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read template");
+    }
+    
     return this;
   }
 
