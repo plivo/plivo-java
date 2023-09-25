@@ -34,6 +34,10 @@ public class Message extends BaseResource {
   private String conversationOrigin;
   private String conversationTimeStamp;
 
+  public static MessageCreator creator(String source, String destination, MessageType type, Template template, String templateJson, String text) {
+    return new MessageCreator(source, destination, type, template, templateJson, text);
+  }
+
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
   }
