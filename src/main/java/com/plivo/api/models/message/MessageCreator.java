@@ -41,51 +41,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   /**
    * @param source The phone number that will be shown as the sender ID.
    * @param destination The numbers to which the message will be sent in string format.
-   * @param type The message type that will be sent.
-   * @param template The templated whatsapp messages.
-   * @param templateJson text representation of the json templates (optional).
-   * @param text The text message that will be sent incase of non-templated  whatsapp message.
-   */
-
-  MessageCreator(String source, String destination, MessageType type, Template template, String templateJson, String text) {
-    if (!Utils.allNotNull(source, destination)) {
-      throw new IllegalArgumentException("source, destination must not be null");
-    }
-    if (destination.equals(source)) {
-      throw new IllegalArgumentException("destination cannot include source");
-    }
-    if (!type.equals(MessageType.WHATSAPP) && (Utils.allNotNull(template) || Utils.isNonEmptyString(templateJson))) {
-      throw new IllegalArgumentException("template paramater is only applicable when message type is whatsapp");
-    }
-    if (Utils.allNotNull(template) && Utils.isNonEmptyString(templateJson)) {
-      throw new IllegalArgumentException("either use template paramater as a text or a template object, both are not allowed");
-    }
-    if (Utils.allNotNull(template) && Utils.isNonEmptyString(text)) {
-      throw new IllegalArgumentException("either send a templated whatsapp message or a text whatsapp message");
-    }
-    if (Utils.isNonEmptyString(templateJson) && Utils.isNonEmptyString(text)) {
-      throw new IllegalArgumentException("either send a templated whatsapp message or a text whatsapp message");
-    }
-    if (Utils.isNonEmptyString(templateJson))  {
-      try {
-        ObjectMapper objectMapper = new ObjectMapper();
-        this.template = objectMapper.readValue(templateJson, Template.class);
-      } catch (Exception e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException("failed to read template");
-      }
-    } else {
-      this.template = template;
-    }
-    this.source = source;
-    this.destination = Collections.singletonList(destination);
-    this.type = type;
-    this.text = text;
-  }
-
-  /**
-   * @param source The phone number that will be shown as the sender ID.
-   * @param destination The numbers to which the message will be sent in string format.
    * @param text The text message that will be sent.
    */
 
@@ -279,21 +234,59 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this;
   }
 
-  // /**
-  //  * @param template This is the template passed in the whatsapp message request.
-  //  */
-  // public MessageCreator template(final String templateJson) {
+  /**
+   * @param template_string This is the template passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator template_string(final String template_string) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Template temp = objectMapper.readValue(template_string, Template.class);
+      if (temp.getName() == null || temp.getName().isEmpty()) {
+        throw new IllegalArgumentException("template name must not be null or empty");
+      }
+      if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+          throw new IllegalArgumentException("template language must not be null or empty");
+      }
+      this.template = temp;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read template");
+    }
+    return this;
+  }
 
-  //   try {
-  //     ObjectMapper objectMapper = new ObjectMapper();
-  //     this.template = objectMapper.readValue(templateJson, Template.class);
-  //   } catch (Exception e) {
-  //       	e.printStackTrace();
-  //         throw new IllegalArgumentException("failed to read template");
-  //   }
+  /**
+   * @param temp This is the template passed as a template object in the whatsapp message request.
+   */
+  public MessageCreator template(final Template temp) {
+    if (type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    if (temp.getName() == null || temp.getName().isEmpty()) {
+      throw new IllegalArgumentException("template name must not be null or empty");
+    }
+    if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+        throw new IllegalArgumentException("template language must not be null or empty");
+    }
+    this.template = temp;
     
-  //   return this;
-  // }
+    return this;
+  }
 
   @Override
   protected Call < MessageCreateResponse > obtainCall() {
