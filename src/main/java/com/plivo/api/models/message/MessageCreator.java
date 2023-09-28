@@ -235,9 +235,9 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   }
 
   /**
-   * @param template_string This is the template passed as a json string in the whatsapp message request.
+   * @param template_json_string This is the template passed as a json string in the whatsapp message request.
    */
-  public MessageCreator template_string(final String template_string) {
+  public MessageCreator template_json_string(final String template_json_string) {
     if (this.type == null) {
       this.type = MessageType.WHATSAPP;
     } else {
@@ -249,7 +249,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     }
     try {
       ObjectMapper objectMapper = new ObjectMapper();
-      Template temp = objectMapper.readValue(template_string, Template.class);
+      Template temp = objectMapper.readValue(template_json_string, Template.class);
       if (temp.getName() == null || temp.getName().isEmpty()) {
         throw new IllegalArgumentException("template name must not be null or empty");
       }
