@@ -21,7 +21,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
   private final List < String > destination;
-  private final String text;
+  private String text;
   @JsonProperty("powerpack_uuid")
   private String powerpackUUID;
   private MessageType type = null;
@@ -61,6 +61,21 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
       this.text = text;
     }
 
+  }
+
+   /**
+   * @param source The phone number that will be shown as the sender.
+   * @param destination The numbers to which the message will be sent.
+   */
+  MessageCreator(String source, String destination) {
+    if (!Utils.allNotNull(source, destination)) {
+      throw new IllegalArgumentException("source, destination must not be null");
+    }
+    if (destination.equals(source)) {
+      throw new IllegalArgumentException("destination cannot include source");
+    }
+    this.source = source;
+    this.destination = Collections.singletonList(destination);
   }
 
   /**
