@@ -27,6 +27,7 @@ public class MessageLister extends Lister<Message> {
   private String tendlcCampaignID = null;
   private String tendlcRegistrationStatus =  null;
   private String destinationCountryIso2 = null;
+  private MessageType messageType = null;
   private String conversationID = null;
   private String conversationOrigin = null;
 
@@ -64,6 +65,10 @@ public class MessageLister extends Lister<Message> {
 
   public String destinationCountryIso2() {
     return this.destinationCountryIso2;
+  }
+
+  public MessageType messageType() {
+    return this.messageType;
   }
 
   public String conversationID() {
@@ -118,6 +123,11 @@ public class MessageLister extends Lister<Message> {
   public MessageLister powerpackID(final String powerpackID) {
      this.powerpackID = powerpackID;
      return this;
+  }
+
+  public MessageLister messageType(final MessageType messageType) {
+    this.messageType = messageType;
+    return this;
   }
 
   public MessageLister conversationID(final String conversationID) {
