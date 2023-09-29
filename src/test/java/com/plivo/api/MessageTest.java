@@ -177,7 +177,7 @@ public class MessageTest extends BaseTest {
     assertEquals(expectedDLTTemplateCategory, message.getDltTemplateCategory());
     assertEquals(expectedConversationID, message.getConversationID());
     assertEquals(expectedConversationOrigin, message.getConversationOrigin());
-    assertEquals(expectedConversationExpirationTimestamp, message.getConversationTimeStamp());
+    assertEquals(expectedConversationExpirationTimestamp, message.getConversationExpirationTimestamp());
   }
 
   @Test
@@ -234,11 +234,11 @@ public class MessageTest extends BaseTest {
 
     assertEquals(expectedConversationID, response.getObjects().get(0).getConversationID());
     assertEquals(expectedConversationOrigin, response.getObjects().get(0).getConversationOrigin());
-    assertEquals(expectedConversationExpirationTimestamp, response.getObjects().get(0).getConversationTimeStamp());
+    assertEquals(expectedConversationExpirationTimestamp, response.getObjects().get(0).getConversationExpirationTimestamp());
 
     assertEquals("", response.getObjects().get(19).getConversationID());
     assertEquals("", response.getObjects().get(19).getConversationOrigin());
-    assertEquals("", response.getObjects().get(19).getConversationTimeStamp());
+    assertEquals("", response.getObjects().get(19).getConversationExpirationTimestamp());
 
   }
 

@@ -32,7 +32,7 @@ public class Message extends BaseResource {
   private String dltTemplateCategory;
   private String conversationID;
   private String conversationOrigin;
-  private String conversationTimeStamp;
+  private String conversationExpirationTimestamp;
 
   public static MessageCreator creator(String source, String destination) {
     return new MessageCreator(source, destination);
@@ -171,8 +171,8 @@ public class Message extends BaseResource {
     return conversationOrigin;
   }
 
-  public String getConversationTimeStamp() {
-    return conversationTimeStamp;
+  public String getConversationExpirationTimestamp() {
+    return conversationExpirationTimestamp;
   }
   
   @Override
