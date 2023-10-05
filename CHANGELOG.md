@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.31.1](https://github.com/plivo/plivo-java/tree/v5.31.1) (2023-10-05)
+**Feature - WhatsApp message support**
+- Version bump
+
 ## [5.31.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-10-05)
 **Feature - WhatsApp message support**
 - Added new params `template`, `template_json_string` and new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
