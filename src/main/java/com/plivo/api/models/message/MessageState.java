@@ -4,8 +4,8 @@ package com.plivo.api.models.message;
  * Possible states a message can be in.
  */
 public enum MessageState {
-  QUEUED("queued"), SENT("sent"), FAILED("failed"), DELIVERED("delivered"), UNDELIVERED(
-    "undelivered"), REJECTED("rejected");
+  QUEUED("queued"), SENT("sent"), FAILED("failed"), DELIVERED("delivered"), READ("read"),
+  UNDELIVERED("undelivered"), REJECTED("rejected");
 
   private String state;
 

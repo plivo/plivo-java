@@ -1,10 +1,10 @@
 package com.plivo.api.models.message;
 
 /**
- * Possible types of a message. For now, only SMS is allowed.
+ * Possible types of a message.
  */
 public enum MessageType {
-  SMS("sms"),  MMS("mms");
+  SMS("sms"),  MMS("mms"), WHATSAPP("whatsapp");
 
   private final String type;
 

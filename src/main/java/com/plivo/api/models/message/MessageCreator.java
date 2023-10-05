@@ -2,6 +2,7 @@ package com.plivo.api.models.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.serializers.DelimitedListSerializer;
 import com.plivo.api.util.Utils;
@@ -20,7 +21,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
   private final List < String > destination;
-  private final String text;
+  private String text;
   @JsonProperty("powerpack_uuid")
   private String powerpackUUID;
   private MessageType type = null;
@@ -34,7 +35,8 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private String dlt_entity_id;
   private String dlt_template_id;
   private String dlt_template_category;
-
+  @JsonProperty("template")
+  private Template template;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -59,6 +61,21 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
       this.text = text;
     }
 
+  }
+
+   /**
+   * @param source The phone number that will be shown as the sender.
+   * @param destination The numbers to which the message will be sent.
+   */
+  MessageCreator(String source, String destination) {
+    if (!Utils.allNotNull(source, destination)) {
+      throw new IllegalArgumentException("source, destination must not be null");
+    }
+    if (destination.equals(source)) {
+      throw new IllegalArgumentException("destination cannot include source");
+    }
+    this.source = source;
+    this.destination = Collections.singletonList(destination);
   }
 
   /**
@@ -229,6 +246,60 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    */
   public MessageCreator dlt_template_category(final String dlt_template_category) {
     this.dlt_template_category = dlt_template_category;
+    return this;
+  }
+
+  /**
+   * @param template_json_string This is the template passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator template_json_string(final String template_json_string) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Template temp = objectMapper.readValue(template_json_string, Template.class);
+      if (temp.getName() == null || temp.getName().isEmpty()) {
+        throw new IllegalArgumentException("template name must not be null or empty");
+      }
+      if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+          throw new IllegalArgumentException("template language must not be null or empty");
+      }
+      this.template = temp;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read template");
+    }
+    return this;
+  }
+
+  /**
+   * @param temp This is the template passed as a template object in the whatsapp message request.
+   */
+  public MessageCreator template(final Template temp) {
+    if (type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    if (temp.getName() == null || temp.getName().isEmpty()) {
+      throw new IllegalArgumentException("template name must not be null or empty");
+    }
+    if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+        throw new IllegalArgumentException("template language must not be null or empty");
+    }
+    this.template = temp;
+    
     return this;
   }
 
