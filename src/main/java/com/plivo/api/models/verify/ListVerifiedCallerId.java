@@ -7,7 +7,7 @@ import retrofit2.Call;
 public class ListVerifiedCallerId extends VoiceGetter<ListVerifiedCallerIdResponse> {
 
 
-  public ListVerifiedCallerId(String id) {
+  public ListVerifiedCallerId() {
     super("");
   }
 

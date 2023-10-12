@@ -10,7 +10,7 @@ public class InitiateVerify extends VoiceCreator<InitiateVerifyResponse> {
   private String channel;
   private String country;
   private String subaccount;
-  private Integer accountId;
+  private int accountId;
   private String authId;
   private String authToken;
 
