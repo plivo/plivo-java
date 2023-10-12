@@ -753,7 +753,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/VerifiedCallerId/{phoneNumber}")
   Call<GetVerifiedCallerIdResponse> getVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
 
-  @GET("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  @GET("Account/{authId}/VerifiedCallerId}")
   Call<ListVerifiedCallerIdResponse> listVerifiedCallerID(@Path("authId") String authId, @QueryMap Map<String, Object> listVerifiedCallerId);
 
   @DELETE("Account/{authId}/VerifiedCallerId/{phoneNumber}")
