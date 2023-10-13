@@ -2,15 +2,13 @@ package com.plivo.api.models.verify;
 
 import com.plivo.api.models.base.BaseResponse;
 
-import java.util.Date;
-
 public class UpdateVerifiedCallerIdResponse extends BaseResponse {
 
   private String alias;
   private String apiId;
   private String country;
-  private Date createdAt;
-  private Date modifiedAt;
+  private String createdAt;
+  private String modifiedAt;
   private String phoneNumber;
   private String subaccount;
   private String verificationUuid;
@@ -23,11 +21,11 @@ public class UpdateVerifiedCallerIdResponse extends BaseResponse {
     return country;
   }
 
-  public Date getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
-  public Date getModifiedAt() {
+  public String getModifiedAt() {
     return modifiedAt;
   }
 

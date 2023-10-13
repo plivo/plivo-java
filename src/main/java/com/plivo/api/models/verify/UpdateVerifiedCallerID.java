@@ -21,12 +21,12 @@ public class UpdateVerifiedCallerID extends VoiceUpdater<UpdateVerifiedCallerIdR
     return subaccount;
   }
 
-  public UpdateVerifiedCallerID alias(final String otp) {
+  public UpdateVerifiedCallerID alias(final String alias) {
     this.alias = alias;
     return this;
   }
 
-  public UpdateVerifiedCallerID subaccount(final String otp) {
+  public UpdateVerifiedCallerID subaccount(final String subaccount) {
     this.subaccount = subaccount;
     return this;
   }
