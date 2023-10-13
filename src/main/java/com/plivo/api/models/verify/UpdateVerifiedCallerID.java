@@ -13,18 +13,36 @@ public class UpdateVerifiedCallerID extends VoiceUpdater<UpdateVerifiedCallerIdR
     super(id);
   }
 
+  public String getAlias() {
+    return alias;
+  }
+
+  public String getSubaccount() {
+    return subaccount;
+  }
+
+  public UpdateVerifiedCallerID alias(final String otp) {
+    this.alias = alias;
+    return this;
+  }
+
+  public UpdateVerifiedCallerID subaccount(final String otp) {
+    this.subaccount = subaccount;
+    return this;
+  }
+
   @Override
-  protected Call obtainCall() throws PlivoValidationException {
+  protected Call<UpdateVerifiedCallerIdResponse> obtainCall() throws PlivoValidationException {
     return client().getVoiceApiService().updateVerifiedCallerID(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call obtainFallback1Call() throws PlivoValidationException {
+  protected Call<UpdateVerifiedCallerIdResponse> obtainFallback1Call() throws PlivoValidationException {
     return client().getVoiceFallback1Service().updateVerifiedCallerID(client().getAuthId(), id, this);
   }
 
   @Override
-  protected Call obtainFallback2Call() throws PlivoValidationException {
+  protected Call<UpdateVerifiedCallerIdResponse> obtainFallback2Call() throws PlivoValidationException {
     return client().getVoiceFallback2Service().updateVerifiedCallerID(client().getAuthId(), id, this);
   }
 }

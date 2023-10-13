@@ -16,6 +16,15 @@ public class VerifyCallerId extends VoiceCreator<VerifyCallerIdResponse> {
     this.id = id;
   }
 
+  public String getOtp() {
+    return otp;
+  }
+
+  public VerifyCallerId otp(final String otp) {
+    this.otp = otp;
+    return this;
+  }
+
   @Override
   protected Call<VerifyCallerIdResponse> obtainCall() {
     return client().getVoiceApiService().verifyCallerID(client().getAuthId(),id,this);
