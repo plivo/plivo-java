@@ -9,8 +9,8 @@ public class ListVerifiedCallerId extends VoiceGetter<ListVerifiedCallerIdRespon
   private String country;
   private String subaccount;
   private String alias;
-  private int limit;
-  private int offset;
+  private Integer limit;
+  private Integer offset;
 
   public String getCountry() {
     return country;
@@ -24,11 +24,11 @@ public class ListVerifiedCallerId extends VoiceGetter<ListVerifiedCallerIdRespon
     return alias;
   }
 
-  public int getLimit() {
+  public Integer getLimit() {
     return limit;
   }
 
-  public int getOffset() {
+  public Integer getOffset() {
     return offset;
   }
 
