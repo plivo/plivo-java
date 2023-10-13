@@ -8,4 +8,8 @@ public class InitiateVerifyResponse extends BaseResponse {
   private String message;
 
   private String verificationUuid;
+
+  public String getVerificationUuid() {
+    return verificationUuid;
+  }
 }

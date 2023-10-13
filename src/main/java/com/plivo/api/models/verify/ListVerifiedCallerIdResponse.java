@@ -13,6 +13,15 @@ public class ListVerifiedCallerIdResponse extends BaseResource {
 
   private List<ListVerifyResponse> objects;
 
+
+  public String getMeta() {
+    return meta;
+  }
+
+  public List<ListVerifyResponse> getObjects() {
+    return objects;
+  }
+
   @Override
   public String getId() throws PlivoValidationException {
     return null;

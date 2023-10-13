@@ -8,11 +8,7 @@ public class InitiateVerify extends VoiceCreator<InitiateVerifyResponse> {
   private String phoneNumber;
   private String alias;
   private String channel;
-  private String country;
   private String subaccount;
-  private int accountId;
-  private String authId;
-  private String authToken;
 
   public String getPhoneNumber() {
     return phoneNumber;
@@ -23,20 +19,8 @@ public class InitiateVerify extends VoiceCreator<InitiateVerifyResponse> {
   public String getChannel() {
     return channel;
   }
-  public String getCountry() {
-    return country;
-  }
   public String getSubaccount() {
     return subaccount;
-  }
-  public int getAccountId() {
-    return accountId;
-  }
-  public String getAuthId() {
-    return authId;
-  }
-  public String getAuthToken() {
-    return authToken;
   }
 
   public InitiateVerify phoneNumber(final String phoneNumber) {
@@ -51,27 +35,10 @@ public class InitiateVerify extends VoiceCreator<InitiateVerifyResponse> {
     this.channel = channel;
     return this;
   }
-  public InitiateVerify country(final String country) {
-    this.country = country;
-    return this;
-  }
   public InitiateVerify subaccount(final String subaccount) {
     this.subaccount = subaccount;
     return this;
   }
-  public InitiateVerify accountId(final int accountId) {
-    this.accountId = accountId;
-    return this;
-  }
-  public InitiateVerify authId(final String authId) {
-    this.authId = authId;
-    return this;
-  }
-  public InitiateVerify authToken(final String authToken) {
-    this.authToken = authToken;
-    return this;
-  }
-
 
   @Override
   protected Call<InitiateVerifyResponse> obtainCall() {

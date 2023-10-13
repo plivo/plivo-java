@@ -16,6 +16,34 @@ public class GetVerifiedCallerIdResponse extends BaseResource {
   private String subaccount;
   private String verificationUuid;
 
+  public String getAlias() {
+    return alias;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public Date getModifiedAt() {
+    return modifiedAt;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public String getSubaccount() {
+    return subaccount;
+  }
+
+  public String getVerificationUuid() {
+    return verificationUuid;
+  }
+
   @Override
   public String getId() throws PlivoValidationException {
     return null;
