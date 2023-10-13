@@ -44,11 +44,11 @@ public class ListVerifiedCallerId extends VoiceGetter<ListVerifiedCallerIdRespon
     this.alias = alias;
     return this;
   }
-  public ListVerifiedCallerId limit(final int limit) {
+  public ListVerifiedCallerId limit(final Integer limit) {
     this.limit = limit;
     return this;
   }
-  public ListVerifiedCallerId offset(final int offset) {
+  public ListVerifiedCallerId offset(final Integer offset) {
     this.offset = offset;
     return this;
   }
