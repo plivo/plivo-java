@@ -1,9 +1,5 @@
 # Change Log
 
-## [5.32.0](https://github.com/plivo/plivo-java/tree/v5.32.0) (2023-10-18)
-**Feature - Verify Caller Id API support**
-- API support for verifying, updating, getting and deleting caller IDs.
-
 ## [5.31.1](https://github.com/plivo/plivo-java/tree/v5.31.1) (2023-10-05)
 **Feature - WhatsApp message support**
 - Version bump
