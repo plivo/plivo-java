@@ -41,6 +41,7 @@ import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;
 import com.plivo.api.models.token.TokenCreator;
+import com.plivo.api.models.verify.*;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -738,4 +739,23 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/Call/{callId}/Stream/{streamId}")
   Call<CallStreamGetSpecificResponse> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
                                                             @Path("streamId") String streamId);
+
+  //Verify
+  @POST("Account/{authId}/VerifiedCallerId/")
+  Call<InitiateVerifyResponse> initiateVerify(@Path("authId") String authId, @Body InitiateVerify initiateVerify);
+
+  @POST("Account/{authId}/VerifiedCallerId/Verification/{verificationUuid}/")
+  Call<VerifyCallerIdResponse> verifyCallerID(@Path("authId") String authId, @Path("verificationUuid") String verificationUuid, @Body VerifyCallerId verifyCallerId);
+
+  @POST("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<UpdateVerifiedCallerIdResponse> updateVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber, @Body UpdateVerifiedCallerID updateVerifiedCallerID);
+
+  @GET("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<GetVerifiedCallerIdResponse> getVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  @GET("Account/{authId}/VerifiedCallerId/")
+  Call<ListVerifiedCallerIdResponse> listVerifiedCallerID(@Path("authId") String authId, @QueryMap Map<String, Object> listVerifiedCallerId);
+
+  @DELETE("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<ResponseBody> deleteVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
 }
