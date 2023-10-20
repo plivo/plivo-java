@@ -23,6 +23,7 @@ public class CampaignResponse extends BaseResource{
     private String sample2;
     private String description;
     private String createdAt;
+    private String campaignSource;
     private CampaignAttributes campaignAttributes;
 
 
@@ -135,6 +136,13 @@ public class CampaignResponse extends BaseResource{
     */
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    /**
+    * @return createdAt return the CreatedAt
+    */
+    public String getCampaignSource() {
+        return campaignSource;
     }
 
                                               

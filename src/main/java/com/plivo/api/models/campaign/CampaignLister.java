@@ -11,7 +11,7 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
   private Integer offset;
   private String campaignSource;
   private String brandId;
-  private string usecase;
+  private String usecase;
 
   public CampaignLister limit(Integer limit) {
     this.limit = limit;

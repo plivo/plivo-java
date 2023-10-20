@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.33.0](https://github.com/plivo/plivo-java/tree/v5.33.0) (2023-10-20)
+**Feature - campaign_source field**
+- Added new param `campaign_source` in LIST / GET Campaign APIs
+
 ## [5.32.0](https://github.com/plivo/plivo-java/tree/v5.32.0) (2023-10-18)
 **Feature - Verify Caller Id API support**
 - API support for verifying, updating, getting and deleting caller IDs.
