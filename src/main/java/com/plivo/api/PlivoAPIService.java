@@ -41,6 +41,7 @@ import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;
 import com.plivo.api.models.token.TokenCreator;
+import com.plivo.api.models.tollfree_verification.*;
 import com.plivo.api.models.verify.*;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -758,4 +759,28 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/VerifiedCallerId/{phoneNumber}")
   Call<ResponseBody> deleteVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  // TollfreeVerification Request
+  // Get
+  @GET("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerification> tollfreeVerificationGet(@Path("authId") String authId, @Path("uuid") String uuid);
+
+  // Create
+  @POST("Account/{authId}/TollfreeVerification/")
+  Call<TollfreeVerificationCreateResponse> tollfreeVerificationCreate(@Path("authId") String authId,
+                                                                      @Body TollfreeVerificationCreator tollfreeVerificationCreator);
+
+  // Update
+  @POST("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerificationUpdateResponse> tollfreeVerificationUpdate(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                                      @Body TollfreeVerificationUpdater tollfreeVerificationUpdater);
+
+  // List
+  @GET("Account/{authId}/TollfreeVerification/")
+  Call<ListResponse<TollfreeVerification>> tollfreeVerificationList(@Path("authId") String authId,
+                                                                          @QueryMap Map<String, Object> tollfreeVerificationLister);
+
+  // Delete
+  @DELETE("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<ResponseBody> tollfreeVerificationDelete(@Path("authId") String authId, @Path("uuid") String uuid);
 }
