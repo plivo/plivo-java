@@ -10,8 +10,8 @@ public class TollfreeVerificationUpdater extends Updater<TollfreeVerificationUpd
   private String usecase;
   private String usecaseSummary;
   private String messageSample;
-  private String optInImageURL;
-  private String optInType;
+  private String optinImageUrl;
+  private String optinType;
   private String volume;
   private String additionalInformation;
   private String extraData;
@@ -72,21 +72,21 @@ public class TollfreeVerificationUpdater extends Updater<TollfreeVerificationUpd
     return this;
   }
 
-  public String optInImageURL() {
-    return optInImageURL;
+  public String optinImageUrl() {
+    return optinImageUrl;
   }
 
-  public TollfreeVerificationUpdater optInImageURL(final String optInImageURL) {
-    this.optInImageURL = optInImageURL;
+  public TollfreeVerificationUpdater optinImageUrl(final String optinImageUrl) {
+    this.optinImageUrl = optinImageUrl;
     return this;
   }
 
-  public String optInType() {
-    return optInType;
+  public String optinType() {
+    return optinType;
   }
 
-  public TollfreeVerificationUpdater optInType(final String optInType) {
-    this.optInType = optInType;
+  public TollfreeVerificationUpdater optinType(final String optinType) {
+    this.optinType = optinType;
     return this;
   }
 
