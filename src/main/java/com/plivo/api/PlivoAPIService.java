@@ -45,6 +45,7 @@ import com.plivo.api.models.verify_session.SessionCreateResponse;
 import com.plivo.api.models.verify_session.SessionCreator;
 import com.plivo.api.models.verify_session.ValidateSession;
 import com.plivo.api.models.verify_session.VerifySession;
+import com.plivo.api.models.verify_session.VerifySessionList;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -754,6 +755,6 @@ public interface PlivoAPIService {
   Call<VerifySession> sessionGet(@Path("authId") String authId, @Path("id") String id);
 
   @GET("Account/{authId}/Verify/Session/")
-  Call<ListResponse<VerifySession>> sessionList(@Path("authId") String authId,
+  Call<ListResponse<VerifySessionList>> sessionList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> sessionListRequest);
 }

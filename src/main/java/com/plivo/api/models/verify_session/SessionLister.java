@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Date;
 
-public class SessionLister extends  Lister<VerifySession> {
+public class SessionLister extends  Lister<VerifySessionList> {
   private String subaccount = null;
   private PropertyFilter<Date> sessionTime = null;
   private String status = null;
@@ -73,10 +73,9 @@ public class SessionLister extends  Lister<VerifySession> {
   /**
    * Actually list instances of the resource.
    */
-  public ListResponse<VerifySession> list() throws IOException, PlivoRestException {
+  public ListResponse<VerifySessionList> list() throws IOException, PlivoRestException {
     validate();
-    Response<ListResponse<VerifySession>> response = obtainCall().execute();
-
+    Response<ListResponse<VerifySessionList>> response = obtainCall().execute();
     handleResponse(response);
 
     try
@@ -94,7 +93,7 @@ public class SessionLister extends  Lister<VerifySession> {
   }
 
   @Override
-  protected Call<ListResponse<VerifySession>> obtainCall() {
+  protected Call<ListResponse<VerifySessionList>> obtainCall() {
     return client().getApiService().sessionList(client().getAuthId(), toMap());
   }
 

@@ -4,8 +4,12 @@ import com.plivo.api.models.base.BaseResource;
 import com.plivo.api.models.message.MessageLister;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.plivo.api.xml.S;
 
 public class VerifySession extends BaseResource {
+  @JsonIgnore
+  private String id;
 
   private String sessionUuid;
   private String appUuid;
