@@ -1,10 +1,11 @@
 # Change Log
 ## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.35.0) (2023-11-08)
 **Verify Service**
-- Create Session
-- Validate Session
-- Get Session
-- List Session
+-Added Support for Verify Service Public API'S 
+-Create Session API(POST): To create a verify session (2FA). Allowed params recipient, method, channel, callback_url, app_uuid
+-Get Session API(GET): To retrieve a particular session
+-List Sessions : To retrieve all the sessions
+-Validate Session : To validate OTP for a particular session
 ## [5.34.0](https://github.com/plivo/plivo-java/tree/v5.34.0) (2023-11-03)
 **Feature - TollFree Verification API Support**
 - API support for Create, Update, Get, Delete and List Tollfree Verification.
