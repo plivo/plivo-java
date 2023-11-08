@@ -1,5 +1,5 @@
 # Change Log
-## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-11-08)
+## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.35.0) (2023-11-08)
 **Verify Service**
 - Create Session
 - Validate Session
