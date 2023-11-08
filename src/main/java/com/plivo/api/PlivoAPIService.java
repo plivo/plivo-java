@@ -46,6 +46,8 @@ import com.plivo.api.models.verify_session.SessionCreator;
 import com.plivo.api.models.verify_session.ValidateSession;
 import com.plivo.api.models.verify_session.VerifySession;
 import com.plivo.api.models.verify_session.VerifySessionList;
+import com.plivo.api.models.tollfree_verification.*;
+import com.plivo.api.models.verify.*;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -313,7 +315,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Campaign/")
   Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> campaignListRequest, 
-                                            @Query("limit") Integer limit, @Query("offset") Integer offset);
+                                            @Query("limit") Integer limit, @Query("offset") Integer offset, @Query("campaign_source") String campaignSource, @Query("brand_id") String brandId, @Query("usecase") String usecase);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);
@@ -757,4 +759,46 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/Verify/Session/")
   Call<ListResponse<VerifySessionList>> sessionList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> sessionListRequest);
+  //Verify
+  @POST("Account/{authId}/VerifiedCallerId/")
+  Call<InitiateVerifyResponse> initiateVerify(@Path("authId") String authId, @Body InitiateVerify initiateVerify);
+
+  @POST("Account/{authId}/VerifiedCallerId/Verification/{verificationUuid}/")
+  Call<VerifyCallerIdResponse> verifyCallerID(@Path("authId") String authId, @Path("verificationUuid") String verificationUuid, @Body VerifyCallerId verifyCallerId);
+
+  @POST("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<UpdateVerifiedCallerIdResponse> updateVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber, @Body UpdateVerifiedCallerID updateVerifiedCallerID);
+
+  @GET("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<GetVerifiedCallerIdResponse> getVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  @GET("Account/{authId}/VerifiedCallerId/")
+  Call<ListVerifiedCallerIdResponse> listVerifiedCallerID(@Path("authId") String authId, @QueryMap Map<String, Object> listVerifiedCallerId);
+
+  @DELETE("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<ResponseBody> deleteVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  // TollfreeVerification Request
+  // Get
+  @GET("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerification> tollfreeVerificationGet(@Path("authId") String authId, @Path("uuid") String uuid);
+
+  // Create
+  @POST("Account/{authId}/TollfreeVerification/")
+  Call<TollfreeVerificationCreateResponse> tollfreeVerificationCreate(@Path("authId") String authId,
+                                                                      @Body TollfreeVerificationCreator tollfreeVerificationCreator);
+
+  // Update
+  @POST("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerificationUpdateResponse> tollfreeVerificationUpdate(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                                      @Body TollfreeVerificationUpdater tollfreeVerificationUpdater);
+
+  // List
+  @GET("Account/{authId}/TollfreeVerification/")
+  Call<ListResponse<TollfreeVerification>> tollfreeVerificationList(@Path("authId") String authId,
+                                                                          @QueryMap Map<String, Object> tollfreeVerificationLister);
+
+  // Delete
+  @DELETE("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<ResponseBody> tollfreeVerificationDelete(@Path("authId") String authId, @Path("uuid") String uuid);
 }

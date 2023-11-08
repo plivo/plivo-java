@@ -1,11 +1,33 @@
 # Change Log
-
-## [5.31.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-09-15)
+## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-11-08)
 **Verify Service**
 - Create Session
 - Validate Session
 - Get Session
 - List Session
+## [5.34.0](https://github.com/plivo/plivo-java/tree/v5.34.0) (2023-11-03)
+**Feature - TollFree Verification API Support**
+- API support for Create, Update, Get, Delete and List Tollfree Verification.
+- Added New Param `toll_free_sms_verification_id` and `toll_free_sms_verification_order_status `in to the response of the [list all numbers API], [list single number API]
+- Added `toll_free_sms_verification_order_status` filter to AccountPhoneNumber - list all my numbers API.
+
+## [5.33.0](https://github.com/plivo/plivo-java/tree/v5.33.0) (2023-10-20)
+**Feature - campaign_source field**
+- Added new param `campaign_source` in LIST / GET Campaign APIs
+
+## [5.32.0](https://github.com/plivo/plivo-java/tree/v5.32.0) (2023-10-18)
+**Feature - Verify Caller Id API support**
+- API support for verifying, updating, getting and deleting caller IDs.
+
+## [5.31.1](https://github.com/plivo/plivo-java/tree/v5.31.1) (2023-10-05)
+**Feature - WhatsApp message support**
+- Version bump
+
+## [5.31.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-10-05)
+**Feature - WhatsApp message support**
+- Added new params `template`, `template_json_string` and new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
+- Added  new  `message_states` (`read`), `message_type`(`whatsapp`), `conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+
 
 ## [5.30.0](https://github.com/plivo/plivo-java/tree/v5.30.0) (2023-08-25)
 **Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**

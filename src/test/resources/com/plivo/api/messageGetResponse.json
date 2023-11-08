@@ -16,5 +16,8 @@
   "is_domestic": false,
   "dlt_entity_id": "1234",
   "dlt_template_id": "4567",
-  "dlt_template_category": "service_implicit"
+  "dlt_template_category": "service_implicit",
+  "conversation_id": "9876",
+  "conversation_origin": "utility",
+  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
 }

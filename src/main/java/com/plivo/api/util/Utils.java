@@ -55,6 +55,11 @@ public class Utils {
     return timePattern.matcher(time).matches();
   }
 
+  public static boolean isNonEmptyString(String str) {
+    return !(str == null || str.trim().isEmpty());
+  }
+
+
   public static Map<String, Object> objectToMap(ObjectMapper objectMapper, Object object) {
     Map<String, Object> origMap = objectMapper.convertValue(object, Map.class);
     Map<String, Object> map = new LinkedHashMap<>();

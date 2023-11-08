@@ -26,6 +26,7 @@ public class Campaign extends BaseResource {
   private String description;
   private CampaignAttributes campaignAttributes;
   private String createdAt;
+  private String campaignSource;
   
   
   public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
@@ -93,6 +94,7 @@ public class Campaign extends BaseResource {
       return registrationStatus;
   }
 
+
   public String getMessageFlow(){
     return this.messageFlow;
   }
@@ -116,6 +118,10 @@ public class Campaign extends BaseResource {
   }
   public String getHelpKeywords(){
     return this.helpKeywords;
+  }
+
+  public String getCampaignSource(){
+    return this.campaignSource;
   }
 
   /**
