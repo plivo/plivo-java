@@ -1,4 +1,11 @@
 # Change Log
+## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.35.0) (2023-11-08)
+**Verify Service**
+-Added Support for Verify Service Public API'S 
+-Create Session API(POST): To create a verify session (2FA). Allowed params recipient, method, channel, callback_url, app_uuid
+-Get Session API(GET): To retrieve a particular session
+-List Sessions : To retrieve all the sessions
+-Validate Session : To validate OTP for a particular session
 ## [5.34.0](https://github.com/plivo/plivo-java/tree/v5.34.0) (2023-11-03)
 **Feature - TollFree Verification API Support**
 - API support for Create, Update, Get, Delete and List Tollfree Verification.
@@ -21,6 +28,7 @@
 **Feature - WhatsApp message support**
 - Added new params `template`, `template_json_string` and new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
 - Added  new  `message_states` (`read`), `message_type`(`whatsapp`), `conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+
 
 ## [5.30.0](https://github.com/plivo/plivo-java/tree/v5.30.0) (2023-08-25)
 **Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
