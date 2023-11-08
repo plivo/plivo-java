@@ -5,6 +5,7 @@ import com.plivo.api.models.message.Message;
 import com.plivo.api.models.message.MessageDirection;
 import com.plivo.api.models.message.MessageState;
 import com.plivo.api.models.verify_session.VerifySession;
+import com.plivo.api.models.verify_session.VerifySessionList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,7 +69,7 @@ public class VerifySessionTest extends BaseTest{
   public void listSession() throws Exception {
     expectResponse("listSession.json", 202);
 
-    ListResponse<VerifySession> response = VerifySession.lister()
+    ListResponse<VerifySessionList> response = VerifySession.lister()
       .list();
     assertEquals("10.0.23.253", response.getSessions().get(0).getRequestorIP());
 
