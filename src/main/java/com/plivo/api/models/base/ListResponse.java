@@ -16,6 +16,7 @@ public class ListResponse<T> extends BaseResponse {
   private List<T> brands;
   private List<T> profiles;
   private List<T> campaigns;
+  private List<T> sessions;
 
   /**
    * @return The pagination-related metadata for this list response.
@@ -41,5 +42,8 @@ public class ListResponse<T> extends BaseResponse {
 
   public List<T> getCampaigns() {
     return campaigns;
+  }
+  public List<T> getSessions() {
+    return sessions;
   }
 }

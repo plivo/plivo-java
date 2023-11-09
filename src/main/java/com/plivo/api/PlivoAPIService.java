@@ -41,6 +41,11 @@ import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;
 import com.plivo.api.models.token.TokenCreator;
+import com.plivo.api.models.verify_session.SessionCreateResponse;
+import com.plivo.api.models.verify_session.SessionCreator;
+import com.plivo.api.models.verify_session.ValidateSession;
+import com.plivo.api.models.verify_session.VerifySession;
+import com.plivo.api.models.verify_session.VerifySessionList;
 import com.plivo.api.models.tollfree_verification.*;
 import com.plivo.api.models.verify.*;
 import okhttp3.RequestBody;
@@ -741,6 +746,19 @@ public interface PlivoAPIService {
   Call<CallStreamGetSpecificResponse> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
                                                             @Path("streamId") String streamId);
 
+  @POST("Account/{authId}/Verify/Session/")
+  Call<SessionCreateResponse> sessionSend(@Path("authId") String authId,
+                                          @Body SessionCreator sessionCreator);
+
+  @POST("Account/{authId}/Verify/Session/{id}/")
+  Call<SessionCreateResponse> validateSession(@Path("authId") String authId, @Path("id") String id,
+                                          @Body ValidateSession validateSession);
+  @GET("Account/{authId}/Verify/Session/{id}/")
+  Call<VerifySession> sessionGet(@Path("authId") String authId, @Path("id") String id);
+
+  @GET("Account/{authId}/Verify/Session/")
+  Call<ListResponse<VerifySessionList>> sessionList(@Path("authId") String authId,
+                                          @QueryMap Map<String, Object> sessionListRequest);
   //Verify
   @POST("Account/{authId}/VerifiedCallerId/")
   Call<InitiateVerifyResponse> initiateVerify(@Path("authId") String authId, @Body InitiateVerify initiateVerify);
