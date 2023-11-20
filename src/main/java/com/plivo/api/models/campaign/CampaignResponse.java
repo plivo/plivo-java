@@ -24,6 +24,8 @@ public class CampaignResponse extends BaseResource{
     private String description;
     private String createdAt;
     private String campaignSource;
+    private String errorReason;
+    private String errorCode;
     private CampaignAttributes campaignAttributes;
 
 
@@ -145,8 +147,21 @@ public class CampaignResponse extends BaseResource{
         return campaignSource;
     }
 
-                                              
-                                                   
+    /**
+    * @return errorCode return the errorCode
+    */
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    /**
+    * @return errorCode return the errorCode
+    */
+    public String getErrorReason() {
+        return errorReason;
+    }
+
+                                                                                               
     @Override                                      
     public String getId() {                        
         return this.campaignID;                    
