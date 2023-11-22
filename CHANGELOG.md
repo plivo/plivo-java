@@ -1,4 +1,9 @@
 # Change Log
+## [5.36.0](https://github.com/plivo/plivo-java/tree/v5.36.0) (2023-11-09)
+**Feature - registration_status field**
+- Added new param `registration_status` in LIST Campaign APIs
+
+
 ## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.35.0) (2023-11-08)
 **Verify Service**
 -Added Support for Verify Service Public API'S 
