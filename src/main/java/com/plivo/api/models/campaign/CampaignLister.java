@@ -12,6 +12,7 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
   private String campaignSource;
   private String brandId;
   private String usecase;
+  private String registrationStatus;
 
   public CampaignLister limit(Integer limit) {
     this.limit = limit;
@@ -34,6 +35,12 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
     return this;
 
   }
+
+  public CampaignLister registrationStatus(String registrationStatus) {
+    this.registrationStatus = registrationStatus;
+    return this;
+
+  }
   public CampaignLister brandId(String brandId) {
     this.brandId = brandId;
     return this;
@@ -42,6 +49,6 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
 
   @Override
   protected Call<ListResponse<Campaign>> obtainCall() {
-    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset, campaignSource, brandId, usecase);
+    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset, campaignSource, brandId, usecase, registrationStatus);
   }
 }
