@@ -155,7 +155,7 @@ public class CampaignResponse extends BaseResource{
     }
 
     /**
-    * @return errorCode return the errorCode
+    * @return errorReason return the errorReason
     */
     public String getErrorReason() {
         return errorReason;

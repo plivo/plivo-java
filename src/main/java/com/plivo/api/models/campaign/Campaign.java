@@ -128,11 +128,11 @@ public class Campaign extends BaseResource {
   }
 
   public String getErrorCode() {
-      return this.errorCode;
+      return errorCode;
   }
 
   public String getErrorReason() {
-      return this.errorReason;
+      return errorReason;
   }
 
   /**
