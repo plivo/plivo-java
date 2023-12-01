@@ -1,4 +1,9 @@
 # Change Log
+
+## [5.37.0](https://github.com/plivo/plivo-java/tree/v5.37.0) (2023-11-29)
+**Feature - add new response fields for LIST and GET campaign**
+- Added new response params `error_code`, `error_reason` for LIST / GET Campaign APIs
+
 ## [5.36.0](https://github.com/plivo/plivo-java/tree/v5.36.0) (2023-11-09)
 **Feature - registration_status field**
 - Added new param `registration_status` in LIST Campaign APIs
