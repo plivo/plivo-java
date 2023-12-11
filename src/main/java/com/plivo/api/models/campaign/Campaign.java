@@ -29,6 +29,8 @@ public class Campaign extends BaseResource {
   private String campaignSource;
   private String errorReason;
   private String errorCode;
+  private String vertical;
+  private String campaignAlias;
 
   
   
@@ -170,6 +172,14 @@ public class Campaign extends BaseResource {
 
   public String getCreatedAt() {
     return createdAt;                               
+  }
+
+  public String getVertical() {
+      return vertical;
+  }
+
+  public String getCampaignAlias() {
+      return campaignAlias;
   }
 
  @Override

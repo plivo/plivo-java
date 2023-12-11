@@ -27,6 +27,9 @@ public class CampaignResponse extends BaseResource{
     private String errorReason;
     private String errorCode;
     private CampaignAttributes campaignAttributes;
+    private String vertical;
+    private String campaignAlias;
+
 
 
     /**
@@ -145,6 +148,21 @@ public class CampaignResponse extends BaseResource{
     */
     public String getCampaignSource() {
         return campaignSource;
+    }
+
+    /**
+    * @return vertical return the vertical
+    */
+    public String getVertical() {
+        return vertical;
+    }
+
+    /**
+    * @return campaignAlias return the camp
+aignAlias
+    */
+    public String getCampaignAlias() {
+        return campaignAlias;
     }
 
     /**
