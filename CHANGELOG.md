@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.38.0](https://github.com/plivo/plivo-java/tree/v5.38.0) (2023-11-30)
+**Feature - Added params for GET and LIST Campaign API**
+- Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
+
 ## [5.37.0](https://github.com/plivo/plivo-java/tree/v5.37.0) (2023-11-29)
 **Feature - add new response fields for LIST and GET campaign**
 - Added new response params `error_code`, `error_reason` for LIST / GET Campaign APIs
