@@ -11,15 +11,17 @@ public class CallSpeakCreator extends VoiceCreator<CallSpeakCreateResponse> {
 
   private final String id;
   private final String text;
+  private final String type;
   private String voice;
   private String language;
   private LegSpecifier legs;
   private Boolean loop;
   private Boolean mix;
 
-  public CallSpeakCreator(String id, String text) {
+  public CallSpeakCreator(String id, String text, String type) {
     this.id = id;
     this.text = text;
+    this.type = type;
   }
 
   @Override

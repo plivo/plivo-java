@@ -85,8 +85,8 @@ public class Call extends BaseResource {
     return new CallPlayDeleter(callUuid);
   }
 
-  public static CallSpeakCreator speaker(String callUuid, String text) {
-    return new CallSpeakCreator(callUuid, text);
+  public static CallSpeakCreator speaker(String callUuid, String text, String type) {
+    return new CallSpeakCreator(callUuid, text, type);
   }
 
   public static CallSpeakDeleter speakStopper(String callUuid) {
@@ -212,8 +212,8 @@ public class Call extends BaseResource {
     return new CallPlayDeleter(callUuid);
   }
 
-  public CallSpeakCreator speaker(String text) {
-    return new CallSpeakCreator(callUuid, text);
+  public CallSpeakCreator speaker(String text, String type) {
+    return new CallSpeakCreator(callUuid, text, type);
   }
 
   public RequestDeleter canceller() {

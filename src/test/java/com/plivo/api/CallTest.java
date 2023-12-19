@@ -345,7 +345,7 @@ public class CallTest extends BaseTest {
     expectResponse("liveCallSpeakCreateResponse.json", 202);
     final String callId = "callId";
 
-    Call.speaker(callId, "test")
+    Call.speaker(callId, "test", "text")
       .speak();
 
     assertRequest("POST", "Call/%s/Speak/", callId);
@@ -356,7 +356,7 @@ public class CallTest extends BaseTest {
     expectResponse("liveCallSpeakCreateResponse.json", 202);
     final String callId = "callId";
 
-    Call.speaker(callId, "test")
+    Call.speaker(callId, "test", "text")
       .client(client)
       .speak();
 

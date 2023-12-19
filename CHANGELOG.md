@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.38.1](https://github.com/plivo/plivo-java/tree/v5.38.1) (2023-12-19)
+**Feature - Added params for Speak API**
+- Added params 'type' for Speak APIs
+
 ## [5.38.0](https://github.com/plivo/plivo-java/tree/v5.38.0) (2023-11-30)
 **Feature - Added params for GET and LIST Campaign API**
 - Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
