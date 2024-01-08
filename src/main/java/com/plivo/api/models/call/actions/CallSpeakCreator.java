@@ -18,6 +18,12 @@ public class CallSpeakCreator extends VoiceCreator<CallSpeakCreateResponse> {
   private Boolean loop;
   private Boolean mix;
 
+  public CallSpeakCreator(String id, String text) {
+    this.id = id;
+    this.text = text;
+    this.type = "text";
+  }
+
   public CallSpeakCreator(String id, String text, String type) {
     this.id = id;
     this.text = text;
