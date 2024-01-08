@@ -89,6 +89,10 @@ public class Call extends BaseResource {
     return new CallSpeakCreator(callUuid, text);
   }
 
+  public static CallSpeakCreator speaker(String callUuid, String text, String type) {
+    return new CallSpeakCreator(callUuid, text, type);
+  }
+
   public static CallSpeakDeleter speakStopper(String callUuid) {
     return new CallSpeakDeleter(callUuid);
   }
