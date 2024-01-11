@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.38.2](https://github.com/plivo/plivo-java/tree/v5.38.2) (2024-01-15)
+**Feature - Made meta object consistent for List Powerpacks, List Media, List Numbers, List Shortcodes, List Tollfree API**
+- Made meta object consistent in API response
+
 ## [5.38.1](https://github.com/plivo/plivo-java/tree/v5.38.1) (2023-12-19)
 **Feature - Added params for Speak API**
 - Added params 'type' for Speak APIs
