@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.38.2](https://github.com/plivo/plivo-java/tree/v5.38.2) (2024-01-29)
+**Feature - Log Redaction Enhancement**
+-  Added log attribute in GET and List MDR response
+-  Change log field from bool to string in send SMS 
+
 ## [5.38.1](https://github.com/plivo/plivo-java/tree/v5.38.1) (2023-12-19)
 **Feature - Added params for Speak API**
 - Added params 'type' for Speak APIs

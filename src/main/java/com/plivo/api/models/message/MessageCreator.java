@@ -27,7 +27,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private MessageType type = null;
   private URL url = null;
   private String method = "POST";
-  private Boolean log = null;
+  private String log = "true";
   private Boolean trackable = null;
   private String[] media_urls = null;
   private String[] media_ids = null;
@@ -135,7 +135,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this.method;
   }
 
-  public Boolean log() {
+  public String log() {
     return this.log;
   }
 
@@ -191,7 +191,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param log If set to false, the content of this message will not be logged on the Plivo
    * infrastructure and the dst value will be masked
    */
-  public MessageCreator log(final Boolean log) {
+  public MessageCreator log(final String log) {
     this.log = log;
     return this;
   }

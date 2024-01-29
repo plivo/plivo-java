@@ -33,6 +33,7 @@ public class Message extends BaseResource {
   private String conversationID;
   private String conversationOrigin;
   private String conversationExpirationTimestamp;
+  private String log;
 
   public static MessageCreator creator(String source, String destination) {
     return new MessageCreator(source, destination);
@@ -173,6 +174,10 @@ public class Message extends BaseResource {
 
   public String getConversationExpirationTimestamp() {
     return conversationExpirationTimestamp;
+  }
+
+  public String getLog() {
+    return log;
   }
   
   @Override
