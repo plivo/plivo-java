@@ -16,6 +16,10 @@ public class Shortcode extends BaseResource {
   public Shortcode(String uuid) {
     this.uuid = uuid;
   }
+
+  public Shortcode() {
+    //Introducing the dummy constructor
+  }
   
   @JsonIgnore
   public Shortcode getter() {
