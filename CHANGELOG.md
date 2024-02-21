@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2022-02-21)
+## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2024-02-21)
 **Feature - Import Campaign API**
 - Import Campaign API
 
