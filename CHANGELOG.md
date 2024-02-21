@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2022-02-21)
+**Feature - Import Campaign API**
+- Import Campaign API
+
 ## [5.38.2](https://github.com/plivo/plivo-java/tree/v5.38.2) (2024-01-15)
 **Feature - Made meta object consistent for List Powerpacks, List Media, List Numbers, List Shortcodes, List Tollfree API**
 - Made meta object consistent in API response
