@@ -191,8 +191,14 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param log If set to false, the content of this message will not be logged on the Plivo
    * infrastructure and the dst value will be masked
    */
-  public MessageCreator log(final String log) {
-    this.log = log;
+  public MessageCreator log(final Object log) {
+    if (log instanceof Boolean) {
+        this.log = ((Boolean) log).toString();
+    } else if (log instanceof String) {
+        this.log = (String) log;
+    } else {
+        throw new IllegalArgumentException("Invalid log value. Expected boolean or string.");
+    }
     return this;
   }
 
