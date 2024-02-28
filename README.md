@@ -24,7 +24,7 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:5.38.2'
+compile 'com.plivo:plivo-java:5.38.3'
 ```
 
 ### To Install Beta release
