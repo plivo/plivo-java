@@ -1,5 +1,11 @@
 # Change Log
 
+
+## [5.38.3](https://github.com/plivo/plivo-java/tree/v5.38.3) (2024-02-28)
+**Feature - Log Redaction Enhancement**
+-  Added log attribute in GET and List MDR response
+-  Change log field from bool to string in send SMS 
+
 ## [5.38.2](https://github.com/plivo/plivo-java/tree/v5.38.2) (2024-01-15)
 **Feature - Made meta object consistent for List Powerpacks, List Media, List Numbers, List Shortcodes, List Tollfree API**
 - Made meta object consistent in API response
