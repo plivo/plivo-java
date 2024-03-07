@@ -7,16 +7,17 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BrandResponse extends BaseResource {
 
-        private String brandID;
-        private String brandType;
-        private String einIssuingCountry;
-        private String  entityType;
-        private String  profileUUID;
-        private String  registrationStatus;
-        private String  vertical;
-        private Address address;
-        private String createdAt;
-        private AuthorizedContact authorizedContact;
+    private String brandID;
+    private String brandType;
+    private String einIssuingCountry;
+    private String  entityType;
+    private String  profileUUID;
+    private String  registrationStatus;
+    private String  vertical;
+    private Address address;
+    private String createdAt;
+    private AuthorizedContact authorizedContact;
+    private List<TCRErrorDetail> declineReasons;
 
   /**
      * @return String return the getBrandID
@@ -90,6 +91,13 @@ public class BrandResponse extends BaseResource {
     public AuthorizedContact getAuthorizedContact() {
         return authorizedContact;
     }
+
+     /**
+     * @return TCRErrorDetail[] return the getDeclineReasons
+     */
+    public List<TCRErrorDetail> getDeclineReasons() {
+        return declineReasons;
+    }  
 
     @Override                                      
     public String getId() {                        
