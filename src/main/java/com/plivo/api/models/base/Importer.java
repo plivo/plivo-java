@@ -19,7 +19,7 @@ public abstract class Importer<ImportResponse extends BaseResponse> extends Base
   /**
    * Actually import an instance of the resource.
    */
-  public ImportResponse importcamp() throws IOException, PlivoRestException {
+  public ImportResponse import_campaign() throws IOException, PlivoRestException {
     validate();
     Response<ImportResponse> response = obtainCall().execute();
 
