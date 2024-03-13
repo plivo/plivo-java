@@ -42,6 +42,10 @@ public class Campaign extends BaseResource {
     return new CampaignUpdater(campaign_id,reseller_id,description,sample1,sample2,message_flow,help_message,optin_keywords,optin_message,optout_keywords,optout_message,help_keywords);
   }
 
+  public static CampaignImporter importer(String campaign_id, String campaignAlias) {
+    return new CampaignImporter(campaign_id,campaignAlias);
+  }
+
   public static CampaignGetter getter(String id) {
     return new CampaignGetter(id);
   }

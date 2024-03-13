@@ -294,6 +294,10 @@ public interface PlivoAPIService {
   Call<CampaignNumbers> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
                                           @Path("number") String number, @Query("url") String url, @Query("method") String method);
 
+  @POST("Account/{authId}/10dlc/Campaign/Import/")
+  Call<CampaignImportResponse> importCampaign(@Path("authId") String authId,
+                                          @Body CampaignImporter campaignImporter);
+
   @POST("Account/{authId}/Profile/")
   Call<ProfileAddResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);
 

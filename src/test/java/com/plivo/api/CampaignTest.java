@@ -32,6 +32,16 @@ public class CampaignTest extends BaseTest {
     }
 
     @Test
+    public void campaignImportShouldSucceed() throws Exception {
+        String fixtureName = "campaignImportResponse.json";
+
+        expectResponse(fixtureName, 202);
+        Campaign.importer("CNTQ0OD", "New Contact by vinay for ct").import_campaign();
+
+        assertRequest("POST", "10dlc/Campaign/Import/");
+    }
+
+    @Test
     public void campaignUpdateShouldSucceed() throws Exception {
         String fixtureName = "campaignUpdateResponse.json";
 
