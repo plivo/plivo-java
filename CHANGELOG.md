@@ -1,7 +1,7 @@
 # Change Log
 
 
-## [5.39.1](https://github.com/plivo/plivo-java/tree/v5.39.1) (2023-03-19)
+## [5.39.1](https://github.com/plivo/plivo-java/tree/v5.39.1) (2024-04-02)
 **Feature - add new response fields for LIST and GET brand**
 - Added new response params `decline_reasons` for LIST / GET Brand APIs
 
