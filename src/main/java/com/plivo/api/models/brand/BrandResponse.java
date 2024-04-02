@@ -17,7 +17,7 @@ public class BrandResponse extends BaseResource {
     private Address address;
     private String createdAt;
     private AuthorizedContact authorizedContact;
-    private List<TCRErrorDetail> declineReasons;
+    private List<TCRErrorDetail> declinedReasons;
 
   /**
      * @return String return the getBrandID
@@ -93,10 +93,10 @@ public class BrandResponse extends BaseResource {
     }
 
      /**
-     * @return TCRErrorDetail[] return the getDeclineReasons
+     * @return TCRErrorDetail[] return the getDeclinedReasons
      */
-    public List<TCRErrorDetail> getDeclineReasons() {
-        return declineReasons;
+    public List<TCRErrorDetail> getDeclinedReasons() {
+        return declinedReasons;
     }  
 
     @Override                                      
