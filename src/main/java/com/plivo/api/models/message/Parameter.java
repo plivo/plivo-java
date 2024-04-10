@@ -7,6 +7,7 @@ public class Parameter {
     private String type;
     private String text;
     private String media;
+    private String payload;
     private Currency currency;
     private DateTime date_time;
 
@@ -35,6 +36,14 @@ public class Parameter {
 
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    public String getPaylaod() {
+        return payload;
+    }
+
+    public void getPaylaod(String payload) {
+        this.payload = payload;
     }
 
     public Currency getCurrency() {

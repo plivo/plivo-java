@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.40.0](https://github.com/plivo/plivo-java/tree/v5.40.0) (2023-04-12)
+**Feature - Support for dynamic payload in whatsapp templates**
+- Added new params `payload` in templates to support dynamic payload in templates
+
 ## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2024-03-13)
 **Feature - Import Campaign API**
 - Import Campaign API
