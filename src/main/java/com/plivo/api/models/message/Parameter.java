@@ -42,7 +42,7 @@ public class Parameter {
         return payload;
     }
 
-    public void getPaylaod(String payload) {
+    public void setPaylaod(String payload) {
         this.payload = payload;
     }
 
