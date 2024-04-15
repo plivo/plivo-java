@@ -38,11 +38,11 @@ public class Parameter {
         this.media = media;
     }
 
-    public String getPaylaod() {
+    public String getPayload() {
         return payload;
     }
 
-    public void setPaylaod(String payload) {
+    public void setPayload(String payload) {
         this.payload = payload;
     }
 
