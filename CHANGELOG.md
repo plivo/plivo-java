@@ -1,9 +1,13 @@
 # Change Log
 
+
+## [5.39.1](https://github.com/plivo/plivo-java/tree/v5.39.1) (2024-04-04)
+**Feature - add new response fields for LIST and GET brand**
+- Added new response params `declined_reasons` for LIST / GET Brand APIs
+
 ## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2024-03-13)
 **Feature - Import Campaign API**
 - Import Campaign API
-
 
 ## [5.38.3](https://github.com/plivo/plivo-java/tree/v5.38.3) (2024-02-28)
 **Feature - Log Redaction Enhancement**
