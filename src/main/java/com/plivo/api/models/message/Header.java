@@ -3,9 +3,7 @@ package com.plivo.api.models.message;
 public class Header {
     private String type;
     private String text;
-    private Media image;
-    private Media document;
-    private Media video;
+    private String media;
 
     public Header() {
     }
@@ -26,27 +24,12 @@ public class Header {
         this.text = text;
     }
 
-    public Media getImage() {
-        return image;
+    public String getMedia() {
+        return media;
     }
 
-    public void setImage(Media image) {
-        this.image = image;
+    public void setMedia(String media) {
+        this.media = media;
     }
 
-    public Media getDocument() {
-        return document;
-    }
-
-    public void setDocument(Media document) {
-        this.document = document;
-    }
-
-    public Media getVideo() {
-        return video;
-    }
-
-    public void setVideo(Media video) {
-        this.video = video;
-    }
 }

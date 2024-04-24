@@ -1,27 +1,37 @@
 package com.plivo.api.models.message;
 
-import java.util.List;
-
 public class Button {
-    private String type;
-    private Reply reply;
+    private String id; // Unique identifier for the button
+    private String title; // Display text for the button
+    private String cta_url;
 
     public Button() {
     }
 
-    public String getType() {
-        return type;
+    // Getters and setters for ID
+    public String getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Reply getReply() {
-        return reply;
+    // Getters and setters for Title
+    public String getTitle() {
+        return title;
     }
 
-    public void setReply(Reply reply) {
-        this.reply = reply;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    // Getters and setters for CTA URL
+    public String getCta_url() {
+        return cta_url;
+    }
+
+    public void setCta_url(String cta_url) {
+        this.cta_url = cta_url;
     }
 }

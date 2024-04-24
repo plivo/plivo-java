@@ -8,8 +8,6 @@ public class Parameter {
     private String text;
     private String media;
     private Currency currency;
-    private String displayText;
-    private String url;
     private DateTime date_time;
 
     public Parameter() {
@@ -55,19 +53,4 @@ public class Parameter {
         this.date_time = date_time;
     }
 
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

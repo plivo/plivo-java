@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.40.0](https://github.com/plivo/plivo-java/tree/v5.40.0) (2024-05-01)
+**Feature - Adding support for interactive whatsapp messages**
+- Added new param `interactive` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive `whatsapp` messages
+
 ## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2024-03-13)
 **Feature - Import Campaign API**
 - Import Campaign API
