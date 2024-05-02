@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.0.0](https://github.com/plivo/plivo-java/tree/v6.0.0) (2024-05-02)
+**Feature - Number Masking Feature Added**
+- Number Masking APIs added to create, update, delete and list sessions
+
 ## [5.40.0](https://github.com/plivo/plivo-java/tree/v5.40.0) (2023-04-18)
 **Feature - Support for dynamic button components when sending a templated WhatsApp message**
 - Added new param `payload` in templates to support dynamic payload in templates
