@@ -17,7 +17,7 @@ public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResp
   private String callbackUrl;
   private String recordingCallbackUrl;
   private String recordFileFormat;
-  private boolean geomatch;
+  private Boolean geomatch = null;
   private boolean record;
 
   public MaskingSessionUpdater(String id) {
@@ -57,10 +57,10 @@ public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResp
     this.record = record;
     return this;
   }
-  public boolean geomatch() {
+  public Boolean geomatch() {
     return this.geomatch;
   }
-  public MaskingSessionUpdater geomatch(final boolean geomatch){
+  public MaskingSessionUpdater geomatch(final Boolean geomatch){
     this.geomatch = geomatch;
     return this;
   }

@@ -20,7 +20,7 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   private String subaccount;
   private boolean initiateCallToFirstParty;
   private boolean isPinAuthenticationRequired;
-  private boolean geomatch;
+  private boolean geomatch = true;
   private boolean generatePin;
   private boolean record;
   private int ringTimeout;

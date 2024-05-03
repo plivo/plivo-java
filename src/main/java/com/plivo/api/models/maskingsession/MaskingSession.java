@@ -3,21 +3,11 @@ import com.plivo.api.models.base.BaseResource;
 import com.plivo.api.util.Utils;
 
 public class MaskingSession extends BaseResource {
-
   private String sessionUuid;
-
-  private String firstParty;
-
-  public String getFirstParty() {
-    return firstParty;
+  private Object response;
+  public Object getResponse() {
+    return response;
   }
-
-  public String getSecondParty() {
-    return secondParty;
-  }
-
-  private String secondParty;
-
   public static MaskingSessionCreator creator(String firstParty, String secondParty) {
     if (!Utils.allNotNull(firstParty, secondParty)) {
       throw new IllegalArgumentException("firstParty and secondParty cannot be null");
