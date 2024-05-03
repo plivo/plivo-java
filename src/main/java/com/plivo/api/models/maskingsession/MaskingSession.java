@@ -6,6 +6,18 @@ public class MaskingSession extends BaseResource {
 
   private String sessionUuid;
 
+  private String firstParty;
+
+  public String getFirstParty() {
+    return firstParty;
+  }
+
+  public String getSecondParty() {
+    return secondParty;
+  }
+
+  private String secondParty;
+
   public static MaskingSessionCreator creator(String firstParty, String secondParty) {
     if (!Utils.allNotNull(firstParty, secondParty)) {
       throw new IllegalArgumentException("firstParty and secondParty cannot be null");

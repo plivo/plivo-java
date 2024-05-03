@@ -15,9 +15,7 @@ import com.plivo.api.models.conference.*;
 import com.plivo.api.models.endpoint.*;
 import com.plivo.api.models.enduser.*;
 import com.plivo.api.models.identity.*;
-import com.plivo.api.models.maskingsession.MaskingSession;
-import com.plivo.api.models.maskingsession.MaskingSessionUpdateResponse;
-import com.plivo.api.models.maskingsession.MaskingSessionUpdater;
+import com.plivo.api.models.maskingsession.*;
 import com.plivo.api.models.media.Media;
 import com.plivo.api.models.media.MediaResponse;
 import com.plivo.api.models.message.Message;
@@ -354,21 +352,25 @@ public interface PlivoAPIService {
   Call<TokenCreateResponse> tokenCreate(@Path("authId") String authId,
                                                      @Body TokenCreator tokenCreator);
 
-  @GET("Account/{authId}/Masking/Session")
+  @GET("Account/{authId}/Masking/Session/")
   Call<ListResponse<MaskingSession>> maskingSessionList(@Path("authId") String authId,
                                                         @QueryMap Map<String, Object> params);
 
-  @GET("Account/{authId}/Masking/Session/{sessionUuid}")
+  @GET("Account/{authId}/Masking/Session/{sessionUuid}/")
   Call<MaskingSession> maskingSessionGet(@Path("authId") String authId, @Path("sessionUuid") String sessionUuid);
 
   @DELETE("Account/{authId}/Masking/Session/{sessionUuid}/")
   Call<ResponseBody> maskingSessionDelete(@Path("authId") String authId,
                                     @Path("sessionUuid") String sessionUuid);
 
-  @POST("Account/{authId}/Endpoint/{endpointId}/")
+  @POST("Account/{authId}/Masking/Session/{sessionUuid}/")
   Call<MaskingSessionUpdateResponse> maskingSessionUpdate(@Path("authId") String authId,
                                                           @Path("sessionUuid") String sessionUuid, @Body
                                                           MaskingSessionUpdater maskingSessionUpdater);
+
+  @POST("Account/{authId}/Masking/Session/")
+  Call<MaskingSessionCreateResponse> maskingSessionCreate(@Path("authId") String authId,
+                                                          @Body MaskingSessionCreator maskingSessionCreator);
 
   @GET("Account/{authId}/Endpoint/")
   Call<ListResponse<Endpoint>> endpointList(@Path("authId") String authId,
