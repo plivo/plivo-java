@@ -21,11 +21,11 @@ public class MaskingSessionLister extends VoiceLister<MaskingSession> {
   private String expiryTimeLte;
   private String expiryTimeGte;
   private String subaccount;
-  private int duration;
-  private int durationLt;
-  private int durationGt;
-  private int durationLte;
-  private int durationGte;
+  private Integer duration;
+  private Integer durationLt;
+  private Integer durationGt;
+  private Integer durationLte;
+  private Integer durationGte;
 
   @Override
   protected Call<ListResponse<MaskingSession>> obtainCall() throws PlivoValidationException {
