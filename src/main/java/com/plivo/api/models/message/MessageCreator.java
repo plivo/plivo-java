@@ -294,7 +294,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     if (this.type == null) {
       this.type = MessageType.WHATSAPP;
     } else {
-      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
       throw new IllegalArgumentException("type parameter should be whatsapp");
     }
     if (Utils.allNotNull(this.template)) {
