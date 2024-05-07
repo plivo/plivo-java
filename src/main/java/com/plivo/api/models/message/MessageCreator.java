@@ -291,7 +291,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param temp This is the template passed as a template object in the whatsapp message request.
    */
   public MessageCreator template(final Template temp) {
-    if (type == null) {
+    if (this.type == null) {
       this.type = MessageType.WHATSAPP;
     } else {
       if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
@@ -316,7 +316,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param intractv This is the interactive messages passed as a interactive object in the whatsapp message request.
    */
   public MessageCreator interactive(final Interactive intractv) {
-    if (type == null) {
+    if (this.type == null) {
       this.type = MessageType.WHATSAPP;
     } else {
       if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
