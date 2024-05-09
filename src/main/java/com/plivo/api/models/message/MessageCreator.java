@@ -37,6 +37,8 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private String dlt_template_category;
   @JsonProperty("template")
   private Template template;
+  @JsonProperty("interactive")
+  private Interactive interactive;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -289,10 +291,10 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param temp This is the template passed as a template object in the whatsapp message request.
    */
   public MessageCreator template(final Template temp) {
-    if (type == null) {
+    if (this.type == null) {
       this.type = MessageType.WHATSAPP;
     } else {
-      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
       throw new IllegalArgumentException("type parameter should be whatsapp");
     }
     if (Utils.allNotNull(this.template)) {
@@ -306,6 +308,49 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     }
     this.template = temp;
     
+    return this;
+  }
+
+
+   /**
+   * @param intractv This is the interactive messages passed as a interactive object in the whatsapp message request.
+   */
+  public MessageCreator interactive(final Interactive intractv) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.interactive)) {
+      throw new IllegalArgumentException("interacitve parameter is already set");
+    }
+    this.interactive = intractv;
+    
+    return this;
+  }
+
+   /**
+   * @param interactive_json_string This is the interactive message passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator interactive_json_string(final String interactive_json_string) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.interactive)) {
+      throw new IllegalArgumentException("interactive parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Interactive parsedInteractive = objectMapper.readValue(interactive_json_string, Interactive.class);
+      this.interactive = parsedInteractive;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read interactive message");
+    }
     return this;
   }
 
