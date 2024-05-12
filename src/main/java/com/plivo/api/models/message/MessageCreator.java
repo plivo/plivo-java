@@ -39,6 +39,8 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   private Template template;
   @JsonProperty("interactive")
   private Interactive interactive;
+  @JsonProperty("location")
+  private Location location;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -353,6 +355,50 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     }
     return this;
   }
+
+   /**
+   * @param location_json_string This is the location passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator location_json_string(final String location_json_string) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.location)) {
+      throw new IllegalArgumentException("location parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Location loc = objectMapper.readValue(location_json_string, Location.class);
+      this.location = loc;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read location");
+    }
+    return this;
+  }
+
+  /**
+   * @param loc This is the location passed as a location object in the whatsapp message request.
+   */
+  public MessageCreator location(final Location loc) {
+    if (this.type == null) {
+      this.type = MessageType.WHATSAPP;
+    } else {
+      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
+      throw new IllegalArgumentException("type parameter should be whatsapp");
+    }
+    if (Utils.allNotNull(this.location)) {
+      throw new IllegalArgumentException("location parameter is already set");
+    }
+    this.location = loc;
+    
+    return this;
+  }
+
+
 
   @Override
   protected Call < MessageCreateResponse > obtainCall() {
