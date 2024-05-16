@@ -263,12 +263,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param template_json_string This is the template passed as a json string in the whatsapp message request.
    */
   public MessageCreator template_json_string(final String template_json_string) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.template)) {
       throw new IllegalArgumentException("template parameter is already set");
     }
@@ -293,12 +287,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param temp This is the template passed as a template object in the whatsapp message request.
    */
   public MessageCreator template(final Template temp) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.template)) {
       throw new IllegalArgumentException("template parameter is already set");
     }
@@ -318,12 +306,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param intractv This is the interactive messages passed as a interactive object in the whatsapp message request.
    */
   public MessageCreator interactive(final Interactive intractv) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (type.equals(MessageType.SMS) || (type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.interactive)) {
       throw new IllegalArgumentException("interacitve parameter is already set");
     }
@@ -336,12 +318,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param interactive_json_string This is the interactive message passed as a json string in the whatsapp message request.
    */
   public MessageCreator interactive_json_string(final String interactive_json_string) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.interactive)) {
       throw new IllegalArgumentException("interactive parameter is already set");
     }
@@ -360,12 +336,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param location_json_string This is the location passed as a json string in the whatsapp message request.
    */
   public MessageCreator location_json_string(final String location_json_string) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.location)) {
       throw new IllegalArgumentException("location parameter is already set");
     }
@@ -384,12 +354,6 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
    * @param loc This is the location passed as a location object in the whatsapp message request.
    */
   public MessageCreator location(final Location loc) {
-    if (this.type == null) {
-      this.type = MessageType.WHATSAPP;
-    } else {
-      if (this.type.equals(MessageType.SMS) || (this.type.equals(MessageType.MMS)))
-      throw new IllegalArgumentException("type parameter should be whatsapp");
-    }
     if (Utils.allNotNull(this.location)) {
       throw new IllegalArgumentException("location parameter is already set");
     }
