@@ -206,8 +206,6 @@ class Example {
 }
 ```
 
-
-
 ## WhatsApp Messaging
 Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
 
@@ -216,9 +214,113 @@ Templated messages are a crucial to your WhatsApp messaging experience, as busin
 
 WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `button`. At the point of sending messages, the template object you see in the code acts as a way to pass the dynamic values within these components.  `header`  can accomodate `text` or `media` (images, video, documents) content.  `body`  can accomodate text content.  `button`  can support dynamic values in a `url` button or to specify a developer-defined payload which will be returned when the WhatsApp user clicks on the `quick_reply` button. `footer`  cannot have any dynamic variables.
 
-Example:
+Example 1:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String templateJson = "{\"name\":\"plivo_movieticket_confirmation\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"media\",\"media\":\"https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png\"}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"text\":\"Harry Potter\"},{\"type\":\"text\",\"text\":\"06:00 PM\"},{\"type\":\"text\",\"text\":\"Bengaluru\"},{\"type\":\"text\",\"text\":\"2\"}]}]}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template_json_string(templateJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
+
+Example 2:
+```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+          Template template = new Template();
+          template.setName("plivo_movieticket_confirmation");
+          template.setLanguage("en_US");
+
+          List<Component> components = new ArrayList<>();
+          Component headerComponent = new Component();
+          headerComponent.setType("header");
+          List<Parameter> headerParameters = new ArrayList<>();
+          Parameter headerMediaParameter = new Parameter();
+          headerMediaParameter.setType("media");
+          headerMediaParameter.setMedia("https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png");
+          headerParameters.add(headerMediaParameter);
+
+          headerComponent.setParameters(headerParameters);
+          components.add(headerComponent);
+
+          Component bodyComponent = new Component();
+          bodyComponent.setType("body");
+          List<Parameter> bodyParameters = new ArrayList<>();
+          Parameter bodyTextParameter1 = new Parameter();
+          bodyTextParameter1.setType("text");
+          bodyTextParameter1.setText("Harry Potter");
+          bodyParameters.add(bodyTextParameter1);
+
+          Parameter bodyTextParameter2 = new Parameter();
+          bodyTextParameter2.setType("text");
+          bodyTextParameter2.setText("06:00 PM");
+          bodyParameters.add(bodyTextParameter2);
+
+          Parameter bodyTextParameter3 = new Parameter();
+          bodyTextParameter3.setType("text");
+          bodyTextParameter3.setText("Bengaluru");
+          bodyParameters.add(bodyTextParameter3);
+
+          Parameter bodyTextParameter4 = new Parameter();
+          bodyTextParameter4.setType("text");
+          bodyTextParameter4.setText("2");
+          bodyParameters.add(bodyTextParameter4);
+
+          bodyComponent.setParameters(bodyParameters);
+          components.add(bodyComponent);
+
+          template.setComponents(components)
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template(template).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+> Note: It is also possible to create and manage objects directly within the SDK for whatsapp, providing a structured approach to message creation.
 
 ### Free Form Messages
 Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
@@ -226,11 +328,62 @@ Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-in
 #### Free Form Text Message
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777","Hey! This is a sample Text.").type(MessageType.WHATSAPP).create();
+          System.out.println(response);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 ```
 
 #### Free Form Media Message
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        String[] media = {"https://sample-videos.com/img/Sample-png-image-1mb.png"};
+        try {
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777","WA -text").log(false).type(MessageType.WHATSAPP).media_urls(media).create()
+          System.out.println(response);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 ```
 
 ### Interactive Messages
@@ -241,6 +394,35 @@ Quick reply buttons allow customers to quickly respond to your message with pred
 
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String interactiveJson = "{\"type\":\"button\",\"header\":{\"type\":\"media\",\"media\":\"https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png\"},\"body\":{\"text\":\"Make your selection\"},\"action\":{\"buttons\":[{\"title\":\"Click here\",\"id\":\"bt1j1k2j\"},{\"title\":\"Know More\",\"id\":\"bt1j1k2jkjk\"},{\"title\":\"Request Callback\",\"id\":\"bt1j1kfd2jkjk\"}]}}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).interactive_json_string(interactiveJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 #### Interactive Lists
@@ -248,6 +430,35 @@ Interactive lists allow you to present customers with a list of options.
 
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String interactiveJson = "{\"type\":\"list\",\"header\":{\"type\":\"text\",\"text\":\"Welcome to Plivo\"},\"body\":{\"text\":\"You can review the list of rewards we offer\"},\"footer\":{\"text\":\"Yours Truly\"},\"action\":{\"buttons\":[{\"title\":\"Clickhere\"}],\"sections\":[{\"title\":\"SECTION_1_TITLE\",\"rows\":[{\"id\":\"SECTION_1_ROW_1_ID\",\"title\":\"SECTION_1_ROW_1_TITLE\",\"description\":\"SECTION_1_ROW_1_DESCRIPTION\"},{\"id\":\"SECTION_1_ROW_2_ID\",\"title\":\"SECTION_1_ROW_2_TITLE\",\"description\":\"SECTION_1_ROW_2_DESCRIPTION\"}]},{\"title\":\"SECTION_2_TITLE\",\"rows\":[{\"id\":\"SECTION_2_ROW_1_ID\",\"title\":\"SECTION_2_ROW_1_TITLE\",\"description\":\"SECTION_2_ROW_1_DESCRIPTION\"},{\"id\":\"SECTION_2_ROW_2_ID\",\"title\":\"SECTION_2_ROW_2_TITLE\",\"description\":\"SECTION_2_ROW_2_DESCRIPTION\"}]}]}}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).interactive_json_string(interactiveJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 #### Interactive CTA URLs
@@ -255,6 +466,36 @@ CTA URL messages allow you to send links and call-to-action buttons.
 
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String interactiveJson = "{\"type\":\"cta_url\",\"header\":{\"type\":\"media\",\"media\":\"https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png\"},\"body\":{\"text\":\"Know More\"},\"footer\":{\"text\":\"Plivo\"},\"action\":{\"buttons\":[{\"title\":\"Click here\",\"cta_url\":\"https:plivo.com\"}]}}";
+
+           MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).interactive_json_string(interactiveJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 ### Location Messages
@@ -263,11 +504,69 @@ This guide shows how to send templated and non-templated location messages to re
 #### Templated Location Messages
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String templateJson = "{\"name\":\"plivo_order_pickup\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"location\",\"location\":{\"longitude\":\"122.148981\",\"latitude\":\"37.483307\",\"name\":\"PabloMorales\",\"address\":\"1HackerWay,MenloPark,CA94025\"}}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"text\":\"Harry\"}]}]}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template_json_string(templateJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 #### Non-Templated Location Messages
 Example:
 ```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String locationJson = "{\"longitude\":\"122.148981\",\"latitude\":\"37.483307\",\"name\":\"PabloMorales\",\"address\":\"1HackerWay,MenloPark,CA94025\"}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).location_json_string(locationJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 ### More examples
