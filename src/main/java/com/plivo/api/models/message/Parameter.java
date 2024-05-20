@@ -10,6 +10,7 @@ public class Parameter {
     private String payload;
     private Currency currency;
     private DateTime date_time;
+    private Location location;
 
     public Parameter() {
     }
@@ -60,6 +61,14 @@ public class Parameter {
 
     public void setDate_time(DateTime date_time) {
         this.date_time = date_time;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
 }
