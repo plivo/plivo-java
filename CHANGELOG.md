@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.42.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-28)
+**Feature - Adding filtering support for List Application API**
+- Added new filter param `appName` for list application api
+
 ## [5.42.0](https://github.com/plivo/plivo-java/tree/v5.42.0) (2024-05-20)
 **Feature - Adding support for location whatsapp messages**
 - Added new param `location` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location `whatsapp` messages
