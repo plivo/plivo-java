@@ -1,8 +1,13 @@
 package com.plivo.api.models.base;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.PlivoClient;
 import com.plivo.api.exceptions.PlivoValidationException;
 import com.plivo.api.exceptions.PlivoRestException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.plivo.api.models.maskingsession.MaskingSession;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -45,13 +50,13 @@ public abstract class MaskingSessionDeleterClass<T extends BaseResource> extends
     int responseCode = response.code();
     if (responseCode == 400 || responseCode == 401 || responseCode == 404 || responseCode == 405 || responseCode == 500) {
       if (response.errorBody() != null) {
-        throw new IOException(response.errorBody().string());
+        return response.errorBody().string();
       } else {
         throw new PlivoRestException("Unexpected error with response code: " + responseCode);
       }
     } else {
       if (response.body() != null) {
-        throw new IOException(response.body().string());
+        return response.body().string();
       } else {
         throw new PlivoRestException("Empty response body with response code: " + responseCode);
       }
