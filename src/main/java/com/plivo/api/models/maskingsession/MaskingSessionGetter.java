@@ -1,10 +1,10 @@
 package com.plivo.api.models.maskingsession;
 
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.VoiceGetter;
+import com.plivo.api.models.base.MaskingSessionGetterClass;
 import retrofit2.Call;
 
-public class MaskingSessionGetter extends VoiceGetter<MaskingSession> {
+public class MaskingSessionGetter extends MaskingSessionGetterClass<MaskingSession> {
   public MaskingSessionGetter(String id) {
     super(id);
   }

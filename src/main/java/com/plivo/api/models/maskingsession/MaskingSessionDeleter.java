@@ -1,11 +1,11 @@
 package com.plivo.api.models.maskingsession;
 
 import com.plivo.api.exceptions.PlivoValidationException;
-import com.plivo.api.models.base.VoiceDeleter;
+import com.plivo.api.models.base.MaskingSessionDeleterClass;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class MaskingSessionDeleter extends VoiceDeleter<MaskingSession> {
+public class MaskingSessionDeleter extends MaskingSessionDeleterClass<MaskingSession> {
 
   public MaskingSessionDeleter(String id) {
     super(id);
