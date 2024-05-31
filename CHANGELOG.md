@@ -1,8 +1,12 @@
 # Change Log
 
-## [5.42.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-28)
+## [5.43.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-31)
 **Feature - Adding filtering support for List Application API**
 - Added new filter param `appName` for list application api
+
+## [5.43.0](https://github.com/plivo/plivo-java/tree/v5.43.0) (2024-05-31)
+**Feature - Number Masking Feature Added**
+- Number Masking APIs added to create, update, delete and list sessions
 
 ## [5.42.0](https://github.com/plivo/plivo-java/tree/v5.42.0) (2024-05-20)
 **Feature - Adding support for location whatsapp messages**
