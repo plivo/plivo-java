@@ -49,9 +49,7 @@ public class MaskingSessionTest extends BaseTest {
 
     final String sessionUuid = "83a7e48c-88c7-4a8e-b349-08dc311fbe04";
 
-    MaskingSession maskingSession = MaskingSession.getter(sessionUuid).get();
-
-    assertEquals(maskingSession.getId(), maskingSession.getMaskingSessionId());
+    String maskingSession = MaskingSession.getter(sessionUuid).get();
 
     assertRequest("GET", "Masking/Session/%s/", sessionUuid);
   }
@@ -61,8 +59,8 @@ public class MaskingSessionTest extends BaseTest {
     expectResponse("maskingSessionGetResponse.json", 200);
     final String sessionUuid = "83a7e48c-88c7-4a8e-b349-08dc311fbe04";
 
-    MaskingSession maskingSession = MaskingSession.getter(sessionUuid).client(client).get();
-    assertEquals(maskingSession.getId(), maskingSession.getMaskingSessionId());
+    String maskingSession = MaskingSession.getter(sessionUuid).client(client).get();
+
     assertRequest("GET", "Masking/Session/%s/", sessionUuid);
   }
 
@@ -109,7 +107,7 @@ public class MaskingSessionTest extends BaseTest {
 
   @Test
   public void maskingSessionDeleteClient() throws Exception {
-    expectResponse(null, 204);
+    expectResponse("maskingSessionDeleteResponse.json", 200);
     final String sessionUuid = "83a7e48c-88c7-4a8e-b349-08dc311fbe04";
 
     MaskingSession.deleter(sessionUuid).client(client).delete();
@@ -119,7 +117,7 @@ public class MaskingSessionTest extends BaseTest {
 
   @Test
   public void maskingSessionDelete() throws Exception {
-    expectResponse(null, 204);
+    expectResponse("maskingSessionDeleteResponse.json", 200);
     final String sessionUuid = "83a7e48c-88c7-4a8e-b349-08dc311fbe04";
 
     MaskingSession.deleter(sessionUuid).delete();
