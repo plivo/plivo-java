@@ -14,7 +14,7 @@ public class AccessToken {
   private String authToken;
   public String username;
   public Date validFrom;
-  public Duration lifetime = Duration.ofHours(24);
+  public Duration lifetime;
   public Date validTill;
   public HashMap<String, HashMap<String, Object>> grants = new HashMap();
   public String uid;
