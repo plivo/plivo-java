@@ -14,17 +14,20 @@ public class SessionCreator extends Creator < SessionCreateResponse > {
   private String recipient;
   @JsonProperty("channel")
   private String channel;
+  @JsonProperty("locale")
+  private String locale;
   @JsonProperty("url")
   private String url;
   private String method = "POST";
 
-  SessionCreator(String appUUID,String recipient, String channel, String url, String method) {
+  SessionCreator(String appUUID,String recipient, String channel, String url, String method, String locale) {
     if (!Utils.allNotNull(recipient)) {
       throw new IllegalArgumentException("recipient should not be null");
     }
     this.appUUID = appUUID;
     this.recipient = recipient;
     this.channel = channel;
+    this.locale = locale;
     this.url = url;
     this.method = method;
   }
@@ -37,6 +40,9 @@ public class SessionCreator extends Creator < SessionCreateResponse > {
   }
   public String channel() {
     return this.channel;
+  }
+  public String locale() {
+    return this.locale;
   }
   public String url() {
     return this.url;
