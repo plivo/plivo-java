@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.0) (2024-07-11)
+**Feature - Adding locale support for Create, Get and List Session API**
+- Added new request param `locale` in create Session API
+- Added support for `locale` param in get and list Session response
+
 ## [5.43.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-31)
 **Feature - Adding filtering support for List Application API**
 - Added new filter param `appName` for list application api
