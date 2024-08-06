@@ -11,6 +11,7 @@ import com.plivo.api.exceptions.InvalidRequestException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.exceptions.ServerException;
+import com.plivo.api.exceptions.TooManyRequestsException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -88,6 +89,8 @@ public abstract class BaseRequest<T extends BaseResource> {
         throw new ResourceNotFoundException(response.errorBody().string());
       case 405:
         throw new InvalidRequestException(response.errorBody().string());
+      case 429:
+        throw new TooManyRequestsException(response.errorBody().string());
       case 500:
         throw new ServerException(response.errorBody().string());
     }
