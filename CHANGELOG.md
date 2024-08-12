@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.44.1](https://github.com/plivo/plivo-java/tree/v5.44.1) (2024-08-12)
+**Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
+- Added new request param `brand_name` and `app_hash` in create Session API
+- Added support for `brand_name` and `app_hash` param in get and list Session response
+
 ## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.0) (2024-07-11)
 **Feature - Adding locale support for Create, Get and List Session API**
 - Added new request param `locale` in create Session API

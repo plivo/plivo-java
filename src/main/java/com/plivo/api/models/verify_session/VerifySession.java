@@ -26,8 +26,8 @@ public class VerifySession extends BaseResource {
   private Charges charges;
   private String createdAt;
   private String updatedAt;
-  public static SessionCreator creator(String appUUID, String recipient, String channel, String url, String method, String locale) {
-    return new SessionCreator(appUUID, recipient, channel, url, method, locale);
+  public static SessionCreator creator(String appUUID, String recipient, String channel, String url, String method, String locale, String brand_name, String app_hash) {
+    return new SessionCreator(appUUID, recipient, channel, url, method, locale, brand_name, app_hash);
   }
   public static ValidateSession validation(String sessionUUID, String otp) {
     return new ValidateSession(sessionUUID, otp);
