@@ -7,14 +7,16 @@ public class AttemptDetail {
   private String time;
   private String brandName;
   private String appHash;
+  private Integer codeLength;
 
-  public AttemptDetail(String channel, String attemptUuid, String status, String time, String brandName, String appHash) {
+  public AttemptDetail(String channel, String attemptUuid, String status, String time, String brandName, String appHash, Integer codeLength) {
     this.channel = channel;
     this.attemptUuid = attemptUuid;
     this.status = status;
     this.time = time;
     this.brandName = brandName;
     this.appHash = appHash;
+    this.codeLength = codeLength;
   }
 
   public AttemptDetail(){}
@@ -36,5 +38,8 @@ public class AttemptDetail {
   }
   public String getAppHash() {
     return appHash;
+  }
+  public Integer getCodeLength(){
+    return codeLength;
   }
 }
