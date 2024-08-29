@@ -31,6 +31,9 @@ public class Stream extends PlivoXml implements ResponseNestable {
   @XmlAttribute
   private String extraHeaders;
 
+  @XmlAttribute
+  private Boolean keepCallAlive;
+
   private Stream() {
 
   }
@@ -67,6 +70,10 @@ public class Stream extends PlivoXml implements ResponseNestable {
     return this.contentType;
   }
 
+  public Boolean keepCallAlive() {
+    return this.keepCallAlive;
+  }
+
   public Stream bidirectional(final Boolean bidirectional) {
     this.bidirectional = bidirectional;
     return this;
@@ -99,6 +106,11 @@ public class Stream extends PlivoXml implements ResponseNestable {
 
   public Stream extraHeaders(final String extraHeaders) {
     this.extraHeaders = extraHeaders;
+    return this;
+  }
+
+  public Stream keepCallAlive(final Boolean keepCallAlive) {
+    this.keepCallAlive = keepCallAlive;
     return this;
   }
 
