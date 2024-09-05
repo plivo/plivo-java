@@ -36,7 +36,7 @@ public class Message extends BaseResource {
   private String log;
   private String errorMessage;
   private String messageSentTime;
-  private String messageUpdateTime;
+  private String messageUpdatedTime;
 
   public static MessageCreator creator(String source, String destination) {
     return new MessageCreator(source, destination);
@@ -191,8 +191,8 @@ public class Message extends BaseResource {
     return messageSentTime;
   }
 
-  public String getMessageUpdateTime(){
-    return messageUpdateTime;
+  public String getMessageUpdatedTime(){
+    return messageUpdatedTime;
   }
 
   @Override
