@@ -29,6 +29,9 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   private int pinRetryWait;
   private int sessionExpiry;
   private int callTimeLimit;
+  private boolean createSessionWithSingleParty;
+  private boolean forcePinAuthentication;
+  private int virtualNumberCooloffPeriod;
 
   public MaskingSessionCreator(String firstParty, String secondParty) {
     this.firstParty = firstParty;
@@ -212,6 +215,27 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   }
   public MaskingSessionCreator geomatch(final boolean geomatch) {
     this.geomatch = geomatch;
+    return this;
+  }
+  public boolean createSessionWithSingleParty() {
+    return this.createSessionWithSingleParty;
+  }
+  public MaskingSessionCreator createSessionWithSingleParty(final boolean createSessionWithSingleParty) {
+    this.createSessionWithSingleParty = createSessionWithSingleParty;
+    return this;
+  }
+  public boolean forcePinAuthentication() {
+    return this.forcePinAuthentication;
+  }
+  public MaskingSessionCreator forcePinAuthentication(final boolean forcePinAuthentication) {
+    this.forcePinAuthentication = forcePinAuthentication;
+    return this;
+  }
+  public int virtualNumberCooloffPeriod() {
+    return this.virtualNumberCooloffPeriod;
+  }
+  public MaskingSessionCreator virtualNumberCooloffPeriod(final int virtualNumberCooloffPeriod) {
+    this.virtualNumberCooloffPeriod = virtualNumberCooloffPeriod;
     return this;
   }
 }

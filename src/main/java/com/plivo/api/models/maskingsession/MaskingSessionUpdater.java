@@ -19,7 +19,7 @@ public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResp
   private String recordFileFormat;
   private Boolean geomatch = null;
   private boolean record;
-
+  private boolean createSessionWithSingleParty;
   public MaskingSessionUpdater(String id) {
     super(id);
   }
@@ -125,6 +125,13 @@ public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResp
   }
   public MaskingSessionUpdater sessionExpiry(final int sessionExpiry) {
     this.sessionExpiry = sessionExpiry;
+    return this;
+  }
+  public boolean createSessionWithSingleParty() {
+    return this.createSessionWithSingleParty;
+  }
+  public MaskingSessionUpdater createSessionWithSingleParty(final boolean record){
+    this.createSessionWithSingleParty = createSessionWithSingleParty;
     return this;
   }
 }
