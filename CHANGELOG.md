@@ -1,4 +1,8 @@
 # Change Log
+## [5.44.3](https://github.com/plivo/plivo-java/tree/v5.44.3) (2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
+
 ## [5.44.2](https://github.com/plivo/plivo-java/tree/v5.44.2) (2024-09-06)
 **Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
 - Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
@@ -7,8 +11,7 @@
 ## [5.44.1](https://github.com/plivo/plivo-java/tree/v5.44.1) (2024-09-03)
 **Feature - Adding new element for Audio Stream XML**
 - Added `keepCallAlive` element in Audio Stream XML
-
-
+- 
 ## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.0) (2024-07-11)
 **Feature - Adding locale support for Create, Get and List Session API**
 - Added new request param `locale` in create Session API

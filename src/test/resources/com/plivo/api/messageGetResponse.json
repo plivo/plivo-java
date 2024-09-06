@@ -19,5 +19,8 @@
   "dlt_template_category": "service_implicit",
   "conversation_id": "9876",
   "conversation_origin": "utility",
-  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
+  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30",
+  "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+  "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+  "error_message": ""
 }
