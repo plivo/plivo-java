@@ -25,6 +25,33 @@ public class MaskingSessionTest extends BaseTest {
   }
 
   @Test
+  public void maskingSessionCreate_createSessionWithSingleParty() throws Exception {
+    expectResponse("maskingSessionCreateResponse.json", 201);
+
+    MaskingSession.creator("916303955746","").createSessionWithSingleParty(true).create();
+
+    assertRequest("POST", "Masking/Session/");
+  }
+
+  @Test
+  public void maskingSessionCreate_forcePinAuthentication() throws Exception {
+    expectResponse("maskingSessionCreateResponse.json", 201);
+
+    MaskingSession.creator("916303955746", "916303955747").isPinAuthenticationRequired(true).generatePin(true).generatePinLength(4).firstPartyPin("1234").secondPartyPin("2345").pinRetry(2).pinRetryWait(6).pinPromptPlay("https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3").unknownCallerPlay("https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3").incorrectPinPlay("https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3").forcePinAuthentication(true).create();
+
+    assertRequest("POST", "Masking/Session/");
+  }
+
+  @Test
+  public void maskingSessionCreate_virtualNumberCooloffPeriod() throws Exception {
+    expectResponse("maskingSessionCreateResponse.json", 201);
+
+    MaskingSession.creator("916303955746", "916303955747").virtualNumberCooloffPeriod(2500).create();
+
+    assertRequest("POST", "Masking/Session/");
+  }
+
+  @Test
   public void maskingSessionCreateWithClient() throws Exception {
     expectResponse("maskingSessionCreateResponse.json", 201);
 
