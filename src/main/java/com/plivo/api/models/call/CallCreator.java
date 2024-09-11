@@ -30,6 +30,12 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
   private Long machineDetectionTime;
   private String machineDetectionUrl;
   private String machineDetectionMethod;
+  private Long machineDetectionMaximumSpeechLength;
+  private Long machineDetectionInitialSilence;
+  private Long machineDetectionMaximumWords;
+  private Long machineDetectionInitialGreeting;
+  private Long machineDetectionSilence;
+  private Long machineDetectionAnswerTime;
   @JsonSerialize(using = MapToCommaListSerializer.class)
   private Map<String, String> sipHeaders;
   private Long ringTimeout;
@@ -332,8 +338,32 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
     return this;
   }
 
-  public CallCreator machineDetectionMethod(final String machineDetectionMethod) {
-    this.machineDetectionMethod = machineDetectionMethod;
+  public CallCreator machineDetectionMaximumWords(final Long machineDetectionMaximumWords) {
+    this.machineDetectionMaximumWords = machineDetectionMaximumWords;
+    return this;
+  }
+
+  public CallCreator machineDetectionMaximumSpeechLength(final Long machineDetectionMaximumSpeechLength) {
+    this.machineDetectionMaximumSpeechLength = machineDetectionMaximumSpeechLength;
+    return this;
+  }
+
+  public CallCreator machineDetectionInitialSilence(final Long machineDetectionInitialSilence) {
+    this.machineDetectionInitialSilence = machineDetectionInitialSilence;
+    return this;
+  }
+  public CallCreator machineDetectionSilence(final Long machineDetectionSilence) {
+    this.machineDetectionSilence = machineDetectionSilence;
+    return this;
+  }
+
+  public CallCreator machineDetectionInitialGreeting(final Long machineDetectionInitialGreeting) {
+    this.machineDetectionInitialGreeting = machineDetectionInitialGreeting;
+    return this;
+  }
+
+  public CallCreator machineDetectionAnswerTime(final Long machineDetectionAnswerTime) {
+    this.machineDetectionAnswerTime = machineDetectionAnswerTime;
     return this;
   }
 
