@@ -223,6 +223,30 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
     return this.machineDetectionMethod;
   }
 
+  public Long machineDetectionSilence() {
+    return this.machineDetectionSilence;
+  }
+
+  public Long machineDetectionInitialSilence() {
+    return this.machineDetectionInitialSilence;
+  }
+
+  public Long machineDetectionInitialGreeting() {
+    return this.machineDetectionInitialGreeting;
+  }
+
+  public Long machineDetectionMaximumSpeechLength() {
+    return this.machineDetectionMaximumSpeechLength;
+  }
+
+  public Long machineDetectionMaximumWords() {
+    return this.machineDetectionMaximumWords;
+  }
+
+  public Long machineDetectionAnswerTime() {
+    return this.machineDetectionAnswerTime;
+  }
+
   /**
    * @return List of SIP headers in the form of 'key=value' pairs, separated by commas.
    */
@@ -335,6 +359,11 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
 
   public CallCreator machineDetectionUrl(final String machineDetectionUrl) {
     this.machineDetectionUrl = machineDetectionUrl;
+    return this;
+  }
+
+  public CallCreator machineDetectionMethod(final String machineDetectionMethod) {
+    this.machineDetectionMethod = machineDetectionMethod;
     return this;
   }
 
