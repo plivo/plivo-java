@@ -5,7 +5,8 @@ import com.plivo.api.models.base.VoiceUpdater;
 import retrofit2.Call;
 
 public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResponse> {
-
+  private String firstParty;
+  private String secondParty;
   private int sessionExpiry;
   private int callTimeLimit;
   private int ringTimeout;
@@ -36,6 +37,20 @@ public class MaskingSessionUpdater extends VoiceUpdater<MaskingSessionUpdateResp
     return client().getVoiceFallback2Service().maskingSessionUpdate(client().getAuthId(), id, this);
   }
 
+  public String firstParty() {
+    return this.firstParty;
+  }
+  public MaskingSessionUpdater firstParty(final String firstParty){
+    this.firstParty = firstParty;
+    return this;
+  }
+  public String secondParty() {
+    return this.secondParty;
+  }
+  public MaskingSessionUpdater secondParty(final String secondParty){
+    this.secondParty = secondParty;
+    return this;
+  }
   public int callTimeLimit() {
     return this.callTimeLimit;
   }
