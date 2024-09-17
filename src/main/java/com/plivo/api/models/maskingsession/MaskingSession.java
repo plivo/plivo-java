@@ -15,7 +15,13 @@ public class MaskingSession extends BaseResource {
 
     return new MaskingSessionCreator(firstParty, secondParty);
   }
+  public static MaskingSessionCreator creator(String firstParty) {
+    if (!Utils.allNotNull(firstParty)) {
+      throw new IllegalArgumentException("firstParty cannot be null");
+    }
 
+    return new MaskingSessionCreator(firstParty);
+  }
   public static MaskingSessionLister lister() {
     return new MaskingSessionLister();
   }
