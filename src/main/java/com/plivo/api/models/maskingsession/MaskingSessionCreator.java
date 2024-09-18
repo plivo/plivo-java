@@ -37,10 +37,6 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
     this.firstParty = firstParty;
     this.secondParty = secondParty;
   }
-  public MaskingSessionCreator(String firstParty) {
-    this.firstParty = firstParty;
-    this.secondParty = "";
-  }
   @Override
   protected Call<MaskingSessionCreateResponse> obtainCall() {
     return client().getVoiceApiService().maskingSessionCreate(client().getAuthId(), this);
