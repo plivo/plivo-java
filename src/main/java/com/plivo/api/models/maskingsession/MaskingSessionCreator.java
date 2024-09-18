@@ -24,9 +24,9 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   private boolean generatePin;
   private boolean record;
   private int ringTimeout;
-  private Integer generatePinLength = null;
-  private int pinRetry;
-  private Integer pinRetryWait = null;
+  private Integer generatePinLength;
+  private Integer pinRetry;
+  private Integer pinRetryWait;
   private int sessionExpiry;
   private int callTimeLimit;
   private boolean createSessionWithSingleParty;
@@ -189,10 +189,10 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
     this.generatePinLength = generatePinLength;
     return this;
   }
-  public int pinRetry() {
+  public Integer pinRetry() {
     return this.pinRetry;
   }
-  public MaskingSessionCreator pinRetry(final int pinRetry) {
+  public MaskingSessionCreator pinRetry(final Integer pinRetry) {
     this.pinRetry = pinRetry;
     return this;
   }
