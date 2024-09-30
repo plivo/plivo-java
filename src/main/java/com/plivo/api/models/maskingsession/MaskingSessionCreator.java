@@ -24,11 +24,14 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   private boolean generatePin;
   private boolean record;
   private int ringTimeout;
-  private int generatePinLength;
-  private int pinRetry;
-  private int pinRetryWait;
+  private Integer generatePinLength;
+  private Integer pinRetry;
+  private Integer pinRetryWait;
   private int sessionExpiry;
   private int callTimeLimit;
+  private boolean createSessionWithSingleParty;
+  private boolean forcePinAuthentication;
+  private int virtualNumberCooloffPeriod;
 
   public MaskingSessionCreator(String firstParty, String secondParty) {
     this.firstParty = firstParty;
@@ -179,24 +182,24 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
     this.ringTimeout = ringTimeout;
     return this;
   }
-  public int generatePinLength() {
+  public Integer generatePinLength() {
     return this.generatePinLength;
   }
-  public MaskingSessionCreator generatePinLength(final int generatePinLength) {
+  public MaskingSessionCreator generatePinLength(final Integer generatePinLength) {
     this.generatePinLength = generatePinLength;
     return this;
   }
-  public int pinRetry() {
+  public Integer pinRetry() {
     return this.pinRetry;
   }
-  public MaskingSessionCreator pinRetry(final int pinRetry) {
+  public MaskingSessionCreator pinRetry(final Integer pinRetry) {
     this.pinRetry = pinRetry;
     return this;
   }
-  public int pinRetryWait() {
+  public Integer pinRetryWait() {
     return this.pinRetryWait;
   }
-  public MaskingSessionCreator pinRetryWait(final int pinRetryWait) {
+  public MaskingSessionCreator pinRetryWait(final Integer pinRetryWait) {
     this.pinRetryWait = pinRetryWait;
     return this;
   }
@@ -212,6 +215,27 @@ public class MaskingSessionCreator extends VoiceCreator<MaskingSessionCreateResp
   }
   public MaskingSessionCreator geomatch(final boolean geomatch) {
     this.geomatch = geomatch;
+    return this;
+  }
+  public boolean createSessionWithSingleParty() {
+    return this.createSessionWithSingleParty;
+  }
+  public MaskingSessionCreator createSessionWithSingleParty(final boolean createSessionWithSingleParty) {
+    this.createSessionWithSingleParty = createSessionWithSingleParty;
+    return this;
+  }
+  public boolean forcePinAuthentication() {
+    return this.forcePinAuthentication;
+  }
+  public MaskingSessionCreator forcePinAuthentication(final boolean forcePinAuthentication) {
+    this.forcePinAuthentication = forcePinAuthentication;
+    return this;
+  }
+  public int virtualNumberCooloffPeriod() {
+    return this.virtualNumberCooloffPeriod;
+  }
+  public MaskingSessionCreator virtualNumberCooloffPeriod(final int virtualNumberCooloffPeriod) {
+    this.virtualNumberCooloffPeriod = virtualNumberCooloffPeriod;
     return this;
   }
 }
