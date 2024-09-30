@@ -1,5 +1,5 @@
 # Change Log
-## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.3) (2024-09-10)
+## [5.45.0](https://github.com/plivo/plivo-java/tree/v5.45.0) (2024-09-30)
 **Feature - Adding new param support for Number Masking session with single party **
 - Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
 
