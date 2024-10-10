@@ -10,7 +10,7 @@ import retrofit2.Call;
 
 public class NumberCreator extends Creator<NumberCreateResponse> {
 
-  private List<String> numbers = new ArrayList<>();
+  private String numbers;
   private String carrier;
   private String region;
   private NumberType numberType;
@@ -22,12 +22,12 @@ public class NumberCreator extends Creator<NumberCreateResponse> {
       throw new IllegalStateException("carrier, numbers and region are required");
     }
 
-    this.numbers = numbers;
+    this.numbers = String.join(",", numbers);
     this.carrier = carrier;
     this.region = region;
   }
 
-  public List<String> numbers() {
+  public String numbers() {
     return this.numbers;
   }
 
