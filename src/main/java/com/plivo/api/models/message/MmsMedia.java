@@ -1,36 +1,57 @@
 package com.plivo.api.models.message;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.plivo.api.models.base.BaseResource;
 
+@JsonIgnoreProperties(value = {"id"})
 public class MmsMedia extends BaseResource {
-  private String content_type;
-  private String media_id;
-  private String media_url;
-  private String message_uuid;
-  private long size;
+		
+	private String contentType;
+    private String fileName;
+    private String mediaId;
+    private String mediaUrl;
+    private int size;
+    private String messageUuid;
+    private String uploadTime;
+    
+    public static MmsMediaLister getter(String id) {
+	    return new MmsMediaLister(id);
+	}
+    
+    public static MmsMediaLister lister(String id) {
+	    return new MmsMediaLister(id);
+	}
+   
+    public String getContentType() {
+        return contentType;
+    }
+    
+    public String getFileName() {
+        return fileName;
+    }
+    
+    public String getMediaId() {
+        return mediaId;
+    }
 
-  public String getContentType() {
-    return content_type;
-  }
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
 
-  public String getMediaId() {
-    return media_id;
-  }
+    public int getSize() {
+        return size;
+    }
+    
+    public String getMessageUuid() {
+        return messageUuid;
+    }
 
-  public String getMediaUrl() {
-    return media_url;
-  }
+    public String getUploadTime() {
+        return uploadTime;
+    }
 
-  public String getMessageUuid() {
-    return message_uuid;
-  }
-
-  public long getSize() {
-    return size;
-  }
-
-  @Override
-  public String getId() {
-    return getMediaId();
-  }
+    @Override
+    public String getId() {
+        return mediaId;
+    }
 }

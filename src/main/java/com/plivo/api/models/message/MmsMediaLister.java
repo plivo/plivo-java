@@ -14,6 +14,6 @@ public class MmsMediaLister extends Lister<MmsMedia> {
 
   @Override
   protected Call<ListResponse<MmsMedia>> obtainCall() {
-    return client().getApiService().mmsMediaList(client().getAuthId(), id);
+    return client().getApiService().mmsMediaList(client().getAuthId(), id, toMap());
   }
 }

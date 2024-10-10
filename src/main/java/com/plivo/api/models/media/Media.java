@@ -1,8 +1,10 @@
 package com.plivo.api.models.media;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.BaseResource;
 
+@JsonIgnoreProperties(value = {"id"})
 public class Media extends BaseResource {
 
     private String mediaId;
@@ -10,16 +12,12 @@ public class Media extends BaseResource {
     private String contentType;
     private int size;
     private String uploadTime;
-    private String url;
-
-    private String status;
-    private int statusCode;
+    private String mediaUrl;
 
     public static MediaUploader creator(
             String[] fileNames) throws ResourceNotFoundException {
         return new MediaUploader(fileNames);
     }
-
 
     public static MediaGetter getter(String id) {
         return new MediaGetter(id);
@@ -49,16 +47,8 @@ public class Media extends BaseResource {
         return uploadTime;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
+    public String getMediaUrl() {
+        return mediaUrl;
     }
 
     @Override
