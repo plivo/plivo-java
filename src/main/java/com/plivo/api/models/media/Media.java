@@ -26,6 +26,7 @@ public class Media extends BaseResource {
     public static MediaLister lister() {
         return new MediaLister();
     }
+    
 
     public String getMediaId() {
         return mediaId;

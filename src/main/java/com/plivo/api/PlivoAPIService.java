@@ -218,8 +218,8 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/Message/{id}/Media/")
   Call<ListResponse<MmsMedia>> mmsMediaList(@Path("authId") String authId, @Path("id") String id, @QueryMap Map<String, Object> mediaListRequest);
 
-  @GET("Account/{authId}/Message/{id}/Media/{media_id}/")
-  Call<MmsMedia> mmsMediaGet(@Path("authId") String authId, @Path("id") String id);
+ @GET("Account/{authId}/Message/{id}/Media/{media_id}/")
+  Call<MmsMedia> mmsMediaGet(@Path("authId") String authId, @Path("id") String id, @Path("media_id") String media_id);
 
   @DELETE("Account/{authId}/Message/{id}/Media/")
   Call<ResponseBody> mmsMediaDelete(@Path("authId") String authId, @Path("id") String id);
