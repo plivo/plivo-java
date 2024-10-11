@@ -1,10 +1,12 @@
 package com.plivo.api.models.media;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.BaseResource;
 
 @JsonIgnoreProperties(value = {"id"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Media extends BaseResource {
 
     private String mediaId;
