@@ -5,7 +5,7 @@ import com.plivo.api.models.base.Getter;
 import retrofit2.Call;
 public class MediaGetter extends Getter<Media> {
 
-@JsonIgnoreProperties(value = {"id"})
+// @JsonIgnoreProperties(value = {"id"})
 public MediaGetter(String id) {
   super(id);
   }
