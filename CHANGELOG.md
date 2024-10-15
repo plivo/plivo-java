@@ -1,6 +1,6 @@
 # Change Log
 ## [5.45.2](https://github.com/plivo/plivo-java/tree/v5.45.2) (2024-10-14)
-**Feature - Dtmf param in Create, Get and List Session**
+**Feature - Fix all null returning params in MMS API Responses**
 - Fix MMS API parameters returning NULL and match response with Public APIs 
 - Change in Code Snippet for List Media using Message UUID
 
