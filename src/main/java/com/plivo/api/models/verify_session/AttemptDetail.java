@@ -9,8 +9,9 @@ public class AttemptDetail {
   private String appHash;
   private Integer codeLength;
   private Integer dtmf;
+  private String fraudCheck;
 
-  public AttemptDetail(String channel, String attemptUuid, String status, String time, String brandName, String appHash, Integer codeLength, Integer dtmf) {
+  public AttemptDetail(String channel, String attemptUuid, String status, String time, String brandName, String appHash, Integer codeLength, Integer dtmf, String fraudCheck) {
     this.channel = channel;
     this.attemptUuid = attemptUuid;
     this.status = status;
@@ -19,6 +20,7 @@ public class AttemptDetail {
     this.appHash = appHash;
     this.codeLength = codeLength;
     this.dtmf = dtmf;
+    this.fraudCheck = fraudCheck;
   }
 
   public AttemptDetail(){}
@@ -46,5 +48,8 @@ public class AttemptDetail {
   }
   public Integer getDtmf(){
     return dtmf;
+  }
+  public String getFraudCheck(){
+    return fraudCheck;
   }
 }
