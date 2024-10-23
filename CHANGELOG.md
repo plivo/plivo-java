@@ -1,5 +1,5 @@
 # Change Log
-## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-16)
+## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-23)
 **Feature - fraudCheck param in Create, Get and List Session**
 - Support for the `fraud_check` parameter in sms verify session request
 - Added support for `fraud_check` in GET and LIST verify session
