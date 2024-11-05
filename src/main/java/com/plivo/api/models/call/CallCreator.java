@@ -30,6 +30,12 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
   private Long machineDetectionTime;
   private String machineDetectionUrl;
   private String machineDetectionMethod;
+  private Long machineDetectionMaximumSpeechLength;
+  private Long machineDetectionInitialSilence;
+  private Long machineDetectionMaximumWords;
+  private Long machineDetectionInitialGreeting;
+  private Long machineDetectionSilence;
+  private Long machineDetectionAnswerTime;
   @JsonSerialize(using = MapToCommaListSerializer.class)
   private Map<String, String> sipHeaders;
   private Long ringTimeout;
@@ -217,6 +223,30 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
     return this.machineDetectionMethod;
   }
 
+  public Long machineDetectionSilence() {
+    return this.machineDetectionSilence;
+  }
+
+  public Long machineDetectionInitialSilence() {
+    return this.machineDetectionInitialSilence;
+  }
+
+  public Long machineDetectionInitialGreeting() {
+    return this.machineDetectionInitialGreeting;
+  }
+
+  public Long machineDetectionMaximumSpeechLength() {
+    return this.machineDetectionMaximumSpeechLength;
+  }
+
+  public Long machineDetectionMaximumWords() {
+    return this.machineDetectionMaximumWords;
+  }
+
+  public Long machineDetectionAnswerTime() {
+    return this.machineDetectionAnswerTime;
+  }
+
   /**
    * @return List of SIP headers in the form of 'key=value' pairs, separated by commas.
    */
@@ -334,6 +364,35 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
 
   public CallCreator machineDetectionMethod(final String machineDetectionMethod) {
     this.machineDetectionMethod = machineDetectionMethod;
+    return this;
+  }
+
+  public CallCreator machineDetectionMaximumWords(final Long machineDetectionMaximumWords) {
+    this.machineDetectionMaximumWords = machineDetectionMaximumWords;
+    return this;
+  }
+
+  public CallCreator machineDetectionMaximumSpeechLength(final Long machineDetectionMaximumSpeechLength) {
+    this.machineDetectionMaximumSpeechLength = machineDetectionMaximumSpeechLength;
+    return this;
+  }
+
+  public CallCreator machineDetectionInitialSilence(final Long machineDetectionInitialSilence) {
+    this.machineDetectionInitialSilence = machineDetectionInitialSilence;
+    return this;
+  }
+  public CallCreator machineDetectionSilence(final Long machineDetectionSilence) {
+    this.machineDetectionSilence = machineDetectionSilence;
+    return this;
+  }
+
+  public CallCreator machineDetectionInitialGreeting(final Long machineDetectionInitialGreeting) {
+    this.machineDetectionInitialGreeting = machineDetectionInitialGreeting;
+    return this;
+  }
+
+  public CallCreator machineDetectionAnswerTime(final Long machineDetectionAnswerTime) {
+    this.machineDetectionAnswerTime = machineDetectionAnswerTime;
     return this;
   }
 
