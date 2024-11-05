@@ -1,7 +1,26 @@
 # Change Log
-## [5.44.4](https://github.com/plivo/plivo-java/tree/v5.44.4) (2024-09-10)
+## [5.46.0](https://github.com/plivo/plivo-java/tree/v5.46.0) (2024-11-06)
 **Feature - Adding few optional parameters to the existing machine detection params**
 - Added six new optional machine detection params `machine_detection_maximum_speech_length`,`machine_detection_initial_silence`,`machine_detection_maximum_words`,`machine_detection_initial_greeting`,`machine_detection_silence`,`machine_detection_answer_time`
+
+## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-23)
+**Feature - fraudCheck param in Create, Get and List Session**
+- Support for the `fraud_check` parameter in sms verify session request
+- Added support for `fraud_check` in GET and LIST verify session
+
+## [5.45.2](https://github.com/plivo/plivo-java/tree/v5.45.2) (2024-10-14)
+**Feature - Fix all null returning params in MMS API Responses**
+- Fix MMS API parameters returning NULL and match response with Public APIs 
+- Change in Code Snippet for List Media using Message UUID
+
+## [5.45.1](https://github.com/plivo/plivo-java/tree/v5.45.1) (2024-10-10)
+**Feature - Dtmf param in Create, Get and List Session**
+- Support for the `dtmf` parameter in voice verify session request
+- Added support for `dtmf` in GET and LIST verify session
+
+## [5.45.0](https://github.com/plivo/plivo-java/tree/v5.45.0) (2024-09-30)
+**Feature - Adding new param support for Number Masking session with single party **
+- Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
 
 ## [5.44.3](https://github.com/plivo/plivo-java/tree/v5.44.3) (2024-09-06)
 **Feature - Adding more attribute on mdr object**

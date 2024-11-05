@@ -10,7 +10,7 @@ The Plivo Java SDK makes it simpler to integrate communications into your Java a
 
 ### To Install Stable release
 
-You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.44.3/plivo-java-5.44.3.jar).
+You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.46.0/plivo-java-5.46.0.jar).
 
 
 If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
@@ -19,13 +19,13 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.44.4</version>
+  <version>5.46.0</version>
 </dependency>
 ```
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:5.44.3'
+compile 'com.plivo:plivo-java:5.46.0'
 ```
 
 ### To Install Beta release
@@ -308,7 +308,7 @@ class Test
           bodyComponent.setParameters(bodyParameters);
           components.add(bodyComponent);
 
-          template.setComponents(components);
+          template.setComponents(components)
           MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template(template).create();
           ObjectMapper ow = new ObjectMapper();
           String json_output = ow.writeValueAsString(response);
@@ -375,7 +375,7 @@ class Test
         Plivo.init("<auth_id>", "<auth_token>");
         String[] media = {"https://sample-videos.com/img/Sample-png-image-1mb.png"};
         try {
-          MessageCreateResponse response = Message.creator("+14156667778","+14156667777","WA -text").log(false).type(MessageType.WHATSAPP).media_urls(media).create();
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777","WA -text").log(false).type(MessageType.WHATSAPP).media_urls(media).create()
           System.out.println(response);
         }
         catch (PlivoRestException | IOException e) {
