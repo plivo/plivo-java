@@ -1,4 +1,7 @@
 # Change Log
+## [5.45.4](https://github.com/plivo/plivo-java/tree/v5.45.4)(2025-02-18)
+**Feature - Throw GeoPermissionException on synchronous geopermissions error**
+
 ## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-23)
 **Feature - fraudCheck param in Create, Get and List Session**
 - Support for the `fraud_check` parameter in sms verify session request
