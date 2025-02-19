@@ -11,10 +11,14 @@ import com.plivo.api.exceptions.InvalidRequestException;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.exceptions.ServerException;
+import com.plivo.api.exceptions.GeoPermissionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
@@ -23,6 +27,12 @@ import retrofit2.Response;
 public abstract class BaseRequest<T extends BaseResource> {
   @JsonIgnore
   protected PlivoClient plivoClient = Plivo.getClient();
+
+  private static final List<String> GEO_PERMISSION_ENDPOINTS = Arrays.asList(
+    "/Call/",
+    "/Message/",
+    "/Session/"
+  );
 
   public PlivoClient client() {
       return this.plivoClient;
@@ -84,6 +94,18 @@ public abstract class BaseRequest<T extends BaseResource> {
         throw new InvalidRequestException(response.errorBody().string());
       case 401:
         throw new AuthenticationException(response.errorBody().string());
+      case 403:
+        try {
+          String url = response.raw().request().url().toString();
+          if ((this instanceof Creator || this instanceof VoiceCreator) && 
+              GEO_PERMISSION_ENDPOINTS.stream().anyMatch(endpoint -> url.endsWith(endpoint))) {
+            throw new GeoPermissionException(response.errorBody().string());
+          }
+        } catch (GeoPermissionException e) {
+          throw e;
+        } catch (Exception e) {
+          // nop
+        } 
       case 404:
         throw new ResourceNotFoundException(response.errorBody().string());
       case 405:

@@ -1,6 +1,6 @@
-FROM openjdk:8-alpine
+FROM openjdk:8-buster
 
-RUN apk update && apk add git vim bash wget make
+RUN apt-get update && apt-get install -y git vim bash wget make
 
 WORKDIR /usr/src/app
 ENV CLASSPATH ${CLASSPATH}:/etc/jars/*
