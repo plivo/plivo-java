@@ -1,4 +1,8 @@
 # Change Log
+## [5.45.5](https://github.com/plivo/plivo-java/tree/v5.45.5) (2025-02-25)
+**Enhancement - Supporting parameter_name in WhatsApp Template .**
+- Supporting parameter_name in WhatsApp Template .
+
 ## [5.45.4](https://github.com/plivo/plivo-java/tree/v5.45.4)(2025-02-18)
 **Feature - Throw GeoPermissionException on synchronous geopermissions error**
 
