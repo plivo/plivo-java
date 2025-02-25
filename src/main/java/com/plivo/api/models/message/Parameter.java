@@ -57,11 +57,11 @@ public class Parameter {
         this.currency = currency;
     }
 
-    public DateTime getDate_time() {
+    public DateTime getDateTime() {
         return date_time;
     }
 
-    public void setDate_time(DateTime date_time) {
+    public void setDateTime(DateTime date_time) {
         this.date_time = date_time;
     }
 
@@ -73,11 +73,11 @@ public class Parameter {
         this.location = location;
     }
 
-        public String getParameter_name() {
+        public String getParameterName() {
         return parameter_name;
     }
 
-    public void setParameter_name(String parameter_name) {
+    public void setParameterName(String parameter_name) {
         this.parameter_name = parameter_name;
     }
 }
