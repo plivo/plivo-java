@@ -591,7 +591,7 @@ class Test
     {
         Plivo.init("<auth_id>", "<auth_token>");
         try {
-            String templateJson = "{\"name\":\"plivo_order_pickup_named_param\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"location\",\"parameter_name\":\"named_param_in_header\",\"location\":{\"longitude\":\"122.148981\",\"latitude\":\"37.483307\",\"name\":\"PabloMorales\",\"address\":\"1HackerWay,MenloPark,CA94025\"}}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"named_param_in_body\",\"text\":\"Harry\"}]}]}";
+            String templateJson = "{\"name\":\"template_name\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"header_title\",\"text\":\"WA-header\"}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"user_name\",\"text\":\"Saurabh\"}]}]}";
 
           MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template_json_string(templateJson).create();
           ObjectMapper ow = new ObjectMapper();
