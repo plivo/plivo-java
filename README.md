@@ -569,6 +569,42 @@ class Test
 }
 ```
 
+#### Templated WhatsApp Messages With Named Parameter
+This guide shows how to send templated WhatsApp messages with named parameters.
+
+Example:
+```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String templateJson = "{\"name\":\"plivo_order_pickup_named_param\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"location\",\"parameter_name\":\"named_param_in_header\",\"location\":{\"longitude\":\"122.148981\",\"latitude\":\"37.483307\",\"name\":\"PabloMorales\",\"address\":\"1HackerWay,MenloPark,CA94025\"}}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"named_param_in_body\",\"text\":\"Harry\"}]}]}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template_json_string(templateJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
 ### More examples
 More examples are available [here](https://github.com/plivo/plivo-examples-java). Also refer to the [guides for configuring the Java Spring to run various scenarios](https://plivo.com/docs/sms/quickstart/java-spring/) & use it to test out your integration in under 5 minutes.
 
