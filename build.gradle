@@ -21,13 +21,13 @@ repositories {
 java {
     withJavadocJar()
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_1_9
-    targetCompatibility = JavaVersion.VERSION_1_9
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType(JavaCompile) {
-    sourceCompatibility = JavaVersion.VERSION_1_9
-    targetCompatibility = JavaVersion.VERSION_1_9
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
     options.compilerArgs << "-Xlint:unchecked"
     options.compilerArgs << "-XDignore.symbol.file=true"
 }
@@ -48,7 +48,7 @@ dependencies {
 }
 
 checkstyle {
-    toolVersion = '10.12.5'
+    toolVersion = '8.45.1'
     configFile = file("${projectDir}/config/checkstyle/checkstyle.xml")
     configProperties = [
         'checkstyle.cache.file': "${buildDir}/checkstyle.cache"
@@ -85,6 +85,11 @@ jar {
 shadowJar {
     archiveClassifier.set('all')
     archiveBaseName.set("plivo-java-${version}-jar-with-dependencies")
+}
+
+// Add fatJar task that depends on shadowJar
+task fatJar {
+    dependsOn shadowJar
 }
 
 nexusStaging {
