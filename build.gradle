@@ -5,6 +5,7 @@ plugins {
     id 'checkstyle'
     id 'idea'
     id 'eclipse'
+    id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'io.codearte.nexus-staging' version '0.30.0'
 }
@@ -90,12 +91,47 @@ nexusStaging {
     delayBetweenRetriesInMillis = 40000
 }
 
+task createPom {
+  doLast
+ {
+  pom {
+    project {
+      name 'plivo-java'
+      packaging 'jar'
+      description 'A Java SDK to make voice calls & send SMS using Plivo and to generate Plivo XML'
+
+      licenses {
+        license {
+          name 'The MIT License'
+          url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
+          distribution 'repo'
+        }
+      }
+
+      developers {
+        developer {
+          name 'The Plivo SDKs Team'
+          email 'sdks@plivo.com'
+          organization 'Plivo, Inc.'
+          organizationUrl 'https://plivo.com'
+        }
+      }
+
+      scm {
+        url 'git@github.com:plivo/plivo-java.git'
+        connection 'scm:git:git@github.com:plivo/plivo-java.git'
+        developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
+      }
+    }
+  }.writeTo("pom.xml")
+}
+}
+
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            artifact sourcesJar
-            artifact javadocJar
             
             pom {
                 name = 'plivo-java'
@@ -156,4 +192,8 @@ publishing {
 signing {
     required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
     sign publishing.publications.mavenJava
+}
+
+application {
+    mainClass = 'com.plivo.examples.Messages'
 }
