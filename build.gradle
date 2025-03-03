@@ -92,41 +92,48 @@ nexusStaging {
 }
 
 task createPom {
-  doLast
- {
-  pom {
-    project {
-      name 'plivo-java'
-      packaging 'jar'
-      description 'A Java SDK to make voice calls & send SMS using Plivo and to generate Plivo XML'
-
-      licenses {
-        license {
-          name 'The MIT License'
-          url 'https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt'
-          distribution 'repo'
-        }
-      }
-
-      developers {
-        developer {
-          name 'The Plivo SDKs Team'
-          email 'sdks@plivo.com'
-          organization 'Plivo, Inc.'
-          organizationUrl 'https://plivo.com'
-        }
-      }
-
-      scm {
-        url 'git@github.com:plivo/plivo-java.git'
-        connection 'scm:git:git@github.com:plivo/plivo-java.git'
-        developerConnection 'scm:git:git@github.com:plivo/plivo-java.git'
-      }
+    doLast {
+        def pomFile = file("$buildDir/pom.xml")
+        pomFile.parentFile.mkdirs()
+        pomFile.createNewFile()
+        pomFile.text = """
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${project.group}</groupId>
+    <artifactId>plivo-java</artifactId>
+    <version>${project.version}</version>
+    <packaging>jar</packaging>
+    <name>plivo-java</name>
+    <description>A Java SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
+    <url>https://github.com/plivo/plivo-java/</url>
+    
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://github.com/plivo/plivo-java/blob/4.0/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>The Plivo SDKs Team</name>
+            <email>sdks@plivo.com</email>
+            <organization>Plivo, Inc.</organization>
+            <organizationUrl>https://plivo.com</organizationUrl>
+        </developer>
+    </developers>
+    
+    <scm>
+        <url>git@github.com:plivo/plivo-java.git</url>
+        <connection>scm:git:git@github.com:plivo/plivo-java.git</connection>
+        <developerConnection>scm:git:git@github.com:plivo/plivo-java.git</developerConnection>
+    </scm>
+</project>
+"""
     }
-  }.writeTo("pom.xml")
 }
-}
-
 
 publishing {
     publications {
