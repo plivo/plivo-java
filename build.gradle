@@ -210,3 +210,10 @@ signing {
 application {
     mainClass = 'com.plivo.examples.Messages'
 }
+
+task upload {
+    dependsOn publish
+    doLast {
+        println "Uploading artifacts completed"
+    }
+}
