@@ -95,6 +95,8 @@ task fatJar {
 nexusStaging {
     numberOfRetries = 60
     delayBetweenRetriesInMillis = 40000
+    username = System.getenv("MAVEN_USERNAME") ?: project.findProperty('mavenUserName') ?: ''
+    password = System.getenv("MAVEN_PASSWORD") ?: project.findProperty('mavenPassword') ?: ''
 }
 
 task createPom {
