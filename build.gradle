@@ -21,12 +21,13 @@ repositories {
 java {
     withJavadocJar()
     withSourcesJar()
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+    sourceCompatibility = JavaVersion.VERSION_1_9
+    targetCompatibility = JavaVersion.VERSION_1_9
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_1_9
+    targetCompatibility = JavaVersion.VERSION_1_9
     options.compilerArgs << "-Xlint:unchecked"
     options.compilerArgs << "-XDignore.symbol.file=true"
 }
