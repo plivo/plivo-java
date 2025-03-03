@@ -1,5 +1,5 @@
 # Change Log
-## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.5) (2025-02-25)
+## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.6) (2025-02-25)
 **Fix - Upgraded version for okhttp3 package.**
 - Upgraded version for okhttp3 package .
 
