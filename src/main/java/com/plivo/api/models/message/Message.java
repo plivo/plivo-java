@@ -34,6 +34,9 @@ public class Message extends BaseResource {
   private String conversationOrigin;
   private String conversationExpirationTimestamp;
   private String log;
+  private String errorMessage;
+  private String messageSentTime;
+  private String messageUpdatedTime;
 
   public static MessageCreator creator(String source, String destination) {
     return new MessageCreator(source, destination);
@@ -179,7 +182,19 @@ public class Message extends BaseResource {
   public String getLog() {
     return log;
   }
+
+  public String getErrorMessage(){
+    return errorMessage;
+  }
   
+  public String getMessageSentTime(){
+    return messageSentTime;
+  }
+
+  public String getMessageUpdatedTime(){
+    return messageUpdatedTime;
+  }
+
   @Override
   public String getId() {
     return getMessageUuid();

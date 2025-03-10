@@ -28,7 +28,7 @@ public class VerifySessionTest extends BaseTest{
   public void invalidSessionCreated() throws Exception {
     expectResponse("createSession.json", 202);
 
-    VerifySession.creator(null,null, null, null, null)
+    VerifySession.creator(null,null, null, null, null,null, null, null, 0, null, null)
       .create();
   }
 
@@ -36,7 +36,7 @@ public class VerifySessionTest extends BaseTest{
   public void sessionCreated() throws Exception {
     expectResponse("createSession.json", 202);
 
-    VerifySession.creator(null,"+1234567890", null, null, null)
+    VerifySession.creator(null,"+1234567890", null, null, null, null, null, null, 0, null, null)
       .create();
   }
 

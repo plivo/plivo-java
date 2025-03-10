@@ -10,7 +10,8 @@ The Plivo Java SDK makes it simpler to integrate communications into your Java a
 
 ### To Install Stable release
 
-You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.43.0/plivo-java-5.43.1.jar).
+You can use this SDK by adding it as a dependency in your dependency management tool. Alternatively, you can use the [JAR file](https://search.maven.org/remotecontent?filepath=com/plivo/plivo-java/5.45.6/plivo-java-5.45.6.jar).
+
 
 If you are using Maven, use the following XML to include the Plivo SDK as a dependency.
 
@@ -18,13 +19,13 @@ If you are using Maven, use the following XML to include the Plivo SDK as a depe
 <dependency>
   <groupId>com.plivo</groupId>
   <artifactId>plivo-java</artifactId>
-  <version>5.43.1</version>
+  <version>5.45.6</version>
 </dependency>
 ```
 
 If you are using Gradle, use the following line in your dependencies.
 ```
-compile 'com.plivo:plivo-java:5.43.1'
+compile 'com.plivo:plivo-java:5.45.6'
 ```
 
 ### To Install Beta release
@@ -557,6 +558,42 @@ class Test
             String locationJson = "{\"longitude\":\"122.148981\",\"latitude\":\"37.483307\",\"name\":\"PabloMorales\",\"address\":\"1HackerWay,MenloPark,CA94025\"}";
 
           MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).location_json_string(locationJson).create();
+          ObjectMapper ow = new ObjectMapper();
+          String json_output = ow.writeValueAsString(response);
+          System.out.println(json_output);
+        }
+        catch (PlivoRestException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+#### Templated WhatsApp Messages With Named Parameter
+This guide shows how to send templated WhatsApp messages with named parameters.
+
+Example:
+```java
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+
+import com.plivo.api.Plivo;
+import com.plivo.api.exceptions.PlivoRestException;
+import com.plivo.api.models.message.Message;
+import com.plivo.api.models.message.MessageCreateResponse;
+import com.plivo.api.models.message.MessageType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class Test
+{
+    public static void main(String [] args)
+    {
+        Plivo.init("<auth_id>", "<auth_token>");
+        try {
+            String templateJson = "{\"name\":\"template_name\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"header_title\",\"text\":\"WA-header\"}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"parameter_name\":\"user_name\",\"text\":\"Saurabh\"}]}]}";
+
+          MessageCreateResponse response = Message.creator("+14156667778","+14156667777").type(MessageType.WHATSAPP).template_json_string(templateJson).create();
           ObjectMapper ow = new ObjectMapper();
           String json_output = ow.writeValueAsString(response);
           System.out.println(json_output);

@@ -11,7 +11,9 @@ public class Parameter {
     private Currency currency;
     private DateTime date_time;
     private Location location;
+    private String parameter_name;
 
+    
     public Parameter() {
     }
 
@@ -71,4 +73,11 @@ public class Parameter {
         this.location = location;
     }
 
+        public String getParameter_name() {
+        return parameter_name;
+    }
+
+    public void setParameter_name(String parameter_name) {
+        this.parameter_name = parameter_name;
+    }
 }

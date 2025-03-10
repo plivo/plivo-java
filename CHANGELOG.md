@@ -1,4 +1,51 @@
 # Change Log
+## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.6) (2025-03-03)
+**Fix - Upgraded version for okhttp3 package.**
+- Upgraded version of the okhttp3 package .
+
+## [5.45.5](https://github.com/plivo/plivo-java/tree/v5.45.5) (2025-02-25)
+**Enhancement - Supporting parameter_name in WhatsApp Template .**
+- Supporting parameter_name in WhatsApp Template .
+
+## [5.45.4](https://github.com/plivo/plivo-java/tree/v5.45.4)(2025-02-18)
+**Feature - Throw GeoPermissionException on synchronous geopermissions error**
+
+## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-23)
+**Feature - fraudCheck param in Create, Get and List Session**
+- Support for the `fraud_check` parameter in sms verify session request
+- Added support for `fraud_check` in GET and LIST verify session
+
+## [5.45.2](https://github.com/plivo/plivo-java/tree/v5.45.2) (2024-10-14)
+**Feature - Fix all null returning params in MMS API Responses**
+- Fix MMS API parameters returning NULL and match response with Public APIs 
+- Change in Code Snippet for List Media using Message UUID
+
+## [5.45.1](https://github.com/plivo/plivo-java/tree/v5.45.1) (2024-10-10)
+**Feature - Dtmf param in Create, Get and List Session**
+- Support for the `dtmf` parameter in voice verify session request
+- Added support for `dtmf` in GET and LIST verify session
+
+## [5.45.0](https://github.com/plivo/plivo-java/tree/v5.45.0) (2024-09-30)
+**Feature - Adding new param support for Number Masking session with single party **
+- Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
+
+## [5.44.3](https://github.com/plivo/plivo-java/tree/v5.44.3) (2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
+
+## [5.44.2](https://github.com/plivo/plivo-java/tree/v5.44.2) (2024-09-06)
+**Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
+- Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
+- Added support for `brand_name`, `code_length` and `app_hash` param in get and list Session response
+
+## [5.44.1](https://github.com/plivo/plivo-java/tree/v5.44.1) (2024-09-03)
+**Feature - Adding new element for Audio Stream XML**
+- Added `keepCallAlive` element in Audio Stream XML
+- 
+## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.0) (2024-07-11)
+**Feature - Adding locale support for Create, Get and List Session API**
+- Added new request param `locale` in create Session API
+- Added support for `locale` param in get and list Session response
 
 ## [5.43.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-31)
 **Feature - Adding filtering support for List Application API**
