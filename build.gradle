@@ -39,12 +39,12 @@ dependencies {
     
     testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
 
-    compile 'com.squareup.retrofit2:converter-jackson:2.11.0'
-    compile 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.11.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
-    compile 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
-    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.9'
-    compile 'com.auth0:java-jwt:3.19.4'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.9'
+    implementation 'com.auth0:java-jwt:3.19.4'
 }
 
 checkstyle {
