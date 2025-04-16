@@ -51,6 +51,9 @@ public class Record extends PlivoXml implements ResponseNestable {
   @XmlAttribute
   private String callbackMethod;
 
+  @XmlAttribute
+  private String recordChannelType;
+
   public Record(String action) {
     this.action = action;
   }
@@ -112,6 +115,10 @@ public class Record extends PlivoXml implements ResponseNestable {
 
   public String callbackMethod() {
     return this.callbackMethod;
+  }
+
+  public String recordChannelType() {
+    return this.recordChannelType;
   }
 
   public Record method(final String method) {
@@ -181,6 +188,11 @@ public class Record extends PlivoXml implements ResponseNestable {
 
   public Record callbackMethod(final String callbackMethod) {
     this.callbackMethod = callbackMethod;
+    return this;
+  }
+
+  public Record recordChannelType(final String recordChannelType) {
+    this.recordChannelType = recordChannelType;
     return this;
   }
 }

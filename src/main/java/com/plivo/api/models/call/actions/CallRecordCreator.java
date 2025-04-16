@@ -16,6 +16,7 @@ public class CallRecordCreator extends VoiceCreator<CallRecordCreateResponse> {
   private String transcriptionMethod;
   private String callbackUrl;
   private String callbackMethod;
+  private String recordChannelType;
 
   public CallRecordCreator(String id) {
     this.id = id;
@@ -77,6 +78,11 @@ public class CallRecordCreator extends VoiceCreator<CallRecordCreateResponse> {
     return this;
   }
 
+  public CallRecordCreator recordChannelType(final String recordChannelType) {
+    this.recordChannelType = recordChannelType;
+    return this;
+  }
+
   public Integer timeLimit() {
     return this.timeLimit;
   }
@@ -103,5 +109,9 @@ public class CallRecordCreator extends VoiceCreator<CallRecordCreateResponse> {
 
   public String callbackMethod() {
     return this.callbackMethod;
+  }
+
+  public String recordChannelType() {
+    return this.recordChannelType;
   }
 }
