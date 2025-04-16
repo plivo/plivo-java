@@ -15,6 +15,7 @@ import com.plivo.api.models.conference.*;
 import com.plivo.api.models.endpoint.*;
 import com.plivo.api.models.enduser.*;
 import com.plivo.api.models.identity.*;
+import com.plivo.api.models.maskingsession.*;
 import com.plivo.api.models.media.Media;
 import com.plivo.api.models.media.MediaResponse;
 import com.plivo.api.models.message.Message;
@@ -41,6 +42,13 @@ import com.plivo.api.models.campaign.*;
 import com.plivo.api.models.profile.*;
 import com.plivo.api.models.token.TokenCreateResponse;
 import com.plivo.api.models.token.TokenCreator;
+import com.plivo.api.models.verify_session.SessionCreateResponse;
+import com.plivo.api.models.verify_session.SessionCreator;
+import com.plivo.api.models.verify_session.ValidateSession;
+import com.plivo.api.models.verify_session.VerifySession;
+import com.plivo.api.models.verify_session.VerifySessionList;
+import com.plivo.api.models.tollfree_verification.*;
+import com.plivo.api.models.verify.*;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -208,9 +216,9 @@ public interface PlivoAPIService {
   Call<Message> messageGet(@Path("authId") String authId, @Path("id") String id);
 
   @GET("Account/{authId}/Message/{id}/Media/")
-  Call<ListResponse<MmsMedia>> mmsMediaList(@Path("authId") String authId, @Path("id") String id);
+  Call<ListResponse<MmsMedia>> mmsMediaList(@Path("authId") String authId, @Path("id") String id, @QueryMap Map<String, Object> mediaListRequest);
 
-  @GET("Account/{authId}/Message/{id}/Media/{media_id}/")
+ @GET("Account/{authId}/Message/{id}/Media/{media_id}/")
   Call<MmsMedia> mmsMediaGet(@Path("authId") String authId, @Path("id") String id, @Path("media_id") String media_id);
 
   @DELETE("Account/{authId}/Message/{id}/Media/")
@@ -287,6 +295,10 @@ public interface PlivoAPIService {
   Call<CampaignNumbers> unlinkCampaignNumber(@Path("authId") String authId, @Path("campaign_id") String campaignID, 
                                           @Path("number") String number, @Query("url") String url, @Query("method") String method);
 
+  @POST("Account/{authId}/10dlc/Campaign/Import/")
+  Call<CampaignImportResponse> importCampaign(@Path("authId") String authId,
+                                          @Body CampaignImporter campaignImporter);
+
   @POST("Account/{authId}/Profile/")
   Call<ProfileAddResponse> profileAdd(@Path("authId") String authId, @Body ProfileAdder profileAdder);
 
@@ -308,7 +320,7 @@ public interface PlivoAPIService {
   @GET("Account/{authId}/10dlc/Campaign/")
   Call<ListResponse<Campaign>> campaignList(@Path("authId") String authId,
                                           @QueryMap Map<String, Object> campaignListRequest, 
-                                            @Query("limit") Integer limit, @Query("offset") Integer offset);
+                                            @Query("limit") Integer limit, @Query("offset") Integer offset, @Query("campaign_source") String campaignSource, @Query("brand_id") String brandId, @Query("usecase") String usecase, @Query("registration_status") String registrationStatus);
 
   @GET("Account/{authId}/10dlc/Campaign/{campaignId}/")
   Call<Campaign> campaignGet(@Path("authId") String authId, @Path("campaignId") String campaignId);
@@ -339,6 +351,27 @@ public interface PlivoAPIService {
   @POST("Account/{authId}/JWT/Token/")
   Call<TokenCreateResponse> tokenCreate(@Path("authId") String authId,
                                                      @Body TokenCreator tokenCreator);
+
+  @GET("Account/{authId}/Masking/Session/")
+  Call<ListResponse<MaskingSession>> maskingSessionList(@Path("authId") String authId,
+                                                        @QueryMap Map<String, Object> params);
+
+  @GET("Account/{authId}/Masking/Session/{sessionUuid}/")
+  Call<MaskingSession> maskingSessionGet(@Path("authId") String authId, @Path("sessionUuid") String sessionUuid);
+
+  @DELETE("Account/{authId}/Masking/Session/{sessionUuid}/")
+  Call<ResponseBody> maskingSessionDelete(@Path("authId") String authId,
+                                    @Path("sessionUuid") String sessionUuid);
+
+  @POST("Account/{authId}/Masking/Session/{sessionUuid}/")
+  Call<MaskingSessionUpdateResponse> maskingSessionUpdate(@Path("authId") String authId,
+                                                          @Path("sessionUuid") String sessionUuid, @Body
+                                                          MaskingSessionUpdater maskingSessionUpdater);
+
+  @POST("Account/{authId}/Masking/Session/")
+  Call<MaskingSessionCreateResponse> maskingSessionCreate(@Path("authId") String authId,
+                                                          @Body MaskingSessionCreator maskingSessionCreator);
+
   @GET("Account/{authId}/Endpoint/")
   Call<ListResponse<Endpoint>> endpointList(@Path("authId") String authId,
                                             @QueryMap Map<String, Object> params);
@@ -718,4 +751,80 @@ public interface PlivoAPIService {
 
   @DELETE("Account/{authId}/MultiPartyCall/{mpcId}/Member/{participantId}/Play/")
   Call<ResponseBody> mpcStopPlayAudio(@Path("authId") String authId, @Path("mpcId") String mpcId, @Path("participantId") String participantId);
+
+  // Streaming
+  @POST("Account/{authId}/Call/{callId}/Stream/")
+  Call<CallStreamCreateResponse> callStreamCreate(@Path("authId") String authId,
+                                                  @Path("callId") String callId, @Body
+                                                  CallStreamCreator callStreamCreator);
+
+  @DELETE("Account/{authId}/Call/{callId}/Stream/")
+  Call<ResponseBody> callStreamDelete(@Path("authId") String authId, @Path("callId") String callId);
+
+  @DELETE("Account/{authId}/Call/{callId}/Stream/{streamId}")
+  Call<ResponseBody> callStreamDeleteSpecific(@Path("authId") String authId, @Path("callId") String callId,
+                                              @Path("streamId") String streamId);
+
+  @GET("Account/{authId}/Call/{callId}/Stream/")
+  Call<ListResponse<CallStreamGetSpecificResponse>> callStreamGetAll(@Path("authId") String authId, @Path("callId") String callId);
+
+  @GET("Account/{authId}/Call/{callId}/Stream/{streamId}")
+  Call<CallStreamGetSpecificResponse> callStreamGetSpecific(@Path("authId") String authId, @Path("callId") String callId,
+                                                            @Path("streamId") String streamId);
+
+  @POST("Account/{authId}/Verify/Session/")
+  Call<SessionCreateResponse> sessionSend(@Path("authId") String authId,
+                                          @Body SessionCreator sessionCreator);
+
+  @POST("Account/{authId}/Verify/Session/{id}/")
+  Call<SessionCreateResponse> validateSession(@Path("authId") String authId, @Path("id") String id,
+                                          @Body ValidateSession validateSession);
+  @GET("Account/{authId}/Verify/Session/{id}/")
+  Call<VerifySession> sessionGet(@Path("authId") String authId, @Path("id") String id);
+
+  @GET("Account/{authId}/Verify/Session/")
+  Call<ListResponse<VerifySessionList>> sessionList(@Path("authId") String authId,
+                                          @QueryMap Map<String, Object> sessionListRequest);
+  //Verify
+  @POST("Account/{authId}/VerifiedCallerId/")
+  Call<InitiateVerifyResponse> initiateVerify(@Path("authId") String authId, @Body InitiateVerify initiateVerify);
+
+  @POST("Account/{authId}/VerifiedCallerId/Verification/{verificationUuid}/")
+  Call<VerifyCallerIdResponse> verifyCallerID(@Path("authId") String authId, @Path("verificationUuid") String verificationUuid, @Body VerifyCallerId verifyCallerId);
+
+  @POST("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<UpdateVerifiedCallerIdResponse> updateVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber, @Body UpdateVerifiedCallerID updateVerifiedCallerID);
+
+  @GET("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<GetVerifiedCallerIdResponse> getVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  @GET("Account/{authId}/VerifiedCallerId/")
+  Call<ListVerifiedCallerIdResponse> listVerifiedCallerID(@Path("authId") String authId, @QueryMap Map<String, Object> listVerifiedCallerId);
+
+  @DELETE("Account/{authId}/VerifiedCallerId/{phoneNumber}")
+  Call<ResponseBody> deleteVerifiedCallerID(@Path("authId") String authId, @Path("phoneNumber") String phoneNumber);
+
+  // TollfreeVerification Request
+  // Get
+  @GET("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerification> tollfreeVerificationGet(@Path("authId") String authId, @Path("uuid") String uuid);
+
+  // Create
+  @POST("Account/{authId}/TollfreeVerification/")
+  Call<TollfreeVerificationCreateResponse> tollfreeVerificationCreate(@Path("authId") String authId,
+                                                                      @Body TollfreeVerificationCreator tollfreeVerificationCreator);
+
+  // Update
+  @POST("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<TollfreeVerificationUpdateResponse> tollfreeVerificationUpdate(@Path("authId") String authId, @Path("uuid") String uuid,
+                                                                      @Body TollfreeVerificationUpdater tollfreeVerificationUpdater);
+
+  // List
+  @GET("Account/{authId}/TollfreeVerification/")
+  Call<ListResponse<TollfreeVerification>> tollfreeVerificationList(@Path("authId") String authId,
+                                                                          @QueryMap Map<String, Object> tollfreeVerificationLister);
+
+  // Delete
+  @DELETE("Account/{authId}/TollfreeVerification/{uuid}/")
+  Call<ResponseBody> tollfreeVerificationDelete(@Path("authId") String authId, @Path("uuid") String uuid);
 }

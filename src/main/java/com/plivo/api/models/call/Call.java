@@ -1,13 +1,7 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.models.base.BaseResource;
-import com.plivo.api.models.call.actions.CallDtmfCreator;
-import com.plivo.api.models.call.actions.CallPlayCreator;
-import com.plivo.api.models.call.actions.CallPlayDeleter;
-import com.plivo.api.models.call.actions.CallRecordCreator;
-import com.plivo.api.models.call.actions.CallRecordDeleter;
-import com.plivo.api.models.call.actions.CallSpeakCreator;
-import com.plivo.api.models.call.actions.CallSpeakDeleter;
+import com.plivo.api.models.call.actions.*;
 import java.util.List;
 
 // TODO Date
@@ -32,6 +26,8 @@ public class Call extends BaseResource {
   private String hangupCauseName;
   private Integer hangupCauseCode;
   private String voiceNetworkGroup;
+  private String sourceIp;
+  private String cnamLookup;
 
   public static CallCreator creator(String from, List<String> to, String answerUrl) {
     return new CallCreator(from, to, answerUrl);
@@ -61,6 +57,26 @@ public class Call extends BaseResource {
     return new CallRecordDeleter(callUuid);
   }
 
+  public static CallStreamCreator streamer(String callUuid, String serviceUrl) {
+    return new CallStreamCreator(callUuid, serviceUrl);
+  }
+
+  public static CallStreamDeleter streamStopper(String callUuid) {
+    return new CallStreamDeleter(callUuid);
+  }
+
+  public static CallStreamDeleteSpecific streamStopSpecific(String callUuid, String streamId) {
+    return new CallStreamDeleteSpecific(callUuid, streamId);
+  }
+
+  public static CallStreamGetter streamGetter(String callUuid) {
+    return new CallStreamGetter(callUuid);
+  }
+
+  public static CallStreamGetSpecific streamGetSpecific(String callUuid, String streamId) {
+    return new CallStreamGetSpecific(callUuid, streamId);
+  }
+
   public static CallPlayCreator player(String callUuid, List<String> urls) {
     return new CallPlayCreator(callUuid, urls);
   }
@@ -71,6 +87,10 @@ public class Call extends BaseResource {
 
   public static CallSpeakCreator speaker(String callUuid, String text) {
     return new CallSpeakCreator(callUuid, text);
+  }
+
+  public static CallSpeakCreator speaker(String callUuid, String text, String type) {
+    return new CallSpeakCreator(callUuid, text, type);
   }
 
   public static CallSpeakDeleter speakStopper(String callUuid) {
@@ -159,6 +179,13 @@ public class Call extends BaseResource {
 
   public String getVoiceNetworkGroup(){
     return voiceNetworkGroup;
+  }
+  public String getSourceIp () {
+    return sourceIp;
+  }
+
+  public String getCnamLookup() {
+    return cnamLookup;
   }
 
   public CallDeleter deleter() {

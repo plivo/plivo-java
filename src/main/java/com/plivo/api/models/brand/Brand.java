@@ -17,6 +17,8 @@ public class Brand extends BaseResource {
   private Address address;
   private AuthorizedContact authorizedContact;
   private BrandResponse brand;
+  private String createdAt;
+  private List<TCRErrorDetail> declinedReasons;
 
   public static BrandCreator creator(String brandAlias,String profileUUID,String brandType,Boolean secondaryVetting,String url,String method) {
     return new BrandCreator(brandAlias,profileUUID,brandType,secondaryVetting,url,method);
@@ -110,6 +112,20 @@ public class Brand extends BaseResource {
   public AuthorizedContact getAuthorizedContact() {
       return authorizedContact;
   }
+
+    /**
+   * @return String return the getCreatedAt
+   */
+  public String getCreatedAt() {
+      return createdAt;
+  }
+
+   /**
+   * @return TCRErrorDetail[] return the getDeclinedReasons
+   */
+  public List<TCRErrorDetail> getDeclinedReasons() {
+      return declinedReasons;
+  }  
 
   public BrandResponse getBrand() {
     return brand;                               

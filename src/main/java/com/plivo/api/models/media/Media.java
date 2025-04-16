@@ -3,6 +3,7 @@ package com.plivo.api.models.media;
 import com.plivo.api.exceptions.ResourceNotFoundException;
 import com.plivo.api.models.base.BaseResource;
 
+
 public class Media extends BaseResource {
 
     private String mediaId;
@@ -10,16 +11,13 @@ public class Media extends BaseResource {
     private String contentType;
     private int size;
     private String uploadTime;
+    private String mediaUrl;
     private String url;
-
-    private String status;
-    private int statusCode;
 
     public static MediaUploader creator(
             String[] fileNames) throws ResourceNotFoundException {
         return new MediaUploader(fileNames);
     }
-
 
     public static MediaGetter getter(String id) {
         return new MediaGetter(id);
@@ -28,6 +26,7 @@ public class Media extends BaseResource {
     public static MediaLister lister() {
         return new MediaLister();
     }
+    
 
     public String getMediaId() {
         return mediaId;
@@ -49,16 +48,12 @@ public class Media extends BaseResource {
         return uploadTime;
     }
 
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
+
     public String getUrl() {
         return url;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
     }
 
     @Override

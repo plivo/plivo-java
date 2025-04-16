@@ -18,7 +18,29 @@ public class Message extends BaseResource {
   private String totalRate;
   private Long units;
   private String powerpackID;
+  private String tendlcCampaignID;
+  private String tendlcRegistrationStatus;
+  private String destinationCountryIso2;
+  private String destinationNetwork;
+  private String carrierFeesRate;
+  private String carrierFees;
   private String requesterIP;
+  private Boolean isDomestic;
+  private String replacedSender;
+  private String dltEntityID;
+  private String dltTemplateID;
+  private String dltTemplateCategory;
+  private String conversationID;
+  private String conversationOrigin;
+  private String conversationExpirationTimestamp;
+  private String log;
+  private String errorMessage;
+  private String messageSentTime;
+  private String messageUpdatedTime;
+
+  public static MessageCreator creator(String source, String destination) {
+    return new MessageCreator(source, destination);
+  }
 
   public static MessageCreator creator(String source, List<String> destination, String text) {
     return new MessageCreator(source, destination, text);
@@ -50,14 +72,41 @@ public class Message extends BaseResource {
     return errorCode;
   }
 
+  public String getTendlcRegistrationStatus() {
+    return tendlcRegistrationStatus;
+    }
+
   public String getRequesterIP() {
     return requesterIP;
+  }
+
+  public String getReplacedSender() {
+    return replacedSender;
   }
   
   public String getPowerpackID() {
     return powerpackID;
   }
   
+  public String getTendlcCampaignID() {
+    return tendlcCampaignID;
+  }
+   public String getDestinationCountryIso2() {
+    return destinationCountryIso2;
+  }
+
+  public String getDestinationNetwork() {
+    return destinationNetwork;
+  }
+
+  public String getCarrierFeesRate() {
+    return carrierFeesRate;
+  }
+
+  public String getCarrierFees() {
+    return carrierFees;
+  }
+
   public String getFromNumber() {
     return fromNumber;
   }
@@ -100,6 +149,50 @@ public class Message extends BaseResource {
 
   public Long getUnits() {
     return units;
+  }
+
+  public Boolean getIsDomestic() {
+    return isDomestic;
+  }
+
+  public String getDltEntityID() {
+    return dltEntityID;
+  }
+
+  public String getDltTemplateID() {
+    return dltTemplateID;
+  }
+
+  public String getDltTemplateCategory() {
+    return dltTemplateCategory;
+  }
+
+  public String getConversationID() {
+    return conversationID;
+  }
+
+  public String getConversationOrigin() {
+    return conversationOrigin;
+  }
+
+  public String getConversationExpirationTimestamp() {
+    return conversationExpirationTimestamp;
+  }
+
+  public String getLog() {
+    return log;
+  }
+
+  public String getErrorMessage(){
+    return errorMessage;
+  }
+  
+  public String getMessageSentTime(){
+    return messageSentTime;
+  }
+
+  public String getMessageUpdatedTime(){
+    return messageUpdatedTime;
   }
 
   @Override

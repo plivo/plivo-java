@@ -2,6 +2,7 @@ package com.plivo.api.models.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.serializers.DelimitedListSerializer;
 import com.plivo.api.util.Utils;
@@ -20,18 +21,26 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
   @JsonSerialize(using = DelimitedListSerializer.class)
   @JsonProperty("dst")
   private final List < String > destination;
-  private final String text;
+  private String text;
   @JsonProperty("powerpack_uuid")
   private String powerpackUUID;
   private MessageType type = null;
   private URL url = null;
   private String method = "POST";
-  private Boolean log = null;
+  private String log = "true";
   private Boolean trackable = null;
   private String[] media_urls = null;
   private String[] media_ids = null;
   private Long message_expiry;
-
+  private String dlt_entity_id;
+  private String dlt_template_id;
+  private String dlt_template_category;
+  @JsonProperty("template")
+  private Template template;
+  @JsonProperty("interactive")
+  private Interactive interactive;
+  @JsonProperty("location")
+  private Location location;
 
   /**
    * @param source The phone number that will be shown as the sender ID.
@@ -56,6 +65,21 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
       this.text = text;
     }
 
+  }
+
+   /**
+   * @param source The phone number that will be shown as the sender.
+   * @param destination The numbers to which the message will be sent.
+   */
+  MessageCreator(String source, String destination) {
+    if (!Utils.allNotNull(source, destination)) {
+      throw new IllegalArgumentException("source, destination must not be null");
+    }
+    if (destination.equals(source)) {
+      throw new IllegalArgumentException("destination cannot include source");
+    }
+    this.source = source;
+    this.destination = Collections.singletonList(destination);
   }
 
   /**
@@ -115,7 +139,7 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this.method;
   }
 
-  public Boolean log() {
+  public String log() {
     return this.log;
   }
 
@@ -127,9 +151,21 @@ public class MessageCreator extends Creator < MessageCreateResponse > {
     return this.media_ids;
   }
 
-public Long message_expiry() {
-    return this.message_expiry;
-}
+  public Long message_expiry() {
+      return this.message_expiry;
+  }
+
+  public String dlt_entity_id() {
+    return this.dlt_entity_id;
+  }
+
+  public String dlt_template_id() {
+    return this.dlt_template_id;
+  }
+
+  public String dlt_template_category() {
+    return this.dlt_template_category;
+  }
 
   /**
    * @param type Must be {@link MessageType#SMS}
@@ -159,8 +195,14 @@ public Long message_expiry() {
    * @param log If set to false, the content of this message will not be logged on the Plivo
    * infrastructure and the dst value will be masked
    */
-  public MessageCreator log(final Boolean log) {
-    this.log = log;
+  public MessageCreator log(final Object log) {
+    if (log instanceof Boolean) {
+        this.log = ((Boolean) log).toString();
+    } else if (log instanceof String) {
+        this.log = (String) log;
+    } else {
+        throw new IllegalArgumentException("Invalid log value. Expected boolean or string.");
+    }
     return this;
   }
 
@@ -192,6 +234,134 @@ public Long message_expiry() {
     this.message_expiry = message_expiry;
     return this;
   }
+
+  /**
+   * @param dlt_entity_id This is the DLT entity id passed in the message request.
+   */
+  public MessageCreator dlt_entity_id(final String dlt_entity_id) {
+    this.dlt_entity_id = dlt_entity_id;
+    return this;
+  }
+
+  /**
+   * @param dlt_template_id This is the DLT template id passed in the message request.
+   */
+  public MessageCreator dlt_template_id(final String dlt_template_id) {
+    this.dlt_template_id = dlt_template_id;
+    return this;
+  }
+
+  /**
+   * @param dlt_template_category This is the DLT template category passed in the message request.
+   */
+  public MessageCreator dlt_template_category(final String dlt_template_category) {
+    this.dlt_template_category = dlt_template_category;
+    return this;
+  }
+
+  /**
+   * @param template_json_string This is the template passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator template_json_string(final String template_json_string) {
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Template temp = objectMapper.readValue(template_json_string, Template.class);
+      if (temp.getName() == null || temp.getName().isEmpty()) {
+        throw new IllegalArgumentException("template name must not be null or empty");
+      }
+      if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+          throw new IllegalArgumentException("template language must not be null or empty");
+      }
+      this.template = temp;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read template");
+    }
+    return this;
+  }
+
+  /**
+   * @param temp This is the template passed as a template object in the whatsapp message request.
+   */
+  public MessageCreator template(final Template temp) {
+    if (Utils.allNotNull(this.template)) {
+      throw new IllegalArgumentException("template parameter is already set");
+    }
+    if (temp.getName() == null || temp.getName().isEmpty()) {
+      throw new IllegalArgumentException("template name must not be null or empty");
+    }
+    if (temp.getLanguage() == null || temp.getLanguage().isEmpty()) {
+        throw new IllegalArgumentException("template language must not be null or empty");
+    }
+    this.template = temp;
+    
+    return this;
+  }
+
+
+   /**
+   * @param intractv This is the interactive messages passed as a interactive object in the whatsapp message request.
+   */
+  public MessageCreator interactive(final Interactive intractv) {
+    if (Utils.allNotNull(this.interactive)) {
+      throw new IllegalArgumentException("interacitve parameter is already set");
+    }
+    this.interactive = intractv;
+    
+    return this;
+  }
+
+   /**
+   * @param interactive_json_string This is the interactive message passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator interactive_json_string(final String interactive_json_string) {
+    if (Utils.allNotNull(this.interactive)) {
+      throw new IllegalArgumentException("interactive parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Interactive parsedInteractive = objectMapper.readValue(interactive_json_string, Interactive.class);
+      this.interactive = parsedInteractive;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read interactive message");
+    }
+    return this;
+  }
+
+   /**
+   * @param location_json_string This is the location passed as a json string in the whatsapp message request.
+   */
+  public MessageCreator location_json_string(final String location_json_string) {
+    if (Utils.allNotNull(this.location)) {
+      throw new IllegalArgumentException("location parameter is already set");
+    }
+    try {
+      ObjectMapper objectMapper = new ObjectMapper();
+      Location loc = objectMapper.readValue(location_json_string, Location.class);
+      this.location = loc;
+    } catch (Exception e) {
+        	e.printStackTrace();
+          throw new IllegalArgumentException("failed to read location");
+    }
+    return this;
+  }
+
+  /**
+   * @param loc This is the location passed as a location object in the whatsapp message request.
+   */
+  public MessageCreator location(final Location loc) {
+    if (Utils.allNotNull(this.location)) {
+      throw new IllegalArgumentException("location parameter is already set");
+    }
+    this.location = loc;
+    
+    return this;
+  }
+
 
 
   @Override

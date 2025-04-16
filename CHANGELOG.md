@@ -1,4 +1,191 @@
 # Change Log
+## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.6) (2025-03-03)
+**Fix - Upgraded version for okhttp3 package.**
+- Upgraded version of the okhttp3 package .
+
+## [5.45.5](https://github.com/plivo/plivo-java/tree/v5.45.5) (2025-02-25)
+**Enhancement - Supporting parameter_name in WhatsApp Template .**
+- Supporting parameter_name in WhatsApp Template .
+
+## [5.45.4](https://github.com/plivo/plivo-java/tree/v5.45.4)(2025-02-18)
+**Feature - Throw GeoPermissionException on synchronous geopermissions error**
+
+## [5.45.3](https://github.com/plivo/plivo-java/tree/v5.45.3)(2024-10-23)
+**Feature - fraudCheck param in Create, Get and List Session**
+- Support for the `fraud_check` parameter in sms verify session request
+- Added support for `fraud_check` in GET and LIST verify session
+
+## [5.45.2](https://github.com/plivo/plivo-java/tree/v5.45.2) (2024-10-14)
+**Feature - Fix all null returning params in MMS API Responses**
+- Fix MMS API parameters returning NULL and match response with Public APIs 
+- Change in Code Snippet for List Media using Message UUID
+
+## [5.45.1](https://github.com/plivo/plivo-java/tree/v5.45.1) (2024-10-10)
+**Feature - Dtmf param in Create, Get and List Session**
+- Support for the `dtmf` parameter in voice verify session request
+- Added support for `dtmf` in GET and LIST verify session
+
+## [5.45.0](https://github.com/plivo/plivo-java/tree/v5.45.0) (2024-09-30)
+**Feature - Adding new param support for Number Masking session with single party **
+- Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
+
+## [5.44.3](https://github.com/plivo/plivo-java/tree/v5.44.3) (2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
+
+## [5.44.2](https://github.com/plivo/plivo-java/tree/v5.44.2) (2024-09-06)
+**Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
+- Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
+- Added support for `brand_name`, `code_length` and `app_hash` param in get and list Session response
+
+## [5.44.1](https://github.com/plivo/plivo-java/tree/v5.44.1) (2024-09-03)
+**Feature - Adding new element for Audio Stream XML**
+- Added `keepCallAlive` element in Audio Stream XML
+- 
+## [5.44.0](https://github.com/plivo/plivo-java/tree/v5.44.0) (2024-07-11)
+**Feature - Adding locale support for Create, Get and List Session API**
+- Added new request param `locale` in create Session API
+- Added support for `locale` param in get and list Session response
+
+## [5.43.1](https://github.com/plivo/plivo-java/tree/v5.42.1) (2024-05-31)
+**Feature - Adding filtering support for List Application API**
+- Added new filter param `appName` for list application api
+
+## [5.43.0](https://github.com/plivo/plivo-java/tree/v5.43.0) (2024-05-31)
+**Feature - Number Masking Feature Added**
+- Number Masking APIs added to create, update, delete and list sessions
+
+## [5.42.0](https://github.com/plivo/plivo-java/tree/v5.42.0) (2024-05-20)
+**Feature - Adding support for location whatsapp messages**
+- Added new param `location` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location `whatsapp` messages
+- Added new param `location` in templates to support location based templated messages
+
+## [5.41.0](https://github.com/plivo/plivo-java/tree/v5.41.0) (2024-05-07)
+**Feature - Adding support for interactive whatsapp messages**
+- Added new param `interactive` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive `whatsapp` messages
+
+## [5.40.0](https://github.com/plivo/plivo-java/tree/v5.40.0) (2023-04-18)
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
+
+## [5.39.1](https://github.com/plivo/plivo-java/tree/v5.39.1) (2024-04-04)
+**Feature - add new response fields for LIST and GET brand**
+- Added new response params `declined_reasons` for LIST / GET Brand APIs
+
+## [5.39.0](https://github.com/plivo/plivo-java/tree/v5.39.0) (2024-03-13)
+**Feature - Import Campaign API**
+- Import Campaign API
+
+## [5.38.3](https://github.com/plivo/plivo-java/tree/v5.38.3) (2024-02-28)
+**Feature - Log Redaction Enhancement**
+-  Added log attribute in GET and List MDR response
+-  Change log field from bool to string in send SMS 
+
+## [5.38.2](https://github.com/plivo/plivo-java/tree/v5.38.2) (2024-01-15)
+**Feature - Made meta object consistent for List Powerpacks, List Media, List Numbers, List Shortcodes, List Tollfree API**
+- Made meta object consistent in API response
+
+## [5.38.1](https://github.com/plivo/plivo-java/tree/v5.38.1) (2023-12-19)
+**Feature - Added params for Speak API**
+- Added params 'type' for Speak APIs
+
+## [5.38.0](https://github.com/plivo/plivo-java/tree/v5.38.0) (2023-11-30)
+**Feature - Added params for GET and LIST Campaign API**
+- Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
+
+## [5.37.0](https://github.com/plivo/plivo-java/tree/v5.37.0) (2023-11-29)
+**Feature - add new response fields for LIST and GET campaign**
+- Added new response params `error_code`, `error_reason` for LIST / GET Campaign APIs
+
+## [5.36.0](https://github.com/plivo/plivo-java/tree/v5.36.0) (2023-11-09)
+**Feature - registration_status field**
+- Added new param `registration_status` in LIST Campaign APIs
+
+
+## [5.35.0](https://github.com/plivo/plivo-java/tree/v5.35.0) (2023-11-08)
+**Verify Service**
+-Added Support for Verify Service Public API'S 
+-Create Session API(POST): To create a verify session (2FA). Allowed params recipient, method, channel, callback_url, app_uuid
+-Get Session API(GET): To retrieve a particular session
+-List Sessions : To retrieve all the sessions
+-Validate Session : To validate OTP for a particular session
+## [5.34.0](https://github.com/plivo/plivo-java/tree/v5.34.0) (2023-11-03)
+**Feature - TollFree Verification API Support**
+- API support for Create, Update, Get, Delete and List Tollfree Verification.
+- Added New Param `toll_free_sms_verification_id` and `toll_free_sms_verification_order_status `in to the response of the [list all numbers API], [list single number API]
+- Added `toll_free_sms_verification_order_status` filter to AccountPhoneNumber - list all my numbers API.
+
+## [5.33.0](https://github.com/plivo/plivo-java/tree/v5.33.0) (2023-10-20)
+**Feature - campaign_source field**
+- Added new param `campaign_source` in LIST / GET Campaign APIs
+
+## [5.32.0](https://github.com/plivo/plivo-java/tree/v5.32.0) (2023-10-18)
+**Feature - Verify Caller Id API support**
+- API support for verifying, updating, getting and deleting caller IDs.
+
+## [5.31.1](https://github.com/plivo/plivo-java/tree/v5.31.1) (2023-10-05)
+**Feature - WhatsApp message support**
+- Version bump
+
+## [5.31.0](https://github.com/plivo/plivo-java/tree/v5.31.0) (2023-10-05)
+**Feature - WhatsApp message support**
+- Added new params `template`, `template_json_string` and new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
+- Added  new  `message_states` (`read`), `message_type`(`whatsapp`), `conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+
+
+## [5.30.0](https://github.com/plivo/plivo-java/tree/v5.30.0) (2023-08-25)
+**Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
+- Added new params on message get and list response
+
+## [5.29.0](https://github.com/plivo/plivo-java/tree/v5.29.0) (2023-08-03)
+**Feature - DLT parameters**
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [5.28.0](https://github.com/plivo/plivo-java/tree/v5.28.0) (2023-06-28)
+**Feature - Stream API and XML support**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
+## [5.27.0](https://github.com/plivo/plivo-java/tree/v5.27.0) (2023-05-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
+## [5.26.0](https://github.com/plivo/plivo-java/tree/v5.26.0) (2023-06-01)
+**Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
+- Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [5.25.0](https://github.com/plivo/plivo-java/tree/v5.25.0) (2023-05-29)
+- Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [5.24.0](https://github.com/plivo/plivo-java/tree/v5.24.0) (2023-05-04)
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Add 5 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [5.23.0](https://github.com/plivo/plivo-java/tree/v5.23.0) (2023-04-25)
+- Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [5.22.1](https://github.com/plivo/plivo-java/tree/v5.22.1) (2023-02-23)
+**Removed unwanted files from the repo **
+
+## [5.22.0](https://github.com/plivo/plivo-dotnet/tree/v5.22.0) (2023-04-11)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+ 
+## [5.21.0](https://github.com/plivo/plivo-java/tree/v5.21.0) (2023-17-03)
+- Added New Param `created_at` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)
+and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
+
+## [5.20.0](https://github.com/plivo/plivo-java/tree/v5.20.0) (2023-02-23)
+- Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [5.19.2](https://github.com/plivo/plivo-java/tree/v5.19.2) (2023-02-23)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [5.19.1](https://github.com/plivo/plivo-java/tree/v5.19.1) (2022-01-31)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)

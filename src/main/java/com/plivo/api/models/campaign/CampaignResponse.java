@@ -22,7 +22,14 @@ public class CampaignResponse extends BaseResource{
     private String sample1;
     private String sample2;
     private String description;
+    private String createdAt;
+    private String campaignSource;
+    private String errorReason;
+    private String errorCode;
     private CampaignAttributes campaignAttributes;
+    private String vertical;
+    private String campaignAlias;
+
 
 
     /**
@@ -128,8 +135,51 @@ public class CampaignResponse extends BaseResource{
     public String getDescription() {
         return description;                               
     }
-                                              
-                                                   
+
+    /**
+    * @return createdAt return the CreatedAt
+    */
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+    * @return createdAt return the CreatedAt
+    */
+    public String getCampaignSource() {
+        return campaignSource;
+    }
+
+    /**
+    * @return vertical return the vertical
+    */
+    public String getVertical() {
+        return vertical;
+    }
+
+    /**
+    * @return campaignAlias return the camp
+aignAlias
+    */
+    public String getCampaignAlias() {
+        return campaignAlias;
+    }
+
+    /**
+    * @return errorCode return the errorCode
+    */
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    /**
+    * @return errorReason return the errorReason
+    */
+    public String getErrorReason() {
+        return errorReason;
+    }
+
+                                                                                               
     @Override                                      
     public String getId() {                        
         return this.campaignID;                    

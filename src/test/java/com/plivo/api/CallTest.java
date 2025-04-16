@@ -305,11 +305,47 @@ public class CallTest extends BaseTest {
   }
 
   @Test
+  public void callStreamCreateShouldWork() throws Exception {
+    expectResponse("liveCallStreamCreateResponse.json", 202);
+    final String callId = "callId";
+    final String serviceUrl = "ws://test-url";
+
+    Call.streamer(callId, serviceUrl)
+      .stream();
+
+    assertRequest("POST", "Call/%s/Stream/", callId);
+  }
+
+  @Test
+  public void callStreamCreateWithClientShouldWork() throws Exception {
+    expectResponse("liveCallRecordCreateResponse.json", 202);
+    final String callId = "callId";
+    final String serviceUrl = "ws://test-url";
+
+    Call.streamer(callId, serviceUrl)
+      .stream();
+
+    assertRequest("POST", "Call/%s/Stream/", callId);
+  }
+
+  @Test
+  public void callStreamDeleteShouldWork() throws Exception {
+    expectResponse("liveCallStreamDeleteResponse.json", 204);
+    final String callId = "callId";
+
+    Call.streamStopper(callId)
+      .stop();
+
+    assertRequest("DELETE", "Call/%s/Stream/", callId);
+  }
+
+
+  @Test
   public void callSpeakCreateShouldWork() throws Exception {
     expectResponse("liveCallSpeakCreateResponse.json", 202);
     final String callId = "callId";
 
-    Call.speaker(callId, "test")
+    Call.speaker(callId, "test", "text")
       .speak();
 
     assertRequest("POST", "Call/%s/Speak/", callId);
@@ -320,7 +356,7 @@ public class CallTest extends BaseTest {
     expectResponse("liveCallSpeakCreateResponse.json", 202);
     final String callId = "callId";
 
-    Call.speaker(callId, "test")
+    Call.speaker(callId, "test", "text")
       .client(client)
       .speak();
 

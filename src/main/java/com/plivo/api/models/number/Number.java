@@ -25,6 +25,10 @@ public class Number extends BaseResource {
   private String tendlcRegistrationStatus;
   private String tendlcCampaignId;
   private String tollFreeSmsVerification;
+  private String renewalDate;
+  private String cnamLookup;
+  private String tollFreeSmsVerificationOrderStatus;
+  private String tollFreeSmsVerificationId;
 
   public Boolean getActive() {
     return active;
@@ -143,5 +147,21 @@ public class Number extends BaseResource {
 
   public String getTollFreeSmsVerification() {
     return tollFreeSmsVerification;
+  }
+
+  public String getRenewalDate() {
+    return renewalDate;
+  }
+
+  public String getCnamLookup() {
+    return cnamLookup;
+  }
+
+  public String getTollFreeSmsVerificationOrderStatus() {
+    return tollFreeSmsVerificationOrderStatus;
+  }
+
+  public String getTollFreeSmsVerificationId() {
+    return tollFreeSmsVerificationId;
   }
 }

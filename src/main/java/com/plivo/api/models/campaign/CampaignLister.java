@@ -9,6 +9,10 @@ import com.plivo.api.models.campaign.Campaign;
 public class CampaignLister extends MessagingCampaignLister<Campaign> {
   private Integer limit;
   private Integer offset;
+  private String campaignSource;
+  private String brandId;
+  private String usecase;
+  private String registrationStatus;
 
   public CampaignLister limit(Integer limit) {
     this.limit = limit;
@@ -21,9 +25,30 @@ public class CampaignLister extends MessagingCampaignLister<Campaign> {
     return this;
 
   }
+  public CampaignLister campaignSource(String campaignSource) {
+    this.campaignSource = campaignSource;
+    return this;
+
+  }
+  public CampaignLister usecase(String usecase) {
+    this.usecase = usecase;
+    return this;
+
+  }
+
+  public CampaignLister registrationStatus(String registrationStatus) {
+    this.registrationStatus = registrationStatus;
+    return this;
+
+  }
+  public CampaignLister brandId(String brandId) {
+    this.brandId = brandId;
+    return this;
+
+  }
 
   @Override
   protected Call<ListResponse<Campaign>> obtainCall() {
-    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset);
+    return client().getApiService().campaignList(client().getAuthId(), toMap(), limit, offset, campaignSource, brandId, usecase, registrationStatus);
   }
 }

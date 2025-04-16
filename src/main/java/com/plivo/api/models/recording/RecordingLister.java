@@ -17,6 +17,7 @@ public class RecordingLister extends VoiceLister<Recording> {
   private String conferenceUuid;
   private String mpcUuid;
   private PropertyFilter<Date> addTime;
+  private PropertyFilter<Integer> recordingStorageDuration;
 
   public String subaccount() {
     return this.subaccount;
@@ -52,6 +53,10 @@ public class RecordingLister extends VoiceLister<Recording> {
 
   public PropertyFilter<Date> addTime() {
     return this.addTime;
+  }
+
+  public PropertyFilter<Integer> recordingStorageDuration() {
+    return this.recordingStorageDuration;
   }
 
   /**
@@ -124,6 +129,11 @@ public class RecordingLister extends VoiceLister<Recording> {
    */
   public RecordingLister addTime(final PropertyFilter<Date> addTime) {
     this.addTime = addTime;
+    return this;
+  }
+
+  public RecordingLister recordingStorageDuration(final PropertyFilter<Integer> recordingStorageDuration) {
+    this.recordingStorageDuration = recordingStorageDuration;
     return this;
   }
 

@@ -132,7 +132,7 @@ public class Powerpack extends BaseResource {
 
   public String getNumberPoolId() {
 	  String[] numberpool_uuid = getNumber_pool().split("/");
-	  return numberpool_uuid[5];
+	  return (numberpool_uuid.length > 5) ? numberpool_uuid[5] : null;
   }
 
 }

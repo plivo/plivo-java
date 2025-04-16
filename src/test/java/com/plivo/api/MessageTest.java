@@ -157,6 +157,12 @@ public class MessageTest extends BaseTest {
     String fixtureName = "messageGetResponse.json";
     String messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
     String requesterIP = "192.168.1.1";
+    String expectedDLTEntityID = "1234";
+    String expectedDLTTemplateID = "4567";
+    String expectedDLTTemplateCategory = "service_implicit";
+    String expectedConversationID = "9876";
+    String expectedConversationOrigin = "utility";
+    String expectedConversationExpirationTimestamp = "2023-08-03 23:02:00+05:30";
     expectResponse(fixtureName, 200);
 
     Message message = Message.getter(messageUuid).get();
@@ -166,6 +172,12 @@ public class MessageTest extends BaseTest {
     assertRequest("GET", "Message/%s/", messageUuid);
     assertEquals(messageUuid, message.getMessageUuid());
     assertEquals(requesterIP, message.getRequesterIP());
+    assertEquals(expectedDLTEntityID, message.getDltEntityID());
+    assertEquals(expectedDLTTemplateID, message.getDltTemplateID());
+    assertEquals(expectedDLTTemplateCategory, message.getDltTemplateCategory());
+    assertEquals(expectedConversationID, message.getConversationID());
+    assertEquals(expectedConversationOrigin, message.getConversationOrigin());
+    assertEquals(expectedConversationExpirationTimestamp, message.getConversationExpirationTimestamp());
   }
 
   @Test
@@ -189,6 +201,13 @@ public class MessageTest extends BaseTest {
     String fixtureName = "messageListResponse.json";
     String requesterIP1 = "192.168.1.1";
     String requesterIP2 = "192.168.1.20";
+
+    String expectedDLTEntityID = "9596";
+    String expectedDLTTemplateID = "0499";
+    String expectedDLTTemplateCategory = "service_explicit";
+    String expectedConversationID = "1234";
+    String expectedConversationOrigin = "service";
+    String expectedConversationExpirationTimestamp = "2023-08-03 23:02:00+05:30";
     expectResponse(fixtureName, 200);
 
     ListResponse<Message> response = Message.lister()
@@ -204,6 +223,23 @@ public class MessageTest extends BaseTest {
     assertRequest("GET", "Message/", params);
     assertEquals(requesterIP1, response.getObjects().get(0).getRequesterIP());
     assertEquals(requesterIP2, response.getObjects().get(19).getRequesterIP());
+
+    assertEquals(expectedDLTEntityID, response.getObjects().get(0).getDltEntityID());
+    assertEquals(expectedDLTTemplateID, response.getObjects().get(0).getDltTemplateID());
+    assertEquals(expectedDLTTemplateCategory, response.getObjects().get(0).getDltTemplateCategory());
+
+    assertEquals("", response.getObjects().get(19).getDltEntityID());
+    assertEquals("", response.getObjects().get(19).getDltTemplateID());
+    assertEquals("", response.getObjects().get(19).getDltTemplateCategory());
+
+    assertEquals(expectedConversationID, response.getObjects().get(0).getConversationID());
+    assertEquals(expectedConversationOrigin, response.getObjects().get(0).getConversationOrigin());
+    assertEquals(expectedConversationExpirationTimestamp, response.getObjects().get(0).getConversationExpirationTimestamp());
+
+    assertEquals("", response.getObjects().get(19).getConversationID());
+    assertEquals("", response.getObjects().get(19).getConversationOrigin());
+    assertEquals("", response.getObjects().get(19).getConversationExpirationTimestamp());
+
   }
 
   @Test
