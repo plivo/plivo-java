@@ -1,4 +1,10 @@
 # Change Log
+
+## [5.45.7](https://github.com/plivo/plivo-java/tree/v5.45.7) (2025-04-16)
+**Feature - Added the legs param in speak class .**
+- supporting paramter legs in speak element .
+
+
 ## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.6) (2025-03-03)
 **Fix - Upgraded version for okhttp3 package.**
 - Upgraded version of the okhttp3 package .

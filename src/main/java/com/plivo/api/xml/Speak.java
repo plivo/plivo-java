@@ -42,6 +42,9 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
   @XmlAttribute
   private Integer loop;
 
+  @XmlAttribute
+  private String legs;
+
   private static boolean isLang = false;
 
   private static boolean isVoice = false;
@@ -57,6 +60,7 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
     this.voice =  "WOMAN";
     this.language = "en-US";
     this.loop = 1;
+    this.legs = "aleg";
   }
 
   public String getVoice() {
@@ -69,6 +73,10 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
 
   public Integer getLoop() {
     return loop;
+  }
+
+  public String getLegs(){
+    return legs;
   }
 
   public Speak voice (final String voice) throws PlivoXmlException {
@@ -104,6 +112,11 @@ public class Speak extends PlivoXml implements ResponseNestable, PreAnswerNestab
   public Speak loop ( final Integer loop){
     this.loop = loop;
     return this;
+  }
+
+  public Speak legs (final String legs) {
+    this.legs = legs;
+    return  this;
   }
 
   private void checkIsSSMLSupported() throws PlivoXmlException {

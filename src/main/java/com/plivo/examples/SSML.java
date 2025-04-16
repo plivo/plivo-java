@@ -123,7 +123,7 @@ public class SSML {
 					new Speak("validate speak")
             .voice("Polly.Salli")
             .language("en-US")
-            .loop(0)
+            .loop(0).legs("aleg")
 					.addBreak("maximum", "250ms")
 					.continueSpeak("Continue speak test 1.")
 					.addEmphasis("sdfghjjhd", "maximum")
