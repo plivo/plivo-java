@@ -1,4 +1,8 @@
 # Change Log
+## [5.46.0](https://github.com/plivo/plivo-java/tree/v5.46.0) (2025-04-21)
+**Feature - New Param added for Start Recording API.**
+- Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
+
 ## [5.45.6](https://github.com/plivo/plivo-java/tree/v5.45.6) (2025-03-03)
 **Fix - Upgraded version for okhttp3 package.**
 - Upgraded version of the okhttp3 package .
