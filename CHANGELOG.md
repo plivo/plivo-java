@@ -1,5 +1,5 @@
 # Change Log
-## [5.46.0](https://github.com/plivo/plivo-java/tree/v5.46.0) (2025-04-21)
+## [5.46.0](https://github.com/plivo/plivo-java/tree/v5.46.0) (2025-04-30)
 **Feature - New Param added for Start Recording API.**
 - Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
 
