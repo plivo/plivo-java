@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.46.2](https://github.com/plivo/plivo-java/tree/v5.46.2)(2025-09-25)
+**Feature - Add Campaign Error Desciption Field**
+
 ## [5.46.1](https://github.com/plivo/plivo-java/tree/v5.46.1)(2025-09-25)
 **Feature - Campaign Error Desciption Field**
 
