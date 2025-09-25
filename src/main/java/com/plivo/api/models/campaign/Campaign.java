@@ -143,7 +143,7 @@ public class Campaign extends BaseResource {
   }
 
   public String getErrorDescription() {
-      return this.errorDescription;
+      return errorDescription;
   }
 
   /**
