@@ -1,4 +1,8 @@
 # Change Log
+## [5.45.5](https://github.com/plivo/plivo-java/tree/v5.45.5)(2025-09-25)
+**Feature - Campaign Error Desciption Field**
+
+# Change Log
 ## [5.45.4](https://github.com/plivo/plivo-java/tree/v5.45.4)(2025-02-18)
 **Feature - Throw GeoPermissionException on synchronous geopermissions error**
 
