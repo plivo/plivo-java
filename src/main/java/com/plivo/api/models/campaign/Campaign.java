@@ -31,6 +31,7 @@ public class Campaign extends BaseResource {
   private String errorCode;
   private String vertical;
   private String campaignAlias;
+  private String errorDescription;
 
   
   
@@ -139,6 +140,10 @@ public class Campaign extends BaseResource {
 
   public String getErrorReason() {
       return errorReason;
+  }
+
+  public String getErrorDescription() {
+      return errorDescription;
   }
 
   /**
