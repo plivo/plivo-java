@@ -29,6 +29,7 @@ public class CampaignResponse extends BaseResource{
     private CampaignAttributes campaignAttributes;
     private String vertical;
     private String campaignAlias;
+    private String errorDescription;
 
 
 
@@ -178,6 +179,11 @@ aignAlias
     public String getErrorReason() {
         return errorReason;
     }
+
+    public String getErrorDescription() {
+	    return errorDescription;
+    }
+
 
                                                                                                
     @Override                                      
