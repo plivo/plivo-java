@@ -1,5 +1,6 @@
 package com.plivo.api.models.complianceapplication;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.plivo.api.models.base.BaseResource;
 
 
@@ -80,6 +81,7 @@ public class ComplianceApplication extends BaseResource {
         return status;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getRejectionReason() {
         return rejectionReason;
     }
