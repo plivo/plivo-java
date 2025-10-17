@@ -9,6 +9,7 @@ public class ComplianceApplication extends BaseResource {
     private String createdAt;
     private String numberType;
     private String status;
+    private String rejectionReason;
     private String countryIso2;
     private String alias;
     private String complianceApplicationId;
@@ -77,6 +78,10 @@ public class ComplianceApplication extends BaseResource {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
     }
 
     @Override
