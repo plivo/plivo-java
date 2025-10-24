@@ -1,7 +1,11 @@
 # Change Log
 
-## [5.46.2](https://github.com/plivo/plivo-java/tree/v5.46.2)(2025-09-25)
-**Feature - Add Campaign Error Desciption Field**
+## [5.46.3](https://github.com/plivo/plivo-java/tree/v5.46.3) (2025-10-17)
+**Feature - Compliance Application rejection_reason field**
+- Add `rejection_reason` to Compliance Application GET/LIST/CREATE responses.
+
+## [5.46.2](https://github.com/plivo/plivo-java/tree/v5.46.2) (2025-09-25)
+**Feature - Add Campaign Error Description Field**
 
 ## [5.46.1](https://github.com/plivo/plivo-java/tree/v5.46.1)(2025-09-25)
 **Feature - Campaign Error Desciption Field**
