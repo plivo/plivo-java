@@ -25,9 +25,9 @@ public class ProfileTest extends BaseTest {
         String fixtureName = "profileCreateResponse.json";
 
         expectResponse(fixtureName, 202);
-        ProfileAddress address = new ProfileAddress("1234", "New York", "NY", "12345", "US");
-        ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("john", "Deo", "12345467987", "123j@plivo.com", "MTR", "admin");
-        ProfileAddResponse response = Profile.creator("java profile", "DIRECT", "PRIVATE", "Plivo", "12345678", "IN", address, "ABC", "NSE", "google.com", "ENERGY", "", "", "", authContact).create();
+        ProfileAddress address = new ProfileAddress("123 Main Street", "San Francisco", "CA", "94105", "US");
+        ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("John", "Doe", "+14155551234", "test@example.com", "CEO", "C_LEVEL");
+        ProfileAddResponse response = Profile.creator("Test Profile", "DIRECT", "PUBLIC", "Test Company Inc", "12-3456789", "US", address, "TEST", "NASDAQ", "https://testcompany.com", "TECHNOLOGY", "", "NONE", "", authContact, "employee@company.com").create();
     
         assertRequest("POST", "Profile/");
     }
@@ -59,9 +59,9 @@ public class ProfileTest extends BaseTest {
         String fixtureName = "profileUpdateResponse.json";
 
         expectResponse(fixtureName, 202);
-        ProfileAddress address = new ProfileAddress("12345", "New York", "NJ", "12345", "US");
-        ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("john", "Deo", "12345467987", "123j@plivo.com", "MTR1", "admin");
-        Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5").entityType("PRIVATE").address(address).authorizedContact(authContact).update();
+        ProfileAddress address = new ProfileAddress("123 Main Street", "San Francisco", "CA", "94105", "US");
+        ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("John", "Doe", "+14155551234", "test@example.com", "CEO", "C_LEVEL");
+        Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5").entityType("PUBLIC").address(address).authorizedContact(authContact).businessContactEmail("employee@company.com").update();
 
         assertRequest("POST", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
     }
