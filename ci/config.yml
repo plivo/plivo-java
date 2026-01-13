@@ -4,7 +4,7 @@ serviceName: plivo-java
 language: java-sdk
 build:
   command: |
-      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xmx512m -XX:ParallelGCThreads=1 -XX:ConcGCThreads=1"
       ./gradlew createPom
       ./build.sh
       ./gradlew fatJar
