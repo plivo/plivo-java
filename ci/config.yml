@@ -4,10 +4,10 @@ serviceName: plivo-java
 language: java-sdk
 build:
   command: |
-      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xmx512m -XX:ParallelGCThreads=1 -XX:ConcGCThreads=1"
-      ./gradlew createPom
+      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xmx512m -XX:+UseSerialGC -Xss256k"
+      ./gradlew createPom --no-daemon --max-workers=1
       ./build.sh
-      ./gradlew fatJar
+      ./gradlew fatJar --no-daemon --max-workers=1
       chmod 755 secring.gpg
 secrets:
   files:
