@@ -12,6 +12,7 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String website;
     private String vertical;
     private ProfileAuthorizedContact authorizedContact;
+    private String businessContactEmail;
 
     public ProfileUpdater(String id) {
         super(id);
@@ -64,6 +65,15 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     public ProfileUpdater authorizedContact (ProfileAuthorizedContact authorizedContact) {
         this.authorizedContact = authorizedContact;
         return this;
+    }
+
+    public ProfileUpdater businessContactEmail (String businessContactEmail) {
+        this.businessContactEmail = businessContactEmail;
+        return this;
+    }
+
+    public String getBusinessContactEmail(){
+        return businessContactEmail;
     }
 
     @Override
