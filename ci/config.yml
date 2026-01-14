@@ -3,9 +3,10 @@ parent: central
 serviceName: plivo-java
 language: java-sdk
 build:
-  command: |
+  command: |  
+      ulimit -a
       export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
-      ./gradlew createPom
+      ./gradlew --no-daemon --console=plain --info --stacktrace createPom < /dev/null
       ./build.sh
       ./gradlew fatJar
       chmod 755 secring.gpg
