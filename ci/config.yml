@@ -5,6 +5,9 @@ language: java-sdk
 build:
   command: |
       ulimit -a
+      cat /sys/fs/cgroup/memory.max
+      cat /sys/fs/cgroup/pids.max
+      free -h
       export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8 -XX:MaxRAMPercentage=70.0 -XX:ActiveProcessorCount=4"
       ./gradlew --no-daemon -Dorg.gradle.workers.max=2 -Dorg.gradle.jvmargs="-Xms512m -Xmx2g" createPom
       ./build.sh
