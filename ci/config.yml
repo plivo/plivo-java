@@ -4,11 +4,12 @@ serviceName: plivo-java
 language: java-sdk
 build:
   command: |
-      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
-      ./gradlew createPom
+      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8 -XX:MaxRAMPercentage=70 -XX:ActiveProcessorCount=4"
+      ./gradlew --no-daemon -Dorg.gradle.workers.max=2 -Dorg.gradle.jvmargs="-Xms512m -Xmx2g" createPom
       ./build.sh
-      ./gradlew fatJar
+      ./gradlew --no-daemon -Dorg.gradle.workers.max=2 -Dorg.gradle.jvmargs="-Xms512m -Xmx3g" fatJar
       chmod 755 secring.gpg
+      
 secrets:
   files:
     SONATYPE_SECRET_RING_FILE: "secring.gpg"
