@@ -6,7 +6,7 @@ build:
   command: |  
       ulimit -a
       export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
-      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xms64m -Xmx512m -XX:MaxMetaspaceSize=256m -XX:ParallelGCThreads=1 -XX:ConcGCThreads=1"
+      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xms64m -Xmx512m -XX:MaxMetaspaceSize=256m -XX:+UseSerialGC"
       ./gradlew --no-daemon --console=plain --info --stacktrace createPom < /dev/null
       ./build.sh
       ./gradlew fatJar
