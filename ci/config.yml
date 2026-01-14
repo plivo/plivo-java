@@ -3,17 +3,9 @@ parent: central
 serviceName: plivo-java
 language: java-sdk
 build:
-  command: |  
-      ulimit -a
-      cat /proc/sys/kernel/threads-max
-      cat /sys/fs/cgroup/pids/pids.current 2>/dev/null || echo "No cgroup limit info"
-      cat /sys/fs/cgroup/pids/pids.max 2>/dev/null || echo "No cgroup limit info"
-      free -m
-      java -version
-      cat /proc/meminfo | grep -i commit
-      export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
-      export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xms32m -Xmx128m -XX:MaxMetaspaceSize=128m -XX:+UseSerialGC"
-      ./gradlew --no-daemon --console=plain --info --stacktrace createPom < /dev/null
+  command: |
+      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+      ./gradlew createPom
       ./build.sh
       ./gradlew fatJar
       chmod 755 secring.gpg
