@@ -8,6 +8,8 @@ build:
       cat /proc/sys/kernel/threads-max
       cat /sys/fs/cgroup/pids/pids.current 2>/dev/null || echo "No cgroup limit info"
       cat /sys/fs/cgroup/pids/pids.max 2>/dev/null || echo "No cgroup limit info"
+      free -m
+      cat /proc/meminfo | grep -i commit
       export GRADLE_OPTS="-Dorg.gradle.daemon=false -Dorg.gradle.console=plain"
       export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -Xms32m -Xmx128m -XX:MaxMetaspaceSize=128m -XX:+UseSerialGC"
       ./gradlew --no-daemon --console=plain --info --stacktrace createPom < /dev/null
