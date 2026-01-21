@@ -8,6 +8,7 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
   private String number;
   private String appId;
   private String cnamLookup;
+  private Boolean haEnabled;
 
   public PhoneNumberCreator(String number) {
     if (number == null) {
@@ -32,6 +33,15 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
 
   public PhoneNumberCreator cnamLookup(final String cnamLookup) {
     this.cnamLookup = cnamLookup;
+    return this;
+  }
+
+  public Boolean haEnabled() {
+    return this.haEnabled;
+  }
+
+  public PhoneNumberCreator haEnabled(final Boolean haEnabled) {
+    this.haEnabled = haEnabled;
     return this;
   }
 
