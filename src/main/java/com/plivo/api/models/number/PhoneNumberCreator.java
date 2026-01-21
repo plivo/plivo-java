@@ -8,7 +8,7 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
   private String number;
   private String appId;
   private String cnamLookup;
-  private Boolean haEnabled;
+  private Boolean haEnable;
 
   public PhoneNumberCreator(String number) {
     if (number == null) {
@@ -36,12 +36,12 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
     return this;
   }
 
-  public Boolean haEnabled() {
-    return this.haEnabled;
+  public Boolean haEnable() {
+    return this.haEnable;
   }
 
-  public PhoneNumberCreator haEnabled(final Boolean haEnabled) {
-    this.haEnabled = haEnabled;
+  public PhoneNumberCreator haEnable(final Boolean haEnable) {
+    this.haEnable = haEnable;
     return this;
   }
 

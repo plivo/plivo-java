@@ -2,8 +2,8 @@
 
 ## [5.46.5](https://github.com/plivo/plivo-java/tree/v5.46.5) (2026-01-20)
 **Feature - HA Number support**
-- Added `haEnabled` optional parameter to `PhoneNumberCreator` for enabling HA functionality during phone number rent
-- Added `fallbackNumber` field to `PhoneNumberCreationStatus` response
+- Added `haEnable` optional parameter to `PhoneNumberCreator` for enabling HA functionality during phone number rent
+- Added `fallbackNumber` optional field to `PhoneNumberCreationStatus` response
 
 ## [5.46.4](https://github.com/plivo/plivo-java/tree/v5.46.4) (2026-01-13)
 **Feature - Profile API business_contact_email support**
