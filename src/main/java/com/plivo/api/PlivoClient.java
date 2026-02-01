@@ -169,6 +169,7 @@ public class PlivoClient {
           response = new Response.Builder()
             .request(chain.request())
             .code(204)
+            .message("No Content")
             .protocol(Protocol.HTTP_1_1)
             .body(ResponseBody.create(null, new byte[]{}))
             .build();
