@@ -35,12 +35,12 @@ public class Campaign extends BaseResource {
 
   
   
-  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords) {
-    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method,messageFlow,helpMessage,optoutMessage,optinKeywords,optinMessage,optoutKeywords,helpKeywords);
+  public static CampaignCreator creator(String brandID,String campaignAlias,String vertical,String usecase,String[] subUsecases,String description,Boolean embeddedLink,Boolean embeddedPhone,Boolean ageGated,Boolean directLending,Boolean affiliateMarketing,Boolean subscriberOptin,Boolean subscriberOptout,Boolean subscriberHelp,String sample1,String sample2,String url, String method, String messageFlow, String helpMessage, String optoutMessage, String optinKeywords, String optinMessage, String optoutKeywords, String helpKeywords, String sample3, String sample4, String sample5, String termsAndConditionsLink, String privacyPolicyLink) {
+    return new CampaignCreator(brandID,campaignAlias,vertical,usecase,subUsecases,description,embeddedLink,embeddedPhone,ageGated,directLending,affiliateMarketing,subscriberOptin,subscriberOptout,subscriberHelp,sample1,sample2,url,method,messageFlow,helpMessage,optoutMessage,optinKeywords,optinMessage,optoutKeywords,helpKeywords,sample3,sample4,sample5,termsAndConditionsLink,privacyPolicyLink);
   }
 
-  public static CampaignUpdater updater(String campaign_id, String reseller_id, String description, String sample1, String sample2, String message_flow, String help_message, String optin_keywords, String optin_message, String optout_keywords, String optout_message, String help_keywords) {
-    return new CampaignUpdater(campaign_id,reseller_id,description,sample1,sample2,message_flow,help_message,optin_keywords,optin_message,optout_keywords,optout_message,help_keywords);
+  public static CampaignUpdater updater(String campaign_id, String reseller_id, String description, String sample1, String sample2, String message_flow, String help_message, String optin_keywords, String optin_message, String optout_keywords, String optout_message, String help_keywords, String sample3, String sample4, String sample5, String termsAndConditionsLink, String privacyPolicyLink) {
+    return new CampaignUpdater(campaign_id,reseller_id,description,sample1,sample2,message_flow,help_message,optin_keywords,optin_message,optout_keywords,optout_message,help_keywords,sample3,sample4,sample5,termsAndConditionsLink,privacyPolicyLink);
   }
 
   public static CampaignImporter importer(String campaign_id, String campaignAlias) {
