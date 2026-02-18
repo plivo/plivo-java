@@ -9,6 +9,9 @@ public class CampaignUpdater extends Updater<CampaignUpdateResponse> {
   private String description;
   private String sample1;
   private String sample2;
+  private String sample3;
+  private String sample4;
+  private String sample5;
   private String messageFlow;
   private String helpMessage;
   private String optinKeywords;
@@ -16,10 +19,12 @@ public class CampaignUpdater extends Updater<CampaignUpdateResponse> {
   private String optoutKeywords;
   private String optoutMessage;
   private String helpKeywords;
+  private String termsAndConditionsLink;
+  private String privacyPolicyLink;
 
-  CampaignUpdater(String campaignId, String resellerId, String description, String sample1, String sample2,
+  CampaignUpdater(String campaignId, String resellerId, String description, String sample1, String sample2, String sample3, String sample4, String sample5,
       String messageFlow, String helpMessage, String optinKeywords, String optinMessage, String optoutKeywords,
-      String optoutMessage, String helpKeywords) {
+      String optoutMessage, String helpKeywords, String termsAndConditionsLink, String privacyPolicyLink) {
 
     super(campaignId);
 
@@ -27,6 +32,9 @@ public class CampaignUpdater extends Updater<CampaignUpdateResponse> {
     this.description = description;
     this.sample1 = sample1;
     this.sample2 = sample2;
+    this.sample3 = sample3;
+    this.sample4 = sample4;
+    this.sample5 = sample5;
     this.messageFlow = messageFlow;
     this.helpMessage = helpMessage;
     this.optinKeywords = optinKeywords;
@@ -34,6 +42,8 @@ public class CampaignUpdater extends Updater<CampaignUpdateResponse> {
     this.optoutKeywords = optoutKeywords;
     this.optoutMessage = optoutMessage;
     this.helpKeywords = helpKeywords;
+    this.termsAndConditionsLink = termsAndConditionsLink;
+    this.privacyPolicyLink = privacyPolicyLink;
   }
 
   public String campaignId() {
@@ -54,6 +64,26 @@ public class CampaignUpdater extends Updater<CampaignUpdateResponse> {
 
   public String sample2() {
     return this.sample2;
+  }
+
+  public String sample3() {
+    return this.sample3;
+  }
+
+  public String sample4() {
+    return this.sample4;
+  }
+
+  public String sample5() {
+    return this.sample5;
+  }
+
+  public String termsAndConditionsLink() {
+    return this.termsAndConditionsLink;
+  }
+
+  public String privacyPolicyLink() {
+    return this.privacyPolicyLink;
   }
 
   public String messageFlow() {

@@ -26,7 +26,7 @@ public class CampaignTest extends BaseTest {
 
         expectResponse(fixtureName, 202);
         String[] sub_usecase = new String[]{"2FA", "MARKETING"};
-        Campaign.creator("BCKWPKX", "java sdk camp create", "ENTERTAINMENT", "2FA", sub_usecase, "description", false,false, false, false, true, true,true, true, "sample1", "sample2", null,  null, "messageFlow should be minimum 40 char", "helpMessage is mandatory field","optoutMessage should be 40 char",  "optinKeywords", " optinMessage", "optoutKeywords", "helpKeywords").create();
+        Campaign.creator("BCKWPKX", "java sdk camp create", "ENTERTAINMENT", "2FA", sub_usecase, "description", false,false, false, false, true, true,true, true, "sample1", "sample2", null,  null, "messageFlow should be minimum 40 char", "helpMessage is mandatory field","optoutMessage should be 40 char",  "optinKeywords", " optinMessage", "optoutKeywords", "helpKeywords", null, null, null, null, null).create();
 
         assertRequest("POST", "10dlc/Campaign/");
     }
@@ -46,8 +46,8 @@ public class CampaignTest extends BaseTest {
         String fixtureName = "campaignUpdateResponse.json";
 
         expectResponse(fixtureName, 202);
-        
-        CampaignUpdateResponse response = Campaign.updater("CY5NVUA","","","sample1 updated","","","","","","","","").client(client).update();
+
+        CampaignUpdateResponse response = Campaign.updater("CY5NVUA","","","sample1 updated","","","","","","","","", null, null, null, null, null).client(client).update();
         assertEquals("CY5NVUA", response.getCampaign().getCampaignID());
 
         assertRequest("POST", "10dlc/Campaign/%s/", "CY5NVUA");
