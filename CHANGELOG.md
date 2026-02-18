@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.46.6](https://github.com/plivo/plivo-java/tree/v5.46.6) (2026-02-18)
+**Feature - Campaign API optional fields support**
+- Added `sample3`, `sample4`, `sample5` optional sample message fields to Campaign `creator` and `updater` methods
+- Added `termsAndConditionsLink` and `privacyPolicyLink` optional fields to Campaign `creator` and `updater` methods
+
 ## [5.46.5](https://github.com/plivo/plivo-java/tree/v5.46.5) (2026-01-20)
 **Feature - HA Number support**
 - Added `haEnable` optional parameter to `PhoneNumberCreator` for enabling HA functionality during phone number rent
