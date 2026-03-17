@@ -13,6 +13,10 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String vertical;
     private ProfileAuthorizedContact authorizedContact;
     private String businessContactEmail;
+    private String ein;
+    private String einIssuingCountry;
+    private String altBusinessId;
+    private String altBusinessIdType;
 
     public ProfileUpdater(String id) {
         super(id);
@@ -74,6 +78,42 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
 
     public String getBusinessContactEmail(){
         return businessContactEmail;
+    }
+
+    public ProfileUpdater ein (String ein) {
+        this.ein = ein;
+        return this;
+    }
+
+    public String getEin(){
+        return ein;
+    }
+
+    public ProfileUpdater einIssuingCountry (String einIssuingCountry) {
+        this.einIssuingCountry = einIssuingCountry;
+        return this;
+    }
+
+    public String getEinIssuingCountry(){
+        return einIssuingCountry;
+    }
+
+    public ProfileUpdater altBusinessId (String altBusinessId) {
+        this.altBusinessId = altBusinessId;
+        return this;
+    }
+
+    public String getAltBusinessId(){
+        return altBusinessId;
+    }
+
+    public ProfileUpdater altBusinessIdType (String altBusinessIdType) {
+        this.altBusinessIdType = altBusinessIdType;
+        return this;
+    }
+
+    public String getAltBusinessIdType(){
+        return altBusinessIdType;
     }
 
     @Override
