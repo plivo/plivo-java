@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.46.7](https://github.com/plivo/plivo-java/tree/v5.46.7) (2026-03-17)
+## [5.46.7](https://github.com/plivo/plivo-java/tree/v5.46.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `einIssuingCountry`, `altBusinessId`, `altBusinessIdType` parameters to Profile `update` method
 
