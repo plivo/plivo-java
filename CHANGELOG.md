@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.47.0](https://github.com/plivo/plivo-java/tree/v5.47.0) (2026-04-08)
+**Feature - PhoneNumber Compliance API support**
+- Added `PhoneNumberComplianceRequirement` resource with `lister()` for discovering compliance requirements by country, number type, and user type
+- Added `PhoneNumberCompliance` resource with `creator()`, `getter()`, `lister()`, `updater()`, `deleter()` for compliance applications
+- Added `PhoneNumberComplianceLinkCreator` for bulk linking phone numbers to accepted compliance applications
+- Added PATCH support via Retrofit `@HTTP` annotation for compliance application updates
+- Added `compliances` field to `ListResponse` for non-standard list response key
+- Create and update operations support multipart file uploads for compliance documents
+
 ## [5.46.7](https://github.com/plivo/plivo-java/tree/v5.46.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `einIssuingCountry`, `altBusinessId`, `altBusinessIdType` parameters to Profile `update` method
