@@ -1,0 +1,18 @@
+{
+  "api_id": "link-api-id-001",
+  "message": "Numbers linked successfully",
+  "total_count": 2,
+  "updated_count": 2,
+  "report": [
+    {
+      "number": "+911234567890",
+      "compliance_application_id": "comp-uuid-12345678",
+      "status": "success"
+    },
+    {
+      "number": "+911234567891",
+      "compliance_application_id": "comp-uuid-12345678",
+      "status": "success"
+    }
+  ]
+}

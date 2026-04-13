@@ -1,0 +1,5 @@
+{
+  "api_id": "create-api-id-001",
+  "message": "Compliance application created successfully",
+  "compliance_id": "comp-uuid-12345678"
+}

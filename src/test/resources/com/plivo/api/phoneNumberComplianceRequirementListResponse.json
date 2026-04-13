@@ -1,0 +1,27 @@
+{
+  "api_id": "req-api-id-001",
+  "requirement_id": "req-12345",
+  "country_iso": "IN",
+  "number_type": "local",
+  "user_type": "business",
+  "document_types": [
+    {
+      "document_type_id": "525a6b3a-2050-4556-8e2c-367cf30cd6ca",
+      "document_name": "Business Registration",
+      "description": "Business registration document",
+      "data_fields": [
+        {
+          "field_name": "business_name",
+          "field_type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "document_type_id": "8a048d56-d8cb-4148-a764-49f1326aa161",
+      "document_name": "Address Proof",
+      "description": "Proof of address document",
+      "data_fields": []
+    }
+  ]
+}

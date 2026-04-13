@@ -1,0 +1,42 @@
+{
+  "api_id": "get-api-id-003",
+  "compliance": {
+    "compliance_id": "comp-uuid-99999999",
+    "status": "rejected",
+    "alias": "rejected-compliance-app",
+    "country_iso": "DE",
+    "number_type": "local",
+    "user_type": "individual",
+    "callback_url": "https://example.com/rejected-callback",
+    "callback_method": "POST",
+    "rejection_reason": "Document is expired. Please provide a valid document.",
+    "created_at": "2025-03-01T00:00:00Z",
+    "updated_at": "2025-03-15T00:00:00Z",
+    "end_user": {
+      "name": "John Doe",
+      "type": "individual"
+    },
+    "documents": [
+      {
+        "document_type_id": "doc-type-001",
+        "document_name": "Identity Proof",
+        "status": "rejected"
+      },
+      {
+        "document_type_id": "doc-type-002",
+        "document_name": "Address Proof",
+        "status": "pending"
+      }
+    ],
+    "linked_numbers": [
+      {
+        "number": "+491234567890",
+        "status": "active"
+      },
+      {
+        "number": "+491234567891",
+        "status": "pending"
+      }
+    ]
+  }
+}
