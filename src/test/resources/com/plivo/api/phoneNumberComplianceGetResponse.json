@@ -1,0 +1,15 @@
+{
+  "api_id": "get-api-id-001",
+  "compliance": {
+    "compliance_id": "comp-uuid-12345678",
+    "status": "submitted",
+    "alias": "test-compliance-app",
+    "country_iso": "IN",
+    "number_type": "local",
+    "user_type": "business",
+    "callback_url": "https://example.com/callback",
+    "callback_method": "POST",
+    "created_at": "2025-01-01T00:00:00Z",
+    "updated_at": "2025-01-02T00:00:00Z"
+  }
+}

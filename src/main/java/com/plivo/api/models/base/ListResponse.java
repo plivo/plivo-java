@@ -47,6 +47,13 @@ public class ListResponse<T> extends BaseResponse {
   public List<T> getSessions() {
     return sessions;
   }
+
+  private List<T> compliances;
+
+  public List<T> getCompliances() {
+    return compliances;
+  }
+
   public Response getResponse() {
     return response;
   }

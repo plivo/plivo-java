@@ -1,0 +1,32 @@
+{
+  "api_id": "list-api-id-003",
+  "meta": {
+    "limit": 2,
+    "next": "/v1/Account/MA123456789012345678/PhoneNumber/Compliance/?limit=2&offset=2",
+    "offset": 0,
+    "previous": null,
+    "total_count": 5
+  },
+  "compliances": [
+    {
+      "compliance_id": "comp-uuid-page1-001",
+      "status": "submitted",
+      "alias": "paginated-1",
+      "country_iso": "IN",
+      "number_type": "local",
+      "user_type": "business",
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-02T00:00:00Z"
+    },
+    {
+      "compliance_id": "comp-uuid-page1-002",
+      "status": "approved",
+      "alias": "paginated-2",
+      "country_iso": "IN",
+      "number_type": "local",
+      "user_type": "business",
+      "created_at": "2025-02-01T00:00:00Z",
+      "updated_at": "2025-02-02T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "api_id": "req-api-id-003",
+  "requirement_id": "req-67890",
+  "country_iso": "DE",
+  "number_type": "local",
+  "user_type": "individual",
+  "document_types": [
+    {
+      "document_type_id": "de-doc-type-001",
+      "document_name": "Personal ID",
+      "description": "Valid government-issued photo ID",
+      "data_fields": [
+        {
+          "field_name": "full_name",
+          "field_type": "string",
+          "required": true
+        },
+        {
+          "field_name": "id_number",
+          "field_type": "string",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

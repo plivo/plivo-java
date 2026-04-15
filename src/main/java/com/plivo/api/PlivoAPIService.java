@@ -27,6 +27,7 @@ import com.plivo.api.models.node.*;
 import com.plivo.api.models.node.MultiPartyCall;
 import com.plivo.api.models.number.*;
 import com.plivo.api.models.number.Number;
+import com.plivo.api.models.phonenumbercompliance.*;
 import com.plivo.api.models.phlo.Phlo;
 import com.plivo.api.models.phlo.PhloRunGetterResponse;
 import com.plivo.api.models.phlo.PhloUpdateResponse;
@@ -827,4 +828,41 @@ public interface PlivoAPIService {
   // Delete
   @DELETE("Account/{authId}/TollfreeVerification/{uuid}/")
   Call<ResponseBody> tollfreeVerificationDelete(@Path("authId") String authId, @Path("uuid") String uuid);
+
+  // PhoneNumber Compliance Requirements
+  @GET("Account/{authId}/PhoneNumber/Compliance/Requirements/")
+  Call<PhoneNumberComplianceRequirement> phoneNumberComplianceRequirementList(@Path("authId") String authId,
+                                                                              @QueryMap Map<String, Object> params);
+
+  // PhoneNumber Compliance Create (multipart)
+  @POST("Account/{authId}/PhoneNumber/Compliance/")
+  Call<PhoneNumberComplianceCreateResponse> phoneNumberComplianceCreate(@Path("authId") String authId,
+                                                                        @Body RequestBody body);
+
+  // PhoneNumber Compliance List
+  @GET("Account/{authId}/PhoneNumber/Compliance/")
+  Call<ListResponse<PhoneNumberCompliance>> phoneNumberComplianceList(@Path("authId") String authId,
+                                                                      @QueryMap Map<String, Object> params);
+
+  // PhoneNumber Compliance Get
+  @GET("Account/{authId}/PhoneNumber/Compliance/{complianceId}/")
+  Call<PhoneNumberComplianceGetResponse> phoneNumberComplianceGet(@Path("authId") String authId,
+                                                                  @Path("complianceId") String complianceId,
+                                                                  @QueryMap Map<String, Object> params);
+
+  // PhoneNumber Compliance Update (PATCH, multipart)
+  @HTTP(method = "PATCH", path = "Account/{authId}/PhoneNumber/Compliance/{complianceId}/", hasBody = true)
+  Call<PhoneNumberComplianceUpdateResponse> phoneNumberComplianceUpdate(@Path("authId") String authId,
+                                                                        @Path("complianceId") String complianceId,
+                                                                        @Body RequestBody body);
+
+  // PhoneNumber Compliance Delete
+  @DELETE("Account/{authId}/PhoneNumber/Compliance/{complianceId}/")
+  Call<ResponseBody> phoneNumberComplianceDelete(@Path("authId") String authId,
+                                                  @Path("complianceId") String complianceId);
+
+  // PhoneNumber Compliance Link
+  @POST("Account/{authId}/PhoneNumber/Compliance/Link/")
+  Call<PhoneNumberComplianceLinkResponse> phoneNumberComplianceLinkCreate(@Path("authId") String authId,
+                                                                          @Body PhoneNumberComplianceLinkCreator body);
 }
