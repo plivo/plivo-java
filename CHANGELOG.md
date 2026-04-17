@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.47.1](https://github.com/plivo/plivo-java/tree/v5.47.1) (2026-04-17)
+**Bug Fix - PhoneNumber Compliance API**
+- Fixed PhoneNumberComplianceGetter to exclude `id` from query parameters via toMap() override
+
 ## [5.47.0](https://github.com/plivo/plivo-java/tree/v5.47.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `PhoneNumberComplianceRequirement` resource with `lister()` for discovering compliance requirements by country, number type, and user type
