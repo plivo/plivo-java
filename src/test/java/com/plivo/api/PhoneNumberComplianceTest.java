@@ -3,6 +3,7 @@ package com.plivo.api;
 import static com.plivo.api.TestUtil.loadFixture;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
@@ -533,5 +534,30 @@ public class PhoneNumberComplianceTest extends BaseTest {
       String.format("/Account/%s/PhoneNumber/Compliance/Link/", authId),
       recordedRequest.getPath()
     );
+  }
+
+  // =========================================================================
+  // Test 21: Getter - toMap() should NOT contain id in query parameters
+  // =========================================================================
+  @Test
+  public void getterShouldNotLeakIdInQueryParams() throws Exception {
+    String complianceId = "comp-uuid-leak-test";
+    expectResponse("phoneNumberComplianceGetResponse.json", 200);
+
+    PhoneNumberCompliance.getter(complianceId)
+      .expand("end_user")
+      .get();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("GET", recordedRequest.getMethod());
+    String path = recordedRequest.getPath();
+    // The URL path must contain the compliance ID
+    assertTrue(path.contains(
+      String.format("PhoneNumber/Compliance/%s/", complianceId)));
+    // The query string must NOT contain id= (the bug we fixed via toMap() override)
+    String query = path.contains("?") ? path.substring(path.indexOf("?")) : "";
+    assertFalse("Query string should not contain 'id=' parameter", query.contains("id="));
+    // expand should still be present
+    assertTrue(query.contains("expand=end_user"));
   }
 }
