@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.47.1](https://github.com/plivo/plivo-java/tree/v5.47.1) (2026-05-07)
+## [5.48.0](https://github.com/plivo/plivo-java/tree/v5.48.0) (2026-05-07)
 **Fix - Jackson 2.20+ compatibility (Spring Boot 3.5.13+ / Spring Boot 4)**
 - Replaced removed `PropertyNamingStrategy.SNAKE_CASE` constant with `PropertyNamingStrategies.SNAKE_CASE`, which exists in Jackson 2.12+
 - Added explicit `jackson-databind` dependency to guarantee the required Jackson version at runtime
