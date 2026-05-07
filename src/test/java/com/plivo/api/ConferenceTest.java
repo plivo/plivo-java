@@ -68,7 +68,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceDeleteShouldSucceed() throws Exception {
-    expectResponse("conferenceDeleteResponse.json", 204);
+    expectResponse("conferenceDeleteResponse.json", 200);
     final String conferenceId = "conferenceId";
 
     Conference.deleter(conferenceId)
@@ -79,7 +79,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceDeleteWithClientShouldSucceed() throws Exception {
-    expectResponse("conferenceDeleteResponse.json", 204);
+    expectResponse("conferenceDeleteResponse.json", 200);
     final String conferenceId = "conferenceId";
 
     Conference.deleter(conferenceId)
@@ -91,7 +91,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceDeleteAllShouldSucceed() throws Exception {
-    expectResponse("conferenceDeleteAllResponse.json", 204);
+    expectResponse("conferenceDeleteAllResponse.json", 200);
     final String conferenceId = "conferenceId";
 
     Conference.allDeleter()
@@ -102,7 +102,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceDeleteAllWithClientShouldSucceed() throws Exception {
-    expectResponse("conferenceDeleteAllResponse.json", 204);
+    expectResponse("conferenceDeleteAllResponse.json", 200);
     final String conferenceId = "conferenceId";
 
     Conference.allDeleter().client(client)
@@ -113,7 +113,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberDeleteShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberDeleteResponse.json", 204);
+    expectResponse("conferenceMemberDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -125,7 +125,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberDeleteWithClientShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberDeleteResponse.json", 204);
+    expectResponse("conferenceMemberDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -257,7 +257,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberSpeakDeleteShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberSpeakDeleteResponse.json", 204);
+    expectResponse("conferenceMemberSpeakDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -269,7 +269,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberSpeakDeleteWithClientShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberSpeakDeleteResponse.json", 204);
+    expectResponse("conferenceMemberSpeakDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -282,7 +282,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberPlayDeleteShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberPlayDeleteResponse.json", 204);
+    expectResponse("conferenceMemberPlayDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 
@@ -294,7 +294,7 @@ public class ConferenceTest extends BaseTest {
 
   @Test
   public void conferenceMemberPlayDeleteWithClientShouldSucceed() throws Exception {
-    expectResponse("conferenceMemberPlayDeleteResponse.json", 204);
+    expectResponse("conferenceMemberPlayDeleteResponse.json", 200);
     final String confId = "confId";
     final String memberId = "memberId";
 

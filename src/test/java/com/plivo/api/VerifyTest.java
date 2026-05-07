@@ -62,7 +62,7 @@ public class VerifyTest extends BaseTest{
 
   @Test
   public void deleteVerifiedCallerIdShouldWork() throws Exception {
-    expectResponse("deleteVerifiedCallerIdResponse.json", 204);
+    expectResponse("deleteVerifiedCallerIdResponse.json", 200);
 
     final String phoneNumber = "phoneNumber";
     Verify.deleteVerifiedCallerID(phoneNumber).delete();

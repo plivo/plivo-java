@@ -35,12 +35,15 @@ tasks.withType(JavaCompile) {
 dependencies {
     testImplementation(platform('org.junit:junit-bom:5.10.0'))
     testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('junit:junit:4.13.2')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
-    
+    testRuntimeOnly('org.junit.vintage:junit-vintage-engine')
+
     testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
 
-    implementation 'com.squareup.retrofit2:converter-jackson:2.2.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.12.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
