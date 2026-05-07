@@ -1,5 +1,11 @@
 # Change Log
 
+## [5.47.1](https://github.com/plivo/plivo-java/tree/v5.47.1) (2026-05-07)
+**Fix - Jackson 2.20+ compatibility (Spring Boot 3.5.13+ / Spring Boot 4)**
+- Replaced removed `PropertyNamingStrategy.SNAKE_CASE` constant with `PropertyNamingStrategies.SNAKE_CASE`, which exists in Jackson 2.12+
+- Added explicit `jackson-databind` dependency to guarantee the required Jackson version at runtime
+- Fixes [#311](https://github.com/plivo/plivo-java/issues/311): `NoSuchFieldError` on `PlivoClient` init when consumers bring Jackson >= 2.20
+
 ## [5.47.0](https://github.com/plivo/plivo-java/tree/v5.47.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `PhoneNumberComplianceRequirement` resource with `lister()` for discovering compliance requirements by country, number type, and user type
