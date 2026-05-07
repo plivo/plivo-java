@@ -330,7 +330,7 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callStreamDeleteShouldWork() throws Exception {
-    expectResponse("liveCallStreamDeleteResponse.json", 204);
+    expectResponse("liveCallStreamDeleteResponse.json", 200);
     final String callId = "callId";
 
     Call.streamStopper(callId)
@@ -365,7 +365,7 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callSpeakDeleteShouldWork() throws Exception {
-    expectResponse("liveCallSpeakDeleteResponse.json", 204);
+    expectResponse("liveCallSpeakDeleteResponse.json", 200);
     final String callId = "callId";
 
     Call.speakStopper(callId)
@@ -376,7 +376,7 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callSpeakDeleteWithClientShouldWork() throws Exception {
-    expectResponse("liveCallSpeakDeleteResponse.json", 204);
+    expectResponse("liveCallSpeakDeleteResponse.json", 200);
     final String callId = "callId";
 
     Call.speakStopper(callId)
@@ -434,7 +434,7 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callDTMFCreateShouldWork() throws Exception {
-    expectResponse("liveCallDtmfCreateResponse.json", 204);
+    expectResponse("liveCallDtmfCreateResponse.json", 200);
     final String callId = "callId";
     final String digits = "1234";
     Call.digitSender(callId, digits).sendDigits();
@@ -444,7 +444,7 @@ public class CallTest extends BaseTest {
 
   @Test
   public void callDTMFCreateWithClientShouldWork() throws Exception {
-    expectResponse("liveCallDtmfCreateResponse.json", 204);
+    expectResponse("liveCallDtmfCreateResponse.json", 200);
     final String callId = "callId";
     final String digits = "1234";
 

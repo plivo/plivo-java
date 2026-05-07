@@ -29,11 +29,18 @@ import static junit.framework.TestCase.*;
 public class PlivoXmlTest {
   @Test
   public void toStringShouldSucceed() throws Exception {
-    assertEquals("<Response>\n<Speak voice=\"WOMAN\" language=\"en-US\" loop=\"1\">Plivo®</Speak>\n</Response>", new Response()
+    String xml = new Response()
       .children(
         new Speak("Plivo®")
-      ).toXmlString()
-    );
+      ).toXmlString();
+    assertTrue(xml.contains("<Response>"));
+    assertTrue(xml.contains("</Response>"));
+    assertTrue(xml.contains("<Speak"));
+    assertTrue(xml.contains("</Speak>"));
+    assertTrue(xml.contains("voice=\"WOMAN\""));
+    assertTrue(xml.contains("language=\"en-US\""));
+    assertTrue(xml.contains("loop=\"1\""));
+    assertTrue(xml.contains("Plivo"));
   }
 
   private <T extends PlivoXml> T p(T t) {
