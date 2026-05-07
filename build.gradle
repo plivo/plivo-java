@@ -35,8 +35,10 @@ tasks.withType(JavaCompile) {
 dependencies {
     testImplementation(platform('org.junit:junit-bom:5.10.0'))
     testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('junit:junit:4.13.2')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
-    
+    testRuntimeOnly('org.junit.vintage:junit-vintage-engine')
+
     testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
 
     implementation 'com.squareup.retrofit2:converter-jackson:2.2.0'
