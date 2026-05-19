@@ -17,6 +17,7 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String einIssuingCountry;
     private String altBusinessId;
     private String altBusinessIdType;
+    private String dba;
 
     public ProfileUpdater(String id) {
         super(id);
@@ -114,6 +115,15 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
 
     public String getAltBusinessIdType(){
         return altBusinessIdType;
+    }
+
+    public ProfileUpdater dba (String dba) {
+        this.dba = dba;
+        return this;
+    }
+
+    public String getDba(){
+        return dba;
     }
 
     @Override

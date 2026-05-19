@@ -22,8 +22,9 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     private String plivoSubaccount;
     private ProfileAuthorizedContact authorizedContact;
     private String businessContactEmail;
+    private String dba;
 
-    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail) {
+    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String dba) {
         this.profileAlias = profileAlias;
         this.customerType = customerType;
         this.entityType = entityType;
@@ -40,6 +41,7 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
         this.plivoSubaccount = plivoSubaccount;
         this.authorizedContact = authorizedContact;
         this.businessContactEmail = businessContactEmail;
+        this.dba = dba;
     }
     public String profileAlias(){
         return this.profileAlias;
@@ -88,6 +90,9 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     }
     public String businessContactEmail(){
         return this.businessContactEmail;
+    }
+    public String dba(){
+        return this.dba;
     }
 
     @Override
