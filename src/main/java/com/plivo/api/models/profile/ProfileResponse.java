@@ -1,5 +1,6 @@
 package com.plivo.api.models.profile;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.plivo.api.models.base.BaseResource;
 
@@ -23,6 +24,7 @@ public class ProfileResponse extends BaseResource{
     private String profileType;
     private String profileUUID;
     private String createdAt;
+    @JsonProperty("doing_business_as")
     private String dba;
 
      public String getProfileAlias(){

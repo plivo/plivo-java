@@ -1,5 +1,6 @@
 package com.plivo.api.models.profile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.plivo.api.models.base.MessagingProfileUpdater;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
@@ -17,6 +18,7 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String einIssuingCountry;
     private String altBusinessId;
     private String altBusinessIdType;
+    @JsonProperty("doing_business_as")
     private String dba;
 
     public ProfileUpdater(String id) {
