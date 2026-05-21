@@ -1,6 +1,5 @@
 package com.plivo.api.models.profile;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.plivo.api.models.base.Creator;
 import com.plivo.api.util.Utils;
 import retrofit2.Call;
@@ -23,10 +22,9 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     private String plivoSubaccount;
     private ProfileAuthorizedContact authorizedContact;
     private String businessContactEmail;
-    @JsonProperty("doing_business_as")
-    private String dba;
+    private String doingBusinessAs;
 
-    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String dba) {
+    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String doingBusinessAs) {
         this.profileAlias = profileAlias;
         this.customerType = customerType;
         this.entityType = entityType;
@@ -43,7 +41,7 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
         this.plivoSubaccount = plivoSubaccount;
         this.authorizedContact = authorizedContact;
         this.businessContactEmail = businessContactEmail;
-        this.dba = dba;
+        this.doingBusinessAs = doingBusinessAs;
     }
     public String profileAlias(){
         return this.profileAlias;
@@ -93,8 +91,8 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     public String businessContactEmail(){
         return this.businessContactEmail;
     }
-    public String dba(){
-        return this.dba;
+    public String doingBusinessAs(){
+        return this.doingBusinessAs;
     }
 
     @Override
