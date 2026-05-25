@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.49.0](https://github.com/plivo/plivo-java/tree/v5.49.0) (2026-05-25)
+**Feature - Profile API DBA field support**
+- Added Doing Business As (DBA) field support to Profile API
+
 ## [5.48.0](https://github.com/plivo/plivo-java/tree/v5.48.0) (2026-05-07)
 **Fix - Jackson 2.20+ compatibility (Spring Boot 3.5.13+ / Spring Boot 4)**
 - Replaced removed `PropertyNamingStrategy.SNAKE_CASE` constant with `PropertyNamingStrategies.SNAKE_CASE`, which exists in Jackson 2.12+
