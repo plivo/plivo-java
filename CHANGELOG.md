@@ -1,6 +1,9 @@
 # Change Log
 
 ## [5.48.1](https://github.com/plivo/plivo-java/tree/v5.48.1) (2026-05-26)
+**Feature - Profile API DBA field support**
+- Added Doing Business As (DBA) field support to Profile API
+
 **Feature - Expose sub_account_name on Number resource**
 - Added `subAccountName` field and `getSubAccountName()` getter to the `Number` resource, surfacing the subaccount's name alongside the existing `subAccount` (auth_id) on rented number listing and get APIs
 
