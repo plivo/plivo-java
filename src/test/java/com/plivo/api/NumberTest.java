@@ -2,6 +2,7 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
+import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.number.PhoneNumber;
 import java.util.Collections;
@@ -26,8 +27,11 @@ public class NumberTest extends BaseTest {
   public void numberListShouldSucceed() throws Exception {
     expectResponse("numberListResponse.json", 200);
 
-    Number.lister()
+    ListResponse<Number> response = Number.lister()
       .list();
+
+    assertEquals("SAXXXXXXXXXXXXXXXXXX", response.getObjects().get(0).getSubAccount());
+    assertEquals("Marketing", response.getObjects().get(0).getSubAccountName());
 
     assertRequest("GET", "Number/");
   }
@@ -100,6 +104,8 @@ public class NumberTest extends BaseTest {
 
 
     assertEquals(number.getId(), number.getNumber());
+    assertEquals("SAXXXXXXXXXXXXXXXXXX", number.getSubAccount());
+    assertEquals("Marketing", number.getSubAccountName());
 
     assertRequest("GET", "Number/%s/", numberNumber);
   }
