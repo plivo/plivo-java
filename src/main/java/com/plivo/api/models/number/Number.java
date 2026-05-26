@@ -19,6 +19,7 @@ public class Number extends BaseResource {
   private Boolean voiceEnabled;
   private String voiceRate;
   private String subAccount;
+  private String subAccountName;
   private Boolean active;
   private Boolean mmsEnabled;
   private String mmsRate;
@@ -60,6 +61,10 @@ public class Number extends BaseResource {
 
   public String getSubAccount() {
     return subAccount;
+  }
+
+  public String getSubAccountName() {
+    return subAccountName;
   }
 
   public String getAddedOn() {
