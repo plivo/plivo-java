@@ -1,12 +1,19 @@
 package com.plivo.api.models.call;
 
 import com.plivo.api.models.base.BaseResponse;
+import java.util.List;
 
 public class CallCreateResponse extends BaseResponse {
 
-  private String requestUuid;
+  private Object requestUuid;
 
-  public String getRequestUuid() {
+  private List<String> invalidNumbers;
+
+  public Object getRequestUuid() {
     return requestUuid;
+  }
+
+  public List<String> getInvalidNumbers() {
+    return invalidNumbers;
   }
 }
