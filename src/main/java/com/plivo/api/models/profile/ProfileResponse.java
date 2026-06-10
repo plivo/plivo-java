@@ -23,6 +23,10 @@ public class ProfileResponse extends BaseResource{
     private String profileUUID;
     private String createdAt;
     private String doingBusinessAs;
+    // numberOfEmployees is an optional field. Allowed values (validated server-side):
+    // BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500,
+    // BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
+    private String numberOfEmployees;
 
      public String getProfileAlias(){
         return profileAlias;
@@ -98,6 +102,10 @@ public class ProfileResponse extends BaseResource{
 
     public String getDoingBusinessAs(){
         return doingBusinessAs;
+    }
+
+    public String getNumberOfEmployees(){
+        return numberOfEmployees;
     }
 
     @Override

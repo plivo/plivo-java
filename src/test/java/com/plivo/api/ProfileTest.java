@@ -27,7 +27,7 @@ public class ProfileTest extends BaseTest {
         expectResponse(fixtureName, 202);
         ProfileAddress address = new ProfileAddress("123 Main Street", "San Francisco", "CA", "94105", "US");
         ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("John", "Doe", "+14155551234", "test@example.com", "CEO", "C_LEVEL");
-        ProfileAddResponse response = Profile.creator("Test Profile", "DIRECT", "PUBLIC", "Test Company Inc", "12-3456789", "US", address, "TEST", "NASDAQ", "https://testcompany.com", "TECHNOLOGY", "", "NONE", "", authContact, "employee@company.com", "Test DBA").create();
+        ProfileAddResponse response = Profile.creator("Test Profile", "DIRECT", "PUBLIC", "Test Company Inc", "12-3456789", "US", address, "TEST", "NASDAQ", "https://testcompany.com", "TECHNOLOGY", "", "NONE", "", authContact, "employee@company.com", "Test DBA", "BETWEEN_11_AND_50").create();
 
         assertRequest("POST", "Profile/");
     }
@@ -43,6 +43,7 @@ public class ProfileTest extends BaseTest {
         assertRequest("GET", "Profile/%s/", profileUUID);
         assertEquals(profileUUID, response.getProfile().getProfileUUID());
         assertEquals("ABC DBA", response.getProfile().getDoingBusinessAs());
+        assertEquals("BETWEEN_11_AND_50", response.getProfile().getNumberOfEmployees());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class ProfileTest extends BaseTest {
         expectResponse(fixtureName, 202);
         ProfileAddress address = new ProfileAddress("123 Main Street", "San Francisco", "CA", "94105", "US");
         ProfileAuthorizedContact authContact =  new ProfileAuthorizedContact("John", "Doe", "+14155551234", "test@example.com", "CEO", "C_LEVEL");
-        Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5").entityType("PUBLIC").address(address).authorizedContact(authContact).businessContactEmail("employee@company.com").doingBusinessAs("Updated DBA").update();
+        Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5").entityType("PUBLIC").address(address).authorizedContact(authContact).businessContactEmail("employee@company.com").doingBusinessAs("Updated DBA").numberOfEmployees("BETWEEN_11_AND_50").update();
 
         assertRequest("POST", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
     }

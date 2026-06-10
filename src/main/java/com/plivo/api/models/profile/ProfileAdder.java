@@ -23,8 +23,12 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     private ProfileAuthorizedContact authorizedContact;
     private String businessContactEmail;
     private String doingBusinessAs;
+    // numberOfEmployees is an optional field. Allowed values (validated server-side):
+    // BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500,
+    // BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
+    private String numberOfEmployees;
 
-    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String doingBusinessAs) {
+    ProfileAdder(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String doingBusinessAs,String numberOfEmployees) {
         this.profileAlias = profileAlias;
         this.customerType = customerType;
         this.entityType = entityType;
@@ -42,6 +46,7 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
         this.authorizedContact = authorizedContact;
         this.businessContactEmail = businessContactEmail;
         this.doingBusinessAs = doingBusinessAs;
+        this.numberOfEmployees = numberOfEmployees;
     }
     public String profileAlias(){
         return this.profileAlias;
@@ -93,6 +98,9 @@ public class ProfileAdder extends Creator<ProfileAddResponse> {
     }
     public String doingBusinessAs(){
         return this.doingBusinessAs;
+    }
+    public String numberOfEmployees(){
+        return this.numberOfEmployees;
     }
 
     @Override
