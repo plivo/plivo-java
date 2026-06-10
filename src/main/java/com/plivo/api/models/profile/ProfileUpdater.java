@@ -18,6 +18,10 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String altBusinessId;
     private String altBusinessIdType;
     private String doingBusinessAs;
+    // numberOfEmployees is an optional field. Allowed values (validated server-side):
+    // BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500,
+    // BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
+    private String numberOfEmployees;
 
     public ProfileUpdater(String id) {
         super(id);
@@ -124,6 +128,15 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
 
     public String getDoingBusinessAs(){
         return doingBusinessAs;
+    }
+
+    public ProfileUpdater numberOfEmployees (String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+        return this;
+    }
+
+    public String getNumberOfEmployees(){
+        return numberOfEmployees;
     }
 
     @Override

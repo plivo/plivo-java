@@ -29,11 +29,15 @@ public class Profile extends BaseResource {
 
   
   public static  ProfileAdder creator(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail) {
-    return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact,businessContactEmail, null);
+    return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact,businessContactEmail, null, null);
   }
 
   public static  ProfileAdder creator(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String doingBusinessAs) {
-    return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact,businessContactEmail, doingBusinessAs);
+    return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact,businessContactEmail, doingBusinessAs, null);
+  }
+
+  public static  ProfileAdder creator(String profileAlias,String customerType,String entityType,String companyName,String ein,String einIssuingCountry,ProfileAddress address,String stockSymbol,String stockExchange,String website,String vertical,String altBusinessID,String altBusinessIdType,String plivoSubaccount,ProfileAuthorizedContact authorizedContact,String businessContactEmail,String doingBusinessAs,String numberOfEmployees) {
+    return new ProfileAdder(profileAlias,customerType,entityType,companyName,ein,einIssuingCountry,address,stockSymbol,stockExchange,website,vertical,altBusinessID,altBusinessIdType,plivoSubaccount,authorizedContact,businessContactEmail, doingBusinessAs, numberOfEmployees);
   }
 
   public static ProfileGetter getter(String id) {
