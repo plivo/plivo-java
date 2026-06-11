@@ -9,6 +9,7 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
   private String appId;
   private String cnamLookup;
   private Boolean haEnable;
+  private String complianceApplicationId;
 
   public PhoneNumberCreator(String number) {
     if (number == null) {
@@ -42,6 +43,15 @@ public class PhoneNumberCreator extends Creator<PhoneNumberCreateResponse> {
 
   public PhoneNumberCreator haEnable(final Boolean haEnable) {
     this.haEnable = haEnable;
+    return this;
+  }
+
+  public String complianceApplicationId() {
+    return this.complianceApplicationId;
+  }
+
+  public PhoneNumberCreator complianceApplicationId(final String complianceApplicationId) {
+    this.complianceApplicationId = complianceApplicationId;
     return this;
   }
 
