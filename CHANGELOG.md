@@ -1,5 +1,11 @@
 # Change Log
 
+## [5.49.0](https://github.com/plivo/plivo-java/tree/v5.49.0) (2026-06-11)
+**Feature - complianceApplicationId on phone number buy**
+- Added an optional `complianceApplicationId` builder param to `PhoneNumberCreator`, serialized to the `compliance_application_id` wire param on phone number buy
+- Lets regulated numbers (e.g. India) be purchased with an approved regulatory compliance application linked at purchase time
+- Backward-compatible additive builder method
+
 ## [5.48.1](https://github.com/plivo/plivo-java/tree/v5.48.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

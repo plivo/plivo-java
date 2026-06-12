@@ -2,6 +2,7 @@ package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.base.ListResponse;
 import com.plivo.api.models.number.Number;
 import com.plivo.api.models.number.PhoneNumber;
@@ -171,6 +172,22 @@ public class NumberTest extends BaseTest {
       .create();
 
     assertRequest("POST", "PhoneNumber/%s/", number);
+  }
+
+  @Test
+  public void phoneNumberBuyWithComplianceApplicationIdShouldSucceed() throws Exception {
+    expectResponse("phoneNumberCreateResponse.json", 201);
+
+    final String number = "1231231231";
+    final String complianceApplicationId = "1234567890123456";
+
+    PhoneNumber.buyer(number)
+      .complianceApplicationId(complianceApplicationId)
+      .create();
+
+    JsonNode payload = actualRequestPayload();
+    assertEquals(complianceApplicationId,
+      payload.get("compliance_application_id").asText());
   }
 
 }
