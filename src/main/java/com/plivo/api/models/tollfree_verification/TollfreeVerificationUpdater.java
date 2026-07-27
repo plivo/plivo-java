@@ -15,6 +15,10 @@ public class TollfreeVerificationUpdater extends Updater<TollfreeVerificationUpd
   private String volume;
   private String additionalInformation;
   private String extraData;
+  private String termsAndConditionsLink;
+  private String privacyPolicyLink;
+  private String optinMessage;
+  private String helpMessage;
   private String callbackURL;
   private String callbackMethod;
 
@@ -114,6 +118,42 @@ public class TollfreeVerificationUpdater extends Updater<TollfreeVerificationUpd
 
   public TollfreeVerificationUpdater extraData(final String extraData) {
     this.extraData = extraData;
+    return this;
+  }
+
+  public String termsAndConditionsLink() {
+    return termsAndConditionsLink;
+  }
+
+  public TollfreeVerificationUpdater termsAndConditionsLink(final String termsAndConditionsLink) {
+    this.termsAndConditionsLink = termsAndConditionsLink;
+    return this;
+  }
+
+  public String privacyPolicyLink() {
+    return privacyPolicyLink;
+  }
+
+  public TollfreeVerificationUpdater privacyPolicyLink(final String privacyPolicyLink) {
+    this.privacyPolicyLink = privacyPolicyLink;
+    return this;
+  }
+
+  public String optinMessage() {
+    return optinMessage;
+  }
+
+  public TollfreeVerificationUpdater optinMessage(final String optinMessage) {
+    this.optinMessage = optinMessage;
+    return this;
+  }
+
+  public String helpMessage() {
+    return helpMessage;
+  }
+
+  public TollfreeVerificationUpdater helpMessage(final String helpMessage) {
+    this.helpMessage = helpMessage;
     return this;
   }
 
