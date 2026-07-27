@@ -9,6 +9,7 @@ public class EndpointCreator extends VoiceCreator<EndpointCreateResponse> {
   private final String password;
   private final String alias;
   private String appId;
+  private Boolean internal;
 
   public EndpointCreator(String username, String password, String alias) {
     this.username = username;
@@ -22,6 +23,15 @@ public class EndpointCreator extends VoiceCreator<EndpointCreateResponse> {
 
   public EndpointCreator appId(final String appId) {
     this.appId = appId;
+    return this;
+  }
+
+  public Boolean internal() {
+    return this.internal;
+  }
+
+  public EndpointCreator internal(final Boolean internal) {
+    this.internal = internal;
     return this;
   }
 
