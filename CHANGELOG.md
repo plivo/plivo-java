@@ -1,5 +1,11 @@
 # Change Log
 
+## [5.50.1](https://github.com/plivo/plivo-java/tree/v5.50.1) (2026-07-27)
+**Feature - internal flag on Endpoint create**
+- Added an optional `internal` builder param to `EndpointCreator`, serialized to the `internal` wire param on endpoint create
+- Lets Plivo CX (Contacto) mark auto-created browser-SDK endpoints as internal so they are hidden from the customer's Endpoints tab
+- Backward-compatible additive builder method
+
 ## [5.49.0](https://github.com/plivo/plivo-java/tree/v5.49.0) (2026-06-11)
 **Feature - complianceApplicationId on phone number buy**
 - Added an optional `complianceApplicationId` builder param to `PhoneNumberCreator`, serialized to the `compliance_application_id` wire param on phone number buy
