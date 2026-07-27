@@ -1,5 +1,6 @@
 package com.plivo.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.tollfree_verification.TollfreeVerification;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.RecordedRequest;
@@ -65,6 +66,60 @@ public class TollfreeVerificationTest extends BaseTest {
 
     assertRequest("POST", "TollfreeVerification/");
   }
+  @Test
+  public void tollfreeVerificationCreateWithZipwhipFieldsShouldSucceed() throws Exception {
+    expectResponse("tollfreeVerificationCreateResponse.json", 201);
+
+    TollfreeVerification.creator()
+      .profileUuid("fb239ee1-fb5c-4dd9-b55c-5cf10170e756")
+      .number("18557312530")
+      .usecase("FRAUD_ALERT")
+      .usecaseSummary("summary")
+      .optinImageUrl("https://wwww.optinurl.com")
+      .optinType("VERBAL")
+      .messageSample("message sample")
+      .volume("10")
+      .additionalInformation("additional information")
+      .extraData("extra data")
+      .termsAndConditionsLink("https://www.example.com/terms")
+      .privacyPolicyLink("https://www.example.com/privacy")
+      .optinMessage("Reply YES to opt in")
+      .helpMessage("Reply HELP for help")
+      .callbackMethod("POST")
+      .callbackUrl("https://www.callbackurl.com")
+      .create();
+
+    JsonNode payload = actualRequestPayload();
+    assertEquals("https://www.example.com/terms", payload.get("terms_and_conditions_link").asText());
+    assertEquals("https://www.example.com/privacy", payload.get("privacy_policy_link").asText());
+    assertEquals("Reply YES to opt in", payload.get("optin_message").asText());
+    assertEquals("Reply HELP for help", payload.get("help_message").asText());
+  }
+
+  @Test
+  public void tollfreeVerificationUpdateWithZipwhipFieldsShouldSucceed() throws Exception {
+    String fixtureName = "tollfreeVerificationUpdateResponse.json";
+    String uuid = "uuid";
+
+    server.enqueue(new MockResponse()
+      .setResponseCode(200)
+      .setBody(loadFixture(fixtureName))
+    );
+
+    TollfreeVerification.updater(uuid)
+      .termsAndConditionsLink("https://www.example.com/terms")
+      .privacyPolicyLink("https://www.example.com/privacy")
+      .optinMessage("Reply YES to opt in")
+      .helpMessage("Reply HELP for help")
+      .update();
+
+    JsonNode payload = actualRequestPayload();
+    assertEquals("https://www.example.com/terms", payload.get("terms_and_conditions_link").asText());
+    assertEquals("https://www.example.com/privacy", payload.get("privacy_policy_link").asText());
+    assertEquals("Reply YES to opt in", payload.get("optin_message").asText());
+    assertEquals("Reply HELP for help", payload.get("help_message").asText());
+  }
+
   @Test
   public void tollfreeVerificationGetShouldSucceed() throws Exception {
     String uuid = "uuid";

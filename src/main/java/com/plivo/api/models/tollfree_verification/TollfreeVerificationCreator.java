@@ -16,6 +16,10 @@ public class TollfreeVerificationCreator extends Creator<TollfreeVerificationCre
   private String volume;
   private String additionalInformation;
   private String extraData;
+  private String termsAndConditionsLink;
+  private String privacyPolicyLink;
+  private String optinMessage;
+  private String helpMessage;
   private String callbackUrl;
   private String callbackMethod;
 
@@ -116,6 +120,42 @@ public class TollfreeVerificationCreator extends Creator<TollfreeVerificationCre
 
   public TollfreeVerificationCreator extraData(final String extraData) {
     this.extraData = extraData;
+    return this;
+  }
+
+  public String termsAndConditionsLink() {
+    return termsAndConditionsLink;
+  }
+
+  public TollfreeVerificationCreator termsAndConditionsLink(final String termsAndConditionsLink) {
+    this.termsAndConditionsLink = termsAndConditionsLink;
+    return this;
+  }
+
+  public String privacyPolicyLink() {
+    return privacyPolicyLink;
+  }
+
+  public TollfreeVerificationCreator privacyPolicyLink(final String privacyPolicyLink) {
+    this.privacyPolicyLink = privacyPolicyLink;
+    return this;
+  }
+
+  public String optinMessage() {
+    return optinMessage;
+  }
+
+  public TollfreeVerificationCreator optinMessage(final String optinMessage) {
+    this.optinMessage = optinMessage;
+    return this;
+  }
+
+  public String helpMessage() {
+    return helpMessage;
+  }
+
+  public TollfreeVerificationCreator helpMessage(final String helpMessage) {
+    this.helpMessage = helpMessage;
     return this;
   }
 
