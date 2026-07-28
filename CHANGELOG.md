@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.50.0](https://github.com/plivo/plivo-java/tree/v5.50.0) (2026-07-27)
+## [5.50.0](https://github.com/plivo/plivo-java/tree/v5.50.0) (2026-07-28)
 **Feature - Toll-free verification terms, privacy, opt-in and help fields**
 - Added optional `termsAndConditionsLink`, `privacyPolicyLink`, `optinMessage` and `helpMessage` parameters to the toll-free verification create and update methods
 
