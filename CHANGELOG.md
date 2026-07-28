@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.50.0](https://github.com/plivo/plivo-java/tree/v5.50.0) (2026-07-28)
+**Feature - Toll-free verification terms, privacy, opt-in and help fields**
+- Added optional `termsAndConditionsLink`, `privacyPolicyLink`, `optinMessage` and `helpMessage` parameters to the toll-free verification create and update methods
+
 ## [5.49.0](https://github.com/plivo/plivo-java/tree/v5.49.0) (2026-06-11)
 **Feature - complianceApplicationId on phone number buy**
 - Added an optional `complianceApplicationId` builder param to `PhoneNumberCreator`, serialized to the `compliance_application_id` wire param on phone number buy
