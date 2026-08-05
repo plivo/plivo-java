@@ -68,6 +68,21 @@ public class ProfileTest extends BaseTest {
     }
 
     @Test
+    public void profileUpdateWithCallerReputationShouldSucceed() throws Exception {
+        String fixtureName = "profileUpdateResponse.json";
+
+        expectResponse(fixtureName, 202);
+        Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5")
+            .enable_caller_reputation(true)
+            .vetting_provider(java.util.Arrays.asList("at&t", "t-mobile"))
+            .callback_url("https://example.com/cr/webhook")
+            .callback_method("POST")
+            .update();
+
+        assertRequest("POST", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
+    }
+
+    @Test
     public void profileDeleteShouldSucceed() throws Exception {
         String fixtureName = "profileDeleteResponse.json";
 
