@@ -148,8 +148,8 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
         return vettingProvider;
     }
 
-    public ProfileUpdater callback_url (String callbackUrl) {
-        this.callbackUrl = callbackUrl;
+    public ProfileUpdater url (String url) {
+        this.callbackUrl = url;
         return this;
     }
 
@@ -157,8 +157,8 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
         return callbackUrl;
     }
 
-    public ProfileUpdater callback_method (String callbackMethod) {
-        this.callbackMethod = callbackMethod;
+    public ProfileUpdater method (String method) {
+        this.callbackMethod = method;
         return this;
     }
 

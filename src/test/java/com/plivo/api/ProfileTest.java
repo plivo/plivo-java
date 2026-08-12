@@ -75,8 +75,8 @@ public class ProfileTest extends BaseTest {
         Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5")
             .enable_caller_reputation(true)
             .vetting_provider(java.util.Arrays.asList("at&t", "t-mobile"))
-            .callback_url("https://example.com/cr/webhook")
-            .callback_method("POST")
+            .url("https://example.com/cr/webhook")
+            .method("POST")
             .update();
 
         assertRequest("POST", "Profile/8abd0935-fd17-4876-9b40-5855488ac5b5/");
