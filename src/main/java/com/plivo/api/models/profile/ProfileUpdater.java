@@ -18,6 +18,10 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
     private String altBusinessId;
     private String altBusinessIdType;
     private String doingBusinessAs;
+    private Boolean enableCallerReputation;
+    private java.util.List<String> callerReputationCarriers;
+    private String url;
+    private String method;
 
     public ProfileUpdater(String id) {
         super(id);
@@ -124,6 +128,42 @@ public class ProfileUpdater extends MessagingProfileUpdater<Profile> {
 
     public String getDoingBusinessAs(){
         return doingBusinessAs;
+    }
+
+    public ProfileUpdater enable_caller_reputation (Boolean enableCallerReputation) {
+        this.enableCallerReputation = enableCallerReputation;
+        return this;
+    }
+
+    public Boolean getEnableCallerReputation(){
+        return enableCallerReputation;
+    }
+
+    public ProfileUpdater caller_reputation_carriers (java.util.List<String> callerReputationCarriers) {
+        this.callerReputationCarriers = callerReputationCarriers;
+        return this;
+    }
+
+    public java.util.List<String> getCallerReputationCarriers(){
+        return callerReputationCarriers;
+    }
+
+    public ProfileUpdater url (String url) {
+        this.url = url;
+        return this;
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+    public ProfileUpdater method (String method) {
+        this.method = method;
+        return this;
+    }
+
+    public String getMethod(){
+        return method;
     }
 
     @Override
