@@ -74,7 +74,7 @@ public class ProfileTest extends BaseTest {
         expectResponse(fixtureName, 202);
         Profile response = Profile.update("8abd0935-fd17-4876-9b40-5855488ac5b5")
             .enable_caller_reputation(true)
-            .vetting_provider(java.util.Arrays.asList("at&t", "t-mobile"))
+            .caller_reputation_carriers(java.util.Arrays.asList("at&t", "t-mobile"))
             .url("https://example.com/cr/webhook")
             .method("POST")
             .update();
