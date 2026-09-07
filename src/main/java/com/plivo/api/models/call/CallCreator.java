@@ -35,6 +35,7 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
   private Long ringTimeout;
   private String parentCallUuid;
   private Boolean errorIfParentNotFound;
+  private String retryOn;
 
   CallCreator(String from, List<String> to, String answerUrl) {
     if (!Utils.allNotNull(from, to, answerUrl)) {
@@ -246,6 +247,14 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
     return this.errorIfParentNotFound;
   }
 
+  /**
+   * @return Comma-separated list of failure reasons that should trigger the HA Secondary-Number
+   * Retry for this call.
+   */
+  public String retryOn() {
+    return this.retryOn;
+  }
+
   public CallCreator answerMethod(final String answerMethod) {
     this.answerMethod = answerMethod;
     return this;
@@ -354,6 +363,16 @@ public class CallCreator extends VoiceCreator<CallCreateResponse> {
 
   public CallCreator errorIfParentNotFound(final Boolean errorIfParentNotFound) {
     this.errorIfParentNotFound = errorIfParentNotFound;
+    return this;
+  }
+
+  /**
+   * @param retryOn Comma-separated list of failure reasons that should trigger the HA
+   * Secondary-Number Retry for this call. Valid values are busy_line, no_answer, rejected and
+   * ring_timeout. When set, it overrides the account-level retry reasons configuration.
+   */
+  public CallCreator retryOn(final String retryOn) {
+    this.retryOn = retryOn;
     return this;
   }
 

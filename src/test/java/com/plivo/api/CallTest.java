@@ -457,6 +457,27 @@ public class CallTest extends BaseTest {
 
 
   @Test
+  public void callCreateWithRetryOnShouldSucceed() throws Exception {
+    String fixtureName = "callCreateResponse.json";
+
+    expectResponse(fixtureName, 200);
+
+    Call.creator("+911231231230", Arrays.asList("+911234567890"),
+      "http://example.answer.url/")
+      .answerMethod("POST")
+      .retryOn("busy_line,no_answer")
+      .client(client)
+      .create();
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    Map<String, Object> body = objectMapper.readValue(recordedRequest.getBody().readUtf8(), Map.class);
+    assertEquals("POST", recordedRequest.getMethod());
+    assertEquals(String.format("/Account/%s/Call/", authId),
+      recordedRequest.getPath());
+    assertEquals(body.get("retry_on"), "busy_line,no_answer");
+  }
+
+  @Test
   public void callCreateWithCallbackSucceed() throws Exception {
     String fixtureName = "callCreateResponse.json";
 
