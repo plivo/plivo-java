@@ -605,6 +605,21 @@ class Test
 }
 ```
 
+### Validating webhooks for scoped API tokens
+Webhooks triggered by an API call made with a scoped API token are signed (`X-Plivo-Signature-V3`) with a key derived from that token. Validate them with `validateSignatureV3Scoped`, which takes the same arguments as `validateSignatureV3` but with the scoped token in place of the auth token:
+
+```java
+boolean valid = Utils.validateSignatureV3Scoped(
+    "https://acme.example.com/sms/status",
+    request.getHeader("X-Plivo-Signature-V3-Nonce"),
+    request.getHeader("X-Plivo-Signature-V3"),
+    "<your scoped token>",
+    "POST",
+    params);
+```
+
+`Utils.deriveSigningKey(scopedToken)` returns the raw 32-byte HMAC-SHA256 key if you use a custom validator.
+
 ### More examples
 More examples are available [here](https://github.com/plivo/plivo-examples-java). Also refer to the [guides for configuring the Java Spring to run various scenarios](https://plivo.com/docs/sms/quickstart/java-spring/) & use it to test out your integration in under 5 minutes.
 

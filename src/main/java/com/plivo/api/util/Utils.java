@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -174,11 +175,49 @@ public class Utils {
     }
 
     URL parsedURL = new URL(url);
+    return signV3(url, nonce, authToken.getBytes("UTF-8"), method, params);
+  }
+
+  private static String signV3(String url, String nonce, byte[] key, String method, Map<String, String> params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     String payload = generateUrl(url, method, params) + "." + nonce;
-    SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
+    return Base64.getEncoder().encodeToString(hmacSha256(key, payload.getBytes("UTF-8")));
+  }
+
+  private static byte[] hmacSha256(byte[] key, byte[] data) throws NoSuchAlgorithmException, InvalidKeyException {
     Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
-    mac.init(signingKey);
-    return new String(Base64.getEncoder().encode(mac.doFinal(payload.getBytes("UTF-8"))));
+    mac.init(new SecretKeySpec(key, SIGNATURE_ALGORITHM));
+    return mac.doFinal(data);
+  }
+
+  public static byte[] deriveSigningKey(String scopedToken) throws NoSuchAlgorithmException, InvalidKeyException {
+    if (scopedToken == null) {
+      throw new IllegalArgumentException("scopedToken must be non-null");
+    }
+    byte[] prk = hmacSha256("plivo-scoped-token-v1".getBytes(StandardCharsets.UTF_8), scopedToken.getBytes(StandardCharsets.UTF_8));
+    byte[] info = "plivo-webhook-signing-v1".getBytes(StandardCharsets.UTF_8);
+    byte[] t1 = Arrays.copyOf(info, info.length + 1);
+    t1[info.length] = 1;
+    return hmacSha256(prk, t1);
+  }
+
+  public static String computeSignatureV3Scoped(String url, String nonce, String scopedToken, String method, Map<String, String> params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    if (!allNotNull(url, nonce, scopedToken)) {
+      throw new IllegalArgumentException("url, nonce and scopedToken must be non-null");
+    }
+    return signV3(url, nonce, deriveSigningKey(scopedToken), method, params);
+  }
+
+  public static boolean validateSignatureV3Scoped(String url, String nonce, String signature, String scopedToken, String method, Map<String, String>... params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    Map<String, String> parameters = params.length > 0 ? params[0] : new HashMap<String, String>();
+    byte[] expected = computeSignatureV3Scoped(url, nonce, scopedToken, method, parameters).getBytes(StandardCharsets.UTF_8);
+    boolean valid = false;
+    for (String candidate : signature.split(",")) {
+      valid |= MessageDigest.isEqual(expected, candidate.trim().getBytes(StandardCharsets.UTF_8));
+    }
+    return valid;
   }
 
   public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, Map<String, String>... params)
