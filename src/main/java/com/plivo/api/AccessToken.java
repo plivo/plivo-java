@@ -20,6 +20,9 @@ public class AccessToken {
   public String uid;
 
   public AccessToken(String authId, String authToken, String username) {
+    if (authToken != null && authToken.length() == 46 && authToken.startsWith("PLV")) {
+      throw new IllegalArgumentException("AccessToken must be signed with the account auth token; scoped API tokens (PLV...) can't sign JWTs. Use the auth token, or create a token with the JWT API (POST /Account/{auth_id}/JWT/Token/).");
+    }
     this.authId = authId;
     this.authToken = authToken;
     this.username = username;

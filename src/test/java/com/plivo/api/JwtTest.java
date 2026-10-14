@@ -20,4 +20,15 @@ public class JwtTest {
   public void createAccessTokenShouldThrowPlivoValidationException() throws Exception {
     new AccessToken("MADADADADADADADADADA", "qwerty", "username").ValidFrom(new Date(12121212000L)).Lifetime(Duration.ofMillis(300000)).AllowIncoming(true).ValidTill(new Date(12121212000L)).toJwt();
   }
+
+  @Test
+  public void createAccessTokenShouldRejectScopedToken() {
+    try {
+      new AccessToken("MADADADADADADADADADA", "PLV" + new String(new char[43]).replace('\0', 'A'), "username");
+      fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.getMessage().contains("scoped API tokens"));
+    }
+    assertNotNull(new AccessToken("MADADADADADADADADADA", "qwerty", "username").toJwt());
+  }
 }
