@@ -239,8 +239,12 @@ public class Utils {
     return valid;
   }
 
+  /** Validates X-Plivo-Signature-V3 with an auth token, or with a scoped API token (PLV..., 46 chars) via deriveSigningKey. */
   public static boolean validateSignatureV3(String url, String nonce, String signature, String authToken, String method, Map<String, String>... params)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    if (authToken != null && authToken.length() == 46 && authToken.startsWith("PLV")) {
+      return validateSignatureV3Scoped(url, nonce, signature, authToken, method, params);
+    }
     Map<String, String> parameters = new HashMap<String, String>();
     if(params.length > 0){
       parameters = params[0];

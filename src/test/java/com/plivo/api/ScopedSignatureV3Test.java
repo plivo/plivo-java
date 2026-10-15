@@ -61,8 +61,13 @@ public class ScopedSignatureV3Test {
   }
 
   @Test
-  public void authTokenValidatorDoesNotAcceptScopedSignature() throws Exception {
-    assertFalse(Utils.validateSignatureV3(POST_URL, NONCE, POST_SIG, TOKEN_1, "POST", postParams("delivered")));
+  public void authTokenValidatorAcceptsScopedToken() throws Exception {
+    assertTrue(Utils.validateSignatureV3(POST_URL, NONCE, POST_SIG + "," + authSig(), TOKEN_1, "POST", postParams("delivered")));
+  }
+
+  @Test
+  public void authTokenValidatorWithScopedTokenRejectsAuthOnlyHeader() throws Exception {
+    assertFalse(Utils.validateSignatureV3(POST_URL, NONCE, authSig(), TOKEN_1, "POST", postParams("delivered")));
   }
 
   private static String authSig() throws Exception {
