@@ -211,11 +211,30 @@ public class Utils {
 
   public static boolean validateSignatureV3Scoped(String url, String nonce, String signature, String scopedToken, String method, Map<String, String>... params)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
+    return validateSignatureV3Scoped(url, nonce, signature, Collections.singletonList(scopedToken), method, params);
+  }
+
+  /**
+   * Validates X-Plivo-Signature-V3 against several keys and returns true if any of them signed the webhook.
+   * Keys that are scoped API tokens (46 chars, starting with "PLV") are verified with the HKDF-derived signing key;
+   * any other key is treated as an auth token. Null or empty keys are skipped.
+   */
+  public static boolean validateSignatureV3Scoped(String url, String nonce, String signature, List<String> keys, String method, Map<String, String>... params)
+    throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     Map<String, String> parameters = params.length > 0 ? params[0] : new HashMap<String, String>();
-    byte[] expected = computeSignatureV3Scoped(url, nonce, scopedToken, method, parameters).getBytes(StandardCharsets.UTF_8);
+    String[] candidates = signature.split(",");
     boolean valid = false;
-    for (String candidate : signature.split(",")) {
-      valid |= MessageDigest.isEqual(expected, candidate.trim().getBytes(StandardCharsets.UTF_8));
+    for (String key : keys) {
+      if (key == null || key.isEmpty()) {
+        continue;
+      }
+      String computed = key.length() == 46 && key.startsWith("PLV")
+        ? computeSignatureV3Scoped(url, nonce, key, method, parameters)
+        : computeSignatureV3(url, nonce, key, method, parameters);
+      byte[] expected = computed.getBytes(StandardCharsets.UTF_8);
+      for (String candidate : candidates) {
+        valid |= MessageDigest.isEqual(expected, candidate.trim().getBytes(StandardCharsets.UTF_8));
+      }
     }
     return valid;
   }

@@ -4,6 +4,7 @@
 **Feature - Webhook signature validation for scoped API tokens**
 - Added `Utils.validateSignatureV3Scoped` and `Utils.computeSignatureV3Scoped` to validate `X-Plivo-Signature-V3` on webhooks caused by scoped-token API calls
 - Added `Utils.deriveSigningKey` (HKDF-SHA256) exposing the scoped-token webhook signing key
+- `Utils.validateSignatureV3Scoped` also accepts a `List<String>` of keys (scoped tokens and/or auth token) and returns true if any of them signed the webhook
 
 ## [5.48.1](https://github.com/plivo/plivo-java/tree/v5.48.1) (2026-05-26)
 **Feature - Profile API DBA field support**
