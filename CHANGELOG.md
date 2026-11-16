@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.52.0](https://github.com/plivo/plivo-java/tree/v5.52.0) (2026-11-16)
+**Feature - INR amount fields on responses for INR-billed accounts**
+- Added `totalAmountInr`, `totalRateInr`, `carrierFeesInr` and `carrierFeesRateInr` to `Message` (get and list)
+- Added `totalAmountInr`, `totalRateInr` and `noiseCancellationAmountInr` to `Call` (CDR get and list)
+- Added `monthlyRentalRateInr`, `smsRateInr`, `mmsRateInr` and `voiceRateInr` to `Number` (rented number get and list)
+- Added `setupRateInr`, `monthlyRentalRateInr`, `smsRateInr`, `mmsRateInr` and `voiceRateInr` to `PhoneNumber` (number search)
+- Added `totalChargeInr` to Verify session `Charges`, `chargeInr` to `AttemptCharge` and `amountInr` (`Double`) to `AttemptDetail`
+- The new fields are `null` for USD accounts; existing USD fields are unchanged
+
 ## [5.51.0](https://github.com/plivo/plivo-java/tree/v5.51.0) (2026-08-19)
 **Feature - Caller Reputation profile-first API**
 - Added optional `enable_caller_reputation`, `caller_reputation_carriers`, `url` and `method` fluent-builder params to `ProfileUpdater`, serialized to the matching wire keys on Profile update

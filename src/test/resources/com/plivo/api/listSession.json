@@ -23,17 +23,21 @@
           "channel": "voice",
           "attempt_uuid": "e4bc0347-6c69-4626-a1f8-830fd898fde2",
           "status": "answer",
-          "time": "2023-09-06T13:02:46.08128+05:30"
+          "time": "2023-09-06T13:02:46.08128+05:30",
+          "amount": 0.006,
+          "amount_inr": 0.528
         }
       ],
       "charges": {
         "total_charge": "0.00600",
+        "total_charge_inr": "0.52800",
         "validation_charge": "0.0000",
         "attempt_charges": [
           {
             "attempt_uuid": "e4bc0347-6c69-4626-a1f8-830fd898fde2",
             "channel": "voice",
-            "charge": "0.00600"
+            "charge": "0.00600",
+            "charge_inr": "0.52800"
           }
         ]
       },

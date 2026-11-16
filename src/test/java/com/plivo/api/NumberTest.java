@@ -1,6 +1,7 @@
 package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.plivo.api.models.base.ListResponse;
@@ -190,4 +191,68 @@ public class NumberTest extends BaseTest {
       payload.get("compliance_application_id").asText());
   }
 
+  @Test
+  public void numberGetShouldExposeInrFieldsForInrAccount() throws Exception {
+    expectResponse("numberGetInrResponse.json", 200);
+
+    Number number = Number.getter("15550100001").get();
+
+    assertEquals("0.80000", number.getMonthlyRentalRate());
+    assertEquals("70.40000", number.getMonthlyRentalRateInr());
+    assertEquals("0.00000", number.getSmsRateInr());
+    assertEquals("0.88000", number.getMmsRateInr());
+    assertEquals("0.74800", number.getVoiceRateInr());
+  }
+
+  @Test
+  public void numberGetShouldLeaveInrFieldsNullForUsdAccount() throws Exception {
+    expectResponse("numberGetResponse.json", 200);
+
+    Number number = Number.getter("17609915566").get();
+
+    assertNull(number.getMonthlyRentalRateInr());
+    assertNull(number.getSmsRateInr());
+    assertNull(number.getMmsRateInr());
+    assertNull(number.getVoiceRateInr());
+  }
+
+  @Test
+  public void numberListShouldExposeInrFieldsOnlyWhereReturned() throws Exception {
+    expectResponse("numberListResponse.json", 200);
+
+    ListResponse<Number> response = Number.lister().list();
+
+    Number inr = response.getObjects().get(0);
+    assertEquals("70.40000", inr.getMonthlyRentalRateInr());
+    assertEquals("0.00000", inr.getSmsRateInr());
+    assertEquals("0.88000", inr.getMmsRateInr());
+    assertEquals("0.74800", inr.getVoiceRateInr());
+
+    Number usd = response.getObjects().get(1);
+    assertNull(usd.getMonthlyRentalRateInr());
+    assertNull(usd.getSmsRateInr());
+    assertNull(usd.getMmsRateInr());
+    assertNull(usd.getVoiceRateInr());
+  }
+
+  @Test
+  public void phoneNumberSearchShouldExposeInrFieldsOnlyWhereReturned() throws Exception {
+    expectResponse("phoneNumberListResponse.json", 200);
+
+    ListResponse<PhoneNumber> response = PhoneNumber.lister("US").list();
+
+    PhoneNumber inr = response.getObjects().get(0);
+    assertEquals("0.00000", inr.getSetupRateInr());
+    assertEquals("70.40000", inr.getMonthlyRentalRateInr());
+    assertEquals("0.70400", inr.getSmsRateInr());
+    assertEquals("0.88000", inr.getMmsRateInr());
+    assertEquals("0.44000", inr.getVoiceRateInr());
+
+    PhoneNumber usd = response.getObjects().get(1);
+    assertNull(usd.getSetupRateInr());
+    assertNull(usd.getMonthlyRentalRateInr());
+    assertNull(usd.getSmsRateInr());
+    assertNull(usd.getMmsRateInr());
+    assertNull(usd.getVoiceRateInr());
+  }
 }

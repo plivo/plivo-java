@@ -10,6 +10,7 @@ public class AttemptDetail {
   private Integer codeLength;
   private Integer dtmf;
   private String fraudCheck;
+  private Double amountInr;
 
   public AttemptDetail(String channel, String attemptUuid, String status, String time, String brandName, String appHash, Integer codeLength, Integer dtmf, String fraudCheck) {
     this.channel = channel;
@@ -51,5 +52,8 @@ public class AttemptDetail {
   }
   public String getFraudCheck(){
     return fraudCheck;
+  }
+  public Double getAmountInr(){
+    return amountInr;
   }
 }

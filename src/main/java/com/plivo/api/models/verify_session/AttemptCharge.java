@@ -4,6 +4,7 @@ public class AttemptCharge {
   private String attemptUuid;
   private String channel;
   private String charge;
+  private String chargeInr;
 
   public AttemptCharge( String attemptUuid, String channel, String charge) {
     this.attemptUuid = attemptUuid;
@@ -21,6 +22,9 @@ public class AttemptCharge {
   }
   public String getCharge(){
     return charge;
+  }
+  public String getChargeInr(){
+    return chargeInr;
   }
 
 }

@@ -21,7 +21,10 @@ public class Call extends BaseResource {
   private String resourceUri;
   private String toNumber;
   private String totalAmount;
+  private String totalAmountInr;
   private String totalRate;
+  private String totalRateInr;
+  private String noiseCancellationAmountInr;
   private String hangupSource;
   private String hangupCauseName;
   private Integer hangupCauseCode;
@@ -161,8 +164,20 @@ public class Call extends BaseResource {
     return totalAmount;
   }
 
+  public String getTotalAmountInr() {
+    return totalAmountInr;
+  }
+
   public String getTotalRate() {
     return totalRate;
+  }
+
+  public String getTotalRateInr() {
+    return totalRateInr;
+  }
+
+  public String getNoiseCancellationAmountInr() {
+    return noiseCancellationAmountInr;
   }
 
   public String getHangupCauseName(){

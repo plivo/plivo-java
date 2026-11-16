@@ -15,7 +15,9 @@ public class Message extends BaseResource {
   private String resourceUri;
   private String toNumber;
   private String totalAmount;
+  private String totalAmountInr;
   private String totalRate;
+  private String totalRateInr;
   private Long units;
   private String powerpackID;
   private String tendlcCampaignID;
@@ -23,7 +25,9 @@ public class Message extends BaseResource {
   private String destinationCountryIso2;
   private String destinationNetwork;
   private String carrierFeesRate;
+  private String carrierFeesRateInr;
   private String carrierFees;
+  private String carrierFeesInr;
   private String requesterIP;
   private Boolean isDomestic;
   private String replacedSender;
@@ -103,8 +107,16 @@ public class Message extends BaseResource {
     return carrierFeesRate;
   }
 
+  public String getCarrierFeesRateInr() {
+    return carrierFeesRateInr;
+  }
+
   public String getCarrierFees() {
     return carrierFees;
+  }
+
+  public String getCarrierFeesInr() {
+    return carrierFeesInr;
   }
 
   public String getFromNumber() {
@@ -143,8 +155,16 @@ public class Message extends BaseResource {
     return totalAmount;
   }
 
+  public String getTotalAmountInr() {
+    return totalAmountInr;
+  }
+
   public String getTotalRate() {
     return totalRate;
+  }
+
+  public String getTotalRateInr() {
+    return totalRateInr;
   }
 
   public Long getUnits() {

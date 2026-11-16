@@ -1,6 +1,7 @@
 package com.plivo.api;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -343,5 +344,49 @@ public class MessageTest extends BaseTest {
     params.put("limit", "20");
     params.put("offset", "0");
     assertRequest("GET", "Message/", params);
+  }
+
+  @Test
+  public void messageGetShouldExposeInrFieldsForInrAccount() throws Exception {
+    expectResponse("messageGetInrResponse.json", 200);
+
+    Message message = Message.getter("5b40a428-bfc7-4daf-9d06-726c558bf3b8").get();
+
+    assertEquals("0.00250", message.getTotalAmount());
+    assertEquals("0.22000", message.getTotalAmountInr());
+    assertEquals("0.22000", message.getTotalRateInr());
+    assertEquals("0.26400", message.getCarrierFeesInr());
+    assertEquals("0.26400", message.getCarrierFeesRateInr());
+  }
+
+  @Test
+  public void messageGetShouldLeaveInrFieldsNullForUsdAccount() throws Exception {
+    expectResponse("messageGetResponse.json", 200);
+
+    Message message = Message.getter("5b40a428-bfc7-4daf-9d06-726c558bf3b8").get();
+
+    assertNull(message.getTotalAmountInr());
+    assertNull(message.getTotalRateInr());
+    assertNull(message.getCarrierFeesInr());
+    assertNull(message.getCarrierFeesRateInr());
+  }
+
+  @Test
+  public void messageListShouldExposeInrFieldsOnlyWhereReturned() throws Exception {
+    expectResponse("messageListResponse.json", 200);
+
+    ListResponse<Message> response = Message.lister().list();
+
+    Message inr = response.getObjects().get(0);
+    assertEquals("0.22000", inr.getTotalAmountInr());
+    assertEquals("0.22000", inr.getTotalRateInr());
+    assertEquals("0.26400", inr.getCarrierFeesInr());
+    assertEquals("0.26400", inr.getCarrierFeesRateInr());
+
+    Message usd = response.getObjects().get(1);
+    assertNull(usd.getTotalAmountInr());
+    assertNull(usd.getTotalRateInr());
+    assertNull(usd.getCarrierFeesInr());
+    assertNull(usd.getCarrierFeesRateInr());
   }
 }
