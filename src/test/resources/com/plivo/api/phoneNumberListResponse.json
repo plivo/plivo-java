@@ -12,6 +12,7 @@
       "country": "UNITED STATES",
       "lata": 722,
       "monthly_rental_rate": "0.80000",
+      "monthly_rental_rate_inr": "70.40000",
       "number": "14154009186",
       "type": "fixed",
       "prefix": "415",
@@ -21,10 +22,16 @@
       "restriction": null,
       "restriction_text": null,
       "setup_rate": "0.00000",
+      "setup_rate_inr": "0.00000",
       "sms_enabled": true,
       "sms_rate": "0.00800",
+      "sms_rate_inr": "0.70400",
+      "mms_enabled": true,
+      "mms_rate": "0.01000",
+      "mms_rate_inr": "0.88000",
       "voice_enabled": true,
-      "voice_rate": "0.00500"
+      "voice_rate": "0.00500",
+      "voice_rate_inr": "0.44000"
     },
     {
       "country": "UNITED STATES",

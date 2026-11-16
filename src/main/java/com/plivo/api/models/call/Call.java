@@ -21,7 +21,11 @@ public class Call extends BaseResource {
   private String resourceUri;
   private String toNumber;
   private String totalAmount;
+  private String totalAmountInr;
   private String totalRate;
+  private String totalRateInr;
+  private String noiseCancellationAmount;
+  private String noiseCancellationAmountInr;
   private String hangupSource;
   private String hangupCauseName;
   private Integer hangupCauseCode;
@@ -161,8 +165,32 @@ public class Call extends BaseResource {
     return totalAmount;
   }
 
+  public String getTotalAmountInr() {
+    return totalAmountInr;
+  }
+
   public String getTotalRate() {
     return totalRate;
+  }
+
+  public String getTotalRateInr() {
+    return totalRateInr;
+  }
+
+  /**
+   * Noise-cancellation charge in USD. May be an empty string when the API returns
+   * no noise-cancellation charge for the call.
+   */
+  public String getNoiseCancellationAmount() {
+    return noiseCancellationAmount;
+  }
+
+  /**
+   * Noise-cancellation charge in INR, for INR-billed accounts. May be an empty string
+   * when the call has no noise-cancellation charge; null for USD accounts.
+   */
+  public String getNoiseCancellationAmountInr() {
+    return noiseCancellationAmountInr;
   }
 
   public String getHangupCauseName(){

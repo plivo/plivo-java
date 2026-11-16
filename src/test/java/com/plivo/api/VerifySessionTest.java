@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 public class VerifySessionTest extends BaseTest{
   private PlivoClient client;
@@ -75,4 +76,40 @@ public class VerifySessionTest extends BaseTest{
 
   }
 
+  @Test
+  public void getSessionShouldExposeInrChargesForInrAccount() throws Exception {
+    expectResponse("getSessionInr.json", 200);
+
+    VerifySession session = VerifySession.getter("78ae7ada-b87c-449c-86b7-91443da3a68b").get();
+
+    assertEquals("0.00600", session.getCharges().getTotalCharge());
+    assertEquals("0.52800", session.getCharges().getTotalChargeInr());
+    assertEquals("0.52800", session.getCharges().getAttemptCharges().get(0).getChargeInr());
+    assertEquals(Double.valueOf(0.006), session.getAttemptDetails().get(0).getAmount());
+    assertEquals(Double.valueOf(0.528), session.getAttemptDetails().get(0).getAmountInr());
+  }
+
+  @Test
+  public void getSessionShouldLeaveInrChargesNullForUsdAccount() throws Exception {
+    expectResponse("getSession.json", 200);
+
+    VerifySession session = VerifySession.getter("78ae7ada-b87c-449c-86b7-91443da3a68b").get();
+
+    assertNull(session.getCharges().getTotalChargeInr());
+    assertNull(session.getCharges().getAttemptCharges().get(0).getChargeInr());
+    assertNull(session.getAttemptDetails().get(0).getAmountInr());
+  }
+
+  @Test
+  public void listSessionShouldExposeInrCharges() throws Exception {
+    expectResponse("listSession.json", 200);
+
+    ListResponse<VerifySessionList> response = VerifySession.lister().list();
+
+    VerifySessionList session = response.getSessions().get(0);
+    assertEquals("0.52800", session.getCharges().getTotalChargeInr());
+    assertEquals("0.52800", session.getCharges().getAttemptCharges().get(0).getChargeInr());
+    assertEquals(Double.valueOf(0.006), session.getAttemptDetails().get(0).getAmount());
+    assertEquals(Double.valueOf(0.528), session.getAttemptDetails().get(0).getAmountInr());
+  }
 }

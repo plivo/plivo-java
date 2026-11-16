@@ -10,19 +10,23 @@ public class Number extends BaseResource {
   private String application;
   private String carrier;
   private String monthlyRentalRate;
+  private String monthlyRentalRateInr;
   private String number;
   private NumberType numberType;
   private String region;
   private String resourceUri;
   private Boolean smsEnabled;
   private String smsRate;
+  private String smsRateInr;
   private Boolean voiceEnabled;
   private String voiceRate;
+  private String voiceRateInr;
   private String subAccount;
   private String subAccountName;
   private Boolean active;
   private Boolean mmsEnabled;
   private String mmsRate;
+  private String mmsRateInr;
   private String tendlcRegistrationStatus;
   private String tendlcCampaignId;
   private String tollFreeSmsVerification;
@@ -87,6 +91,10 @@ public class Number extends BaseResource {
     return monthlyRentalRate;
   }
 
+  public String getMonthlyRentalRateInr() {
+    return monthlyRentalRateInr;
+  }
+
   public String getNumber() {
     return number;
   }
@@ -111,12 +119,20 @@ public class Number extends BaseResource {
     return smsRate;
   }
 
+  public String getSmsRateInr() {
+    return smsRateInr;
+  }
+
   public Boolean getVoiceEnabled() {
     return voiceEnabled;
   }
 
   public String getVoiceRate() {
     return voiceRate;
+  }
+
+  public String getVoiceRateInr() {
+    return voiceRateInr;
   }
 
   public NumberUpdater updater() {
@@ -136,6 +152,8 @@ public class Number extends BaseResource {
   }
 
   public String getMmsRate() { return mmsRate; }
+
+  public String getMmsRateInr() { return mmsRateInr; }
 
   @Override
   public String getId() {

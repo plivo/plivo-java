@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Charges {
   private String totalCharge;
+  private String totalChargeInr;
   private String validationCharge;
   private List<AttemptCharge> attemptCharges;
 
@@ -16,6 +17,9 @@ public class Charges {
   public Charges(){}
   public String getTotalCharge(){
     return totalCharge;
+  }
+  public String getTotalChargeInr(){
+    return totalChargeInr;
   }
   public String getValidationCharge(){
     return validationCharge;

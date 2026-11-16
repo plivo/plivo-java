@@ -7,6 +7,7 @@ public class PhoneNumber extends BaseResource {
   private String country;
   private Integer lata;
   private String monthlyRentalRate;
+  private String monthlyRentalRateInr;
   private String number;
   private String prefix;
   private String rateCenter;
@@ -15,12 +16,16 @@ public class PhoneNumber extends BaseResource {
   private String restriction;
   private String restrictionText;
   private String setupRate;
+  private String setupRateInr;
   private Boolean smsEnabled;
   private String smsRate;
+  private String smsRateInr;
   private Boolean voiceEnabled;
   private String voiceRate;
+  private String voiceRateInr;
   private NumberType type;
   private String mmsRate;
+  private String mmsRateInr;
   private Boolean mmsEnabled;
 
   public static PhoneNumberLister lister(String countryCode) {
@@ -49,6 +54,10 @@ public class PhoneNumber extends BaseResource {
 
   public String getMonthlyRentalRate() {
     return monthlyRentalRate;
+  }
+
+  public String getMonthlyRentalRateInr() {
+    return monthlyRentalRateInr;
   }
 
   public String getNumber() {
@@ -83,6 +92,10 @@ public class PhoneNumber extends BaseResource {
     return setupRate;
   }
 
+  public String getSetupRateInr() {
+    return setupRateInr;
+  }
+
   public Boolean getSmsEnabled() {
     return smsEnabled;
   }
@@ -90,11 +103,18 @@ public class PhoneNumber extends BaseResource {
   public String getSmsRate() {
     return smsRate;
   }
+
+  public String getSmsRateInr() {
+    return smsRateInr;
+  }
+
   public Boolean getMmsEnabled() {
     return mmsEnabled;
   }
 
   public String getMmsRate() { return mmsRate; }
+
+  public String getMmsRateInr() { return mmsRateInr; }
 
   public Boolean getVoiceEnabled() {
     return voiceEnabled;
@@ -102,6 +122,10 @@ public class PhoneNumber extends BaseResource {
 
   public String getVoiceRate() {
     return voiceRate;
+  }
+
+  public String getVoiceRateInr() {
+    return voiceRateInr;
   }
 
   public PhoneNumberCreator creator() {
