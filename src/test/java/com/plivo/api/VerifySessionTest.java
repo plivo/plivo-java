@@ -85,6 +85,7 @@ public class VerifySessionTest extends BaseTest{
     assertEquals("0.00600", session.getCharges().getTotalCharge());
     assertEquals("0.52800", session.getCharges().getTotalChargeInr());
     assertEquals("0.52800", session.getCharges().getAttemptCharges().get(0).getChargeInr());
+    assertEquals(Double.valueOf(0.006), session.getAttemptDetails().get(0).getAmount());
     assertEquals(Double.valueOf(0.528), session.getAttemptDetails().get(0).getAmountInr());
   }
 
@@ -108,6 +109,7 @@ public class VerifySessionTest extends BaseTest{
     VerifySessionList session = response.getSessions().get(0);
     assertEquals("0.52800", session.getCharges().getTotalChargeInr());
     assertEquals("0.52800", session.getCharges().getAttemptCharges().get(0).getChargeInr());
+    assertEquals(Double.valueOf(0.006), session.getAttemptDetails().get(0).getAmount());
     assertEquals(Double.valueOf(0.528), session.getAttemptDetails().get(0).getAmountInr());
   }
 }

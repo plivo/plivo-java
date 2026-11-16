@@ -3,10 +3,10 @@
 ## [5.52.0](https://github.com/plivo/plivo-java/tree/v5.52.0) (2026-11-16)
 **Feature - INR amount fields on responses for INR-billed accounts**
 - Added `totalAmountInr`, `totalRateInr`, `carrierFeesInr` and `carrierFeesRateInr` to `Message` (get and list)
-- Added `totalAmountInr`, `totalRateInr` and `noiseCancellationAmountInr` to `Call` (CDR get and list)
+- Added `totalAmountInr`, `totalRateInr` and `noiseCancellationAmountInr` to `Call` (CDR get and list), plus the missing USD partner `noiseCancellationAmount`; both noise-cancellation fields can be `""` when the call has no noise-cancellation charge
 - Added `monthlyRentalRateInr`, `smsRateInr`, `mmsRateInr` and `voiceRateInr` to `Number` (rented number get and list)
 - Added `setupRateInr`, `monthlyRentalRateInr`, `smsRateInr`, `mmsRateInr` and `voiceRateInr` to `PhoneNumber` (number search)
-- Added `totalChargeInr` to Verify session `Charges`, `chargeInr` to `AttemptCharge` and `amountInr` (`Double`) to `AttemptDetail`
+- Added `totalChargeInr` to Verify session `Charges`, `chargeInr` to `AttemptCharge` and `amountInr` (`Double`) to `AttemptDetail`, plus the missing USD partner `amount` (`Double`)
 - The new fields are `null` for USD accounts; existing USD fields are unchanged
 
 ## [5.51.0](https://github.com/plivo/plivo-java/tree/v5.51.0) (2026-08-19)

@@ -511,8 +511,21 @@ public class CallTest extends BaseTest {
 
     assertEquals("0.07140", call.getTotalAmount());
     assertEquals("6.28320", call.getTotalAmountInr());
+    assertEquals("0.03570", call.getTotalRate());
     assertEquals("3.14160", call.getTotalRateInr());
+    assertEquals("0.00100", call.getNoiseCancellationAmount());
     assertEquals("0.08800", call.getNoiseCancellationAmountInr());
+  }
+
+  @Test
+  public void callGetShouldKeepEmptyNoiseCancellationAmountsForInrAccount() throws Exception {
+    expectResponse("callGetInrNoNoiseCancellationResponse.json", 200);
+
+    Call call = Call.getter("callId").get();
+
+    assertEquals("", call.getNoiseCancellationAmount());
+    assertEquals("", call.getNoiseCancellationAmountInr());
+    assertEquals("6.28320", call.getTotalAmountInr());
   }
 
   @Test
@@ -535,6 +548,7 @@ public class CallTest extends BaseTest {
     Call inr = response.getObjects().get(0);
     assertEquals("11.96800", inr.getTotalAmountInr());
     assertEquals("0.74800", inr.getTotalRateInr());
+    assertEquals("0.00100", inr.getNoiseCancellationAmount());
     assertEquals("0.08800", inr.getNoiseCancellationAmountInr());
 
     Call usd = response.getObjects().get(1);
