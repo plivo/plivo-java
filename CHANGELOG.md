@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.51.1](https://github.com/plivo/plivo-java/tree/v5.51.1)
+## [5.51.1](https://github.com/plivo/plivo-java/tree/v5.51.1) (2026-11-19)
 **Fix - V3 signature validation for WebSocket URLs**
 - `validateSignatureV3` and `computeSignatureV3` now accept `ws://` and `wss://` URLs, so the signature sent on audio stream WebSocket connections can be validated
 - Keep an explicit port in the signed URL, matching how Plivo signs it
