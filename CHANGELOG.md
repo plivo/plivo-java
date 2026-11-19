@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.51.1](https://github.com/plivo/plivo-java/tree/v5.51.1) (2026-11-19)
+**Fix - V3 signature validation for WebSocket URLs**
+- `validateSignatureV3` and `computeSignatureV3` now accept `ws://` and `wss://` URLs, so the signature sent on audio stream WebSocket connections can be validated
+- Keep an explicit port in the signed URL, matching how Plivo signs it
+- Fix a crash for GET URLs without query parameters and for query strings with a repeated key (the first value is used)
+- Compare the HTTP method by value, so a `"GET"` that is not a string literal is handled as GET
+
 ## [5.51.0](https://github.com/plivo/plivo-java/tree/v5.51.0) (2026-08-19)
 **Feature - Caller Reputation profile-first API**
 - Added optional `enable_caller_reputation`, `caller_reputation_carriers`, `url` and `method` fluent-builder params to `ProfileUpdater`, serialized to the matching wire keys on Profile update

@@ -3,6 +3,8 @@ package com.plivo.api.util;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -80,13 +83,29 @@ public class Utils {
 
   private final static String SIGNATURE_ALGORITHM = "HmacSHA256";
 
+  // java.net.URL has no handler for ws/wss; this one is only used for parsing, never for connecting.
+  private static final URLStreamHandler WEBSOCKET_URL_HANDLER = new URLStreamHandler() {
+    @Override
+    protected URLConnection openConnection(URL u) {
+      throw new UnsupportedOperationException("WebSocket URLs are only parsed for signature validation");
+    }
+  };
+
+  private static URL parseUrl(String url) throws MalformedURLException {
+    String lower = url.trim().toLowerCase(Locale.ROOT);
+    if (lower.startsWith("ws://") || lower.startsWith("wss://")) {
+      return new URL(null, url, WEBSOCKET_URL_HANDLER);
+    }
+    return new URL(url);
+  }
+
   public static String computeSignature(String url, String nonce, String authToken)
     throws NoSuchAlgorithmException, InvalidKeyException, MalformedURLException, UnsupportedEncodingException {
     if (!allNotNull(url, nonce, authToken)) {
       throw new IllegalArgumentException("url, nonce and authToken must be non-null");
     }
 
-    URL parsedURL = new URL(url);
+    URL parsedURL = parseUrl(url);
     String baseUrl = parsedURL.getProtocol() + "://" + parsedURL.getHost();
     if (parsedURL.getPort() != -1) {
       baseUrl += ":" + Integer.toString(parsedURL.getPort());
@@ -106,22 +125,20 @@ public class Utils {
 
   public static String generateUrl(String url, String method, Map<String, String> params) throws MalformedURLException, UnsupportedEncodingException {
     String decodedUrl = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
-    URL parsedURL = new URL(decodedUrl);
-    String paramString = "";
-    List<String> keys = new ArrayList<String>(params.keySet());
-    String uri = parsedURL.getProtocol() + "://" + parsedURL.getHost() + parsedURL.getPath();
-    int queryParamLength = 0;
-    try {
-      queryParamLength = parsedURL.getQuery().length();
-      if (params.size() > 0 || queryParamLength > 0) {
-        uri += "?";
-      }
-    } catch (Exception e) {
-      queryParamLength = 0;
+    URL parsedURL = parseUrl(decodedUrl);
+    boolean isGet = "GET".equals(method);
+    String uri = parsedURL.getProtocol() + "://" + parsedURL.getHost();
+    if (parsedURL.getPort() != -1) {
+      uri += ":" + parsedURL.getPort();
+    }
+    uri += parsedURL.getPath();
+    String query = parsedURL.getQuery();
+    int queryParamLength = query == null ? 0 : query.length();
+    if (params.size() > 0 || queryParamLength > 0 || (query == null && !isGet)) {
       uri += "?";
     }
     if (queryParamLength > 0) {
-      if (method == "GET") {
+      if (isGet) {
         Map<String, String> queryParamMap = getMapFromQueryString(parsedURL.getQuery());
         for (Entry<String, String> entry : params.entrySet()) {
           queryParamMap.put(entry.getKey(), entry.getValue());
@@ -132,8 +149,10 @@ public class Utils {
         uri = uri.replace(".$", "");
       }
     } else {
-      if (method == "GET") {
-        uri += GetSortedQueryParamString(params, true);
+      if (isGet) {
+        if (params.size() > 0) {
+          uri += GetSortedQueryParamString(params, true);
+        }
       } else {
         uri += GetSortedQueryParamString(params, false);
       }
@@ -146,7 +165,7 @@ public class Utils {
     if (query.length() == 0) {
       return params;
     }
-    params = Arrays.stream(query.split("&")).map(s -> s.split("=", 2)).collect(Collectors.toMap(a -> a[0], a -> a.length > 1 ? a[1] : ""));
+    params = Arrays.stream(query.split("&")).map(s -> s.split("=", 2)).collect(Collectors.toMap(a -> a[0], a -> a.length > 1 ? a[1] : "", (first, repeated) -> first));
     return params;
   }
 
@@ -173,7 +192,6 @@ public class Utils {
       throw new IllegalArgumentException("url, nonce and authToken must be non-null");
     }
 
-    URL parsedURL = new URL(url);
     String payload = generateUrl(url, method, params) + "." + nonce;
     SecretKeySpec signingKey = new SecretKeySpec(authToken.getBytes("UTF-8"), SIGNATURE_ALGORITHM);
     Mac mac = Mac.getInstance(SIGNATURE_ALGORITHM);
