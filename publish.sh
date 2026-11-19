@@ -1,2 +1,2 @@
 ./gradlew clean
-./gradlew publish
+./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository

@@ -7,7 +7,7 @@ plugins {
     id 'eclipse'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
-    id 'io.codearte.nexus-staging' version '0.30.0'
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
 }
 
 group = 'com.plivo'
@@ -95,11 +95,27 @@ task fatJar {
     dependsOn shadowJar
 }
 
-nexusStaging {
-    numberOfRetries = 60
-    delayBetweenRetriesInMillis = 40000
-    username = System.getenv("MAVEN_USERNAME") ?: project.findProperty('mavenUserName') ?: ''
-    password = System.getenv("MAVEN_PASSWORD") ?: project.findProperty('mavenPassword') ?: ''
+// Sonatype Central Portal via the OSSRH Staging API bridge.
+// io.codearte.nexus-staging (v0.30.0) only spoke the legacy s01.oss.sonatype.org API
+// that Sonatype retired mid-2025 — every release after v5.46.0 (Apr 2025) uploaded
+// nowhere. The gradle-nexus/publish-plugin v2+ handles the two-step upload → close →
+// release flow against the new endpoint using the same MAVEN_USERNAME/MAVEN_PASSWORD
+// user-token pair (issued at central.sonatype.com/account).
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+            username.set(System.getenv("MAVEN_USERNAME") ?: (project.findProperty('mavenUserName') ?: ''))
+            password.set(System.getenv("MAVEN_PASSWORD") ?: (project.findProperty('mavenPassword') ?: ''))
+        }
+    }
+    connectTimeout = java.time.Duration.ofMinutes(5)
+    clientTimeout = java.time.Duration.ofMinutes(5)
+    transitionCheckOptions {
+        maxRetries.set(180)
+        delayBetween.set(java.time.Duration.ofSeconds(20))
+    }
 }
 
 task createPom {
@@ -193,18 +209,9 @@ publishing {
         }
     }
     
-    repositories {
-        maven {
-            def releasesRepoUrl = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://ossrh-staging-api.central.sonatype.com/content/repositories/snapshots/"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-            
-            credentials {
-                username = System.getenv("MAVEN_USERNAME") ?: project.findProperty('mavenUserName') ?: ''
-                password = System.getenv("MAVEN_PASSWORD") ?: project.findProperty('mavenPassword') ?: ''
-            }
-        }
-    }
+    // No manual repositories { } block: nexus-publish adds a `sonatype` staging
+    // repository whose URL comes from initializeSonatypeStagingRepository. Adding
+    // one here would produce a second, non-staged target that skips close-and-release.
 }
 
 signing {
@@ -216,8 +223,11 @@ application {
     mainClass = 'com.plivo.examples.Messages'
 }
 
+// Kept for compatibility with the plivo_standard_libs@sdks Jenkins pipeline that
+// invokes `./gradlew upload`. Under the new plugin, `publish` only uploads to the
+// staging repo — the release also needs closeAndRelease to promote to Central.
 task upload {
-    dependsOn publish
+    dependsOn 'publishToSonatype', 'closeAndReleaseSonatypeStagingRepository'
     doLast {
         println "Uploading artifacts completed"
     }
